@@ -49,8 +49,8 @@
 
     invoke-static {v0}, Lcom/google/android/gms/ads/internal/reward/client/zzb$zza;->zzaa(Landroid/os/IBinder;)Lcom/google/android/gms/ads/internal/reward/client/zzb;
     :try_end_14
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_14} :catch_1e
-    .catch Lcom/google/android/gms/dynamic/zzg$zza; {:try_start_0 .. :try_end_14} :catch_16
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_14} :catch_16
+    .catch Lcom/google/android/gms/dynamic/zzg$zza; {:try_start_0 .. :try_end_14} :catch_1e
 
     move-result-object v0
 

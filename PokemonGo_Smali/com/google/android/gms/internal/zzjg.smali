@@ -164,9 +164,9 @@
     check-cast v2, Ljava/lang/String;
     :try_end_83
     .catch Ljava/io/IOException; {:try_start_0 .. :try_end_83} :catch_a7
-    .catch Ljava/util/concurrent/ExecutionException; {:try_start_0 .. :try_end_83} :catch_a9
+    .catch Ljava/util/concurrent/ExecutionException; {:try_start_0 .. :try_end_83} :catch_a5
     .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_83} :catch_84
-    .catch Ljava/util/concurrent/TimeoutException; {:try_start_0 .. :try_end_83} :catch_a5
+    .catch Ljava/util/concurrent/TimeoutException; {:try_start_0 .. :try_end_83} :catch_a9
 
     goto :goto_3f
 

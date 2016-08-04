@@ -40,7 +40,7 @@
 
     const/4 v2, 0x0
 
-    .line 36
+    .line 38
     new-instance v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$GoogleApiState;
 
     const-string v1, "STARTED"
@@ -49,7 +49,7 @@
 
     sput-object v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$GoogleApiState;->STARTED:Lcom/nianticlabs/nia/location/FusedLocationProvider$GoogleApiState;
 
-    .line 37
+    .line 39
     new-instance v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$GoogleApiState;
 
     const-string v1, "STOPPED"
@@ -58,7 +58,7 @@
 
     sput-object v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$GoogleApiState;->STOPPED:Lcom/nianticlabs/nia/location/FusedLocationProvider$GoogleApiState;
 
-    .line 35
+    .line 37
     const/4 v0, 0x2
 
     new-array v0, v0, [Lcom/nianticlabs/nia/location/FusedLocationProvider$GoogleApiState;
@@ -85,7 +85,7 @@
     .end annotation
 
     .prologue
-    .line 35
+    .line 37
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -96,7 +96,7 @@
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 35
+    .line 37
     const-class v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$GoogleApiState;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -112,7 +112,7 @@
     .registers 1
 
     .prologue
-    .line 35
+    .line 37
     sget-object v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$GoogleApiState;->$VALUES:[Lcom/nianticlabs/nia/location/FusedLocationProvider$GoogleApiState;
 
     invoke-virtual {v0}, [Lcom/nianticlabs/nia/location/FusedLocationProvider$GoogleApiState;->clone()Ljava/lang/Object;

@@ -48,7 +48,7 @@
 
     const/4 v2, 0x0
 
-    .line 27
+    .line 29
     new-instance v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;
 
     const-string v1, "START"
@@ -57,7 +57,7 @@
 
     sput-object v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;->START:Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;
 
-    .line 28
+    .line 30
     new-instance v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;
 
     const-string v1, "STOP"
@@ -66,7 +66,7 @@
 
     sput-object v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;->STOP:Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;
 
-    .line 29
+    .line 31
     new-instance v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;
 
     const-string v1, "PAUSE"
@@ -75,7 +75,7 @@
 
     sput-object v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;->PAUSE:Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;
 
-    .line 30
+    .line 32
     new-instance v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;
 
     const-string v1, "RESUME"
@@ -84,7 +84,7 @@
 
     sput-object v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;->RESUME:Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;
 
-    .line 26
+    .line 28
     const/4 v0, 0x4
 
     new-array v0, v0, [Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;
@@ -119,7 +119,7 @@
     .end annotation
 
     .prologue
-    .line 26
+    .line 28
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -130,7 +130,7 @@
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 26
+    .line 28
     const-class v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -146,7 +146,7 @@
     .registers 1
 
     .prologue
-    .line 26
+    .line 28
     sget-object v0, Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;->$VALUES:[Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;
 
     invoke-virtual {v0}, [Lcom/nianticlabs/nia/location/FusedLocationProvider$AppState;->clone()Ljava/lang/Object;

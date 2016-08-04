@@ -278,10 +278,10 @@
 
     invoke-static {v0}, Lcom/google/android/gms/ads/identifier/AdvertisingIdClient;->getAdvertisingIdInfo(Landroid/content/Context;)Lcom/google/android/gms/ads/identifier/AdvertisingIdClient$Info;
     :try_end_45
-    .catch Ljava/io/IOException; {:try_start_40 .. :try_end_45} :catch_83
+    .catch Ljava/io/IOException; {:try_start_40 .. :try_end_45} :catch_93
     .catch Ljava/lang/IllegalStateException; {:try_start_40 .. :try_end_45} :catch_8f
     .catch Lcom/google/android/gms/common/GooglePlayServicesNotAvailableException; {:try_start_40 .. :try_end_45} :catch_91
-    .catch Lcom/google/android/gms/common/GooglePlayServicesRepairableException; {:try_start_40 .. :try_end_45} :catch_93
+    .catch Lcom/google/android/gms/common/GooglePlayServicesRepairableException; {:try_start_40 .. :try_end_45} :catch_83
 
     move-result-object v0
 
@@ -516,8 +516,8 @@
 
     check-cast v0, Lorg/json/JSONObject;
     :try_end_43
-    .catch Ljava/util/concurrent/CancellationException; {:try_start_3b .. :try_end_43} :catch_4b
-    .catch Ljava/lang/InterruptedException; {:try_start_3b .. :try_end_43} :catch_7f
+    .catch Ljava/util/concurrent/CancellationException; {:try_start_3b .. :try_end_43} :catch_7f
+    .catch Ljava/lang/InterruptedException; {:try_start_3b .. :try_end_43} :catch_4b
     .catch Ljava/util/concurrent/TimeoutException; {:try_start_3b .. :try_end_43} :catch_52
     .catch Ljava/util/concurrent/ExecutionException; {:try_start_3b .. :try_end_43} :catch_5a
 

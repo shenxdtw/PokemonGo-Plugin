@@ -156,8 +156,8 @@
     invoke-interface {v6, v7, v8, v9}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
     :try_end_67
     .catch Ljava/io/IOException; {:try_start_e .. :try_end_67} :catch_68
-    .catch Ljava/security/NoSuchAlgorithmException; {:try_start_e .. :try_end_67} :catch_8c
-    .catch Ljava/security/NoSuchProviderException; {:try_start_e .. :try_end_67} :catch_8e
+    .catch Ljava/security/NoSuchAlgorithmException; {:try_start_e .. :try_end_67} :catch_8e
+    .catch Ljava/security/NoSuchProviderException; {:try_start_e .. :try_end_67} :catch_8c
     .catch Ljava/security/spec/InvalidKeySpecException; {:try_start_e .. :try_end_67} :catch_92
     .catch Ljava/security/InvalidKeyException; {:try_start_e .. :try_end_67} :catch_90
 

@@ -75,8 +75,8 @@
 
     invoke-virtual {v1, v2, v3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
     :try_end_11
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_2 .. :try_end_11} :catch_12
-    .catch Ljava/lang/IllegalAccessException; {:try_start_2 .. :try_end_11} :catch_2e
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_2 .. :try_end_11} :catch_2e
+    .catch Ljava/lang/IllegalAccessException; {:try_start_2 .. :try_end_11} :catch_12
 
     .line 49
     return-void

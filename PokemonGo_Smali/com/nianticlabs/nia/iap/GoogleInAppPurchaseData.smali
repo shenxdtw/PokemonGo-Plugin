@@ -53,7 +53,7 @@
     .local v1, "googleInAppPurchaseData":Lcom/nianticlabs/nia/iap/GoogleInAppPurchaseData;
     const-string v3, "orderId"
 
-    invoke-virtual {v2, v3}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Lcom/nianticlabs/nia/iap/GoogleInAppPurchaseData;->stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -62,7 +62,7 @@
     .line 21
     const-string v3, "packageName"
 
-    invoke-virtual {v2, v3}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Lcom/nianticlabs/nia/iap/GoogleInAppPurchaseData;->stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -71,7 +71,7 @@
     .line 22
     const-string v3, "productId"
 
-    invoke-virtual {v2, v3}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Lcom/nianticlabs/nia/iap/GoogleInAppPurchaseData;->stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -80,7 +80,7 @@
     .line 23
     const-string v3, "purchaseTime"
 
-    invoke-virtual {v2, v3}, Lorg/json/JSONObject;->getLong(Ljava/lang/String;)J
+    invoke-static {v2, v3}, Lcom/nianticlabs/nia/iap/GoogleInAppPurchaseData;->longFromJson(Lorg/json/JSONObject;Ljava/lang/String;)J
 
     move-result-wide v4
 
@@ -89,7 +89,7 @@
     .line 24
     const-string v3, "purchaseState"
 
-    invoke-virtual {v2, v3}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Lcom/nianticlabs/nia/iap/GoogleInAppPurchaseData;->stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -98,7 +98,7 @@
     .line 25
     const-string v3, "developerPayload"
 
-    invoke-virtual {v2, v3}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Lcom/nianticlabs/nia/iap/GoogleInAppPurchaseData;->stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -130,13 +130,71 @@
     goto :goto_3a
 .end method
 
+.method private static longFromJson(Lorg/json/JSONObject;Ljava/lang/String;)J
+    .registers 6
+    .param p0, "jObject"    # Lorg/json/JSONObject;
+    .param p1, "key"    # Ljava/lang/String;
+
+    .prologue
+    .line 43
+    :try_start_0
+    invoke-virtual {p0, p1}, Lorg/json/JSONObject;->getLong(Ljava/lang/String;)J
+    :try_end_3
+    .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_3} :catch_5
+
+    move-result-wide v2
+
+    .line 45
+    :goto_4
+    return-wide v2
+
+    .line 44
+    :catch_5
+    move-exception v0
+
+    .line 45
+    .local v0, "e":Lorg/json/JSONException;
+    const-wide/16 v2, 0x0
+
+    goto :goto_4
+.end method
+
+.method private static stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
+    .registers 4
+    .param p0, "jObject"    # Lorg/json/JSONObject;
+    .param p1, "key"    # Ljava/lang/String;
+
+    .prologue
+    .line 35
+    :try_start_0
+    invoke-virtual {p0, p1}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    :try_end_3
+    .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_3} :catch_5
+
+    move-result-object v1
+
+    .line 37
+    :goto_4
+    return-object v1
+
+    .line 36
+    :catch_5
+    move-exception v0
+
+    .line 37
+    .local v0, "e":Lorg/json/JSONException;
+    const-string v1, ""
+
+    goto :goto_4
+.end method
+
 
 # virtual methods
 .method getDeveloperPayload()Ljava/lang/String;
     .registers 2
 
     .prologue
-    .line 54
+    .line 70
     iget-object v0, p0, Lcom/nianticlabs/nia/iap/GoogleInAppPurchaseData;->developerPayload:Ljava/lang/String;
 
     return-object v0
@@ -146,7 +204,7 @@
     .registers 2
 
     .prologue
-    .line 34
+    .line 50
     iget-object v0, p0, Lcom/nianticlabs/nia/iap/GoogleInAppPurchaseData;->orderId:Ljava/lang/String;
 
     return-object v0
@@ -156,7 +214,7 @@
     .registers 2
 
     .prologue
-    .line 38
+    .line 54
     iget-object v0, p0, Lcom/nianticlabs/nia/iap/GoogleInAppPurchaseData;->packageName:Ljava/lang/String;
 
     return-object v0
@@ -166,7 +224,7 @@
     .registers 2
 
     .prologue
-    .line 42
+    .line 58
     iget-object v0, p0, Lcom/nianticlabs/nia/iap/GoogleInAppPurchaseData;->productId:Ljava/lang/String;
 
     return-object v0
@@ -176,7 +234,7 @@
     .registers 2
 
     .prologue
-    .line 50
+    .line 66
     iget-object v0, p0, Lcom/nianticlabs/nia/iap/GoogleInAppPurchaseData;->purchaseState:Ljava/lang/String;
 
     return-object v0
@@ -186,7 +244,7 @@
     .registers 3
 
     .prologue
-    .line 46
+    .line 62
     iget-wide v0, p0, Lcom/nianticlabs/nia/iap/GoogleInAppPurchaseData;->purchaseTime:J
 
     return-wide v0

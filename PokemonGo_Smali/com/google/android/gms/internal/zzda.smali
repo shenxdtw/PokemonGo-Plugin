@@ -54,8 +54,8 @@
 
     invoke-static {v0}, Lcom/google/android/gms/internal/zzco$zza;->zzu(Landroid/os/IBinder;)Lcom/google/android/gms/internal/zzco;
     :try_end_1c
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_1c} :catch_26
-    .catch Lcom/google/android/gms/dynamic/zzg$zza; {:try_start_0 .. :try_end_1c} :catch_1e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_1c} :catch_1e
+    .catch Lcom/google/android/gms/dynamic/zzg$zza; {:try_start_0 .. :try_end_1c} :catch_26
 
     move-result-object v0
 

@@ -57,8 +57,8 @@
 
     invoke-static {v0}, Lcom/google/android/gms/ads/internal/client/zzs$zza;->zzk(Landroid/os/IBinder;)Lcom/google/android/gms/ads/internal/client/zzs;
     :try_end_18
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_18} :catch_22
-    .catch Lcom/google/android/gms/dynamic/zzg$zza; {:try_start_0 .. :try_end_18} :catch_1a
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_18} :catch_1a
+    .catch Lcom/google/android/gms/dynamic/zzg$zza; {:try_start_0 .. :try_end_18} :catch_22
 
     move-result-object v0
 

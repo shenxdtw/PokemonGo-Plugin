@@ -75,9 +75,9 @@
 
 .field public static final common_signin_btn_text_pressed_light:I = 0x7f02001d
 
-.field public static final ic_eject_black_48dp:I = 0x7f02001e
+.field public static final ic_launcher:I = 0x7f02001e
 
-.field public static final ic_launcher:I = 0x7f02001f
+.field public static final ic_swap_horiz_white_24dp:I = 0x7f02001f
 
 .field public static final lunar_console_icon_button_clear:I = 0x7f020020
 
@@ -112,6 +112,8 @@
 .field public static final powered_by_google_dark:I = 0x7f02002f
 
 .field public static final powered_by_google_light:I = 0x7f020030
+
+.field public static final sfida_icon:I = 0x7f020031
 
 
 # direct methods

@@ -1824,8 +1824,8 @@
 
     invoke-virtual {p0, v0}, Lcom/google/android/gms/internal/zzaz;->zza(Lorg/json/JSONObject;)V
     :try_end_41
-    .catch Lorg/json/JSONException; {:try_start_3a .. :try_end_41} :catch_49
-    .catch Ljava/lang/RuntimeException; {:try_start_3a .. :try_end_41} :catch_50
+    .catch Lorg/json/JSONException; {:try_start_3a .. :try_end_41} :catch_50
+    .catch Ljava/lang/RuntimeException; {:try_start_3a .. :try_end_41} :catch_49
     .catchall {:try_start_3a .. :try_end_41} :catchall_19
 
     :goto_41

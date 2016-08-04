@@ -1,9 +1,6 @@
 .class Lcom/nianticlabs/nia/location/FusedLocationProvider$4;
-.super Ljava/lang/Object;
+.super Lcom/google/android/gms/location/LocationCallback;
 .source "FusedLocationProvider.java"
-
-# interfaces
-.implements Lcom/google/android/gms/location/LocationListener;
 
 
 # annotations
@@ -27,101 +24,111 @@
     .param p1, "this$0"    # Lcom/nianticlabs/nia/location/FusedLocationProvider;
 
     .prologue
-    .line 214
+    .line 216
     iput-object p1, p0, Lcom/nianticlabs/nia/location/FusedLocationProvider$4;->this$0:Lcom/nianticlabs/nia/location/FusedLocationProvider;
 
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Lcom/google/android/gms/location/LocationCallback;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public onLocationChanged(Landroid/location/Location;)V
-    .registers 8
-    .param p1, "location"    # Landroid/location/Location;
+.method public onLocationAvailability(Lcom/google/android/gms/location/LocationAvailability;)V
+    .registers 4
+    .param p1, "locationAvailability"    # Lcom/google/android/gms/location/LocationAvailability;
 
     .prologue
+    .line 236
+    invoke-virtual {p1}, Lcom/google/android/gms/location/LocationAvailability;->isLocationAvailable()Z
 
-    :try_start_0
-    invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
-    move-result-object v4
-    invoke-virtual {v4}, Ljava/io/File;->getPath()Ljava/lang/String;
-    move-result-object v2
+    move-result v0
 
-    .local v2, "path":Ljava/lang/String;
-    new-instance v0, Ljava/io/File;
-    new-instance v4, Ljava/lang/StringBuilder;
-    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
-    invoke-virtual {v4, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    move-result-object v4
+    if-eqz v0, :cond_e
 
-    const-string v5, "/pokemon.location"
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    move-result-object v4
-    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-    move-result-object v4
-    invoke-direct {v0, v4}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    .line 237
+    iget-object v0, p0, Lcom/nianticlabs/nia/location/FusedLocationProvider$4;->this$0:Lcom/nianticlabs/nia/location/FusedLocationProvider;
 
-    .local v0, "file":Ljava/io/File;
-    new-instance v1, Ljava/io/FileInputStream;
-    invoke-direct {v1, v0}, Ljava/io/FileInputStream;-><init>(Ljava/io/File;)V
+    sget-object v1, Lcom/nianticlabs/nia/contextservice/ServiceStatus;->RUNNING:Lcom/nianticlabs/nia/contextservice/ServiceStatus;
 
-    .local v1, "fin":Ljava/io/FileInputStream;
-    new-instance v3, Ljava/io/BufferedReader;
-    new-instance v4, Ljava/io/InputStreamReader;
-    invoke-direct {v4, v1}, Ljava/io/InputStreamReader;-><init>(Ljava/io/InputStream;)V
-    invoke-direct {v3, v4}, Ljava/io/BufferedReader;-><init>(Ljava/io/Reader;)V
+    # invokes: Lcom/nianticlabs/nia/location/FusedLocationProvider;->updateStatus(Lcom/nianticlabs/nia/contextservice/ServiceStatus;)V
+    invoke-static {v0, v1}, Lcom/nianticlabs/nia/location/FusedLocationProvider;->access$100(Lcom/nianticlabs/nia/location/FusedLocationProvider;Lcom/nianticlabs/nia/contextservice/ServiceStatus;)V
 
-    .local v3, "reader":Ljava/io/BufferedReader;
-    invoke-virtual {v3}, Ljava/io/BufferedReader;->readLine()Ljava/lang/String;
-    move-result-object v4
-    invoke-static {v4}, Ljava/lang/Double;->valueOf(Ljava/lang/String;)Ljava/lang/Double;
-    move-result-object v4
-    invoke-virtual {v4}, Ljava/lang/Double;->doubleValue()D
-    move-result-wide v4
-    invoke-virtual {p1, v4, v5}, Landroid/location/Location;->setLatitude(D)V
-
-    invoke-virtual {v3}, Ljava/io/BufferedReader;->readLine()Ljava/lang/String;
-    move-result-object v4
-    invoke-static {v4}, Ljava/lang/Double;->valueOf(Ljava/lang/String;)Ljava/lang/Double;
-    move-result-object v4
-    invoke-virtual {v4}, Ljava/lang/Double;->doubleValue()D
-    move-result-wide v4
-
-    invoke-virtual {p1, v4, v5}, Landroid/location/Location;->setLongitude(D)V
-    invoke-virtual {v1}, Ljava/io/FileInputStream;->close()V
-    :try_end_7
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_7} :catch_d
-
-    .end local v0    # "file":Ljava/io/File;
-    .end local v1    # "fin":Ljava/io/FileInputStream;
-    .end local v2    # "path":Ljava/lang/String;
-    .end local v3    # "reader":Ljava/io/BufferedReader;
-
-    :goto_7
-
-    .line 222
-    iget-object v1, p0, Lcom/nianticlabs/nia/location/FusedLocationProvider$4;->this$0:Lcom/nianticlabs/nia/location/FusedLocationProvider;
-
-    # getter for: Lcom/nianticlabs/nia/location/FusedLocationProvider;->providerListener:Lcom/nianticlabs/nia/location/Provider$ProviderListener;
-    invoke-static {v1}, Lcom/nianticlabs/nia/location/FusedLocationProvider;->access$400(Lcom/nianticlabs/nia/location/FusedLocationProvider;)Lcom/nianticlabs/nia/location/Provider$ProviderListener;
-
-    move-result-object v0
-
-    .line 223
-    .local v0, "listener":Lcom/nianticlabs/nia/location/Provider$ProviderListener;
-    if-eqz v0, :cond_b
-
-    .line 224
-    invoke-interface {v0, p1}, Lcom/nianticlabs/nia/location/Provider$ProviderListener;->onProviderLocation(Landroid/location/Location;)V
-
-    .line 226
-    :cond_b
+    .line 241
+    :goto_d
     return-void
 
-    :catch_d
-    move-exception v0
+    .line 239
+    :cond_e
+    iget-object v0, p0, Lcom/nianticlabs/nia/location/FusedLocationProvider$4;->this$0:Lcom/nianticlabs/nia/location/FusedLocationProvider;
 
-    goto :goto_7
+    sget-object v1, Lcom/nianticlabs/nia/contextservice/ServiceStatus;->PERMISSION_DENIED:Lcom/nianticlabs/nia/contextservice/ServiceStatus;
+
+    # invokes: Lcom/nianticlabs/nia/location/FusedLocationProvider;->updateStatus(Lcom/nianticlabs/nia/contextservice/ServiceStatus;)V
+    invoke-static {v0, v1}, Lcom/nianticlabs/nia/location/FusedLocationProvider;->access$100(Lcom/nianticlabs/nia/location/FusedLocationProvider;Lcom/nianticlabs/nia/contextservice/ServiceStatus;)V
+
+    goto :goto_d
+.end method
+
+.method public onLocationResult(Lcom/google/android/gms/location/LocationResult;)V
+    .registers 7
+    .param p1, "result"    # Lcom/google/android/gms/location/LocationResult;
+
+    .prologue
+    .line 219
+    invoke-virtual {p1}, Lcom/google/android/gms/location/LocationResult;->getLastLocation()Landroid/location/Location;
+
+    move-result-object v2
+
+    .line 220
+    .local v2, "location":Landroid/location/Location;
+    sget-object v3, Lcom/google/android/gms/location/LocationServices;->FusedLocationApi:Lcom/google/android/gms/location/FusedLocationProviderApi;
+
+    iget-object v4, p0, Lcom/nianticlabs/nia/location/FusedLocationProvider$4;->this$0:Lcom/nianticlabs/nia/location/FusedLocationProvider;
+
+    .line 221
+    # getter for: Lcom/nianticlabs/nia/location/FusedLocationProvider;->googleApiManager:Lcom/nianticlabs/nia/contextservice/GoogleApiManager;
+    invoke-static {v4}, Lcom/nianticlabs/nia/location/FusedLocationProvider;->access$400(Lcom/nianticlabs/nia/location/FusedLocationProvider;)Lcom/nianticlabs/nia/contextservice/GoogleApiManager;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Lcom/nianticlabs/nia/contextservice/GoogleApiManager;->getClient()Lcom/google/android/gms/common/api/GoogleApiClient;
+
+    move-result-object v4
+
+    .line 220
+    invoke-interface {v3, v4}, Lcom/google/android/gms/location/FusedLocationProviderApi;->getLocationAvailability(Lcom/google/android/gms/common/api/GoogleApiClient;)Lcom/google/android/gms/location/LocationAvailability;
+
+    move-result-object v3
+
+    .line 221
+    invoke-virtual {v3}, Lcom/google/android/gms/location/LocationAvailability;->isLocationAvailable()Z
+
+    move-result v0
+
+    .line 222
+    .local v0, "isValidLocation":Z
+    if-eqz v2, :cond_27
+
+    if-eqz v0, :cond_27
+
+    .line 227
+    iget-object v3, p0, Lcom/nianticlabs/nia/location/FusedLocationProvider$4;->this$0:Lcom/nianticlabs/nia/location/FusedLocationProvider;
+
+    # getter for: Lcom/nianticlabs/nia/location/FusedLocationProvider;->providerListener:Lcom/nianticlabs/nia/location/Provider$ProviderListener;
+    invoke-static {v3}, Lcom/nianticlabs/nia/location/FusedLocationProvider;->access$500(Lcom/nianticlabs/nia/location/FusedLocationProvider;)Lcom/nianticlabs/nia/location/Provider$ProviderListener;
+
+    move-result-object v1
+
+    .line 228
+    .local v1, "listener":Lcom/nianticlabs/nia/location/Provider$ProviderListener;
+    if-eqz v1, :cond_27
+
+    .line 229
+    invoke-interface {v1, v2}, Lcom/nianticlabs/nia/location/Provider$ProviderListener;->onProviderLocation(Landroid/location/Location;)V
+
+    .line 232
+    .end local v1    # "listener":Lcom/nianticlabs/nia/location/Provider$ProviderListener;
+    :cond_27
+    return-void
 .end method

@@ -100,9 +100,9 @@
 
     check-cast v1, Landroid/os/IBinder;
     :try_end_32
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_24 .. :try_end_32} :catch_48
-    .catch Ljava/lang/IllegalAccessException; {:try_start_24 .. :try_end_32} :catch_4a
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_24 .. :try_end_32} :catch_3c
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_24 .. :try_end_32} :catch_4a
+    .catch Ljava/lang/IllegalAccessException; {:try_start_24 .. :try_end_32} :catch_3c
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_24 .. :try_end_32} :catch_48
 
     .line 58
     :goto_32
@@ -237,9 +237,9 @@
 
     invoke-virtual {v1, p0, v2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
     :try_end_36
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_28 .. :try_end_36} :catch_4c
-    .catch Ljava/lang/IllegalAccessException; {:try_start_28 .. :try_end_36} :catch_4e
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_28 .. :try_end_36} :catch_40
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_28 .. :try_end_36} :catch_4e
+    .catch Ljava/lang/IllegalAccessException; {:try_start_28 .. :try_end_36} :catch_40
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_28 .. :try_end_36} :catch_4c
 
     .line 82
     :cond_36

@@ -37,7 +37,7 @@
     .param p1, "this$0"    # Lcom/nianticlabs/nia/location/FusedLocationProvider;
 
     .prologue
-    .line 200
+    .line 202
     iput-object p1, p0, Lcom/nianticlabs/nia/location/FusedLocationProvider$3;->this$0:Lcom/nianticlabs/nia/location/FusedLocationProvider;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -51,7 +51,7 @@
     .registers 2
 
     .prologue
-    .line 200
+    .line 202
     check-cast p1, Lcom/google/android/gms/common/api/Status;
 
     invoke-virtual {p0, p1}, Lcom/nianticlabs/nia/location/FusedLocationProvider$3;->onResult(Lcom/google/android/gms/common/api/Status;)V
@@ -64,14 +64,14 @@
     .param p1, "status"    # Lcom/google/android/gms/common/api/Status;
 
     .prologue
-    .line 207
+    .line 209
     invoke-virtual {p1}, Lcom/google/android/gms/common/api/Status;->isSuccess()Z
 
     move-result v0
 
     if-eqz v0, :cond_d
 
-    .line 208
+    .line 210
     iget-object v0, p0, Lcom/nianticlabs/nia/location/FusedLocationProvider$3;->this$0:Lcom/nianticlabs/nia/location/FusedLocationProvider;
 
     sget-object v1, Lcom/nianticlabs/nia/contextservice/ServiceStatus;->STOPPED:Lcom/nianticlabs/nia/contextservice/ServiceStatus;
@@ -79,7 +79,7 @@
     # invokes: Lcom/nianticlabs/nia/location/FusedLocationProvider;->updateStatus(Lcom/nianticlabs/nia/contextservice/ServiceStatus;)V
     invoke-static {v0, v1}, Lcom/nianticlabs/nia/location/FusedLocationProvider;->access$100(Lcom/nianticlabs/nia/location/FusedLocationProvider;Lcom/nianticlabs/nia/contextservice/ServiceStatus;)V
 
-    .line 210
+    .line 212
     :cond_d
     return-void
 .end method

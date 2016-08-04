@@ -55,7 +55,7 @@
     .local v1, "getSkuDetailsResponseItem":Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;
     const-string v3, "productId"
 
-    invoke-virtual {v2, v3}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -64,7 +64,7 @@
     .line 28
     const-string v3, "type"
 
-    invoke-virtual {v2, v3}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -73,7 +73,7 @@
     .line 29
     const-string v3, "price"
 
-    invoke-virtual {v2, v3}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -82,7 +82,7 @@
     .line 30
     const-string v3, "price_amount_micros"
 
-    invoke-virtual {v2, v3}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -91,7 +91,7 @@
     .line 31
     const-string v3, "price_currency_code"
 
-    invoke-virtual {v2, v3}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -100,7 +100,7 @@
     .line 32
     const-string v3, "title"
 
-    invoke-virtual {v2, v3}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -109,7 +109,7 @@
     .line 33
     const-string v3, "description"
 
-    invoke-virtual {v2, v3}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -146,12 +146,12 @@
     .param p0, "purchasableItemDetails"    # Lcom/nianticlabs/nia/iap/PurchasableItemDetails;
 
     .prologue
-    .line 45
+    .line 53
     new-instance v0, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;
 
     invoke-direct {v0}, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;-><init>()V
 
-    .line 46
+    .line 54
     .local v0, "getSkuDetailsResponseItem":Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;
     invoke-virtual {p0}, Lcom/nianticlabs/nia/iap/PurchasableItemDetails;->getItemId()Ljava/lang/String;
 
@@ -159,44 +159,73 @@
 
     iput-object v1, v0, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->productId:Ljava/lang/String;
 
-    .line 47
+    .line 55
     const-string v1, "inapp"
 
     iput-object v1, v0, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->type:Ljava/lang/String;
 
-    .line 48
+    .line 56
     invoke-virtual {p0}, Lcom/nianticlabs/nia/iap/PurchasableItemDetails;->getPrice()Ljava/lang/String;
 
     move-result-object v1
 
     iput-object v1, v0, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->price:Ljava/lang/String;
 
-    .line 49
+    .line 57
     const-string v1, ""
 
     iput-object v1, v0, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->price_amount_micros:Ljava/lang/String;
 
-    .line 50
+    .line 58
     const-string v1, ""
 
     iput-object v1, v0, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->price_currency_code:Ljava/lang/String;
 
-    .line 51
+    .line 59
     invoke-virtual {p0}, Lcom/nianticlabs/nia/iap/PurchasableItemDetails;->getTitle()Ljava/lang/String;
 
     move-result-object v1
 
     iput-object v1, v0, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->title:Ljava/lang/String;
 
-    .line 52
+    .line 60
     invoke-virtual {p0}, Lcom/nianticlabs/nia/iap/PurchasableItemDetails;->getDescription()Ljava/lang/String;
 
     move-result-object v1
 
     iput-object v1, v0, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->description:Ljava/lang/String;
 
-    .line 53
+    .line 61
     return-object v0
+.end method
+
+.method private static stringFromJson(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/String;
+    .registers 4
+    .param p0, "jObject"    # Lorg/json/JSONObject;
+    .param p1, "key"    # Ljava/lang/String;
+
+    .prologue
+    .line 43
+    :try_start_0
+    invoke-virtual {p0, p1}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    :try_end_3
+    .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_3} :catch_5
+
+    move-result-object v1
+
+    .line 45
+    :goto_4
+    return-object v1
+
+    .line 44
+    :catch_5
+    move-exception v0
+
+    .line 45
+    .local v0, "e":Lorg/json/JSONException;
+    const-string v1, ""
+
+    goto :goto_4
 .end method
 
 .method static toPurchasableItemDetails(Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;)Lcom/nianticlabs/nia/iap/PurchasableItemDetails;
@@ -204,7 +233,7 @@
     .param p0, "item"    # Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;
 
     .prologue
-    .line 58
+    .line 66
     new-instance v0, Lcom/nianticlabs/nia/iap/PurchasableItemDetails;
 
     iget-object v1, p0, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->productId:Ljava/lang/String;
@@ -226,7 +255,7 @@
     .registers 2
 
     .prologue
-    .line 62
+    .line 70
     iget-object v0, p0, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->price_currency_code:Ljava/lang/String;
 
     return-object v0
@@ -236,7 +265,7 @@
     .registers 3
 
     .prologue
-    .line 67
+    .line 75
     :try_start_0
     iget-object v1, p0, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->price_amount_micros:Ljava/lang/String;
 
@@ -246,15 +275,15 @@
 
     move-result v1
 
-    .line 69
+    .line 77
     :goto_6
     return v1
 
-    .line 68
+    .line 76
     :catch_7
     move-exception v0
 
-    .line 69
+    .line 77
     .local v0, "e":Ljava/lang/NumberFormatException;
     const/4 v1, 0x0
 
@@ -265,7 +294,7 @@
     .registers 2
 
     .prologue
-    .line 74
+    .line 82
     iget-object v0, p0, Lcom/nianticlabs/nia/iap/GetSkuDetailsResponseItem;->productId:Ljava/lang/String;
 
     return-object v0
