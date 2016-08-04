@@ -15,6 +15,9 @@
 ➡️GPS經度減少<br>
 ✡️自動走路模式(孵蛋)，開啟後按鈕會變成🔯
 
+###展示
+![demo.png](demo.png)
+
 ###其他
 App會在內部儲存空間建立一個檔案pokemon.location內為GPS資訊<br>
 以供其他第三方方式進行GPS位置的修改
