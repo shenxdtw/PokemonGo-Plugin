@@ -45,24 +45,13 @@
     .end annotation
 .end field
 
-.field private final supertypeInjector:Ldagger/MembersInjector;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ldagger/MembersInjector",
-            "<",
-            "Landroid/app/Service;",
-            ">;"
-        }
-    .end annotation
-.end field
-
 
 # direct methods
 .method static constructor <clinit>()V
     .registers 1
 
     .prologue
-    .line 10
+    .line 9
     const-class v0, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -84,15 +73,11 @@
     goto :goto_9
 .end method
 
-.method public constructor <init>(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
-    .registers 5
+.method public constructor <init>(Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Ldagger/MembersInjector",
-            "<",
-            "Landroid/app/Service;",
-            ">;",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;",
@@ -105,13 +90,12 @@
     .end annotation
 
     .prologue
-    .line 16
-    .local p1, "supertypeInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Landroid/app/Service;>;"
-    .local p2, "mConfigurationManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;>;"
-    .local p3, "mDispatcherProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;>;"
+    .line 20
+    .local p1, "mConfigurationManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;>;"
+    .local p2, "mDispatcherProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 17
+    .line 21
     sget-boolean v0, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -124,11 +108,11 @@
 
     throw v0
 
-    .line 18
+    .line 22
     :cond_f
-    iput-object p1, p0, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->supertypeInjector:Ldagger/MembersInjector;
+    iput-object p1, p0, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->mConfigurationManagerProvider:Ljavax/inject/Provider;
 
-    .line 19
+    .line 23
     sget-boolean v0, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -141,40 +125,19 @@
 
     throw v0
 
-    .line 20
+    .line 24
     :cond_1d
-    iput-object p2, p0, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->mConfigurationManagerProvider:Ljavax/inject/Provider;
+    iput-object p2, p0, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->mDispatcherProvider:Ljavax/inject/Provider;
 
-    .line 21
-    sget-boolean v0, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->$assertionsDisabled:Z
-
-    if-nez v0, :cond_2b
-
-    if-nez p3, :cond_2b
-
-    new-instance v0, Ljava/lang/AssertionError;
-
-    invoke-direct {v0}, Ljava/lang/AssertionError;-><init>()V
-
-    throw v0
-
-    .line 22
-    :cond_2b
-    iput-object p3, p0, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->mDispatcherProvider:Ljavax/inject/Provider;
-
-    .line 23
+    .line 25
     return-void
 .end method
 
-.method public static create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
-    .registers 4
+.method public static create(Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Ldagger/MembersInjector",
-            "<",
-            "Landroid/app/Service;",
-            ">;",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;",
@@ -191,15 +154,72 @@
     .end annotation
 
     .prologue
-    .line 36
-    .local p0, "supertypeInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Landroid/app/Service;>;"
-    .local p1, "mConfigurationManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;>;"
-    .local p2, "mDispatcherProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;>;"
+    .line 30
+    .local p0, "mConfigurationManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;>;"
+    .local p1, "mDispatcherProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;>;"
     new-instance v0, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;
 
-    invoke-direct {v0, p0, p1, p2}, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;-><init>(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+    invoke-direct {v0, p0, p1}, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;-><init>(Ljavax/inject/Provider;Ljavax/inject/Provider;)V
 
     return-object v0
+.end method
+
+.method public static injectMConfigurationManager(Lcom/upsight/android/analytics/internal/DispatcherService;Ljavax/inject/Provider;)V
+    .registers 3
+    .param p0, "instance"    # Lcom/upsight/android/analytics/internal/DispatcherService;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/upsight/android/analytics/internal/DispatcherService;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;",
+            ">;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 45
+    .local p1, "mConfigurationManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;>;"
+    invoke-interface {p1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DispatcherService;->mConfigurationManager:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
+
+    .line 46
+    return-void
+.end method
+
+.method public static injectMDispatcher(Lcom/upsight/android/analytics/internal/DispatcherService;Ljavax/inject/Provider;)V
+    .registers 3
+    .param p0, "instance"    # Lcom/upsight/android/analytics/internal/DispatcherService;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/upsight/android/analytics/internal/DispatcherService;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;",
+            ">;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 50
+    .local p1, "mDispatcherProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;>;"
+    invoke-interface {p1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DispatcherService;->mDispatcher:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
+
+    .line 51
+    return-void
 .end method
 
 
@@ -209,10 +229,10 @@
     .param p1, "instance"    # Lcom/upsight/android/analytics/internal/DispatcherService;
 
     .prologue
-    .line 27
+    .line 36
     if-nez p1, :cond_a
 
-    .line 28
+    .line 37
     new-instance v0, Ljava/lang/NullPointerException;
 
     const-string v1, "Cannot inject members into a null reference"
@@ -221,13 +241,8 @@
 
     throw v0
 
-    .line 30
+    .line 39
     :cond_a
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->supertypeInjector:Ldagger/MembersInjector;
-
-    invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
-
-    .line 31
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->mConfigurationManagerProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -238,7 +253,7 @@
 
     iput-object v0, p1, Lcom/upsight/android/analytics/internal/DispatcherService;->mConfigurationManager:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
-    .line 32
+    .line 40
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->mDispatcherProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -249,19 +264,17 @@
 
     iput-object v0, p1, Lcom/upsight/android/analytics/internal/DispatcherService;->mDispatcher:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
-    .line 33
+    .line 41
     return-void
 .end method
 
 .method public bridge synthetic injectMembers(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 10
+    .line 9
     check-cast p1, Lcom/upsight/android/analytics/internal/DispatcherService;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->injectMembers(Lcom/upsight/android/analytics/internal/DispatcherService;)V
 
     return-void

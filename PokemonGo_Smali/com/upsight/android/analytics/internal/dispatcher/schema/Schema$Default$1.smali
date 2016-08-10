@@ -28,139 +28,144 @@
     .registers 2
 
     .prologue
-    .line 23
+    .line 28
     invoke-direct {p0}, Ljava/util/HashSet;-><init>()V
 
-    .line 24
+    .line 29
     const-string v0, "sid"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 25
+    .line 30
     const-string v0, "app.token"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 26
+    .line 31
     const-string v0, "app.version"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 27
+    .line 32
     const-string v0, "app.bundleid"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 28
+    .line 33
     const-string v0, "device.os"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 29
+    .line 34
     const-string v0, "device.os_version"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 30
+    .line 35
     const-string v0, "device.type"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 31
+    .line 36
     const-string v0, "device.hardware"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 32
+    .line 37
     const-string v0, "device.manufacturer"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 33
+    .line 38
     const-string v0, "device.carrier"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 34
+    .line 39
     const-string v0, "device.connection"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 35
+    .line 40
     const-string v0, "device.jailbroken"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 36
+    .line 41
     const-string v0, "device.limit_ad_tracking"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 37
+    .line 42
     const-string v0, "screen.width"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 38
+    .line 43
     const-string v0, "screen.height"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 39
+    .line 44
     const-string v0, "screen.scale"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 40
+    .line 45
     const-string v0, "screen.dpi"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 41
+    .line 46
     const-string v0, "sdk.version"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 42
+    .line 47
     const-string v0, "sdk.build"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 43
+    .line 48
     const-string v0, "sdk.plugin"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 44
+    .line 49
     const-string v0, "location.tz"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 45
+    .line 50
     const-string v0, "location.lat"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 46
+    .line 51
     const-string v0, "location.lon"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 47
+    .line 52
     const-string v0, "bundle.schema_hash"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 48
+    .line 53
     const-string v0, "bundle.id"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 49
+    .line 54
     const-string v0, "bundle.hash"
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
 
-    .line 50
+    .line 55
+    const-string v0, "partners"
+
+    invoke-virtual {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;->add(Ljava/lang/Object;)Z
+
+    .line 56
     return-void
 .end method

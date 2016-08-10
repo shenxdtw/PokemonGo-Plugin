@@ -16,33 +16,37 @@
 
 # instance fields
 .field dataBundle:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "data_bundle"
     .end annotation
 .end field
 
 .field format:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonInclude;
-        value = .enum Lcom/fasterxml/jackson/annotation/JsonInclude$Include;->NON_NULL:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "format"
     .end annotation
 .end field
 
 .field streamId:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "stream_id"
     .end annotation
 .end field
 
 .field streamStartTs:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonInclude;
-        value = .enum Lcom/fasterxml/jackson/annotation/JsonInclude$Include;->NON_NULL:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "stream_start_ts"
     .end annotation
 .end field
@@ -53,10 +57,10 @@
     .registers 1
 
     .prologue
-    .line 60
+    .line 62
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 62
+    .line 64
     return-void
 .end method
 
@@ -65,10 +69,10 @@
     .param p1, "builder"    # Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;
 
     .prologue
-    .line 53
+    .line 55
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 54
+    .line 56
     # getter for: Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->streamStartTs:Ljava/lang/String;
     invoke-static {p1}, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->access$000(Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;)Ljava/lang/String;
 
@@ -76,7 +80,7 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$UpsightData;->streamStartTs:Ljava/lang/String;
 
-    .line 55
+    .line 57
     # getter for: Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->streamId:Ljava/lang/String;
     invoke-static {p1}, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->access$100(Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;)Ljava/lang/String;
 
@@ -84,7 +88,7 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$UpsightData;->streamId:Ljava/lang/String;
 
-    .line 56
+    .line 58
     # getter for: Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->dataBundle:Ljava/lang/String;
     invoke-static {p1}, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->access$200(Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;)Ljava/lang/String;
 
@@ -92,7 +96,7 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$UpsightData;->dataBundle:Ljava/lang/String;
 
-    .line 57
+    .line 59
     # getter for: Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->format:Ljava/lang/String;
     invoke-static {p1}, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->access$300(Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;)Ljava/lang/String;
 
@@ -100,7 +104,7 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$UpsightData;->format:Ljava/lang/String;
 
-    .line 58
+    .line 60
     return-void
 .end method
 
@@ -110,7 +114,7 @@
     .registers 2
 
     .prologue
-    .line 82
+    .line 84
     iget-object v0, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$UpsightData;->dataBundle:Ljava/lang/String;
 
     return-object v0
@@ -120,7 +124,7 @@
     .registers 2
 
     .prologue
-    .line 89
+    .line 91
     iget-object v0, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$UpsightData;->format:Ljava/lang/String;
 
     return-object v0
@@ -130,7 +134,7 @@
     .registers 2
 
     .prologue
-    .line 75
+    .line 77
     iget-object v0, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$UpsightData;->streamId:Ljava/lang/String;
 
     return-object v0
@@ -140,7 +144,7 @@
     .registers 2
 
     .prologue
-    .line 68
+    .line 70
     iget-object v0, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$UpsightData;->streamStartTs:Ljava/lang/String;
 
     return-object v0

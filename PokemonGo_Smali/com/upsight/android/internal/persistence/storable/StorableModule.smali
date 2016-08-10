@@ -21,9 +21,9 @@
 
 
 # virtual methods
-.method public provideStorableInfoCache(Lcom/fasterxml/jackson/databind/ObjectMapper;)Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;
+.method public provideStorableInfoCache(Lcom/google/gson/Gson;)Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;
     .registers 3
-    .param p1, "objectMapper"    # Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .param p1, "gson"    # Lcom/google/gson/Gson;
     .annotation runtime Ldagger/Provides;
     .end annotation
 
@@ -34,7 +34,7 @@
     .line 23
     new-instance v0, Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;
 
-    invoke-direct {v0, p1}, Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;-><init>(Lcom/fasterxml/jackson/databind/ObjectMapper;)V
+    invoke-direct {v0, p1}, Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;-><init>(Lcom/google/gson/Gson;)V
 
     return-object v0
 .end method

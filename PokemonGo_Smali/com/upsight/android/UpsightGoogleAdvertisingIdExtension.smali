@@ -56,7 +56,6 @@
 
 .method protected bridge synthetic onResolve(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/UpsightExtension$BaseComponent;
     .registers 3
-    .param p1, "x0"    # Lcom/upsight/android/UpsightContext;
 
     .prologue
     .line 18
@@ -81,10 +80,12 @@
 
     invoke-direct {v1, p1}, Lcom/upsight/android/googleadvertisingid/internal/GoogleAdvertisingProviderModule;-><init>(Lcom/upsight/android/UpsightContext;)V
 
+    .line 36
     invoke-virtual {v0, v1}, Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$Builder;->googleAdvertisingProviderModule(Lcom/upsight/android/googleadvertisingid/internal/GoogleAdvertisingProviderModule;)Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$Builder;
 
     move-result-object v0
 
+    .line 37
     invoke-virtual {v0}, Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$Builder;->build()Lcom/upsight/android/googleadvertisingid/internal/GoogleAdvertisingProviderComponent;
 
     move-result-object v0

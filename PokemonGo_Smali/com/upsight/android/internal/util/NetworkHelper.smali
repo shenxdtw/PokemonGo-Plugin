@@ -92,7 +92,7 @@
 .end method
 
 .method public static getNetworkOperatorName(Landroid/content/Context;)Ljava/lang/String;
-    .registers 4
+    .registers 5
     .param p0, "context"    # Landroid/content/Context;
 
     .prologue
@@ -100,38 +100,50 @@
     const-string v0, "none"
 
     .line 79
-    .local v0, "networkOperatorName":Ljava/lang/String;
+    .local v0, "operator":Ljava/lang/String;
     :try_start_2
-    const-string v2, "phone"
+    const-string v3, "phone"
 
-    invoke-virtual {p0, v2}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    invoke-virtual {p0, v3}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Landroid/telephony/TelephonyManager;
+
+    .line 80
+    .local v2, "tm":Landroid/telephony/TelephonyManager;
+    if-eqz v2, :cond_17
+
+    .line 81
+    invoke-virtual {v2}, Landroid/telephony/TelephonyManager;->getNetworkOperatorName()Ljava/lang/String;
 
     move-result-object v1
 
-    check-cast v1, Landroid/telephony/TelephonyManager;
+    .line 82
+    .local v1, "operatorName":Ljava/lang/String;
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+    :try_end_13
+    .catch Ljava/lang/SecurityException; {:try_start_2 .. :try_end_13} :catch_18
 
-    .line 80
-    .local v1, "tm":Landroid/telephony/TelephonyManager;
-    if-eqz v1, :cond_10
+    move-result v3
 
-    .line 81
-    invoke-virtual {v1}, Landroid/telephony/TelephonyManager;->getNetworkOperatorName()Ljava/lang/String;
-    :try_end_f
-    .catch Ljava/lang/SecurityException; {:try_start_2 .. :try_end_f} :catch_11
-
-    move-result-object v0
-
-    .line 86
-    .end local v1    # "tm":Landroid/telephony/TelephonyManager;
-    :cond_10
-    :goto_10
-    return-object v0
+    if-nez v3, :cond_17
 
     .line 83
-    :catch_11
-    move-exception v2
+    move-object v0, v1
 
-    goto :goto_10
+    .line 89
+    .end local v1    # "operatorName":Ljava/lang/String;
+    .end local v2    # "tm":Landroid/telephony/TelephonyManager;
+    :cond_17
+    :goto_17
+    return-object v0
+
+    .line 86
+    :catch_18
+    move-exception v3
+
+    goto :goto_17
 .end method
 
 .method public static isConnected(Landroid/content/Context;)Z

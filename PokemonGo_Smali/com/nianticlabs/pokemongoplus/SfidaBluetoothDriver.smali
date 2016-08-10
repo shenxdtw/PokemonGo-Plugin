@@ -68,7 +68,7 @@
     .param p1, "context"    # Landroid/content/Context;
 
     .prologue
-    .line 69
+    .line 72
     invoke-direct {p0}, Lcom/nianticlabs/pokemongoplus/ble/BluetoothDriver;-><init>()V
 
     .line 36
@@ -78,7 +78,7 @@
 
     iput-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->peripheralMap:Ljava/util/Map;
 
-    .line 68
+    .line 71
     new-instance v0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;
 
     const-string v1, "SfidaBluetoothDriver"
@@ -87,10 +87,10 @@
 
     iput-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->serialExecutor:Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;
 
-    .line 70
+    .line 73
     iput-object p1, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->context:Landroid/content/Context;
 
-    .line 71
+    .line 74
     return-void
 .end method
 
@@ -254,7 +254,7 @@
     .registers 2
 
     .prologue
-    .line 75
+    .line 78
     iget-boolean v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->isScanning:Z
 
     return v0
@@ -264,7 +264,7 @@
     .registers 2
 
     .prologue
-    .line 160
+    .line 180
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->bluetoothAdapter:Landroid/bluetooth/BluetoothAdapter;
 
     if-eqz v0, :cond_c
@@ -277,11 +277,11 @@
 
     if-nez v0, :cond_e
 
-    .line 161
+    .line 181
     :cond_c
     const/4 v0, 0x0
 
-    .line 163
+    .line 183
     :goto_d
     return v0
 
@@ -291,12 +291,57 @@
     goto :goto_d
 .end method
 
+.method public releasePeripherals()V
+    .registers 4
+
+    .prologue
+    .line 130
+    iget-object v1, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->peripheralMap:Ljava/util/Map;
+
+    invoke-interface {v1}, Ljava/util/Map;->values()Ljava/util/Collection;
+
+    move-result-object v1
+
+    invoke-interface {v1}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    :goto_a
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_1a
+
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;
+
+    .line 131
+    .local v0, "peripheral":Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;
+    invoke-virtual {v0}, Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;->onDestroy()V
+
+    goto :goto_a
+
+    .line 133
+    .end local v0    # "peripheral":Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;
+    :cond_1a
+    iget-object v1, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->peripheralMap:Ljava/util/Map;
+
+    invoke-interface {v1}, Ljava/util/Map;->clear()V
+
+    .line 134
+    return-void
+.end method
+
 .method public start(Lcom/nianticlabs/pokemongoplus/ble/callback/CentralStateCallback;)I
     .registers 4
     .param p1, "callback"    # Lcom/nianticlabs/pokemongoplus/ble/callback/CentralStateCallback;
 
     .prologue
-    .line 81
+    .line 84
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->serialExecutor:Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;
 
     new-instance v1, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$1;
@@ -305,7 +350,7 @@
 
     invoke-virtual {v0, v1}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;->execute(Ljava/lang/Runnable;)V
 
-    .line 98
+    .line 100
     const/4 v0, 0x0
 
     return v0
@@ -315,14 +360,14 @@
     .registers 2
 
     .prologue
-    .line 111
-    new-instance v0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$2;
+    .line 120
+    new-instance v0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$3;
 
-    invoke-direct {v0, p0}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$2;-><init>(Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;)V
+    invoke-direct {v0, p0}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$3;-><init>(Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;)V
 
     invoke-virtual {p0, v0}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->start(Lcom/nianticlabs/pokemongoplus/ble/callback/CentralStateCallback;)I
 
-    .line 118
+    .line 127
     return-void
 .end method
 
@@ -331,7 +376,7 @@
     .param p1, "peripheralName"    # Ljava/lang/String;
 
     .prologue
-    .line 137
+    .line 154
     sget-object v0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->TAG:Ljava/lang/String;
 
     const-string v1, "startScanning(%s)"
@@ -350,14 +395,14 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 138
-    new-instance v0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$4;
+    .line 155
+    new-instance v0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$5;
 
-    invoke-direct {v0, p0}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$4;-><init>(Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;)V
+    invoke-direct {v0, p0}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$5;-><init>(Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;)V
 
     invoke-virtual {p0, p1, v0}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->startScanning(Ljava/lang/String;Lcom/nianticlabs/pokemongoplus/ble/callback/ScanCallback;)V
 
-    .line 144
+    .line 161
     return-void
 .end method
 
@@ -367,16 +412,16 @@
     .param p2, "callback"    # Lcom/nianticlabs/pokemongoplus/ble/callback/ScanCallback;
 
     .prologue
-    .line 123
+    .line 139
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->serialExecutor:Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;
 
-    new-instance v1, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$3;
+    new-instance v1, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$4;
 
-    invoke-direct {v1, p0, p2, p1}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$3;-><init>(Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;Lcom/nianticlabs/pokemongoplus/ble/callback/ScanCallback;Ljava/lang/String;)V
+    invoke-direct {v1, p0, p2, p1}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$4;-><init>(Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;Lcom/nianticlabs/pokemongoplus/ble/callback/ScanCallback;Ljava/lang/String;)V
 
     invoke-virtual {v0, v1}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;->execute(Ljava/lang/Runnable;)V
 
-    .line 134
+    .line 151
     return-void
 .end method
 
@@ -385,14 +430,28 @@
     .param p1, "unusedTag"    # I
 
     .prologue
-    .line 103
+    .line 105
     sget-object v0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->TAG:Ljava/lang/String;
 
     const-string v1, "stop()"
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 104
+    .line 106
+    iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->serialExecutor:Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;
+
+    new-instance v1, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$2;
+
+    invoke-direct {v1, p0}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$2;-><init>(Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;)V
+
+    invoke-virtual {v0, v1}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;->execute(Ljava/lang/Runnable;)V
+
+    .line 112
+    iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->serialExecutor:Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;
+
+    invoke-virtual {v0}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;->stop()V
+
+    .line 113
     return-void
 .end method
 
@@ -400,12 +459,12 @@
     .registers 2
 
     .prologue
-    .line 107
+    .line 116
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->stop(I)V
 
-    .line 108
+    .line 117
     return-void
 .end method
 
@@ -416,7 +475,7 @@
     .prologue
     const/4 v3, 0x0
 
-    .line 149
+    .line 166
     sget-object v0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->TAG:Ljava/lang/String;
 
     const-string v1, "stopScanning(%s)"
@@ -433,22 +492,34 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 151
-    iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->sfidaScanCallback:Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$SfidaScanCallback;
+    .line 167
+    invoke-virtual {p0}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->IsScanning()Z
 
-    if-eqz v0, :cond_1e
+    move-result v0
 
-    .line 152
+    if-eqz v0, :cond_20
+
+    .line 169
+    :try_start_17
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->bluetoothAdapter:Landroid/bluetooth/BluetoothAdapter;
 
     iget-object v1, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->sfidaScanCallback:Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$SfidaScanCallback;
 
     invoke-virtual {v0, v1}, Landroid/bluetooth/BluetoothAdapter;->stopLeScan(Landroid/bluetooth/BluetoothAdapter$LeScanCallback;)V
+    :try_end_1e
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_17 .. :try_end_1e} :catch_21
 
-    .line 153
+    .line 173
+    :goto_1e
     iput-boolean v3, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->isScanning:Z
 
-    .line 155
-    :cond_1e
+    .line 175
+    :cond_20
     return-void
+
+    .line 170
+    :catch_21
+    move-exception v0
+
+    goto :goto_1e
 .end method

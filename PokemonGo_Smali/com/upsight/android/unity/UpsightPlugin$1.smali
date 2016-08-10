@@ -3,12 +3,12 @@
 .source "UpsightPlugin.java"
 
 # interfaces
-.implements Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnUnregisterListener;
+.implements Ljava/lang/Runnable;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/upsight/android/unity/UpsightPlugin;->unregisterForPushNotifications()V
+    value = Lcom/upsight/android/unity/UpsightPlugin;-><init>()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,14 +20,19 @@
 # instance fields
 .field final synthetic this$0:Lcom/upsight/android/unity/UpsightPlugin;
 
+.field final synthetic val$activity:Landroid/app/Activity;
+
 
 # direct methods
-.method constructor <init>(Lcom/upsight/android/unity/UpsightPlugin;)V
-    .registers 2
+.method constructor <init>(Lcom/upsight/android/unity/UpsightPlugin;Landroid/app/Activity;)V
+    .registers 3
+    .param p1, "this$0"    # Lcom/upsight/android/unity/UpsightPlugin;
 
     .prologue
-    .line 177
+    .line 61
     iput-object p1, p0, Lcom/upsight/android/unity/UpsightPlugin$1;->this$0:Lcom/upsight/android/unity/UpsightPlugin;
+
+    iput-object p2, p0, Lcom/upsight/android/unity/UpsightPlugin$1;->val$activity:Landroid/app/Activity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -36,49 +41,28 @@
 
 
 # virtual methods
-.method public onFailure(Lcom/upsight/android/UpsightException;)V
-    .registers 5
-    .param p1, "e"    # Lcom/upsight/android/UpsightException;
+.method public run()V
+    .registers 4
 
     .prologue
-    .line 185
-    const-string v0, "Upsight"
+    .line 65
+    iget-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin$1;->this$0:Lcom/upsight/android/unity/UpsightPlugin;
 
-    new-instance v1, Ljava/lang/StringBuilder;
+    iget-object v0, v0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin$1;->val$activity:Landroid/app/Activity;
 
-    const-string v2, "unregistration failed: "
+    sget-object v2, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;->STARTED:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-static {v0, v1, v2}, Lcom/upsight/android/analytics/UpsightLifeCycleTracker;->track(Lcom/upsight/android/UpsightContext;Landroid/app/Activity;Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;)V
 
-    move-result-object v1
+    .line 66
+    const-string v0, "Upsight-Unity"
 
-    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    const-string v1, "Upsight initialization finished"
 
-    move-result-object v1
+    invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 186
-    return-void
-.end method
-
-.method public onSuccess()V
-    .registers 3
-
-    .prologue
-    .line 180
-    const-string v0, "Upsight"
-
-    const-string v1, "unregistration succeeded"
-
-    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 181
+    .line 67
     return-void
 .end method

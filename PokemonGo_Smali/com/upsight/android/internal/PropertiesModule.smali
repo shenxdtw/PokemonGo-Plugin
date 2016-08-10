@@ -9,6 +9,8 @@
 
 
 # static fields
+.field private static final APP_TOKEN_LENGTH:I = 0x20
+
 .field public static final KEY_APP_TOKEN:Ljava/lang/String; = "com.upsight.app_token"
 
 .field public static final KEY_PUBLIC_KEY:Ljava/lang/String; = "com.upsight.public_key"
@@ -44,35 +46,37 @@
     .end annotation
 
     .prologue
-    .line 55
+    .line 57
     const/4 v0, 0x0
 
-    .line 57
+    .line 59
     .local v0, "appToken":Ljava/lang/String;
     :try_start_1
     invoke-virtual {p1}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
 
     move-result-object v4
 
+    .line 60
     invoke-virtual {p1}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
 
     move-result-object v5
 
     const/16 v6, 0x80
 
+    .line 59
     invoke-virtual {v4, v5, v6}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
 
     move-result-object v3
 
-    .line 59
+    .line 61
     .local v3, "info":Landroid/content/pm/ApplicationInfo;
     iget-object v1, v3, Landroid/content/pm/ApplicationInfo;->metaData:Landroid/os/Bundle;
 
-    .line 60
+    .line 62
     .local v1, "bundle":Landroid/os/Bundle;
     if-eqz v1, :cond_19
 
-    .line 61
+    .line 63
     const-string v4, "com.upsight.app_token"
 
     invoke-virtual {v1, v4}, Landroid/os/Bundle;->getString(Ljava/lang/String;)Ljava/lang/String;
@@ -81,7 +85,7 @@
 
     move-result-object v0
 
-    .line 67
+    .line 69
     .end local v1    # "bundle":Landroid/os/Bundle;
     .end local v3    # "info":Landroid/content/pm/ApplicationInfo;
     :cond_19
@@ -92,7 +96,7 @@
 
     if-eqz v4, :cond_36
 
-    .line 68
+    .line 70
     new-instance v4, Ljava/lang/IllegalStateException;
 
     const-string v5, "App token must be set in the Android Manifest with <meta-data android:name=\"com.upsight.app_token\" android:value=\"UPSIGHT_APPLICATION_TOKEN\" />"
@@ -101,11 +105,11 @@
 
     throw v4
 
-    .line 63
+    .line 65
     :catch_27
     move-exception v2
 
-    .line 64
+    .line 66
     .local v2, "e":Landroid/content/pm/PackageManager$NameNotFoundException;
     const-string v4, "Upsight"
 
@@ -126,6 +130,25 @@
     .line 72
     .end local v2    # "e":Landroid/content/pm/PackageManager$NameNotFoundException;
     :cond_36
+    invoke-virtual {v0}, Ljava/lang/String;->length()I
+
+    move-result v4
+
+    const/16 v5, 0x20
+
+    if-eq v4, v5, :cond_46
+
+    .line 73
+    new-instance v4, Ljava/lang/IllegalStateException;
+
+    const-string v5, "Invalid app token set in the Android Manifest with <meta-data android:name=\"com.upsight.app_token\" android:value=\"UPSIGHT_APPLICATION_TOKEN\" />"
+
+    invoke-direct {v4, v5}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw v4
+
+    .line 77
+    :cond_46
     return-object v0
 .end method
 
@@ -144,35 +167,37 @@
     .end annotation
 
     .prologue
-    .line 79
+    .line 84
     const/4 v3, 0x0
 
-    .line 81
+    .line 86
     .local v3, "publicKey":Ljava/lang/String;
     :try_start_1
     invoke-virtual {p1}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
 
     move-result-object v4
 
+    .line 87
     invoke-virtual {p1}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
 
     move-result-object v5
 
     const/16 v6, 0x80
 
+    .line 86
     invoke-virtual {v4, v5, v6}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
 
     move-result-object v2
 
-    .line 83
+    .line 88
     .local v2, "info":Landroid/content/pm/ApplicationInfo;
     iget-object v0, v2, Landroid/content/pm/ApplicationInfo;->metaData:Landroid/os/Bundle;
 
-    .line 84
+    .line 89
     .local v0, "bundle":Landroid/os/Bundle;
     if-eqz v0, :cond_19
 
-    .line 85
+    .line 90
     const-string v4, "com.upsight.public_key"
 
     invoke-virtual {v0, v4}, Landroid/os/Bundle;->getString(Ljava/lang/String;)Ljava/lang/String;
@@ -181,7 +206,7 @@
 
     move-result-object v3
 
-    .line 91
+    .line 96
     .end local v0    # "bundle":Landroid/os/Bundle;
     .end local v2    # "info":Landroid/content/pm/ApplicationInfo;
     :cond_19
@@ -192,7 +217,7 @@
 
     if-eqz v4, :cond_36
 
-    .line 92
+    .line 97
     new-instance v4, Ljava/lang/IllegalStateException;
 
     const-string v5, "Public key must be set in the Android Manifest with <meta-data android:name=\"com.upsight.public_key\" android:value=\"UPSIGHT_PUBLIC_KEY\" />"
@@ -201,11 +226,11 @@
 
     throw v4
 
-    .line 87
+    .line 92
     :catch_27
     move-exception v1
 
-    .line 88
+    .line 93
     .local v1, "e":Landroid/content/pm/PackageManager$NameNotFoundException;
     const-string v4, "Upsight"
 
@@ -223,7 +248,7 @@
 
     goto :goto_19
 
-    .line 96
+    .line 101
     .end local v1    # "e":Landroid/content/pm/PackageManager$NameNotFoundException;
     :cond_36
     return-object v3
@@ -244,35 +269,37 @@
     .end annotation
 
     .prologue
-    .line 35
+    .line 37
     const-string v3, ""
 
-    .line 37
+    .line 39
     .local v3, "sdkPlugin":Ljava/lang/String;
     :try_start_2
     invoke-virtual {p1}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
 
     move-result-object v4
 
+    .line 40
     invoke-virtual {p1}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
 
     move-result-object v5
 
     const/16 v6, 0x80
 
+    .line 39
     invoke-virtual {v4, v5, v6}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
 
     move-result-object v2
 
-    .line 39
+    .line 41
     .local v2, "info":Landroid/content/pm/ApplicationInfo;
     iget-object v0, v2, Landroid/content/pm/ApplicationInfo;->metaData:Landroid/os/Bundle;
 
-    .line 40
+    .line 42
     .local v0, "bundle":Landroid/os/Bundle;
     if-eqz v0, :cond_1c
 
-    .line 41
+    .line 43
     const-string v4, "com.upsight.sdk_plugin"
 
     const-string v5, ""
@@ -283,18 +310,18 @@
 
     move-result-object v3
 
-    .line 47
+    .line 49
     .end local v0    # "bundle":Landroid/os/Bundle;
     .end local v2    # "info":Landroid/content/pm/ApplicationInfo;
     :cond_1c
     :goto_1c
     return-object v3
 
-    .line 43
+    .line 45
     :catch_1d
     move-exception v1
 
-    .line 44
+    .line 46
     .local v1, "e":Landroid/content/pm/PackageManager$NameNotFoundException;
     const-string v4, "Upsight"
 

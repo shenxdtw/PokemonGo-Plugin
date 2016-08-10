@@ -98,6 +98,7 @@
 
     iget-object v4, p0, Lcom/upsight/android/internal/persistence/subscription/SubscriptionHandler;->mTarget:Ljava/lang/Object;
 
+    .line 47
     invoke-virtual {v4}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v4

@@ -40,350 +40,196 @@
     .end annotation
 
     .prologue
-    .line 67
+    .line 70
     .local p0, "this":Lrx/observers/SafeSubscriber;, "Lrx/observers/SafeSubscriber<TT;>;"
     .local p1, "actual":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     invoke-direct {p0, p1}, Lrx/Subscriber;-><init>(Lrx/Subscriber;)V
 
-    .line 64
+    .line 67
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lrx/observers/SafeSubscriber;->done:Z
 
-    .line 68
+    .line 71
     iput-object p1, p0, Lrx/observers/SafeSubscriber;->actual:Lrx/Subscriber;
 
-    .line 69
-    return-void
-.end method
-
-.method private handlePluginException(Ljava/lang/Throwable;)V
-    .registers 5
-    .param p1, "pluginException"    # Ljava/lang/Throwable;
-
-    .prologue
-    .line 223
-    .local p0, "this":Lrx/observers/SafeSubscriber;, "Lrx/observers/SafeSubscriber<TT;>;"
-    sget-object v0, Ljava/lang/System;->err:Ljava/io/PrintStream;
-
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v2, "RxJavaErrorHandler threw an Exception. It shouldn\'t. => "
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {p1}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
-
-    .line 224
-    invoke-virtual {p1}, Ljava/lang/Throwable;->printStackTrace()V
-
-    .line 225
+    .line 72
     return-void
 .end method
 
 
 # virtual methods
 .method protected _onError(Ljava/lang/Throwable;)V
-    .registers 12
+    .registers 11
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
     .local p0, "this":Lrx/observers/SafeSubscriber;, "Lrx/observers/SafeSubscriber<TT;>;"
-    const/4 v9, 0x2
+    const/4 v8, 0x2
 
-    const/4 v8, 0x1
+    const/4 v7, 0x1
 
-    const/4 v7, 0x0
-
-    .line 149
-    :try_start_3
-    invoke-static {}, Lrx/plugins/RxJavaPlugins;->getInstance()Lrx/plugins/RxJavaPlugins;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Lrx/plugins/RxJavaPlugins;->getErrorHandler()Lrx/plugins/RxJavaErrorHandler;
-
-    move-result-object v3
-
-    invoke-virtual {v3, p1}, Lrx/plugins/RxJavaErrorHandler;->handleError(Ljava/lang/Throwable;)V
-    :try_end_e
-    .catch Ljava/lang/Throwable; {:try_start_3 .. :try_end_e} :catch_17
-
-    .line 154
-    :goto_e
-    :try_start_e
-    iget-object v3, p0, Lrx/observers/SafeSubscriber;->actual:Lrx/Subscriber;
-
-    invoke-virtual {v3, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-    :try_end_13
-    .catch Ljava/lang/Throwable; {:try_start_e .. :try_end_13} :catch_1c
-
-    .line 206
-    :try_start_13
-    invoke-virtual {p0}, Lrx/observers/SafeSubscriber;->unsubscribe()V
-    :try_end_16
-    .catch Ljava/lang/RuntimeException; {:try_start_13 .. :try_end_16} :catch_a4
-
-    .line 215
-    return-void
-
-    .line 150
-    :catch_17
-    move-exception v1
-
-    .line 151
-    .local v1, "pluginException":Ljava/lang/Throwable;
-    invoke-direct {p0, v1}, Lrx/observers/SafeSubscriber;->handlePluginException(Ljava/lang/Throwable;)V
-
-    goto :goto_e
+    const/4 v6, 0x0
 
     .line 155
-    .end local v1    # "pluginException":Ljava/lang/Throwable;
-    :catch_1c
+    invoke-static {p1}, Lrx/internal/util/RxJavaPluginUtils;->handleException(Ljava/lang/Throwable;)V
+
+    .line 157
+    :try_start_6
+    iget-object v2, p0, Lrx/observers/SafeSubscriber;->actual:Lrx/Subscriber;
+
+    invoke-virtual {v2, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    :try_end_b
+    .catch Ljava/lang/Throwable; {:try_start_6 .. :try_end_b} :catch_f
+
+    .line 197
+    :try_start_b
+    invoke-virtual {p0}, Lrx/observers/SafeSubscriber;->unsubscribe()V
+    :try_end_e
+    .catch Ljava/lang/RuntimeException; {:try_start_b .. :try_end_e} :catch_70
+
+    .line 202
+    return-void
+
+    .line 158
+    :catch_f
     move-exception v0
 
-    .line 156
+    .line 159
     .local v0, "e2":Ljava/lang/Throwable;
-    instance-of v3, v0, Lrx/exceptions/OnErrorNotImplementedException;
+    instance-of v2, v0, Lrx/exceptions/OnErrorNotImplementedException;
 
-    if-eqz v3, :cond_4f
+    if-eqz v2, :cond_35
 
-    .line 169
-    :try_start_21
+    .line 172
+    :try_start_14
     invoke-virtual {p0}, Lrx/observers/SafeSubscriber;->unsubscribe()V
-    :try_end_24
-    .catch Ljava/lang/Throwable; {:try_start_21 .. :try_end_24} :catch_27
+    :try_end_17
+    .catch Ljava/lang/Throwable; {:try_start_14 .. :try_end_17} :catch_1a
 
-    .line 178
+    .line 177
     check-cast v0, Lrx/exceptions/OnErrorNotImplementedException;
 
     .end local v0    # "e2":Ljava/lang/Throwable;
     throw v0
 
-    .line 170
-    .restart local v0    # "e2":Ljava/lang/Throwable;
-    :catch_27
-    move-exception v2
-
-    .line 172
-    .local v2, "unsubscribeException":Ljava/lang/Throwable;
-    :try_start_28
-    invoke-static {}, Lrx/plugins/RxJavaPlugins;->getInstance()Lrx/plugins/RxJavaPlugins;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Lrx/plugins/RxJavaPlugins;->getErrorHandler()Lrx/plugins/RxJavaErrorHandler;
-
-    move-result-object v3
-
-    invoke-virtual {v3, v2}, Lrx/plugins/RxJavaErrorHandler;->handleError(Ljava/lang/Throwable;)V
-    :try_end_33
-    .catch Ljava/lang/Throwable; {:try_start_28 .. :try_end_33} :catch_4a
-
-    .line 176
-    :goto_33
-    new-instance v3, Ljava/lang/RuntimeException;
-
-    const-string v4, "Observer.onError not implemented and error while unsubscribing."
-
-    new-instance v5, Lrx/exceptions/CompositeException;
-
-    new-array v6, v9, [Ljava/lang/Throwable;
-
-    aput-object p1, v6, v7
-
-    aput-object v2, v6, v8
-
-    invoke-static {v6}, Ljava/util/Arrays;->asList([Ljava/lang/Object;)Ljava/util/List;
-
-    move-result-object v6
-
-    invoke-direct {v5, v6}, Lrx/exceptions/CompositeException;-><init>(Ljava/util/Collection;)V
-
-    invoke-direct {v3, v4, v5}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
-
-    throw v3
-
     .line 173
-    :catch_4a
+    .restart local v0    # "e2":Ljava/lang/Throwable;
+    :catch_1a
     move-exception v1
 
     .line 174
-    .restart local v1    # "pluginException":Ljava/lang/Throwable;
-    invoke-direct {p0, v1}, Lrx/observers/SafeSubscriber;->handlePluginException(Ljava/lang/Throwable;)V
+    .local v1, "unsubscribeException":Ljava/lang/Throwable;
+    invoke-static {v1}, Lrx/internal/util/RxJavaPluginUtils;->handleException(Ljava/lang/Throwable;)V
 
-    goto :goto_33
+    .line 175
+    new-instance v2, Ljava/lang/RuntimeException;
+
+    const-string v3, "Observer.onError not implemented and error while unsubscribing."
+
+    new-instance v4, Lrx/exceptions/CompositeException;
+
+    new-array v5, v8, [Ljava/lang/Throwable;
+
+    aput-object p1, v5, v6
+
+    aput-object v1, v5, v7
+
+    invoke-static {v5}, Ljava/util/Arrays;->asList([Ljava/lang/Object;)Ljava/util/List;
+
+    move-result-object v5
+
+    invoke-direct {v4, v5}, Lrx/exceptions/CompositeException;-><init>(Ljava/util/Collection;)V
+
+    invoke-direct {v2, v3, v4}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    throw v2
+
+    .line 184
+    .end local v1    # "unsubscribeException":Ljava/lang/Throwable;
+    :cond_35
+    invoke-static {v0}, Lrx/internal/util/RxJavaPluginUtils;->handleException(Ljava/lang/Throwable;)V
 
     .line 186
-    .end local v1    # "pluginException":Ljava/lang/Throwable;
-    .end local v2    # "unsubscribeException":Ljava/lang/Throwable;
-    :cond_4f
-    :try_start_4f
-    invoke-static {}, Lrx/plugins/RxJavaPlugins;->getInstance()Lrx/plugins/RxJavaPlugins;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Lrx/plugins/RxJavaPlugins;->getErrorHandler()Lrx/plugins/RxJavaErrorHandler;
-
-    move-result-object v3
-
-    invoke-virtual {v3, v0}, Lrx/plugins/RxJavaErrorHandler;->handleError(Ljava/lang/Throwable;)V
-    :try_end_5a
-    .catch Ljava/lang/Throwable; {:try_start_4f .. :try_end_5a} :catch_74
-
-    .line 191
-    :goto_5a
-    :try_start_5a
+    :try_start_38
     invoke-virtual {p0}, Lrx/observers/SafeSubscriber;->unsubscribe()V
-    :try_end_5d
-    .catch Ljava/lang/Throwable; {:try_start_5a .. :try_end_5d} :catch_79
+    :try_end_3b
+    .catch Ljava/lang/Throwable; {:try_start_38 .. :try_end_3b} :catch_52
 
-    .line 201
-    new-instance v3, Lrx/exceptions/OnErrorFailedException;
+    .line 192
+    new-instance v2, Lrx/exceptions/OnErrorFailedException;
 
-    const-string v4, "Error occurred when trying to propagate error to Observer.onError"
+    const-string v3, "Error occurred when trying to propagate error to Observer.onError"
 
-    new-instance v5, Lrx/exceptions/CompositeException;
+    new-instance v4, Lrx/exceptions/CompositeException;
 
-    new-array v6, v9, [Ljava/lang/Throwable;
+    new-array v5, v8, [Ljava/lang/Throwable;
 
-    aput-object p1, v6, v7
+    aput-object p1, v5, v6
 
-    aput-object v0, v6, v8
+    aput-object v0, v5, v7
 
-    invoke-static {v6}, Ljava/util/Arrays;->asList([Ljava/lang/Object;)Ljava/util/List;
+    invoke-static {v5}, Ljava/util/Arrays;->asList([Ljava/lang/Object;)Ljava/util/List;
 
-    move-result-object v6
+    move-result-object v5
 
-    invoke-direct {v5, v6}, Lrx/exceptions/CompositeException;-><init>(Ljava/util/Collection;)V
+    invoke-direct {v4, v5}, Lrx/exceptions/CompositeException;-><init>(Ljava/util/Collection;)V
 
-    invoke-direct {v3, v4, v5}, Lrx/exceptions/OnErrorFailedException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
+    invoke-direct {v2, v3, v4}, Lrx/exceptions/OnErrorFailedException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
 
-    throw v3
+    throw v2
 
     .line 187
-    :catch_74
+    :catch_52
     move-exception v1
 
     .line 188
-    .restart local v1    # "pluginException":Ljava/lang/Throwable;
-    invoke-direct {p0, v1}, Lrx/observers/SafeSubscriber;->handlePluginException(Ljava/lang/Throwable;)V
+    .restart local v1    # "unsubscribeException":Ljava/lang/Throwable;
+    invoke-static {v1}, Lrx/internal/util/RxJavaPluginUtils;->handleException(Ljava/lang/Throwable;)V
 
-    goto :goto_5a
+    .line 189
+    new-instance v2, Lrx/exceptions/OnErrorFailedException;
 
-    .line 192
-    .end local v1    # "pluginException":Ljava/lang/Throwable;
-    :catch_79
-    move-exception v2
+    const-string v3, "Error occurred when trying to propagate error to Observer.onError and during unsubscription."
 
-    .line 194
-    .restart local v2    # "unsubscribeException":Ljava/lang/Throwable;
-    :try_start_7a
-    invoke-static {}, Lrx/plugins/RxJavaPlugins;->getInstance()Lrx/plugins/RxJavaPlugins;
+    new-instance v4, Lrx/exceptions/CompositeException;
 
-    move-result-object v3
+    const/4 v5, 0x3
 
-    invoke-virtual {v3}, Lrx/plugins/RxJavaPlugins;->getErrorHandler()Lrx/plugins/RxJavaErrorHandler;
+    new-array v5, v5, [Ljava/lang/Throwable;
 
-    move-result-object v3
+    aput-object p1, v5, v6
 
-    invoke-virtual {v3, v2}, Lrx/plugins/RxJavaErrorHandler;->handleError(Ljava/lang/Throwable;)V
-    :try_end_85
-    .catch Ljava/lang/Throwable; {:try_start_7a .. :try_end_85} :catch_9f
+    aput-object v0, v5, v7
+
+    aput-object v1, v5, v8
+
+    invoke-static {v5}, Ljava/util/Arrays;->asList([Ljava/lang/Object;)Ljava/util/List;
+
+    move-result-object v5
+
+    invoke-direct {v4, v5}, Lrx/exceptions/CompositeException;-><init>(Ljava/util/Collection;)V
+
+    invoke-direct {v2, v3, v4}, Lrx/exceptions/OnErrorFailedException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    throw v2
 
     .line 198
-    :goto_85
-    new-instance v3, Lrx/exceptions/OnErrorFailedException;
-
-    const-string v4, "Error occurred when trying to propagate error to Observer.onError and during unsubscription."
-
-    new-instance v5, Lrx/exceptions/CompositeException;
-
-    const/4 v6, 0x3
-
-    new-array v6, v6, [Ljava/lang/Throwable;
-
-    aput-object p1, v6, v7
-
-    aput-object v0, v6, v8
-
-    aput-object v2, v6, v9
-
-    invoke-static {v6}, Ljava/util/Arrays;->asList([Ljava/lang/Object;)Ljava/util/List;
-
-    move-result-object v6
-
-    invoke-direct {v5, v6}, Lrx/exceptions/CompositeException;-><init>(Ljava/util/Collection;)V
-
-    invoke-direct {v3, v4, v5}, Lrx/exceptions/OnErrorFailedException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
-
-    throw v3
-
-    .line 195
-    :catch_9f
-    move-exception v1
-
-    .line 196
-    .restart local v1    # "pluginException":Ljava/lang/Throwable;
-    invoke-direct {p0, v1}, Lrx/observers/SafeSubscriber;->handlePluginException(Ljava/lang/Throwable;)V
-
-    goto :goto_85
-
-    .line 207
     .end local v0    # "e2":Ljava/lang/Throwable;
-    .end local v1    # "pluginException":Ljava/lang/Throwable;
-    .end local v2    # "unsubscribeException":Ljava/lang/Throwable;
-    :catch_a4
-    move-exception v2
-
-    .line 209
-    .local v2, "unsubscribeException":Ljava/lang/RuntimeException;
-    :try_start_a5
-    invoke-static {}, Lrx/plugins/RxJavaPlugins;->getInstance()Lrx/plugins/RxJavaPlugins;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Lrx/plugins/RxJavaPlugins;->getErrorHandler()Lrx/plugins/RxJavaErrorHandler;
-
-    move-result-object v3
-
-    invoke-virtual {v3, v2}, Lrx/plugins/RxJavaErrorHandler;->handleError(Ljava/lang/Throwable;)V
-    :try_end_b0
-    .catch Ljava/lang/Throwable; {:try_start_a5 .. :try_end_b0} :catch_b6
-
-    .line 213
-    :goto_b0
-    new-instance v3, Lrx/exceptions/OnErrorFailedException;
-
-    invoke-direct {v3, v2}, Lrx/exceptions/OnErrorFailedException;-><init>(Ljava/lang/Throwable;)V
-
-    throw v3
-
-    .line 210
-    :catch_b6
+    .end local v1    # "unsubscribeException":Ljava/lang/Throwable;
+    :catch_70
     move-exception v1
 
-    .line 211
-    .restart local v1    # "pluginException":Ljava/lang/Throwable;
-    invoke-direct {p0, v1}, Lrx/observers/SafeSubscriber;->handlePluginException(Ljava/lang/Throwable;)V
+    .line 199
+    .local v1, "unsubscribeException":Ljava/lang/RuntimeException;
+    invoke-static {v1}, Lrx/internal/util/RxJavaPluginUtils;->handleException(Ljava/lang/Throwable;)V
 
-    goto :goto_b0
+    .line 200
+    new-instance v2, Lrx/exceptions/OnErrorFailedException;
+
+    invoke-direct {v2, v1}, Lrx/exceptions/OnErrorFailedException;-><init>(Ljava/lang/Throwable;)V
+
+    throw v2
 .end method
 
 .method public getActual()Lrx/Subscriber;
@@ -397,7 +243,7 @@
     .end annotation
 
     .prologue
-    .line 233
+    .line 210
     .local p0, "this":Lrx/observers/SafeSubscriber;, "Lrx/observers/SafeSubscriber<TT;>;"
     iget-object v0, p0, Lrx/observers/SafeSubscriber;->actual:Lrx/Subscriber;
 
@@ -405,61 +251,114 @@
 .end method
 
 .method public onCompleted()V
-    .registers 3
+    .registers 4
 
     .prologue
-    .line 78
+    .line 81
     .local p0, "this":Lrx/observers/SafeSubscriber;, "Lrx/observers/SafeSubscriber<TT;>;"
     iget-boolean v1, p0, Lrx/observers/SafeSubscriber;->done:Z
 
     if-nez v1, :cond_f
 
-    .line 79
+    .line 82
     const/4 v1, 0x1
 
     iput-boolean v1, p0, Lrx/observers/SafeSubscriber;->done:Z
 
-    .line 81
+    .line 84
     :try_start_7
     iget-object v1, p0, Lrx/observers/SafeSubscriber;->actual:Lrx/Subscriber;
 
     invoke-virtual {v1}, Lrx/Subscriber;->onCompleted()V
     :try_end_c
-    .catch Ljava/lang/Throwable; {:try_start_7 .. :try_end_c} :catch_10
-    .catchall {:try_start_7 .. :try_end_c} :catchall_1b
+    .catch Ljava/lang/Throwable; {:try_start_7 .. :try_end_c} :catch_1e
+    .catchall {:try_start_7 .. :try_end_c} :catchall_2f
 
-    .line 90
+    .line 95
+    :try_start_c
     invoke-virtual {p0}, Lrx/observers/SafeSubscriber;->unsubscribe()V
+    :try_end_f
+    .catch Ljava/lang/Throwable; {:try_start_c .. :try_end_f} :catch_10
 
-    .line 93
+    .line 102
     :cond_f
-    :goto_f
     return-void
 
-    .line 82
+    .line 96
     :catch_10
     move-exception v0
 
-    .line 85
+    .line 97
     .local v0, "e":Ljava/lang/Throwable;
-    :try_start_11
+    invoke-static {v0}, Lrx/internal/util/RxJavaPluginUtils;->handleException(Ljava/lang/Throwable;)V
+
+    .line 98
+    new-instance v1, Lrx/exceptions/UnsubscribeFailedException;
+
+    invoke-virtual {v0}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-direct {v1, v2, v0}, Lrx/exceptions/UnsubscribeFailedException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    throw v1
+
+    .line 85
+    .end local v0    # "e":Ljava/lang/Throwable;
+    :catch_1e
+    move-exception v0
+
+    .line 88
+    .restart local v0    # "e":Ljava/lang/Throwable;
+    :try_start_1f
     invoke-static {v0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
 
-    .line 87
-    invoke-virtual {p0, v0}, Lrx/observers/SafeSubscriber;->_onError(Ljava/lang/Throwable;)V
-    :try_end_17
-    .catchall {:try_start_11 .. :try_end_17} :catchall_1b
+    .line 89
+    invoke-static {v0}, Lrx/internal/util/RxJavaPluginUtils;->handleException(Ljava/lang/Throwable;)V
 
     .line 90
-    invoke-virtual {p0}, Lrx/observers/SafeSubscriber;->unsubscribe()V
+    new-instance v1, Lrx/exceptions/OnCompletedFailedException;
 
-    goto :goto_f
+    invoke-virtual {v0}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
 
+    move-result-object v2
+
+    invoke-direct {v1, v2, v0}, Lrx/exceptions/OnCompletedFailedException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    throw v1
+    :try_end_2f
+    .catchall {:try_start_1f .. :try_end_2f} :catchall_2f
+
+    .line 92
     .end local v0    # "e":Ljava/lang/Throwable;
-    :catchall_1b
+    :catchall_2f
     move-exception v1
 
+    .line 95
+    :try_start_30
     invoke-virtual {p0}, Lrx/observers/SafeSubscriber;->unsubscribe()V
+    :try_end_33
+    .catch Ljava/lang/Throwable; {:try_start_30 .. :try_end_33} :catch_34
+
+    .line 98
+    throw v1
+
+    .line 96
+    :catch_34
+    move-exception v0
+
+    .line 97
+    .restart local v0    # "e":Ljava/lang/Throwable;
+    invoke-static {v0}, Lrx/internal/util/RxJavaPluginUtils;->handleException(Ljava/lang/Throwable;)V
+
+    .line 98
+    new-instance v1, Lrx/exceptions/UnsubscribeFailedException;
+
+    invoke-virtual {v0}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-direct {v1, v2, v0}, Lrx/exceptions/UnsubscribeFailedException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
 
     throw v1
 .end method
@@ -469,24 +368,24 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 108
+    .line 117
     .local p0, "this":Lrx/observers/SafeSubscriber;, "Lrx/observers/SafeSubscriber<TT;>;"
     invoke-static {p1}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
 
-    .line 109
+    .line 118
     iget-boolean v0, p0, Lrx/observers/SafeSubscriber;->done:Z
 
     if-nez v0, :cond_d
 
-    .line 110
+    .line 119
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/observers/SafeSubscriber;->done:Z
 
-    .line 111
+    .line 120
     invoke-virtual {p0, p1}, Lrx/observers/SafeSubscriber;->_onError(Ljava/lang/Throwable;)V
 
-    .line 113
+    .line 122
     :cond_d
     return-void
 .end method
@@ -500,7 +399,7 @@
     .end annotation
 
     .prologue
-    .line 129
+    .line 138
     .local p0, "this":Lrx/observers/SafeSubscriber;, "Lrx/observers/SafeSubscriber<TT;>;"
     .local p1, "args":Ljava/lang/Object;, "TT;"
     :try_start_0
@@ -508,28 +407,25 @@
 
     if-nez v1, :cond_9
 
-    .line 130
+    .line 139
     iget-object v1, p0, Lrx/observers/SafeSubscriber;->actual:Lrx/Subscriber;
 
     invoke-virtual {v1, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
     :try_end_9
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_9} :catch_a
 
-    .line 139
+    .line 146
     :cond_9
     :goto_9
     return-void
 
-    .line 132
+    .line 141
     :catch_a
     move-exception v0
 
-    .line 135
+    .line 144
     .local v0, "e":Ljava/lang/Throwable;
-    invoke-static {v0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
-
-    .line 137
-    invoke-virtual {p0, v0}, Lrx/observers/SafeSubscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, p0}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     goto :goto_9
 .end method

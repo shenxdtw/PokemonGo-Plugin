@@ -46,7 +46,7 @@
     .registers 1
 
     .prologue
-    .line 100
+    .line 101
     .local p0, "this":Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;, "Lrx/internal/operators/OperatorDebounceWithTime$DebounceState<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -59,7 +59,7 @@
     .registers 2
 
     .prologue
-    .line 176
+    .line 177
     .local p0, "this":Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;, "Lrx/internal/operators/OperatorDebounceWithTime$DebounceState<TT;>;"
     monitor-enter p0
 
@@ -70,24 +70,24 @@
 
     iput v0, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->index:I
 
-    .line 177
+    .line 178
     const/4 v0, 0x0
 
     iput-object v0, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->value:Ljava/lang/Object;
 
-    .line 178
+    .line 179
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->hasValue:Z
     :try_end_d
     .catchall {:try_start_1 .. :try_end_d} :catchall_f
 
-    .line 179
+    .line 180
     monitor-exit p0
 
     return-void
 
-    .line 176
+    .line 177
     :catchall_f
     move-exception v0
 
@@ -110,13 +110,13 @@
     .end annotation
 
     .prologue
-    .line 119
+    .line 120
     .local p0, "this":Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;, "Lrx/internal/operators/OperatorDebounceWithTime$DebounceState<TT;>;"
     .local p2, "onNextAndComplete":Lrx/Subscriber;, "Lrx/Subscriber<TT;>;"
     .local p3, "onError":Lrx/Subscriber;, "Lrx/Subscriber<*>;"
     monitor-enter p0
 
-    .line 120
+    .line 121
     :try_start_1
     iget-boolean v2, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->emitting:Z
 
@@ -130,65 +130,65 @@
 
     if-eq p1, v2, :cond_f
 
-    .line 121
+    .line 122
     :cond_d
     monitor-exit p0
 
-    .line 146
+    .line 147
     :goto_e
     return-void
 
-    .line 123
+    .line 124
     :cond_f
     iget-object v1, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->value:Ljava/lang/Object;
 
-    .line 125
+    .line 126
     .local v1, "localValue":Ljava/lang/Object;, "TT;"
     const/4 v2, 0x0
 
     iput-object v2, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->value:Ljava/lang/Object;
 
-    .line 126
+    .line 127
     const/4 v2, 0x0
 
     iput-boolean v2, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->hasValue:Z
 
-    .line 127
+    .line 128
     const/4 v2, 0x1
 
     iput-boolean v2, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->emitting:Z
 
-    .line 128
+    .line 129
     monitor-exit p0
     :try_end_1b
     .catchall {:try_start_1 .. :try_end_1b} :catchall_2b
 
-    .line 131
+    .line 132
     :try_start_1b
     invoke-virtual {p2, v1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
     :try_end_1e
     .catch Ljava/lang/Throwable; {:try_start_1b .. :try_end_1e} :catch_2e
 
-    .line 138
+    .line 139
     monitor-enter p0
 
-    .line 139
+    .line 140
     :try_start_1f
     iget-boolean v2, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->terminate:Z
 
     if-nez v2, :cond_33
 
-    .line 140
+    .line 141
     const/4 v2, 0x0
 
     iput-boolean v2, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->emitting:Z
 
-    .line 141
+    .line 142
     monitor-exit p0
 
     goto :goto_e
 
-    .line 143
+    .line 144
     :catchall_28
     move-exception v2
 
@@ -198,7 +198,7 @@
 
     throw v2
 
-    .line 128
+    .line 129
     .end local v1    # "localValue":Ljava/lang/Object;, "TT;"
     :catchall_2b
     move-exception v2
@@ -210,18 +210,18 @@
 
     throw v2
 
-    .line 132
+    .line 133
     .restart local v1    # "localValue":Ljava/lang/Object;, "TT;"
     :catch_2e
     move-exception v0
 
-    .line 133
+    .line 134
     .local v0, "e":Ljava/lang/Throwable;
-    invoke-virtual {p3, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, p3, v1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
     goto :goto_e
 
-    .line 143
+    .line 144
     .end local v0    # "e":Ljava/lang/Throwable;
     :cond_33
     :try_start_33
@@ -229,7 +229,7 @@
     :try_end_34
     .catchall {:try_start_33 .. :try_end_34} :catchall_28
 
-    .line 145
+    .line 146
     invoke-virtual {p2}, Lrx/Subscriber;->onCompleted()V
 
     goto :goto_e
@@ -248,75 +248,75 @@
     .end annotation
 
     .prologue
-    .line 151
+    .line 152
     .local p0, "this":Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;, "Lrx/internal/operators/OperatorDebounceWithTime$DebounceState<TT;>;"
     .local p1, "onNextAndComplete":Lrx/Subscriber;, "Lrx/Subscriber<TT;>;"
     .local p2, "onError":Lrx/Subscriber;, "Lrx/Subscriber<*>;"
     monitor-enter p0
 
-    .line 152
+    .line 153
     :try_start_1
     iget-boolean v3, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->emitting:Z
 
     if-eqz v3, :cond_a
 
-    .line 153
+    .line 154
     const/4 v3, 0x1
 
     iput-boolean v3, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->terminate:Z
 
-    .line 154
+    .line 155
     monitor-exit p0
 
-    .line 174
+    .line 175
     :goto_9
     return-void
 
-    .line 156
+    .line 157
     :cond_a
     iget-object v2, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->value:Ljava/lang/Object;
 
-    .line 157
+    .line 158
     .local v2, "localValue":Ljava/lang/Object;, "TT;"
     iget-boolean v1, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->hasValue:Z
 
-    .line 159
+    .line 160
     .local v1, "localHasValue":Z
     const/4 v3, 0x0
 
     iput-object v3, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->value:Ljava/lang/Object;
 
-    .line 160
+    .line 161
     const/4 v3, 0x0
 
     iput-boolean v3, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->hasValue:Z
 
-    .line 162
+    .line 163
     const/4 v3, 0x1
 
     iput-boolean v3, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->emitting:Z
 
-    .line 163
+    .line 164
     monitor-exit p0
     :try_end_18
     .catchall {:try_start_1 .. :try_end_18} :catchall_21
 
-    .line 165
+    .line 166
     if-eqz v1, :cond_1d
 
-    .line 167
+    .line 168
     :try_start_1a
     invoke-virtual {p1, v2}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
     :try_end_1d
     .catch Ljava/lang/Throwable; {:try_start_1a .. :try_end_1d} :catch_24
 
-    .line 173
+    .line 174
     :cond_1d
     invoke-virtual {p1}, Lrx/Subscriber;->onCompleted()V
 
     goto :goto_9
 
-    .line 163
+    .line 164
     .end local v1    # "localHasValue":Z
     .end local v2    # "localValue":Ljava/lang/Object;, "TT;"
     :catchall_21
@@ -329,15 +329,15 @@
 
     throw v3
 
-    .line 168
+    .line 169
     .restart local v1    # "localHasValue":Z
     .restart local v2    # "localValue":Ljava/lang/Object;, "TT;"
     :catch_24
     move-exception v0
 
-    .line 169
+    .line 170
     .local v0, "e":Ljava/lang/Throwable;
-    invoke-virtual {p2, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, p2, v2}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
     goto :goto_9
 .end method
@@ -351,7 +351,7 @@
     .end annotation
 
     .prologue
-    .line 113
+    .line 114
     .local p0, "this":Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;, "Lrx/internal/operators/OperatorDebounceWithTime$DebounceState<TT;>;"
     .local p1, "value":Ljava/lang/Object;, "TT;"
     monitor-enter p0
@@ -359,12 +359,12 @@
     :try_start_1
     iput-object p1, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->value:Ljava/lang/Object;
 
-    .line 114
+    .line 115
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->hasValue:Z
 
-    .line 115
+    .line 116
     iget v0, p0, Lrx/internal/operators/OperatorDebounceWithTime$DebounceState;->index:I
 
     add-int/lit8 v0, v0, 0x1
@@ -377,7 +377,7 @@
 
     return v0
 
-    .line 113
+    .line 114
     :catchall_e
     move-exception v0
 

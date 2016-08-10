@@ -36,7 +36,7 @@
     .registers 3
 
     .prologue
-    .line 179
+    .line 167
     .local p0, "this":Lrx/Single$2;, "Lrx/Single.2;"
     iput-object p1, p0, Lrx/Single$2;->this$0:Lrx/Single;
 
@@ -54,7 +54,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 179
+    .line 167
     .local p0, "this":Lrx/Single$2;, "Lrx/Single.2;"
     check-cast p1, Lrx/Subscriber;
 
@@ -75,18 +75,15 @@
     .end annotation
 
     .prologue
-    .line 183
+    .line 171
     .local p0, "this":Lrx/Single$2;, "Lrx/Single.2;"
     .local p1, "o":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
     :try_start_0
-    # getter for: Lrx/Single;->hook:Lrx/plugins/RxJavaObservableExecutionHook;
-    invoke-static {}, Lrx/Single;->access$000()Lrx/plugins/RxJavaObservableExecutionHook;
-
-    move-result-object v2
+    sget-object v2, Lrx/Single;->hook:Lrx/plugins/RxJavaSingleExecutionHook;
 
     iget-object v3, p0, Lrx/Single$2;->val$lift:Lrx/Observable$Operator;
 
-    invoke-virtual {v2, v3}, Lrx/plugins/RxJavaObservableExecutionHook;->onLift(Lrx/Observable$Operator;)Lrx/Observable$Operator;
+    invoke-virtual {v2, v3}, Lrx/plugins/RxJavaSingleExecutionHook;->onLift(Lrx/Observable$Operator;)Lrx/Observable$Operator;
 
     move-result-object v2
 
@@ -95,80 +92,51 @@
     move-result-object v1
 
     check-cast v1, Lrx/Subscriber;
-    :try_end_10
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_10} :catch_23
+    :try_end_e
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_e} :catch_1e
 
-    .line 186
+    .line 174
     .local v1, "st":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    :try_start_10
+    :try_start_e
     invoke-virtual {v1}, Lrx/Subscriber;->onStart()V
 
-    .line 187
+    .line 175
     iget-object v2, p0, Lrx/Single$2;->this$0:Lrx/Single;
 
     iget-object v2, v2, Lrx/Single;->onSubscribe:Lrx/Observable$OnSubscribe;
 
     invoke-interface {v2, v1}, Lrx/Observable$OnSubscribe;->call(Ljava/lang/Object;)V
-    :try_end_1a
-    .catch Ljava/lang/Throwable; {:try_start_10 .. :try_end_1a} :catch_1b
+    :try_end_18
+    .catch Ljava/lang/Throwable; {:try_start_e .. :try_end_18} :catch_19
 
-    .line 205
+    .line 187
     .end local v1    # "st":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    :goto_1a
+    :goto_18
     return-void
 
-    .line 188
+    .line 176
     .restart local v1    # "st":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    :catch_1b
+    :catch_19
     move-exception v0
 
-    .line 192
+    .line 180
     .local v0, "e":Ljava/lang/Throwable;
-    :try_start_1c
-    instance-of v2, v0, Lrx/exceptions/OnErrorNotImplementedException;
+    :try_start_1a
+    invoke-static {v0, v1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
+    :try_end_1d
+    .catch Ljava/lang/Throwable; {:try_start_1a .. :try_end_1d} :catch_1e
 
-    if-eqz v2, :cond_2b
+    goto :goto_18
 
-    .line 193
-    check-cast v0, Lrx/exceptions/OnErrorNotImplementedException;
-
+    .line 182
     .end local v0    # "e":Ljava/lang/Throwable;
-    throw v0
-    :try_end_23
-    .catch Ljava/lang/Throwable; {:try_start_1c .. :try_end_23} :catch_23
-
-    .line 197
     .end local v1    # "st":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    :catch_23
+    :catch_1e
     move-exception v0
 
-    .line 198
+    .line 185
     .restart local v0    # "e":Ljava/lang/Throwable;
-    instance-of v2, v0, Lrx/exceptions/OnErrorNotImplementedException;
+    invoke-static {v0, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
-    if-eqz v2, :cond_2f
-
-    .line 199
-    check-cast v0, Lrx/exceptions/OnErrorNotImplementedException;
-
-    .end local v0    # "e":Ljava/lang/Throwable;
-    throw v0
-
-    .line 195
-    .restart local v0    # "e":Ljava/lang/Throwable;
-    .restart local v1    # "st":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    :cond_2b
-    :try_start_2b
-    invoke-virtual {v1, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-    :try_end_2e
-    .catch Ljava/lang/Throwable; {:try_start_2b .. :try_end_2e} :catch_23
-
-    goto :goto_1a
-
-    .line 203
-    .end local v1    # "st":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    :cond_2f
-    invoke-virtual {p1, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-
-    goto :goto_1a
+    goto :goto_18
 .end method

@@ -1,9 +1,6 @@
 .class Lrx/internal/operators/OperatorPublish$2$1;
-.super Ljava/lang/Object;
+.super Lrx/Subscriber;
 .source "OperatorPublish.java"
-
-# interfaces
-.implements Lrx/functions/Action1;
 
 
 # annotations
@@ -18,11 +15,8 @@
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
-        "Ljava/lang/Object;",
-        "Lrx/functions/Action1",
-        "<",
-        "Lrx/Subscription;",
-        ">;"
+        "Lrx/Subscriber",
+        "<TR;>;"
     }
 .end annotation
 
@@ -32,48 +26,94 @@
 
 .field final synthetic val$child:Lrx/Subscriber;
 
+.field final synthetic val$op:Lrx/internal/operators/OnSubscribePublishMulticast;
+
 
 # direct methods
-.method constructor <init>(Lrx/internal/operators/OperatorPublish$2;Lrx/Subscriber;)V
-    .registers 3
+.method constructor <init>(Lrx/internal/operators/OperatorPublish$2;Lrx/Subscriber;Lrx/internal/operators/OnSubscribePublishMulticast;)V
+    .registers 4
 
     .prologue
-    .line 127
+    .line 130
     iput-object p1, p0, Lrx/internal/operators/OperatorPublish$2$1;->this$0:Lrx/internal/operators/OperatorPublish$2;
 
     iput-object p2, p0, Lrx/internal/operators/OperatorPublish$2$1;->val$child:Lrx/Subscriber;
 
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    iput-object p3, p0, Lrx/internal/operators/OperatorPublish$2$1;->val$op:Lrx/internal/operators/OnSubscribePublishMulticast;
+
+    invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public bridge synthetic call(Ljava/lang/Object;)V
+.method public onCompleted()V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 127
-    check-cast p1, Lrx/Subscription;
+    .line 144
+    iget-object v0, p0, Lrx/internal/operators/OperatorPublish$2$1;->val$op:Lrx/internal/operators/OnSubscribePublishMulticast;
 
-    .end local p1    # "x0":Ljava/lang/Object;
-    invoke-virtual {p0, p1}, Lrx/internal/operators/OperatorPublish$2$1;->call(Lrx/Subscription;)V
+    invoke-virtual {v0}, Lrx/internal/operators/OnSubscribePublishMulticast;->unsubscribe()V
 
+    .line 145
+    iget-object v0, p0, Lrx/internal/operators/OperatorPublish$2$1;->val$child:Lrx/Subscriber;
+
+    invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
+
+    .line 146
     return-void
 .end method
 
-.method public call(Lrx/Subscription;)V
+.method public onError(Ljava/lang/Throwable;)V
     .registers 3
-    .param p1, "t1"    # Lrx/Subscription;
+    .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 130
+    .line 138
+    iget-object v0, p0, Lrx/internal/operators/OperatorPublish$2$1;->val$op:Lrx/internal/operators/OnSubscribePublishMulticast;
+
+    invoke-virtual {v0}, Lrx/internal/operators/OnSubscribePublishMulticast;->unsubscribe()V
+
+    .line 139
     iget-object v0, p0, Lrx/internal/operators/OperatorPublish$2$1;->val$child:Lrx/Subscriber;
 
-    invoke-virtual {v0, p1}, Lrx/Subscriber;->add(Lrx/Subscription;)V
+    invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 131
+    .line 140
+    return-void
+.end method
+
+.method public onNext(Ljava/lang/Object;)V
+    .registers 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(TR;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 133
+    .local p1, "t":Ljava/lang/Object;, "TR;"
+    iget-object v0, p0, Lrx/internal/operators/OperatorPublish$2$1;->val$child:Lrx/Subscriber;
+
+    invoke-virtual {v0, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+
+    .line 134
+    return-void
+.end method
+
+.method public setProducer(Lrx/Producer;)V
+    .registers 3
+    .param p1, "p"    # Lrx/Producer;
+
+    .prologue
+    .line 150
+    iget-object v0, p0, Lrx/internal/operators/OperatorPublish$2$1;->val$child:Lrx/Subscriber;
+
+    invoke-virtual {v0, p1}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+
+    .line 151
     return-void
 .end method

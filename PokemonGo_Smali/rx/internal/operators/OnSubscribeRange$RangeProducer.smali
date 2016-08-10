@@ -1,5 +1,5 @@
 .class final Lrx/internal/operators/OnSubscribeRange$RangeProducer;
-.super Ljava/lang/Object;
+.super Ljava/util/concurrent/atomic/AtomicLong;
 .source "OnSubscribeRange.java"
 
 # interfaces
@@ -18,24 +18,11 @@
 
 
 # static fields
-.field private static final REQUESTED_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/atomic/AtomicLongFieldUpdater",
-            "<",
-            "Lrx/internal/operators/OnSubscribeRange$RangeProducer;",
-            ">;"
-        }
-    .end annotation
-.end field
+.field private static final serialVersionUID:J = 0x391941e9d0fd3194L
 
 
 # instance fields
-.field private final end:I
-
-.field private index:J
-
-.field private final o:Lrx/Subscriber;
+.field private final childSubscriber:Lrx/Subscriber;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/Subscriber",
@@ -46,32 +33,16 @@
     .end annotation
 .end field
 
-.field private volatile requested:J
+.field private currentIndex:J
+
+.field private final endOfRange:I
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .registers 2
-
-    .prologue
-    .line 46
-    const-class v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;
-
-    const-string v1, "requested"
-
-    invoke-static {v0, v1}, Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->REQUESTED_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    return-void
-.end method
-
-.method private constructor <init>(Lrx/Subscriber;II)V
+.method constructor <init>(Lrx/Subscriber;II)V
     .registers 6
-    .param p2, "start"    # I
-    .param p3, "end"    # I
+    .param p2, "startIndex"    # I
+    .param p3, "endIndex"    # I
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -83,326 +54,274 @@
     .end annotation
 
     .prologue
+    .line 49
+    .local p1, "childSubscriber":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/lang/Integer;>;"
+    invoke-direct {p0}, Ljava/util/concurrent/atomic/AtomicLong;-><init>()V
+
     .line 50
-    .local p1, "o":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/lang/Integer;>;"
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    iput-object p1, p0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->childSubscriber:Lrx/Subscriber;
 
     .line 51
-    iput-object p1, p0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->o:Lrx/Subscriber;
-
-    .line 52
     int-to-long v0, p2
 
-    iput-wide v0, p0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->index:J
+    iput-wide v0, p0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->currentIndex:J
+
+    .line 52
+    iput p3, p0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->endOfRange:I
 
     .line 53
-    iput p3, p0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->end:I
-
-    .line 54
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/Subscriber;IILrx/internal/operators/OnSubscribeRange$1;)V
-    .registers 5
-    .param p1, "x0"    # Lrx/Subscriber;
-    .param p2, "x1"    # I
-    .param p3, "x2"    # I
-    .param p4, "x3"    # Lrx/internal/operators/OnSubscribeRange$1;
-
-    .prologue
-    .line 42
-    invoke-direct {p0, p1, p2, p3}, Lrx/internal/operators/OnSubscribeRange$RangeProducer;-><init>(Lrx/Subscriber;II)V
-
     return-void
 .end method
 
 
 # virtual methods
-.method public request(J)V
-    .registers 30
-    .param p1, "n"    # J
+.method fastpath()V
+    .registers 11
 
     .prologue
-    .line 58
-    move-object/from16 v0, p0
+    const-wide/16 v8, 0x1
 
-    iget-wide v4, v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->requested:J
+    .line 122
+    iget v1, p0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->endOfRange:I
 
-    const-wide v6, 0x7fffffffffffffffL
+    int-to-long v6, v1
 
-    cmp-long v4, v4, v6
+    add-long v2, v6, v8
 
-    if-nez v4, :cond_e
+    .line 123
+    .local v2, "endIndex":J
+    iget-object v0, p0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->childSubscriber:Lrx/Subscriber;
 
-    .line 107
-    :cond_d
-    :goto_d
+    .line 124
+    .local v0, "childSubscriber":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/lang/Integer;>;"
+    iget-wide v4, p0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->currentIndex:J
+
+    .local v4, "index":J
+    :goto_b
+    cmp-long v1, v4, v2
+
+    if-eqz v1, :cond_20
+
+    .line 125
+    invoke-virtual {v0}, Lrx/Subscriber;->isUnsubscribed()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_16
+
+    .line 133
+    :cond_15
+    :goto_15
     return-void
 
-    .line 62
-    :cond_e
-    const-wide v4, 0x7fffffffffffffffL
+    .line 128
+    :cond_16
+    long-to-int v1, v4
 
-    cmp-long v4, p1, v4
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    if-nez v4, :cond_66
+    move-result-object v1
 
-    sget-object v4, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->REQUESTED_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
+    invoke-virtual {v0, v1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    const-wide/16 v6, 0x0
+    .line 124
+    add-long/2addr v4, v8
 
-    const-wide v8, 0x7fffffffffffffffL
+    goto :goto_b
 
-    move-object/from16 v5, p0
+    .line 130
+    :cond_20
+    invoke-virtual {v0}, Lrx/Subscriber;->isUnsubscribed()Z
 
-    invoke-virtual/range {v4 .. v9}, Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;->compareAndSet(Ljava/lang/Object;JJ)Z
+    move-result v1
 
-    move-result v4
+    if-nez v1, :cond_15
 
-    if-eqz v4, :cond_66
+    .line 131
+    invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    .line 64
-    move-object/from16 v0, p0
+    goto :goto_15
+.end method
 
-    iget-wide v0, v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->index:J
+.method public request(J)V
+    .registers 12
+    .param p1, "requestedAmount"    # J
 
-    move-wide/from16 v16, v0
+    .prologue
+    const-wide v6, 0x7fffffffffffffffL
 
-    .local v16, "i":J
-    :goto_2e
-    move-object/from16 v0, p0
+    const-wide/16 v4, 0x0
 
-    iget v4, v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->end:I
+    .line 57
+    invoke-virtual {p0}, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->get()J
 
-    int-to-long v4, v4
+    move-result-wide v2
 
-    cmp-long v4, v16, v4
+    cmp-long v2, v2, v6
 
-    if-gtz v4, :cond_54
-
-    .line 65
-    move-object/from16 v0, p0
-
-    iget-object v4, v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->o:Lrx/Subscriber;
-
-    invoke-virtual {v4}, Lrx/Subscriber;->isUnsubscribed()Z
-
-    move-result v4
-
-    if-nez v4, :cond_d
-
-    .line 68
-    move-object/from16 v0, p0
-
-    iget-object v4, v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->o:Lrx/Subscriber;
-
-    move-wide/from16 v0, v16
-
-    long-to-int v5, v0
-
-    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v5
-
-    invoke-virtual {v4, v5}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
-
-    .line 64
-    const-wide/16 v4, 0x1
-
-    add-long v16, v16, v4
-
-    goto :goto_2e
-
-    .line 70
-    :cond_54
-    move-object/from16 v0, p0
-
-    iget-object v4, v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->o:Lrx/Subscriber;
-
-    invoke-virtual {v4}, Lrx/Subscriber;->isUnsubscribed()Z
-
-    move-result v4
-
-    if-nez v4, :cond_d
+    if-nez v2, :cond_10
 
     .line 71
-    move-object/from16 v0, p0
+    :cond_f
+    :goto_f
+    return-void
 
-    iget-object v4, v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->o:Lrx/Subscriber;
+    .line 61
+    :cond_10
+    cmp-long v2, p1, v6
 
-    invoke-virtual {v4}, Lrx/Subscriber;->onCompleted()V
+    if-nez v2, :cond_1e
+
+    invoke-virtual {p0, v4, v5, v6, v7}, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->compareAndSet(JJ)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_1e
+
+    .line 63
+    invoke-virtual {p0}, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->fastpath()V
+
+    goto :goto_f
+
+    .line 64
+    :cond_1e
+    cmp-long v2, p1, v4
+
+    if-lez v2, :cond_f
+
+    .line 65
+    invoke-static {p0, p1, p2}, Lrx/internal/operators/BackpressureUtils;->getAndAddRequest(Ljava/util/concurrent/atomic/AtomicLong;J)J
+
+    move-result-wide v0
+
+    .line 66
+    .local v0, "c":J
+    cmp-long v2, v0, v4
+
+    if-nez v2, :cond_f
+
+    .line 68
+    invoke-virtual {p0, p1, p2}, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->slowpath(J)V
+
+    goto :goto_f
+.end method
+
+.method slowpath(J)V
+    .registers 16
+    .param p1, "requestedAmount"    # J
+
+    .prologue
+    const-wide/16 v10, 0x1
+
+    .line 77
+    const-wide/16 v2, 0x0
+
+    .line 78
+    .local v2, "emitted":J
+    iget v1, p0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->endOfRange:I
+
+    int-to-long v8, v1
+
+    add-long v4, v8, v10
+
+    .line 79
+    .local v4, "endIndex":J
+    iget-wide v6, p0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->currentIndex:J
+
+    .line 81
+    .local v6, "index":J
+    iget-object v0, p0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->childSubscriber:Lrx/Subscriber;
+
+    .line 85
+    .local v0, "childSubscriber":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/lang/Integer;>;"
+    :cond_d
+    :goto_d
+    cmp-long v1, v2, p1
+
+    if-eqz v1, :cond_27
+
+    cmp-long v1, v6, v4
+
+    if-eqz v1, :cond_27
+
+    .line 86
+    invoke-virtual {v0}, Lrx/Subscriber;->isUnsubscribed()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_1c
+
+    .line 116
+    :cond_1b
+    :goto_1b
+    return-void
+
+    .line 90
+    :cond_1c
+    long-to-int v1, v6
+
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+
+    .line 92
+    add-long/2addr v6, v10
+
+    .line 93
+    add-long/2addr v2, v10
 
     goto :goto_d
 
-    .line 73
-    .end local v16    # "i":J
-    :cond_66
-    const-wide/16 v4, 0x0
-
-    cmp-long v4, p1, v4
-
-    if-lez v4, :cond_d
-
-    .line 75
-    sget-object v4, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->REQUESTED_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    move-object/from16 v0, p0
-
-    move-wide/from16 v1, p1
-
-    invoke-static {v4, v0, v1, v2}, Lrx/internal/operators/BackpressureUtils;->getAndAddRequest(Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;Ljava/lang/Object;J)J
-
-    move-result-wide v10
-
-    .line 76
-    .local v10, "_c":J
-    const-wide/16 v4, 0x0
-
-    cmp-long v4, v10, v4
-
-    if-nez v4, :cond_d
-
-    .line 82
-    :cond_7c
-    move-object/from16 v0, p0
-
-    iget-wide v0, v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->requested:J
-
-    move-wide/from16 v22, v0
-
-    .line 83
-    .local v22, "r":J
-    move-object/from16 v0, p0
-
-    iget-wide v0, v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->index:J
-
-    move-wide/from16 v18, v0
-
-    .line 84
-    .local v18, "idx":J
-    move-object/from16 v0, p0
-
-    iget v4, v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->end:I
-
-    int-to-long v4, v4
-
-    sub-long v4, v4, v18
-
-    const-wide/16 v6, 0x1
-
-    add-long v20, v4, v6
-
-    .line 85
-    .local v20, "numLeft":J
-    invoke-static/range {v20 .. v23}, Ljava/lang/Math;->min(JJ)J
-
-    move-result-wide v14
-
-    .line 86
-    .local v14, "e":J
-    cmp-long v4, v20, v22
-
-    if-gtz v4, :cond_c1
-
-    const/4 v12, 0x1
-
-    .line 87
-    .local v12, "completeOnFinish":Z
-    :goto_9c
-    add-long v24, v14, v18
-
-    .line 88
-    .local v24, "stopAt":J
-    move-wide/from16 v16, v18
-
-    .restart local v16    # "i":J
-    :goto_a0
-    cmp-long v4, v16, v24
-
-    if-gez v4, :cond_c3
-
-    .line 89
-    move-object/from16 v0, p0
-
-    iget-object v4, v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->o:Lrx/Subscriber;
-
-    invoke-virtual {v4}, Lrx/Subscriber;->isUnsubscribed()Z
-
-    move-result v4
-
-    if-nez v4, :cond_d
-
-    .line 92
-    move-object/from16 v0, p0
-
-    iget-object v4, v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->o:Lrx/Subscriber;
-
-    move-wide/from16 v0, v16
-
-    long-to-int v5, v0
-
-    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v5
-
-    invoke-virtual {v4, v5}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
-
-    .line 88
-    const-wide/16 v4, 0x1
-
-    add-long v16, v16, v4
-
-    goto :goto_a0
-
-    .line 86
-    .end local v12    # "completeOnFinish":Z
-    .end local v16    # "i":J
-    .end local v24    # "stopAt":J
-    :cond_c1
-    const/4 v12, 0x0
-
-    goto :goto_9c
-
-    .line 94
-    .restart local v12    # "completeOnFinish":Z
-    .restart local v16    # "i":J
-    .restart local v24    # "stopAt":J
-    :cond_c3
-    move-wide/from16 v0, v24
-
-    move-object/from16 v2, p0
-
-    iput-wide v0, v2, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->index:J
-
     .line 96
-    if-eqz v12, :cond_d4
+    :cond_27
+    invoke-virtual {v0}, Lrx/Subscriber;->isUnsubscribed()Z
 
-    .line 97
-    move-object/from16 v0, p0
+    move-result v1
 
-    iget-object v4, v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->o:Lrx/Subscriber;
-
-    invoke-virtual {v4}, Lrx/Subscriber;->onCompleted()V
-
-    goto/16 :goto_d
+    if-nez v1, :cond_1b
 
     .line 100
-    :cond_d4
-    sget-object v4, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->REQUESTED_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
+    cmp-long v1, v6, v4
 
-    neg-long v6, v14
+    if-nez v1, :cond_35
 
-    move-object/from16 v0, p0
+    .line 101
+    invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    invoke-virtual {v4, v0, v6, v7}, Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;->addAndGet(Ljava/lang/Object;J)J
+    goto :goto_1b
 
-    move-result-wide v4
+    .line 105
+    :cond_35
+    invoke-virtual {p0}, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->get()J
 
-    const-wide/16 v6, 0x0
+    move-result-wide p1
 
-    cmp-long v4, v4, v6
+    .line 107
+    cmp-long v1, p1, v2
 
-    if-nez v4, :cond_7c
+    if-nez v1, :cond_d
 
-    goto/16 :goto_d
+    .line 108
+    iput-wide v6, p0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->currentIndex:J
+
+    .line 109
+    neg-long v8, v2
+
+    invoke-virtual {p0, v8, v9}, Lrx/internal/operators/OnSubscribeRange$RangeProducer;->addAndGet(J)J
+
+    move-result-wide p1
+
+    .line 110
+    const-wide/16 v8, 0x0
+
+    cmp-long v1, p1, v8
+
+    if-eqz v1, :cond_1b
+
+    .line 113
+    const-wide/16 v2, 0x0
+
+    goto :goto_d
 .end method

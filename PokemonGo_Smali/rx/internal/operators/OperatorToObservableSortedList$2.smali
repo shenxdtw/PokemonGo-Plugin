@@ -45,7 +45,7 @@
     .registers 6
 
     .prologue
-    .line 58
+    .line 59
     .local p0, "this":Lrx/internal/operators/OperatorToObservableSortedList$2;, "Lrx/internal/operators/OperatorToObservableSortedList.2;"
     iput-object p1, p0, Lrx/internal/operators/OperatorToObservableSortedList$2;->this$0:Lrx/internal/operators/OperatorToObservableSortedList;
 
@@ -55,15 +55,12 @@
 
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
-    .line 60
+    .line 61
     new-instance v0, Ljava/util/ArrayList;
 
     iget-object v1, p0, Lrx/internal/operators/OperatorToObservableSortedList$2;->this$0:Lrx/internal/operators/OperatorToObservableSortedList;
 
-    # getter for: Lrx/internal/operators/OperatorToObservableSortedList;->initialCapacity:I
-    invoke-static {v1}, Lrx/internal/operators/OperatorToObservableSortedList;->access$000(Lrx/internal/operators/OperatorToObservableSortedList;)I
-
-    move-result v1
+    iget v1, v1, Lrx/internal/operators/OperatorToObservableSortedList;->initialCapacity:I
 
     invoke-direct {v0, v1}, Ljava/util/ArrayList;-><init>(I)V
 
@@ -78,60 +75,57 @@
     .registers 4
 
     .prologue
-    .line 70
+    .line 71
     .local p0, "this":Lrx/internal/operators/OperatorToObservableSortedList$2;, "Lrx/internal/operators/OperatorToObservableSortedList.2;"
     iget-boolean v2, p0, Lrx/internal/operators/OperatorToObservableSortedList$2;->completed:Z
 
-    if-nez v2, :cond_1a
+    if-nez v2, :cond_18
 
-    .line 71
+    .line 72
     const/4 v2, 0x1
 
     iput-boolean v2, p0, Lrx/internal/operators/OperatorToObservableSortedList$2;->completed:Z
 
-    .line 72
+    .line 73
     iget-object v0, p0, Lrx/internal/operators/OperatorToObservableSortedList$2;->list:Ljava/util/List;
 
-    .line 73
+    .line 74
     .local v0, "a":Ljava/util/List;, "Ljava/util/List<TT;>;"
     const/4 v2, 0x0
 
     iput-object v2, p0, Lrx/internal/operators/OperatorToObservableSortedList$2;->list:Ljava/util/List;
 
-    .line 76
+    .line 77
     :try_start_c
     iget-object v2, p0, Lrx/internal/operators/OperatorToObservableSortedList$2;->this$0:Lrx/internal/operators/OperatorToObservableSortedList;
 
-    # getter for: Lrx/internal/operators/OperatorToObservableSortedList;->sortFunction:Ljava/util/Comparator;
-    invoke-static {v2}, Lrx/internal/operators/OperatorToObservableSortedList;->access$100(Lrx/internal/operators/OperatorToObservableSortedList;)Ljava/util/Comparator;
-
-    move-result-object v2
+    iget-object v2, v2, Lrx/internal/operators/OperatorToObservableSortedList;->sortFunction:Ljava/util/Comparator;
 
     invoke-static {v0, v2}, Ljava/util/Collections;->sort(Ljava/util/List;Ljava/util/Comparator;)V
-    :try_end_15
-    .catch Ljava/lang/Throwable; {:try_start_c .. :try_end_15} :catch_1b
+    :try_end_13
+    .catch Ljava/lang/Throwable; {:try_start_c .. :try_end_13} :catch_19
 
-    .line 81
+    .line 82
     iget-object v2, p0, Lrx/internal/operators/OperatorToObservableSortedList$2;->val$producer:Lrx/internal/producers/SingleDelayedProducer;
 
     invoke-virtual {v2, v0}, Lrx/internal/producers/SingleDelayedProducer;->setValue(Ljava/lang/Object;)V
 
-    .line 83
+    .line 84
     .end local v0    # "a":Ljava/util/List;, "Ljava/util/List<TT;>;"
-    :cond_1a
-    :goto_1a
+    :cond_18
+    :goto_18
     return-void
 
-    .line 77
+    .line 78
     .restart local v0    # "a":Ljava/util/List;, "Ljava/util/List<TT;>;"
-    :catch_1b
+    :catch_19
     move-exception v1
 
-    .line 78
+    .line 79
     .local v1, "e":Ljava/lang/Throwable;
-    invoke-virtual {p0, v1}, Lrx/internal/operators/OperatorToObservableSortedList$2;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v1, p0}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
-    goto :goto_1a
+    goto :goto_18
 .end method
 
 .method public onError(Ljava/lang/Throwable;)V
@@ -139,13 +133,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 87
+    .line 88
     .local p0, "this":Lrx/internal/operators/OperatorToObservableSortedList$2;, "Lrx/internal/operators/OperatorToObservableSortedList.2;"
     iget-object v0, p0, Lrx/internal/operators/OperatorToObservableSortedList$2;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 88
+    .line 89
     return-void
 .end method
 
@@ -158,19 +152,19 @@
     .end annotation
 
     .prologue
-    .line 92
+    .line 93
     .local p0, "this":Lrx/internal/operators/OperatorToObservableSortedList$2;, "Lrx/internal/operators/OperatorToObservableSortedList.2;"
     .local p1, "value":Ljava/lang/Object;, "TT;"
     iget-boolean v0, p0, Lrx/internal/operators/OperatorToObservableSortedList$2;->completed:Z
 
     if-nez v0, :cond_9
 
-    .line 93
+    .line 94
     iget-object v0, p0, Lrx/internal/operators/OperatorToObservableSortedList$2;->list:Ljava/util/List;
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 95
+    .line 96
     :cond_9
     return-void
 .end method
@@ -179,12 +173,12 @@
     .registers 3
 
     .prologue
-    .line 65
+    .line 66
     .local p0, "this":Lrx/internal/operators/OperatorToObservableSortedList$2;, "Lrx/internal/operators/OperatorToObservableSortedList.2;"
     const-wide v0, 0x7fffffffffffffffL
 
     invoke-virtual {p0, v0, v1}, Lrx/internal/operators/OperatorToObservableSortedList$2;->request(J)V
 
-    .line 66
+    .line 67
     return-void
 .end method

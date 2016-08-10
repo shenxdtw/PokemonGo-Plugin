@@ -32,7 +32,7 @@
     .registers 1
 
     .prologue
-    .line 1058
+    .line 1258
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -45,7 +45,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 1058
+    .line 1258
     check-cast p1, Lrx/Subscriber;
 
     .end local p1    # "x0":Ljava/lang/Object;
@@ -67,10 +67,10 @@
     .end annotation
 
     .prologue
-    .line 1061
+    .line 1261
     .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/lang/Object;>;"
     invoke-virtual {p1}, Lrx/Subscriber;->onCompleted()V
 
-    .line 1062
+    .line 1262
     return-void
 .end method

@@ -97,7 +97,7 @@
     .registers 1
 
     .prologue
-    .line 10
+    .line 11
     const-class v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -154,7 +154,7 @@
     .end annotation
 
     .prologue
-    .line 20
+    .line 37
     .local p2, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     .local p3, "clockProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/Clock;>;"
     .local p4, "retryExecutorProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lrx/Scheduler;>;"
@@ -163,7 +163,7 @@
     .local p7, "responseParserProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/dispatcher/delivery/ResponseParser;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 21
+    .line 38
     sget-boolean v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -176,11 +176,11 @@
 
     throw v0
 
-    .line 22
+    .line 39
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->module:Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule;
 
-    .line 23
+    .line 40
     sget-boolean v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -193,11 +193,11 @@
 
     throw v0
 
-    .line 24
+    .line 41
     :cond_1d
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->upsightProvider:Ljavax/inject/Provider;
 
-    .line 25
+    .line 42
     sget-boolean v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_2b
@@ -210,11 +210,11 @@
 
     throw v0
 
-    .line 26
+    .line 43
     :cond_2b
     iput-object p3, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->clockProvider:Ljavax/inject/Provider;
 
-    .line 27
+    .line 44
     sget-boolean v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_39
@@ -227,11 +227,11 @@
 
     throw v0
 
-    .line 28
+    .line 45
     :cond_39
     iput-object p4, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->retryExecutorProvider:Ljavax/inject/Provider;
 
-    .line 29
+    .line 46
     sget-boolean v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_47
@@ -244,11 +244,11 @@
 
     throw v0
 
-    .line 30
+    .line 47
     :cond_47
     iput-object p5, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->sendExecutorProvider:Ljavax/inject/Provider;
 
-    .line 31
+    .line 48
     sget-boolean v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_55
@@ -261,11 +261,11 @@
 
     throw v0
 
-    .line 32
+    .line 49
     :cond_55
     iput-object p6, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->signatureVerifierProvider:Ljavax/inject/Provider;
 
-    .line 33
+    .line 50
     sget-boolean v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_63
@@ -278,11 +278,11 @@
 
     throw v0
 
-    .line 34
+    .line 51
     :cond_63
     iput-object p7, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->responseParserProvider:Ljavax/inject/Provider;
 
-    .line 35
+    .line 52
     return-void
 .end method
 
@@ -325,7 +325,7 @@
     .end annotation
 
     .prologue
-    .line 47
+    .line 75
     .local p1, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     .local p2, "clockProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/Clock;>;"
     .local p3, "retryExecutorProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lrx/Scheduler;>;"
@@ -356,14 +356,15 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueBuilder;
-    .registers 9
+    .registers 8
 
     .prologue
-    .line 39
+    .line 56
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->module:Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule;
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->upsightProvider:Ljavax/inject/Provider;
 
+    .line 58
     invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v1
@@ -372,6 +373,7 @@
 
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->clockProvider:Ljavax/inject/Provider;
 
+    .line 59
     invoke-interface {v2}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v2
@@ -380,6 +382,7 @@
 
     iget-object v3, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->retryExecutorProvider:Ljavax/inject/Provider;
 
+    .line 60
     invoke-interface {v3}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v3
@@ -388,6 +391,7 @@
 
     iget-object v4, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->sendExecutorProvider:Ljavax/inject/Provider;
 
+    .line 61
     invoke-interface {v4}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v4
@@ -396,6 +400,7 @@
 
     iget-object v5, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->signatureVerifierProvider:Ljavax/inject/Provider;
 
+    .line 62
     invoke-interface {v5}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v5
@@ -404,33 +409,28 @@
 
     iget-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->responseParserProvider:Ljavax/inject/Provider;
 
+    .line 57
     invoke-virtual/range {v0 .. v6}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule;->provideQueueBuilder(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/analytics/internal/session/Clock;Lrx/Scheduler;Lrx/Scheduler;Lcom/upsight/android/analytics/internal/dispatcher/delivery/SignatureVerifier;Ljavax/inject/Provider;)Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueBuilder;
 
-    move-result-object v7
-
-    .line 40
-    .local v7, "provided":Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueBuilder;
-    if-nez v7, :cond_3a
-
-    .line 41
-    new-instance v0, Ljava/lang/NullPointerException;
+    move-result-object v0
 
     const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    .line 56
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
 
-    throw v0
+    move-result-object v0
 
-    .line 43
-    :cond_3a
-    return-object v7
+    check-cast v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueBuilder;
+
+    return-object v0
 .end method
 
 .method public bridge synthetic get()Ljava/lang/Object;
     .registers 2
 
     .prologue
-    .line 10
+    .line 11
     invoke-virtual {p0}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->get()Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueBuilder;
 
     move-result-object v0

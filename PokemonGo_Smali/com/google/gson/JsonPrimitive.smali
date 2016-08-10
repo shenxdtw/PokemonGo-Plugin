@@ -256,63 +256,62 @@
 .end method
 
 .method private static isPrimitiveOrString(Ljava/lang/Object;)Z
-    .registers 8
+    .registers 9
     .param p0, "target"    # Ljava/lang/Object;
 
     .prologue
-    const/4 v5, 0x1
+    const/4 v2, 0x1
+
+    const/4 v3, 0x0
 
     .line 274
-    instance-of v6, p0, Ljava/lang/String;
+    instance-of v4, p0, Ljava/lang/String;
 
-    if-eqz v6, :cond_6
+    if-eqz v4, :cond_7
 
     .line 284
-    :cond_5
-    :goto_5
-    return v5
+    :cond_6
+    :goto_6
+    return v2
 
     .line 278
-    :cond_6
+    :cond_7
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
-    move-result-object v1
+    move-result-object v0
 
     .line 279
-    .local v1, "classOfPrimitive":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
-    sget-object v0, Lcom/google/gson/JsonPrimitive;->PRIMITIVE_TYPES:[Ljava/lang/Class;
+    .local v0, "classOfPrimitive":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
+    sget-object v5, Lcom/google/gson/JsonPrimitive;->PRIMITIVE_TYPES:[Ljava/lang/Class;
 
-    .local v0, "arr$":[Ljava/lang/Class;
-    array-length v3, v0
+    array-length v6, v5
 
-    .local v3, "len$":I
-    const/4 v2, 0x0
+    move v4, v3
 
-    .local v2, "i$":I
-    :goto_e
-    if-ge v2, v3, :cond_1b
+    :goto_f
+    if-ge v4, v6, :cond_1c
 
-    aget-object v4, v0, v2
+    aget-object v1, v5, v4
 
     .line 280
-    .local v4, "standardPrimitive":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
-    invoke-virtual {v4, v1}, Ljava/lang/Class;->isAssignableFrom(Ljava/lang/Class;)Z
+    .local v1, "standardPrimitive":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
+    invoke-virtual {v1, v0}, Ljava/lang/Class;->isAssignableFrom(Ljava/lang/Class;)Z
 
-    move-result v6
+    move-result v7
 
-    if-nez v6, :cond_5
+    if-nez v7, :cond_6
 
     .line 279
-    add-int/lit8 v2, v2, 0x1
+    add-int/lit8 v4, v4, 0x1
 
-    goto :goto_e
+    goto :goto_f
+
+    .end local v1    # "standardPrimitive":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
+    :cond_1c
+    move v2, v3
 
     .line 284
-    .end local v4    # "standardPrimitive":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
-    :cond_1b
-    const/4 v5, 0x0
-
-    goto :goto_5
+    goto :goto_6
 .end method
 
 
@@ -555,14 +554,17 @@
 
     check-cast v0, Ljava/math/BigInteger;
 
+    .line 216
     :goto_a
     return-object v0
 
+    .line 215
     :cond_b
     new-instance v0, Ljava/math/BigInteger;
 
     iget-object v1, p0, Lcom/google/gson/JsonPrimitive;->value:Ljava/lang/Object;
 
+    .line 216
     invoke-virtual {v1}, Ljava/lang/Object;->toString()Ljava/lang/String;
 
     move-result-object v1
@@ -1089,6 +1091,7 @@
 
     if-nez v1, :cond_1b
 
+    .line 101
     invoke-static {p1}, Lcom/google/gson/JsonPrimitive;->isPrimitiveOrString(Ljava/lang/Object;)Z
 
     move-result v1
@@ -1098,6 +1101,7 @@
     :cond_1b
     const/4 v1, 0x1
 
+    .line 100
     :goto_1c
     invoke-static {v1}, Lcom/google/gson/internal/$Gson$Preconditions;->checkArgument(Z)V
 
@@ -1106,7 +1110,7 @@
 
     goto :goto_10
 
-    .line 100
+    .line 101
     :cond_22
     const/4 v1, 0x0
 

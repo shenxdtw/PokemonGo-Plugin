@@ -31,37 +31,37 @@
     .registers 3
 
     .prologue
-    .line 74
+    .line 76
     invoke-direct {p0}, Ljava/util/HashMap;-><init>()V
 
-    .line 75
+    .line 77
     const-string v0, "com.upsight.uxm.string"
 
     const-class v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$StringSchema;
 
     invoke-virtual {p0, v0, v1}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$3;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 76
+    .line 78
     const-string v0, "com.upsight.uxm.boolean"
 
     const-class v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BooleanSchema;
 
     invoke-virtual {p0, v0, v1}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$3;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 77
+    .line 79
     const-string v0, "com.upsight.uxm.integer"
 
     const-class v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$IntSchema;
 
     invoke-virtual {p0, v0, v1}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$3;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 78
+    .line 80
     const-string v0, "com.upsight.uxm.float"
 
     const-class v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$FloatSchema;
 
     invoke-virtual {p0, v0, v1}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$3;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 79
+    .line 81
     return-void
 .end method

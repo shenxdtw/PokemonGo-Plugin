@@ -26,7 +26,7 @@
     .registers 2
 
     .prologue
-    .line 91
+    .line 85
     .local p0, "this":Lrx/internal/operators/BufferUntilSubscriber$OnSubscribeAction$1;, "Lrx/internal/operators/BufferUntilSubscriber$OnSubscribeAction.1;"
     iput-object p1, p0, Lrx/internal/operators/BufferUntilSubscriber$OnSubscribeAction$1;->this$0:Lrx/internal/operators/BufferUntilSubscriber$OnSubscribeAction;
 
@@ -41,19 +41,16 @@
     .registers 3
 
     .prologue
-    .line 95
+    .line 89
     .local p0, "this":Lrx/internal/operators/BufferUntilSubscriber$OnSubscribeAction$1;, "Lrx/internal/operators/BufferUntilSubscriber$OnSubscribeAction.1;"
     iget-object v0, p0, Lrx/internal/operators/BufferUntilSubscriber$OnSubscribeAction$1;->this$0:Lrx/internal/operators/BufferUntilSubscriber$OnSubscribeAction;
 
     iget-object v0, v0, Lrx/internal/operators/BufferUntilSubscriber$OnSubscribeAction;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
-    # getter for: Lrx/internal/operators/BufferUntilSubscriber;->EMPTY_OBSERVER:Lrx/Observer;
-    invoke-static {}, Lrx/internal/operators/BufferUntilSubscriber;->access$000()Lrx/Observer;
+    sget-object v1, Lrx/internal/operators/BufferUntilSubscriber;->EMPTY_OBSERVER:Lrx/Observer;
 
-    move-result-object v1
+    invoke-virtual {v0, v1}, Lrx/internal/operators/BufferUntilSubscriber$State;->set(Ljava/lang/Object;)V
 
-    iput-object v1, v0, Lrx/internal/operators/BufferUntilSubscriber$State;->observerRef:Lrx/Observer;
-
-    .line 96
+    .line 90
     return-void
 .end method

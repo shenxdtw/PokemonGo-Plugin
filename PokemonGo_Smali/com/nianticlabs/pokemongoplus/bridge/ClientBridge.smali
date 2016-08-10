@@ -49,20 +49,20 @@
     .registers 3
 
     .prologue
-    .line 47
+    .line 48
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 48
+    .line 49
     invoke-direct {p0}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->initialize()V
 
-    .line 49
+    .line 50
     sget-object v0, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->TAG:Ljava/lang/String;
 
     const-string v1, "Initialize();"
 
     invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 50
+    .line 51
     return-void
 .end method
 
@@ -71,10 +71,10 @@
     .param p0, "context"    # Landroid/content/Context;
 
     .prologue
-    .line 53
+    .line 54
     sput-object p0, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
 
-    .line 54
+    .line 55
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->TAG:Ljava/lang/String;
 
     const-class v2, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
@@ -85,15 +85,15 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 55
+    .line 56
     invoke-static {}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->nativeInit()V
 
-    .line 56
+    .line 57
     new-instance v0, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
 
     invoke-direct {v0}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;-><init>()V
 
-    .line 57
+    .line 58
     .local v0, "clientBridge":Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->TAG:Ljava/lang/String;
 
@@ -101,7 +101,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 58
+    .line 59
     return-object v0
 .end method
 
@@ -110,7 +110,7 @@
     .param p0, "action"    # Ljava/lang/String;
 
     .prologue
-    .line 63
+    .line 64
     new-instance v0, Landroid/content/Intent;
 
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
@@ -119,18 +119,18 @@
 
     invoke-direct {v0, v1, v2}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
 
-    .line 64
+    .line 65
     .local v0, "i":Landroid/content/Intent;
-    const-string v1, "com.nianticlabs.holoholo.dev"
+    const-string v1, "com.nianticlabs.pokemongoplus.bridge"
 
     invoke-virtual {v0, v1}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 65
+    .line 66
     const-string v1, "action"
 
     invoke-virtual {v0, v1, p0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 66
+    .line 67
     return-object v0
 .end method
 
@@ -138,7 +138,7 @@
     .registers 4
 
     .prologue
-    .line 70
+    .line 71
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -163,7 +163,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 71
+    .line 72
     new-instance v0, Landroid/content/Intent;
 
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
@@ -172,25 +172,25 @@
 
     invoke-direct {v0, v1, v2}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
 
-    .line 72
+    .line 73
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "com.nianticlabs.pokemongoplus.bridge"
 
     invoke-virtual {v0, v1}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 73
+    .line 74
     const-string v1, "action"
 
     const-string v2, "init"
 
     invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 74
+    .line 75
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
-    .line 75
+    .line 76
     return-void
 .end method
 
@@ -204,14 +204,14 @@
     .registers 3
 
     .prologue
-    .line 100
+    .line 101
     const-string v1, "pause"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 101
+    .line 102
     .local v0, "i":Landroid/content/Intent;
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->TAG:Ljava/lang/String;
 
@@ -219,12 +219,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 102
+    .line 103
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
-    .line 103
+    .line 104
     return-void
 .end method
 
@@ -232,14 +232,14 @@
     .registers 3
 
     .prologue
-    .line 94
+    .line 95
     const-string v1, "resume"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 95
+    .line 96
     .local v0, "i":Landroid/content/Intent;
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->TAG:Ljava/lang/String;
 
@@ -247,12 +247,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 96
+    .line 97
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
-    .line 97
+    .line 98
     return-void
 .end method
 
@@ -260,7 +260,7 @@
     .registers 4
 
     .prologue
-    .line 86
+    .line 87
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -285,7 +285,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 87
+    .line 88
     new-instance v0, Landroid/content/Intent;
 
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
@@ -294,25 +294,25 @@
 
     invoke-direct {v0, v1, v2}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
 
-    .line 88
+    .line 89
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "com.nianticlabs.pokemongoplus.bridge"
 
     invoke-virtual {v0, v1}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 89
+    .line 90
     const-string v1, "action"
 
     const-string v2, "start"
 
     invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 90
+    .line 91
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
-    .line 91
+    .line 92
     return-void
 .end method
 
@@ -320,14 +320,14 @@
     .registers 3
 
     .prologue
-    .line 112
+    .line 113
     const-string v1, "startScanning"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 113
+    .line 114
     .local v0, "i":Landroid/content/Intent;
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->TAG:Ljava/lang/String;
 
@@ -335,12 +335,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 114
+    .line 115
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
-    .line 115
+    .line 116
     return-void
 .end method
 
@@ -352,35 +352,35 @@
     .param p3, "pokemonId"    # J
 
     .prologue
-    .line 125
+    .line 126
     const-string v1, "startSession"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 126
+    .line 127
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "hostPort"
 
     invoke-virtual {v0, v1, p0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 127
+    .line 128
     const-string v1, "device"
 
     invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 128
+    .line 129
     const-string v1, "authToken"
 
     invoke-virtual {v0, v1, p2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;[B)Landroid/content/Intent;
 
-    .line 129
+    .line 130
     const-string v1, "pokemonId"
 
     invoke-virtual {v0, v1, p3, p4}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
 
-    .line 130
+    .line 131
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->TAG:Ljava/lang/String;
 
     const-string v2, "send startSession intent %s %s %s %d"
@@ -403,26 +403,26 @@
 
     const/4 v4, 0x3
 
-    .line 131
+    .line 132
     invoke-static {p3, p4}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
 
     move-result-object v5
 
     aput-object v5, v3, v4
 
-    .line 130
+    .line 131
     invoke-static {v2, v3}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v2
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 132
+    .line 133
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
-    .line 133
+    .line 134
     return-void
 .end method
 
@@ -430,14 +430,14 @@
     .registers 3
 
     .prologue
-    .line 106
+    .line 107
     const-string v1, "stop"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 107
+    .line 108
     .local v0, "i":Landroid/content/Intent;
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->TAG:Ljava/lang/String;
 
@@ -445,12 +445,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 108
+    .line 109
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
-    .line 109
+    .line 110
     return-void
 .end method
 
@@ -458,14 +458,14 @@
     .registers 3
 
     .prologue
-    .line 118
+    .line 119
     const-string v1, "stopScanning"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 119
+    .line 120
     .local v0, "i":Landroid/content/Intent;
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->TAG:Ljava/lang/String;
 
@@ -473,12 +473,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 120
+    .line 121
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
-    .line 121
+    .line 122
     return-void
 .end method
 
@@ -486,14 +486,14 @@
     .registers 3
 
     .prologue
-    .line 136
+    .line 137
     const-string v1, "stopSession"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 137
+    .line 138
     .local v0, "i":Landroid/content/Intent;
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->TAG:Ljava/lang/String;
 
@@ -501,12 +501,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 138
+    .line 139
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
-    .line 139
+    .line 140
     return-void
 .end method
 
@@ -514,7 +514,7 @@
     .registers 4
 
     .prologue
-    .line 78
+    .line 79
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -539,7 +539,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 79
+    .line 80
     new-instance v0, Landroid/content/Intent;
 
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
@@ -548,25 +548,25 @@
 
     invoke-direct {v0, v1, v2}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
 
-    .line 80
+    .line 81
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "com.nianticlabs.pokemongoplus.bridge"
 
     invoke-virtual {v0, v1}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 81
+    .line 82
     const-string v1, "action"
 
     const-string v2, "shutdown"
 
     invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 82
+    .line 83
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
-    .line 83
+    .line 84
     return-void
 .end method
 
@@ -592,22 +592,22 @@
     .param p1, "success"    # Z
 
     .prologue
-    .line 161
+    .line 162
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->loginDelegate:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge$LoginDelegate;
 
     if-eqz v0, :cond_c
 
-    .line 162
+    .line 163
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->loginDelegate:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge$LoginDelegate;
 
     invoke-interface {v0, p1}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge$LoginDelegate;->onLogin(Z)V
 
-    .line 163
+    .line 164
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->loginDelegate:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge$LoginDelegate;
 
-    .line 165
+    .line 166
     :cond_c
     return-void
 .end method
@@ -618,22 +618,22 @@
     .param p2, "device"    # Ljava/lang/String;
 
     .prologue
-    .line 167
+    .line 168
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sfidaRegisterDelegate:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge$SfidaRegisterDelegate;
 
     if-eqz v0, :cond_c
 
-    .line 168
+    .line 169
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sfidaRegisterDelegate:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge$SfidaRegisterDelegate;
 
     invoke-interface {v0, p1, p2}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge$SfidaRegisterDelegate;->onSfidaRegistered(ZLjava/lang/String;)V
 
-    .line 169
+    .line 170
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sfidaRegisterDelegate:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge$SfidaRegisterDelegate;
 
-    .line 171
+    .line 172
     :cond_c
     return-void
 .end method
@@ -654,6 +654,9 @@
 .end method
 
 .method public native sendEncounterId(J)V
+.end method
+
+.method public native sendIsScanning(I)V
 .end method
 
 .method public native sendPluginState(I)V
@@ -679,13 +682,13 @@
     .param p1, "delegate"    # Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge$LoginDelegate;
 
     .prologue
-    .line 153
+    .line 154
     iput-object p1, p0, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->loginDelegate:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge$LoginDelegate;
 
-    .line 154
+    .line 155
     invoke-virtual {p0}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->login()V
 
-    .line 155
+    .line 156
     return-void
 .end method
 
@@ -695,13 +698,13 @@
     .param p2, "delegate"    # Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge$SfidaRegisterDelegate;
 
     .prologue
-    .line 157
+    .line 158
     iput-object p2, p0, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sfidaRegisterDelegate:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge$SfidaRegisterDelegate;
 
-    .line 158
+    .line 159
     invoke-virtual {p0, p1}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->registerDevice(Ljava/lang/String;)V
 
-    .line 159
+    .line 160
     return-void
 .end method
 

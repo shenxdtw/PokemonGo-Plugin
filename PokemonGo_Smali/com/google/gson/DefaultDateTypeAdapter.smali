@@ -26,8 +26,6 @@
 # instance fields
 .field private final enUsFormat:Ljava/text/DateFormat;
 
-.field private final iso8601Format:Ljava/text/DateFormat;
-
 .field private final localFormat:Ljava/text/DateFormat;
 
 
@@ -38,20 +36,22 @@
     .prologue
     const/4 v1, 0x2
 
-    .line 44
+    .line 46
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
 
     invoke-static {v1, v1, v0}, Ljava/text/DateFormat;->getDateTimeInstance(IILjava/util/Locale;)Ljava/text/DateFormat;
 
     move-result-object v0
 
+    .line 47
     invoke-static {v1, v1}, Ljava/text/DateFormat;->getDateTimeInstance(II)Ljava/text/DateFormat;
 
     move-result-object v1
 
+    .line 46
     invoke-direct {p0, v0, v1}, Lcom/google/gson/DefaultDateTypeAdapter;-><init>(Ljava/text/DateFormat;Ljava/text/DateFormat;)V
 
-    .line 46
+    .line 48
     return-void
 .end method
 
@@ -60,7 +60,7 @@
     .param p1, "style"    # I
 
     .prologue
-    .line 53
+    .line 55
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
 
     invoke-static {p1, v0}, Ljava/text/DateFormat;->getDateInstance(ILjava/util/Locale;)Ljava/text/DateFormat;
@@ -73,7 +73,7 @@
 
     invoke-direct {p0, v0, v1}, Lcom/google/gson/DefaultDateTypeAdapter;-><init>(Ljava/text/DateFormat;Ljava/text/DateFormat;)V
 
-    .line 54
+    .line 56
     return-void
 .end method
 
@@ -83,20 +83,22 @@
     .param p2, "timeStyle"    # I
 
     .prologue
-    .line 57
+    .line 59
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
 
     invoke-static {p1, p2, v0}, Ljava/text/DateFormat;->getDateTimeInstance(IILjava/util/Locale;)Ljava/text/DateFormat;
 
     move-result-object v0
 
+    .line 60
     invoke-static {p1, p2}, Ljava/text/DateFormat;->getDateTimeInstance(II)Ljava/text/DateFormat;
 
     move-result-object v1
 
+    .line 59
     invoke-direct {p0, v0, v1}, Lcom/google/gson/DefaultDateTypeAdapter;-><init>(Ljava/text/DateFormat;Ljava/text/DateFormat;)V
 
-    .line 59
+    .line 61
     return-void
 .end method
 
@@ -105,7 +107,7 @@
     .param p1, "datePattern"    # Ljava/lang/String;
 
     .prologue
-    .line 49
+    .line 51
     new-instance v0, Ljava/text/SimpleDateFormat;
 
     sget-object v1, Ljava/util/Locale;->US:Ljava/util/Locale;
@@ -118,62 +120,40 @@
 
     invoke-direct {p0, v0, v1}, Lcom/google/gson/DefaultDateTypeAdapter;-><init>(Ljava/text/DateFormat;Ljava/text/DateFormat;)V
 
-    .line 50
+    .line 52
     return-void
 .end method
 
 .method constructor <init>(Ljava/text/DateFormat;Ljava/text/DateFormat;)V
-    .registers 6
+    .registers 3
     .param p1, "enUsFormat"    # Ljava/text/DateFormat;
     .param p2, "localFormat"    # Ljava/text/DateFormat;
 
     .prologue
-    .line 61
+    .line 63
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 62
+    .line 64
     iput-object p1, p0, Lcom/google/gson/DefaultDateTypeAdapter;->enUsFormat:Ljava/text/DateFormat;
 
-    .line 63
-    iput-object p2, p0, Lcom/google/gson/DefaultDateTypeAdapter;->localFormat:Ljava/text/DateFormat;
-
-    .line 64
-    new-instance v0, Ljava/text/SimpleDateFormat;
-
-    const-string v1, "yyyy-MM-dd\'T\'HH:mm:ss\'Z\'"
-
-    sget-object v2, Ljava/util/Locale;->US:Ljava/util/Locale;
-
-    invoke-direct {v0, v1, v2}, Ljava/text/SimpleDateFormat;-><init>(Ljava/lang/String;Ljava/util/Locale;)V
-
-    iput-object v0, p0, Lcom/google/gson/DefaultDateTypeAdapter;->iso8601Format:Ljava/text/DateFormat;
-
     .line 65
-    iget-object v0, p0, Lcom/google/gson/DefaultDateTypeAdapter;->iso8601Format:Ljava/text/DateFormat;
-
-    const-string v1, "UTC"
-
-    invoke-static {v1}, Ljava/util/TimeZone;->getTimeZone(Ljava/lang/String;)Ljava/util/TimeZone;
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Ljava/text/DateFormat;->setTimeZone(Ljava/util/TimeZone;)V
+    iput-object p2, p0, Lcom/google/gson/DefaultDateTypeAdapter;->localFormat:Ljava/text/DateFormat;
 
     .line 66
     return-void
 .end method
 
 .method private deserializeToDate(Lcom/google/gson/JsonElement;)Ljava/util/Date;
-    .registers 6
+    .registers 7
     .param p1, "json"    # Lcom/google/gson/JsonElement;
 
     .prologue
-    .line 95
+    .line 97
     iget-object v2, p0, Lcom/google/gson/DefaultDateTypeAdapter;->localFormat:Ljava/text/DateFormat;
 
     monitor-enter v2
 
-    .line 97
+    .line 99
     :try_start_3
     iget-object v1, p0, Lcom/google/gson/DefaultDateTypeAdapter;->localFormat:Ljava/text/DateFormat;
 
@@ -197,11 +177,11 @@
     :goto_e
     return-object v1
 
-    .line 98
+    .line 100
     :catch_f
     move-exception v1
 
-    .line 101
+    .line 102
     :try_start_10
     iget-object v1, p0, Lcom/google/gson/DefaultDateTypeAdapter;->enUsFormat:Ljava/text/DateFormat;
 
@@ -231,32 +211,36 @@
 
     throw v1
 
-    .line 102
+    .line 103
     :catch_1f
     move-exception v1
 
     .line 105
     :try_start_20
-    iget-object v1, p0, Lcom/google/gson/DefaultDateTypeAdapter;->iso8601Format:Ljava/text/DateFormat;
-
     invoke-virtual {p1}, Lcom/google/gson/JsonElement;->getAsString()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-virtual {v1, v3}, Ljava/text/DateFormat;->parse(Ljava/lang/String;)Ljava/util/Date;
-    :try_end_29
-    .catch Ljava/text/ParseException; {:try_start_20 .. :try_end_29} :catch_2c
-    .catchall {:try_start_20 .. :try_end_29} :catchall_1c
 
     move-result-object v1
 
-    :try_start_2a
+    new-instance v3, Ljava/text/ParsePosition;
+
+    const/4 v4, 0x0
+
+    invoke-direct {v3, v4}, Ljava/text/ParsePosition;-><init>(I)V
+
+    invoke-static {v1, v3}, Lcom/google/gson/internal/bind/util/ISO8601Utils;->parse(Ljava/lang/String;Ljava/text/ParsePosition;)Ljava/util/Date;
+    :try_end_2d
+    .catch Ljava/text/ParseException; {:try_start_20 .. :try_end_2d} :catch_30
+    .catchall {:try_start_20 .. :try_end_2d} :catchall_1c
+
+    move-result-object v1
+
+    :try_start_2e
     monitor-exit v2
 
     goto :goto_e
 
     .line 106
-    :catch_2c
+    :catch_30
     move-exception v0
 
     .line 107
@@ -270,17 +254,14 @@
     invoke-direct {v1, v3, v0}, Lcom/google/gson/JsonSyntaxException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
 
     throw v1
-    :try_end_37
-    .catchall {:try_start_2a .. :try_end_37} :catchall_1c
+    :try_end_3b
+    .catchall {:try_start_2e .. :try_end_3b} :catchall_1c
 .end method
 
 
 # virtual methods
 .method public bridge synthetic deserialize(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
     .registers 5
-    .param p1, "x0"    # Lcom/google/gson/JsonElement;
-    .param p2, "x1"    # Ljava/lang/reflect/Type;
-    .param p3, "x2"    # Lcom/google/gson/JsonDeserializationContext;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lcom/google/gson/JsonParseException;
@@ -288,7 +269,7 @@
     .end annotation
 
     .prologue
-    .line 35
+    .line 38
     invoke-virtual {p0, p1, p2, p3}, Lcom/google/gson/DefaultDateTypeAdapter;->deserialize(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/util/Date;
 
     move-result-object v0
@@ -308,12 +289,12 @@
     .end annotation
 
     .prologue
-    .line 79
+    .line 81
     instance-of v1, p1, Lcom/google/gson/JsonPrimitive;
 
     if-nez v1, :cond_c
 
-    .line 80
+    .line 82
     new-instance v1, Lcom/google/gson/JsonParseException;
 
     const-string v2, "The date should be a string value"
@@ -322,31 +303,31 @@
 
     throw v1
 
-    .line 82
+    .line 84
     :cond_c
     invoke-direct {p0, p1}, Lcom/google/gson/DefaultDateTypeAdapter;->deserializeToDate(Lcom/google/gson/JsonElement;)Ljava/util/Date;
 
     move-result-object v0
 
-    .line 83
+    .line 85
     .local v0, "date":Ljava/util/Date;
     const-class v1, Ljava/util/Date;
 
     if-ne p2, v1, :cond_15
 
-    .line 88
+    .line 90
     .end local v0    # "date":Ljava/util/Date;
     :goto_14
     return-object v0
 
-    .line 85
+    .line 87
     .restart local v0    # "date":Ljava/util/Date;
     :cond_15
     const-class v1, Ljava/sql/Timestamp;
 
     if-ne p2, v1, :cond_24
 
-    .line 86
+    .line 88
     new-instance v1, Ljava/sql/Timestamp;
 
     invoke-virtual {v0}, Ljava/util/Date;->getTime()J
@@ -359,13 +340,13 @@
 
     goto :goto_14
 
-    .line 87
+    .line 89
     :cond_24
     const-class v1, Ljava/sql/Date;
 
     if-ne p2, v1, :cond_33
 
-    .line 88
+    .line 90
     new-instance v1, Ljava/sql/Date;
 
     invoke-virtual {v0}, Ljava/util/Date;->getTime()J
@@ -378,7 +359,7 @@
 
     goto :goto_14
 
-    .line 90
+    .line 92
     :cond_33
     new-instance v1, Ljava/lang/IllegalArgumentException;
 
@@ -415,15 +396,11 @@
 
 .method public bridge synthetic serialize(Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
     .registers 5
-    .param p1, "x0"    # Ljava/lang/Object;
-    .param p2, "x1"    # Ljava/lang/reflect/Type;
-    .param p3, "x2"    # Lcom/google/gson/JsonSerializationContext;
 
     .prologue
-    .line 35
+    .line 38
     check-cast p1, Ljava/util/Date;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1, p2, p3}, Lcom/google/gson/DefaultDateTypeAdapter;->serialize(Ljava/util/Date;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
 
     move-result-object v0
@@ -438,12 +415,12 @@
     .param p3, "context"    # Lcom/google/gson/JsonSerializationContext;
 
     .prologue
-    .line 71
+    .line 72
     iget-object v2, p0, Lcom/google/gson/DefaultDateTypeAdapter;->localFormat:Ljava/text/DateFormat;
 
     monitor-enter v2
 
-    .line 72
+    .line 73
     :try_start_3
     iget-object v1, p0, Lcom/google/gson/DefaultDateTypeAdapter;->enUsFormat:Ljava/text/DateFormat;
 
@@ -451,7 +428,7 @@
 
     move-result-object v0
 
-    .line 73
+    .line 74
     .local v0, "dateFormatAsString":Ljava/lang/String;
     new-instance v1, Lcom/google/gson/JsonPrimitive;
 
@@ -461,7 +438,7 @@
 
     return-object v1
 
-    .line 74
+    .line 75
     .end local v0    # "dateFormatAsString":Ljava/lang/String;
     :catchall_10
     move-exception v1

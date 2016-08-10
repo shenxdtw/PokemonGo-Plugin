@@ -59,19 +59,19 @@
     .end annotation
 
     .prologue
-    .line 33
+    .line 34
     .local p0, "this":Lrx/internal/operators/OnSubscribeDelaySubscriptionWithSelector;, "Lrx/internal/operators/OnSubscribeDelaySubscriptionWithSelector<TT;TU;>;"
     .local p1, "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
     .local p2, "subscriptionDelay":Lrx/functions/Func0;, "Lrx/functions/Func0<+Lrx/Observable<TU;>;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 34
+    .line 35
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeDelaySubscriptionWithSelector;->source:Lrx/Observable;
 
-    .line 35
+    .line 36
     iput-object p2, p0, Lrx/internal/operators/OnSubscribeDelaySubscriptionWithSelector;->subscriptionDelay:Lrx/functions/Func0;
 
-    .line 36
+    .line 37
     return-void
 .end method
 
@@ -82,7 +82,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 29
+    .line 30
     .local p0, "this":Lrx/internal/operators/OnSubscribeDelaySubscriptionWithSelector;, "Lrx/internal/operators/OnSubscribeDelaySubscriptionWithSelector<TT;TU;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -103,7 +103,7 @@
     .end annotation
 
     .prologue
-    .line 41
+    .line 42
     .local p0, "this":Lrx/internal/operators/OnSubscribeDelaySubscriptionWithSelector;, "Lrx/internal/operators/OnSubscribeDelaySubscriptionWithSelector<TT;TU;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     :try_start_0
@@ -129,17 +129,17 @@
     :try_end_15
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_15} :catch_16
 
-    .line 63
+    .line 64
     :goto_15
     return-void
 
-    .line 60
+    .line 61
     :catch_16
     move-exception v0
 
-    .line 61
+    .line 62
     .local v0, "e":Ljava/lang/Throwable;
-    invoke-virtual {p1, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     goto :goto_15
 .end method

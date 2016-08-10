@@ -36,12 +36,23 @@
     .end annotation
 .end field
 
-.field private final uxmSchemaMapperProvider:Ljavax/inject/Provider;
+.field private final uxmSchemaGsonProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljavax/inject/Provider",
             "<",
-            "Lcom/fasterxml/jackson/databind/ObjectMapper;",
+            "Lcom/google/gson/Gson;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private final uxmSchemaJsonParserProvider:Ljavax/inject/Provider;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/google/gson/JsonParser;",
             ">;"
         }
     .end annotation
@@ -64,7 +75,7 @@
     .registers 1
 
     .prologue
-    .line 9
+    .line 11
     const-class v0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -86,8 +97,8 @@
     goto :goto_9
 .end method
 
-.method public constructor <init>(Lcom/upsight/android/managedvariables/internal/type/UxmModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
-    .registers 6
+.method public constructor <init>(Lcom/upsight/android/managedvariables/internal/type/UxmModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+    .registers 7
     .param p1, "module"    # Lcom/upsight/android/managedvariables/internal/type/UxmModule;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -99,7 +110,11 @@
             ">;",
             "Ljavax/inject/Provider",
             "<",
-            "Lcom/fasterxml/jackson/databind/ObjectMapper;",
+            "Lcom/google/gson/Gson;",
+            ">;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/google/gson/JsonParser;",
             ">;",
             "Ljavax/inject/Provider",
             "<",
@@ -109,13 +124,14 @@
     .end annotation
 
     .prologue
-    .line 16
+    .line 31
     .local p2, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
-    .local p3, "uxmSchemaMapperProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/fasterxml/jackson/databind/ObjectMapper;>;"
-    .local p4, "uxmSchemaStringProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Ljava/lang/String;>;"
+    .local p3, "uxmSchemaGsonProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/google/gson/Gson;>;"
+    .local p4, "uxmSchemaJsonParserProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/google/gson/JsonParser;>;"
+    .local p5, "uxmSchemaStringProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Ljava/lang/String;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 17
+    .line 32
     sget-boolean v0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -128,11 +144,11 @@
 
     throw v0
 
-    .line 18
+    .line 33
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->module:Lcom/upsight/android/managedvariables/internal/type/UxmModule;
 
-    .line 19
+    .line 34
     sget-boolean v0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -145,11 +161,11 @@
 
     throw v0
 
-    .line 20
+    .line 35
     :cond_1d
     iput-object p2, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->upsightProvider:Ljavax/inject/Provider;
 
-    .line 21
+    .line 36
     sget-boolean v0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_2b
@@ -162,11 +178,11 @@
 
     throw v0
 
-    .line 22
+    .line 37
     :cond_2b
-    iput-object p3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->uxmSchemaMapperProvider:Ljavax/inject/Provider;
+    iput-object p3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->uxmSchemaGsonProvider:Ljavax/inject/Provider;
 
-    .line 23
+    .line 38
     sget-boolean v0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_39
@@ -179,16 +195,33 @@
 
     throw v0
 
-    .line 24
+    .line 39
     :cond_39
-    iput-object p4, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->uxmSchemaStringProvider:Ljavax/inject/Provider;
+    iput-object p4, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->uxmSchemaJsonParserProvider:Ljavax/inject/Provider;
 
-    .line 25
+    .line 40
+    sget-boolean v0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->$assertionsDisabled:Z
+
+    if-nez v0, :cond_47
+
+    if-nez p5, :cond_47
+
+    new-instance v0, Ljava/lang/AssertionError;
+
+    invoke-direct {v0}, Ljava/lang/AssertionError;-><init>()V
+
+    throw v0
+
+    .line 41
+    :cond_47
+    iput-object p5, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->uxmSchemaStringProvider:Ljavax/inject/Provider;
+
+    .line 42
     return-void
 .end method
 
-.method public static create(Lcom/upsight/android/managedvariables/internal/type/UxmModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-    .registers 5
+.method public static create(Lcom/upsight/android/managedvariables/internal/type/UxmModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+    .registers 11
     .param p0, "module"    # Lcom/upsight/android/managedvariables/internal/type/UxmModule;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -200,7 +233,11 @@
             ">;",
             "Ljavax/inject/Provider",
             "<",
-            "Lcom/fasterxml/jackson/databind/ObjectMapper;",
+            "Lcom/google/gson/Gson;",
+            ">;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/google/gson/JsonParser;",
             ">;",
             "Ljavax/inject/Provider",
             "<",
@@ -214,13 +251,24 @@
     .end annotation
 
     .prologue
-    .line 37
+    .line 61
     .local p1, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
-    .local p2, "uxmSchemaMapperProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/fasterxml/jackson/databind/ObjectMapper;>;"
-    .local p3, "uxmSchemaStringProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Ljava/lang/String;>;"
+    .local p2, "uxmSchemaGsonProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/google/gson/Gson;>;"
+    .local p3, "uxmSchemaJsonParserProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/google/gson/JsonParser;>;"
+    .local p4, "uxmSchemaStringProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Ljava/lang/String;>;"
     new-instance v0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;
 
-    invoke-direct {v0, p0, p1, p2, p3}, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;-><init>(Lcom/upsight/android/managedvariables/internal/type/UxmModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+    move-object v1, p0
+
+    move-object v2, p1
+
+    move-object v3, p2
+
+    move-object v4, p3
+
+    move-object v5, p4
+
+    invoke-direct/range {v0 .. v5}, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;-><init>(Lcom/upsight/android/managedvariables/internal/type/UxmModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
 
     return-object v0
 .end method
@@ -231,52 +279,59 @@
     .registers 6
 
     .prologue
-    .line 29
+    .line 46
     iget-object v4, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->module:Lcom/upsight/android/managedvariables/internal/type/UxmModule;
 
-    iget-object v1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->upsightProvider:Ljavax/inject/Provider;
+    iget-object v0, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->upsightProvider:Ljavax/inject/Provider;
 
+    .line 48
+    invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/UpsightContext;
+
+    iget-object v1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->uxmSchemaGsonProvider:Ljavax/inject/Provider;
+
+    .line 49
     invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v1
 
-    check-cast v1, Lcom/upsight/android/UpsightContext;
+    check-cast v1, Lcom/google/gson/Gson;
 
-    iget-object v2, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->uxmSchemaMapperProvider:Ljavax/inject/Provider;
+    iget-object v2, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->uxmSchemaJsonParserProvider:Ljavax/inject/Provider;
 
+    .line 50
     invoke-interface {v2}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v2
 
-    check-cast v2, Lcom/fasterxml/jackson/databind/ObjectMapper;
+    check-cast v2, Lcom/google/gson/JsonParser;
 
     iget-object v3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->uxmSchemaStringProvider:Ljavax/inject/Provider;
 
+    .line 51
     invoke-interface {v3}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v3
 
     check-cast v3, Ljava/lang/String;
 
-    invoke-virtual {v4, v1, v2, v3}, Lcom/upsight/android/managedvariables/internal/type/UxmModule;->provideUxmSchema(Lcom/upsight/android/UpsightContext;Lcom/fasterxml/jackson/databind/ObjectMapper;Ljava/lang/String;)Lcom/upsight/android/managedvariables/internal/type/UxmSchema;
+    .line 47
+    invoke-virtual {v4, v0, v1, v2, v3}, Lcom/upsight/android/managedvariables/internal/type/UxmModule;->provideUxmSchema(Lcom/upsight/android/UpsightContext;Lcom/google/gson/Gson;Lcom/google/gson/JsonParser;Ljava/lang/String;)Lcom/upsight/android/managedvariables/internal/type/UxmSchema;
 
     move-result-object v0
 
-    .line 30
-    .local v0, "provided":Lcom/upsight/android/managedvariables/internal/type/UxmSchema;
-    if-nez v0, :cond_28
+    const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
-    .line 31
-    new-instance v1, Ljava/lang/NullPointerException;
+    .line 46
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
 
-    const-string v2, "Cannot return null from a non-@Nullable @Provides method"
+    move-result-object v0
 
-    invoke-direct {v1, v2}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    check-cast v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;
 
-    throw v1
-
-    .line 33
-    :cond_28
     return-object v0
 .end method
 
@@ -284,7 +339,7 @@
     .registers 2
 
     .prologue
-    .line 9
+    .line 11
     invoke-virtual {p0}, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaFactory;->get()Lcom/upsight/android/managedvariables/internal/type/UxmSchema;
 
     move-result-object v0

@@ -146,46 +146,46 @@
     .prologue
     .line 96
     .local p0, "this":Lrx/internal/producers/QueuedValueProducer;, "Lrx/internal/producers/QueuedValueProducer<TT;>;"
-    iget-object v10, p0, Lrx/internal/producers/QueuedValueProducer;->wip:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v9, p0, Lrx/internal/producers/QueuedValueProducer;->wip:Ljava/util/concurrent/atomic/AtomicInteger;
 
-    invoke-virtual {v10}, Ljava/util/concurrent/atomic/AtomicInteger;->getAndIncrement()I
+    invoke-virtual {v9}, Ljava/util/concurrent/atomic/AtomicInteger;->getAndIncrement()I
 
-    move-result v10
+    move-result v9
 
-    if-nez v10, :cond_12
+    if-nez v9, :cond_12
 
     .line 97
     iget-object v0, p0, Lrx/internal/producers/QueuedValueProducer;->child:Lrx/Subscriber;
 
     .line 98
     .local v0, "c":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    iget-object v5, p0, Lrx/internal/producers/QueuedValueProducer;->queue:Ljava/util/Queue;
+    iget-object v4, p0, Lrx/internal/producers/QueuedValueProducer;->queue:Ljava/util/Queue;
 
     .line 100
-    .local v5, "q":Ljava/util/Queue;, "Ljava/util/Queue<Ljava/lang/Object;>;"
+    .local v4, "q":Ljava/util/Queue;, "Ljava/util/Queue<Ljava/lang/Object;>;"
     :cond_c
     invoke-virtual {v0}, Lrx/Subscriber;->isUnsubscribed()Z
 
-    move-result v10
+    move-result v9
 
-    if-eqz v10, :cond_13
+    if-eqz v9, :cond_13
 
-    .line 137
+    .line 135
     .end local v0    # "c":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    .end local v5    # "q":Ljava/util/Queue;, "Ljava/util/Queue<Ljava/lang/Object;>;"
+    .end local v4    # "q":Ljava/util/Queue;, "Ljava/util/Queue<Ljava/lang/Object;>;"
     :cond_12
     :goto_12
     return-void
 
     .line 104
     .restart local v0    # "c":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    .restart local v5    # "q":Ljava/util/Queue;, "Ljava/util/Queue<Ljava/lang/Object;>;"
+    .restart local v4    # "q":Ljava/util/Queue;, "Ljava/util/Queue<Ljava/lang/Object;>;"
     :cond_13
-    iget-object v10, p0, Lrx/internal/producers/QueuedValueProducer;->wip:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v9, p0, Lrx/internal/producers/QueuedValueProducer;->wip:Ljava/util/concurrent/atomic/AtomicInteger;
 
-    const/4 v11, 0x1
+    const/4 v10, 0x1
 
-    invoke-virtual {v10, v11}, Ljava/util/concurrent/atomic/AtomicInteger;->lazySet(I)V
+    invoke-virtual {v9, v10}, Ljava/util/concurrent/atomic/AtomicInteger;->lazySet(I)V
 
     .line 106
     invoke-virtual {p0}, Lrx/internal/producers/QueuedValueProducer;->get()J
@@ -201,44 +201,44 @@
     :goto_1f
     const-wide/16 v10, 0x0
 
-    cmp-long v10, v6, v10
+    cmp-long v9, v6, v10
 
-    if-eqz v10, :cond_57
+    if-eqz v9, :cond_50
 
-    invoke-interface {v5}, Ljava/util/Queue;->poll()Ljava/lang/Object;
+    invoke-interface {v4}, Ljava/util/Queue;->poll()Ljava/lang/Object;
 
-    move-result-object v9
+    move-result-object v8
 
-    .local v9, "v":Ljava/lang/Object;
-    if-eqz v9, :cond_57
+    .local v8, "v":Ljava/lang/Object;
+    if-eqz v8, :cond_50
 
     .line 112
     :try_start_2b
-    sget-object v10, Lrx/internal/producers/QueuedValueProducer;->NULL_SENTINEL:Ljava/lang/Object;
+    sget-object v9, Lrx/internal/producers/QueuedValueProducer;->NULL_SENTINEL:Ljava/lang/Object;
 
-    if-ne v9, v10, :cond_40
+    if-ne v8, v9, :cond_40
 
     .line 113
-    const/4 v10, 0x0
+    const/4 v9, 0x0
 
-    invoke-virtual {v0, v10}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+    invoke-virtual {v0, v9}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
     :try_end_33
     .catch Ljava/lang/Throwable; {:try_start_2b .. :try_end_33} :catch_45
 
-    .line 125
+    .line 123
     :goto_33
     invoke-virtual {v0}, Lrx/Subscriber;->isUnsubscribed()Z
 
-    move-result v10
+    move-result v9
 
-    if-nez v10, :cond_12
+    if-nez v9, :cond_12
 
-    .line 128
+    .line 126
     const-wide/16 v10, 0x1
 
     sub-long/2addr v6, v10
 
-    .line 129
+    .line 127
     const-wide/16 v10, 0x1
 
     add-long/2addr v2, v10
@@ -247,60 +247,49 @@
 
     .line 116
     :cond_40
-    move-object v8, v9
+    move-object v5, v8
 
     .line 117
-    .local v8, "t":Ljava/lang/Object;, "TT;"
+    .local v5, "t":Ljava/lang/Object;, "TT;"
     :try_start_41
-    invoke-virtual {v0, v8}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+    invoke-virtual {v0, v5}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
     :try_end_44
     .catch Ljava/lang/Throwable; {:try_start_41 .. :try_end_44} :catch_45
 
     goto :goto_33
 
     .line 119
-    .end local v8    # "t":Ljava/lang/Object;, "TT;"
+    .end local v5    # "t":Ljava/lang/Object;, "TT;"
     :catch_45
     move-exception v1
 
     .line 120
     .local v1, "ex":Ljava/lang/Throwable;
-    invoke-static {v1}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+    sget-object v9, Lrx/internal/producers/QueuedValueProducer;->NULL_SENTINEL:Ljava/lang/Object;
 
-    .line 121
-    sget-object v10, Lrx/internal/producers/QueuedValueProducer;->NULL_SENTINEL:Ljava/lang/Object;
+    if-eq v8, v9, :cond_4e
 
-    if-eq v9, v10, :cond_55
-
-    .end local v9    # "v":Ljava/lang/Object;
-    :goto_4d
-    invoke-static {v1, v9}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
-
-    move-result-object v4
-
-    .line 122
-    .local v4, "ex1":Ljava/lang/Throwable;
-    invoke-virtual {v0, v4}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    .end local v8    # "v":Ljava/lang/Object;
+    :goto_4a
+    invoke-static {v1, v0, v8}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
     goto :goto_12
 
-    .line 121
-    .end local v4    # "ex1":Ljava/lang/Throwable;
-    .restart local v9    # "v":Ljava/lang/Object;
-    :cond_55
-    const/4 v9, 0x0
+    .restart local v8    # "v":Ljava/lang/Object;
+    :cond_4e
+    const/4 v8, 0x0
 
-    goto :goto_4d
+    goto :goto_4a
 
-    .line 132
+    .line 130
     .end local v1    # "ex":Ljava/lang/Throwable;
-    .end local v9    # "v":Ljava/lang/Object;
-    :cond_57
+    .end local v8    # "v":Ljava/lang/Object;
+    :cond_50
     const-wide/16 v10, 0x0
 
-    cmp-long v10, v2, v10
+    cmp-long v9, v2, v10
 
-    if-eqz v10, :cond_6e
+    if-eqz v9, :cond_67
 
     invoke-virtual {p0}, Lrx/internal/producers/QueuedValueProducer;->get()J
 
@@ -308,24 +297,24 @@
 
     const-wide v12, 0x7fffffffffffffffL
 
-    cmp-long v10, v10, v12
+    cmp-long v9, v10, v12
 
-    if-eqz v10, :cond_6e
+    if-eqz v9, :cond_67
 
-    .line 133
+    .line 131
     neg-long v10, v2
 
     invoke-virtual {p0, v10, v11}, Lrx/internal/producers/QueuedValueProducer;->addAndGet(J)J
 
-    .line 135
-    :cond_6e
-    iget-object v10, p0, Lrx/internal/producers/QueuedValueProducer;->wip:Ljava/util/concurrent/atomic/AtomicInteger;
+    .line 133
+    :cond_67
+    iget-object v9, p0, Lrx/internal/producers/QueuedValueProducer;->wip:Ljava/util/concurrent/atomic/AtomicInteger;
 
-    invoke-virtual {v10}, Ljava/util/concurrent/atomic/AtomicInteger;->decrementAndGet()I
+    invoke-virtual {v9}, Ljava/util/concurrent/atomic/AtomicInteger;->decrementAndGet()I
 
-    move-result v10
+    move-result v9
 
-    if-nez v10, :cond_c
+    if-nez v9, :cond_c
 
     goto :goto_12
 .end method

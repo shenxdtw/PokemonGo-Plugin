@@ -10,7 +10,6 @@
 
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/analytics/event/UpsightCustomEvent$1;,
         Lcom/upsight/android/analytics/event/UpsightCustomEvent$Builder;
     }
 .end annotation

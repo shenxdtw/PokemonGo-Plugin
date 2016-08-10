@@ -7,39 +7,33 @@
 
 
 # static fields
-.field static final UNSUBSCRIBED_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
+.field static final EMPTY_ACTION:Lrx/functions/Action0;
+
+
+# instance fields
+.field final actionRef:Ljava/util/concurrent/atomic/AtomicReference;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater",
+            "Ljava/util/concurrent/atomic/AtomicReference",
             "<",
-            "Lrx/subscriptions/BooleanSubscription;",
+            "Lrx/functions/Action0;",
             ">;"
         }
     .end annotation
 .end field
 
 
-# instance fields
-.field private final action:Lrx/functions/Action0;
-
-.field volatile unsubscribed:I
-
-
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .registers 1
 
     .prologue
-    .line 32
-    const-class v0, Lrx/subscriptions/BooleanSubscription;
+    .line 76
+    new-instance v0, Lrx/subscriptions/BooleanSubscription$1;
 
-    const-string v1, "unsubscribed"
+    invoke-direct {v0}, Lrx/subscriptions/BooleanSubscription$1;-><init>()V
 
-    invoke-static {v0, v1}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/subscriptions/BooleanSubscription;->UNSUBSCRIBED_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
+    sput-object v0, Lrx/subscriptions/BooleanSubscription;->EMPTY_ACTION:Lrx/functions/Action0;
 
     return-void
 .end method
@@ -48,30 +42,36 @@
     .registers 2
 
     .prologue
-    .line 35
+    .line 32
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 36
-    const/4 v0, 0x0
+    .line 33
+    new-instance v0, Ljava/util/concurrent/atomic/AtomicReference;
 
-    iput-object v0, p0, Lrx/subscriptions/BooleanSubscription;->action:Lrx/functions/Action0;
+    invoke-direct {v0}, Ljava/util/concurrent/atomic/AtomicReference;-><init>()V
 
-    .line 37
+    iput-object v0, p0, Lrx/subscriptions/BooleanSubscription;->actionRef:Ljava/util/concurrent/atomic/AtomicReference;
+
+    .line 34
     return-void
 .end method
 
 .method private constructor <init>(Lrx/functions/Action0;)V
-    .registers 2
+    .registers 3
     .param p1, "action"    # Lrx/functions/Action0;
 
     .prologue
-    .line 39
+    .line 36
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 40
-    iput-object p1, p0, Lrx/subscriptions/BooleanSubscription;->action:Lrx/functions/Action0;
+    .line 37
+    new-instance v0, Ljava/util/concurrent/atomic/AtomicReference;
 
-    .line 41
+    invoke-direct {v0, p1}, Ljava/util/concurrent/atomic/AtomicReference;-><init>(Ljava/lang/Object;)V
+
+    iput-object v0, p0, Lrx/subscriptions/BooleanSubscription;->actionRef:Ljava/util/concurrent/atomic/AtomicReference;
+
+    .line 38
     return-void
 .end method
 
@@ -79,7 +79,7 @@
     .registers 1
 
     .prologue
-    .line 49
+    .line 46
     new-instance v0, Lrx/subscriptions/BooleanSubscription;
 
     invoke-direct {v0}, Lrx/subscriptions/BooleanSubscription;-><init>()V
@@ -92,7 +92,7 @@
     .param p0, "onUnsubscribe"    # Lrx/functions/Action0;
 
     .prologue
-    .line 60
+    .line 57
     new-instance v0, Lrx/subscriptions/BooleanSubscription;
 
     invoke-direct {v0, p0}, Lrx/subscriptions/BooleanSubscription;-><init>(Lrx/functions/Action0;)V
@@ -103,53 +103,74 @@
 
 # virtual methods
 .method public isUnsubscribed()Z
-    .registers 2
+    .registers 3
 
     .prologue
-    .line 65
-    iget v0, p0, Lrx/subscriptions/BooleanSubscription;->unsubscribed:I
+    .line 62
+    iget-object v0, p0, Lrx/subscriptions/BooleanSubscription;->actionRef:Ljava/util/concurrent/atomic/AtomicReference;
 
-    if-eqz v0, :cond_6
+    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    sget-object v1, Lrx/subscriptions/BooleanSubscription;->EMPTY_ACTION:Lrx/functions/Action0;
+
+    if-ne v0, v1, :cond_c
 
     const/4 v0, 0x1
 
-    :goto_5
+    :goto_b
     return v0
 
-    :cond_6
+    :cond_c
     const/4 v0, 0x0
 
-    goto :goto_5
+    goto :goto_b
 .end method
 
 .method public final unsubscribe()V
     .registers 4
 
     .prologue
+    .line 67
+    iget-object v1, p0, Lrx/subscriptions/BooleanSubscription;->actionRef:Ljava/util/concurrent/atomic/AtomicReference;
+
+    invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lrx/functions/Action0;
+
+    .line 68
+    .local v0, "action":Lrx/functions/Action0;
+    sget-object v1, Lrx/subscriptions/BooleanSubscription;->EMPTY_ACTION:Lrx/functions/Action0;
+
+    if-eq v0, v1, :cond_1f
+
+    .line 69
+    iget-object v1, p0, Lrx/subscriptions/BooleanSubscription;->actionRef:Ljava/util/concurrent/atomic/AtomicReference;
+
+    sget-object v2, Lrx/subscriptions/BooleanSubscription;->EMPTY_ACTION:Lrx/functions/Action0;
+
+    invoke-virtual {v1, v2}, Ljava/util/concurrent/atomic/AtomicReference;->getAndSet(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    .end local v0    # "action":Lrx/functions/Action0;
+    check-cast v0, Lrx/functions/Action0;
+
     .line 70
-    sget-object v0, Lrx/subscriptions/BooleanSubscription;->UNSUBSCRIBED_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
+    .restart local v0    # "action":Lrx/functions/Action0;
+    if-eqz v0, :cond_1f
 
-    const/4 v1, 0x0
+    sget-object v1, Lrx/subscriptions/BooleanSubscription;->EMPTY_ACTION:Lrx/functions/Action0;
 
-    const/4 v2, 0x1
-
-    invoke-virtual {v0, p0, v1, v2}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->compareAndSet(Ljava/lang/Object;II)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_13
+    if-eq v0, v1, :cond_1f
 
     .line 71
-    iget-object v0, p0, Lrx/subscriptions/BooleanSubscription;->action:Lrx/functions/Action0;
-
-    if-eqz v0, :cond_13
-
-    .line 72
-    iget-object v0, p0, Lrx/subscriptions/BooleanSubscription;->action:Lrx/functions/Action0;
-
     invoke-interface {v0}, Lrx/functions/Action0;->call()V
 
-    .line 75
-    :cond_13
+    .line 74
+    :cond_1f
     return-void
 .end method

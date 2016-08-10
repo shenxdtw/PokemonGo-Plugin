@@ -124,11 +124,7 @@
     .local v0, "e":Ljava/lang/Throwable;
     iget-object v1, p0, Lrx/internal/operators/OperatorMapPair$2;->val$o:Lrx/Subscriber;
 
-    invoke-static {v0, p1}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
-
-    move-result-object v2
-
-    invoke-virtual {v1, v2}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, v1, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
     goto :goto_18
 .end method

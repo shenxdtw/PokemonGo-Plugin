@@ -4,7 +4,7 @@
 
 
 # static fields
-.field private static final LOCAL_ONCOMPLETED:Ljava/lang/Object;
+.field static final LOCAL_ONCOMPLETED:Ljava/lang/Object;
 
 
 # direct methods
@@ -37,16 +37,6 @@
     invoke-direct {v0, v1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
 
     throw v0
-.end method
-
-.method static synthetic access$000()Ljava/lang/Object;
-    .registers 1
-
-    .prologue
-    .line 30
-    sget-object v0, Lrx/internal/operators/OperatorSequenceEqual;->LOCAL_ONCOMPLETED:Ljava/lang/Object;
-
-    return-object v0
 .end method
 
 .method static materializeLite(Lrx/Observable;)Lrx/Observable;

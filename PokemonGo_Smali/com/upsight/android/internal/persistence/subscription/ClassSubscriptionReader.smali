@@ -81,6 +81,7 @@
 
     const-class v5, Lcom/upsight/android/persistence/annotation/UpsightStorableType;
 
+    .line 58
     invoke-virtual {v4, v5}, Ljava/lang/Class;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
 
     move-result-object v1
@@ -115,109 +116,106 @@
     .param p1, "visitor"    # Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionVisitor;
 
     .prologue
-    .line 24
-    iget-object v8, p0, Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionReader;->mClass:Ljava/lang/Class;
-
-    invoke-virtual {v8}, Ljava/lang/Class;->getMethods()[Ljava/lang/reflect/Method;
-
-    move-result-object v1
-
-    .local v1, "arr$":[Ljava/lang/reflect/Method;
-    array-length v4, v1
-
-    .local v4, "len$":I
-    const/4 v3, 0x0
-
-    .local v3, "i$":I
-    :goto_8
-    if-ge v3, v4, :cond_44
-
-    aget-object v5, v1, v3
-
-    .line 25
-    .local v5, "method":Ljava/lang/reflect/Method;
-    invoke-direct {p0, v5}, Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionReader;->isSubscriptionMethod(Ljava/lang/reflect/Method;)Z
-
-    move-result v8
-
-    if-nez v8, :cond_15
+    const/4 v6, 0x0
 
     .line 24
-    :cond_12
-    :goto_12
-    add-int/lit8 v3, v3, 0x1
+    iget-object v5, p0, Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionReader;->mClass:Ljava/lang/Class;
 
-    goto :goto_8
-
-    .line 29
-    :cond_15
-    invoke-virtual {v5}, Ljava/lang/reflect/Method;->getParameterTypes()[Ljava/lang/Class;
-
-    move-result-object v8
-
-    const/4 v9, 0x0
-
-    aget-object v0, v8, v9
-
-    .line 30
-    .local v0, "argumentType":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
-    const-class v8, Lcom/upsight/android/persistence/annotation/Created;
-
-    invoke-virtual {v5, v8}, Ljava/lang/reflect/Method;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
-
-    move-result-object v2
-
-    check-cast v2, Lcom/upsight/android/persistence/annotation/Created;
-
-    .line 31
-    .local v2, "created":Lcom/upsight/android/persistence/annotation/Created;
-    if-eqz v2, :cond_29
-
-    .line 32
-    invoke-interface {p1, v5, v0}, Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionVisitor;->visitCreatedSubscription(Ljava/lang/reflect/Method;Ljava/lang/Class;)V
-
-    .line 35
-    :cond_29
-    const-class v8, Lcom/upsight/android/persistence/annotation/Updated;
-
-    invoke-virtual {v5, v8}, Ljava/lang/reflect/Method;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+    invoke-virtual {v5}, Ljava/lang/Class;->getMethods()[Ljava/lang/reflect/Method;
 
     move-result-object v7
 
-    check-cast v7, Lcom/upsight/android/persistence/annotation/Updated;
+    array-length v8, v7
+
+    move v5, v6
+
+    :goto_9
+    if-ge v5, v8, :cond_44
+
+    aget-object v2, v7, v5
+
+    .line 25
+    .local v2, "method":Ljava/lang/reflect/Method;
+    invoke-direct {p0, v2}, Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionReader;->isSubscriptionMethod(Ljava/lang/reflect/Method;)Z
+
+    move-result v9
+
+    if-nez v9, :cond_16
+
+    .line 24
+    :cond_13
+    :goto_13
+    add-int/lit8 v5, v5, 0x1
+
+    goto :goto_9
+
+    .line 29
+    :cond_16
+    invoke-virtual {v2}, Ljava/lang/reflect/Method;->getParameterTypes()[Ljava/lang/Class;
+
+    move-result-object v9
+
+    aget-object v0, v9, v6
+
+    .line 30
+    .local v0, "argumentType":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
+    const-class v9, Lcom/upsight/android/persistence/annotation/Created;
+
+    invoke-virtual {v2, v9}, Ljava/lang/reflect/Method;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/upsight/android/persistence/annotation/Created;
+
+    .line 31
+    .local v1, "created":Lcom/upsight/android/persistence/annotation/Created;
+    if-eqz v1, :cond_29
+
+    .line 32
+    invoke-interface {p1, v2, v0}, Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionVisitor;->visitCreatedSubscription(Ljava/lang/reflect/Method;Ljava/lang/Class;)V
+
+    .line 35
+    :cond_29
+    const-class v9, Lcom/upsight/android/persistence/annotation/Updated;
+
+    invoke-virtual {v2, v9}, Ljava/lang/reflect/Method;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+
+    move-result-object v4
+
+    check-cast v4, Lcom/upsight/android/persistence/annotation/Updated;
 
     .line 36
-    .local v7, "updated":Lcom/upsight/android/persistence/annotation/Updated;
-    if-eqz v7, :cond_36
+    .local v4, "updated":Lcom/upsight/android/persistence/annotation/Updated;
+    if-eqz v4, :cond_36
 
     .line 37
-    invoke-interface {p1, v5, v0}, Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionVisitor;->visitUpdatedSubscription(Ljava/lang/reflect/Method;Ljava/lang/Class;)V
+    invoke-interface {p1, v2, v0}, Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionVisitor;->visitUpdatedSubscription(Ljava/lang/reflect/Method;Ljava/lang/Class;)V
 
     .line 40
     :cond_36
-    const-class v8, Lcom/upsight/android/persistence/annotation/Removed;
+    const-class v9, Lcom/upsight/android/persistence/annotation/Removed;
 
-    invoke-virtual {v5, v8}, Ljava/lang/reflect/Method;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+    invoke-virtual {v2, v9}, Ljava/lang/reflect/Method;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
 
-    move-result-object v6
+    move-result-object v3
 
-    check-cast v6, Lcom/upsight/android/persistence/annotation/Removed;
+    check-cast v3, Lcom/upsight/android/persistence/annotation/Removed;
 
     .line 41
-    .local v6, "removed":Lcom/upsight/android/persistence/annotation/Removed;
-    if-eqz v6, :cond_12
+    .local v3, "removed":Lcom/upsight/android/persistence/annotation/Removed;
+    if-eqz v3, :cond_13
 
     .line 42
-    invoke-interface {p1, v5, v0}, Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionVisitor;->visitRemovedSubscription(Ljava/lang/reflect/Method;Ljava/lang/Class;)V
+    invoke-interface {p1, v2, v0}, Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionVisitor;->visitRemovedSubscription(Ljava/lang/reflect/Method;Ljava/lang/Class;)V
 
-    goto :goto_12
+    goto :goto_13
 
     .line 45
     .end local v0    # "argumentType":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
-    .end local v2    # "created":Lcom/upsight/android/persistence/annotation/Created;
-    .end local v5    # "method":Ljava/lang/reflect/Method;
-    .end local v6    # "removed":Lcom/upsight/android/persistence/annotation/Removed;
-    .end local v7    # "updated":Lcom/upsight/android/persistence/annotation/Updated;
+    .end local v1    # "created":Lcom/upsight/android/persistence/annotation/Created;
+    .end local v2    # "method":Ljava/lang/reflect/Method;
+    .end local v3    # "removed":Lcom/upsight/android/persistence/annotation/Removed;
+    .end local v4    # "updated":Lcom/upsight/android/persistence/annotation/Updated;
     :cond_44
     return-void
 .end method

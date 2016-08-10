@@ -3,12 +3,12 @@
 .source "UpsightPlugin.java"
 
 # interfaces
-.implements Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;
+.implements Ljava/lang/Runnable;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/upsight/android/unity/UpsightPlugin;->registerForPushNotifications()V
+    value = Lcom/upsight/android/unity/UpsightPlugin;->setLocation(DD)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,14 +20,23 @@
 # instance fields
 .field final synthetic this$0:Lcom/upsight/android/unity/UpsightPlugin;
 
+.field final synthetic val$lat:D
+
+.field final synthetic val$lon:D
+
 
 # direct methods
-.method constructor <init>(Lcom/upsight/android/unity/UpsightPlugin;)V
-    .registers 2
+.method constructor <init>(Lcom/upsight/android/unity/UpsightPlugin;DD)V
+    .registers 6
+    .param p1, "this$0"    # Lcom/upsight/android/unity/UpsightPlugin;
 
     .prologue
-    .line 192
+    .line 137
     iput-object p1, p0, Lcom/upsight/android/unity/UpsightPlugin$2;->this$0:Lcom/upsight/android/unity/UpsightPlugin;
+
+    iput-wide p2, p0, Lcom/upsight/android/unity/UpsightPlugin$2;->val$lat:D
+
+    iput-wide p4, p0, Lcom/upsight/android/unity/UpsightPlugin$2;->val$lon:D
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -36,50 +45,27 @@
 
 
 # virtual methods
-.method public onFailure(Lcom/upsight/android/UpsightException;)V
-    .registers 5
-    .param p1, "ex"    # Lcom/upsight/android/UpsightException;
+.method public run()V
+    .registers 7
 
     .prologue
-    .line 200
-    const-string v0, "Upsight"
+    .line 140
+    iget-wide v2, p0, Lcom/upsight/android/unity/UpsightPlugin$2;->val$lat:D
 
-    new-instance v1, Ljava/lang/StringBuilder;
+    iget-wide v4, p0, Lcom/upsight/android/unity/UpsightPlugin$2;->val$lon:D
 
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-static {v2, v3, v4, v5}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->create(DD)Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
 
-    const-string v2, "registration failed: "
+    move-result-object v0
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .line 141
+    .local v0, "data":Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
+    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin$2;->this$0:Lcom/upsight/android/unity/UpsightPlugin;
 
-    move-result-object v1
+    iget-object v1, v1, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    invoke-static {v1, v0}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker;->track(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;)V
 
-    move-result-object v1
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 201
-    return-void
-.end method
-
-.method public onSuccess(Ljava/lang/String;)V
-    .registers 4
-    .param p1, "arg0"    # Ljava/lang/String;
-
-    .prologue
-    .line 195
-    const-string v0, "Upsight"
-
-    const-string v1, "registration succeeded"
-
-    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 196
+    .line 142
     return-void
 .end method

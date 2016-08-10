@@ -53,15 +53,15 @@
     .end annotation
 
     .prologue
-    .line 991
+    .line 990
     .local p0, "this":Lrx/subjects/ReplaySubject$DefaultOnAdd;, "Lrx/subjects/ReplaySubject$DefaultOnAdd<TT;>;"
     .local p1, "state":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 992
+    .line 991
     iput-object p1, p0, Lrx/subjects/ReplaySubject$DefaultOnAdd;->state:Lrx/subjects/ReplaySubject$BoundedState;
 
-    .line 993
+    .line 992
     return-void
 .end method
 
@@ -72,7 +72,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 988
+    .line 987
     .local p0, "this":Lrx/subjects/ReplaySubject$DefaultOnAdd;, "Lrx/subjects/ReplaySubject$DefaultOnAdd<TT;>;"
     check-cast p1, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
@@ -93,7 +93,7 @@
     .end annotation
 
     .prologue
-    .line 997
+    .line 996
     .local p0, "this":Lrx/subjects/ReplaySubject$DefaultOnAdd;, "Lrx/subjects/ReplaySubject$DefaultOnAdd<TT;>;"
     .local p1, "t1":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
     iget-object v1, p0, Lrx/subjects/ReplaySubject$DefaultOnAdd;->state:Lrx/subjects/ReplaySubject$BoundedState;
@@ -108,10 +108,10 @@
 
     move-result-object v0
 
-    .line 998
+    .line 997
     .local v0, "l":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     invoke-virtual {p1, v0}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->index(Ljava/lang/Object;)V
 
-    .line 999
+    .line 998
     return-void
 .end method

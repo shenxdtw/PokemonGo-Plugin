@@ -16,13 +16,19 @@
 
 # instance fields
 .field public filter:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "filter"
     .end annotation
 .end field
 
 .field public identifiers:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "identifiers"
     .end annotation
 .end field
@@ -33,7 +39,7 @@
     .registers 1
 
     .prologue
-    .line 212
+    .line 236
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

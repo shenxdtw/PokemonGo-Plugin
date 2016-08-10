@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4;->call(Lcom/fasterxml/jackson/databind/node/ObjectNode;)V
+    value = Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4;->call(Lcom/google/gson/JsonObject;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -34,6 +34,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4;)V
     .registers 2
+    .param p1, "this$1"    # Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4;
 
     .prologue
     .line 328
@@ -48,13 +49,11 @@
 # virtual methods
 .method public bridge synthetic call(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 328
     check-cast p1, Ljava/lang/Throwable;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4$2;->call(Ljava/lang/Throwable;)V
 
     return-void

@@ -51,8 +51,7 @@
 
     iget-object v1, p0, Lrx/subjects/TestSubject$4;->val$v:Ljava/lang/Object;
 
-    # invokes: Lrx/subjects/TestSubject;->_onNext(Ljava/lang/Object;)V
-    invoke-static {v0, v1}, Lrx/subjects/TestSubject;->access$200(Lrx/subjects/TestSubject;Ljava/lang/Object;)V
+    invoke-virtual {v0, v1}, Lrx/subjects/TestSubject;->_onNext(Ljava/lang/Object;)V
 
     .line 166
     return-void

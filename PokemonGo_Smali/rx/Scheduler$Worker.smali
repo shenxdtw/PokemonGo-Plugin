@@ -22,7 +22,7 @@
     .registers 1
 
     .prologue
-    .line 62
+    .line 73
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -34,7 +34,7 @@
     .registers 3
 
     .prologue
-    .line 139
+    .line 171
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
@@ -56,27 +56,31 @@
     .param p6, "unit"    # Ljava/util/concurrent/TimeUnit;
 
     .prologue
-    .line 111
+    .line 122
     move-object/from16 v0, p6
 
     move-wide/from16 v1, p4
 
     invoke-virtual {v0, v1, v2}, Ljava/util/concurrent/TimeUnit;->toNanos(J)J
 
-    move-result-wide v10
+    move-result-wide v12
 
-    .line 112
-    .local v10, "periodInNanos":J
+    .line 123
+    .local v12, "periodInNanos":J
     sget-object v5, Ljava/util/concurrent/TimeUnit;->MILLISECONDS:Ljava/util/concurrent/TimeUnit;
 
     invoke-virtual/range {p0 .. p0}, Lrx/Scheduler$Worker;->now()J
 
-    move-result-wide v14
+    move-result-wide v16
 
-    invoke-virtual {v5, v14, v15}, Ljava/util/concurrent/TimeUnit;->toNanos(J)J
+    move-wide/from16 v0, v16
 
-    move-result-wide v14
+    invoke-virtual {v5, v0, v1}, Ljava/util/concurrent/TimeUnit;->toNanos(J)J
 
+    move-result-wide v6
+
+    .line 124
+    .local v6, "firstNowNanos":J
     move-object/from16 v0, p6
 
     move-wide/from16 v1, p2
@@ -85,35 +89,35 @@
 
     move-result-wide v16
 
-    add-long v8, v14, v16
+    add-long v8, v6, v16
 
-    .line 114
-    .local v8, "startInNanos":J
-    new-instance v6, Lrx/subscriptions/MultipleAssignmentSubscription;
+    .line 126
+    .local v8, "firstStartInNanos":J
+    new-instance v10, Lrx/subscriptions/MultipleAssignmentSubscription;
 
-    invoke-direct {v6}, Lrx/subscriptions/MultipleAssignmentSubscription;-><init>()V
+    invoke-direct {v10}, Lrx/subscriptions/MultipleAssignmentSubscription;-><init>()V
 
-    .line 115
-    .local v6, "mas":Lrx/subscriptions/MultipleAssignmentSubscription;
+    .line 127
+    .local v10, "mas":Lrx/subscriptions/MultipleAssignmentSubscription;
     new-instance v4, Lrx/Scheduler$Worker$1;
 
     move-object/from16 v5, p0
 
-    move-object/from16 v7, p1
+    move-object/from16 v11, p1
 
-    invoke-direct/range {v4 .. v11}, Lrx/Scheduler$Worker$1;-><init>(Lrx/Scheduler$Worker;Lrx/subscriptions/MultipleAssignmentSubscription;Lrx/functions/Action0;JJ)V
+    invoke-direct/range {v4 .. v13}, Lrx/Scheduler$Worker$1;-><init>(Lrx/Scheduler$Worker;JJLrx/subscriptions/MultipleAssignmentSubscription;Lrx/functions/Action0;J)V
 
-    .line 126
+    .line 158
     .local v4, "recursiveAction":Lrx/functions/Action0;
-    new-instance v12, Lrx/subscriptions/MultipleAssignmentSubscription;
+    new-instance v14, Lrx/subscriptions/MultipleAssignmentSubscription;
 
-    invoke-direct {v12}, Lrx/subscriptions/MultipleAssignmentSubscription;-><init>()V
+    invoke-direct {v14}, Lrx/subscriptions/MultipleAssignmentSubscription;-><init>()V
 
-    .line 128
-    .local v12, "s":Lrx/subscriptions/MultipleAssignmentSubscription;
-    invoke-virtual {v6, v12}, Lrx/subscriptions/MultipleAssignmentSubscription;->set(Lrx/Subscription;)V
+    .line 160
+    .local v14, "s":Lrx/subscriptions/MultipleAssignmentSubscription;
+    invoke-virtual {v10, v14}, Lrx/subscriptions/MultipleAssignmentSubscription;->set(Lrx/Subscription;)V
 
-    .line 129
+    .line 161
     move-object/from16 v0, p0
 
     move-wide/from16 v1, p2
@@ -124,8 +128,8 @@
 
     move-result-object v5
 
-    invoke-virtual {v12, v5}, Lrx/subscriptions/MultipleAssignmentSubscription;->set(Lrx/Subscription;)V
+    invoke-virtual {v14, v5}, Lrx/subscriptions/MultipleAssignmentSubscription;->set(Lrx/Subscription;)V
 
-    .line 130
-    return-object v6
+    .line 162
+    return-object v10
 .end method

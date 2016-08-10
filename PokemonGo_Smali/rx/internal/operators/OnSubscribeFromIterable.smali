@@ -9,7 +9,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/internal/operators/OnSubscribeFromIterable$1;,
         Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;
     }
 .end annotation
@@ -49,15 +48,15 @@
     .end annotation
 
     .prologue
-    .line 37
+    .line 36
     .local p0, "this":Lrx/internal/operators/OnSubscribeFromIterable;, "Lrx/internal/operators/OnSubscribeFromIterable<TT;>;"
     .local p1, "iterable":Ljava/lang/Iterable;, "Ljava/lang/Iterable<+TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 38
+    .line 37
     if-nez p1, :cond_d
 
-    .line 39
+    .line 38
     new-instance v0, Ljava/lang/NullPointerException;
 
     const-string v1, "iterable must not be null"
@@ -66,11 +65,11 @@
 
     throw v0
 
-    .line 41
+    .line 40
     :cond_d
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeFromIterable;->is:Ljava/lang/Iterable;
 
-    .line 42
+    .line 41
     return-void
 .end method
 
@@ -81,7 +80,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 33
+    .line 32
     .local p0, "this":Lrx/internal/operators/OnSubscribeFromIterable;, "Lrx/internal/operators/OnSubscribeFromIterable<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -92,7 +91,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)V
-    .registers 5
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -102,7 +101,7 @@
     .end annotation
 
     .prologue
-    .line 46
+    .line 45
     .local p0, "this":Lrx/internal/operators/OnSubscribeFromIterable;, "Lrx/internal/operators/OnSubscribeFromIterable<TT;>;"
     .local p1, "o":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeFromIterable;->is:Ljava/lang/Iterable;
@@ -111,7 +110,7 @@
 
     move-result-object v0
 
-    .line 47
+    .line 46
     .local v0, "it":Ljava/util/Iterator;, "Ljava/util/Iterator<+TT;>;"
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
@@ -125,20 +124,18 @@
 
     if-nez v1, :cond_16
 
-    .line 48
+    .line 47
     invoke-virtual {p1}, Lrx/Subscriber;->onCompleted()V
 
-    .line 51
+    .line 50
     :goto_15
     return-void
 
-    .line 50
+    .line 49
     :cond_16
     new-instance v1, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;
 
-    const/4 v2, 0x0
-
-    invoke-direct {v1, p1, v0, v2}, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;-><init>(Lrx/Subscriber;Ljava/util/Iterator;Lrx/internal/operators/OnSubscribeFromIterable$1;)V
+    invoke-direct {v1, p1, v0}, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;-><init>(Lrx/Subscriber;Ljava/util/Iterator;)V
 
     invoke-virtual {p1, v1}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
 

@@ -15,6 +15,10 @@
 .end annotation
 
 
+# static fields
+.field private static final EMPTY_ARRAY:[Ljava/lang/Object;
+
+
 # instance fields
 .field private final nl:Lrx/internal/operators/NotificationLite;
     .annotation system Ldalvik/annotation/Signature;
@@ -36,6 +40,20 @@
 
 
 # direct methods
+.method static constructor <clinit>()V
+    .registers 1
+
+    .prologue
+    .line 259
+    const/4 v0, 0x0
+
+    new-array v0, v0, [Ljava/lang/Object;
+
+    sput-object v0, Lrx/subjects/BehaviorSubject;->EMPTY_ARRAY:[Ljava/lang/Object;
+
+    return-void
+.end method
+
 .method protected constructor <init>(Lrx/Observable$OnSubscribe;Lrx/subjects/SubjectSubscriptionManager;)V
     .registers 4
     .annotation system Ldalvik/annotation/Signature;
@@ -151,7 +169,7 @@
 
     move-result-object v1
 
-    invoke-virtual {v0, v1}, Lrx/subjects/SubjectSubscriptionManager;->set(Ljava/lang/Object;)V
+    invoke-virtual {v0, v1}, Lrx/subjects/SubjectSubscriptionManager;->setLatest(Ljava/lang/Object;)V
 
     .line 102
     :cond_12
@@ -178,19 +196,19 @@
 # virtual methods
 .method public getThrowable()Ljava/lang/Throwable;
     .registers 3
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 232
+    .line 227
     .local p0, "this":Lrx/subjects/BehaviorSubject;, "Lrx/subjects/BehaviorSubject<TT;>;"
     iget-object v1, p0, Lrx/subjects/BehaviorSubject;->state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 233
+    .line 228
     .local v0, "o":Ljava/lang/Object;
     iget-object v1, p0, Lrx/subjects/BehaviorSubject;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -200,14 +218,14 @@
 
     if-eqz v1, :cond_15
 
-    .line 234
+    .line 229
     iget-object v1, p0, Lrx/subjects/BehaviorSubject;->nl:Lrx/internal/operators/NotificationLite;
 
     invoke-virtual {v1, v0}, Lrx/internal/operators/NotificationLite;->getError(Ljava/lang/Object;)Ljava/lang/Throwable;
 
     move-result-object v1
 
-    .line 236
+    .line 231
     :goto_14
     return-object v1
 
@@ -225,19 +243,19 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 218
+    .line 214
     .local p0, "this":Lrx/subjects/BehaviorSubject;, "Lrx/subjects/BehaviorSubject<TT;>;"
     iget-object v1, p0, Lrx/subjects/BehaviorSubject;->state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 219
+    .line 215
     .local v0, "o":Ljava/lang/Object;
     iget-object v1, p0, Lrx/subjects/BehaviorSubject;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -247,14 +265,14 @@
 
     if-eqz v1, :cond_15
 
-    .line 220
+    .line 216
     iget-object v1, p0, Lrx/subjects/BehaviorSubject;->nl:Lrx/internal/operators/NotificationLite;
 
     invoke-virtual {v1, v0}, Lrx/internal/operators/NotificationLite;->getValue(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
 
-    .line 222
+    .line 218
     :goto_14
     return-object v1
 
@@ -262,6 +280,39 @@
     const/4 v1, 0x0
 
     goto :goto_14
+.end method
+
+.method public getValues()[Ljava/lang/Object;
+    .registers 3
+    .annotation build Lrx/annotations/Beta;
+    .end annotation
+
+    .prologue
+    .line 271
+    .local p0, "this":Lrx/subjects/BehaviorSubject;, "Lrx/subjects/BehaviorSubject<TT;>;"
+    sget-object v1, Lrx/subjects/BehaviorSubject;->EMPTY_ARRAY:[Ljava/lang/Object;
+
+    check-cast v1, [Ljava/lang/Object;
+
+    invoke-virtual {p0, v1}, Lrx/subjects/BehaviorSubject;->getValues([Ljava/lang/Object;)[Ljava/lang/Object;
+
+    move-result-object v0
+
+    .line 272
+    .local v0, "r":[Ljava/lang/Object;, "[TT;"
+    sget-object v1, Lrx/subjects/BehaviorSubject;->EMPTY_ARRAY:[Ljava/lang/Object;
+
+    if-ne v0, v1, :cond_f
+
+    .line 273
+    const/4 v1, 0x0
+
+    new-array v0, v1, [Ljava/lang/Object;
+
+    .line 275
+    .end local v0    # "r":[Ljava/lang/Object;, "[TT;"
+    :cond_f
+    return-object v0
 .end method
 
 .method public getValues([Ljava/lang/Object;)[Ljava/lang/Object;
@@ -272,7 +323,7 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
@@ -287,7 +338,7 @@
     .line 242
     iget-object v1, p0, Lrx/subjects/BehaviorSubject;->state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v0
 
@@ -362,19 +413,19 @@
 
 .method public hasCompleted()Z
     .registers 3
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 203
+    .line 200
     .local p0, "this":Lrx/subjects/BehaviorSubject;, "Lrx/subjects/BehaviorSubject<TT;>;"
     iget-object v1, p0, Lrx/subjects/BehaviorSubject;->state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 204
+    .line 201
     .local v0, "o":Ljava/lang/Object;
     iget-object v1, p0, Lrx/subjects/BehaviorSubject;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -414,19 +465,19 @@
 
 .method public hasThrowable()Z
     .registers 3
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 193
+    .line 191
     .local p0, "this":Lrx/subjects/BehaviorSubject;, "Lrx/subjects/BehaviorSubject<TT;>;"
     iget-object v1, p0, Lrx/subjects/BehaviorSubject;->state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 194
+    .line 192
     .local v0, "o":Ljava/lang/Object;
     iget-object v1, p0, Lrx/subjects/BehaviorSubject;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -439,19 +490,19 @@
 
 .method public hasValue()Z
     .registers 3
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 183
+    .line 182
     .local p0, "this":Lrx/subjects/BehaviorSubject;, "Lrx/subjects/BehaviorSubject<TT;>;"
     iget-object v1, p0, Lrx/subjects/BehaviorSubject;->state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 184
+    .line 183
     .local v0, "o":Ljava/lang/Object;
     iget-object v1, p0, Lrx/subjects/BehaviorSubject;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -470,7 +521,7 @@
     .local p0, "this":Lrx/subjects/BehaviorSubject;, "Lrx/subjects/BehaviorSubject<TT;>;"
     iget-object v6, p0, Lrx/subjects/BehaviorSubject;->state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v6}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v6}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v3
 
@@ -544,7 +595,7 @@
     .local p0, "this":Lrx/subjects/BehaviorSubject;, "Lrx/subjects/BehaviorSubject<TT;>;"
     iget-object v8, p0, Lrx/subjects/BehaviorSubject;->state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v8}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v8}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v5
 
@@ -658,7 +709,7 @@
     .local p1, "v":Ljava/lang/Object;, "TT;"
     iget-object v6, p0, Lrx/subjects/BehaviorSubject;->state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v6}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v6}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v3
 

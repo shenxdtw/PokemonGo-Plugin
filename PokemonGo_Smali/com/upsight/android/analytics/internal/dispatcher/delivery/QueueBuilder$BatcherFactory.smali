@@ -29,15 +29,15 @@
     .param p2, "config"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/Batcher$Config;
 
     .prologue
-    .line 191
+    .line 198
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueBuilder$BatcherFactory;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueBuilder;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 192
+    .line 199
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueBuilder$BatcherFactory;->mConfig:Lcom/upsight/android/analytics/internal/dispatcher/delivery/Batcher$Config;
 
-    .line 193
+    .line 200
     return-void
 .end method
 
@@ -49,7 +49,7 @@
     .param p2, "batchSender"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender;
 
     .prologue
-    .line 206
+    .line 213
     new-instance v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Batcher;
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueBuilder$BatcherFactory;->mConfig:Lcom/upsight/android/analytics/internal/dispatcher/delivery/Batcher$Config;

@@ -23,6 +23,17 @@
 
 
 # instance fields
+.field private final manualTrackerMembersInjector:Ldagger/MembersInjector;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ldagger/MembersInjector",
+            "<",
+            "Lcom/upsight/android/analytics/internal/session/ManualTracker;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 .field private final sessionManagerProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -51,7 +62,7 @@
     .registers 1
 
     .prologue
-    .line 8
+    .line 10
     const-class v0, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -73,11 +84,15 @@
     goto :goto_9
 .end method
 
-.method public constructor <init>(Ljavax/inject/Provider;Ljavax/inject/Provider;)V
-    .registers 4
+.method public constructor <init>(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
+            "Ldagger/MembersInjector",
+            "<",
+            "Lcom/upsight/android/analytics/internal/session/ManualTracker;",
+            ">;",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/upsight/android/analytics/internal/session/SessionManager;",
@@ -90,12 +105,13 @@
     .end annotation
 
     .prologue
-    .line 13
-    .local p1, "sessionManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/SessionManager;>;"
-    .local p2, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
+    .line 24
+    .local p1, "manualTrackerMembersInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Lcom/upsight/android/analytics/internal/session/ManualTracker;>;"
+    .local p2, "sessionManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/SessionManager;>;"
+    .local p3, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 14
+    .line 25
     sget-boolean v0, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -108,11 +124,11 @@
 
     throw v0
 
-    .line 15
+    .line 26
     :cond_f
-    iput-object p1, p0, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;->sessionManagerProvider:Ljavax/inject/Provider;
+    iput-object p1, p0, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;->manualTrackerMembersInjector:Ldagger/MembersInjector;
 
-    .line 16
+    .line 27
     sget-boolean v0, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -125,19 +141,40 @@
 
     throw v0
 
-    .line 17
+    .line 28
     :cond_1d
-    iput-object p2, p0, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;->upsightProvider:Ljavax/inject/Provider;
+    iput-object p2, p0, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;->sessionManagerProvider:Ljavax/inject/Provider;
 
-    .line 18
+    .line 29
+    sget-boolean v0, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;->$assertionsDisabled:Z
+
+    if-nez v0, :cond_2b
+
+    if-nez p3, :cond_2b
+
+    new-instance v0, Ljava/lang/AssertionError;
+
+    invoke-direct {v0}, Ljava/lang/AssertionError;-><init>()V
+
+    throw v0
+
+    .line 30
+    :cond_2b
+    iput-object p3, p0, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;->upsightProvider:Ljavax/inject/Provider;
+
+    .line 31
     return-void
 .end method
 
-.method public static create(Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-    .registers 3
+.method public static create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
+            "Ldagger/MembersInjector",
+            "<",
+            "Lcom/upsight/android/analytics/internal/session/ManualTracker;",
+            ">;",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/upsight/android/analytics/internal/session/SessionManager;",
@@ -154,12 +191,13 @@
     .end annotation
 
     .prologue
-    .line 26
-    .local p0, "sessionManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/SessionManager;>;"
-    .local p1, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
+    .line 44
+    .local p0, "manualTrackerMembersInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Lcom/upsight/android/analytics/internal/session/ManualTracker;>;"
+    .local p1, "sessionManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/SessionManager;>;"
+    .local p2, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     new-instance v0, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;
 
-    invoke-direct {v0, p0, p1}, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;-><init>(Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+    invoke-direct {v0, p0, p1, p2}, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;-><init>(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
 
     return-object v0
 .end method
@@ -167,14 +205,17 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/analytics/internal/session/ManualTracker;
-    .registers 4
+    .registers 5
 
     .prologue
-    .line 22
-    new-instance v2, Lcom/upsight/android/analytics/internal/session/ManualTracker;
+    .line 35
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;->manualTrackerMembersInjector:Ldagger/MembersInjector;
+
+    new-instance v3, Lcom/upsight/android/analytics/internal/session/ManualTracker;
 
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;->sessionManagerProvider:Ljavax/inject/Provider;
 
+    .line 37
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v0
@@ -189,16 +230,23 @@
 
     check-cast v1, Lcom/upsight/android/UpsightContext;
 
-    invoke-direct {v2, v0, v1}, Lcom/upsight/android/analytics/internal/session/ManualTracker;-><init>(Lcom/upsight/android/analytics/internal/session/SessionManager;Lcom/upsight/android/UpsightContext;)V
+    invoke-direct {v3, v0, v1}, Lcom/upsight/android/analytics/internal/session/ManualTracker;-><init>(Lcom/upsight/android/analytics/internal/session/SessionManager;Lcom/upsight/android/UpsightContext;)V
 
-    return-object v2
+    .line 35
+    invoke-static {v2, v3}, Ldagger/internal/MembersInjectors;->injectMembers(Ldagger/MembersInjector;Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/analytics/internal/session/ManualTracker;
+
+    return-object v0
 .end method
 
 .method public bridge synthetic get()Ljava/lang/Object;
     .registers 2
 
     .prologue
-    .line 8
+    .line 10
     invoke-virtual {p0}, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;->get()Lcom/upsight/android/analytics/internal/session/ManualTracker;
 
     move-result-object v0

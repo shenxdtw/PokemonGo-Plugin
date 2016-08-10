@@ -77,7 +77,7 @@
     :cond_15
     const/4 v3, 0x0
 
-    .line 49
+    .line 50
     :goto_16
     return-object v3
 
@@ -101,6 +101,7 @@
     .local v1, "componentTypeAdapter":Lcom/google/gson/TypeAdapter;, "Lcom/google/gson/TypeAdapter<*>;"
     new-instance v3, Lcom/google/gson/internal/bind/ArrayTypeAdapter;
 
+    .line 50
     invoke-static {v0}, Lcom/google/gson/internal/$Gson$Types;->getRawType(Ljava/lang/reflect/Type;)Ljava/lang/Class;
 
     move-result-object v4

@@ -9,7 +9,7 @@
         Lcom/upsight/android/internal/UpsightContextModule;,
         Lcom/upsight/android/internal/ContextModule;,
         Lcom/upsight/android/internal/PropertiesModule;,
-        Lcom/upsight/android/internal/ObjectMapperModule;,
+        Lcom/upsight/android/internal/JsonModule;,
         Lcom/upsight/android/internal/SchedulersModule;,
         Lcom/upsight/android/internal/persistence/storable/StorableModule;,
         Lcom/upsight/android/internal/persistence/PersistenceModule;,

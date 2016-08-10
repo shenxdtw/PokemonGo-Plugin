@@ -34,6 +34,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/internal/logger/Logger;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/internal/logger/Logger;
 
     .prologue
     .line 122
@@ -76,13 +77,11 @@
 
 .method public bridge synthetic onSuccess(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 122
     check-cast p1, Lcom/upsight/android/internal/logger/LogMessage;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/internal/logger/Logger$1;->onSuccess(Lcom/upsight/android/internal/logger/LogMessage;)V
 
     return-void

@@ -1,14 +1,11 @@
 .class Lrx/Observable$28;
-.super Ljava/lang/Object;
+.super Lrx/Subscriber;
 .source "Observable.java"
-
-# interfaces
-.implements Lrx/functions/Func1;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Observable;->retryWhen(Lrx/functions/Func1;Lrx/Scheduler;)Lrx/Observable;
+    value = Lrx/Observable;->subscribe(Lrx/functions/Action1;Lrx/functions/Action1;)Lrx/Subscription;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -18,15 +15,8 @@
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
-        "Ljava/lang/Object;",
-        "Lrx/functions/Func1",
-        "<",
-        "Lrx/Observable",
-        "<+",
-        "Lrx/Notification",
-        "<*>;>;",
-        "Lrx/Observable",
-        "<*>;>;"
+        "Lrx/Subscriber",
+        "<TT;>;"
     }
 .end annotation
 
@@ -34,77 +24,71 @@
 # instance fields
 .field final synthetic this$0:Lrx/Observable;
 
-.field final synthetic val$notificationHandler:Lrx/functions/Func1;
+.field final synthetic val$onError:Lrx/functions/Action1;
+
+.field final synthetic val$onNext:Lrx/functions/Action1;
 
 
 # direct methods
-.method constructor <init>(Lrx/Observable;Lrx/functions/Func1;)V
-    .registers 3
+.method constructor <init>(Lrx/Observable;Lrx/functions/Action1;Lrx/functions/Action1;)V
+    .registers 4
 
     .prologue
-    .line 6705
+    .line 8605
     .local p0, "this":Lrx/Observable$28;, "Lrx/Observable.28;"
     iput-object p1, p0, Lrx/Observable$28;->this$0:Lrx/Observable;
 
-    iput-object p2, p0, Lrx/Observable$28;->val$notificationHandler:Lrx/functions/Func1;
+    iput-object p2, p0, Lrx/Observable$28;->val$onError:Lrx/functions/Action1;
 
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    iput-object p3, p0, Lrx/Observable$28;->val$onNext:Lrx/functions/Action1;
+
+    invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public bridge synthetic call(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
-    .param p1, "x0"    # Ljava/lang/Object;
+.method public final onCompleted()V
+    .registers 1
 
     .prologue
-    .line 6705
+    .line 8610
     .local p0, "this":Lrx/Observable$28;, "Lrx/Observable.28;"
-    check-cast p1, Lrx/Observable;
-
-    .end local p1    # "x0":Ljava/lang/Object;
-    invoke-virtual {p0, p1}, Lrx/Observable$28;->call(Lrx/Observable;)Lrx/Observable;
-
-    move-result-object v0
-
-    return-object v0
+    return-void
 .end method
 
-.method public call(Lrx/Observable;)Lrx/Observable;
-    .registers 4
+.method public final onError(Ljava/lang/Throwable;)V
+    .registers 3
+    .param p1, "e"    # Ljava/lang/Throwable;
+
+    .prologue
+    .line 8614
+    .local p0, "this":Lrx/Observable$28;, "Lrx/Observable.28;"
+    iget-object v0, p0, Lrx/Observable$28;->val$onError:Lrx/functions/Action1;
+
+    invoke-interface {v0, p1}, Lrx/functions/Action1;->call(Ljava/lang/Object;)V
+
+    .line 8615
+    return-void
+.end method
+
+.method public final onNext(Ljava/lang/Object;)V
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "(",
-            "Lrx/Observable",
-            "<+",
-            "Lrx/Notification",
-            "<*>;>;)",
-            "Lrx/Observable",
-            "<*>;"
+            "(TT;)V"
         }
     .end annotation
 
     .prologue
-    .line 6708
+    .line 8619
     .local p0, "this":Lrx/Observable$28;, "Lrx/Observable.28;"
-    .local p1, "notifications":Lrx/Observable;, "Lrx/Observable<+Lrx/Notification<*>;>;"
-    iget-object v0, p0, Lrx/Observable$28;->val$notificationHandler:Lrx/functions/Func1;
+    .local p1, "args":Ljava/lang/Object;, "TT;"
+    iget-object v0, p0, Lrx/Observable$28;->val$onNext:Lrx/functions/Action1;
 
-    new-instance v1, Lrx/Observable$28$1;
+    invoke-interface {v0, p1}, Lrx/functions/Action1;->call(Ljava/lang/Object;)V
 
-    invoke-direct {v1, p0}, Lrx/Observable$28$1;-><init>(Lrx/Observable$28;)V
-
-    invoke-virtual {p1, v1}, Lrx/Observable;->map(Lrx/functions/Func1;)Lrx/Observable;
-
-    move-result-object v1
-
-    invoke-interface {v0, v1}, Lrx/functions/Func1;->call(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Lrx/Observable;
-
-    return-object v0
+    .line 8620
+    return-void
 .end method

@@ -28,7 +28,7 @@
     .registers 1
 
     .prologue
-    .line 84
+    .line 92
     invoke-direct {p0}, Lcom/google/gson/TypeAdapter;-><init>()V
 
     return-void
@@ -38,7 +38,6 @@
 # virtual methods
 .method public bridge synthetic read(Lcom/google/gson/stream/JsonReader;)Ljava/lang/Object;
     .registers 3
-    .param p1, "x0"    # Lcom/google/gson/stream/JsonReader;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
@@ -46,7 +45,7 @@
     .end annotation
 
     .prologue
-    .line 84
+    .line 92
     invoke-virtual {p0, p1}, Lcom/google/gson/internal/bind/TypeAdapters$2;->read(Lcom/google/gson/stream/JsonReader;)Ljava/util/BitSet;
 
     move-result-object v0
@@ -68,7 +67,7 @@
 
     const/4 v7, 0x0
 
-    .line 86
+    .line 94
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->peek()Lcom/google/gson/stream/JsonToken;
 
     move-result-object v8
@@ -77,44 +76,44 @@
 
     if-ne v8, v9, :cond_f
 
-    .line 87
+    .line 95
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->nextNull()V
 
-    .line 88
+    .line 96
     const/4 v0, 0x0
 
-    .line 123
+    .line 131
     :goto_e
     return-object v0
 
-    .line 91
+    .line 99
     :cond_f
     new-instance v0, Ljava/util/BitSet;
 
     invoke-direct {v0}, Ljava/util/BitSet;-><init>()V
 
-    .line 92
+    .line 100
     .local v0, "bitset":Ljava/util/BitSet;
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->beginArray()V
 
-    .line 93
+    .line 101
     const/4 v2, 0x0
 
-    .line 94
+    .line 102
     .local v2, "i":I
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->peek()Lcom/google/gson/stream/JsonToken;
 
     move-result-object v5
 
-    .line 95
+    .line 103
     .local v5, "tokenType":Lcom/google/gson/stream/JsonToken;
     :goto_1c
     sget-object v8, Lcom/google/gson/stream/JsonToken;->END_ARRAY:Lcom/google/gson/stream/JsonToken;
 
     if-eq v5, v8, :cond_86
 
-    .line 97
-    sget-object v8, Lcom/google/gson/internal/bind/TypeAdapters$32;->$SwitchMap$com$google$gson$stream$JsonToken:[I
+    .line 105
+    sget-object v8, Lcom/google/gson/internal/bind/TypeAdapters$36;->$SwitchMap$com$google$gson$stream$JsonToken:[I
 
     invoke-virtual {v5}, Lcom/google/gson/stream/JsonToken;->ordinal()I
 
@@ -124,7 +123,7 @@
 
     packed-switch v8, :pswitch_data_8a
 
-    .line 114
+    .line 122
     new-instance v6, Lcom/google/gson/JsonSyntaxException;
 
     new-instance v7, Ljava/lang/StringBuilder;
@@ -149,7 +148,7 @@
 
     throw v6
 
-    .line 99
+    .line 107
     :pswitch_44
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->nextInt()I
 
@@ -159,51 +158,51 @@
 
     move v3, v6
 
-    .line 116
+    .line 124
     .local v3, "set":Z
     :goto_4b
     if-eqz v3, :cond_50
 
-    .line 117
+    .line 125
     invoke-virtual {v0, v2}, Ljava/util/BitSet;->set(I)V
 
-    .line 119
+    .line 127
     :cond_50
     add-int/lit8 v2, v2, 0x1
 
-    .line 120
+    .line 128
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->peek()Lcom/google/gson/stream/JsonToken;
 
     move-result-object v5
 
-    .line 121
+    .line 129
     goto :goto_1c
 
     .end local v3    # "set":Z
     :cond_57
     move v3, v7
 
-    .line 99
+    .line 107
     goto :goto_4b
 
-    .line 102
+    .line 110
     :pswitch_59
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->nextBoolean()Z
 
     move-result v3
 
-    .line 103
+    .line 111
     .restart local v3    # "set":Z
     goto :goto_4b
 
-    .line 105
+    .line 113
     .end local v3    # "set":Z
     :pswitch_5e
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->nextString()Ljava/lang/String;
 
     move-result-object v4
 
-    .line 107
+    .line 115
     .local v4, "stringValue":Ljava/lang/String;
     :try_start_62
     invoke-static {v4}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
@@ -226,11 +225,11 @@
 
     goto :goto_69
 
-    .line 108
+    .line 116
     :catch_6c
     move-exception v1
 
-    .line 109
+    .line 117
     .local v1, "e":Ljava/lang/NumberFormatException;
     new-instance v6, Lcom/google/gson/JsonSyntaxException;
 
@@ -256,7 +255,7 @@
 
     throw v6
 
-    .line 122
+    .line 130
     .end local v1    # "e":Ljava/lang/NumberFormatException;
     .end local v4    # "stringValue":Ljava/lang/String;
     :cond_86
@@ -264,7 +263,7 @@
 
     goto :goto_e
 
-    .line 97
+    .line 105
     :pswitch_data_8a
     .packed-switch 0x1
         :pswitch_44
@@ -275,8 +274,6 @@
 
 .method public bridge synthetic write(Lcom/google/gson/stream/JsonWriter;Ljava/lang/Object;)V
     .registers 3
-    .param p1, "x0"    # Lcom/google/gson/stream/JsonWriter;
-    .param p2, "x1"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
@@ -284,10 +281,9 @@
     .end annotation
 
     .prologue
-    .line 84
+    .line 92
     check-cast p2, Ljava/util/BitSet;
 
-    .end local p2    # "x1":Ljava/lang/Object;
     invoke-virtual {p0, p1, p2}, Lcom/google/gson/internal/bind/TypeAdapters$2;->write(Lcom/google/gson/stream/JsonWriter;Ljava/util/BitSet;)V
 
     return-void
@@ -304,21 +300,21 @@
     .end annotation
 
     .prologue
-    .line 127
+    .line 135
     if-nez p2, :cond_6
 
-    .line 128
+    .line 136
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonWriter;->nullValue()Lcom/google/gson/stream/JsonWriter;
 
-    .line 138
+    .line 146
     :goto_5
     return-void
 
-    .line 132
+    .line 140
     :cond_6
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonWriter;->beginArray()Lcom/google/gson/stream/JsonWriter;
 
-    .line 133
+    .line 141
     const/4 v0, 0x0
 
     .local v0, "i":I
@@ -329,7 +325,7 @@
 
     if-ge v0, v2, :cond_20
 
-    .line 134
+    .line 142
     invoke-virtual {p2, v0}, Ljava/util/BitSet;->get(I)Z
 
     move-result v2
@@ -338,26 +334,26 @@
 
     const/4 v1, 0x1
 
-    .line 135
+    .line 143
     .local v1, "value":I
     :goto_17
     int-to-long v2, v1
 
     invoke-virtual {p1, v2, v3}, Lcom/google/gson/stream/JsonWriter;->value(J)Lcom/google/gson/stream/JsonWriter;
 
-    .line 133
+    .line 141
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_a
 
-    .line 134
+    .line 142
     .end local v1    # "value":I
     :cond_1e
     const/4 v1, 0x0
 
     goto :goto_17
 
-    .line 137
+    .line 145
     :cond_20
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonWriter;->endArray()Lcom/google/gson/stream/JsonWriter;
 

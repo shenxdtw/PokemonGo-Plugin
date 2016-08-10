@@ -27,15 +27,13 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .registers 1
 
     .prologue
     .line 24
     new-instance v0, Lrx/internal/operators/OperatorIgnoreElements;
 
-    const/4 v1, 0x0
-
-    invoke-direct {v0, v1}, Lrx/internal/operators/OperatorIgnoreElements;-><init>(Lrx/internal/operators/OperatorIgnoreElements$1;)V
+    invoke-direct {v0}, Lrx/internal/operators/OperatorIgnoreElements;-><init>()V
 
     sput-object v0, Lrx/internal/operators/OperatorIgnoreElements$Holder;->INSTANCE:Lrx/internal/operators/OperatorIgnoreElements;
 

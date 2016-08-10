@@ -29,22 +29,22 @@
     .param p1, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 46
+    .line 45
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 47
+    .line 46
     new-instance v0, Landroid/os/HandlerThread;
 
     invoke-direct {v0, p1}, Landroid/os/HandlerThread;-><init>(Ljava/lang/String;)V
 
     iput-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;->handlerThread:Landroid/os/HandlerThread;
 
-    .line 48
+    .line 47
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;->handlerThread:Landroid/os/HandlerThread;
 
     invoke-virtual {v0}, Landroid/os/HandlerThread;->start()V
 
-    .line 50
+    .line 49
     new-instance v0, Landroid/os/Handler;
 
     iget-object v1, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;->handlerThread:Landroid/os/HandlerThread;
@@ -57,7 +57,7 @@
 
     iput-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;->handler:Landroid/os/Handler;
 
-    .line 51
+    .line 50
     return-void
 .end method
 
@@ -67,14 +67,14 @@
     .registers 3
 
     .prologue
-    .line 63
+    .line 62
     invoke-virtual {p0}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;->onThread()Z
 
     move-result v0
 
     if-nez v0, :cond_e
 
-    .line 64
+    .line 63
     new-instance v0, Ljava/lang/RuntimeException;
 
     const-string v1, "Must be on the worker thread"
@@ -83,7 +83,7 @@
 
     throw v0
 
-    .line 66
+    .line 65
     :cond_e
     return-void
 .end method
@@ -93,12 +93,12 @@
     .param p1, "command"    # Ljava/lang/Runnable;
 
     .prologue
-    .line 55
+    .line 54
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;->handler:Landroid/os/Handler;
 
     invoke-virtual {v0, p1}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
-    .line 56
+    .line 55
     return-void
 .end method
 
@@ -106,7 +106,7 @@
     .registers 3
 
     .prologue
-    .line 59
+    .line 58
     invoke-static {}, Landroid/os/Looper;->myLooper()Landroid/os/Looper;
 
     move-result-object v0
@@ -128,4 +128,17 @@
     const/4 v0, 0x0
 
     goto :goto_d
+.end method
+
+.method public stop()V
+    .registers 2
+
+    .prologue
+    .line 67
+    iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;->handlerThread:Landroid/os/HandlerThread;
+
+    invoke-virtual {v0}, Landroid/os/HandlerThread;->quitSafely()Z
+
+    .line 68
+    return-void
 .end method

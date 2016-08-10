@@ -36,7 +36,7 @@
 
 
 # direct methods
-.method private constructor <init>(Lrx/internal/operators/OperatorOnBackpressureLatest$LatestEmitter;)V
+.method constructor <init>(Lrx/internal/operators/OperatorOnBackpressureLatest$LatestEmitter;)V
     .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -56,19 +56,6 @@
     iput-object p1, p0, Lrx/internal/operators/OperatorOnBackpressureLatest$LatestSubscriber;->producer:Lrx/internal/operators/OperatorOnBackpressureLatest$LatestEmitter;
 
     .line 199
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/internal/operators/OperatorOnBackpressureLatest$LatestEmitter;Lrx/internal/operators/OperatorOnBackpressureLatest$1;)V
-    .registers 3
-    .param p1, "x0"    # Lrx/internal/operators/OperatorOnBackpressureLatest$LatestEmitter;
-    .param p2, "x1"    # Lrx/internal/operators/OperatorOnBackpressureLatest$1;
-
-    .prologue
-    .line 194
-    .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureLatest$LatestSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureLatest$LatestSubscriber<TT;>;"
-    invoke-direct {p0, p1}, Lrx/internal/operators/OperatorOnBackpressureLatest$LatestSubscriber;-><init>(Lrx/internal/operators/OperatorOnBackpressureLatest$LatestEmitter;)V
-
     return-void
 .end method
 

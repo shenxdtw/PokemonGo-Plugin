@@ -61,7 +61,7 @@
 
 .field private final scheduler:Lrx/Scheduler;
 
-.field private final source:Lrx/Observable;
+.field final source:Lrx/Observable;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/Observable",
@@ -70,9 +70,9 @@
     .end annotation
 .end field
 
-.field private final stopOnComplete:Z
+.field final stopOnComplete:Z
 
-.field private final stopOnError:Z
+.field final stopOnError:Z
 
 
 # direct methods
@@ -137,39 +137,6 @@
 
     .line 189
     return-void
-.end method
-
-.method static synthetic access$200(Lrx/internal/operators/OnSubscribeRedo;)Lrx/Observable;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OnSubscribeRedo;
-
-    .prologue
-    .line 55
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeRedo;->source:Lrx/Observable;
-
-    return-object v0
-.end method
-
-.method static synthetic access$300(Lrx/internal/operators/OnSubscribeRedo;)Z
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OnSubscribeRedo;
-
-    .prologue
-    .line 55
-    iget-boolean v0, p0, Lrx/internal/operators/OnSubscribeRedo;->stopOnComplete:Z
-
-    return v0
-.end method
-
-.method static synthetic access$400(Lrx/internal/operators/OnSubscribeRedo;)Z
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OnSubscribeRedo;
-
-    .prologue
-    .line 55
-    iget-boolean v0, p0, Lrx/internal/operators/OnSubscribeRedo;->stopOnError:Z
-
-    return v0
 .end method
 
 .method public static redo(Lrx/Observable;Lrx/functions/Func1;Lrx/Scheduler;)Lrx/Observable;
@@ -700,9 +667,7 @@
     .local v16, "resumeBoundary":Ljava/util/concurrent/atomic/AtomicBoolean;
     new-instance v7, Ljava/util/concurrent/atomic/AtomicLong;
 
-    const-wide/16 v12, 0x0
-
-    invoke-direct {v7, v12, v13}, Ljava/util/concurrent/atomic/AtomicLong;-><init>(J)V
+    invoke-direct {v7}, Ljava/util/concurrent/atomic/AtomicLong;-><init>()V
 
     .line 200
     .local v7, "consumerCapacity":Ljava/util/concurrent/atomic/AtomicLong;

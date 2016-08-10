@@ -20,7 +20,7 @@
 
 
 # instance fields
-.field private final count:I
+.field final count:I
 
 
 # direct methods
@@ -51,17 +51,6 @@
 
     .line 36
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorSkipLast;)I
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorSkipLast;
-
-    .prologue
-    .line 27
-    iget v0, p0, Lrx/internal/operators/OperatorSkipLast;->count:I
-
-    return v0
 .end method
 
 

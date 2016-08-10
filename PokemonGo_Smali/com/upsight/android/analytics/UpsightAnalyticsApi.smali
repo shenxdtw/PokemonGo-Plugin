@@ -7,6 +7,9 @@
 .method public abstract getBooleanUserAttribute(Ljava/lang/String;)Ljava/lang/Boolean;
 .end method
 
+.method public abstract getDatetimeUserAttribute(Ljava/lang/String;)Ljava/util/Date;
+.end method
+
 .method public abstract getDefaultUserAttributes()Ljava/util/Set;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -46,6 +49,9 @@
 .method public abstract putUserAttribute(Ljava/lang/String;Ljava/lang/String;)V
 .end method
 
+.method public abstract putUserAttribute(Ljava/lang/String;Ljava/util/Date;)V
+.end method
+
 .method public abstract record(Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;)V
 .end method
 
@@ -53,6 +59,9 @@
 .end method
 
 .method public abstract setOptOutStatus(Z)V
+.end method
+
+.method public abstract trackActivity(Landroid/app/Activity;Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;)V
 .end method
 
 .method public abstract trackLocation(Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;)V

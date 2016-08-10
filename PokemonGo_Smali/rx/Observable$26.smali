@@ -1,14 +1,11 @@
 .class Lrx/Observable$26;
-.super Ljava/lang/Object;
+.super Lrx/Subscriber;
 .source "Observable.java"
-
-# interfaces
-.implements Lrx/functions/Func0;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Observable;->replay(Lrx/Scheduler;)Lrx/observables/ConnectableObservable;
+    value = Lrx/Observable;->subscribe()Lrx/Subscription;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -18,11 +15,8 @@
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
-        "Ljava/lang/Object;",
-        "Lrx/functions/Func0",
-        "<",
-        "Lrx/subjects/Subject",
-        "<-TT;+TT;>;>;"
+        "Lrx/Subscriber",
+        "<TT;>;"
     }
 .end annotation
 
@@ -30,62 +24,57 @@
 # instance fields
 .field final synthetic this$0:Lrx/Observable;
 
-.field final synthetic val$scheduler:Lrx/Scheduler;
-
 
 # direct methods
-.method constructor <init>(Lrx/Observable;Lrx/Scheduler;)V
-    .registers 3
+.method constructor <init>(Lrx/Observable;)V
+    .registers 2
 
     .prologue
-    .line 6534
+    .line 8515
     .local p0, "this":Lrx/Observable$26;, "Lrx/Observable.26;"
     iput-object p1, p0, Lrx/Observable$26;->this$0:Lrx/Observable;
 
-    iput-object p2, p0, Lrx/Observable$26;->val$scheduler:Lrx/Scheduler;
-
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public bridge synthetic call()Ljava/lang/Object;
-    .registers 2
+.method public final onCompleted()V
+    .registers 1
 
     .prologue
-    .line 6534
+    .line 8520
     .local p0, "this":Lrx/Observable$26;, "Lrx/Observable.26;"
-    invoke-virtual {p0}, Lrx/Observable$26;->call()Lrx/subjects/Subject;
-
-    move-result-object v0
-
-    return-object v0
+    return-void
 .end method
 
-.method public call()Lrx/subjects/Subject;
+.method public final onError(Ljava/lang/Throwable;)V
     .registers 3
+    .param p1, "e"    # Ljava/lang/Throwable;
+
+    .prologue
+    .line 8524
+    .local p0, "this":Lrx/Observable$26;, "Lrx/Observable.26;"
+    new-instance v0, Lrx/exceptions/OnErrorNotImplementedException;
+
+    invoke-direct {v0, p1}, Lrx/exceptions/OnErrorNotImplementedException;-><init>(Ljava/lang/Throwable;)V
+
+    throw v0
+.end method
+
+.method public final onNext(Ljava/lang/Object;)V
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "()",
-            "Lrx/subjects/Subject",
-            "<-TT;+TT;>;"
+            "(TT;)V"
         }
     .end annotation
 
     .prologue
-    .line 6538
+    .line 8530
     .local p0, "this":Lrx/Observable$26;, "Lrx/Observable.26;"
-    invoke-static {}, Lrx/subjects/ReplaySubject;->create()Lrx/subjects/ReplaySubject;
-
-    move-result-object v0
-
-    iget-object v1, p0, Lrx/Observable$26;->val$scheduler:Lrx/Scheduler;
-
-    invoke-static {v0, v1}, Lrx/internal/operators/OperatorReplay;->createScheduledSubject(Lrx/subjects/Subject;Lrx/Scheduler;)Lrx/subjects/Subject;
-
-    move-result-object v0
-
-    return-object v0
+    .local p1, "args":Ljava/lang/Object;, "TT;"
+    return-void
 .end method

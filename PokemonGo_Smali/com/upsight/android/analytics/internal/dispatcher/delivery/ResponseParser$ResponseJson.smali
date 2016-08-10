@@ -16,13 +16,19 @@
 
 # instance fields
 .field public error:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "error"
     .end annotation
 .end field
 
 .field public response:Ljava/util/List;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "response"
     .end annotation
 
@@ -42,7 +48,7 @@
     .registers 1
 
     .prologue
-    .line 78
+    .line 85
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

@@ -39,7 +39,7 @@
 
 
 # direct methods
-.method private constructor <init>()V
+.method constructor <init>()V
     .registers 3
 
     .prologue
@@ -72,18 +72,6 @@
     invoke-direct {p0, v0, p1}, Lrx/internal/operators/OperatorSingle;-><init>(ZLjava/lang/Object;)V
 
     .line 56
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/internal/operators/OperatorSingle$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/internal/operators/OperatorSingle$1;
-
-    .prologue
-    .line 30
-    .local p0, "this":Lrx/internal/operators/OperatorSingle;, "Lrx/internal/operators/OperatorSingle<TT;>;"
-    invoke-direct {p0}, Lrx/internal/operators/OperatorSingle;-><init>()V
-
     return-void
 .end method
 

@@ -53,7 +53,7 @@
     .registers 1
 
     .prologue
-    .line 10
+    .line 11
     const-class v0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -94,12 +94,12 @@
     .end annotation
 
     .prologue
-    .line 16
+    .line 26
     .local p2, "managedVariableManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;>;"
     .local p3, "userExperienceProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/experience/UpsightUserExperience;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 17
+    .line 27
     sget-boolean v0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -112,11 +112,11 @@
 
     throw v0
 
-    .line 18
+    .line 28
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;->module:Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule;
 
-    .line 19
+    .line 29
     sget-boolean v0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -129,11 +129,11 @@
 
     throw v0
 
-    .line 20
+    .line 30
     :cond_1d
     iput-object p2, p0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;->managedVariableManagerProvider:Ljavax/inject/Provider;
 
-    .line 21
+    .line 31
     sget-boolean v0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_2b
@@ -146,11 +146,11 @@
 
     throw v0
 
-    .line 22
+    .line 32
     :cond_2b
     iput-object p3, p0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;->userExperienceProvider:Ljavax/inject/Provider;
 
-    .line 23
+    .line 33
     return-void
 .end method
 
@@ -177,7 +177,7 @@
     .end annotation
 
     .prologue
-    .line 35
+    .line 47
     .local p1, "managedVariableManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;>;"
     .local p2, "userExperienceProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/experience/UpsightUserExperience;>;"
     new-instance v0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;
@@ -190,47 +190,43 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;
-    .registers 5
+    .registers 4
 
     .prologue
-    .line 27
-    iget-object v3, p0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;->module:Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule;
+    .line 37
+    iget-object v2, p0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;->module:Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule;
 
-    iget-object v1, p0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;->managedVariableManagerProvider:Ljavax/inject/Provider;
+    iget-object v0, p0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;->managedVariableManagerProvider:Ljavax/inject/Provider;
+
+    .line 39
+    invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;
+
+    iget-object v1, p0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;->userExperienceProvider:Ljavax/inject/Provider;
 
     invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v1
 
-    check-cast v1, Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;
+    check-cast v1, Lcom/upsight/android/managedvariables/experience/UpsightUserExperience;
 
-    iget-object v2, p0, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;->userExperienceProvider:Ljavax/inject/Provider;
-
-    invoke-interface {v2}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
-
-    move-result-object v2
-
-    check-cast v2, Lcom/upsight/android/managedvariables/experience/UpsightUserExperience;
-
-    invoke-virtual {v3, v1, v2}, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule;->provideManagedVariablesApi(Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;Lcom/upsight/android/managedvariables/experience/UpsightUserExperience;)Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;
+    .line 38
+    invoke-virtual {v2, v0, v1}, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule;->provideManagedVariablesApi(Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;Lcom/upsight/android/managedvariables/experience/UpsightUserExperience;)Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;
 
     move-result-object v0
 
-    .line 28
-    .local v0, "provided":Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;
-    if-nez v0, :cond_20
+    const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
-    .line 29
-    new-instance v1, Ljava/lang/NullPointerException;
+    .line 37
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
 
-    const-string v2, "Cannot return null from a non-@Nullable @Provides method"
+    move-result-object v0
 
-    invoke-direct {v1, v2}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    check-cast v0, Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;
 
-    throw v1
-
-    .line 31
-    :cond_20
     return-object v0
 .end method
 
@@ -238,7 +234,7 @@
     .registers 2
 
     .prologue
-    .line 10
+    .line 11
     invoke-virtual {p0}, Lcom/upsight/android/managedvariables/internal/BaseManagedVariablesModule_ProvideManagedVariablesApiFactory;->get()Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;
 
     move-result-object v0

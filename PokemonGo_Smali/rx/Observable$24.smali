@@ -3,12 +3,12 @@
 .source "Observable.java"
 
 # interfaces
-.implements Lrx/functions/Func0;
+.implements Lrx/functions/Func1;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Observable;->replay(ILrx/Scheduler;)Lrx/observables/ConnectableObservable;
+    value = Lrx/Observable;->retryWhen(Lrx/functions/Func1;)Lrx/Observable;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -19,10 +19,14 @@
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lrx/functions/Func0",
+        "Lrx/functions/Func1",
         "<",
-        "Lrx/subjects/Subject",
-        "<-TT;+TT;>;>;"
+        "Lrx/Observable",
+        "<+",
+        "Lrx/Notification",
+        "<*>;>;",
+        "Lrx/Observable",
+        "<*>;>;"
     }
 .end annotation
 
@@ -30,23 +34,19 @@
 # instance fields
 .field final synthetic this$0:Lrx/Observable;
 
-.field final synthetic val$bufferSize:I
-
-.field final synthetic val$scheduler:Lrx/Scheduler;
+.field final synthetic val$notificationHandler:Lrx/functions/Func1;
 
 
 # direct methods
-.method constructor <init>(Lrx/Observable;ILrx/Scheduler;)V
-    .registers 4
+.method constructor <init>(Lrx/Observable;Lrx/functions/Func1;)V
+    .registers 3
 
     .prologue
-    .line 6435
+    .line 7692
     .local p0, "this":Lrx/Observable$24;, "Lrx/Observable.24;"
     iput-object p1, p0, Lrx/Observable$24;->this$0:Lrx/Observable;
 
-    iput p2, p0, Lrx/Observable$24;->val$bufferSize:I
-
-    iput-object p3, p0, Lrx/Observable$24;->val$scheduler:Lrx/Scheduler;
+    iput-object p2, p0, Lrx/Observable$24;->val$notificationHandler:Lrx/functions/Func1;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -55,43 +55,56 @@
 
 
 # virtual methods
-.method public bridge synthetic call()Ljava/lang/Object;
-    .registers 2
+.method public bridge synthetic call(Ljava/lang/Object;)Ljava/lang/Object;
+    .registers 3
+    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 6435
+    .line 7692
     .local p0, "this":Lrx/Observable$24;, "Lrx/Observable.24;"
-    invoke-virtual {p0}, Lrx/Observable$24;->call()Lrx/subjects/Subject;
+    check-cast p1, Lrx/Observable;
+
+    .end local p1    # "x0":Ljava/lang/Object;
+    invoke-virtual {p0, p1}, Lrx/Observable$24;->call(Lrx/Observable;)Lrx/Observable;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public call()Lrx/subjects/Subject;
-    .registers 3
+.method public call(Lrx/Observable;)Lrx/Observable;
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "()",
-            "Lrx/subjects/Subject",
-            "<-TT;+TT;>;"
+            "(",
+            "Lrx/Observable",
+            "<+",
+            "Lrx/Notification",
+            "<*>;>;)",
+            "Lrx/Observable",
+            "<*>;"
         }
     .end annotation
 
     .prologue
-    .line 6439
+    .line 7695
     .local p0, "this":Lrx/Observable$24;, "Lrx/Observable.24;"
-    iget v0, p0, Lrx/Observable$24;->val$bufferSize:I
+    .local p1, "notifications":Lrx/Observable;, "Lrx/Observable<+Lrx/Notification<*>;>;"
+    iget-object v0, p0, Lrx/Observable$24;->val$notificationHandler:Lrx/functions/Func1;
 
-    invoke-static {v0}, Lrx/subjects/ReplaySubject;->createWithSize(I)Lrx/subjects/ReplaySubject;
+    new-instance v1, Lrx/Observable$24$1;
+
+    invoke-direct {v1, p0}, Lrx/Observable$24$1;-><init>(Lrx/Observable$24;)V
+
+    invoke-virtual {p1, v1}, Lrx/Observable;->map(Lrx/functions/Func1;)Lrx/Observable;
+
+    move-result-object v1
+
+    invoke-interface {v0, v1}, Lrx/functions/Func1;->call(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
 
-    iget-object v1, p0, Lrx/Observable$24;->val$scheduler:Lrx/Scheduler;
-
-    invoke-static {v0, v1}, Lrx/internal/operators/OperatorReplay;->createScheduledSubject(Lrx/subjects/Subject;Lrx/Scheduler;)Lrx/subjects/Subject;
-
-    move-result-object v0
+    check-cast v0, Lrx/Observable;
 
     return-object v0
 .end method

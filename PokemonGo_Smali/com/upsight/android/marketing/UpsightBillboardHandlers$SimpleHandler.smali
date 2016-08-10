@@ -18,9 +18,16 @@
 
 
 # instance fields
-.field protected mActivity:Landroid/app/Activity;
-
-.field protected mFragment:Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;
+.field private mActivity:Ljava/lang/ref/WeakReference;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/lang/ref/WeakReference",
+            "<",
+            "Landroid/app/Activity;",
+            ">;"
+        }
+    .end annotation
+.end field
 
 
 # direct methods
@@ -29,44 +36,43 @@
     .param p1, "activity"    # Landroid/app/Activity;
 
     .prologue
-    .line 273
+    .line 180
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 265
-    const/4 v0, 0x0
+    .line 181
+    new-instance v0, Ljava/lang/ref/WeakReference;
 
-    iput-object v0, p0, Lcom/upsight/android/marketing/UpsightBillboardHandlers$SimpleHandler;->mFragment:Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;
+    invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
-    .line 274
-    iput-object p1, p0, Lcom/upsight/android/marketing/UpsightBillboardHandlers$SimpleHandler;->mActivity:Landroid/app/Activity;
+    iput-object v0, p0, Lcom/upsight/android/marketing/UpsightBillboardHandlers$SimpleHandler;->mActivity:Ljava/lang/ref/WeakReference;
 
-    .line 275
+    .line 182
     return-void
 .end method
 
 
 # virtual methods
-.method public onDetach()V
-    .registers 3
+.method getActivity()Landroid/app/Activity;
+    .registers 2
 
     .prologue
-    .line 284
-    iget-object v0, p0, Lcom/upsight/android/marketing/UpsightBillboardHandlers$SimpleHandler;->mFragment:Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;
+    .line 210
+    iget-object v0, p0, Lcom/upsight/android/marketing/UpsightBillboardHandlers$SimpleHandler;->mActivity:Ljava/lang/ref/WeakReference;
 
-    .line 285
-    .local v0, "fragment":Landroid/app/DialogFragment;
-    if-eqz v0, :cond_a
+    invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
 
-    .line 286
-    invoke-virtual {v0}, Landroid/app/DialogFragment;->dismissAllowingStateLoss()V
+    move-result-object v0
 
-    .line 287
-    const/4 v1, 0x0
+    check-cast v0, Landroid/app/Activity;
 
-    iput-object v1, p0, Lcom/upsight/android/marketing/UpsightBillboardHandlers$SimpleHandler;->mFragment:Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;
+    return-object v0
+.end method
 
-    .line 289
-    :cond_a
+.method public onDetach()V
+    .registers 1
+
+    .prologue
+    .line 192
     return-void
 .end method
 
@@ -74,7 +80,7 @@
     .registers 1
 
     .prologue
-    .line 280
+    .line 187
     return-void
 .end method
 
@@ -91,7 +97,7 @@
     .end annotation
 
     .prologue
-    .line 294
+    .line 197
     .local p1, "purchases":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/marketing/UpsightPurchase;>;"
     return-void
 .end method
@@ -109,7 +115,7 @@
     .end annotation
 
     .prologue
-    .line 299
+    .line 202
     .local p1, "rewards":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/marketing/UpsightReward;>;"
     return-void
 .end method

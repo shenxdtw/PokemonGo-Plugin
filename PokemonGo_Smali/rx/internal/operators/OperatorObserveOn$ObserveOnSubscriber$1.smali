@@ -26,7 +26,7 @@
     .registers 2
 
     .prologue
-    .line 113
+    .line 129
     .local p0, "this":Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber$1;, "Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber$1;->this$0:Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber;
 
@@ -42,19 +42,27 @@
     .param p1, "n"    # J
 
     .prologue
-    .line 117
+    .line 133
     .local p0, "this":Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber$1;, "Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber.1;"
-    sget-object v0, Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber;->REQUESTED:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
+    const-wide/16 v0, 0x0
 
-    iget-object v1, p0, Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber$1;->this$0:Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber;
+    cmp-long v0, p1, v0
 
-    invoke-static {v0, v1, p1, p2}, Lrx/internal/operators/BackpressureUtils;->getAndAddRequest(Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;Ljava/lang/Object;J)J
+    if-lez v0, :cond_12
 
-    .line 118
+    .line 134
+    iget-object v0, p0, Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber$1;->this$0:Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber;
+
+    iget-object v0, v0, Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber;->requested:Ljava/util/concurrent/atomic/AtomicLong;
+
+    invoke-static {v0, p1, p2}, Lrx/internal/operators/BackpressureUtils;->getAndAddRequest(Ljava/util/concurrent/atomic/AtomicLong;J)J
+
+    .line 135
     iget-object v0, p0, Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber$1;->this$0:Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber;
 
     invoke-virtual {v0}, Lrx/internal/operators/OperatorObserveOn$ObserveOnSubscriber;->schedule()V
 
-    .line 119
+    .line 137
+    :cond_12
     return-void
 .end method

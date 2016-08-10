@@ -41,7 +41,6 @@
     .local p0, "this":Lcom/upsight/android/UpsightExtension;, "Lcom/upsight/android/UpsightExtension<TT;TU;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 88
     return-void
 .end method
 

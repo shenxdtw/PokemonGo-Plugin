@@ -22,13 +22,19 @@
 
 # instance fields
 .field public landscape:Lcom/upsight/android/marketing/internal/content/MarketingContentModel$Presentation$DialogLayout$Dimensions;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "landscape"
     .end annotation
 .end field
 
 .field public portrait:Lcom/upsight/android/marketing/internal/content/MarketingContentModel$Presentation$DialogLayout$Dimensions;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "portrait"
     .end annotation
 .end field
@@ -39,9 +45,8 @@
     .registers 1
 
     .prologue
-    .line 48
+    .line 56
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 59
     return-void
 .end method

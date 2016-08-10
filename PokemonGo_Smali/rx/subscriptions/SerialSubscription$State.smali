@@ -27,16 +27,16 @@
     .param p2, "s"    # Lrx/Subscription;
 
     .prologue
-    .line 35
+    .line 33
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 36
+    .line 34
     iput-boolean p1, p0, Lrx/subscriptions/SerialSubscription$State;->isUnsubscribed:Z
 
-    .line 37
+    .line 35
     iput-object p2, p0, Lrx/subscriptions/SerialSubscription$State;->subscription:Lrx/Subscription;
 
-    .line 38
+    .line 36
     return-void
 .end method
 
@@ -47,7 +47,7 @@
     .param p1, "s"    # Lrx/Subscription;
 
     .prologue
-    .line 45
+    .line 43
     new-instance v0, Lrx/subscriptions/SerialSubscription$State;
 
     iget-boolean v1, p0, Lrx/subscriptions/SerialSubscription$State;->isUnsubscribed:Z
@@ -61,7 +61,7 @@
     .registers 4
 
     .prologue
-    .line 41
+    .line 39
     new-instance v0, Lrx/subscriptions/SerialSubscription$State;
 
     const/4 v1, 0x1

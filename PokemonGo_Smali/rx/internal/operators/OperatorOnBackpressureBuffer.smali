@@ -9,7 +9,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/internal/operators/OperatorOnBackpressureBuffer$1;,
         Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;,
         Lrx/internal/operators/OperatorOnBackpressureBuffer$Holder;
     }
@@ -32,61 +31,87 @@
 
 .field private final onOverflow:Lrx/functions/Action0;
 
+.field private final overflowStrategy:Lrx/BackpressureOverflow$Strategy;
+
 
 # direct methods
-.method private constructor <init>()V
+.method constructor <init>()V
     .registers 2
 
     .prologue
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer;, "Lrx/internal/operators/OperatorOnBackpressureBuffer<TT;>;"
     const/4 v0, 0x0
 
-    .line 43
+    .line 48
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 44
+    .line 49
     iput-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer;->capacity:Ljava/lang/Long;
 
-    .line 45
+    .line 50
     iput-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer;->onOverflow:Lrx/functions/Action0;
 
-    .line 46
+    .line 51
+    sget-object v0, Lrx/BackpressureOverflow;->ON_OVERFLOW_DEFAULT:Lrx/BackpressureOverflow$Strategy;
+
+    iput-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer;->overflowStrategy:Lrx/BackpressureOverflow$Strategy;
+
+    .line 52
     return-void
 .end method
 
 .method public constructor <init>(J)V
-    .registers 4
+    .registers 6
     .param p1, "capacity"    # J
 
     .prologue
-    .line 49
+    .line 61
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer;, "Lrx/internal/operators/OperatorOnBackpressureBuffer<TT;>;"
     const/4 v0, 0x0
 
-    invoke-direct {p0, p1, p2, v0}, Lrx/internal/operators/OperatorOnBackpressureBuffer;-><init>(JLrx/functions/Action0;)V
+    sget-object v1, Lrx/BackpressureOverflow;->ON_OVERFLOW_DEFAULT:Lrx/BackpressureOverflow$Strategy;
 
-    .line 50
+    invoke-direct {p0, p1, p2, v0, v1}, Lrx/internal/operators/OperatorOnBackpressureBuffer;-><init>(JLrx/functions/Action0;Lrx/BackpressureOverflow$Strategy;)V
+
+    .line 62
     return-void
 .end method
 
 .method public constructor <init>(JLrx/functions/Action0;)V
-    .registers 7
+    .registers 5
     .param p1, "capacity"    # J
     .param p3, "onOverflow"    # Lrx/functions/Action0;
 
     .prologue
-    .line 52
+    .line 72
+    .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer;, "Lrx/internal/operators/OperatorOnBackpressureBuffer<TT;>;"
+    sget-object v0, Lrx/BackpressureOverflow;->ON_OVERFLOW_DEFAULT:Lrx/BackpressureOverflow$Strategy;
+
+    invoke-direct {p0, p1, p2, p3, v0}, Lrx/internal/operators/OperatorOnBackpressureBuffer;-><init>(JLrx/functions/Action0;Lrx/BackpressureOverflow$Strategy;)V
+
+    .line 73
+    return-void
+.end method
+
+.method public constructor <init>(JLrx/functions/Action0;Lrx/BackpressureOverflow$Strategy;)V
+    .registers 8
+    .param p1, "capacity"    # J
+    .param p3, "onOverflow"    # Lrx/functions/Action0;
+    .param p4, "overflowStrategy"    # Lrx/BackpressureOverflow$Strategy;
+
+    .prologue
+    .line 83
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer;, "Lrx/internal/operators/OperatorOnBackpressureBuffer<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 53
+    .line 84
     const-wide/16 v0, 0x0
 
     cmp-long v0, p1, v0
 
     if-gtz v0, :cond_11
 
-    .line 54
+    .line 85
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Buffer capacity must be > 0"
@@ -95,30 +120,34 @@
 
     throw v0
 
-    .line 56
+    .line 87
     :cond_11
+    if-nez p4, :cond_1b
+
+    .line 88
+    new-instance v0, Ljava/lang/NullPointerException;
+
+    const-string v1, "The BackpressureOverflow strategy must not be null"
+
+    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+
+    .line 90
+    :cond_1b
     invoke-static {p1, p2}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
 
     move-result-object v0
 
     iput-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer;->capacity:Ljava/lang/Long;
 
-    .line 57
+    .line 91
     iput-object p3, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer;->onOverflow:Lrx/functions/Action0;
 
-    .line 58
-    return-void
-.end method
+    .line 92
+    iput-object p4, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer;->overflowStrategy:Lrx/BackpressureOverflow$Strategy;
 
-.method synthetic constructor <init>(Lrx/internal/operators/OperatorOnBackpressureBuffer$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/internal/operators/OperatorOnBackpressureBuffer$1;
-
-    .prologue
-    .line 29
-    .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer;, "Lrx/internal/operators/OperatorOnBackpressureBuffer<TT;>;"
-    invoke-direct {p0}, Lrx/internal/operators/OperatorOnBackpressureBuffer;-><init>()V
-
+    .line 93
     return-void
 .end method
 
@@ -135,7 +164,7 @@
     .end annotation
 
     .prologue
-    .line 40
+    .line 45
     sget-object v0, Lrx/internal/operators/OperatorOnBackpressureBuffer$Holder;->INSTANCE:Lrx/internal/operators/OperatorOnBackpressureBuffer;
 
     return-object v0
@@ -148,7 +177,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 29
+    .line 33
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer;, "Lrx/internal/operators/OperatorOnBackpressureBuffer<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -161,7 +190,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)Lrx/Subscriber;
-    .registers 5
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -173,7 +202,7 @@
     .end annotation
 
     .prologue
-    .line 65
+    .line 100
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer;, "Lrx/internal/operators/OperatorOnBackpressureBuffer<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     new-instance v0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;
@@ -182,19 +211,21 @@
 
     iget-object v2, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer;->onOverflow:Lrx/functions/Action0;
 
-    invoke-direct {v0, p1, v1, v2}, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;-><init>(Lrx/Subscriber;Ljava/lang/Long;Lrx/functions/Action0;)V
+    iget-object v3, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer;->overflowStrategy:Lrx/BackpressureOverflow$Strategy;
 
-    .line 68
+    invoke-direct {v0, p1, v1, v2, v3}, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;-><init>(Lrx/Subscriber;Ljava/lang/Long;Lrx/functions/Action0;Lrx/BackpressureOverflow$Strategy;)V
+
+    .line 104
     .local v0, "parent":Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber<TT;>;"
     invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 69
+    .line 105
     invoke-virtual {v0}, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->manager()Lrx/Producer;
 
     move-result-object v1
 
     invoke-virtual {p1, v1}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
 
-    .line 71
+    .line 107
     return-object v0
 .end method

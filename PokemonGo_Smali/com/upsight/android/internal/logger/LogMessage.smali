@@ -16,12 +16,24 @@
 .end field
 
 .field private level:Lcom/upsight/android/logger/UpsightLogger$Level;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+.end field
 
 .field private message:Ljava/lang/String;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+.end field
 
 .field private tag:Ljava/lang/String;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+.end field
 
 .field private throwableString:Ljava/lang/String;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+.end field
 
 
 # direct methods
@@ -29,9 +41,10 @@
     .registers 1
 
     .prologue
-    .line 42
+    .line 46
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 47
     return-void
 .end method
 
@@ -40,7 +53,7 @@
     .param p1, "source"    # Lcom/upsight/android/internal/logger/LogMessage;
 
     .prologue
-    .line 39
+    .line 43
     iget-object v0, p1, Lcom/upsight/android/internal/logger/LogMessage;->tag:Ljava/lang/String;
 
     iget-object v1, p1, Lcom/upsight/android/internal/logger/LogMessage;->level:Lcom/upsight/android/logger/UpsightLogger$Level;
@@ -51,7 +64,7 @@
 
     invoke-direct {p0, v0, v1, v2, v3}, Lcom/upsight/android/internal/logger/LogMessage;-><init>(Ljava/lang/String;Lcom/upsight/android/logger/UpsightLogger$Level;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 40
+    .line 44
     return-void
 .end method
 
@@ -63,22 +76,22 @@
     .param p4, "throwableString"    # Ljava/lang/String;
 
     .prologue
-    .line 31
+    .line 35
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 32
+    .line 36
     iput-object p1, p0, Lcom/upsight/android/internal/logger/LogMessage;->tag:Ljava/lang/String;
 
-    .line 33
+    .line 37
     iput-object p2, p0, Lcom/upsight/android/internal/logger/LogMessage;->level:Lcom/upsight/android/logger/UpsightLogger$Level;
 
-    .line 34
+    .line 38
     iput-object p3, p0, Lcom/upsight/android/internal/logger/LogMessage;->message:Ljava/lang/String;
 
-    .line 35
+    .line 39
     iput-object p4, p0, Lcom/upsight/android/internal/logger/LogMessage;->throwableString:Ljava/lang/String;
 
-    .line 36
+    .line 40
     return-void
 .end method
 
@@ -93,15 +106,15 @@
 
     const/4 v2, 0x0
 
-    .line 78
+    .line 83
     if-ne p0, p1, :cond_5
 
-    .line 91
+    .line 96
     :cond_4
     :goto_4
     return v1
 
-    .line 81
+    .line 86
     :cond_5
     if-eqz p1, :cond_11
 
@@ -118,16 +131,16 @@
     :cond_11
     move v1, v2
 
-    .line 82
+    .line 87
     goto :goto_4
 
     :cond_13
     move-object v0, p1
 
-    .line 85
+    .line 90
     check-cast v0, Lcom/upsight/android/internal/logger/LogMessage;
 
-    .line 87
+    .line 92
     .local v0, "that":Lcom/upsight/android/internal/logger/LogMessage;
     iget-object v3, p0, Lcom/upsight/android/internal/logger/LogMessage;->id:Ljava/lang/String;
 
@@ -146,10 +159,10 @@
     :goto_24
     move v1, v2
 
-    .line 88
+    .line 93
     goto :goto_4
 
-    .line 87
+    .line 92
     :cond_26
     iget-object v3, v0, Lcom/upsight/android/internal/logger/LogMessage;->id:Ljava/lang/String;
 
@@ -162,7 +175,7 @@
     .registers 2
 
     .prologue
-    .line 69
+    .line 74
     iget-object v0, p0, Lcom/upsight/android/internal/logger/LogMessage;->level:Lcom/upsight/android/logger/UpsightLogger$Level;
 
     return-object v0
@@ -172,7 +185,7 @@
     .registers 2
 
     .prologue
-    .line 53
+    .line 58
     iget-object v0, p0, Lcom/upsight/android/internal/logger/LogMessage;->message:Ljava/lang/String;
 
     return-object v0
@@ -182,7 +195,7 @@
     .registers 2
 
     .prologue
-    .line 45
+    .line 50
     iget-object v0, p0, Lcom/upsight/android/internal/logger/LogMessage;->tag:Ljava/lang/String;
 
     return-object v0
@@ -192,7 +205,7 @@
     .registers 2
 
     .prologue
-    .line 61
+    .line 66
     iget-object v0, p0, Lcom/upsight/android/internal/logger/LogMessage;->throwableString:Ljava/lang/String;
 
     return-object v0
@@ -202,7 +215,7 @@
     .registers 2
 
     .prologue
-    .line 96
+    .line 101
     iget-object v0, p0, Lcom/upsight/android/internal/logger/LogMessage;->id:Ljava/lang/String;
 
     if-eqz v0, :cond_b
@@ -227,10 +240,10 @@
     .param p1, "level"    # Lcom/upsight/android/logger/UpsightLogger$Level;
 
     .prologue
-    .line 73
+    .line 78
     iput-object p1, p0, Lcom/upsight/android/internal/logger/LogMessage;->level:Lcom/upsight/android/logger/UpsightLogger$Level;
 
-    .line 74
+    .line 79
     return-void
 .end method
 
@@ -239,10 +252,10 @@
     .param p1, "message"    # Ljava/lang/String;
 
     .prologue
-    .line 57
+    .line 62
     iput-object p1, p0, Lcom/upsight/android/internal/logger/LogMessage;->message:Ljava/lang/String;
 
-    .line 58
+    .line 63
     return-void
 .end method
 
@@ -251,10 +264,10 @@
     .param p1, "tag"    # Ljava/lang/String;
 
     .prologue
-    .line 49
+    .line 54
     iput-object p1, p0, Lcom/upsight/android/internal/logger/LogMessage;->tag:Ljava/lang/String;
 
-    .line 50
+    .line 55
     return-void
 .end method
 
@@ -263,9 +276,9 @@
     .param p1, "throwableString"    # Ljava/lang/String;
 
     .prologue
-    .line 65
+    .line 70
     iput-object p1, p0, Lcom/upsight/android/internal/logger/LogMessage;->throwableString:Ljava/lang/String;
 
-    .line 66
+    .line 71
     return-void
 .end method

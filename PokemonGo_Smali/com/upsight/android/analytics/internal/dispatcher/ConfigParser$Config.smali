@@ -16,7 +16,10 @@
 
 # instance fields
 .field public identifierFilters:Ljava/util/List;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "identifier_filters"
     .end annotation
 
@@ -31,7 +34,10 @@
 .end field
 
 .field public identifiers:Ljava/util/List;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "identifiers"
     .end annotation
 
@@ -46,7 +52,10 @@
 .end field
 
 .field public queues:Ljava/util/List;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "queues"
     .end annotation
 
@@ -61,7 +70,10 @@
 .end field
 
 .field public routeFilters:Ljava/util/List;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "route_filters"
     .end annotation
 
@@ -81,7 +93,7 @@
     .registers 1
 
     .prologue
-    .line 131
+    .line 138
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

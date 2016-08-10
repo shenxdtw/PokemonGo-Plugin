@@ -31,7 +31,7 @@
     .registers 1
 
     .prologue
-    .line 7
+    .line 8
     const-class v0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideClockFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -58,10 +58,10 @@
     .param p1, "module"    # Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
 
     .prologue
-    .line 11
+    .line 15
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 12
+    .line 16
     sget-boolean v0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideClockFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -74,11 +74,11 @@
 
     throw v0
 
-    .line 13
+    .line 17
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideClockFactory;->module:Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
 
-    .line 14
+    .line 18
     return-void
 .end method
 
@@ -98,7 +98,7 @@
     .end annotation
 
     .prologue
-    .line 26
+    .line 27
     new-instance v0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideClockFactory;
 
     invoke-direct {v0, p0}, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideClockFactory;-><init>(Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;)V
@@ -109,31 +109,26 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/analytics/internal/session/Clock;
-    .registers 4
+    .registers 3
 
     .prologue
-    .line 18
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideClockFactory;->module:Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
+    .line 22
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideClockFactory;->module:Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
 
-    invoke-virtual {v1}, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;->provideClock()Lcom/upsight/android/analytics/internal/session/Clock;
+    .line 23
+    invoke-virtual {v0}, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;->provideClock()Lcom/upsight/android/analytics/internal/session/Clock;
 
     move-result-object v0
 
-    .line 19
-    .local v0, "provided":Lcom/upsight/android/analytics/internal/session/Clock;
-    if-nez v0, :cond_10
-
-    .line 20
-    new-instance v1, Ljava/lang/NullPointerException;
-
-    const-string v2, "Cannot return null from a non-@Nullable @Provides method"
-
-    invoke-direct {v1, v2}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
-
-    throw v1
+    const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
     .line 22
-    :cond_10
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/analytics/internal/session/Clock;
+
     return-object v0
 .end method
 
@@ -141,7 +136,7 @@
     .registers 2
 
     .prologue
-    .line 7
+    .line 8
     invoke-virtual {p0}, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideClockFactory;->get()Lcom/upsight/android/analytics/internal/session/Clock;
 
     move-result-object v0

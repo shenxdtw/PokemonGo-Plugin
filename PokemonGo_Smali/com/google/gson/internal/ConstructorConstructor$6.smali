@@ -32,9 +32,10 @@
 # direct methods
 .method constructor <init>(Lcom/google/gson/internal/ConstructorConstructor;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/google/gson/internal/ConstructorConstructor;
 
     .prologue
-    .line 154
+    .line 158
     iput-object p1, p0, Lcom/google/gson/internal/ConstructorConstructor$6;->this$0:Lcom/google/gson/internal/ConstructorConstructor;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -53,7 +54,7 @@
     .end annotation
 
     .prologue
-    .line 156
+    .line 160
     new-instance v0, Ljava/util/LinkedHashSet;
 
     invoke-direct {v0}, Ljava/util/LinkedHashSet;-><init>()V

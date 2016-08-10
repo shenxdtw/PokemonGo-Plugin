@@ -14,47 +14,61 @@
 .end annotation
 
 
+# static fields
+.field private static final JSON_PARSER:Lcom/google/gson/JsonParser;
+
+
 # instance fields
 .field private identifiers:Ljava/lang/String;
 
-.field private publisherData:Lcom/fasterxml/jackson/databind/JsonNode;
+.field private publisherData:Lcom/google/gson/JsonObject;
 
 .field private final type:Ljava/lang/String;
 
-.field private upsightData:Lcom/fasterxml/jackson/databind/JsonNode;
+.field private upsightData:Lcom/google/gson/JsonObject;
 
 
 # direct methods
+.method static constructor <clinit>()V
+    .registers 1
+
+    .prologue
+    .line 26
+    new-instance v0, Lcom/google/gson/JsonParser;
+
+    invoke-direct {v0}, Lcom/google/gson/JsonParser;-><init>()V
+
+    sput-object v0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->JSON_PARSER:Lcom/google/gson/JsonParser;
+
+    return-void
+.end method
+
 .method private constructor <init>(Ljava/lang/String;)V
     .registers 3
     .param p1, "type"    # Ljava/lang/String;
 
     .prologue
-    .line 30
+    .line 32
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 25
-    sget-object v0, Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;->instance:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+    .line 27
+    new-instance v0, Lcom/google/gson/JsonObject;
 
-    invoke-virtual {v0}, Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;->objectNode()Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    invoke-direct {v0}, Lcom/google/gson/JsonObject;-><init>()V
 
-    move-result-object v0
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->publisherData:Lcom/google/gson/JsonObject;
 
-    iput-object v0, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->publisherData:Lcom/fasterxml/jackson/databind/JsonNode;
+    .line 28
+    new-instance v0, Lcom/google/gson/JsonObject;
 
-    .line 26
-    sget-object v0, Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;->instance:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+    invoke-direct {v0}, Lcom/google/gson/JsonObject;-><init>()V
 
-    invoke-virtual {v0}, Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;->objectNode()Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->upsightData:Lcom/google/gson/JsonObject;
 
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->upsightData:Lcom/fasterxml/jackson/databind/JsonNode;
-
-    .line 31
+    .line 33
     iput-object p1, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->type:Ljava/lang/String;
 
-    .line 32
+    .line 34
     return-void
 .end method
 
@@ -64,7 +78,7 @@
     .param p2, "x1"    # Lcom/upsight/android/analytics/event/UpsightDynamicEvent$1;
 
     .prologue
-    .line 24
+    .line 25
     invoke-direct {p0, p1}, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;-><init>(Ljava/lang/String;)V
 
     return-void
@@ -74,53 +88,78 @@
     .registers 6
 
     .prologue
-    .line 70
+    .line 80
     new-instance v0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent;
 
     iget-object v1, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->type:Ljava/lang/String;
 
     iget-object v2, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->identifiers:Ljava/lang/String;
 
-    iget-object v3, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->upsightData:Lcom/fasterxml/jackson/databind/JsonNode;
+    iget-object v3, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->upsightData:Lcom/google/gson/JsonObject;
 
-    iget-object v4, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->publisherData:Lcom/fasterxml/jackson/databind/JsonNode;
+    iget-object v4, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->publisherData:Lcom/google/gson/JsonObject;
 
-    invoke-direct {v0, v1, v2, v3, v4}, Lcom/upsight/android/analytics/event/UpsightDynamicEvent;-><init>(Ljava/lang/String;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;Lcom/fasterxml/jackson/databind/JsonNode;)V
+    invoke-direct {v0, v1, v2, v3, v4}, Lcom/upsight/android/analytics/event/UpsightDynamicEvent;-><init>(Ljava/lang/String;Ljava/lang/String;Lcom/google/gson/JsonElement;Lcom/google/gson/JsonElement;)V
 
     return-object v0
 .end method
 
-
-# virtual methods
-.method public putPublisherData(Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;
-    .registers 3
-    .param p1, "jsonNode"    # Lcom/fasterxml/jackson/databind/JsonNode;
+.method private deepCopy(Lcom/google/gson/JsonObject;)Lcom/google/gson/JsonObject;
+    .registers 4
+    .param p1, "source"    # Lcom/google/gson/JsonObject;
 
     .prologue
-    .line 54
-    invoke-virtual {p1}, Lcom/fasterxml/jackson/databind/JsonNode;->deepCopy()Lcom/fasterxml/jackson/databind/JsonNode;
+    .line 84
+    invoke-virtual {p1}, Lcom/google/gson/JsonObject;->toString()Ljava/lang/String;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->publisherData:Lcom/fasterxml/jackson/databind/JsonNode;
+    .line 85
+    .local v0, "jsonString":Ljava/lang/String;
+    sget-object v1, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->JSON_PARSER:Lcom/google/gson/JsonParser;
 
-    .line 55
+    invoke-virtual {v1, v0}, Lcom/google/gson/JsonParser;->parse(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/google/gson/JsonElement;->getAsJsonObject()Lcom/google/gson/JsonObject;
+
+    move-result-object v1
+
+    return-object v1
+.end method
+
+
+# virtual methods
+.method public putPublisherData(Lcom/google/gson/JsonObject;)Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;
+    .registers 3
+    .param p1, "jsonNode"    # Lcom/google/gson/JsonObject;
+
+    .prologue
+    .line 56
+    invoke-direct {p0, p1}, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->deepCopy(Lcom/google/gson/JsonObject;)Lcom/google/gson/JsonObject;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->publisherData:Lcom/google/gson/JsonObject;
+
+    .line 57
     return-object p0
 .end method
 
-.method public putUpsightData(Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;
+.method public putUpsightData(Lcom/google/gson/JsonObject;)Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;
     .registers 3
-    .param p1, "jsonNode"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p1, "jsonNode"    # Lcom/google/gson/JsonObject;
 
     .prologue
-    .line 65
-    invoke-virtual {p1}, Lcom/fasterxml/jackson/databind/JsonNode;->deepCopy()Lcom/fasterxml/jackson/databind/JsonNode;
+    .line 67
+    invoke-direct {p0, p1}, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->deepCopy(Lcom/google/gson/JsonObject;)Lcom/google/gson/JsonObject;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->upsightData:Lcom/fasterxml/jackson/databind/JsonNode;
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->upsightData:Lcom/google/gson/JsonObject;
 
-    .line 66
+    .line 68
     return-object p0
 .end method
 
@@ -129,22 +168,23 @@
     .param p1, "upsight"    # Lcom/upsight/android/UpsightContext;
 
     .prologue
-    .line 74
+    .line 72
     invoke-direct {p0}, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->build()Lcom/upsight/android/analytics/event/UpsightDynamicEvent;
 
     move-result-object v1
 
-    .line 75
+    .line 73
     .local v1, "result":Lcom/upsight/android/analytics/event/UpsightDynamicEvent;
     const-string v2, "com.upsight.extension.analytics"
 
+    .line 74
     invoke-virtual {p1, v2}, Lcom/upsight/android/UpsightContext;->getUpsightExtension(Ljava/lang/String;)Lcom/upsight/android/UpsightExtension;
 
     move-result-object v0
 
     check-cast v0, Lcom/upsight/android/UpsightAnalyticsExtension;
 
-    .line 77
+    .line 75
     .local v0, "extension":Lcom/upsight/android/UpsightAnalyticsExtension;
     invoke-virtual {v0}, Lcom/upsight/android/UpsightAnalyticsExtension;->getApi()Lcom/upsight/android/analytics/UpsightAnalyticsApi;
 
@@ -152,7 +192,7 @@
 
     invoke-interface {v2, v1}, Lcom/upsight/android/analytics/UpsightAnalyticsApi;->record(Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;)V
 
-    .line 78
+    .line 76
     return-object v1
 .end method
 
@@ -161,9 +201,9 @@
     .param p1, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 43
+    .line 45
     iput-object p1, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->identifiers:Ljava/lang/String;
 
-    .line 44
+    .line 46
     return-object p0
 .end method

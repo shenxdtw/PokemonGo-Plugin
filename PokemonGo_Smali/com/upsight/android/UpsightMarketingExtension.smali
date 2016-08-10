@@ -22,19 +22,16 @@
 
 
 # instance fields
-.field mBillboardManager:Lcom/upsight/android/marketing/UpsightBillboardManager;
-    .annotation runtime Ljavax/inject/Inject;
-    .end annotation
-.end field
-
 .field mDefaultContentMediator:Lcom/upsight/android/marketing/internal/content/DefaultContentMediator;
     .annotation runtime Ljavax/inject/Inject;
     .end annotation
 .end field
 
-.field private mLogger:Lcom/upsight/android/logger/UpsightLogger;
+.field private mGson:Lcom/google/gson/Gson;
 
-.field private mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+.field private mJsonParser:Lcom/google/gson/JsonParser;
+
+.field private mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
 .field mMarketing:Lcom/upsight/android/marketing/UpsightMarketingApi;
     .annotation runtime Ljavax/inject/Inject;
@@ -52,10 +49,10 @@
     .registers 1
 
     .prologue
-    .line 53
+    .line 55
     invoke-direct {p0}, Lcom/upsight/android/UpsightExtension;-><init>()V
 
-    .line 55
+    .line 57
     return-void
 .end method
 
@@ -65,7 +62,7 @@
     .registers 2
 
     .prologue
-    .line 75
+    .line 80
     iget-object v0, p0, Lcom/upsight/android/UpsightMarketingExtension;->mMarketing:Lcom/upsight/android/marketing/UpsightMarketingApi;
 
     return-object v0
@@ -89,49 +86,57 @@
 .end method
 
 .method protected onCreate(Lcom/upsight/android/UpsightContext;)V
-    .registers 4
+    .registers 3
     .param p1, "upsight"    # Lcom/upsight/android/UpsightContext;
 
     .prologue
-    .line 66
+    .line 68
     invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getCoreComponent()Lcom/upsight/android/UpsightCoreComponent;
 
     move-result-object v0
 
-    invoke-interface {v0}, Lcom/upsight/android/UpsightCoreComponent;->objectMapper()Lcom/fasterxml/jackson/databind/ObjectMapper;
+    invoke-interface {v0}, Lcom/upsight/android/UpsightCoreComponent;->gson()Lcom/google/gson/Gson;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/upsight/android/UpsightMarketingExtension;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    iput-object v0, p0, Lcom/upsight/android/UpsightMarketingExtension;->mGson:Lcom/google/gson/Gson;
 
-    .line 67
+    .line 69
+    invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getCoreComponent()Lcom/upsight/android/UpsightCoreComponent;
+
+    move-result-object v0
+
+    invoke-interface {v0}, Lcom/upsight/android/UpsightCoreComponent;->jsonParser()Lcom/google/gson/JsonParser;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/upsight/android/UpsightMarketingExtension;->mJsonParser:Lcom/google/gson/JsonParser;
+
+    .line 70
     invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/UpsightMarketingExtension;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
-    .line 69
-    iget-object v0, p0, Lcom/upsight/android/UpsightMarketingExtension;->mBillboardManager:Lcom/upsight/android/marketing/UpsightBillboardManager;
+    .line 72
+    iget-object v0, p0, Lcom/upsight/android/UpsightMarketingExtension;->mDefaultContentMediator:Lcom/upsight/android/marketing/internal/content/DefaultContentMediator;
 
-    iget-object v1, p0, Lcom/upsight/android/UpsightMarketingExtension;->mDefaultContentMediator:Lcom/upsight/android/marketing/internal/content/DefaultContentMediator;
+    invoke-static {p1, v0}, Lcom/upsight/android/marketing/UpsightContentMediator;->register(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/marketing/UpsightContentMediator;)V
 
-    invoke-interface {v0, v1}, Lcom/upsight/android/marketing/UpsightBillboardManager;->registerContentMediator(Lcom/upsight/android/marketing/UpsightContentMediator;)Z
-
-    .line 70
+    .line 75
     invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getDataStore()Lcom/upsight/android/persistence/UpsightDataStore;
 
     move-result-object v0
 
     invoke-interface {v0, p0}, Lcom/upsight/android/persistence/UpsightDataStore;->subscribe(Ljava/lang/Object;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 71
+    .line 76
     return-void
 .end method
 
 .method protected bridge synthetic onResolve(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/UpsightExtension$BaseComponent;
     .registers 3
-    .param p1, "x0"    # Lcom/upsight/android/UpsightContext;
 
     .prologue
     .line 30
@@ -147,7 +152,7 @@
     .param p1, "upsight"    # Lcom/upsight/android/UpsightContext;
 
     .prologue
-    .line 59
+    .line 61
     invoke-static {}, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent;->builder()Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;
 
     move-result-object v0
@@ -156,10 +161,12 @@
 
     invoke-direct {v1, p1}, Lcom/upsight/android/marketing/internal/BaseMarketingModule;-><init>(Lcom/upsight/android/UpsightContext;)V
 
+    .line 62
     invoke-virtual {v0, v1}, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->baseMarketingModule(Lcom/upsight/android/marketing/internal/BaseMarketingModule;)Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;
 
     move-result-object v0
 
+    .line 63
     invoke-virtual {v0}, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->build()Lcom/upsight/android/marketing/internal/MarketingComponent;
 
     move-result-object v0
@@ -174,7 +181,7 @@
     .end annotation
 
     .prologue
-    .line 80
+    .line 85
     const-string v4, "upsight.action_map"
 
     invoke-virtual {p1}, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;->getType()Ljava/lang/String;
@@ -187,37 +194,37 @@
 
     if-nez v4, :cond_d
 
-    .line 98
+    .line 101
     :cond_c
     :goto_c
     return-void
 
-    .line 85
+    .line 90
     :cond_d
     :try_start_d
-    iget-object v4, p0, Lcom/upsight/android/UpsightMarketingExtension;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    iget-object v4, p0, Lcom/upsight/android/UpsightMarketingExtension;->mJsonParser:Lcom/google/gson/JsonParser;
 
     invoke-virtual {p1}, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;->getContent()Ljava/lang/String;
 
     move-result-object v5
 
-    invoke-virtual {v4, v5}, Lcom/fasterxml/jackson/databind/ObjectMapper;->readTree(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {v4, v5}, Lcom/google/gson/JsonParser;->parse(Ljava/lang/String;)Lcom/google/gson/JsonElement;
 
     move-result-object v3
 
-    .line 86
-    .local v3, "response":Lcom/fasterxml/jackson/databind/JsonNode;
-    iget-object v4, p0, Lcom/upsight/android/UpsightMarketingExtension;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .line 91
+    .local v3, "response":Lcom/google/gson/JsonElement;
+    iget-object v4, p0, Lcom/upsight/android/UpsightMarketingExtension;->mGson:Lcom/google/gson/Gson;
 
     const-class v5, Lcom/upsight/android/analytics/internal/action/ActionMapResponse;
 
-    invoke-virtual {v4, v3, v5}, Lcom/fasterxml/jackson/databind/ObjectMapper;->treeToValue(Lcom/fasterxml/jackson/core/TreeNode;Ljava/lang/Class;)Ljava/lang/Object;
+    invoke-virtual {v4, v3, v5}, Lcom/google/gson/Gson;->fromJson(Lcom/google/gson/JsonElement;Ljava/lang/Class;)Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/upsight/android/analytics/internal/action/ActionMapResponse;
 
-    .line 89
+    .line 92
     .local v0, "actionMapResponse":Lcom/upsight/android/analytics/internal/action/ActionMapResponse;
     const-string v4, "marketing_content_factory"
 
@@ -231,35 +238,35 @@
 
     if-eqz v4, :cond_c
 
-    .line 90
+    .line 93
     iget-object v4, p0, Lcom/upsight/android/UpsightMarketingExtension;->mMarketingContentFactory:Lcom/upsight/android/marketing/internal/content/MarketingContentFactory;
 
     invoke-virtual {v4, v0}, Lcom/upsight/android/marketing/internal/content/MarketingContentFactory;->create(Lcom/upsight/android/analytics/internal/action/ActionMapResponse;)Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
     move-result-object v1
 
-    .line 91
+    .line 94
     .local v1, "content":Lcom/upsight/android/marketing/internal/content/MarketingContent;
     if-eqz v1, :cond_c
 
-    .line 92
+    .line 95
     const-string v4, "content_received"
 
     invoke-virtual {v1, v4}, Lcom/upsight/android/marketing/internal/content/MarketingContent;->executeActions(Ljava/lang/String;)V
     :try_end_3a
-    .catch Ljava/io/IOException; {:try_start_d .. :try_end_3a} :catch_3b
+    .catch Lcom/google/gson/JsonSyntaxException; {:try_start_d .. :try_end_3a} :catch_3b
 
     goto :goto_c
 
-    .line 95
+    .line 98
     .end local v0    # "actionMapResponse":Lcom/upsight/android/analytics/internal/action/ActionMapResponse;
     .end local v1    # "content":Lcom/upsight/android/marketing/internal/content/MarketingContent;
-    .end local v3    # "response":Lcom/fasterxml/jackson/databind/JsonNode;
+    .end local v3    # "response":Lcom/google/gson/JsonElement;
     :catch_3b
     move-exception v2
 
-    .line 96
-    .local v2, "e":Ljava/io/IOException;
+    .line 99
+    .local v2, "e":Lcom/google/gson/JsonSyntaxException;
     iget-object v4, p0, Lcom/upsight/android/UpsightMarketingExtension;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
     const-string v5, "Upsight"

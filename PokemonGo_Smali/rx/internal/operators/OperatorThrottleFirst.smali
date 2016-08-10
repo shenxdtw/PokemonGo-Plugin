@@ -20,9 +20,9 @@
 
 
 # instance fields
-.field private final scheduler:Lrx/Scheduler;
+.field final scheduler:Lrx/Scheduler;
 
-.field private final timeInMilliseconds:J
+.field final timeInMilliseconds:J
 
 
 # direct methods
@@ -49,28 +49,6 @@
 
     .line 34
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorThrottleFirst;)Lrx/Scheduler;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorThrottleFirst;
-
-    .prologue
-    .line 26
-    iget-object v0, p0, Lrx/internal/operators/OperatorThrottleFirst;->scheduler:Lrx/Scheduler;
-
-    return-object v0
-.end method
-
-.method static synthetic access$100(Lrx/internal/operators/OperatorThrottleFirst;)J
-    .registers 3
-    .param p0, "x0"    # Lrx/internal/operators/OperatorThrottleFirst;
-
-    .prologue
-    .line 26
-    iget-wide v0, p0, Lrx/internal/operators/OperatorThrottleFirst;->timeInMilliseconds:J
-
-    return-wide v0
 .end method
 
 

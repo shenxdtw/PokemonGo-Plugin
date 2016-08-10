@@ -15,16 +15,20 @@
 
 
 # instance fields
+.field final synthetic val$constructorId:I
+
 .field final synthetic val$newInstance:Ljava/lang/reflect/Method;
 
 
 # direct methods
-.method constructor <init>(Ljava/lang/reflect/Method;)V
-    .registers 2
+.method constructor <init>(Ljava/lang/reflect/Method;I)V
+    .registers 3
 
     .prologue
-    .line 63
+    .line 67
     iput-object p1, p0, Lcom/google/gson/internal/UnsafeAllocator$2;->val$newInstance:Ljava/lang/reflect/Method;
+
+    iput p2, p0, Lcom/google/gson/internal/UnsafeAllocator$2;->val$constructorId:I
 
     invoke-direct {p0}, Lcom/google/gson/internal/UnsafeAllocator;-><init>()V
 
@@ -52,7 +56,7 @@
     .end annotation
 
     .prologue
-    .line 67
+    .line 71
     .local p1, "c":Ljava/lang/Class;, "Ljava/lang/Class<TT;>;"
     iget-object v0, p0, Lcom/google/gson/internal/UnsafeAllocator$2;->val$newInstance:Ljava/lang/reflect/Method;
 
@@ -68,7 +72,11 @@
 
     const/4 v3, 0x1
 
-    const-class v4, Ljava/lang/Object;
+    iget v4, p0, Lcom/google/gson/internal/UnsafeAllocator$2;->val$constructorId:I
+
+    invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v4
 
     aput-object v4, v2, v3
 

@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/google/gson/TreeTypeAdapter$1;,
         Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;
     }
 .end annotation
@@ -65,7 +64,7 @@
 
 
 # direct methods
-.method private constructor <init>(Lcom/google/gson/JsonSerializer;Lcom/google/gson/JsonDeserializer;Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapterFactory;)V
+.method constructor <init>(Lcom/google/gson/JsonSerializer;Lcom/google/gson/JsonDeserializer;Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapterFactory;)V
     .registers 6
     .param p3, "gson"    # Lcom/google/gson/Gson;
     .param p5, "skipPast"    # Lcom/google/gson/TypeAdapterFactory;
@@ -111,23 +110,6 @@
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcom/google/gson/JsonSerializer;Lcom/google/gson/JsonDeserializer;Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapterFactory;Lcom/google/gson/TreeTypeAdapter$1;)V
-    .registers 7
-    .param p1, "x0"    # Lcom/google/gson/JsonSerializer;
-    .param p2, "x1"    # Lcom/google/gson/JsonDeserializer;
-    .param p3, "x2"    # Lcom/google/gson/Gson;
-    .param p4, "x3"    # Lcom/google/gson/reflect/TypeToken;
-    .param p5, "x4"    # Lcom/google/gson/TypeAdapterFactory;
-    .param p6, "x5"    # Lcom/google/gson/TreeTypeAdapter$1;
-
-    .prologue
-    .line 31
-    .local p0, "this":Lcom/google/gson/TreeTypeAdapter;, "Lcom/google/gson/TreeTypeAdapter<TT;>;"
-    invoke-direct/range {p0 .. p5}, Lcom/google/gson/TreeTypeAdapter;-><init>(Lcom/google/gson/JsonSerializer;Lcom/google/gson/JsonDeserializer;Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapterFactory;)V
-
-    return-void
-.end method
-
 .method private delegate()Lcom/google/gson/TypeAdapter;
     .registers 5
     .annotation system Ldalvik/annotation/Signature;
@@ -147,10 +129,12 @@
     .local v0, "d":Lcom/google/gson/TypeAdapter;, "Lcom/google/gson/TypeAdapter<TT;>;"
     if-eqz v0, :cond_5
 
+    .line 78
     .end local v0    # "d":Lcom/google/gson/TypeAdapter;, "Lcom/google/gson/TypeAdapter<TT;>;"
     :goto_4
     return-object v0
 
+    .line 76
     .restart local v0    # "d":Lcom/google/gson/TypeAdapter;, "Lcom/google/gson/TypeAdapter<TT;>;"
     :cond_5
     iget-object v1, p0, Lcom/google/gson/TreeTypeAdapter;->gson:Lcom/google/gson/Gson;
@@ -159,6 +143,7 @@
 
     iget-object v3, p0, Lcom/google/gson/TreeTypeAdapter;->typeToken:Lcom/google/gson/reflect/TypeToken;
 
+    .line 78
     invoke-virtual {v1, v2, v3}, Lcom/google/gson/Gson;->getDelegateAdapter(Lcom/google/gson/TypeAdapterFactory;Lcom/google/gson/reflect/TypeToken;)Lcom/google/gson/TypeAdapter;
 
     move-result-object v0
@@ -170,7 +155,7 @@
 .end method
 
 .method public static newFactory(Lcom/google/gson/reflect/TypeToken;Ljava/lang/Object;)Lcom/google/gson/TypeAdapterFactory;
-    .registers 8
+    .registers 5
     .param p1, "typeAdapter"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -184,27 +169,21 @@
     .end annotation
 
     .prologue
-    .local p0, "exactType":Lcom/google/gson/reflect/TypeToken;, "Lcom/google/gson/reflect/TypeToken<*>;"
-    const/4 v4, 0x0
-
     .line 85
+    .local p0, "exactType":Lcom/google/gson/reflect/TypeToken;, "Lcom/google/gson/reflect/TypeToken<*>;"
     new-instance v0, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;
 
-    const/4 v3, 0x0
+    const/4 v1, 0x0
 
-    move-object v1, p1
+    const/4 v2, 0x0
 
-    move-object v2, p0
-
-    move-object v5, v4
-
-    invoke-direct/range {v0 .. v5}, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;-><init>(Ljava/lang/Object;Lcom/google/gson/reflect/TypeToken;ZLjava/lang/Class;Lcom/google/gson/TreeTypeAdapter$1;)V
+    invoke-direct {v0, p1, p0, v1, v2}, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;-><init>(Ljava/lang/Object;Lcom/google/gson/reflect/TypeToken;ZLjava/lang/Class;)V
 
     return-object v0
 .end method
 
 .method public static newFactoryWithMatchRawType(Lcom/google/gson/reflect/TypeToken;Ljava/lang/Object;)Lcom/google/gson/TypeAdapterFactory;
-    .registers 8
+    .registers 5
     .param p1, "typeAdapter"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -218,47 +197,41 @@
     .end annotation
 
     .prologue
-    .local p0, "exactType":Lcom/google/gson/reflect/TypeToken;, "Lcom/google/gson/reflect/TypeToken<*>;"
-    const/4 v4, 0x0
-
     .line 95
+    .local p0, "exactType":Lcom/google/gson/reflect/TypeToken;, "Lcom/google/gson/reflect/TypeToken<*>;"
     invoke-virtual {p0}, Lcom/google/gson/reflect/TypeToken;->getType()Ljava/lang/reflect/Type;
-
-    move-result-object v0
-
-    invoke-virtual {p0}, Lcom/google/gson/reflect/TypeToken;->getRawType()Ljava/lang/Class;
 
     move-result-object v1
 
-    if-ne v0, v1, :cond_15
+    invoke-virtual {p0}, Lcom/google/gson/reflect/TypeToken;->getRawType()Ljava/lang/Class;
 
-    const/4 v3, 0x1
+    move-result-object v2
+
+    if-ne v1, v2, :cond_12
+
+    const/4 v0, 0x1
 
     .line 96
-    .local v3, "matchRawType":Z
-    :goto_c
-    new-instance v0, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;
+    .local v0, "matchRawType":Z
+    :goto_b
+    new-instance v1, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;
 
-    move-object v1, p1
+    const/4 v2, 0x0
 
-    move-object v2, p0
+    invoke-direct {v1, p1, p0, v0, v2}, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;-><init>(Ljava/lang/Object;Lcom/google/gson/reflect/TypeToken;ZLjava/lang/Class;)V
 
-    move-object v5, v4
-
-    invoke-direct/range {v0 .. v5}, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;-><init>(Ljava/lang/Object;Lcom/google/gson/reflect/TypeToken;ZLjava/lang/Class;Lcom/google/gson/TreeTypeAdapter$1;)V
-
-    return-object v0
+    return-object v1
 
     .line 95
-    .end local v3    # "matchRawType":Z
-    :cond_15
-    const/4 v3, 0x0
+    .end local v0    # "matchRawType":Z
+    :cond_12
+    const/4 v0, 0x0
 
-    goto :goto_c
+    goto :goto_b
 .end method
 
 .method public static newTypeHierarchyFactory(Ljava/lang/Class;Ljava/lang/Object;)Lcom/google/gson/TypeAdapterFactory;
-    .registers 8
+    .registers 5
     .param p1, "typeAdapter"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -272,21 +245,15 @@
     .end annotation
 
     .prologue
-    .local p0, "hierarchyType":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
-    const/4 v2, 0x0
-
     .line 105
+    .local p0, "hierarchyType":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
     new-instance v0, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;
 
-    const/4 v3, 0x0
+    const/4 v1, 0x0
 
-    move-object v1, p1
+    const/4 v2, 0x0
 
-    move-object v4, p0
-
-    move-object v5, v2
-
-    invoke-direct/range {v0 .. v5}, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;-><init>(Ljava/lang/Object;Lcom/google/gson/reflect/TypeToken;ZLjava/lang/Class;Lcom/google/gson/TreeTypeAdapter$1;)V
+    invoke-direct {v0, p1, v1, v2, p0}, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;-><init>(Ljava/lang/Object;Lcom/google/gson/reflect/TypeToken;ZLjava/lang/Class;)V
 
     return-object v0
 .end method

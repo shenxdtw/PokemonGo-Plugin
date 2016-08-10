@@ -1,5 +1,5 @@
 .class final Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;
-.super Ljava/lang/Object;
+.super Ljava/util/concurrent/atomic/AtomicLong;
 .source "OnSubscribeFromIterable.java"
 
 # interfaces
@@ -21,23 +21,14 @@
         "<T:",
         "Ljava/lang/Object;",
         ">",
-        "Ljava/lang/Object;",
+        "Ljava/util/concurrent/atomic/AtomicLong;",
         "Lrx/Producer;"
     }
 .end annotation
 
 
 # static fields
-.field private static final REQUESTED_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/atomic/AtomicLongFieldUpdater",
-            "<",
-            "Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;",
-            ">;"
-        }
-    .end annotation
-.end field
+.field private static final serialVersionUID:J = -0x7928e15851eba4daL
 
 
 # instance fields
@@ -59,30 +50,10 @@
     .end annotation
 .end field
 
-.field private volatile requested:J
-
 
 # direct methods
-.method static constructor <clinit>()V
-    .registers 2
-
-    .prologue
-    .line 59
-    const-class v0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;
-
-    const-string v1, "requested"
-
-    invoke-static {v0, v1}, Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->REQUESTED_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    return-void
-.end method
-
-.method private constructor <init>(Lrx/Subscriber;Ljava/util/Iterator;)V
-    .registers 5
+.method constructor <init>(Lrx/Subscriber;Ljava/util/Iterator;)V
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -94,45 +65,83 @@
     .end annotation
 
     .prologue
-    .line 61
+    .line 58
     .local p0, "this":Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;, "Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer<TT;>;"
     .local p1, "o":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     .local p2, "it":Ljava/util/Iterator;, "Ljava/util/Iterator<+TT;>;"
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Ljava/util/concurrent/atomic/AtomicLong;-><init>()V
 
-    .line 57
-    const-wide/16 v0, 0x0
-
-    iput-wide v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->requested:J
-
-    .line 62
+    .line 59
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->o:Lrx/Subscriber;
 
-    .line 63
+    .line 60
     iput-object p2, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->it:Ljava/util/Iterator;
 
-    .line 64
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/Subscriber;Ljava/util/Iterator;Lrx/internal/operators/OnSubscribeFromIterable$1;)V
-    .registers 4
-    .param p1, "x0"    # Lrx/Subscriber;
-    .param p2, "x1"    # Ljava/util/Iterator;
-    .param p3, "x2"    # Lrx/internal/operators/OnSubscribeFromIterable$1;
-
-    .prologue
-    .line 53
-    .local p0, "this":Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;, "Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer<TT;>;"
-    invoke-direct {p0, p1, p2}, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;-><init>(Lrx/Subscriber;Ljava/util/Iterator;)V
-
+    .line 61
     return-void
 .end method
 
 
 # virtual methods
+.method fastpath()V
+    .registers 4
+
+    .prologue
+    .line 120
+    .local p0, "this":Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;, "Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer<TT;>;"
+    iget-object v1, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->o:Lrx/Subscriber;
+
+    .line 121
+    .local v1, "o":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
+    iget-object v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->it:Ljava/util/Iterator;
+
+    .line 124
+    .local v0, "it":Ljava/util/Iterator;, "Ljava/util/Iterator<+TT;>;"
+    :goto_4
+    invoke-virtual {v1}, Lrx/Subscriber;->isUnsubscribed()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_b
+
+    .line 133
+    :cond_a
+    :goto_a
+    return-void
+
+    .line 126
+    :cond_b
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_19
+
+    .line 127
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+
+    goto :goto_4
+
+    .line 128
+    :cond_19
+    invoke-virtual {v1}, Lrx/Subscriber;->isUnsubscribed()Z
+
+    move-result v2
+
+    if-nez v2, :cond_a
+
+    .line 129
+    invoke-virtual {v1}, Lrx/Subscriber;->onCompleted()V
+
+    goto :goto_a
+.end method
+
 .method public request(J)V
-    .registers 16
+    .registers 10
     .param p1, "n"    # J
 
     .prologue
@@ -141,182 +150,146 @@
 
     const-wide/16 v2, 0x0
 
-    .line 68
-    iget-wide v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->requested:J
+    .line 65
+    invoke-virtual {p0}, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->get()J
+
+    move-result-wide v0
 
     cmp-long v0, v0, v4
 
-    if-nez v0, :cond_e
-
-    .line 127
-    :cond_d
-    :goto_d
-    return-void
-
-    .line 72
-    :cond_e
-    cmp-long v0, p1, v4
-
-    if-nez v0, :cond_45
-
-    sget-object v0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->REQUESTED_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    move-object v1, p0
-
-    invoke-virtual/range {v0 .. v5}, Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;->compareAndSet(Ljava/lang/Object;JJ)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_45
+    if-nez v0, :cond_10
 
     .line 76
-    :goto_1b
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->o:Lrx/Subscriber;
+    :cond_f
+    :goto_f
+    return-void
 
-    invoke-virtual {v0}, Lrx/Subscriber;->isUnsubscribed()Z
+    .line 69
+    :cond_10
+    cmp-long v0, p1, v4
 
-    move-result v0
+    if-nez v0, :cond_1e
 
-    if-nez v0, :cond_d
-
-    .line 78
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->it:Ljava/util/Iterator;
-
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+    invoke-virtual {p0, v2, v3, v4, v5}, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->compareAndSet(JJ)Z
 
     move-result v0
 
-    if-eqz v0, :cond_37
+    if-eqz v0, :cond_1e
 
-    .line 79
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->o:Lrx/Subscriber;
+    .line 70
+    invoke-virtual {p0}, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->fastpath()V
 
-    iget-object v1, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->it:Ljava/util/Iterator;
+    goto :goto_f
 
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
-
-    goto :goto_1b
-
-    .line 80
-    :cond_37
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->o:Lrx/Subscriber;
-
-    invoke-virtual {v0}, Lrx/Subscriber;->isUnsubscribed()Z
-
-    move-result v0
-
-    if-nez v0, :cond_d
-
-    .line 81
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->o:Lrx/Subscriber;
-
-    invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
-
-    goto :goto_d
-
-    .line 88
-    :cond_45
+    .line 72
+    :cond_1e
     cmp-long v0, p1, v2
 
-    if-lez v0, :cond_d
+    if-lez v0, :cond_f
 
-    .line 90
-    sget-object v0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->REQUESTED_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    invoke-static {v0, p0, p1, p2}, Lrx/internal/operators/BackpressureUtils;->getAndAddRequest(Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;Ljava/lang/Object;J)J
-
-    move-result-wide v6
-
-    .line 91
-    .local v6, "_c":J
-    cmp-long v0, v6, v2
-
-    if-nez v0, :cond_d
-
-    .line 99
-    :cond_53
-    iget-wide v10, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->requested:J
-
-    .line 100
-    .local v10, "r":J
-    move-wide v8, v10
-
-    .line 102
-    .local v8, "numToEmit":J
-    :goto_56
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->o:Lrx/Subscriber;
-
-    invoke-virtual {v0}, Lrx/Subscriber;->isUnsubscribed()Z
-
-    move-result v0
-
-    if-nez v0, :cond_d
-
-    .line 104
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->it:Ljava/util/Iterator;
-
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_79
-
-    .line 105
-    const-wide/16 v0, 0x1
-
-    sub-long/2addr v8, v0
-
-    cmp-long v0, v8, v2
-
-    if-ltz v0, :cond_87
-
-    .line 106
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->o:Lrx/Subscriber;
-
-    iget-object v1, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->it:Ljava/util/Iterator;
-
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
-
-    goto :goto_56
-
-    .line 109
-    :cond_79
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->o:Lrx/Subscriber;
-
-    invoke-virtual {v0}, Lrx/Subscriber;->isUnsubscribed()Z
-
-    move-result v0
-
-    if-nez v0, :cond_d
-
-    .line 110
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->o:Lrx/Subscriber;
-
-    invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
-
-    goto :goto_d
-
-    .line 117
-    :cond_87
-    sget-object v0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->REQUESTED_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    neg-long v4, v10
-
-    invoke-virtual {v0, p0, v4, v5}, Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;->addAndGet(Ljava/lang/Object;J)J
+    invoke-static {p0, p1, p2}, Lrx/internal/operators/BackpressureUtils;->getAndAddRequest(Ljava/util/concurrent/atomic/AtomicLong;J)J
 
     move-result-wide v0
 
     cmp-long v0, v0, v2
 
-    if-nez v0, :cond_53
+    if-nez v0, :cond_f
 
-    goto/16 :goto_d
+    .line 73
+    invoke-virtual {p0, p1, p2}, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->slowpath(J)V
+
+    goto :goto_f
+.end method
+
+.method slowpath(J)V
+    .registers 14
+    .param p1, "n"    # J
+
+    .prologue
+    .local p0, "this":Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;, "Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer<TT;>;"
+    const-wide/16 v8, 0x0
+
+    .line 80
+    iget-object v1, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->o:Lrx/Subscriber;
+
+    .line 81
+    .local v1, "o":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
+    iget-object v0, p0, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->it:Ljava/util/Iterator;
+
+    .line 83
+    .local v0, "it":Ljava/util/Iterator;, "Ljava/util/Iterator<+TT;>;"
+    move-wide v4, p1
+
+    .line 91
+    .local v4, "r":J
+    :cond_7
+    move-wide v2, v4
+
+    .line 93
+    .local v2, "numToEmit":J
+    :goto_8
+    invoke-virtual {v1}, Lrx/Subscriber;->isUnsubscribed()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_f
+
+    .line 112
+    :cond_e
+    :goto_e
+    return-void
+
+    .line 95
+    :cond_f
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_24
+
+    .line 96
+    const-wide/16 v6, 0x1
+
+    sub-long/2addr v2, v6
+
+    cmp-long v6, v2, v8
+
+    if-ltz v6, :cond_2e
+
+    .line 97
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v6
+
+    invoke-virtual {v1, v6}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+
+    goto :goto_8
+
+    .line 100
+    :cond_24
+    invoke-virtual {v1}, Lrx/Subscriber;->isUnsubscribed()Z
+
+    move-result v6
+
+    if-nez v6, :cond_e
+
+    .line 101
+    invoke-virtual {v1}, Lrx/Subscriber;->onCompleted()V
+
+    goto :goto_e
+
+    .line 108
+    :cond_2e
+    neg-long v6, v4
+
+    invoke-virtual {p0, v6, v7}, Lrx/internal/operators/OnSubscribeFromIterable$IterableProducer;->addAndGet(J)J
+
+    move-result-wide v4
+
+    .line 109
+    cmp-long v6, v4, v8
+
+    if-nez v6, :cond_7
+
+    goto :goto_e
 .end method

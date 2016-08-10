@@ -26,7 +26,7 @@
 
 
 # instance fields
-.field private final defaultValue:Ljava/lang/Object;
+.field final defaultValue:Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "TT;"
@@ -34,9 +34,9 @@
     .end annotation
 .end field
 
-.field private final hasDefault:Z
+.field final hasDefault:Z
 
-.field private final index:I
+.field final index:I
 
 
 # direct methods
@@ -134,39 +134,6 @@
 
     .line 48
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorElementAt;)I
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorElementAt;
-
-    .prologue
-    .line 27
-    iget v0, p0, Lrx/internal/operators/OperatorElementAt;->index:I
-
-    return v0
-.end method
-
-.method static synthetic access$100(Lrx/internal/operators/OperatorElementAt;)Z
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorElementAt;
-
-    .prologue
-    .line 27
-    iget-boolean v0, p0, Lrx/internal/operators/OperatorElementAt;->hasDefault:Z
-
-    return v0
-.end method
-
-.method static synthetic access$200(Lrx/internal/operators/OperatorElementAt;)Ljava/lang/Object;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorElementAt;
-
-    .prologue
-    .line 27
-    iget-object v0, p0, Lrx/internal/operators/OperatorElementAt;->defaultValue:Ljava/lang/Object;
-
-    return-object v0
 .end method
 
 

@@ -24,6 +24,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$1;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$1;
 
     .prologue
     .line 58
@@ -36,17 +37,17 @@
 
 
 # virtual methods
-.method public create(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/upsight/android/analytics/internal/action/Action;
+.method public create(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)Lcom/upsight/android/analytics/internal/action/Action;
     .registers 6
     .param p1, "actionContext"    # Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;
     .param p2, "actionType"    # Ljava/lang/String;
-    .param p3, "actionParams"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p3, "actionParams"    # Lcom/google/gson/JsonObject;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
             "Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;",
             "Ljava/lang/String;",
-            "Lcom/fasterxml/jackson/databind/JsonNode;",
+            "Lcom/google/gson/JsonObject;",
             ")",
             "Lcom/upsight/android/analytics/internal/action/Action",
             "<",
@@ -62,7 +63,7 @@
 
     const/4 v1, 0x0
 
-    invoke-direct {v0, p1, p2, p3, v1}, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmEnumerate;-><init>(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$1;)V
+    invoke-direct {v0, p1, p2, p3, v1}, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmEnumerate;-><init>(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$1;)V
 
     return-object v0
 .end method

@@ -34,27 +34,13 @@
     .end annotation
 .end field
 
-.field private final supertypeInjector:Ldagger/MembersInjector;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ldagger/MembersInjector",
-            "<",
-            "Lcom/upsight/android/UpsightExtension",
-            "<",
-            "Lcom/upsight/android/googleadvertisingid/UpsightGoogleAdvertisingProviderComponent;",
-            "Ljava/lang/Void;",
-            ">;>;"
-        }
-    .end annotation
-.end field
-
 
 # direct methods
 .method static constructor <clinit>()V
     .registers 1
 
     .prologue
-    .line 9
+    .line 8
     const-class v0, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -76,18 +62,11 @@
     goto :goto_9
 .end method
 
-.method public constructor <init>(Ldagger/MembersInjector;Ljavax/inject/Provider;)V
-    .registers 4
+.method public constructor <init>(Ljavax/inject/Provider;)V
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Ldagger/MembersInjector",
-            "<",
-            "Lcom/upsight/android/UpsightExtension",
-            "<",
-            "Lcom/upsight/android/googleadvertisingid/UpsightGoogleAdvertisingProviderComponent;",
-            "Ljava/lang/Void;",
-            ">;>;",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/upsight/android/googleadvertisingid/internal/GooglePlayAdvertisingProvider;",
@@ -96,12 +75,11 @@
     .end annotation
 
     .prologue
-    .line 14
-    .local p1, "supertypeInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Lcom/upsight/android/UpsightExtension<Lcom/upsight/android/googleadvertisingid/UpsightGoogleAdvertisingProviderComponent;Ljava/lang/Void;>;>;"
-    .local p2, "mAdvertisingIdProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/googleadvertisingid/internal/GooglePlayAdvertisingProvider;>;"
+    .line 17
+    .local p1, "mAdvertisingIdProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/googleadvertisingid/internal/GooglePlayAdvertisingProvider;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 15
+    .line 18
     sget-boolean v0, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -114,43 +92,19 @@
 
     throw v0
 
-    .line 16
-    :cond_f
-    iput-object p1, p0, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;->supertypeInjector:Ldagger/MembersInjector;
-
-    .line 17
-    sget-boolean v0, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;->$assertionsDisabled:Z
-
-    if-nez v0, :cond_1d
-
-    if-nez p2, :cond_1d
-
-    new-instance v0, Ljava/lang/AssertionError;
-
-    invoke-direct {v0}, Ljava/lang/AssertionError;-><init>()V
-
-    throw v0
-
-    .line 18
-    :cond_1d
-    iput-object p2, p0, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;->mAdvertisingIdProvider:Ljavax/inject/Provider;
-
     .line 19
+    :cond_f
+    iput-object p1, p0, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;->mAdvertisingIdProvider:Ljavax/inject/Provider;
+
+    .line 20
     return-void
 .end method
 
-.method public static create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/MembersInjector;
-    .registers 3
+.method public static create(Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Ldagger/MembersInjector",
-            "<",
-            "Lcom/upsight/android/UpsightExtension",
-            "<",
-            "Lcom/upsight/android/googleadvertisingid/UpsightGoogleAdvertisingProviderComponent;",
-            "Ljava/lang/Void;",
-            ">;>;",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/upsight/android/googleadvertisingid/internal/GooglePlayAdvertisingProvider;",
@@ -163,14 +117,42 @@
     .end annotation
 
     .prologue
-    .line 31
-    .local p0, "supertypeInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Lcom/upsight/android/UpsightExtension<Lcom/upsight/android/googleadvertisingid/UpsightGoogleAdvertisingProviderComponent;Ljava/lang/Void;>;>;"
-    .local p1, "mAdvertisingIdProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/googleadvertisingid/internal/GooglePlayAdvertisingProvider;>;"
+    .line 24
+    .local p0, "mAdvertisingIdProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/googleadvertisingid/internal/GooglePlayAdvertisingProvider;>;"
     new-instance v0, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;
 
-    invoke-direct {v0, p0, p1}, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;-><init>(Ldagger/MembersInjector;Ljavax/inject/Provider;)V
+    invoke-direct {v0, p0}, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;-><init>(Ljavax/inject/Provider;)V
 
     return-object v0
+.end method
+
+.method public static injectMAdvertisingIdProvider(Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension;Ljavax/inject/Provider;)V
+    .registers 3
+    .param p0, "instance"    # Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/googleadvertisingid/internal/GooglePlayAdvertisingProvider;",
+            ">;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 38
+    .local p1, "mAdvertisingIdProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/googleadvertisingid/internal/GooglePlayAdvertisingProvider;>;"
+    invoke-interface {p1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/googleadvertisingid/internal/GooglePlayAdvertisingProvider;
+
+    iput-object v0, p0, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension;->mAdvertisingIdProvider:Lcom/upsight/android/googleadvertisingid/internal/GooglePlayAdvertisingProvider;
+
+    .line 39
+    return-void
 .end method
 
 
@@ -180,10 +162,10 @@
     .param p1, "instance"    # Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension;
 
     .prologue
-    .line 23
+    .line 29
     if-nez p1, :cond_a
 
-    .line 24
+    .line 30
     new-instance v0, Ljava/lang/NullPointerException;
 
     const-string v1, "Cannot inject members into a null reference"
@@ -192,13 +174,8 @@
 
     throw v0
 
-    .line 26
+    .line 32
     :cond_a
-    iget-object v0, p0, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;->supertypeInjector:Ldagger/MembersInjector;
-
-    invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
-
-    .line 27
     iget-object v0, p0, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;->mAdvertisingIdProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -209,19 +186,17 @@
 
     iput-object v0, p1, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension;->mAdvertisingIdProvider:Lcom/upsight/android/googleadvertisingid/internal/GooglePlayAdvertisingProvider;
 
-    .line 28
+    .line 33
     return-void
 .end method
 
 .method public bridge synthetic injectMembers(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 9
+    .line 8
     check-cast p1, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;->injectMembers(Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension;)V
 
     return-void

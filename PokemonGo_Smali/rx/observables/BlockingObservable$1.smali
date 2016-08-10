@@ -36,7 +36,7 @@
     .registers 5
 
     .prologue
-    .line 101
+    .line 102
     .local p0, "this":Lrx/observables/BlockingObservable$1;, "Lrx/observables/BlockingObservable.1;"
     iput-object p1, p0, Lrx/observables/BlockingObservable$1;->this$0:Lrx/observables/BlockingObservable;
 
@@ -57,13 +57,13 @@
     .registers 2
 
     .prologue
-    .line 104
+    .line 105
     .local p0, "this":Lrx/observables/BlockingObservable$1;, "Lrx/observables/BlockingObservable.1;"
     iget-object v0, p0, Lrx/observables/BlockingObservable$1;->val$latch:Ljava/util/concurrent/CountDownLatch;
 
     invoke-virtual {v0}, Ljava/util/concurrent/CountDownLatch;->countDown()V
 
-    .line 105
+    .line 106
     return-void
 .end method
 
@@ -72,18 +72,18 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 117
+    .line 118
     .local p0, "this":Lrx/observables/BlockingObservable$1;, "Lrx/observables/BlockingObservable.1;"
     iget-object v0, p0, Lrx/observables/BlockingObservable$1;->val$exceptionFromOnError:Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-virtual {v0, p1}, Ljava/util/concurrent/atomic/AtomicReference;->set(Ljava/lang/Object;)V
 
-    .line 118
+    .line 119
     iget-object v0, p0, Lrx/observables/BlockingObservable$1;->val$latch:Ljava/util/concurrent/CountDownLatch;
 
     invoke-virtual {v0}, Ljava/util/concurrent/CountDownLatch;->countDown()V
 
-    .line 119
+    .line 120
     return-void
 .end method
 
@@ -96,13 +96,13 @@
     .end annotation
 
     .prologue
-    .line 123
+    .line 124
     .local p0, "this":Lrx/observables/BlockingObservable$1;, "Lrx/observables/BlockingObservable.1;"
     .local p1, "args":Ljava/lang/Object;, "TT;"
     iget-object v0, p0, Lrx/observables/BlockingObservable$1;->val$onNext:Lrx/functions/Action1;
 
     invoke-interface {v0, p1}, Lrx/functions/Action1;->call(Ljava/lang/Object;)V
 
-    .line 124
+    .line 125
     return-void
 .end method

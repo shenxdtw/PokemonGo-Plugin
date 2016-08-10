@@ -24,6 +24,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/internal/ContextModule;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/internal/ContextModule;
 
     .prologue
     .line 47

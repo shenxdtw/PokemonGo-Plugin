@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/schedulers/TestScheduler$1;,
         Lrx/schedulers/TestScheduler$InnerTestScheduler;,
         Lrx/schedulers/TestScheduler$CompareActionsByTime;,
         Lrx/schedulers/TestScheduler$TimedAction;
@@ -15,11 +14,11 @@
 
 
 # static fields
-.field private static counter:J
+.field static counter:J
 
 
 # instance fields
-.field private final queue:Ljava/util/Queue;
+.field final queue:Ljava/util/Queue;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/Queue",
@@ -30,7 +29,7 @@
     .end annotation
 .end field
 
-.field private time:J
+.field time:J
 
 
 # direct methods
@@ -47,7 +46,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 5
+    .registers 4
 
     .prologue
     .line 33
@@ -60,54 +59,14 @@
 
     new-instance v2, Lrx/schedulers/TestScheduler$CompareActionsByTime;
 
-    const/4 v3, 0x0
-
-    invoke-direct {v2, v3}, Lrx/schedulers/TestScheduler$CompareActionsByTime;-><init>(Lrx/schedulers/TestScheduler$1;)V
+    invoke-direct {v2}, Lrx/schedulers/TestScheduler$CompareActionsByTime;-><init>()V
 
     invoke-direct {v0, v1, v2}, Ljava/util/PriorityQueue;-><init>(ILjava/util/Comparator;)V
 
     iput-object v0, p0, Lrx/schedulers/TestScheduler;->queue:Ljava/util/Queue;
 
-    .line 131
+    .line 134
     return-void
-.end method
-
-.method static synthetic access$108()J
-    .registers 4
-
-    .prologue
-    .line 33
-    sget-wide v0, Lrx/schedulers/TestScheduler;->counter:J
-
-    const-wide/16 v2, 0x1
-
-    add-long/2addr v2, v0
-
-    sput-wide v2, Lrx/schedulers/TestScheduler;->counter:J
-
-    return-wide v0
-.end method
-
-.method static synthetic access$700(Lrx/schedulers/TestScheduler;)J
-    .registers 3
-    .param p0, "x0"    # Lrx/schedulers/TestScheduler;
-
-    .prologue
-    .line 33
-    iget-wide v0, p0, Lrx/schedulers/TestScheduler;->time:J
-
-    return-wide v0
-.end method
-
-.method static synthetic access$900(Lrx/schedulers/TestScheduler;)Ljava/util/Queue;
-    .registers 2
-    .param p0, "x0"    # Lrx/schedulers/TestScheduler;
-
-    .prologue
-    .line 33
-    iget-object v0, p0, Lrx/schedulers/TestScheduler;->queue:Ljava/util/Queue;
-
-    return-object v0
 .end method
 
 .method private triggerActions(J)V
@@ -115,7 +74,7 @@
     .param p1, "targetTimeInNanos"    # J
 
     .prologue
-    .line 109
+    .line 112
     :cond_0
     :goto_0
     iget-object v1, p0, Lrx/schedulers/TestScheduler;->queue:Ljava/util/Queue;
@@ -124,9 +83,9 @@
 
     move-result v1
 
-    if-nez v1, :cond_18
+    if-nez v1, :cond_16
 
-    .line 110
+    .line 113
     iget-object v1, p0, Lrx/schedulers/TestScheduler;->queue:Ljava/util/Queue;
 
     invoke-interface {v1}, Ljava/util/Queue;->peek()Ljava/lang/Object;
@@ -135,54 +94,45 @@
 
     check-cast v0, Lrx/schedulers/TestScheduler$TimedAction;
 
-    .line 111
+    .line 114
     .local v0, "current":Lrx/schedulers/TestScheduler$TimedAction;
-    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->time:J
-    invoke-static {v0}, Lrx/schedulers/TestScheduler$TimedAction;->access$200(Lrx/schedulers/TestScheduler$TimedAction;)J
-
-    move-result-wide v2
+    iget-wide v2, v0, Lrx/schedulers/TestScheduler$TimedAction;->time:J
 
     cmp-long v1, v2, p1
 
-    if-lez v1, :cond_1b
+    if-lez v1, :cond_19
 
-    .line 123
+    .line 126
     .end local v0    # "current":Lrx/schedulers/TestScheduler$TimedAction;
-    :cond_18
+    :cond_16
     iput-wide p1, p0, Lrx/schedulers/TestScheduler;->time:J
 
-    .line 124
+    .line 127
     return-void
 
-    .line 115
+    .line 118
     .restart local v0    # "current":Lrx/schedulers/TestScheduler$TimedAction;
-    :cond_1b
-    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->time:J
-    invoke-static {v0}, Lrx/schedulers/TestScheduler$TimedAction;->access$200(Lrx/schedulers/TestScheduler$TimedAction;)J
-
-    move-result-wide v2
+    :cond_19
+    iget-wide v2, v0, Lrx/schedulers/TestScheduler$TimedAction;->time:J
 
     const-wide/16 v4, 0x0
 
     cmp-long v1, v2, v4
 
-    if-nez v1, :cond_40
+    if-nez v1, :cond_38
 
     iget-wide v2, p0, Lrx/schedulers/TestScheduler;->time:J
 
-    :goto_27
+    :goto_23
     iput-wide v2, p0, Lrx/schedulers/TestScheduler;->time:J
 
-    .line 116
+    .line 119
     iget-object v1, p0, Lrx/schedulers/TestScheduler;->queue:Ljava/util/Queue;
 
     invoke-interface {v1}, Ljava/util/Queue;->remove()Ljava/lang/Object;
 
-    .line 119
-    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->scheduler:Lrx/Scheduler$Worker;
-    invoke-static {v0}, Lrx/schedulers/TestScheduler$TimedAction;->access$400(Lrx/schedulers/TestScheduler$TimedAction;)Lrx/Scheduler$Worker;
-
-    move-result-object v1
+    .line 122
+    iget-object v1, v0, Lrx/schedulers/TestScheduler$TimedAction;->scheduler:Lrx/Scheduler$Worker;
 
     invoke-virtual {v1}, Lrx/Scheduler$Worker;->isUnsubscribed()Z
 
@@ -190,24 +140,18 @@
 
     if-nez v1, :cond_0
 
-    .line 120
-    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->action:Lrx/functions/Action0;
-    invoke-static {v0}, Lrx/schedulers/TestScheduler$TimedAction;->access$500(Lrx/schedulers/TestScheduler$TimedAction;)Lrx/functions/Action0;
-
-    move-result-object v1
+    .line 123
+    iget-object v1, v0, Lrx/schedulers/TestScheduler$TimedAction;->action:Lrx/functions/Action0;
 
     invoke-interface {v1}, Lrx/functions/Action0;->call()V
 
     goto :goto_0
 
-    .line 115
-    :cond_40
-    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->time:J
-    invoke-static {v0}, Lrx/schedulers/TestScheduler$TimedAction;->access$200(Lrx/schedulers/TestScheduler$TimedAction;)J
+    .line 118
+    :cond_38
+    iget-wide v2, v0, Lrx/schedulers/TestScheduler$TimedAction;->time:J
 
-    move-result-wide v2
-
-    goto :goto_27
+    goto :goto_23
 .end method
 
 
@@ -218,7 +162,7 @@
     .param p3, "unit"    # Ljava/util/concurrent/TimeUnit;
 
     .prologue
-    .line 84
+    .line 87
     iget-wide v0, p0, Lrx/schedulers/TestScheduler;->time:J
 
     invoke-virtual {p3, p1, p2}, Ljava/util/concurrent/TimeUnit;->toNanos(J)J
@@ -231,7 +175,7 @@
 
     invoke-virtual {p0, v0, v1, v2}, Lrx/schedulers/TestScheduler;->advanceTimeTo(JLjava/util/concurrent/TimeUnit;)V
 
-    .line 85
+    .line 88
     return-void
 .end method
 
@@ -241,29 +185,27 @@
     .param p3, "unit"    # Ljava/util/concurrent/TimeUnit;
 
     .prologue
-    .line 96
+    .line 99
     invoke-virtual {p3, p1, p2}, Ljava/util/concurrent/TimeUnit;->toNanos(J)J
 
     move-result-wide v0
 
-    .line 97
+    .line 100
     .local v0, "targetTime":J
     invoke-direct {p0, v0, v1}, Lrx/schedulers/TestScheduler;->triggerActions(J)V
 
-    .line 98
+    .line 101
     return-void
 .end method
 
 .method public createWorker()Lrx/Scheduler$Worker;
-    .registers 3
+    .registers 2
 
     .prologue
-    .line 128
+    .line 131
     new-instance v0, Lrx/schedulers/TestScheduler$InnerTestScheduler;
 
-    const/4 v1, 0x0
-
-    invoke-direct {v0, p0, v1}, Lrx/schedulers/TestScheduler$InnerTestScheduler;-><init>(Lrx/schedulers/TestScheduler;Lrx/schedulers/TestScheduler$1;)V
+    invoke-direct {v0, p0}, Lrx/schedulers/TestScheduler$InnerTestScheduler;-><init>(Lrx/schedulers/TestScheduler;)V
 
     return-object v0
 .end method
@@ -272,7 +214,7 @@
     .registers 5
 
     .prologue
-    .line 72
+    .line 75
     sget-object v0, Ljava/util/concurrent/TimeUnit;->NANOSECONDS:Ljava/util/concurrent/TimeUnit;
 
     iget-wide v2, p0, Lrx/schedulers/TestScheduler;->time:J
@@ -288,11 +230,11 @@
     .registers 3
 
     .prologue
-    .line 105
+    .line 108
     iget-wide v0, p0, Lrx/schedulers/TestScheduler;->time:J
 
     invoke-direct {p0, v0, v1}, Lrx/schedulers/TestScheduler;->triggerActions(J)V
 
-    .line 106
+    .line 109
     return-void
 .end method

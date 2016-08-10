@@ -24,38 +24,14 @@
 .end annotation
 
 
-# static fields
-.field static final ACTUAL_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/atomic/AtomicLongFieldUpdater",
-            "<",
-            "Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-.field static final TERMINATED_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater",
-            "<",
-            "Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-
 # instance fields
-.field volatile actual:J
+.field actual:J
 
-.field private final gate:Ljava/lang/Object;
+.field final arbiter:Lrx/internal/producers/ProducerArbiter;
 
-.field private final inner:Lrx/Scheduler$Worker;
+.field final inner:Lrx/Scheduler$Worker;
 
-.field private final other:Lrx/Observable;
+.field final other:Lrx/Observable;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/Observable",
@@ -64,9 +40,9 @@
     .end annotation
 .end field
 
-.field private final serial:Lrx/subscriptions/SerialSubscription;
+.field final serial:Lrx/subscriptions/SerialSubscription;
 
-.field private final serializedSubscriber:Lrx/observers/SerializedSubscriber;
+.field final serializedSubscriber:Lrx/observers/SerializedSubscriber;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/observers/SerializedSubscriber",
@@ -75,9 +51,9 @@
     .end annotation
 .end field
 
-.field volatile terminated:I
+.field terminated:Z
 
-.field private final timeoutStub:Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;
+.field final timeoutStub:Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub",
@@ -88,36 +64,7 @@
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .registers 2
-
-    .prologue
-    .line 97
-    const-class v0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;
-
-    const-string v1, "terminated"
-
-    invoke-static {v0, v1}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->TERMINATED_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    .line 100
-    const-class v0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;
-
-    const-string v1, "actual"
-
-    invoke-static {v0, v1}, Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->ACTUAL_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    return-void
-.end method
-
-.method private constructor <init>(Lrx/observers/SerializedSubscriber;Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;Lrx/subscriptions/SerialSubscription;Lrx/Observable;Lrx/Scheduler$Worker;)V
+.method constructor <init>(Lrx/observers/SerializedSubscriber;Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;Lrx/subscriptions/SerialSubscription;Lrx/Observable;Lrx/Scheduler$Worker;)V
     .registers 7
     .param p3, "serial"    # Lrx/subscriptions/SerialSubscription;
     .param p5, "inner"    # Lrx/Scheduler$Worker;
@@ -137,189 +84,166 @@
     .end annotation
 
     .prologue
-    .line 108
+    .line 105
     .local p0, "this":Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;, "Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber<TT;>;"
     .local p1, "serializedSubscriber":Lrx/observers/SerializedSubscriber;, "Lrx/observers/SerializedSubscriber<TT;>;"
     .local p2, "timeoutStub":Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;, "Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub<TT;>;"
     .local p4, "other":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    invoke-direct {p0, p1}, Lrx/Subscriber;-><init>(Lrx/Subscriber;)V
+    invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
-    .line 84
-    new-instance v0, Ljava/lang/Object;
-
-    invoke-direct {v0}, Ljava/lang/Object;-><init>()V
-
-    iput-object v0, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->gate:Ljava/lang/Object;
-
-    .line 109
+    .line 106
     iput-object p1, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serializedSubscriber:Lrx/observers/SerializedSubscriber;
 
-    .line 110
+    .line 107
     iput-object p2, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->timeoutStub:Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;
 
-    .line 111
+    .line 108
     iput-object p3, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serial:Lrx/subscriptions/SerialSubscription;
 
-    .line 112
+    .line 109
     iput-object p4, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->other:Lrx/Observable;
 
-    .line 113
+    .line 110
     iput-object p5, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->inner:Lrx/Scheduler$Worker;
 
-    .line 114
-    return-void
-.end method
+    .line 111
+    new-instance v0, Lrx/internal/producers/ProducerArbiter;
 
-.method synthetic constructor <init>(Lrx/observers/SerializedSubscriber;Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;Lrx/subscriptions/SerialSubscription;Lrx/Observable;Lrx/Scheduler$Worker;Lrx/internal/operators/OperatorTimeoutBase$1;)V
-    .registers 7
-    .param p1, "x0"    # Lrx/observers/SerializedSubscriber;
-    .param p2, "x1"    # Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;
-    .param p3, "x2"    # Lrx/subscriptions/SerialSubscription;
-    .param p4, "x3"    # Lrx/Observable;
-    .param p5, "x4"    # Lrx/Scheduler$Worker;
-    .param p6, "x5"    # Lrx/internal/operators/OperatorTimeoutBase$1;
+    invoke-direct {v0}, Lrx/internal/producers/ProducerArbiter;-><init>()V
 
-    .prologue
-    .line 80
-    .local p0, "this":Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;, "Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber<TT;>;"
-    invoke-direct/range {p0 .. p5}, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;-><init>(Lrx/observers/SerializedSubscriber;Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;Lrx/subscriptions/SerialSubscription;Lrx/Observable;Lrx/Scheduler$Worker;)V
+    iput-object v0, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->arbiter:Lrx/internal/producers/ProducerArbiter;
 
+    .line 112
     return-void
 .end method
 
 
 # virtual methods
 .method public onCompleted()V
-    .registers 5
+    .registers 3
 
     .prologue
-    .line 147
+    .line 154
     .local p0, "this":Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;, "Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber<TT;>;"
     const/4 v0, 0x0
 
-    .line 148
+    .line 155
     .local v0, "onCompletedWins":Z
-    iget-object v2, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->gate:Ljava/lang/Object;
+    monitor-enter p0
 
-    monitor-enter v2
+    .line 156
+    :try_start_2
+    iget-boolean v1, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->terminated:Z
 
-    .line 149
-    :try_start_4
-    sget-object v1, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->TERMINATED_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
+    if-nez v1, :cond_a
 
-    const/4 v3, 0x1
+    .line 157
+    const/4 v1, 0x1
 
-    invoke-virtual {v1, p0, v3}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->getAndSet(Ljava/lang/Object;I)I
+    iput-boolean v1, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->terminated:Z
 
-    move-result v1
-
-    if-nez v1, :cond_e
-
-    .line 150
+    .line 158
     const/4 v0, 0x1
 
-    .line 152
-    :cond_e
-    monitor-exit v2
-    :try_end_f
-    .catchall {:try_start_4 .. :try_end_f} :catchall_1c
+    .line 160
+    :cond_a
+    monitor-exit p0
+    :try_end_b
+    .catchall {:try_start_2 .. :try_end_b} :catchall_18
 
-    .line 153
-    if-eqz v0, :cond_1b
+    .line 161
+    if-eqz v0, :cond_17
 
-    .line 154
+    .line 162
     iget-object v1, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serial:Lrx/subscriptions/SerialSubscription;
 
     invoke-virtual {v1}, Lrx/subscriptions/SerialSubscription;->unsubscribe()V
 
-    .line 155
+    .line 163
     iget-object v1, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serializedSubscriber:Lrx/observers/SerializedSubscriber;
 
     invoke-virtual {v1}, Lrx/observers/SerializedSubscriber;->onCompleted()V
 
-    .line 157
-    :cond_1b
+    .line 165
+    :cond_17
     return-void
 
-    .line 152
-    :catchall_1c
+    .line 160
+    :catchall_18
     move-exception v1
 
-    :try_start_1d
-    monitor-exit v2
-    :try_end_1e
-    .catchall {:try_start_1d .. :try_end_1e} :catchall_1c
+    :try_start_19
+    monitor-exit p0
+    :try_end_1a
+    .catchall {:try_start_19 .. :try_end_1a} :catchall_18
 
     throw v1
 .end method
 
 .method public onError(Ljava/lang/Throwable;)V
-    .registers 6
+    .registers 4
     .param p1, "error"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 133
+    .line 139
     .local p0, "this":Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;, "Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber<TT;>;"
     const/4 v0, 0x0
 
-    .line 134
+    .line 140
     .local v0, "onErrorWins":Z
-    iget-object v2, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->gate:Ljava/lang/Object;
+    monitor-enter p0
 
-    monitor-enter v2
+    .line 141
+    :try_start_2
+    iget-boolean v1, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->terminated:Z
 
-    .line 135
-    :try_start_4
-    sget-object v1, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->TERMINATED_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
+    if-nez v1, :cond_a
 
-    const/4 v3, 0x1
+    .line 142
+    const/4 v1, 0x1
 
-    invoke-virtual {v1, p0, v3}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->getAndSet(Ljava/lang/Object;I)I
+    iput-boolean v1, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->terminated:Z
 
-    move-result v1
-
-    if-nez v1, :cond_e
-
-    .line 136
+    .line 143
     const/4 v0, 0x1
 
-    .line 138
-    :cond_e
-    monitor-exit v2
-    :try_end_f
-    .catchall {:try_start_4 .. :try_end_f} :catchall_1c
+    .line 145
+    :cond_a
+    monitor-exit p0
+    :try_end_b
+    .catchall {:try_start_2 .. :try_end_b} :catchall_18
 
-    .line 139
-    if-eqz v0, :cond_1b
+    .line 146
+    if-eqz v0, :cond_17
 
-    .line 140
+    .line 147
     iget-object v1, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serial:Lrx/subscriptions/SerialSubscription;
 
     invoke-virtual {v1}, Lrx/subscriptions/SerialSubscription;->unsubscribe()V
 
-    .line 141
+    .line 148
     iget-object v1, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serializedSubscriber:Lrx/observers/SerializedSubscriber;
 
     invoke-virtual {v1, p1}, Lrx/observers/SerializedSubscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 143
-    :cond_1b
+    .line 150
+    :cond_17
     return-void
 
-    .line 138
-    :catchall_1c
+    .line 145
+    :catchall_18
     move-exception v1
 
-    :try_start_1d
-    monitor-exit v2
-    :try_end_1e
-    .catchall {:try_start_1d .. :try_end_1e} :catchall_1c
+    :try_start_19
+    monitor-exit p0
+    :try_end_1a
+    .catchall {:try_start_19 .. :try_end_1a} :catchall_18
 
     throw v1
 .end method
 
 .method public onNext(Ljava/lang/Object;)V
-    .registers 8
+    .registers 10
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -327,175 +251,199 @@
     .end annotation
 
     .prologue
-    .line 118
+    .line 121
     .local p0, "this":Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;, "Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber<TT;>;"
     .local p1, "value":Ljava/lang/Object;, "TT;"
-    const/4 v0, 0x0
+    const/4 v2, 0x0
 
-    .line 119
-    .local v0, "onNextWins":Z
-    iget-object v2, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->gate:Ljava/lang/Object;
-
-    monitor-enter v2
-
-    .line 120
-    :try_start_4
-    iget v1, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->terminated:I
-
-    if-nez v1, :cond_e
-
-    .line 121
-    sget-object v1, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->ACTUAL_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    invoke-virtual {v1, p0}, Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;->incrementAndGet(Ljava/lang/Object;)J
-
-    .line 122
-    const/4 v0, 0x1
+    .line 123
+    .local v2, "onNextWins":Z
+    monitor-enter p0
 
     .line 124
-    :cond_e
-    monitor-exit v2
-    :try_end_f
-    .catchall {:try_start_4 .. :try_end_f} :catchall_2c
+    :try_start_2
+    iget-boolean v3, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->terminated:Z
+
+    if-nez v3, :cond_2b
 
     .line 125
-    if-eqz v0, :cond_2b
-
-    .line 126
-    iget-object v1, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serializedSubscriber:Lrx/observers/SerializedSubscriber;
-
-    invoke-virtual {v1, p1}, Lrx/observers/SerializedSubscriber;->onNext(Ljava/lang/Object;)V
-
-    .line 127
-    iget-object v2, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serial:Lrx/subscriptions/SerialSubscription;
-
-    iget-object v1, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->timeoutStub:Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;
-
     iget-wide v4, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->actual:J
 
-    invoke-static {v4, v5}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
+    const-wide/16 v6, 0x1
+
+    add-long v0, v4, v6
+
+    iput-wide v0, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->actual:J
+
+    .line 126
+    .local v0, "a":J
+    const/4 v2, 0x1
+
+    .line 130
+    :goto_f
+    monitor-exit p0
+    :try_end_10
+    .catchall {:try_start_2 .. :try_end_10} :catchall_2e
+
+    .line 131
+    if-eqz v2, :cond_2a
+
+    .line 132
+    iget-object v3, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serializedSubscriber:Lrx/observers/SerializedSubscriber;
+
+    invoke-virtual {v3, p1}, Lrx/observers/SerializedSubscriber;->onNext(Ljava/lang/Object;)V
+
+    .line 133
+    iget-object v4, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serial:Lrx/subscriptions/SerialSubscription;
+
+    iget-object v3, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->timeoutStub:Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;
+
+    invoke-static {v0, v1}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
+
+    move-result-object v5
+
+    iget-object v6, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->inner:Lrx/Scheduler$Worker;
+
+    invoke-interface {v3, p0, v5, p1, v6}, Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;->call(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v3
 
-    iget-object v4, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->inner:Lrx/Scheduler$Worker;
+    check-cast v3, Lrx/Subscription;
 
-    invoke-interface {v1, p0, v3, p1, v4}, Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;->call(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-virtual {v4, v3}, Lrx/subscriptions/SerialSubscription;->set(Lrx/Subscription;)V
 
-    move-result-object v1
-
-    check-cast v1, Lrx/Subscription;
-
-    invoke-virtual {v2, v1}, Lrx/subscriptions/SerialSubscription;->set(Lrx/Subscription;)V
-
-    .line 129
-    :cond_2b
+    .line 135
+    :cond_2a
     return-void
 
-    .line 124
-    :catchall_2c
-    move-exception v1
+    .line 128
+    .end local v0    # "a":J
+    :cond_2b
+    :try_start_2b
+    iget-wide v0, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->actual:J
 
-    :try_start_2d
-    monitor-exit v2
-    :try_end_2e
-    .catchall {:try_start_2d .. :try_end_2e} :catchall_2c
+    .restart local v0    # "a":J
+    goto :goto_f
 
-    throw v1
+    .line 130
+    .end local v0    # "a":J
+    :catchall_2e
+    move-exception v3
+
+    monitor-exit p0
+    :try_end_30
+    .catchall {:try_start_2b .. :try_end_30} :catchall_2e
+
+    throw v3
 .end method
 
 .method public onTimeout(J)V
-    .registers 12
+    .registers 10
     .param p1, "seqId"    # J
 
     .prologue
-    .line 160
+    .line 168
     .local p0, "this":Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;, "Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber<TT;>;"
     move-wide v0, p1
 
-    .line 161
-    .local v0, "expected":J
-    const/4 v2, 0x0
-
-    .line 162
-    .local v2, "timeoutWins":Z
-    iget-object v4, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->gate:Ljava/lang/Object;
-
-    monitor-enter v4
-
-    .line 163
-    :try_start_5
-    iget-wide v6, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->actual:J
-
-    cmp-long v3, v0, v6
-
-    if-nez v3, :cond_15
-
-    sget-object v3, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->TERMINATED_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    const/4 v5, 0x1
-
-    invoke-virtual {v3, p0, v5}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->getAndSet(Ljava/lang/Object;I)I
-
-    move-result v3
-
-    if-nez v3, :cond_15
-
-    .line 164
-    const/4 v2, 0x1
-
-    .line 166
-    :cond_15
-    monitor-exit v4
-    :try_end_16
-    .catchall {:try_start_5 .. :try_end_16} :catchall_27
-
-    .line 167
-    if-eqz v2, :cond_26
-
-    .line 168
-    iget-object v3, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->other:Lrx/Observable;
-
-    if-nez v3, :cond_2a
-
     .line 169
-    iget-object v3, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serializedSubscriber:Lrx/observers/SerializedSubscriber;
+    .local v0, "expected":J
+    const/4 v3, 0x0
 
-    new-instance v4, Ljava/util/concurrent/TimeoutException;
-
-    invoke-direct {v4}, Ljava/util/concurrent/TimeoutException;-><init>()V
-
-    invoke-virtual {v3, v4}, Lrx/observers/SerializedSubscriber;->onError(Ljava/lang/Throwable;)V
-
-    .line 175
-    :cond_26
-    :goto_26
-    return-void
-
-    .line 166
-    :catchall_27
-    move-exception v3
-
-    :try_start_28
-    monitor-exit v4
-    :try_end_29
-    .catchall {:try_start_28 .. :try_end_29} :catchall_27
-
-    throw v3
+    .line 170
+    .local v3, "timeoutWins":Z
+    monitor-enter p0
 
     .line 171
-    :cond_2a
-    iget-object v3, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->other:Lrx/Observable;
+    :try_start_3
+    iget-wide v4, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->actual:J
 
-    iget-object v4, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serializedSubscriber:Lrx/observers/SerializedSubscriber;
+    cmp-long v4, v0, v4
 
-    invoke-virtual {v3, v4}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
+    if-nez v4, :cond_11
+
+    iget-boolean v4, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->terminated:Z
+
+    if-nez v4, :cond_11
 
     .line 172
-    iget-object v3, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serial:Lrx/subscriptions/SerialSubscription;
+    const/4 v4, 0x1
 
+    iput-boolean v4, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->terminated:Z
+
+    .line 173
+    const/4 v3, 0x1
+
+    .line 175
+    :cond_11
+    monitor-exit p0
+    :try_end_12
+    .catchall {:try_start_3 .. :try_end_12} :catchall_23
+
+    .line 176
+    if-eqz v3, :cond_22
+
+    .line 177
+    iget-object v4, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->other:Lrx/Observable;
+
+    if-nez v4, :cond_26
+
+    .line 178
     iget-object v4, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serializedSubscriber:Lrx/observers/SerializedSubscriber;
 
-    invoke-virtual {v3, v4}, Lrx/subscriptions/SerialSubscription;->set(Lrx/Subscription;)V
+    new-instance v5, Ljava/util/concurrent/TimeoutException;
 
-    goto :goto_26
+    invoke-direct {v5}, Ljava/util/concurrent/TimeoutException;-><init>()V
+
+    invoke-virtual {v4, v5}, Lrx/observers/SerializedSubscriber;->onError(Ljava/lang/Throwable;)V
+
+    .line 205
+    :cond_22
+    :goto_22
+    return-void
+
+    .line 175
+    :catchall_23
+    move-exception v4
+
+    :try_start_24
+    monitor-exit p0
+    :try_end_25
+    .catchall {:try_start_24 .. :try_end_25} :catchall_23
+
+    throw v4
+
+    .line 180
+    :cond_26
+    new-instance v2, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber$1;
+
+    invoke-direct {v2, p0}, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber$1;-><init>(Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;)V
+
+    .line 201
+    .local v2, "second":Lrx/Subscriber;, "Lrx/Subscriber<TT;>;"
+    iget-object v4, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->other:Lrx/Observable;
+
+    invoke-virtual {v4, v2}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
+
+    .line 202
+    iget-object v4, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->serial:Lrx/subscriptions/SerialSubscription;
+
+    invoke-virtual {v4, v2}, Lrx/subscriptions/SerialSubscription;->set(Lrx/Subscription;)V
+
+    goto :goto_22
+.end method
+
+.method public setProducer(Lrx/Producer;)V
+    .registers 3
+    .param p1, "p"    # Lrx/Producer;
+
+    .prologue
+    .line 116
+    .local p0, "this":Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;, "Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber<TT;>;"
+    iget-object v0, p0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->arbiter:Lrx/internal/producers/ProducerArbiter;
+
+    invoke-virtual {v0, p1}, Lrx/internal/producers/ProducerArbiter;->setProducer(Lrx/Producer;)V
+
+    .line 117
+    return-void
 .end method

@@ -29,7 +29,7 @@
     .param p1, "this$0"    # Lcom/nianticlabs/nia/account/AccountsActivity;
 
     .prologue
-    .line 177
+    .line 180
     iput-object p1, p0, Lcom/nianticlabs/nia/account/AccountsActivity$2;->this$0:Lcom/nianticlabs/nia/account/AccountsActivity;
 
     iput-object p2, p0, Lcom/nianticlabs/nia/account/AccountsActivity$2;->val$e:Lcom/google/android/gms/auth/UserRecoverableAuthException;
@@ -45,7 +45,7 @@
     .registers 4
 
     .prologue
-    .line 180
+    .line 183
     iget-object v0, p0, Lcom/nianticlabs/nia/account/AccountsActivity$2;->this$0:Lcom/nianticlabs/nia/account/AccountsActivity;
 
     iget-object v1, p0, Lcom/nianticlabs/nia/account/AccountsActivity$2;->val$e:Lcom/google/android/gms/auth/UserRecoverableAuthException;
@@ -58,6 +58,6 @@
 
     invoke-virtual {v0, v1, v2}, Lcom/nianticlabs/nia/account/AccountsActivity;->startActivityForResult(Landroid/content/Intent;I)V
 
-    .line 181
+    .line 184
     return-void
 .end method

@@ -56,11 +56,11 @@
     .registers 3
 
     .prologue
-    .line 1033
+    .line 1032
     .local p0, "this":Lrx/subjects/ReplaySubject$NodeList;, "Lrx/subjects/ReplaySubject$NodeList<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 1048
+    .line 1047
     new-instance v0, Lrx/subjects/ReplaySubject$NodeList$Node;
 
     const/4 v1, 0x0
@@ -69,7 +69,7 @@
 
     iput-object v0, p0, Lrx/subjects/ReplaySubject$NodeList;->head:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 1050
+    .line 1049
     iget-object v0, p0, Lrx/subjects/ReplaySubject$NodeList;->head:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     iput-object v0, p0, Lrx/subjects/ReplaySubject$NodeList;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
@@ -88,32 +88,32 @@
     .end annotation
 
     .prologue
-    .line 1055
+    .line 1054
     .local p0, "this":Lrx/subjects/ReplaySubject$NodeList;, "Lrx/subjects/ReplaySubject$NodeList<TT;>;"
     .local p1, "value":Ljava/lang/Object;, "TT;"
     iget-object v0, p0, Lrx/subjects/ReplaySubject$NodeList;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 1056
+    .line 1055
     .local v0, "t":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<TT;>;"
     new-instance v1, Lrx/subjects/ReplaySubject$NodeList$Node;
 
     invoke-direct {v1, p1}, Lrx/subjects/ReplaySubject$NodeList$Node;-><init>(Ljava/lang/Object;)V
 
-    .line 1057
+    .line 1056
     .local v1, "t2":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<TT;>;"
     iput-object v1, v0, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 1058
+    .line 1057
     iput-object v1, p0, Lrx/subjects/ReplaySubject$NodeList;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 1059
+    .line 1058
     iget v2, p0, Lrx/subjects/ReplaySubject$NodeList;->size:I
 
     add-int/lit8 v2, v2, 0x1
 
     iput v2, p0, Lrx/subjects/ReplaySubject$NodeList;->size:I
 
-    .line 1060
+    .line 1059
     return-void
 .end method
 
@@ -121,18 +121,18 @@
     .registers 2
 
     .prologue
-    .line 1080
+    .line 1079
     .local p0, "this":Lrx/subjects/ReplaySubject$NodeList;, "Lrx/subjects/ReplaySubject$NodeList<TT;>;"
     iget-object v0, p0, Lrx/subjects/ReplaySubject$NodeList;->head:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     iput-object v0, p0, Lrx/subjects/ReplaySubject$NodeList;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 1081
+    .line 1080
     const/4 v0, 0x0
 
     iput v0, p0, Lrx/subjects/ReplaySubject$NodeList;->size:I
 
-    .line 1082
+    .line 1081
     return-void
 .end method
 
@@ -140,7 +140,7 @@
     .registers 2
 
     .prologue
-    .line 1074
+    .line 1073
     .local p0, "this":Lrx/subjects/ReplaySubject$NodeList;, "Lrx/subjects/ReplaySubject$NodeList<TT;>;"
     iget v0, p0, Lrx/subjects/ReplaySubject$NodeList;->size:I
 
@@ -166,7 +166,7 @@
     .end annotation
 
     .prologue
-    .line 1062
+    .line 1061
     .local p0, "this":Lrx/subjects/ReplaySubject$NodeList;, "Lrx/subjects/ReplaySubject$NodeList<TT;>;"
     iget-object v1, p0, Lrx/subjects/ReplaySubject$NodeList;->head:Lrx/subjects/ReplaySubject$NodeList$Node;
 
@@ -174,7 +174,7 @@
 
     if-nez v1, :cond_e
 
-    .line 1063
+    .line 1062
     new-instance v1, Ljava/lang/IllegalStateException;
 
     const-string v2, "Empty!"
@@ -183,13 +183,13 @@
 
     throw v1
 
-    .line 1065
+    .line 1064
     :cond_e
     iget-object v1, p0, Lrx/subjects/ReplaySubject$NodeList;->head:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     iget-object v0, v1, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 1066
+    .line 1065
     .local v0, "t":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<TT;>;"
     iget-object v1, p0, Lrx/subjects/ReplaySubject$NodeList;->head:Lrx/subjects/ReplaySubject$NodeList$Node;
 
@@ -197,19 +197,19 @@
 
     iput-object v2, v1, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 1067
+    .line 1066
     iget-object v1, p0, Lrx/subjects/ReplaySubject$NodeList;->head:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     iget-object v1, v1, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     if-nez v1, :cond_22
 
-    .line 1068
+    .line 1067
     iget-object v1, p0, Lrx/subjects/ReplaySubject$NodeList;->head:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     iput-object v1, p0, Lrx/subjects/ReplaySubject$NodeList;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 1070
+    .line 1069
     :cond_22
     iget v1, p0, Lrx/subjects/ReplaySubject$NodeList;->size:I
 
@@ -217,7 +217,7 @@
 
     iput v1, p0, Lrx/subjects/ReplaySubject$NodeList;->size:I
 
-    .line 1071
+    .line 1070
     iget-object v1, v0, Lrx/subjects/ReplaySubject$NodeList$Node;->value:Ljava/lang/Object;
 
     return-object v1
@@ -227,7 +227,7 @@
     .registers 2
 
     .prologue
-    .line 1077
+    .line 1076
     .local p0, "this":Lrx/subjects/ReplaySubject$NodeList;, "Lrx/subjects/ReplaySubject$NodeList<TT;>;"
     iget v0, p0, Lrx/subjects/ReplaySubject$NodeList;->size:I
 

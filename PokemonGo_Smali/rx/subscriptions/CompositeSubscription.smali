@@ -26,10 +26,10 @@
     .registers 1
 
     .prologue
-    .line 36
+    .line 38
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 37
+    .line 39
     return-void
 .end method
 
@@ -38,10 +38,10 @@
     .param p1, "subscriptions"    # [Lrx/Subscription;
 
     .prologue
-    .line 39
+    .line 41
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 40
+    .line 42
     new-instance v0, Ljava/util/HashSet;
 
     invoke-static {p1}, Ljava/util/Arrays;->asList([Ljava/lang/Object;)Ljava/util/List;
@@ -52,7 +52,7 @@
 
     iput-object v0, p0, Lrx/subscriptions/CompositeSubscription;->subscriptions:Ljava/util/Set;
 
-    .line 41
+    .line 43
     return-void
 .end method
 
@@ -69,19 +69,19 @@
     .end annotation
 
     .prologue
-    .line 137
+    .line 144
     .local p0, "subscriptions":Ljava/util/Collection;, "Ljava/util/Collection<Lrx/Subscription;>;"
     if-nez p0, :cond_3
 
-    .line 152
+    .line 159
     :goto_2
     return-void
 
-    .line 140
+    .line 147
     :cond_3
     const/4 v1, 0x0
 
-    .line 141
+    .line 148
     .local v1, "es":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Throwable;>;"
     invoke-interface {p0}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
 
@@ -101,7 +101,7 @@
 
     check-cast v3, Lrx/Subscription;
 
-    .line 143
+    .line 150
     .local v3, "s":Lrx/Subscription;
     :try_start_14
     invoke-interface {v3}, Lrx/Subscription;->unsubscribe()V
@@ -110,28 +110,28 @@
 
     goto :goto_8
 
-    .line 144
+    .line 151
     :catch_18
     move-exception v0
 
-    .line 145
+    .line 152
     .local v0, "e":Ljava/lang/Throwable;
     if-nez v1, :cond_20
 
-    .line 146
+    .line 153
     new-instance v1, Ljava/util/ArrayList;
 
     .end local v1    # "es":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Throwable;>;"
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
-    .line 148
+    .line 155
     .restart local v1    # "es":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Throwable;>;"
     :cond_20
     invoke-interface {v1, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     goto :goto_8
 
-    .line 151
+    .line 158
     .end local v0    # "e":Ljava/lang/Throwable;
     .end local v3    # "s":Lrx/Subscription;
     :cond_24
@@ -147,38 +147,38 @@
     .param p1, "s"    # Lrx/Subscription;
 
     .prologue
-    .line 58
+    .line 60
     invoke-interface {p1}, Lrx/Subscription;->isUnsubscribed()Z
 
     move-result v0
 
     if-eqz v0, :cond_7
 
-    .line 74
+    .line 76
     :goto_6
     return-void
 
-    .line 61
+    .line 63
     :cond_7
     iget-boolean v0, p0, Lrx/subscriptions/CompositeSubscription;->unsubscribed:Z
 
     if-nez v0, :cond_27
 
-    .line 62
+    .line 64
     monitor-enter p0
 
-    .line 63
+    .line 65
     :try_start_c
     iget-boolean v0, p0, Lrx/subscriptions/CompositeSubscription;->unsubscribed:Z
 
     if-nez v0, :cond_26
 
-    .line 64
+    .line 66
     iget-object v0, p0, Lrx/subscriptions/CompositeSubscription;->subscriptions:Ljava/util/Set;
 
     if-nez v0, :cond_1c
 
-    .line 65
+    .line 67
     new-instance v0, Ljava/util/HashSet;
 
     const/4 v1, 0x4
@@ -187,18 +187,18 @@
 
     iput-object v0, p0, Lrx/subscriptions/CompositeSubscription;->subscriptions:Ljava/util/Set;
 
-    .line 67
+    .line 69
     :cond_1c
     iget-object v0, p0, Lrx/subscriptions/CompositeSubscription;->subscriptions:Ljava/util/Set;
 
     invoke-interface {v0, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 68
+    .line 70
     monitor-exit p0
 
     goto :goto_6
 
-    .line 70
+    .line 72
     :catchall_23
     move-exception v0
 
@@ -214,7 +214,7 @@
     :try_end_27
     .catchall {:try_start_26 .. :try_end_27} :catchall_23
 
-    .line 73
+    .line 75
     :cond_27
     invoke-interface {p1}, Lrx/Subscription;->unsubscribe()V
 
@@ -225,19 +225,19 @@
     .registers 3
 
     .prologue
-    .line 105
+    .line 107
     iget-boolean v1, p0, Lrx/subscriptions/CompositeSubscription;->unsubscribed:Z
 
     if-nez v1, :cond_f
 
-    .line 106
+    .line 108
     const/4 v0, 0x0
 
-    .line 107
+    .line 109
     .local v0, "unsubscribe":Ljava/util/Collection;, "Ljava/util/Collection<Lrx/Subscription;>;"
     monitor-enter p0
 
-    .line 108
+    .line 110
     :try_start_6
     iget-boolean v1, p0, Lrx/subscriptions/CompositeSubscription;->unsubscribed:Z
 
@@ -247,37 +247,37 @@
 
     if-nez v1, :cond_10
 
-    .line 109
+    .line 111
     :cond_e
     monitor-exit p0
 
-    .line 117
+    .line 119
     .end local v0    # "unsubscribe":Ljava/util/Collection;, "Ljava/util/Collection<Lrx/Subscription;>;"
     :cond_f
     :goto_f
     return-void
 
-    .line 111
+    .line 113
     .restart local v0    # "unsubscribe":Ljava/util/Collection;, "Ljava/util/Collection<Lrx/Subscription;>;"
     :cond_10
     iget-object v0, p0, Lrx/subscriptions/CompositeSubscription;->subscriptions:Ljava/util/Set;
 
-    .line 112
+    .line 114
     const/4 v1, 0x0
 
     iput-object v1, p0, Lrx/subscriptions/CompositeSubscription;->subscriptions:Ljava/util/Set;
 
-    .line 114
+    .line 116
     monitor-exit p0
     :try_end_16
     .catchall {:try_start_6 .. :try_end_16} :catchall_1a
 
-    .line 115
+    .line 117
     invoke-static {v0}, Lrx/subscriptions/CompositeSubscription;->unsubscribeFromAll(Ljava/util/Collection;)V
 
     goto :goto_f
 
-    .line 114
+    .line 116
     :catchall_1a
     move-exception v1
 
@@ -295,15 +295,15 @@
     .prologue
     const/4 v0, 0x0
 
-    .line 161
+    .line 168
     iget-boolean v1, p0, Lrx/subscriptions/CompositeSubscription;->unsubscribed:Z
 
     if-nez v1, :cond_18
 
-    .line 162
+    .line 169
     monitor-enter p0
 
-    .line 163
+    .line 170
     :try_start_6
     iget-boolean v1, p0, Lrx/subscriptions/CompositeSubscription;->unsubscribed:Z
 
@@ -326,11 +326,11 @@
     :cond_17
     monitor-exit p0
 
-    .line 166
+    .line 173
     :cond_18
     return v0
 
-    .line 164
+    .line 171
     :catchall_19
     move-exception v0
 
@@ -345,7 +345,7 @@
     .registers 2
 
     .prologue
-    .line 45
+    .line 47
     iget-boolean v0, p0, Lrx/subscriptions/CompositeSubscription;->unsubscribed:Z
 
     return v0
@@ -356,19 +356,19 @@
     .param p1, "s"    # Lrx/Subscription;
 
     .prologue
-    .line 84
+    .line 86
     iget-boolean v1, p0, Lrx/subscriptions/CompositeSubscription;->unsubscribed:Z
 
     if-nez v1, :cond_f
 
-    .line 85
+    .line 87
     const/4 v0, 0x0
 
-    .line 86
+    .line 88
     .local v0, "unsubscribe":Z
     monitor-enter p0
 
-    .line 87
+    .line 89
     :try_start_6
     iget-boolean v1, p0, Lrx/subscriptions/CompositeSubscription;->unsubscribed:Z
 
@@ -378,17 +378,17 @@
 
     if-nez v1, :cond_10
 
-    .line 88
+    .line 90
     :cond_e
     monitor-exit p0
 
-    .line 97
+    .line 99
     .end local v0    # "unsubscribe":Z
     :cond_f
     :goto_f
     return-void
 
-    .line 90
+    .line 92
     .restart local v0    # "unsubscribe":Z
     :cond_10
     iget-object v1, p0, Lrx/subscriptions/CompositeSubscription;->subscriptions:Ljava/util/Set;
@@ -397,20 +397,20 @@
 
     move-result v0
 
-    .line 91
+    .line 93
     monitor-exit p0
     :try_end_17
     .catchall {:try_start_6 .. :try_end_17} :catchall_1d
 
-    .line 92
+    .line 94
     if-eqz v0, :cond_f
 
-    .line 94
+    .line 96
     invoke-interface {p1}, Lrx/Subscription;->unsubscribe()V
 
     goto :goto_f
 
-    .line 91
+    .line 93
     :catchall_1d
     move-exception v1
 
@@ -426,59 +426,59 @@
     .registers 3
 
     .prologue
-    .line 121
+    .line 128
     iget-boolean v1, p0, Lrx/subscriptions/CompositeSubscription;->unsubscribed:Z
 
     if-nez v1, :cond_b
 
-    .line 122
+    .line 129
     const/4 v0, 0x0
 
-    .line 123
+    .line 130
     .local v0, "unsubscribe":Ljava/util/Collection;, "Ljava/util/Collection<Lrx/Subscription;>;"
     monitor-enter p0
 
-    .line 124
+    .line 131
     :try_start_6
     iget-boolean v1, p0, Lrx/subscriptions/CompositeSubscription;->unsubscribed:Z
 
     if-eqz v1, :cond_c
 
-    .line 125
+    .line 132
     monitor-exit p0
 
-    .line 134
+    .line 141
     .end local v0    # "unsubscribe":Ljava/util/Collection;, "Ljava/util/Collection<Lrx/Subscription;>;"
     :cond_b
     :goto_b
     return-void
 
-    .line 127
+    .line 134
     .restart local v0    # "unsubscribe":Ljava/util/Collection;, "Ljava/util/Collection<Lrx/Subscription;>;"
     :cond_c
     const/4 v1, 0x1
 
     iput-boolean v1, p0, Lrx/subscriptions/CompositeSubscription;->unsubscribed:Z
 
-    .line 128
+    .line 135
     iget-object v0, p0, Lrx/subscriptions/CompositeSubscription;->subscriptions:Ljava/util/Set;
 
-    .line 129
+    .line 136
     const/4 v1, 0x0
 
     iput-object v1, p0, Lrx/subscriptions/CompositeSubscription;->subscriptions:Ljava/util/Set;
 
-    .line 130
+    .line 137
     monitor-exit p0
     :try_end_15
     .catchall {:try_start_6 .. :try_end_15} :catchall_19
 
-    .line 132
+    .line 139
     invoke-static {v0}, Lrx/subscriptions/CompositeSubscription;->unsubscribeFromAll(Ljava/util/Collection;)V
 
     goto :goto_b
 
-    .line 130
+    .line 137
     :catchall_19
     move-exception v1
 

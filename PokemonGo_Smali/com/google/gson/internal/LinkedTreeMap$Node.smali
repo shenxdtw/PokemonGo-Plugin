@@ -205,6 +205,7 @@
 
     if-nez v2, :cond_2b
 
+    .line 485
     invoke-interface {v0}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
 
     move-result-object v2
@@ -236,6 +237,7 @@
 
     goto :goto_12
 
+    .line 485
     :cond_2b
     iget-object v2, p0, Lcom/google/gson/internal/LinkedTreeMap$Node;->value:Ljava/lang/Object;
 
@@ -340,11 +342,13 @@
 
     if-nez v2, :cond_13
 
+    .line 492
     :goto_a
     xor-int/2addr v0, v1
 
     return v0
 
+    .line 491
     :cond_c
     iget-object v0, p0, Lcom/google/gson/internal/LinkedTreeMap$Node;->key:Ljava/lang/Object;
 
@@ -357,6 +361,7 @@
     :cond_13
     iget-object v1, p0, Lcom/google/gson/internal/LinkedTreeMap$Node;->value:Ljava/lang/Object;
 
+    .line 492
     invoke-virtual {v1}, Ljava/lang/Object;->hashCode()I
 
     move-result v1

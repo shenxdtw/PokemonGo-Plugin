@@ -1,220 +1,136 @@
 .class public Lcom/upsight/android/unity/UpsightPlugin;
-.super Lcom/upsight/android/unity/AbstractUpsightPlugin;
+.super Ljava/lang/Object;
 .source "UpsightPlugin.java"
-
-# interfaces
-.implements Landroid/app/Application$ActivityLifecycleCallbacks;
-
-
-# annotations
-.annotation build Landroid/annotation/SuppressLint;
-    value = {
-        "NewApi"
-    }
-.end annotation
 
 
 # static fields
-.field private static sInstance:Lcom/upsight/android/unity/UpsightPlugin;
+.field protected static final TAG:Ljava/lang/String; = "Upsight-Unity"
 
 
 # instance fields
-.field private mBillboardHandler:Lcom/upsight/android/unity/BillboardHandler;
+.field private mExtensions:Ljava/util/Set;
+    .annotation build Landroid/support/annotation/NonNull;
+    .end annotation
 
-.field private mBillboardMap:Ljava/util/Map;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Ljava/util/Map",
+            "Ljava/util/Set",
             "<",
-            "Ljava/lang/String;",
-            "Lcom/upsight/android/marketing/UpsightBillboard;",
+            "Lcom/upsight/android/unity/IUpsightExtensionManager;",
             ">;"
         }
     .end annotation
 .end field
 
-.field private mHasActiveBillboard:Z
-
-.field private mJettisonedBillboardScopes:Ljava/util/List;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/List",
-            "<",
-            "Ljava/lang/String;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-.field private mPushBillboard:Lcom/upsight/android/marketing/UpsightBillboard;
-
-.field private mShouldSynchronizeManagedVariables:Z
-
-.field private mUpsight:Lcom/upsight/android/UpsightContext;
+.field protected mUpsight:Lcom/upsight/android/UpsightContext;
 
 
 # direct methods
 .method public constructor <init>()V
-    .registers 2
+    .registers 6
 
     .prologue
-    .line 47
-    invoke-direct {p0}, Lcom/upsight/android/unity/AbstractUpsightPlugin;-><init>()V
+    .line 53
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 55
-    new-instance v0, Ljava/util/HashMap;
+    .line 50
+    new-instance v2, Ljava/util/HashSet;
 
-    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+    const/4 v3, 0x2
 
-    iput-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
+    invoke-direct {v2, v3}, Ljava/util/HashSet;-><init>(I)V
 
-    .line 61
-    const/4 v0, 0x0
+    iput-object v2, p0, Lcom/upsight/android/unity/UpsightPlugin;->mExtensions:Ljava/util/Set;
 
-    iput-boolean v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mHasActiveBillboard:Z
-
-    .line 63
-    const/4 v0, 0x1
-
-    iput-boolean v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mShouldSynchronizeManagedVariables:Z
-
-    return-void
-.end method
-
-.method public static declared-synchronized instance()Lcom/upsight/android/unity/UpsightPlugin;
-    .registers 5
-    .annotation build Landroid/annotation/SuppressLint;
-        value = {
-            "NewApi"
-        }
-    .end annotation
-
-    .prologue
-    .line 67
-    const-class v2, Lcom/upsight/android/unity/UpsightPlugin;
-
-    monitor-enter v2
-
-    :try_start_3
-    sget-object v1, Lcom/upsight/android/unity/UpsightPlugin;->sInstance:Lcom/upsight/android/unity/UpsightPlugin;
-
-    if-nez v1, :cond_56
-
-    .line 68
-    new-instance v1, Lcom/upsight/android/unity/UpsightPlugin;
-
-    invoke-direct {v1}, Lcom/upsight/android/unity/UpsightPlugin;-><init>()V
-
-    sput-object v1, Lcom/upsight/android/unity/UpsightPlugin;->sInstance:Lcom/upsight/android/unity/UpsightPlugin;
-
-    .line 69
-    sget-object v1, Lcom/upsight/android/unity/UpsightPlugin;->sInstance:Lcom/upsight/android/unity/UpsightPlugin;
-
-    invoke-virtual {v1}, Lcom/upsight/android/unity/UpsightPlugin;->getActivity()Landroid/app/Activity;
+    .line 56
+    :try_start_b
+    invoke-static {}, Lcom/upsight/android/unity/UnityBridge;->getActivity()Landroid/app/Activity;
 
     move-result-object v0
 
-    .line 70
+    .line 58
     .local v0, "activity":Landroid/app/Activity;
-    if-eqz v0, :cond_56
-
-    .line 71
-    sget-object v1, Lcom/upsight/android/unity/UpsightPlugin;->sInstance:Lcom/upsight/android/unity/UpsightPlugin;
-
     invoke-static {v0}, Lcom/upsight/android/Upsight;->createContext(Landroid/content/Context;)Lcom/upsight/android/UpsightContext;
 
-    move-result-object v3
+    move-result-object v2
 
-    iput-object v3, v1, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
+    iput-object v2, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    .line 72
-    sget-object v1, Lcom/upsight/android/unity/UpsightPlugin;->sInstance:Lcom/upsight/android/unity/UpsightPlugin;
+    .line 59
+    iget-object v2, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    new-instance v3, Lcom/upsight/android/unity/BillboardHandler;
+    invoke-virtual {v2}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 
-    sget-object v4, Lcom/upsight/android/unity/UpsightPlugin;->sInstance:Lcom/upsight/android/unity/UpsightPlugin;
+    move-result-object v2
 
-    invoke-direct {v3, v0, v4}, Lcom/upsight/android/unity/BillboardHandler;-><init>(Landroid/app/Activity;Lcom/upsight/android/unity/UpsightPlugin;)V
+    const-string v3, "Upsight"
 
-    iput-object v3, v1, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardHandler:Lcom/upsight/android/unity/BillboardHandler;
+    sget-object v4, Lcom/upsight/android/logger/UpsightLogger$Level;->ERROR:Lcom/upsight/android/logger/UpsightLogger$Level;
 
-    .line 74
-    const-string v1, "Upsight"
+    invoke-static {v4}, Ljava/util/EnumSet;->of(Ljava/lang/Enum;)Ljava/util/EnumSet;
 
-    const-string v3, "creating UpsightPushBillboard"
+    move-result-object v4
 
-    invoke-static {v1, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-interface {v2, v3, v4}, Lcom/upsight/android/logger/UpsightLogger;->setLogLevel(Ljava/lang/String;Ljava/util/EnumSet;)V
 
-    .line 75
-    sget-object v1, Lcom/upsight/android/unity/UpsightPlugin;->sInstance:Lcom/upsight/android/unity/UpsightPlugin;
+    .line 61
+    new-instance v2, Lcom/upsight/android/unity/UpsightPlugin$1;
 
-    sget-object v3, Lcom/upsight/android/unity/UpsightPlugin;->sInstance:Lcom/upsight/android/unity/UpsightPlugin;
+    invoke-direct {v2, p0, v0}, Lcom/upsight/android/unity/UpsightPlugin$1;-><init>(Lcom/upsight/android/unity/UpsightPlugin;Landroid/app/Activity;)V
 
-    iget-object v3, v3, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
+    invoke-static {v2}, Lcom/upsight/android/unity/UnityBridge;->runSafelyOnUiThread(Ljava/lang/Runnable;)V
+    :try_end_2e
+    .catch Ljava/lang/Exception; {:try_start_b .. :try_end_2e} :catch_2f
 
-    sget-object v4, Lcom/upsight/android/unity/UpsightPlugin;->sInstance:Lcom/upsight/android/unity/UpsightPlugin;
+    .line 73
+    return-void
 
-    iget-object v4, v4, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardHandler:Lcom/upsight/android/unity/BillboardHandler;
-
-    invoke-static {v3, v4}, Lcom/upsight/android/googlepushservices/UpsightPushBillboard;->create(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/marketing/UpsightBillboard$Handler;)Lcom/upsight/android/marketing/UpsightBillboard;
-
-    move-result-object v3
-
-    iput-object v3, v1, Lcom/upsight/android/unity/UpsightPlugin;->mPushBillboard:Lcom/upsight/android/marketing/UpsightBillboard;
-
-    .line 78
-    sget v1, Landroid/os/Build$VERSION;->SDK_INT:I
-
-    const/16 v3, 0xe
-
-    if-lt v1, v3, :cond_56
-
-    .line 79
-    const-string v1, "Upsight"
-
-    const-string v3, "wiring up an ActivityLifecycleCallback listener since we are on API 14+"
-
-    invoke-static {v1, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 80
-    invoke-virtual {v0}, Landroid/app/Activity;->getApplication()Landroid/app/Application;
-
-    move-result-object v1
-
-    sget-object v3, Lcom/upsight/android/unity/UpsightPlugin;->sInstance:Lcom/upsight/android/unity/UpsightPlugin;
-
-    invoke-virtual {v1, v3}, Landroid/app/Application;->registerActivityLifecycleCallbacks(Landroid/app/Application$ActivityLifecycleCallbacks;)V
-
-    .line 85
-    :cond_56
-    sget-object v1, Lcom/upsight/android/unity/UpsightPlugin;->sInstance:Lcom/upsight/android/unity/UpsightPlugin;
-    :try_end_58
-    .catchall {:try_start_3 .. :try_end_58} :catchall_5a
-
-    monitor-exit v2
-
-    return-object v1
-
-    .line 67
-    :catchall_5a
+    .line 69
+    .end local v0    # "activity":Landroid/app/Activity;
+    :catch_2f
     move-exception v1
 
-    monitor-exit v2
+    .line 70
+    .local v1, "e":Ljava/lang/Exception;
+    const-string v2, "Upsight-Unity"
 
+    const-string v3, "Critical Error: Exception thrown while initializing. Upsight will NOT work!"
+
+    invoke-static {v2, v3, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    .line 71
     throw v1
+.end method
+
+.method static synthetic access$000(Ljava/lang/String;)Lcom/upsight/android/analytics/event/UpsightPublisherData;
+    .registers 2
+    .param p0, "x0"    # Ljava/lang/String;
+
+    .prologue
+    .line 44
+    invoke-static {p0}, Lcom/upsight/android/unity/UpsightPlugin;->publisherDataFromJsonString(Ljava/lang/String;)Lcom/upsight/android/analytics/event/UpsightPublisherData;
+
+    move-result-object v0
+
+    return-object v0
 .end method
 
 .method private static publisherDataFromJsonString(Ljava/lang/String;)Lcom/upsight/android/analytics/event/UpsightPublisherData;
     .registers 9
     .param p0, "json"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/Nullable;
+        .end annotation
+    .end param
+    .annotation build Landroid/support/annotation/NonNull;
+    .end annotation
 
     .prologue
-    .line 89
+    .line 426
     new-instance v4, Lcom/upsight/android/analytics/event/UpsightPublisherData$Builder;
 
     invoke-direct {v4}, Lcom/upsight/android/analytics/event/UpsightPublisherData$Builder;-><init>()V
 
-    .line 91
+    .line 428
     .local v4, "pubData":Lcom/upsight/android/analytics/event/UpsightPublisherData$Builder;
     if-eqz p0, :cond_39
 
@@ -224,19 +140,19 @@
 
     if-lez v6, :cond_39
 
-    .line 93
+    .line 430
     :try_start_d
     new-instance v2, Lorg/json/JSONObject;
 
     invoke-direct {v2, p0}, Lorg/json/JSONObject;-><init>(Ljava/lang/String;)V
 
-    .line 95
+    .line 432
     .local v2, "jObject":Lorg/json/JSONObject;
     invoke-virtual {v2}, Lorg/json/JSONObject;->keys()Ljava/util/Iterator;
 
     move-result-object v1
 
-    .line 96
+    .line 433
     .local v1, "itr":Ljava/util/Iterator;, "Ljava/util/Iterator<*>;"
     :cond_16
     :goto_16
@@ -246,7 +162,7 @@
 
     if-eqz v6, :cond_39
 
-    .line 97
+    .line 434
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v3
@@ -255,20 +171,20 @@
     :try_end_22
     .catch Lorg/json/JSONException; {:try_start_d .. :try_end_22} :catch_35
 
-    .line 99
+    .line 436
     .local v3, "key":Ljava/lang/String;
     :try_start_22
     invoke-virtual {v2, v3}, Lorg/json/JSONObject;->get(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v5
 
-    .line 100
+    .line 437
     .local v5, "value":Ljava/lang/Object;
     instance-of v6, v5, Ljava/lang/String;
 
     if-eqz v6, :cond_3e
 
-    .line 101
+    .line 438
     check-cast v5, Ljava/lang/String;
 
     .end local v5    # "value":Ljava/lang/Object;
@@ -278,11 +194,11 @@
 
     goto :goto_16
 
-    .line 111
+    .line 448
     :catch_30
     move-exception v0
 
-    .line 112
+    .line 449
     .local v0, "e":Lorg/json/JSONException;
     :try_start_31
     invoke-virtual {v0}, Lorg/json/JSONException;->printStackTrace()V
@@ -291,7 +207,7 @@
 
     goto :goto_16
 
-    .line 115
+    .line 452
     .end local v0    # "e":Lorg/json/JSONException;
     .end local v1    # "itr":Ljava/util/Iterator;, "Ljava/util/Iterator<*>;"
     .end local v2    # "jObject":Lorg/json/JSONObject;
@@ -299,11 +215,11 @@
     :catch_35
     move-exception v0
 
-    .line 116
+    .line 453
     .restart local v0    # "e":Lorg/json/JSONException;
     invoke-virtual {v0}, Lorg/json/JSONException;->printStackTrace()V
 
-    .line 120
+    .line 457
     .end local v0    # "e":Lorg/json/JSONException;
     :cond_39
     invoke-virtual {v4}, Lcom/upsight/android/analytics/event/UpsightPublisherData$Builder;->build()Lcom/upsight/android/analytics/event/UpsightPublisherData;
@@ -312,7 +228,7 @@
 
     return-object v6
 
-    .line 102
+    .line 439
     .restart local v1    # "itr":Ljava/util/Iterator;, "Ljava/util/Iterator<*>;"
     .restart local v2    # "jObject":Lorg/json/JSONObject;
     .restart local v3    # "key":Ljava/lang/String;
@@ -323,7 +239,7 @@
 
     if-eqz v6, :cond_4c
 
-    .line 103
+    .line 440
     check-cast v5, Ljava/lang/Float;
 
     .end local v5    # "value":Ljava/lang/Object;
@@ -335,14 +251,14 @@
 
     goto :goto_16
 
-    .line 104
+    .line 441
     .restart local v5    # "value":Ljava/lang/Object;
     :cond_4c
     instance-of v6, v5, Ljava/lang/Double;
 
     if-eqz v6, :cond_5a
 
-    .line 105
+    .line 442
     check-cast v5, Ljava/lang/Double;
 
     .end local v5    # "value":Ljava/lang/Object;
@@ -354,14 +270,14 @@
 
     goto :goto_16
 
-    .line 106
+    .line 443
     .restart local v5    # "value":Ljava/lang/Object;
     :cond_5a
     instance-of v6, v5, Ljava/lang/Long;
 
     if-eqz v6, :cond_68
 
-    .line 107
+    .line 444
     check-cast v5, Ljava/lang/Long;
 
     .end local v5    # "value":Ljava/lang/Object;
@@ -373,14 +289,14 @@
 
     goto :goto_16
 
-    .line 108
+    .line 445
     .restart local v5    # "value":Ljava/lang/Object;
     :cond_68
     instance-of v6, v5, Ljava/lang/Boolean;
 
     if-eqz v6, :cond_16
 
-    .line 109
+    .line 446
     check-cast v5, Ljava/lang/Boolean;
 
     .end local v5    # "value":Ljava/lang/Object;
@@ -397,78 +313,13 @@
 
 
 # virtual methods
-.method public destroyBillboard(Ljava/lang/String;)V
-    .registers 6
-    .param p1, "scope"    # Ljava/lang/String;
-
-    .prologue
-    .line 426
-    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v1, p1}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_36
-
-    invoke-virtual {p0}, Lcom/upsight/android/unity/UpsightPlugin;->getHasActiveBillboard()Z
-
-    move-result v1
-
-    if-nez v1, :cond_36
-
-    .line 427
-    const-string v1, "Upsight"
-
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "Destroying billboard for scope: "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 428
-    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v1, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/upsight/android/marketing/UpsightBillboard;
-
-    .line 429
-    .local v0, "billboard":Lcom/upsight/android/marketing/UpsightBillboard;
-    invoke-virtual {v0}, Lcom/upsight/android/marketing/UpsightBillboard;->destroy()V
-
-    .line 431
-    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v1, p1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 433
-    .end local v0    # "billboard":Lcom/upsight/android/marketing/UpsightBillboard;
-    :cond_36
-    return-void
-.end method
-
 .method public getAppToken()Ljava/lang/String;
     .registers 2
+    .annotation build Landroid/support/annotation/NonNull;
+    .end annotation
 
     .prologue
-    .line 129
+    .line 88
     iget-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v0}, Lcom/upsight/android/UpsightContext;->getApplicationToken()Ljava/lang/String;
@@ -478,25 +329,18 @@
     return-object v0
 .end method
 
-.method getHasActiveBillboard()Z
-    .registers 2
-
-    .prologue
-    .line 522
-    iget-boolean v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mHasActiveBillboard:Z
-
-    return v0
-.end method
-
 .method public getManagedBool(Ljava/lang/String;)Z
     .registers 8
     .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
 
     .prologue
-    .line 333
+    .line 322
     const/4 v2, 0x0
 
-    .line 335
+    .line 324
     .local v2, "val":Z
     :try_start_1
     iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
@@ -505,11 +349,11 @@
 
     move-result-object v1
 
-    .line 336
+    .line 325
     .local v1, "managedBoolean":Lcom/upsight/android/managedvariables/type/UpsightManagedBoolean;
     if-eqz v1, :cond_14
 
-    .line 337
+    .line 326
     invoke-virtual {v1}, Lcom/upsight/android/managedvariables/type/UpsightManagedBoolean;->get()Ljava/lang/Object;
 
     move-result-object v3
@@ -520,15 +364,15 @@
 
     move-result v2
 
-    .line 344
+    .line 333
     .end local v1    # "managedBoolean":Lcom/upsight/android/managedvariables/type/UpsightManagedBoolean;
     :goto_13
     return v2
 
-    .line 339
+    .line 328
     .restart local v1    # "managedBoolean":Lcom/upsight/android/managedvariables/type/UpsightManagedBoolean;
     :cond_14
-    const-string v3, "Upsight"
+    const-string v3, "Upsight-Unity"
 
     new-instance v4, Ljava/lang/StringBuilder;
 
@@ -560,12 +404,12 @@
 
     goto :goto_13
 
-    .line 341
+    .line 330
     .end local v1    # "managedBoolean":Lcom/upsight/android/managedvariables/type/UpsightManagedBoolean;
     :catch_33
     move-exception v0
 
-    .line 342
+    .line 331
     .local v0, "e":Ljava/lang/Exception;
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
@@ -575,12 +419,15 @@
 .method public getManagedFloat(Ljava/lang/String;)F
     .registers 8
     .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
 
     .prologue
-    .line 303
+    .line 292
     const/4 v2, 0x0
 
-    .line 305
+    .line 294
     .local v2, "val":F
     :try_start_1
     iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
@@ -589,11 +436,11 @@
 
     move-result-object v1
 
-    .line 306
+    .line 295
     .local v1, "managedFloat":Lcom/upsight/android/managedvariables/type/UpsightManagedFloat;
     if-eqz v1, :cond_14
 
-    .line 307
+    .line 296
     invoke-virtual {v1}, Lcom/upsight/android/managedvariables/type/UpsightManagedFloat;->get()Ljava/lang/Object;
 
     move-result-object v3
@@ -604,15 +451,15 @@
 
     move-result v2
 
-    .line 314
+    .line 303
     .end local v1    # "managedFloat":Lcom/upsight/android/managedvariables/type/UpsightManagedFloat;
     :goto_13
     return v2
 
-    .line 309
+    .line 298
     .restart local v1    # "managedFloat":Lcom/upsight/android/managedvariables/type/UpsightManagedFloat;
     :cond_14
-    const-string v3, "Upsight"
+    const-string v3, "Upsight-Unity"
 
     new-instance v4, Ljava/lang/StringBuilder;
 
@@ -644,12 +491,12 @@
 
     goto :goto_13
 
-    .line 311
+    .line 300
     .end local v1    # "managedFloat":Lcom/upsight/android/managedvariables/type/UpsightManagedFloat;
     :catch_33
     move-exception v0
 
-    .line 312
+    .line 301
     .local v0, "e":Ljava/lang/Exception;
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
@@ -659,12 +506,15 @@
 .method public getManagedInt(Ljava/lang/String;)I
     .registers 8
     .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
 
     .prologue
-    .line 318
+    .line 307
     const/4 v2, 0x0
 
-    .line 320
+    .line 309
     .local v2, "val":I
     :try_start_1
     iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
@@ -673,11 +523,11 @@
 
     move-result-object v1
 
-    .line 321
+    .line 310
     .local v1, "managedInt":Lcom/upsight/android/managedvariables/type/UpsightManagedInt;
     if-eqz v1, :cond_14
 
-    .line 322
+    .line 311
     invoke-virtual {v1}, Lcom/upsight/android/managedvariables/type/UpsightManagedInt;->get()Ljava/lang/Object;
 
     move-result-object v3
@@ -688,15 +538,15 @@
 
     move-result v2
 
-    .line 329
+    .line 318
     .end local v1    # "managedInt":Lcom/upsight/android/managedvariables/type/UpsightManagedInt;
     :goto_13
     return v2
 
-    .line 324
+    .line 313
     .restart local v1    # "managedInt":Lcom/upsight/android/managedvariables/type/UpsightManagedInt;
     :cond_14
-    const-string v3, "Upsight"
+    const-string v3, "Upsight-Unity"
 
     new-instance v4, Ljava/lang/StringBuilder;
 
@@ -728,12 +578,12 @@
 
     goto :goto_13
 
-    .line 326
+    .line 315
     .end local v1    # "managedInt":Lcom/upsight/android/managedvariables/type/UpsightManagedInt;
     :catch_33
     move-exception v0
 
-    .line 327
+    .line 316
     .local v0, "e":Ljava/lang/Exception;
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
@@ -743,12 +593,17 @@
 .method public getManagedString(Ljava/lang/String;)Ljava/lang/String;
     .registers 9
     .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
+    .annotation build Landroid/support/annotation/Nullable;
+    .end annotation
 
     .prologue
-    .line 288
+    .line 277
     const/4 v3, 0x0
 
-    .line 290
+    .line 279
     .local v3, "val":Ljava/lang/String;
     :try_start_1
     iget-object v4, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
@@ -757,11 +612,11 @@
 
     move-result-object v2
 
-    .line 291
+    .line 280
     .local v2, "managedString":Lcom/upsight/android/managedvariables/type/UpsightManagedString;
     if-eqz v2, :cond_12
 
-    .line 292
+    .line 281
     invoke-virtual {v2}, Lcom/upsight/android/managedvariables/type/UpsightManagedString;->get()Ljava/lang/Object;
 
     move-result-object v4
@@ -772,15 +627,15 @@
 
     move-object v3, v0
 
-    .line 299
+    .line 288
     .end local v2    # "managedString":Lcom/upsight/android/managedvariables/type/UpsightManagedString;
     :goto_11
     return-object v3
 
-    .line 294
+    .line 283
     .restart local v2    # "managedString":Lcom/upsight/android/managedvariables/type/UpsightManagedString;
     :cond_12
-    const-string v4, "Upsight"
+    const-string v4, "Upsight-Unity"
 
     new-instance v5, Ljava/lang/StringBuilder;
 
@@ -812,12 +667,12 @@
 
     goto :goto_11
 
-    .line 296
+    .line 285
     .end local v2    # "managedString":Lcom/upsight/android/managedvariables/type/UpsightManagedString;
     :catch_31
     move-exception v1
 
-    .line 297
+    .line 286
     .local v1, "e":Ljava/lang/Exception;
     invoke-virtual {v1}, Ljava/lang/Exception;->printStackTrace()V
 
@@ -825,24 +680,44 @@
 .end method
 
 .method public getOptOutStatus()Z
-    .registers 2
+    .registers 3
 
     .prologue
-    .line 155
-    iget-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
+    .line 121
+    :try_start_0
+    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    invoke-static {v0}, Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;->get(Lcom/upsight/android/UpsightContext;)Z
+    invoke-static {v1}, Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;->get(Lcom/upsight/android/UpsightContext;)Z
+    :try_end_5
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_5} :catch_7
 
-    move-result v0
+    move-result v1
 
-    return v0
+    .line 125
+    :goto_6
+    return v1
+
+    .line 122
+    :catch_7
+    move-exception v0
+
+    .line 123
+    .local v0, "e":Ljava/lang/Exception;
+    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
+
+    .line 125
+    const/4 v1, 0x0
+
+    goto :goto_6
 .end method
 
 .method public getPluginVersion()Ljava/lang/String;
     .registers 2
+    .annotation build Landroid/support/annotation/NonNull;
+    .end annotation
 
     .prologue
-    .line 151
+    .line 116
     iget-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v0}, Lcom/upsight/android/UpsightContext;->getSdkPlugin()Ljava/lang/String;
@@ -854,9 +729,11 @@
 
 .method public getPublicKey()Ljava/lang/String;
     .registers 2
+    .annotation build Landroid/support/annotation/NonNull;
+    .end annotation
 
     .prologue
-    .line 133
+    .line 93
     iget-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v0}, Lcom/upsight/android/UpsightContext;->getPublicKey()Ljava/lang/String;
@@ -866,21 +743,13 @@
     return-object v0
 .end method
 
-.method public getShouldSynchronizeManagedVariables()Z
-    .registers 2
-
-    .prologue
-    .line 452
-    iget-boolean v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mShouldSynchronizeManagedVariables:Z
-
-    return v0
-.end method
-
 .method public getSid()Ljava/lang/String;
     .registers 2
+    .annotation build Landroid/support/annotation/NonNull;
+    .end annotation
 
     .prologue
-    .line 137
+    .line 98
     iget-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v0}, Lcom/upsight/android/UpsightContext;->getSid()Ljava/lang/String;
@@ -891,122 +760,219 @@
 .end method
 
 .method public getUserAttributesBool(Ljava/lang/String;)Z
-    .registers 4
+    .registers 5
     .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
 
     .prologue
-    .line 274
+    .line 245
     :try_start_0
-    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
+    iget-object v2, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    invoke-static {v1, p1}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getBoolean(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Ljava/lang/Boolean;
+    invoke-static {v2, p1}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getBoolean(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Ljava/lang/Boolean;
 
     move-result-object v1
 
+    .line 246
+    .local v1, "value":Ljava/lang/Boolean;
+    if-eqz v1, :cond_11
+
+    .line 247
     invoke-virtual {v1}, Ljava/lang/Boolean;->booleanValue()Z
-    :try_end_9
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_9} :catch_b
+    :try_end_b
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_b} :catch_d
 
-    move-result v1
+    move-result v2
 
-    .line 279
-    :goto_a
-    return v1
+    .line 253
+    .end local v1    # "value":Ljava/lang/Boolean;
+    :goto_c
+    return v2
 
-    .line 275
-    :catch_b
+    .line 249
+    :catch_d
     move-exception v0
 
-    .line 276
+    .line 250
     .local v0, "e":Ljava/lang/Exception;
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
-    .line 279
-    const/4 v1, 0x0
+    .line 253
+    .end local v0    # "e":Ljava/lang/Exception;
+    :cond_11
+    const/4 v2, 0x0
 
-    goto :goto_a
+    goto :goto_c
+.end method
+
+.method public getUserAttributesDatetime(Ljava/lang/String;)J
+    .registers 8
+    .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
+
+    .prologue
+    .line 258
+    :try_start_0
+    iget-object v4, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
+
+    invoke-static {v4, p1}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getDatetime(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Ljava/util/Date;
+
+    move-result-object v3
+
+    .line 259
+    .local v3, "value":Ljava/util/Date;
+    if-eqz v3, :cond_19
+
+    .line 260
+    invoke-virtual {v3}, Ljava/util/Date;->getTime()J
+
+    move-result-wide v0
+
+    .line 261
+    .local v0, "datetimeMs":J
+    sget-object v4, Ljava/util/concurrent/TimeUnit;->SECONDS:Ljava/util/concurrent/TimeUnit;
+
+    sget-object v5, Ljava/util/concurrent/TimeUnit;->MILLISECONDS:Ljava/util/concurrent/TimeUnit;
+
+    invoke-virtual {v4, v0, v1, v5}, Ljava/util/concurrent/TimeUnit;->convert(JLjava/util/concurrent/TimeUnit;)J
+    :try_end_13
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_13} :catch_15
+
+    move-result-wide v4
+
+    .line 267
+    .end local v0    # "datetimeMs":J
+    .end local v3    # "value":Ljava/util/Date;
+    :goto_14
+    return-wide v4
+
+    .line 263
+    :catch_15
+    move-exception v2
+
+    .line 264
+    .local v2, "e":Ljava/lang/Exception;
+    invoke-virtual {v2}, Ljava/lang/Exception;->printStackTrace()V
+
+    .line 267
+    .end local v2    # "e":Ljava/lang/Exception;
+    :cond_19
+    const-wide/16 v4, 0x0
+
+    goto :goto_14
 .end method
 
 .method public getUserAttributesFloat(Ljava/lang/String;)F
-    .registers 4
+    .registers 5
     .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
 
     .prologue
-    .line 254
+    .line 219
     :try_start_0
-    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
+    iget-object v2, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    invoke-static {v1, p1}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getFloat(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Ljava/lang/Float;
+    invoke-static {v2, p1}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getFloat(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Ljava/lang/Float;
 
     move-result-object v1
 
+    .line 220
+    .local v1, "value":Ljava/lang/Float;
+    if-eqz v1, :cond_11
+
+    .line 221
     invoke-virtual {v1}, Ljava/lang/Float;->floatValue()F
-    :try_end_9
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_9} :catch_b
+    :try_end_b
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_b} :catch_d
 
-    move-result v1
+    move-result v2
 
-    .line 259
-    :goto_a
-    return v1
+    .line 227
+    .end local v1    # "value":Ljava/lang/Float;
+    :goto_c
+    return v2
 
-    .line 255
-    :catch_b
+    .line 223
+    :catch_d
     move-exception v0
 
-    .line 256
+    .line 224
     .local v0, "e":Ljava/lang/Exception;
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
-    .line 259
-    const/4 v1, 0x0
+    .line 227
+    .end local v0    # "e":Ljava/lang/Exception;
+    :cond_11
+    const/4 v2, 0x0
 
-    goto :goto_a
+    goto :goto_c
 .end method
 
 .method public getUserAttributesInt(Ljava/lang/String;)I
-    .registers 4
+    .registers 5
     .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
 
     .prologue
-    .line 264
+    .line 232
     :try_start_0
-    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
+    iget-object v2, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    invoke-static {v1, p1}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getInteger(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Ljava/lang/Integer;
+    invoke-static {v2, p1}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getInteger(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Ljava/lang/Integer;
 
     move-result-object v1
 
+    .line 233
+    .local v1, "value":Ljava/lang/Integer;
+    if-eqz v1, :cond_11
+
+    .line 234
     invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
-    :try_end_9
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_9} :catch_b
+    :try_end_b
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_b} :catch_d
 
-    move-result v1
+    move-result v2
 
-    .line 269
-    :goto_a
-    return v1
+    .line 240
+    .end local v1    # "value":Ljava/lang/Integer;
+    :goto_c
+    return v2
 
-    .line 265
-    :catch_b
+    .line 236
+    :catch_d
     move-exception v0
 
-    .line 266
+    .line 237
     .local v0, "e":Ljava/lang/Exception;
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
-    .line 269
-    const/4 v1, 0x0
+    .line 240
+    .end local v0    # "e":Ljava/lang/Exception;
+    :cond_11
+    const/4 v2, 0x0
 
-    goto :goto_a
+    goto :goto_c
 .end method
 
 .method public getUserAttributesString(Ljava/lang/String;)Ljava/lang/String;
     .registers 4
     .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
+    .annotation build Landroid/support/annotation/Nullable;
+    .end annotation
 
     .prologue
-    .line 244
+    .line 209
     :try_start_0
     iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
@@ -1016,821 +982,366 @@
 
     move-result-object v1
 
-    .line 249
+    .line 214
     :goto_6
     return-object v1
 
-    .line 245
+    .line 210
     :catch_7
     move-exception v0
 
-    .line 246
+    .line 211
     .local v0, "e":Ljava/lang/Exception;
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
-    .line 249
+    .line 214
     const/4 v1, 0x0
 
     goto :goto_6
 .end method
 
-.method public isContentReadyForBillboardWithScope(Ljava/lang/String;)Z
-    .registers 3
-    .param p1, "scope"    # Ljava/lang/String;
-
-    .prologue
-    .line 401
-    iget-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    invoke-static {v0, p1}, Lcom/upsight/android/marketing/UpsightMarketingContentStore;->isContentReady(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Z
-
-    move-result v0
-
-    return v0
-.end method
-
-.method public onActivityCreated(Landroid/app/Activity;Landroid/os/Bundle;)V
-    .registers 3
-    .param p1, "activity"    # Landroid/app/Activity;
-    .param p2, "savedInstanceState"    # Landroid/os/Bundle;
+.method public onApplicationPaused()V
+    .registers 4
 
     .prologue
     .line 462
-    return-void
-.end method
+    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mExtensions:Ljava/util/Set;
 
-.method public onActivityDestroyed(Landroid/app/Activity;)V
-    .registers 2
-    .param p1, "activity"    # Landroid/app/Activity;
-
-    .prologue
-    .line 466
-    return-void
-.end method
-
-.method public onActivityPaused(Landroid/app/Activity;)V
-    .registers 8
-    .param p1, "activity"    # Landroid/app/Activity;
-
-    .prologue
-    .line 471
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mPushBillboard:Lcom/upsight/android/marketing/UpsightBillboard;
-
-    invoke-virtual {v3}, Lcom/upsight/android/marketing/UpsightBillboard;->destroy()V
-
-    .line 472
-    const/4 v3, 0x0
-
-    iput-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mPushBillboard:Lcom/upsight/android/marketing/UpsightBillboard;
-
-    .line 475
-    new-instance v3, Ljava/util/ArrayList;
-
-    invoke-direct {v3}, Ljava/util/ArrayList;-><init>()V
-
-    iput-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mJettisonedBillboardScopes:Ljava/util/List;
-
-    .line 477
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v3}, Ljava/util/Map;->keySet()Ljava/util/Set;
-
-    move-result-object v3
-
-    invoke-interface {v3}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+    invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v1
 
-    .local v1, "i$":Ljava/util/Iterator;
-    :goto_19
+    :goto_6
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v3
-
-    if-eqz v3, :cond_36
-
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v2
-
-    check-cast v2, Ljava/lang/String;
-
-    .line 478
-    .local v2, "scope":Ljava/lang/String;
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mJettisonedBillboardScopes:Ljava/util/List;
-
-    invoke-interface {v3, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 479
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v3, v2}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/upsight/android/marketing/UpsightBillboard;
-
-    .line 480
-    .local v0, "billboard":Lcom/upsight/android/marketing/UpsightBillboard;
-    invoke-virtual {v0}, Lcom/upsight/android/marketing/UpsightBillboard;->destroy()V
-
-    goto :goto_19
-
-    .line 483
-    .end local v0    # "billboard":Lcom/upsight/android/marketing/UpsightBillboard;
-    .end local v2    # "scope":Ljava/lang/String;
-    :cond_36
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v3}, Ljava/util/Map;->clear()V
-
-    .line 484
-    const-string v3, "Upsight"
-
-    new-instance v4, Ljava/lang/StringBuilder;
-
-    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v5, "tombstoned "
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    iget-object v5, p0, Lcom/upsight/android/unity/UpsightPlugin;->mJettisonedBillboardScopes:Ljava/util/List;
-
-    invoke-interface {v5}, Ljava/util/List;->size()I
-
-    move-result v5
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    const-string v5, " scopes when pausing"
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v4
-
-    invoke-static {v3, v4}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 485
-    return-void
-.end method
-
-.method public onActivityResumed(Landroid/app/Activity;)V
-    .registers 7
-    .param p1, "activity"    # Landroid/app/Activity;
-
-    .prologue
-    .line 489
-    const-string v2, "Upsight"
-
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v4, "resurrecting "
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    iget-object v4, p0, Lcom/upsight/android/unity/UpsightPlugin;->mJettisonedBillboardScopes:Ljava/util/List;
-
-    invoke-interface {v4}, Ljava/util/List;->size()I
-
-    move-result v4
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    const-string v4, " scopes when resuming and push billboard"
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-static {v2, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 490
-    iget-object v2, p0, Lcom/upsight/android/unity/UpsightPlugin;->mPushBillboard:Lcom/upsight/android/marketing/UpsightBillboard;
-
-    if-nez v2, :cond_32
-
-    .line 491
-    iget-object v2, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardHandler:Lcom/upsight/android/unity/BillboardHandler;
-
-    invoke-static {v2, v3}, Lcom/upsight/android/googlepushservices/UpsightPushBillboard;->create(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/marketing/UpsightBillboard$Handler;)Lcom/upsight/android/marketing/UpsightBillboard;
-
-    move-result-object v2
-
-    iput-object v2, p0, Lcom/upsight/android/unity/UpsightPlugin;->mPushBillboard:Lcom/upsight/android/marketing/UpsightBillboard;
-
-    .line 494
-    :cond_32
-    iget-object v2, p0, Lcom/upsight/android/unity/UpsightPlugin;->mJettisonedBillboardScopes:Ljava/util/List;
-
-    invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
-
-    move-result-object v0
-
-    .local v0, "i$":Ljava/util/Iterator;
-    :goto_38
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_48
-
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v1
-
-    check-cast v1, Ljava/lang/String;
-
-    .line 495
-    .local v1, "scope":Ljava/lang/String;
-    invoke-virtual {p0, v1}, Lcom/upsight/android/unity/UpsightPlugin;->prepareBillboard(Ljava/lang/String;)V
-
-    goto :goto_38
-
-    .line 497
-    .end local v1    # "scope":Ljava/lang/String;
-    :cond_48
-    const/4 v2, 0x0
-
-    iput-object v2, p0, Lcom/upsight/android/unity/UpsightPlugin;->mJettisonedBillboardScopes:Ljava/util/List;
-
-    .line 498
-    return-void
-.end method
-
-.method public onActivitySaveInstanceState(Landroid/app/Activity;Landroid/os/Bundle;)V
-    .registers 3
-    .param p1, "activity"    # Landroid/app/Activity;
-    .param p2, "outState"    # Landroid/os/Bundle;
-
-    .prologue
-    .line 502
-    return-void
-.end method
-
-.method public onActivityStarted(Landroid/app/Activity;)V
-    .registers 2
-    .param p1, "activity"    # Landroid/app/Activity;
-
-    .prologue
-    .line 506
-    return-void
-.end method
-
-.method public onActivityStopped(Landroid/app/Activity;)V
-    .registers 2
-    .param p1, "activity"    # Landroid/app/Activity;
-
-    .prologue
-    .line 510
-    return-void
-.end method
-
-.method public prepareBillboard(Ljava/lang/String;)V
-    .registers 8
-    .param p1, "scope"    # Ljava/lang/String;
-
-    .prologue
-    .line 406
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v3, p1}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
-
-    move-result v3
-
-    if-nez v3, :cond_e
-
-    invoke-virtual {p0}, Lcom/upsight/android/unity/UpsightPlugin;->getHasActiveBillboard()Z
-
-    move-result v3
-
-    if-eqz v3, :cond_f
-
-    .line 423
-    :cond_e
-    :goto_e
-    return-void
-
-    .line 411
-    :cond_f
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v3}, Ljava/util/Map;->size()I
-
-    move-result v3
-
-    if-lez v3, :cond_60
-
-    .line 412
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v3}, Ljava/util/Map;->keySet()Ljava/util/Set;
-
-    move-result-object v3
-
-    invoke-interface {v3}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
-
-    move-result-object v1
-
-    .local v1, "i$":Ljava/util/Iterator;
-    :goto_21
-    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v3
-
-    if-eqz v3, :cond_5b
+    if-eqz v2, :cond_16
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v2
+    move-result-object v0
 
-    check-cast v2, Ljava/lang/String;
+    check-cast v0, Lcom/upsight/android/unity/IUpsightExtensionManager;
 
-    .line 413
-    .local v2, "s":Ljava/lang/String;
-    const-string v3, "Upsight"
+    .line 463
+    .local v0, "extension":Lcom/upsight/android/unity/IUpsightExtensionManager;
+    invoke-interface {v0}, Lcom/upsight/android/unity/IUpsightExtensionManager;->onApplicationPaused()V
 
-    new-instance v4, Ljava/lang/StringBuilder;
+    goto :goto_6
 
-    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+    .line 465
+    .end local v0    # "extension":Lcom/upsight/android/unity/IUpsightExtensionManager;
+    :cond_16
+    return-void
+.end method
 
-    const-string v5, "clearing out cached billboard ["
+.method public onApplicationResumed()V
+    .registers 4
 
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .prologue
+    .line 468
+    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mExtensions:Ljava/util/Set;
 
-    move-result-object v4
+    invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
-    invoke-virtual {v4, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result-object v1
 
-    move-result-object v4
+    :goto_6
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
-    const-string v5, "] to make room for the new billboard: "
+    move-result v2
 
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    if-eqz v2, :cond_16
 
-    move-result-object v4
-
-    invoke-virtual {v4, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v4
-
-    invoke-static {v3, v4}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 414
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v3, v2}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
-    check-cast v0, Lcom/upsight/android/marketing/UpsightBillboard;
+    check-cast v0, Lcom/upsight/android/unity/IUpsightExtensionManager;
 
-    .line 415
-    .local v0, "billboard":Lcom/upsight/android/marketing/UpsightBillboard;
-    invoke-virtual {v0}, Lcom/upsight/android/marketing/UpsightBillboard;->destroy()V
+    .line 469
+    .local v0, "extension":Lcom/upsight/android/unity/IUpsightExtensionManager;
+    invoke-interface {v0}, Lcom/upsight/android/unity/IUpsightExtensionManager;->onApplicationResumed()V
 
-    goto :goto_21
+    goto :goto_6
 
-    .line 417
-    .end local v0    # "billboard":Lcom/upsight/android/marketing/UpsightBillboard;
-    .end local v2    # "s":Ljava/lang/String;
-    :cond_5b
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v3}, Ljava/util/Map;->clear()V
-
-    .line 421
-    .end local v1    # "i$":Ljava/util/Iterator;
-    :cond_60
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    iget-object v4, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardHandler:Lcom/upsight/android/unity/BillboardHandler;
-
-    invoke-static {v3, p1, v4}, Lcom/upsight/android/marketing/UpsightBillboard;->create(Lcom/upsight/android/UpsightContext;Ljava/lang/String;Lcom/upsight/android/marketing/UpsightBillboard$Handler;)Lcom/upsight/android/marketing/UpsightBillboard;
-
-    move-result-object v0
-
-    .line 422
-    .restart local v0    # "billboard":Lcom/upsight/android/marketing/UpsightBillboard;
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v3, p1, v0}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    goto :goto_e
+    .line 471
+    .end local v0    # "extension":Lcom/upsight/android/unity/IUpsightExtensionManager;
+    :cond_16
+    return-void
 .end method
 
 .method public purgeLocation()V
     .registers 2
 
     .prologue
-    .line 172
-    iget-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
+    .line 147
+    new-instance v0, Lcom/upsight/android/unity/UpsightPlugin$3;
 
-    invoke-static {v0}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker;->purge(Lcom/upsight/android/UpsightContext;)V
+    invoke-direct {v0, p0}, Lcom/upsight/android/unity/UpsightPlugin$3;-><init>(Lcom/upsight/android/unity/UpsightPlugin;)V
 
-    .line 173
+    invoke-static {v0}, Lcom/upsight/android/unity/UnityBridge;->runSafelyOnUiThread(Ljava/lang/Runnable;)V
+
+    .line 153
     return-void
 .end method
 
 .method public recordAnalyticsEvent(Ljava/lang/String;Ljava/lang/String;)V
-    .registers 5
+    .registers 4
     .param p1, "eventName"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
     .param p2, "properties"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
 
     .prologue
-    .line 353
-    invoke-static {p1}, Lcom/upsight/android/analytics/event/UpsightCustomEvent;->createBuilder(Ljava/lang/String;)Lcom/upsight/android/analytics/event/UpsightCustomEvent$Builder;
+    .line 342
+    new-instance v0, Lcom/upsight/android/unity/UpsightPlugin$9;
 
-    move-result-object v0
+    invoke-direct {v0, p0, p1, p2}, Lcom/upsight/android/unity/UpsightPlugin$9;-><init>(Lcom/upsight/android/unity/UpsightPlugin;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 354
-    .local v0, "builder":Lcom/upsight/android/analytics/event/UpsightCustomEvent$Builder;
-    invoke-static {p2}, Lcom/upsight/android/unity/UpsightPlugin;->publisherDataFromJsonString(Ljava/lang/String;)Lcom/upsight/android/analytics/event/UpsightPublisherData;
+    invoke-static {v0}, Lcom/upsight/android/unity/UnityBridge;->runSafelyOnUiThread(Ljava/lang/Runnable;)V
 
-    move-result-object v1
+    .line 350
+    return-void
+.end method
 
-    invoke-virtual {v0, v1}, Lcom/upsight/android/analytics/event/UpsightCustomEvent$Builder;->put(Lcom/upsight/android/analytics/event/UpsightPublisherData;)Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;
+.method public recordAttributionEvent(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+    .registers 11
+    .param p1, "campaign"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/Nullable;
+        .end annotation
+    .end param
+    .param p2, "creative"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/Nullable;
+        .end annotation
+    .end param
+    .param p3, "source"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/Nullable;
+        .end annotation
+    .end param
+    .param p4, "properties"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/Nullable;
+        .end annotation
+    .end param
 
-    .line 355
-    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
+    .prologue
+    .line 411
+    new-instance v0, Lcom/upsight/android/unity/UpsightPlugin$13;
 
-    invoke-virtual {v0, v1}, Lcom/upsight/android/analytics/event/UpsightCustomEvent$Builder;->record(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
+    move-object v1, p0
 
-    .line 356
+    move-object v2, p1
+
+    move-object v3, p2
+
+    move-object v4, p3
+
+    move-object v5, p4
+
+    invoke-direct/range {v0 .. v5}, Lcom/upsight/android/unity/UpsightPlugin$13;-><init>(Lcom/upsight/android/unity/UpsightPlugin;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+
+    invoke-static {v0}, Lcom/upsight/android/unity/UnityBridge;->runSafelyOnUiThread(Ljava/lang/Runnable;)V
+
+    .line 422
     return-void
 .end method
 
 .method public recordGooglePlayPurchase(ILjava/lang/String;DDLjava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-    .registers 27
+    .registers 25
     .param p1, "quantity"    # I
     .param p2, "currency"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
     .param p3, "price"    # D
     .param p5, "totalPrice"    # D
     .param p7, "product"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
     .param p8, "reponseCode"    # I
     .param p9, "inAppPurchaseData"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
     .param p10, "inAppDataSignature"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
     .param p11, "properties"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
 
     .prologue
-    .line 385
-    new-instance v2, Lcom/upsight/android/analytics/event/UpsightPublisherData$Builder;
-
-    invoke-direct {v2}, Lcom/upsight/android/analytics/event/UpsightPublisherData$Builder;-><init>()V
-
-    .line 386
-    .local v2, "builder":Lcom/upsight/android/analytics/event/UpsightPublisherData$Builder;
-    invoke-static/range {p11 .. p11}, Lcom/upsight/android/unity/UpsightPlugin;->publisherDataFromJsonString(Ljava/lang/String;)Lcom/upsight/android/analytics/event/UpsightPublisherData;
-
-    move-result-object v3
-
-    invoke-virtual {v2, v3}, Lcom/upsight/android/analytics/event/UpsightPublisherData$Builder;->put(Lcom/upsight/android/analytics/event/UpsightPublisherData;)Lcom/upsight/android/analytics/event/UpsightPublisherData$Builder;
-
-    .line 389
-    :try_start_c
-    new-instance v11, Landroid/content/Intent;
-
-    invoke-direct {v11}, Landroid/content/Intent;-><init>()V
-
     .line 390
-    .local v11, "responseData":Landroid/content/Intent;
-    const-string v3, "RESPONSE_CODE"
+    new-instance v0, Lcom/upsight/android/unity/UpsightPlugin$12;
 
-    move/from16 v0, p8
+    move-object v1, p0
 
-    invoke-virtual {v11, v3, v0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+    move-object/from16 v2, p11
 
-    .line 391
-    const-string v3, "INAPP_PURCHASE_DATA"
+    move/from16 v3, p8
 
-    move-object/from16 v0, p9
+    move-object/from16 v4, p9
 
-    invoke-virtual {v11, v3, v0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+    move-object/from16 v5, p10
 
-    .line 392
-    const-string v3, "INAPP_DATA_SIGNATURE"
+    move v6, p1
 
-    move-object/from16 v0, p10
+    move-object v7, p2
 
-    invoke-virtual {v11, v3, v0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+    move-wide/from16 v8, p3
 
-    .line 393
-    iget-object v3, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
+    move-wide/from16 v10, p5
 
-    invoke-virtual {v2}, Lcom/upsight/android/analytics/event/UpsightPublisherData$Builder;->build()Lcom/upsight/android/analytics/event/UpsightPublisherData;
+    move-object/from16 v12, p7
 
-    move-result-object v12
+    invoke-direct/range {v0 .. v12}, Lcom/upsight/android/unity/UpsightPlugin$12;-><init>(Lcom/upsight/android/unity/UpsightPlugin;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;ILjava/lang/String;DDLjava/lang/String;)V
 
-    move/from16 v4, p1
+    invoke-static {v0}, Lcom/upsight/android/unity/UnityBridge;->runSafelyOnUiThread(Ljava/lang/Runnable;)V
 
-    move-object/from16 v5, p2
-
-    move-wide/from16 v6, p3
-
-    move-wide/from16 v8, p5
-
-    move-object/from16 v10, p7
-
-    invoke-static/range {v3 .. v12}, Lcom/upsight/android/analytics/UpsightGooglePlayHelper;->trackPurchase(Lcom/upsight/android/UpsightContext;ILjava/lang/String;DDLjava/lang/String;Landroid/content/Intent;Lcom/upsight/android/analytics/event/UpsightPublisherData;)V
-    :try_end_39
-    .catch Lcom/upsight/android/UpsightException; {:try_start_c .. :try_end_39} :catch_3a
-
-    .line 398
-    .end local v11    # "responseData":Landroid/content/Intent;
-    :goto_39
+    .line 408
     return-void
-
-    .line 394
-    :catch_3a
-    move-exception v13
-
-    .line 395
-    .local v13, "e":Lcom/upsight/android/UpsightException;
-    const-string v3, "Upsight"
-
-    new-instance v4, Ljava/lang/StringBuilder;
-
-    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v5, "Failed to recordGooglePlayPurchase: "
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    invoke-virtual {v13}, Lcom/upsight/android/UpsightException;->getMessage()Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v4
-
-    invoke-static {v3, v4}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 396
-    invoke-virtual {v13}, Lcom/upsight/android/UpsightException;->printStackTrace()V
-
-    goto :goto_39
 .end method
 
 .method public recordMilestoneEvent(Ljava/lang/String;Ljava/lang/String;)V
-    .registers 5
+    .registers 4
     .param p1, "scope"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
     .param p2, "properties"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
 
     .prologue
-    .line 359
-    invoke-static {p1}, Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent;->createBuilder(Ljava/lang/String;)Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$Builder;
+    .line 353
+    new-instance v0, Lcom/upsight/android/unity/UpsightPlugin$10;
 
-    move-result-object v0
+    invoke-direct {v0, p0, p1, p2}, Lcom/upsight/android/unity/UpsightPlugin$10;-><init>(Lcom/upsight/android/unity/UpsightPlugin;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 360
-    .local v0, "builder":Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$Builder;
-    invoke-static {p2}, Lcom/upsight/android/unity/UpsightPlugin;->publisherDataFromJsonString(Ljava/lang/String;)Lcom/upsight/android/analytics/event/UpsightPublisherData;
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$Builder;->put(Lcom/upsight/android/analytics/event/UpsightPublisherData;)Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;
+    invoke-static {v0}, Lcom/upsight/android/unity/UnityBridge;->runSafelyOnUiThread(Ljava/lang/Runnable;)V
 
     .line 361
-    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    invoke-virtual {v0, v1}, Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$Builder;->record(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
-
-    .line 362
     return-void
 .end method
 
 .method public recordMonetizationEvent(DLjava/lang/String;Ljava/lang/String;DLjava/lang/String;ILjava/lang/String;)V
-    .registers 15
+    .registers 21
     .param p1, "totalPrice"    # D
     .param p3, "currency"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
     .param p4, "product"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/Nullable;
+        .end annotation
+    .end param
     .param p5, "price"    # D
     .param p7, "resolution"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/Nullable;
+        .end annotation
+    .end param
     .param p8, "quantity"    # I
     .param p9, "properties"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/Nullable;
+        .end annotation
+    .end param
 
     .prologue
     .line 365
-    invoke-static {p1, p2}, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
+    new-instance v0, Lcom/upsight/android/unity/UpsightPlugin$11;
 
-    move-result-object v1
+    move-object v1, p0
 
-    invoke-static {v1, p3}, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationEvent;->createBuilder(Ljava/lang/Double;Ljava/lang/String;)Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationEvent$Builder;
+    move-wide v2, p1
 
-    move-result-object v0
+    move-object v4, p3
 
-    .line 366
-    .local v0, "builder":Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationEvent$Builder;
-    invoke-static {p9}, Lcom/upsight/android/unity/UpsightPlugin;->publisherDataFromJsonString(Ljava/lang/String;)Lcom/upsight/android/analytics/event/UpsightPublisherData;
+    move-object/from16 v5, p9
 
-    move-result-object v1
+    move-object v6, p4
 
-    invoke-virtual {v0, v1}, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationEvent$Builder;->put(Lcom/upsight/android/analytics/event/UpsightPublisherData;)Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;
+    move-wide/from16 v7, p5
 
-    .line 368
-    if-eqz p4, :cond_14
+    move-object/from16 v9, p7
 
-    .line 369
-    invoke-virtual {v0, p4}, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationEvent$Builder;->setProduct(Ljava/lang/String;)Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationEvent$Builder;
+    move/from16 v10, p8
 
-    .line 371
-    :cond_14
-    const-wide/16 v2, 0x0
+    invoke-direct/range {v0 .. v10}, Lcom/upsight/android/unity/UpsightPlugin$11;-><init>(Lcom/upsight/android/unity/UpsightPlugin;DLjava/lang/String;Ljava/lang/String;Ljava/lang/String;DLjava/lang/String;I)V
 
-    cmpl-double v1, p5, v2
+    invoke-static {v0}, Lcom/upsight/android/unity/UnityBridge;->runSafelyOnUiThread(Ljava/lang/Runnable;)V
 
-    if-ltz v1, :cond_21
-
-    .line 372
-    invoke-static {p5, p6}, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationEvent$Builder;->setPrice(Ljava/lang/Double;)Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationEvent$Builder;
-
-    .line 374
-    :cond_21
-    if-eqz p7, :cond_26
-
-    .line 375
-    invoke-virtual {v0, p7}, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationEvent$Builder;->setResolution(Ljava/lang/String;)Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationEvent$Builder;
-
-    .line 377
-    :cond_26
-    if-lez p8, :cond_2f
-
-    .line 378
-    invoke-static {p8}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationEvent$Builder;->setQuantity(Ljava/lang/Integer;)Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationEvent$Builder;
-
-    .line 380
-    :cond_2f
-    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    invoke-virtual {v0, v1}, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationEvent$Builder;->record(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
-
-    .line 381
+    .line 386
     return-void
 .end method
 
-.method public registerForPushNotifications()V
-    .registers 3
+.method public registerExtension(Lcom/upsight/android/unity/IUpsightExtensionManager;)V
+    .registers 4
+    .param p1, "extension"    # Lcom/upsight/android/unity/IUpsightExtensionManager;
 
     .prologue
-    .line 191
-    const-string v0, "Upsight"
+    .line 76
+    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mExtensions:Ljava/util/Set;
 
-    const-string v1, "registering for push notifications"
-
-    invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 192
-    iget-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    new-instance v1, Lcom/upsight/android/unity/UpsightPlugin$2;
-
-    invoke-direct {v1, p0}, Lcom/upsight/android/unity/UpsightPlugin$2;-><init>(Lcom/upsight/android/unity/UpsightPlugin;)V
-
-    invoke-static {v0, v1}, Lcom/upsight/android/googlepushservices/UpsightGooglePushServices;->register(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;)V
-
-    .line 203
-    return-void
-.end method
-
-.method public removeBillboardFromMap(Ljava/lang/String;)V
-    .registers 5
-    .param p1, "scope"    # Ljava/lang/String;
-
-    .prologue
-    .line 436
-    iget-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v0, p1}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
+    invoke-interface {v1, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_25
+    .line 77
+    .local v0, "successful":Z
+    if-eqz v0, :cond_d
 
-    .line 437
-    const-string v0, "Upsight"
-
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v2, "Removing used billboard from internal map for scope: "
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 438
-    iget-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mBillboardMap:Ljava/util/Map;
-
-    invoke-interface {v0, p1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 440
-    :cond_25
-    return-void
-.end method
-
-.method setHasActiveBillboard(Z)V
-    .registers 2
-    .param p1, "hasActiveBillboard"    # Z
-
-    .prologue
-    .line 518
-    iput-boolean p1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mHasActiveBillboard:Z
-
-    .line 519
-    return-void
-.end method
-
-.method public setLocation(DDLjava/lang/String;)V
-    .registers 9
-    .param p1, "lat"    # D
-    .param p3, "lon"    # D
-    .param p5, "timezone"    # Ljava/lang/String;
-
-    .prologue
-    .line 163
-    invoke-static {p1, p2, p3, p4}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->create(DD)Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
-
-    move-result-object v0
-
-    .line 165
-    .local v0, "data":Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
-    if-eqz p5, :cond_f
-
-    invoke-virtual {p5}, Ljava/lang/String;->length()I
-
-    move-result v1
-
-    if-lez v1, :cond_f
-
-    .line 166
-    invoke-virtual {v0, p5}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->setTimeZone(Ljava/lang/String;)V
-
-    .line 168
-    :cond_f
+    .line 78
     iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    invoke-static {v1, v0}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker;->track(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;)V
+    invoke-interface {p1, v1}, Lcom/upsight/android/unity/IUpsightExtensionManager;->init(Lcom/upsight/android/UpsightContext;)V
 
-    .line 169
+    .line 80
+    :cond_d
+    return-void
+.end method
+
+.method public setLocation(DD)V
+    .registers 12
+    .param p1, "lat"    # D
+    .param p3, "lon"    # D
+
+    .prologue
+    .line 137
+    new-instance v0, Lcom/upsight/android/unity/UpsightPlugin$2;
+
+    move-object v1, p0
+
+    move-wide v2, p1
+
+    move-wide v4, p3
+
+    invoke-direct/range {v0 .. v5}, Lcom/upsight/android/unity/UpsightPlugin$2;-><init>(Lcom/upsight/android/unity/UpsightPlugin;DD)V
+
+    invoke-static {v0}, Lcom/upsight/android/unity/UnityBridge;->runSafelyOnUiThread(Ljava/lang/Runnable;)V
+
+    .line 144
     return-void
 .end method
 
 .method public setLoggerLevel(Ljava/lang/String;)V
     .registers 6
     .param p1, "logLevel"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
 
     .prologue
-    .line 141
+    .line 103
+    :try_start_0
     invoke-virtual {p1}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
 
     move-result-object v1
@@ -1843,21 +1354,21 @@
 
     if-eqz v1, :cond_25
 
-    .line 142
-    const-string v1, "Upsight"
+    .line 104
+    const-string v1, "Upsight-Unity"
 
     const-string v2, "enabling verbose logs"
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 143
+    .line 105
     iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 
     move-result-object v1
 
-    const-string v2, "Upsight"
+    const-string v2, ".*"
 
     const-class v3, Lcom/upsight/android/logger/UpsightLogger$Level;
 
@@ -1867,22 +1378,12 @@
 
     invoke-interface {v1, v2, v3}, Lcom/upsight/android/logger/UpsightLogger;->setLogLevel(Ljava/lang/String;Ljava/util/EnumSet;)V
 
-    .line 148
+    .line 112
     :goto_24
     return-void
 
-    .line 145
+    .line 107
     :cond_25
-    invoke-static {p1}, Lcom/upsight/android/logger/UpsightLogger$Level;->valueOf(Ljava/lang/String;)Lcom/upsight/android/logger/UpsightLogger$Level;
-
-    move-result-object v1
-
-    invoke-static {v1}, Ljava/util/EnumSet;->of(Ljava/lang/Enum;)Ljava/util/EnumSet;
-
-    move-result-object v0
-
-    .line 146
-    .local v0, "logLevels":Ljava/util/EnumSet;, "Ljava/util/EnumSet<Lcom/upsight/android/logger/UpsightLogger$Level;>;"
     iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
@@ -1891,185 +1392,158 @@
 
     const-string v2, "Upsight"
 
-    invoke-interface {v1, v2, v0}, Lcom/upsight/android/logger/UpsightLogger;->setLogLevel(Ljava/lang/String;Ljava/util/EnumSet;)V
+    invoke-static {p1}, Lcom/upsight/android/logger/UpsightLogger$Level;->valueOf(Ljava/lang/String;)Lcom/upsight/android/logger/UpsightLogger$Level;
+
+    move-result-object v3
+
+    invoke-static {v3}, Ljava/util/EnumSet;->of(Ljava/lang/Enum;)Ljava/util/EnumSet;
+
+    move-result-object v3
+
+    invoke-interface {v1, v2, v3}, Lcom/upsight/android/logger/UpsightLogger;->setLogLevel(Ljava/lang/String;Ljava/util/EnumSet;)V
+    :try_end_38
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_38} :catch_39
+
+    goto :goto_24
+
+    .line 109
+    :catch_39
+    move-exception v0
+
+    .line 110
+    .local v0, "e":Ljava/lang/Exception;
+    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
     goto :goto_24
 .end method
 
 .method public setOptOutStatus(Z)V
-    .registers 3
+    .registers 4
     .param p1, "optOutStatus"    # Z
 
     .prologue
-    .line 159
-    iget-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    invoke-static {v0, p1}, Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;->set(Lcom/upsight/android/UpsightContext;Z)V
-
-    .line 160
-    return-void
-.end method
-
-.method public setShouldSynchronizeManagedVariables(Z)V
-    .registers 2
-    .param p1, "shouldSynchronizeManagedVariables"    # Z
-
-    .prologue
-    .line 448
-    iput-boolean p1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mShouldSynchronizeManagedVariables:Z
-
-    .line 449
-    return-void
-.end method
-
-.method public setUserAttributesBool(Ljava/lang/String;Z)V
-    .registers 6
-    .param p1, "key"    # Ljava/lang/String;
-    .param p2, "value"    # Z
-
-    .prologue
-    .line 236
+    .line 130
     :try_start_0
     iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
-
-    move-result-object v2
-
-    invoke-static {v1, p1, v2}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->put(Lcom/upsight/android/UpsightContext;Ljava/lang/String;Ljava/lang/Boolean;)V
-    :try_end_9
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_9} :catch_a
-
-    .line 240
-    :goto_9
-    return-void
-
-    .line 237
-    :catch_a
-    move-exception v0
-
-    .line 238
-    .local v0, "e":Ljava/lang/Exception;
-    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
-
-    goto :goto_9
-.end method
-
-.method public setUserAttributesFloat(Ljava/lang/String;F)V
-    .registers 6
-    .param p1, "key"    # Ljava/lang/String;
-    .param p2, "value"    # F
-
-    .prologue
-    .line 220
-    :try_start_0
-    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    invoke-static {p2}, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
-
-    move-result-object v2
-
-    invoke-static {v1, p1, v2}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->put(Lcom/upsight/android/UpsightContext;Ljava/lang/String;Ljava/lang/Float;)V
-    :try_end_9
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_9} :catch_a
-
-    .line 224
-    :goto_9
-    return-void
-
-    .line 221
-    :catch_a
-    move-exception v0
-
-    .line 222
-    .local v0, "e":Ljava/lang/Exception;
-    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
-
-    goto :goto_9
-.end method
-
-.method public setUserAttributesInt(Ljava/lang/String;I)V
-    .registers 6
-    .param p1, "key"    # Ljava/lang/String;
-    .param p2, "value"    # I
-
-    .prologue
-    .line 228
-    :try_start_0
-    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v2
-
-    invoke-static {v1, p1, v2}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->put(Lcom/upsight/android/UpsightContext;Ljava/lang/String;Ljava/lang/Integer;)V
-    :try_end_9
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_9} :catch_a
-
-    .line 232
-    :goto_9
-    return-void
-
-    .line 229
-    :catch_a
-    move-exception v0
-
-    .line 230
-    .local v0, "e":Ljava/lang/Exception;
-    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
-
-    goto :goto_9
-.end method
-
-.method public setUserAttributesString(Ljava/lang/String;Ljava/lang/String;)V
-    .registers 5
-    .param p1, "key"    # Ljava/lang/String;
-    .param p2, "value"    # Ljava/lang/String;
-
-    .prologue
-    .line 212
-    :try_start_0
-    iget-object v1, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    invoke-static {v1, p1, p2}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->put(Lcom/upsight/android/UpsightContext;Ljava/lang/String;Ljava/lang/String;)V
+    invoke-static {v1, p1}, Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;->set(Lcom/upsight/android/UpsightContext;Z)V
     :try_end_5
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_5} :catch_6
 
-    .line 216
+    .line 134
     :goto_5
     return-void
 
-    .line 213
+    .line 131
     :catch_6
     move-exception v0
 
-    .line 214
+    .line 132
     .local v0, "e":Ljava/lang/Exception;
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
     goto :goto_5
 .end method
 
-.method public unregisterForPushNotifications()V
-    .registers 3
+.method public setUserAttributesBool(Ljava/lang/String;Z)V
+    .registers 4
+    .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
+    .param p2, "value"    # Z
 
     .prologue
-    .line 176
-    const-string v0, "Upsight"
-
-    const-string v1, "unregistering for push notifications"
-
-    invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 177
-    iget-object v0, p0, Lcom/upsight/android/unity/UpsightPlugin;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    new-instance v1, Lcom/upsight/android/unity/UpsightPlugin$1;
-
-    invoke-direct {v1, p0}, Lcom/upsight/android/unity/UpsightPlugin$1;-><init>(Lcom/upsight/android/unity/UpsightPlugin;)V
-
-    invoke-static {v0, v1}, Lcom/upsight/android/googlepushservices/UpsightGooglePushServices;->unregister(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnUnregisterListener;)V
-
     .line 188
+    new-instance v0, Lcom/upsight/android/unity/UpsightPlugin$7;
+
+    invoke-direct {v0, p0, p1, p2}, Lcom/upsight/android/unity/UpsightPlugin$7;-><init>(Lcom/upsight/android/unity/UpsightPlugin;Ljava/lang/String;Z)V
+
+    invoke-static {v0}, Lcom/upsight/android/unity/UnityBridge;->runSafelyOnUiThread(Ljava/lang/Runnable;)V
+
+    .line 194
+    return-void
+.end method
+
+.method public setUserAttributesDatetime(Ljava/lang/String;J)V
+    .registers 6
+    .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
+    .param p2, "value"    # J
+
+    .prologue
+    .line 197
+    new-instance v0, Lcom/upsight/android/unity/UpsightPlugin$8;
+
+    invoke-direct {v0, p0, p2, p3, p1}, Lcom/upsight/android/unity/UpsightPlugin$8;-><init>(Lcom/upsight/android/unity/UpsightPlugin;JLjava/lang/String;)V
+
+    invoke-static {v0}, Lcom/upsight/android/unity/UnityBridge;->runSafelyOnUiThread(Ljava/lang/Runnable;)V
+
+    .line 204
+    return-void
+.end method
+
+.method public setUserAttributesFloat(Ljava/lang/String;F)V
+    .registers 4
+    .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
+    .param p2, "value"    # F
+
+    .prologue
+    .line 170
+    new-instance v0, Lcom/upsight/android/unity/UpsightPlugin$5;
+
+    invoke-direct {v0, p0, p1, p2}, Lcom/upsight/android/unity/UpsightPlugin$5;-><init>(Lcom/upsight/android/unity/UpsightPlugin;Ljava/lang/String;F)V
+
+    invoke-static {v0}, Lcom/upsight/android/unity/UnityBridge;->runSafelyOnUiThread(Ljava/lang/Runnable;)V
+
+    .line 176
+    return-void
+.end method
+
+.method public setUserAttributesInt(Ljava/lang/String;I)V
+    .registers 4
+    .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
+    .param p2, "value"    # I
+
+    .prologue
+    .line 179
+    new-instance v0, Lcom/upsight/android/unity/UpsightPlugin$6;
+
+    invoke-direct {v0, p0, p1, p2}, Lcom/upsight/android/unity/UpsightPlugin$6;-><init>(Lcom/upsight/android/unity/UpsightPlugin;Ljava/lang/String;I)V
+
+    invoke-static {v0}, Lcom/upsight/android/unity/UnityBridge;->runSafelyOnUiThread(Ljava/lang/Runnable;)V
+
+    .line 185
+    return-void
+.end method
+
+.method public setUserAttributesString(Ljava/lang/String;Ljava/lang/String;)V
+    .registers 4
+    .param p1, "key"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
+    .param p2, "value"    # Ljava/lang/String;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
+
+    .prologue
+    .line 161
+    new-instance v0, Lcom/upsight/android/unity/UpsightPlugin$4;
+
+    invoke-direct {v0, p0, p1, p2}, Lcom/upsight/android/unity/UpsightPlugin$4;-><init>(Lcom/upsight/android/unity/UpsightPlugin;Ljava/lang/String;Ljava/lang/String;)V
+
+    invoke-static {v0}, Lcom/upsight/android/unity/UnityBridge;->runSafelyOnUiThread(Ljava/lang/Runnable;)V
+
+    .line 167
     return-void
 .end method

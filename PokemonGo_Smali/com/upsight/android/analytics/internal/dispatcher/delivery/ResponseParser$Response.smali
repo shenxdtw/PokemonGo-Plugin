@@ -46,16 +46,16 @@
     .end annotation
 
     .prologue
-    .line 40
+    .line 42
     .local p1, "responses":Ljava/util/Collection;, "Ljava/util/Collection<Lcom/upsight/android/analytics/dispatcher/EndpointResponse;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 41
+    .line 43
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/ResponseParser$Response;->responses:Ljava/util/Collection;
 
-    .line 42
+    .line 44
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/ResponseParser$Response;->error:Ljava/lang/String;
 
-    .line 43
+    .line 45
     return-void
 .end method

@@ -107,19 +107,19 @@
 # virtual methods
 .method public getThrowable()Ljava/lang/Throwable;
     .registers 3
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 151
+    .line 148
     .local p0, "this":Lrx/subjects/PublishSubject;, "Lrx/subjects/PublishSubject<TT;>;"
     iget-object v1, p0, Lrx/subjects/PublishSubject;->state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 152
+    .line 149
     .local v0, "o":Ljava/lang/Object;
     iget-object v1, p0, Lrx/subjects/PublishSubject;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -129,14 +129,14 @@
 
     if-eqz v1, :cond_15
 
-    .line 153
+    .line 150
     iget-object v1, p0, Lrx/subjects/PublishSubject;->nl:Lrx/internal/operators/NotificationLite;
 
     invoke-virtual {v1, v0}, Lrx/internal/operators/NotificationLite;->getError(Ljava/lang/Object;)Ljava/lang/Throwable;
 
     move-result-object v1
 
-    .line 155
+    .line 152
     :goto_14
     return-object v1
 
@@ -146,86 +146,21 @@
     goto :goto_14
 .end method
 
-.method public getValue()Ljava/lang/Object;
-    .registers 2
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()TT;"
-        }
-    .end annotation
-
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 166
-    .local p0, "this":Lrx/subjects/PublishSubject;, "Lrx/subjects/PublishSubject<TT;>;"
-    const/4 v0, 0x0
-
-    return-object v0
-.end method
-
-.method public getValues()[Ljava/lang/Object;
-    .registers 2
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 171
-    .local p0, "this":Lrx/subjects/PublishSubject;, "Lrx/subjects/PublishSubject<TT;>;"
-    const/4 v0, 0x0
-
-    new-array v0, v0, [Ljava/lang/Object;
-
-    return-object v0
-.end method
-
-.method public getValues([Ljava/lang/Object;)[Ljava/lang/Object;
-    .registers 4
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "([TT;)[TT;"
-        }
-    .end annotation
-
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 176
-    .local p0, "this":Lrx/subjects/PublishSubject;, "Lrx/subjects/PublishSubject<TT;>;"
-    .local p1, "a":[Ljava/lang/Object;, "[TT;"
-    array-length v0, p1
-
-    if-lez v0, :cond_7
-
-    .line 177
-    const/4 v0, 0x0
-
-    const/4 v1, 0x0
-
-    aput-object v1, p1, v0
-
-    .line 179
-    :cond_7
-    return-object p1
-.end method
-
 .method public hasCompleted()Z
     .registers 3
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 140
+    .line 138
     .local p0, "this":Lrx/subjects/PublishSubject;, "Lrx/subjects/PublishSubject<TT;>;"
     iget-object v1, p0, Lrx/subjects/PublishSubject;->state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 141
+    .line 139
     .local v0, "o":Ljava/lang/Object;
     if-eqz v0, :cond_12
 
@@ -277,19 +212,19 @@
 
 .method public hasThrowable()Z
     .registers 3
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 130
+    .line 129
     .local p0, "this":Lrx/subjects/PublishSubject;, "Lrx/subjects/PublishSubject<TT;>;"
     iget-object v1, p0, Lrx/subjects/PublishSubject;->state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v1}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 131
+    .line 130
     .local v0, "o":Ljava/lang/Object;
     iget-object v1, p0, Lrx/subjects/PublishSubject;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -298,19 +233,6 @@
     move-result v1
 
     return v1
-.end method
-
-.method public hasValue()Z
-    .registers 2
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 161
-    .local p0, "this":Lrx/subjects/PublishSubject;, "Lrx/subjects/PublishSubject<TT;>;"
-    const/4 v0, 0x0
-
-    return v0
 .end method
 
 .method public onCompleted()V

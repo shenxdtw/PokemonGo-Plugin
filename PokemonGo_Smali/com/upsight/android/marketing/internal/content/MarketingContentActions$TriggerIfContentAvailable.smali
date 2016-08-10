@@ -47,46 +47,46 @@
 
 
 # direct methods
-.method private constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+.method private constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)V
     .registers 5
     .param p1, "actionContext"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
     .param p2, "type"    # Ljava/lang/String;
-    .param p3, "params"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p3, "params"    # Lcom/google/gson/JsonObject;
 
     .prologue
-    .line 332
-    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/analytics/internal/action/Action;-><init>(Lcom/upsight/android/analytics/internal/action/ActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+    .line 362
+    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/analytics/internal/action/Action;-><init>(Lcom/upsight/android/analytics/internal/action/ActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)V
 
-    .line 329
+    .line 359
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->isTriggerExecuted:Z
 
-    .line 333
+    .line 363
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;)V
+.method synthetic constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;)V
     .registers 5
     .param p1, "x0"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
     .param p2, "x1"    # Ljava/lang/String;
-    .param p3, "x2"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p3, "x2"    # Lcom/google/gson/JsonObject;
     .param p4, "x3"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;
 
     .prologue
-    .line 311
-    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;-><init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+    .line 341
+    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;-><init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)V
 
     return-void
 .end method
 
-.method static synthetic access$1400(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;Ljava/lang/String;)Ljava/lang/String;
+.method static synthetic access$1700(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;Ljava/lang/String;)Ljava/lang/String;
     .registers 3
     .param p0, "x0"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;
     .param p1, "x1"    # Ljava/lang/String;
 
     .prologue
-    .line 311
+    .line 341
     invoke-virtual {p0, p1}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->optParamString(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
@@ -94,24 +94,24 @@
     return-object v0
 .end method
 
-.method static synthetic access$1500(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;)Z
+.method static synthetic access$1800(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;)Z
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;
 
     .prologue
-    .line 311
+    .line 341
     iget-boolean v0, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->isTriggerExecuted:Z
 
     return v0
 .end method
 
-.method static synthetic access$1502(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;Z)Z
+.method static synthetic access$1802(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;Z)Z
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;
     .param p1, "x1"    # Z
 
     .prologue
-    .line 311
+    .line 341
     iput-boolean p1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->isTriggerExecuted:Z
 
     return p1
@@ -121,13 +121,11 @@
 # virtual methods
 .method public bridge synthetic execute(Lcom/upsight/android/analytics/internal/action/Actionable;)V
     .registers 2
-    .param p1, "x0"    # Lcom/upsight/android/analytics/internal/action/Actionable;
 
     .prologue
-    .line 311
+    .line 341
     check-cast p1, Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
-    .end local p1    # "x0":Lcom/upsight/android/analytics/internal/action/Actionable;
     invoke-virtual {p0, p1}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->execute(Lcom/upsight/android/marketing/internal/content/MarketingContent;)V
 
     return-void
@@ -140,64 +138,68 @@
     .prologue
     const/4 v11, 0x1
 
-    .line 337
+    .line 367
     invoke-virtual {p0}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->getActionContext()Lcom/upsight/android/analytics/internal/action/ActionContext;
 
     move-result-object v0
 
     check-cast v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
 
-    .line 338
+    .line 368
     .local v0, "actionContext":Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
     iput-object p1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->mContent:Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
-    .line 341
+    .line 371
     const-wide/16 v4, 0x0
 
-    .line 343
+    .line 373
     .local v4, "timeoutMs":J
     :try_start_b
     const-string v7, "condition_parameters"
 
-    invoke-virtual {p0, v7}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->optParamJsonObject(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
-
-    move-result-object v2
-
-    .line 344
-    .local v2, "conditionalParameters":Lcom/fasterxml/jackson/databind/JsonNode;
-    const-string v7, "id"
-
-    invoke-virtual {v2, v7}, Lcom/fasterxml/jackson/databind/JsonNode;->get(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {p0, v7}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->optParamJsonObject(Ljava/lang/String;)Lcom/google/gson/JsonObject;
 
     move-result-object v7
 
-    invoke-virtual {v7}, Lcom/fasterxml/jackson/databind/JsonNode;->asText()Ljava/lang/String;
+    invoke-virtual {v7}, Lcom/google/gson/JsonObject;->getAsJsonObject()Lcom/google/gson/JsonObject;
+
+    move-result-object v2
+
+    .line 374
+    .local v2, "conditionalParameters":Lcom/google/gson/JsonObject;
+    const-string v7, "id"
+
+    invoke-virtual {v2, v7}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Lcom/google/gson/JsonElement;->getAsString()Ljava/lang/String;
 
     move-result-object v7
 
     iput-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->mConditionalContentID:Ljava/lang/String;
 
-    .line 345
+    .line 375
     const-string v7, "timeout_ms"
 
-    invoke-virtual {v2, v7}, Lcom/fasterxml/jackson/databind/JsonNode;->get(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {v2, v7}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
 
     move-result-object v7
 
-    invoke-virtual {v7}, Lcom/fasterxml/jackson/databind/JsonNode;->asLong()J
-    :try_end_26
-    .catch Ljava/lang/NullPointerException; {:try_start_b .. :try_end_26} :catch_5e
+    invoke-virtual {v7}, Lcom/google/gson/JsonElement;->getAsLong()J
+    :try_end_2a
+    .catch Ljava/lang/NullPointerException; {:try_start_b .. :try_end_2a} :catch_62
 
     move-result-wide v4
 
-    .line 350
-    .end local v2    # "conditionalParameters":Lcom/fasterxml/jackson/databind/JsonNode;
-    :goto_27
+    .line 380
+    .end local v2    # "conditionalParameters":Lcom/google/gson/JsonObject;
+    :goto_2b
     iget-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->mConditionalContentID:Ljava/lang/String;
 
-    if-eqz v7, :cond_a2
+    if-eqz v7, :cond_a6
 
-    .line 351
+    .line 381
     iget-object v7, v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;->mContentStore:Lcom/upsight/android/marketing/internal/content/MarketingContentStore;
 
     iget-object v8, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->mConditionalContentID:Ljava/lang/String;
@@ -208,46 +210,46 @@
 
     check-cast v1, Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
-    .line 352
+    .line 382
     .local v1, "conditionalContent":Lcom/upsight/android/marketing/internal/content/MarketingContent;
-    if-eqz v1, :cond_8d
+    if-eqz v1, :cond_91
 
     invoke-virtual {v1}, Lcom/upsight/android/marketing/internal/content/MarketingContent;->isLoaded()Z
 
     move-result v7
 
-    if-eqz v7, :cond_8d
+    if-eqz v7, :cond_91
 
-    .line 353
+    .line 383
     const-string v7, "then_trigger"
 
     invoke-virtual {p0, v7}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->optParamString(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v6
 
-    .line 354
+    .line 384
     .local v6, "trigger":Ljava/lang/String;
     invoke-static {v6}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v7
 
-    if-nez v7, :cond_52
+    if-nez v7, :cond_56
 
     iget-boolean v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->isTriggerExecuted:Z
 
-    if-nez v7, :cond_52
+    if-nez v7, :cond_56
 
-    .line 355
+    .line 385
     invoke-virtual {p1, v6}, Lcom/upsight/android/marketing/internal/content/MarketingContent;->executeActions(Ljava/lang/String;)V
 
-    .line 356
+    .line 386
     iput-boolean v11, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->isTriggerExecuted:Z
 
-    .line 381
+    .line 411
     .end local v1    # "conditionalContent":Lcom/upsight/android/marketing/internal/content/MarketingContent;
     .end local v6    # "trigger":Ljava/lang/String;
-    :cond_52
-    :goto_52
+    :cond_56
+    :goto_56
     invoke-virtual {p0}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->getActionContext()Lcom/upsight/android/analytics/internal/action/ActionContext;
 
     move-result-object v7
@@ -258,14 +260,14 @@
 
     invoke-virtual {p1, v7}, Lcom/upsight/android/marketing/internal/content/MarketingContent;->signalActionCompleted(Lcom/squareup/otto/Bus;)V
 
-    .line 382
+    .line 412
     return-void
 
-    .line 346
-    :catch_5e
+    .line 376
+    :catch_62
     move-exception v3
 
-    .line 347
+    .line 377
     .local v3, "e":Ljava/lang/NullPointerException;
     iget-object v7, v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
@@ -311,17 +313,17 @@
 
     invoke-interface {v7, v8, v3, v9, v10}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    goto :goto_27
+    goto :goto_2b
 
-    .line 359
+    .line 389
     .end local v3    # "e":Ljava/lang/NullPointerException;
     .restart local v1    # "conditionalContent":Lcom/upsight/android/marketing/internal/content/MarketingContent;
-    :cond_8d
+    :cond_91
     iget-object v7, v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;->mBus:Lcom/squareup/otto/Bus;
 
     invoke-virtual {v7, p0}, Lcom/squareup/otto/Bus;->register(Ljava/lang/Object;)V
 
-    .line 360
+    .line 390
     iget-object v7, v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;->mMainWorker:Lrx/Scheduler$Worker;
 
     new-instance v8, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable$1;
@@ -336,36 +338,36 @@
 
     iput-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->mSubscription:Lrx/Subscription;
 
-    goto :goto_52
+    goto :goto_56
 
-    .line 373
+    .line 403
     .end local v1    # "conditionalContent":Lcom/upsight/android/marketing/internal/content/MarketingContent;
-    :cond_a2
+    :cond_a6
     const-string v7, "else_trigger"
 
     invoke-virtual {p0, v7}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->optParamString(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v6
 
-    .line 374
+    .line 404
     .restart local v6    # "trigger":Ljava/lang/String;
     invoke-static {v6}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v7
 
-    if-nez v7, :cond_52
+    if-nez v7, :cond_56
 
     iget-boolean v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->isTriggerExecuted:Z
 
-    if-nez v7, :cond_52
+    if-nez v7, :cond_56
 
-    .line 375
+    .line 405
     invoke-virtual {p1, v6}, Lcom/upsight/android/marketing/internal/content/MarketingContent;->executeActions(Ljava/lang/String;)V
 
-    .line 376
+    .line 406
     iput-boolean v11, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->isTriggerExecuted:Z
 
-    goto :goto_52
+    goto :goto_56
 .end method
 
 .method public handleAvailabilityEvent(Lcom/upsight/android/marketing/internal/content/MarketingContent$ContentLoadedEvent;)V
@@ -375,7 +377,7 @@
     .end annotation
 
     .prologue
-    .line 386
+    .line 416
     invoke-virtual {p1}, Lcom/upsight/android/marketing/internal/content/MarketingContent$ContentLoadedEvent;->getId()Ljava/lang/String;
 
     move-result-object v1
@@ -388,12 +390,12 @@
 
     if-eqz v1, :cond_34
 
-    .line 387
+    .line 417
     iget-object v1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->mSubscription:Lrx/Subscription;
 
     invoke-interface {v1}, Lrx/Subscription;->unsubscribe()V
 
-    .line 388
+    .line 418
     invoke-virtual {p0}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->getActionContext()Lcom/upsight/android/analytics/internal/action/ActionContext;
 
     move-result-object v1
@@ -404,14 +406,14 @@
 
     invoke-virtual {v1, p0}, Lcom/squareup/otto/Bus;->unregister(Ljava/lang/Object;)V
 
-    .line 390
+    .line 420
     const-string v1, "then_trigger"
 
     invoke-virtual {p0, v1}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->optParamString(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 391
+    .line 421
     .local v0, "trigger":Ljava/lang/String;
     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -423,17 +425,17 @@
 
     if-nez v1, :cond_34
 
-    .line 392
+    .line 422
     iget-object v1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->mContent:Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
     invoke-virtual {v1, v0}, Lcom/upsight/android/marketing/internal/content/MarketingContent;->executeActions(Ljava/lang/String;)V
 
-    .line 393
+    .line 423
     const/4 v1, 0x1
 
     iput-boolean v1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;->isTriggerExecuted:Z
 
-    .line 396
+    .line 426
     .end local v0    # "trigger":Ljava/lang/String;
     :cond_34
     return-void

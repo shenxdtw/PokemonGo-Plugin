@@ -1,39 +1,39 @@
-.class final Lrx/internal/operators/OperatorGroupBy$1;
+.class Lrx/internal/operators/OperatorGroupBy$1;
 .super Ljava/lang/Object;
 .source "OperatorGroupBy.java"
 
 # interfaces
-.implements Lrx/functions/Func1;
+.implements Lrx/functions/Action0;
 
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingClass;
-    value = Lrx/internal/operators/OperatorGroupBy;
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Lrx/internal/operators/OperatorGroupBy;->call(Lrx/Subscriber;)Lrx/Subscriber;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x0
     name = null
 .end annotation
 
-.annotation system Ldalvik/annotation/Signature;
-    value = {
-        "Ljava/lang/Object;",
-        "Lrx/functions/Func1",
-        "<",
-        "Ljava/lang/Object;",
-        "Ljava/lang/Object;",
-        ">;"
-    }
-.end annotation
+
+# instance fields
+.field final synthetic this$0:Lrx/internal/operators/OperatorGroupBy;
+
+.field final synthetic val$parent:Lrx/internal/operators/OperatorGroupBy$GroupBySubscriber;
 
 
 # direct methods
-.method constructor <init>()V
-    .registers 1
+.method constructor <init>(Lrx/internal/operators/OperatorGroupBy;Lrx/internal/operators/OperatorGroupBy$GroupBySubscriber;)V
+    .registers 3
 
     .prologue
-    .line 424
+    .line 70
+    .local p0, "this":Lrx/internal/operators/OperatorGroupBy$1;, "Lrx/internal/operators/OperatorGroupBy.1;"
+    iput-object p1, p0, Lrx/internal/operators/OperatorGroupBy$1;->this$0:Lrx/internal/operators/OperatorGroupBy;
+
+    iput-object p2, p0, Lrx/internal/operators/OperatorGroupBy$1;->val$parent:Lrx/internal/operators/OperatorGroupBy$GroupBySubscriber;
+
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -41,11 +41,16 @@
 
 
 # virtual methods
-.method public call(Ljava/lang/Object;)Ljava/lang/Object;
+.method public call()V
     .registers 2
-    .param p1, "t"    # Ljava/lang/Object;
 
     .prologue
-    .line 427
-    return-object p1
+    .line 73
+    .local p0, "this":Lrx/internal/operators/OperatorGroupBy$1;, "Lrx/internal/operators/OperatorGroupBy.1;"
+    iget-object v0, p0, Lrx/internal/operators/OperatorGroupBy$1;->val$parent:Lrx/internal/operators/OperatorGroupBy$GroupBySubscriber;
+
+    invoke-virtual {v0}, Lrx/internal/operators/OperatorGroupBy$GroupBySubscriber;->cancel()V
+
+    .line 74
+    return-void
 .end method

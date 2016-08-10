@@ -32,7 +32,7 @@
     .registers 4
 
     .prologue
-    .line 46
+    .line 47
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeTimerPeriodically$1;->this$0:Lrx/internal/operators/OnSubscribeTimerPeriodically;
 
     iput-object p2, p0, Lrx/internal/operators/OnSubscribeTimerPeriodically$1;->val$child:Lrx/Subscriber;
@@ -50,7 +50,7 @@
     .registers 7
 
     .prologue
-    .line 51
+    .line 52
     :try_start_0
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeTimerPeriodically$1;->val$child:Lrx/Subscriber;
 
@@ -70,36 +70,36 @@
     :try_end_10
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_10} :catch_11
 
-    .line 59
+    .line 60
     :goto_10
     return-void
 
-    .line 52
+    .line 53
     :catch_11
     move-exception v0
 
-    .line 54
+    .line 55
     .local v0, "e":Ljava/lang/Throwable;
     :try_start_12
-    iget-object v1, p0, Lrx/internal/operators/OnSubscribeTimerPeriodically$1;->val$child:Lrx/Subscriber;
-
-    invoke-virtual {v1, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-    :try_end_17
-    .catchall {:try_start_12 .. :try_end_17} :catchall_1d
-
-    .line 56
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeTimerPeriodically$1;->val$worker:Lrx/Scheduler$Worker;
 
     invoke-virtual {v1}, Lrx/Scheduler$Worker;->unsubscribe()V
+    :try_end_17
+    .catchall {:try_start_12 .. :try_end_17} :catchall_1d
+
+    .line 57
+    iget-object v1, p0, Lrx/internal/operators/OnSubscribeTimerPeriodically$1;->val$child:Lrx/Subscriber;
+
+    invoke-static {v0, v1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     goto :goto_10
 
     :catchall_1d
     move-exception v1
 
-    iget-object v2, p0, Lrx/internal/operators/OnSubscribeTimerPeriodically$1;->val$worker:Lrx/Scheduler$Worker;
+    iget-object v2, p0, Lrx/internal/operators/OnSubscribeTimerPeriodically$1;->val$child:Lrx/Subscriber;
 
-    invoke-virtual {v2}, Lrx/Scheduler$Worker;->unsubscribe()V
+    invoke-static {v0, v2}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     throw v1
 .end method

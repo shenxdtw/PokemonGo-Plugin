@@ -22,7 +22,7 @@
 
 
 # instance fields
-.field private final castClass:Ljava/lang/Class;
+.field final castClass:Ljava/lang/Class;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/lang/Class",
@@ -54,17 +54,6 @@
 
     .line 31
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorCast;)Ljava/lang/Class;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorCast;
-
-    .prologue
-    .line 25
-    iget-object v0, p0, Lrx/internal/operators/OperatorCast;->castClass:Ljava/lang/Class;
-
-    return-object v0
 .end method
 
 

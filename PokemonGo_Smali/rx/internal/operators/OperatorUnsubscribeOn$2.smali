@@ -49,10 +49,7 @@
     .local p0, "this":Lrx/internal/operators/OperatorUnsubscribeOn$2;, "Lrx/internal/operators/OperatorUnsubscribeOn.2;"
     iget-object v1, p0, Lrx/internal/operators/OperatorUnsubscribeOn$2;->this$0:Lrx/internal/operators/OperatorUnsubscribeOn;
 
-    # getter for: Lrx/internal/operators/OperatorUnsubscribeOn;->scheduler:Lrx/Scheduler;
-    invoke-static {v1}, Lrx/internal/operators/OperatorUnsubscribeOn;->access$000(Lrx/internal/operators/OperatorUnsubscribeOn;)Lrx/Scheduler;
-
-    move-result-object v1
+    iget-object v1, v1, Lrx/internal/operators/OperatorUnsubscribeOn;->scheduler:Lrx/Scheduler;
 
     invoke-virtual {v1}, Lrx/Scheduler;->createWorker()Lrx/Scheduler$Worker;
 

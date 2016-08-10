@@ -45,17 +45,17 @@
     .end annotation
 
     .prologue
-    .line 779
+    .line 924
     .local p2, "purchases":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/marketing/UpsightPurchase;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 780
+    .line 925
     iput-object p1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PurchasesEvent;->mId:Ljava/lang/String;
 
-    .line 781
+    .line 926
     iput-object p2, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PurchasesEvent;->mPurchases:Ljava/util/List;
 
-    .line 782
+    .line 927
     return-void
 .end method
 
@@ -66,7 +66,7 @@
     .param p3, "x2"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;
 
     .prologue
-    .line 773
+    .line 918
     invoke-direct {p0, p1, p2}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PurchasesEvent;-><init>(Ljava/lang/String;Ljava/util/List;)V
 
     return-void

@@ -168,12 +168,14 @@
 
     invoke-direct {v1, p0, p1, p2}, Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager$5;-><init>(Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;Ljava/lang/Class;Ljava/lang/String;)V
 
+    .line 233
     invoke-virtual {v0, v1}, Lrx/Observable;->filter(Lrx/functions/Func1;)Lrx/Observable;
 
     move-result-object v0
 
     const/4 v1, 0x0
 
+    .line 240
     invoke-virtual {v0, v1}, Lrx/Observable;->defaultIfEmpty(Ljava/lang/Object;)Lrx/Observable;
 
     move-result-object v0
@@ -582,10 +584,12 @@
 
     move-result-object v3
 
+    .line 98
     invoke-virtual {v3}, Lrx/Observable;->toBlocking()Lrx/observables/BlockingObservable;
 
     move-result-object v3
 
+    .line 99
     invoke-virtual {v3}, Lrx/observables/BlockingObservable;->first()Ljava/lang/Object;
 
     move-result-object v2
@@ -669,6 +673,7 @@
 
     iget-object v4, p0, Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;->mCallbackScheduler:Lrx/Scheduler;
 
+    .line 133
     invoke-virtual {v2, v4}, Lrx/Observable;->observeOn(Lrx/Scheduler;)Lrx/Observable;
 
     move-result-object v2
@@ -677,10 +682,12 @@
 
     invoke-direct {v4, p0, p3}, Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager$2;-><init>(Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;Lcom/upsight/android/managedvariables/type/UpsightManagedVariable$Listener;)V
 
+    .line 134
     invoke-virtual {v2, v4}, Lrx/Observable;->subscribe(Lrx/functions/Action1;)Lrx/Subscription;
 
     move-result-object v2
 
+    .line 132
     invoke-static {v2}, Lcom/upsight/android/internal/persistence/subscription/Subscriptions;->from(Lrx/Subscription;)Lcom/upsight/android/persistence/UpsightSubscription;
 
     move-result-object v1
@@ -708,10 +715,12 @@
 
     invoke-direct {v5, p0, p3}, Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager$4;-><init>(Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;Lcom/upsight/android/managedvariables/type/UpsightManagedVariable$Listener;)V
 
+    .line 143
     invoke-virtual {v2, v4, v5}, Lrx/Observable;->subscribe(Lrx/functions/Action1;Lrx/functions/Action1;)Lrx/Subscription;
 
     move-result-object v2
 
+    .line 142
     invoke-static {v2}, Lcom/upsight/android/internal/persistence/subscription/Subscriptions;->from(Lrx/Subscription;)Lcom/upsight/android/persistence/UpsightSubscription;
 
     move-result-object v1

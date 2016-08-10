@@ -35,7 +35,7 @@
     .param p3, "x1"    # Z
 
     .prologue
-    .line 49
+    .line 50
     .local p0, "this":Lrx/internal/operators/OperatorWithLatestFrom$1;, "Lrx/internal/operators/OperatorWithLatestFrom.1;"
     .local p2, "x0":Lrx/Subscriber;, "Lrx/Subscriber<*>;"
     iput-object p1, p0, Lrx/internal/operators/OperatorWithLatestFrom$1;->this$0:Lrx/internal/operators/OperatorWithLatestFrom;
@@ -99,7 +99,7 @@
     .end annotation
 
     .prologue
-    .line 52
+    .line 53
     .local p0, "this":Lrx/internal/operators/OperatorWithLatestFrom$1;, "Lrx/internal/operators/OperatorWithLatestFrom.1;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     iget-object v4, p0, Lrx/internal/operators/OperatorWithLatestFrom$1;->val$current:Ljava/util/concurrent/atomic/AtomicReference;
@@ -108,16 +108,16 @@
 
     move-result-object v1
 
-    .line 53
+    .line 54
     .local v1, "o":Ljava/lang/Object;
     sget-object v4, Lrx/internal/operators/OperatorWithLatestFrom;->EMPTY:Ljava/lang/Object;
 
     if-eq v1, v4, :cond_18
 
-    .line 56
+    .line 57
     move-object v3, v1
 
-    .line 57
+    .line 58
     .local v3, "u":Ljava/lang/Object;, "TU;"
     :try_start_b
     iget-object v4, p0, Lrx/internal/operators/OperatorWithLatestFrom$1;->this$0:Lrx/internal/operators/OperatorWithLatestFrom;
@@ -128,7 +128,7 @@
 
     move-result-object v2
 
-    .line 59
+    .line 60
     .local v2, "result":Ljava/lang/Object;, "TR;"
     iget-object v4, p0, Lrx/internal/operators/OperatorWithLatestFrom$1;->val$s:Lrx/observers/SerializedSubscriber;
 
@@ -143,14 +143,14 @@
     :goto_18
     return-void
 
-    .line 60
+    .line 61
     .restart local v3    # "u":Ljava/lang/Object;, "TU;"
     :catch_19
     move-exception v0
 
-    .line 61
+    .line 62
     .local v0, "e":Ljava/lang/Throwable;
-    invoke-virtual {p0, v0}, Lrx/internal/operators/OperatorWithLatestFrom$1;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, p0}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     goto :goto_18
 .end method

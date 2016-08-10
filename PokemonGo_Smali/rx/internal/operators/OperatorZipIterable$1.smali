@@ -22,7 +22,7 @@
 
 
 # instance fields
-.field once:Z
+.field done:Z
 
 .field final synthetic this$0:Lrx/internal/operators/OperatorZipIterable;
 
@@ -36,7 +36,7 @@
     .registers 5
 
     .prologue
-    .line 46
+    .line 48
     .local p0, "this":Lrx/internal/operators/OperatorZipIterable$1;, "Lrx/internal/operators/OperatorZipIterable.1;"
     .local p2, "x0":Lrx/Subscriber;, "Lrx/Subscriber<*>;"
     iput-object p1, p0, Lrx/internal/operators/OperatorZipIterable$1;->this$0:Lrx/internal/operators/OperatorZipIterable;
@@ -56,23 +56,23 @@
     .registers 2
 
     .prologue
-    .line 50
+    .line 52
     .local p0, "this":Lrx/internal/operators/OperatorZipIterable$1;, "Lrx/internal/operators/OperatorZipIterable.1;"
-    iget-boolean v0, p0, Lrx/internal/operators/OperatorZipIterable$1;->once:Z
+    iget-boolean v0, p0, Lrx/internal/operators/OperatorZipIterable$1;->done:Z
 
     if-eqz v0, :cond_5
 
-    .line 55
+    .line 57
     :goto_4
     return-void
 
-    .line 53
+    .line 55
     :cond_5
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lrx/internal/operators/OperatorZipIterable$1;->once:Z
+    iput-boolean v0, p0, Lrx/internal/operators/OperatorZipIterable$1;->done:Z
 
-    .line 54
+    .line 56
     iget-object v0, p0, Lrx/internal/operators/OperatorZipIterable$1;->val$subscriber:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
@@ -85,14 +85,31 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 59
+    .line 61
     .local p0, "this":Lrx/internal/operators/OperatorZipIterable$1;, "Lrx/internal/operators/OperatorZipIterable.1;"
+    iget-boolean v0, p0, Lrx/internal/operators/OperatorZipIterable$1;->done:Z
+
+    if-eqz v0, :cond_8
+
+    .line 62
+    invoke-static {p1}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+
+    .line 67
+    :goto_7
+    return-void
+
+    .line 65
+    :cond_8
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Lrx/internal/operators/OperatorZipIterable$1;->done:Z
+
+    .line 66
     iget-object v0, p0, Lrx/internal/operators/OperatorZipIterable$1;->val$subscriber:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 60
-    return-void
+    goto :goto_7
 .end method
 
 .method public onNext(Ljava/lang/Object;)V
@@ -104,10 +121,21 @@
     .end annotation
 
     .prologue
-    .line 65
+    .line 71
     .local p0, "this":Lrx/internal/operators/OperatorZipIterable$1;, "Lrx/internal/operators/OperatorZipIterable.1;"
     .local p1, "t":Ljava/lang/Object;, "TT1;"
-    :try_start_0
+    iget-boolean v1, p0, Lrx/internal/operators/OperatorZipIterable$1;->done:Z
+
+    if-eqz v1, :cond_5
+
+    .line 82
+    :cond_4
+    :goto_4
+    return-void
+
+    .line 75
+    :cond_5
+    :try_start_5
     iget-object v1, p0, Lrx/internal/operators/OperatorZipIterable$1;->val$subscriber:Lrx/Subscriber;
 
     iget-object v2, p0, Lrx/internal/operators/OperatorZipIterable$1;->this$0:Lrx/internal/operators/OperatorZipIterable;
@@ -126,32 +154,29 @@
 
     invoke-virtual {v1, v2}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    .line 66
+    .line 76
     iget-object v1, p0, Lrx/internal/operators/OperatorZipIterable$1;->val$iterator:Ljava/util/Iterator;
 
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-nez v1, :cond_1e
+    if-nez v1, :cond_4
 
-    .line 67
+    .line 77
     invoke-virtual {p0}, Lrx/internal/operators/OperatorZipIterable$1;->onCompleted()V
-    :try_end_1e
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_1e} :catch_1f
+    :try_end_23
+    .catch Ljava/lang/Throwable; {:try_start_5 .. :try_end_23} :catch_24
 
-    .line 72
-    :cond_1e
-    :goto_1e
-    return-void
+    goto :goto_4
 
-    .line 69
-    :catch_1f
+    .line 79
+    :catch_24
     move-exception v0
 
-    .line 70
+    .line 80
     .local v0, "e":Ljava/lang/Throwable;
-    invoke-virtual {p0, v0}, Lrx/internal/operators/OperatorZipIterable$1;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, p0}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
-    goto :goto_1e
+    goto :goto_4
 .end method

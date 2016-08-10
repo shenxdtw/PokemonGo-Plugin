@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4;->call(Lcom/fasterxml/jackson/databind/node/ObjectNode;)V
+    value = Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4;->call(Lcom/google/gson/JsonObject;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -28,18 +28,19 @@
 # instance fields
 .field final synthetic this$1:Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4;
 
-.field final synthetic val$modelNode:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+.field final synthetic val$modelNode:Lcom/google/gson/JsonObject;
 
 
 # direct methods
-.method constructor <init>(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4;Lcom/fasterxml/jackson/databind/node/ObjectNode;)V
+.method constructor <init>(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4;Lcom/google/gson/JsonObject;)V
     .registers 3
+    .param p1, "this$1"    # Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4;
 
     .prologue
     .line 322
     iput-object p1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4$1;->this$1:Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4;
 
-    iput-object p2, p0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4$1;->val$modelNode:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    iput-object p2, p0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4$1;->val$modelNode:Lcom/google/gson/JsonObject;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -89,7 +90,7 @@
 
     move-result-object v2
 
-    iget-object v3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4$1;->val$modelNode:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    iget-object v3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$4$1;->val$modelNode:Lcom/google/gson/JsonObject;
 
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 

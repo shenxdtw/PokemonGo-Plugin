@@ -37,7 +37,7 @@
     .registers 2
 
     .prologue
-    .line 65
+    .line 73
     iput-object p1, p0, Lrx/internal/operators/OperatorSkipWhile$2;->val$predicate:Lrx/functions/Func1;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -60,7 +60,7 @@
     .end annotation
 
     .prologue
-    .line 69
+    .line 77
     .local p1, "t1":Ljava/lang/Object;, "TT;"
     iget-object v0, p0, Lrx/internal/operators/OperatorSkipWhile$2;->val$predicate:Lrx/functions/Func1;
 
@@ -79,7 +79,7 @@
     .param p2, "x1"    # Ljava/lang/Object;
 
     .prologue
-    .line 65
+    .line 73
     check-cast p2, Ljava/lang/Integer;
 
     .end local p2    # "x1":Ljava/lang/Object;

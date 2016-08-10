@@ -71,24 +71,24 @@
     .end annotation
 
     .prologue
-    .line 646
+    .line 673
     .local p0, "this":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<TT;>;"
     .local p1, "parent":Lrx/internal/operators/OperatorPublish$PublishSubscriber;, "Lrx/internal/operators/OperatorPublish$PublishSubscriber<TT;>;"
     .local p2, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     invoke-direct {p0}, Ljava/util/concurrent/atomic/AtomicLong;-><init>()V
 
-    .line 647
+    .line 674
     iput-object p1, p0, Lrx/internal/operators/OperatorPublish$InnerProducer;->parent:Lrx/internal/operators/OperatorPublish$PublishSubscriber;
 
-    .line 648
+    .line 675
     iput-object p2, p0, Lrx/internal/operators/OperatorPublish$InnerProducer;->child:Lrx/Subscriber;
 
-    .line 649
+    .line 676
     const-wide/high16 v0, -0x4000000000000000L    # -2.0
 
     invoke-virtual {p0, v0, v1}, Lrx/internal/operators/OperatorPublish$InnerProducer;->lazySet(J)V
 
-    .line 650
+    .line 677
     return-void
 .end method
 
@@ -98,7 +98,7 @@
     .registers 5
 
     .prologue
-    .line 737
+    .line 764
     .local p0, "this":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<TT;>;"
     invoke-virtual {p0}, Lrx/internal/operators/OperatorPublish$InnerProducer;->get()J
 
@@ -131,12 +131,12 @@
 
     const-wide/high16 v4, -0x8000000000000000L
 
-    .line 705
+    .line 732
     cmp-long v6, p1, v8
 
     if-gtz v6, :cond_10
 
-    .line 706
+    .line 733
     new-instance v4, Ljava/lang/IllegalArgumentException;
 
     const-string v5, "Cant produce zero or less"
@@ -145,13 +145,13 @@
 
     throw v4
 
-    .line 710
+    .line 737
     :cond_10
     invoke-virtual {p0}, Lrx/internal/operators/OperatorPublish$InnerProducer;->get()J
 
     move-result-wide v0
 
-    .line 713
+    .line 740
     .local v0, "r":J
     const-wide/high16 v6, -0x4000000000000000L    # -2.0
 
@@ -159,7 +159,7 @@
 
     if-nez v6, :cond_22
 
-    .line 714
+    .line 741
     new-instance v4, Ljava/lang/IllegalStateException;
 
     const-string v5, "Produced without request"
@@ -168,7 +168,7 @@
 
     throw v4
 
-    .line 717
+    .line 744
     :cond_22
     cmp-long v6, v0, v4
 
@@ -176,21 +176,21 @@
 
     move-wide v2, v4
 
-    .line 729
+    .line 756
     :goto_27
     return-wide v2
 
-    .line 721
+    .line 748
     :cond_28
     sub-long v2, v0, p1
 
-    .line 723
+    .line 750
     .local v2, "u":J
     cmp-long v6, v2, v8
 
     if-gez v6, :cond_57
 
-    .line 724
+    .line 751
     new-instance v4, Ljava/lang/IllegalStateException;
 
     new-instance v5, Ljava/lang/StringBuilder;
@@ -231,7 +231,7 @@
 
     throw v4
 
-    .line 727
+    .line 754
     :cond_57
     invoke-virtual {p0, v0, v1, v2, v3}, Lrx/internal/operators/OperatorPublish$InnerProducer;->compareAndSet(JJ)Z
 
@@ -250,23 +250,23 @@
     .local p0, "this":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<TT;>;"
     const-wide/16 v6, 0x0
 
-    .line 655
+    .line 682
     cmp-long v4, p1, v6
 
     if-gez v4, :cond_7
 
-    .line 691
+    .line 718
     :cond_6
     :goto_6
     return-void
 
-    .line 663
+    .line 690
     :cond_7
     invoke-virtual {p0}, Lrx/internal/operators/OperatorPublish$InnerProducer;->get()J
 
     move-result-wide v0
 
-    .line 665
+    .line 692
     .local v0, "r":J
     const-wide/high16 v4, -0x8000000000000000L
 
@@ -274,7 +274,7 @@
 
     if-eqz v4, :cond_6
 
-    .line 669
+    .line 696
     cmp-long v4, v0, v6
 
     if-ltz v4, :cond_19
@@ -283,7 +283,7 @@
 
     if-eqz v4, :cond_6
 
-    .line 674
+    .line 701
     :cond_19
     const-wide/high16 v4, -0x4000000000000000L    # -2.0
 
@@ -291,10 +291,10 @@
 
     if-nez v4, :cond_2c
 
-    .line 676
+    .line 703
     move-wide v2, p1
 
-    .line 687
+    .line 714
     .local v2, "u":J
     :cond_20
     :goto_20
@@ -304,25 +304,25 @@
 
     if-eqz v4, :cond_7
 
-    .line 690
+    .line 717
     iget-object v4, p0, Lrx/internal/operators/OperatorPublish$InnerProducer;->parent:Lrx/internal/operators/OperatorPublish$PublishSubscriber;
 
     invoke-virtual {v4}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->dispatch()V
 
     goto :goto_6
 
-    .line 679
+    .line 706
     .end local v2    # "u":J
     :cond_2c
     add-long v2, v0, p1
 
-    .line 681
+    .line 708
     .restart local v2    # "u":J
     cmp-long v4, v2, v6
 
     if-gez v4, :cond_20
 
-    .line 683
+    .line 710
     const-wide v2, 0x7fffffffffffffffL
 
     goto :goto_20
@@ -335,38 +335,38 @@
     .local p0, "this":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<TT;>;"
     const-wide/high16 v4, -0x8000000000000000L
 
-    .line 741
+    .line 768
     invoke-virtual {p0}, Lrx/internal/operators/OperatorPublish$InnerProducer;->get()J
 
     move-result-wide v0
 
-    .line 743
+    .line 770
     .local v0, "r":J
     cmp-long v2, v0, v4
 
     if-eqz v2, :cond_1c
 
-    .line 748
+    .line 775
     invoke-virtual {p0, v4, v5}, Lrx/internal/operators/OperatorPublish$InnerProducer;->getAndSet(J)J
 
     move-result-wide v0
 
-    .line 750
+    .line 777
     cmp-long v2, v0, v4
 
     if-eqz v2, :cond_1c
 
-    .line 752
+    .line 779
     iget-object v2, p0, Lrx/internal/operators/OperatorPublish$InnerProducer;->parent:Lrx/internal/operators/OperatorPublish$PublishSubscriber;
 
     invoke-virtual {v2, p0}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->remove(Lrx/internal/operators/OperatorPublish$InnerProducer;)V
 
-    .line 757
+    .line 784
     iget-object v2, p0, Lrx/internal/operators/OperatorPublish$InnerProducer;->parent:Lrx/internal/operators/OperatorPublish$PublishSubscriber;
 
     invoke-virtual {v2}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->dispatch()V
 
-    .line 760
+    .line 787
     :cond_1c
     return-void
 .end method

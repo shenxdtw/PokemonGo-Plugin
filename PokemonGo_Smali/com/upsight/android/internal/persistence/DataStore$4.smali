@@ -36,6 +36,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/internal/persistence/DataStore;Lcom/upsight/android/persistence/UpsightDataStoreListener;)V
     .registers 3
+    .param p1, "this$0"    # Lcom/upsight/android/internal/persistence/DataStore;
 
     .prologue
     .line 112
@@ -52,13 +53,11 @@
 # virtual methods
 .method public bridge synthetic call(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 112
     check-cast p1, Ljava/lang/Throwable;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/internal/persistence/DataStore$4;->call(Ljava/lang/Throwable;)V
 
     return-void

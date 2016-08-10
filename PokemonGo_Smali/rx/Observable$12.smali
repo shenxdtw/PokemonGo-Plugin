@@ -3,12 +3,12 @@
 .source "Observable.java"
 
 # interfaces
-.implements Lrx/functions/Func1;
+.implements Lrx/Observer;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Observable;->ofType(Ljava/lang/Class;)Lrx/Observable;
+    value = Lrx/Observable;->doOnTerminate(Lrx/functions/Action0;)Lrx/Observable;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -19,10 +19,8 @@
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lrx/functions/Func1",
-        "<TT;",
-        "Ljava/lang/Boolean;",
-        ">;"
+        "Lrx/Observer",
+        "<TT;>;"
     }
 .end annotation
 
@@ -30,19 +28,19 @@
 # instance fields
 .field final synthetic this$0:Lrx/Observable;
 
-.field final synthetic val$klass:Ljava/lang/Class;
+.field final synthetic val$onTerminate:Lrx/functions/Action0;
 
 
 # direct methods
-.method constructor <init>(Lrx/Observable;Ljava/lang/Class;)V
+.method constructor <init>(Lrx/Observable;Lrx/functions/Action0;)V
     .registers 3
 
     .prologue
-    .line 5375
+    .line 4894
     .local p0, "this":Lrx/Observable$12;, "Lrx/Observable.12;"
     iput-object p1, p0, Lrx/Observable$12;->this$0:Lrx/Observable;
 
-    iput-object p2, p0, Lrx/Observable$12;->val$klass:Ljava/lang/Class;
+    iput-object p2, p0, Lrx/Observable$12;->val$onTerminate:Lrx/functions/Action0;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -51,42 +49,46 @@
 
 
 # virtual methods
-.method public final call(Ljava/lang/Object;)Ljava/lang/Boolean;
+.method public final onCompleted()V
+    .registers 2
+
+    .prologue
+    .line 4897
+    .local p0, "this":Lrx/Observable$12;, "Lrx/Observable.12;"
+    iget-object v0, p0, Lrx/Observable$12;->val$onTerminate:Lrx/functions/Action0;
+
+    invoke-interface {v0}, Lrx/functions/Action0;->call()V
+
+    .line 4898
+    return-void
+.end method
+
+.method public final onError(Ljava/lang/Throwable;)V
     .registers 3
+    .param p1, "e"    # Ljava/lang/Throwable;
+
+    .prologue
+    .line 4902
+    .local p0, "this":Lrx/Observable$12;, "Lrx/Observable.12;"
+    iget-object v0, p0, Lrx/Observable$12;->val$onTerminate:Lrx/functions/Action0;
+
+    invoke-interface {v0}, Lrx/functions/Action0;->call()V
+
+    .line 4903
+    return-void
+.end method
+
+.method public final onNext(Ljava/lang/Object;)V
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "(TT;)",
-            "Ljava/lang/Boolean;"
+            "(TT;)V"
         }
     .end annotation
 
     .prologue
-    .line 5378
+    .line 4907
     .local p0, "this":Lrx/Observable$12;, "Lrx/Observable.12;"
-    .local p1, "t":Ljava/lang/Object;, "TT;"
-    iget-object v0, p0, Lrx/Observable$12;->val$klass:Ljava/lang/Class;
-
-    invoke-virtual {v0, p1}, Ljava/lang/Class;->isInstance(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    invoke-static {v0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
-
-    move-result-object v0
-
-    return-object v0
-.end method
-
-.method public bridge synthetic call(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
-    .param p1, "x0"    # Ljava/lang/Object;
-
-    .prologue
-    .line 5375
-    .local p0, "this":Lrx/Observable$12;, "Lrx/Observable.12;"
-    invoke-virtual {p0, p1}, Lrx/Observable$12;->call(Ljava/lang/Object;)Ljava/lang/Boolean;
-
-    move-result-object v0
-
-    return-object v0
+    .local p1, "args":Ljava/lang/Object;, "TT;"
+    return-void
 .end method

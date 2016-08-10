@@ -24,7 +24,10 @@
 .method public abstract bus()Lcom/squareup/otto/Bus;
 .end method
 
-.method public abstract objectMapper()Lcom/fasterxml/jackson/databind/ObjectMapper;
+.method public abstract gson()Lcom/google/gson/Gson;
+.end method
+
+.method public abstract jsonParser()Lcom/google/gson/JsonParser;
 .end method
 
 .method public abstract observeOnScheduler()Lrx/Scheduler;

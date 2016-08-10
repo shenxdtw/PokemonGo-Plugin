@@ -24,7 +24,7 @@
     .param p1, "this$0"    # Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;
 
     .prologue
-    .line 328
+    .line 348
     iput-object p1, p0, Lcom/nianticlabs/pokemongoplus/SfidaPeripheral$5;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;
 
     invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
@@ -37,16 +37,16 @@
     .param p1, "intent"    # Landroid/content/Intent;
 
     .prologue
-    .line 336
+    .line 356
     invoke-virtual {p1}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 337
+    .line 357
     .local v0, "action":Ljava/lang/String;
     if-nez v0, :cond_10
 
-    .line 338
+    .line 358
     # getter for: Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;->access$000()Ljava/lang/String;
 
@@ -56,12 +56,12 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 356
+    .line 376
     :goto_f
     :pswitch_f
     return-void
 
-    .line 342
+    .line 362
     :cond_10
     const/4 v2, -0x1
 
@@ -75,7 +75,7 @@
     :goto_18
     packed-switch v2, :pswitch_data_62
 
-    .line 352
+    .line 372
     # getter for: Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;->access$000()Ljava/lang/String;
 
@@ -103,7 +103,7 @@
 
     goto :goto_f
 
-    .line 342
+    .line 362
     :sswitch_36
     const-string v3, "android.bluetooth.device.action.BOND_STATE_CHANGED"
 
@@ -130,7 +130,7 @@
 
     goto :goto_18
 
-    .line 348
+    .line 368
     :pswitch_4a
     const-string v2, "android.bluetooth.device.extra.DEVICE"
 
@@ -140,7 +140,7 @@
 
     check-cast v1, Landroid/bluetooth/BluetoothDevice;
 
-    .line 349
+    .line 369
     .local v1, "device":Landroid/bluetooth/BluetoothDevice;
     iget-object v2, p0, Lcom/nianticlabs/pokemongoplus/SfidaPeripheral$5;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;
 
@@ -149,7 +149,7 @@
 
     goto :goto_f
 
-    .line 342
+    .line 362
     :sswitch_data_58
     .sparse-switch
         -0xd553507 -> :sswitch_40
@@ -171,10 +171,10 @@
     .param p2, "intent"    # Landroid/content/Intent;
 
     .prologue
-    .line 331
+    .line 351
     invoke-direct {p0, p2}, Lcom/nianticlabs/pokemongoplus/SfidaPeripheral$5;->onHandleBluetoothIntent(Landroid/content/Intent;)V
 
-    .line 332
+    .line 352
     # getter for: Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;->access$000()Ljava/lang/String;
 
@@ -204,6 +204,6 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 333
+    .line 353
     return-void
 .end method

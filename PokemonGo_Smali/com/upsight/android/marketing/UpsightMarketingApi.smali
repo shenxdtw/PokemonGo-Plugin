@@ -9,3 +9,6 @@
 # virtual methods
 .method public abstract isContentReady(Ljava/lang/String;)Z
 .end method
+
+.method public abstract registerContentMediator(Lcom/upsight/android/marketing/UpsightContentMediator;)V
+.end method

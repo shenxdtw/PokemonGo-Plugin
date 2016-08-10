@@ -48,7 +48,7 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
@@ -74,7 +74,7 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
@@ -106,7 +106,7 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue

@@ -30,9 +30,10 @@
 # direct methods
 .method constructor <init>(Lcom/google/gson/Gson;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/google/gson/Gson;
 
     .prologue
-    .line 250
+    .line 271
     iput-object p1, p0, Lcom/google/gson/Gson$3;->this$0:Lcom/google/gson/Gson;
 
     invoke-direct {p0}, Lcom/google/gson/TypeAdapter;-><init>()V
@@ -52,7 +53,7 @@
     .end annotation
 
     .prologue
-    .line 252
+    .line 273
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->peek()Lcom/google/gson/stream/JsonToken;
 
     move-result-object v0
@@ -61,13 +62,13 @@
 
     if-ne v0, v1, :cond_d
 
-    .line 253
+    .line 274
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->nextNull()V
 
-    .line 254
+    .line 275
     const/4 v0, 0x0
 
-    .line 256
+    .line 277
     :goto_c
     return-object v0
 
@@ -85,7 +86,6 @@
 
 .method public bridge synthetic read(Lcom/google/gson/stream/JsonReader;)Ljava/lang/Object;
     .registers 3
-    .param p1, "x0"    # Lcom/google/gson/stream/JsonReader;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
@@ -93,7 +93,7 @@
     .end annotation
 
     .prologue
-    .line 250
+    .line 271
     invoke-virtual {p0, p1}, Lcom/google/gson/Gson$3;->read(Lcom/google/gson/stream/JsonReader;)Ljava/lang/Double;
 
     move-result-object v0
@@ -102,7 +102,7 @@
 .end method
 
 .method public write(Lcom/google/gson/stream/JsonWriter;Ljava/lang/Number;)V
-    .registers 6
+    .registers 5
     .param p1, "out"    # Lcom/google/gson/stream/JsonWriter;
     .param p2, "value"    # Ljava/lang/Number;
     .annotation system Ldalvik/annotation/Throws;
@@ -112,30 +112,27 @@
     .end annotation
 
     .prologue
-    .line 259
+    .line 280
     if-nez p2, :cond_6
 
-    .line 260
+    .line 281
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonWriter;->nullValue()Lcom/google/gson/stream/JsonWriter;
 
-    .line 266
+    .line 287
     :goto_5
     return-void
 
-    .line 263
+    .line 284
     :cond_6
     invoke-virtual {p2}, Ljava/lang/Number;->doubleValue()D
 
     move-result-wide v0
 
-    .line 264
+    .line 285
     .local v0, "doubleValue":D
-    iget-object v2, p0, Lcom/google/gson/Gson$3;->this$0:Lcom/google/gson/Gson;
+    invoke-static {v0, v1}, Lcom/google/gson/Gson;->checkValidFloatingPoint(D)V
 
-    # invokes: Lcom/google/gson/Gson;->checkValidFloatingPoint(D)V
-    invoke-static {v2, v0, v1}, Lcom/google/gson/Gson;->access$000(Lcom/google/gson/Gson;D)V
-
-    .line 265
+    .line 286
     invoke-virtual {p1, p2}, Lcom/google/gson/stream/JsonWriter;->value(Ljava/lang/Number;)Lcom/google/gson/stream/JsonWriter;
 
     goto :goto_5
@@ -143,8 +140,6 @@
 
 .method public bridge synthetic write(Lcom/google/gson/stream/JsonWriter;Ljava/lang/Object;)V
     .registers 3
-    .param p1, "x0"    # Lcom/google/gson/stream/JsonWriter;
-    .param p2, "x1"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
@@ -152,10 +147,9 @@
     .end annotation
 
     .prologue
-    .line 250
+    .line 271
     check-cast p2, Ljava/lang/Number;
 
-    .end local p2    # "x1":Ljava/lang/Object;
     invoke-virtual {p0, p1, p2}, Lcom/google/gson/Gson$3;->write(Lcom/google/gson/stream/JsonWriter;Ljava/lang/Number;)V
 
     return-void

@@ -92,7 +92,7 @@
     .local p1, "timeoutSubscriber":Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;, "Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber<TT;>;"
     iget-object v2, p0, Lrx/internal/operators/OperatorTimeoutWithSelector$1;->val$firstTimeoutSelector:Lrx/functions/Func0;
 
-    if-eqz v2, :cond_23
+    if-eqz v2, :cond_20
 
     .line 48
     const/4 v0, 0x0
@@ -111,7 +111,7 @@
     :try_end_d
     .catch Ljava/lang/Throwable; {:try_start_5 .. :try_end_d} :catch_17
 
-    .line 56
+    .line 55
     .restart local v0    # "o":Lrx/Observable;, "Lrx/Observable<TU;>;"
     new-instance v2, Lrx/internal/operators/OperatorTimeoutWithSelector$1$1;
 
@@ -121,7 +121,7 @@
 
     move-result-object v2
 
-    .line 75
+    .line 74
     .end local v0    # "o":Lrx/Observable;, "Lrx/Observable<TU;>;"
     :goto_16
     return-object v2
@@ -132,21 +132,18 @@
 
     .line 52
     .local v1, "t":Ljava/lang/Throwable;
-    invoke-static {v1}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+    invoke-static {v1, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     .line 53
-    invoke-virtual {p1, v1}, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->onError(Ljava/lang/Throwable;)V
-
-    .line 54
     invoke-static {}, Lrx/subscriptions/Subscriptions;->unsubscribed()Lrx/Subscription;
 
     move-result-object v2
 
     goto :goto_16
 
-    .line 75
+    .line 74
     .end local v1    # "t":Ljava/lang/Throwable;
-    :cond_23
+    :cond_20
     invoke-static {}, Lrx/subscriptions/Subscriptions;->unsubscribed()Lrx/Subscription;
 
     move-result-object v2

@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$1;,
         Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default;
     }
 .end annotation
@@ -60,21 +59,21 @@
     .end annotation
 
     .prologue
-    .line 83
+    .line 89
     .local p2, "attributes":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
     .local p3, "dataProviders":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/analytics/provider/UpsightDataProvider;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 84
+    .line 90
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;->mName:Ljava/lang/String;
 
-    .line 85
+    .line 91
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;->mAttributes:Ljava/util/Set;
 
-    .line 86
+    .line 92
     iput-object p3, p0, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;->mDataProviders:Ljava/util/Map;
 
-    .line 87
+    .line 93
     return-void
 .end method
 
@@ -110,22 +109,22 @@
     .end annotation
 
     .prologue
-    .line 98
+    .line 104
     .local p2, "attributes":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
     new-instance v0, Ljava/util/HashSet;
 
     invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
 
-    .line 99
+    .line 105
     .local v0, "toAttributes":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
     invoke-interface {v0, p2}, Ljava/util/Set;->addAll(Ljava/util/Collection;)Z
 
-    .line 100
+    .line 106
     iget-object v1, p1, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;->mAttributes:Ljava/util/Set;
 
     invoke-interface {v0, v1}, Ljava/util/Set;->addAll(Ljava/util/Collection;)Z
 
-    .line 101
+    .line 107
     new-instance v1, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;
 
     iget-object v2, p1, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;->mDataProviders:Ljava/util/Map;
@@ -150,7 +149,7 @@
     .end annotation
 
     .prologue
-    .line 115
+    .line 121
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;->mAttributes:Ljava/util/Set;
 
     return-object v0
@@ -160,7 +159,7 @@
     .registers 2
 
     .prologue
-    .line 108
+    .line 114
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;->mName:Ljava/lang/String;
 
     return-object v0
@@ -171,10 +170,10 @@
     .param p1, "key"    # Ljava/lang/String;
 
     .prologue
-    .line 123
+    .line 129
     const/4 v1, 0x0
 
-    .line 124
+    .line 130
     .local v1, "value":Ljava/lang/Object;
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;->mAttributes:Ljava/util/Set;
 
@@ -184,7 +183,7 @@
 
     if-eqz v2, :cond_17
 
-    .line 125
+    .line 131
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;->mDataProviders:Ljava/util/Map;
 
     invoke-interface {v2, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -193,16 +192,16 @@
 
     check-cast v0, Lcom/upsight/android/analytics/provider/UpsightDataProvider;
 
-    .line 126
+    .line 132
     .local v0, "provider":Lcom/upsight/android/analytics/provider/UpsightDataProvider;
     if-eqz v0, :cond_17
 
-    .line 127
+    .line 133
     invoke-virtual {v0, p1}, Lcom/upsight/android/analytics/provider/UpsightDataProvider;->get(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v1
 
-    .line 130
+    .line 136
     .end local v0    # "provider":Lcom/upsight/android/analytics/provider/UpsightDataProvider;
     .end local v1    # "value":Ljava/lang/Object;
     :cond_17

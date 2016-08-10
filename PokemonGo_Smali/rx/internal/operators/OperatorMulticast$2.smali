@@ -57,10 +57,7 @@
     :try_start_5
     iget-object v1, p0, Lrx/internal/operators/OperatorMulticast$2;->this$0:Lrx/internal/operators/OperatorMulticast;
 
-    # getter for: Lrx/internal/operators/OperatorMulticast;->guardedSubscription:Lrx/Subscription;
-    invoke-static {v1}, Lrx/internal/operators/OperatorMulticast;->access$000(Lrx/internal/operators/OperatorMulticast;)Lrx/Subscription;
-
-    move-result-object v1
+    iget-object v1, v1, Lrx/internal/operators/OperatorMulticast;->guardedSubscription:Lrx/Subscription;
 
     iget-object v3, p0, Lrx/internal/operators/OperatorMulticast$2;->val$gs:Ljava/util/concurrent/atomic/AtomicReference;
 
@@ -68,15 +65,12 @@
 
     move-result-object v3
 
-    if-ne v1, v3, :cond_34
+    if-ne v1, v3, :cond_2e
 
     .line 102
     iget-object v1, p0, Lrx/internal/operators/OperatorMulticast$2;->this$0:Lrx/internal/operators/OperatorMulticast;
 
-    # getter for: Lrx/internal/operators/OperatorMulticast;->subscription:Lrx/Subscriber;
-    invoke-static {v1}, Lrx/internal/operators/OperatorMulticast;->access$100(Lrx/internal/operators/OperatorMulticast;)Lrx/Subscriber;
-
-    move-result-object v0
+    iget-object v0, v1, Lrx/internal/operators/OperatorMulticast;->subscription:Lrx/Subscriber;
 
     .line 103
     .local v0, "s":Lrx/Subscription;
@@ -84,16 +78,14 @@
 
     const/4 v3, 0x0
 
-    # setter for: Lrx/internal/operators/OperatorMulticast;->subscription:Lrx/Subscriber;
-    invoke-static {v1, v3}, Lrx/internal/operators/OperatorMulticast;->access$102(Lrx/internal/operators/OperatorMulticast;Lrx/Subscriber;)Lrx/Subscriber;
+    iput-object v3, v1, Lrx/internal/operators/OperatorMulticast;->subscription:Lrx/Subscriber;
 
     .line 104
     iget-object v1, p0, Lrx/internal/operators/OperatorMulticast$2;->this$0:Lrx/internal/operators/OperatorMulticast;
 
     const/4 v3, 0x0
 
-    # setter for: Lrx/internal/operators/OperatorMulticast;->guardedSubscription:Lrx/Subscription;
-    invoke-static {v1, v3}, Lrx/internal/operators/OperatorMulticast;->access$002(Lrx/internal/operators/OperatorMulticast;Lrx/Subscription;)Lrx/Subscription;
+    iput-object v3, v1, Lrx/internal/operators/OperatorMulticast;->guardedSubscription:Lrx/Subscription;
 
     .line 105
     iget-object v1, p0, Lrx/internal/operators/OperatorMulticast$2;->this$0:Lrx/internal/operators/OperatorMulticast;
@@ -106,35 +98,35 @@
 
     .line 108
     monitor-exit v2
-    :try_end_2e
-    .catchall {:try_start_5 .. :try_end_2e} :catchall_36
+    :try_end_28
+    .catchall {:try_start_5 .. :try_end_28} :catchall_30
 
     .line 109
-    if-eqz v0, :cond_33
+    if-eqz v0, :cond_2d
 
     .line 110
     invoke-interface {v0}, Lrx/Subscription;->unsubscribe()V
 
     .line 112
     .end local v0    # "s":Lrx/Subscription;
-    :cond_33
-    :goto_33
+    :cond_2d
+    :goto_2d
     return-void
 
     .line 107
-    :cond_34
-    :try_start_34
+    :cond_2e
+    :try_start_2e
     monitor-exit v2
 
-    goto :goto_33
+    goto :goto_2d
 
     .line 108
-    :catchall_36
+    :catchall_30
     move-exception v1
 
     monitor-exit v2
-    :try_end_38
-    .catchall {:try_start_34 .. :try_end_38} :catchall_36
+    :try_end_32
+    .catchall {:try_start_2e .. :try_end_32} :catchall_30
 
     throw v1
 .end method

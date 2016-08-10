@@ -9,7 +9,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/internal/operators/OperatorTimeoutBase$1;,
         Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;,
         Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;,
         Lrx/internal/operators/OperatorTimeoutBase$FirstTimeoutStub;
@@ -29,7 +28,7 @@
 
 
 # instance fields
-.field private final firstTimeoutStub:Lrx/internal/operators/OperatorTimeoutBase$FirstTimeoutStub;
+.field final firstTimeoutStub:Lrx/internal/operators/OperatorTimeoutBase$FirstTimeoutStub;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/internal/operators/OperatorTimeoutBase$FirstTimeoutStub",
@@ -38,7 +37,7 @@
     .end annotation
 .end field
 
-.field private final other:Lrx/Observable;
+.field final other:Lrx/Observable;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/Observable",
@@ -47,9 +46,9 @@
     .end annotation
 .end field
 
-.field private final scheduler:Lrx/Scheduler;
+.field final scheduler:Lrx/Scheduler;
 
-.field private final timeoutStub:Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;
+.field final timeoutStub:Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub",
@@ -78,26 +77,26 @@
     .end annotation
 
     .prologue
-    .line 57
+    .line 52
     .local p0, "this":Lrx/internal/operators/OperatorTimeoutBase;, "Lrx/internal/operators/OperatorTimeoutBase<TT;>;"
     .local p1, "firstTimeoutStub":Lrx/internal/operators/OperatorTimeoutBase$FirstTimeoutStub;, "Lrx/internal/operators/OperatorTimeoutBase$FirstTimeoutStub<TT;>;"
     .local p2, "timeoutStub":Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;, "Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub<TT;>;"
     .local p3, "other":Lrx/Observable;, "Lrx/Observable<+TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 58
+    .line 53
     iput-object p1, p0, Lrx/internal/operators/OperatorTimeoutBase;->firstTimeoutStub:Lrx/internal/operators/OperatorTimeoutBase$FirstTimeoutStub;
 
-    .line 59
+    .line 54
     iput-object p2, p0, Lrx/internal/operators/OperatorTimeoutBase;->timeoutStub:Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;
 
-    .line 60
+    .line 55
     iput-object p3, p0, Lrx/internal/operators/OperatorTimeoutBase;->other:Lrx/Observable;
 
-    .line 61
+    .line 56
     iput-object p4, p0, Lrx/internal/operators/OperatorTimeoutBase;->scheduler:Lrx/Scheduler;
 
-    .line 62
+    .line 57
     return-void
 .end method
 
@@ -108,7 +107,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 32
+    .line 27
     .local p0, "this":Lrx/internal/operators/OperatorTimeoutBase;, "Lrx/internal/operators/OperatorTimeoutBase<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -133,7 +132,7 @@
     .end annotation
 
     .prologue
-    .line 66
+    .line 61
     .local p0, "this":Lrx/internal/operators/OperatorTimeoutBase;, "Lrx/internal/operators/OperatorTimeoutBase<TT;>;"
     .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     iget-object v2, p0, Lrx/internal/operators/OperatorTimeoutBase;->scheduler:Lrx/Scheduler;
@@ -142,38 +141,44 @@
 
     move-result-object v5
 
-    .line 67
+    .line 62
     .local v5, "inner":Lrx/Scheduler$Worker;
     invoke-virtual {p1, v5}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
+    .line 66
+    new-instance v1, Lrx/observers/SerializedSubscriber;
+
+    invoke-direct {v1, p1}, Lrx/observers/SerializedSubscriber;-><init>(Lrx/Subscriber;)V
+
     .line 68
+    .local v1, "synchronizedSubscriber":Lrx/observers/SerializedSubscriber;, "Lrx/observers/SerializedSubscriber<TT;>;"
     new-instance v3, Lrx/subscriptions/SerialSubscription;
 
     invoke-direct {v3}, Lrx/subscriptions/SerialSubscription;-><init>()V
 
     .line 69
     .local v3, "serial":Lrx/subscriptions/SerialSubscription;
-    invoke-virtual {p1, v3}, Lrx/Subscriber;->add(Lrx/Subscription;)V
+    invoke-virtual {v1, v3}, Lrx/observers/SerializedSubscriber;->add(Lrx/Subscription;)V
 
-    .line 73
-    new-instance v1, Lrx/observers/SerializedSubscriber;
-
-    invoke-direct {v1, p1}, Lrx/observers/SerializedSubscriber;-><init>(Lrx/Subscriber;)V
-
-    .line 75
-    .local v1, "synchronizedSubscriber":Lrx/observers/SerializedSubscriber;, "Lrx/observers/SerializedSubscriber<TT;>;"
+    .line 71
     new-instance v0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;
 
     iget-object v2, p0, Lrx/internal/operators/OperatorTimeoutBase;->timeoutStub:Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;
 
     iget-object v4, p0, Lrx/internal/operators/OperatorTimeoutBase;->other:Lrx/Observable;
 
-    const/4 v6, 0x0
+    invoke-direct/range {v0 .. v5}, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;-><init>(Lrx/observers/SerializedSubscriber;Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;Lrx/subscriptions/SerialSubscription;Lrx/Observable;Lrx/Scheduler$Worker;)V
 
-    invoke-direct/range {v0 .. v6}, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;-><init>(Lrx/observers/SerializedSubscriber;Lrx/internal/operators/OperatorTimeoutBase$TimeoutStub;Lrx/subscriptions/SerialSubscription;Lrx/Observable;Lrx/Scheduler$Worker;Lrx/internal/operators/OperatorTimeoutBase$1;)V
+    .line 73
+    .local v0, "timeoutSubscriber":Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;, "Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber<TT;>;"
+    invoke-virtual {v1, v0}, Lrx/observers/SerializedSubscriber;->add(Lrx/Subscription;)V
+
+    .line 74
+    iget-object v2, v0, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->arbiter:Lrx/internal/producers/ProducerArbiter;
+
+    invoke-virtual {v1, v2}, Lrx/observers/SerializedSubscriber;->setProducer(Lrx/Producer;)V
 
     .line 76
-    .local v0, "timeoutSubscriber":Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;, "Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber<TT;>;"
     iget-object v2, p0, Lrx/internal/operators/OperatorTimeoutBase;->firstTimeoutStub:Lrx/internal/operators/OperatorTimeoutBase$FirstTimeoutStub;
 
     const-wide/16 v6, 0x0
@@ -190,6 +195,6 @@
 
     invoke-virtual {v3, v2}, Lrx/subscriptions/SerialSubscription;->set(Lrx/Subscription;)V
 
-    .line 77
+    .line 78
     return-object v0
 .end method

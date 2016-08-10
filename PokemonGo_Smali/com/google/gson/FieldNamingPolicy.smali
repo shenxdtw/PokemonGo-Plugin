@@ -47,7 +47,7 @@
 
     const/4 v2, 0x0
 
-    .line 36
+    .line 37
     new-instance v0, Lcom/google/gson/FieldNamingPolicy$1;
 
     const-string v1, "IDENTITY"
@@ -56,7 +56,7 @@
 
     sput-object v0, Lcom/google/gson/FieldNamingPolicy;->IDENTITY:Lcom/google/gson/FieldNamingPolicy;
 
-    .line 52
+    .line 53
     new-instance v0, Lcom/google/gson/FieldNamingPolicy$2;
 
     const-string v1, "UPPER_CAMEL_CASE"
@@ -65,7 +65,7 @@
 
     sput-object v0, Lcom/google/gson/FieldNamingPolicy;->UPPER_CAMEL_CASE:Lcom/google/gson/FieldNamingPolicy;
 
-    .line 71
+    .line 72
     new-instance v0, Lcom/google/gson/FieldNamingPolicy$3;
 
     const-string v1, "UPPER_CAMEL_CASE_WITH_SPACES"
@@ -74,7 +74,7 @@
 
     sput-object v0, Lcom/google/gson/FieldNamingPolicy;->UPPER_CAMEL_CASE_WITH_SPACES:Lcom/google/gson/FieldNamingPolicy;
 
-    .line 89
+    .line 90
     new-instance v0, Lcom/google/gson/FieldNamingPolicy$4;
 
     const-string v1, "LOWER_CASE_WITH_UNDERSCORES"
@@ -83,7 +83,7 @@
 
     sput-object v0, Lcom/google/gson/FieldNamingPolicy;->LOWER_CASE_WITH_UNDERSCORES:Lcom/google/gson/FieldNamingPolicy;
 
-    .line 112
+    .line 113
     new-instance v0, Lcom/google/gson/FieldNamingPolicy$5;
 
     const-string v1, "LOWER_CASE_WITH_DASHES"
@@ -92,7 +92,7 @@
 
     sput-object v0, Lcom/google/gson/FieldNamingPolicy;->LOWER_CASE_WITH_DASHES:Lcom/google/gson/FieldNamingPolicy;
 
-    .line 30
+    .line 31
     const/4 v0, 0x5
 
     new-array v0, v0, [Lcom/google/gson/FieldNamingPolicy;
@@ -131,7 +131,7 @@
     .end annotation
 
     .prologue
-    .line 30
+    .line 31
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -144,37 +144,10 @@
     .param p3, "x2"    # Lcom/google/gson/FieldNamingPolicy$1;
 
     .prologue
-    .line 30
+    .line 31
     invoke-direct {p0, p1, p2}, Lcom/google/gson/FieldNamingPolicy;-><init>(Ljava/lang/String;I)V
 
     return-void
-.end method
-
-.method static synthetic access$100(Ljava/lang/String;)Ljava/lang/String;
-    .registers 2
-    .param p0, "x0"    # Ljava/lang/String;
-
-    .prologue
-    .line 30
-    invoke-static {p0}, Lcom/google/gson/FieldNamingPolicy;->upperCaseFirstLetter(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    return-object v0
-.end method
-
-.method static synthetic access$200(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-    .registers 3
-    .param p0, "x0"    # Ljava/lang/String;
-    .param p1, "x1"    # Ljava/lang/String;
-
-    .prologue
-    .line 30
-    invoke-static {p0, p1}, Lcom/google/gson/FieldNamingPolicy;->separateCamelCase(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    return-object v0
 .end method
 
 .method private static modifyString(CLjava/lang/String;I)Ljava/lang/String;
@@ -184,7 +157,7 @@
     .param p2, "indexOfSubstring"    # I
 
     .prologue
-    .line 164
+    .line 165
     invoke-virtual {p1}, Ljava/lang/String;->length()I
 
     move-result v0
@@ -199,6 +172,7 @@
 
     move-result-object v0
 
+    .line 166
     invoke-virtual {p1, p2}, Ljava/lang/String;->substring(I)Ljava/lang/String;
 
     move-result-object v1
@@ -211,6 +185,7 @@
 
     move-result-object v0
 
+    .line 167
     :goto_1b
     return-object v0
 
@@ -222,18 +197,18 @@
     goto :goto_1b
 .end method
 
-.method private static separateCamelCase(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+.method static separateCamelCase(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     .registers 6
     .param p0, "name"    # Ljava/lang/String;
     .param p1, "separator"    # Ljava/lang/String;
 
     .prologue
-    .line 123
+    .line 124
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 124
+    .line 125
     .local v2, "translation":Ljava/lang/StringBuilder;
     const/4 v1, 0x0
 
@@ -245,12 +220,12 @@
 
     if-ge v1, v3, :cond_25
 
-    .line 125
+    .line 126
     invoke-virtual {p0, v1}, Ljava/lang/String;->charAt(I)C
 
     move-result v0
 
-    .line 126
+    .line 127
     .local v0, "character":C
     invoke-static {v0}, Ljava/lang/Character;->isUpperCase(C)Z
 
@@ -264,19 +239,19 @@
 
     if-eqz v3, :cond_1f
 
-    .line 127
+    .line 128
     invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 129
+    .line 130
     :cond_1f
     invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 124
+    .line 125
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_6
 
-    .line 131
+    .line 132
     .end local v0    # "character":C
     :cond_25
     invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
@@ -286,27 +261,27 @@
     return-object v3
 .end method
 
-.method private static upperCaseFirstLetter(Ljava/lang/String;)Ljava/lang/String;
+.method static upperCaseFirstLetter(Ljava/lang/String;)Ljava/lang/String;
     .registers 6
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 138
+    .line 139
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 139
+    .line 140
     .local v0, "fieldNameBuilder":Ljava/lang/StringBuilder;
     const/4 v2, 0x0
 
-    .line 140
+    .line 141
     .local v2, "index":I
     invoke-virtual {p0, v2}, Ljava/lang/String;->charAt(I)C
 
     move-result v1
 
-    .line 142
+    .line 143
     .local v1, "firstCharacter":C
     :goto_a
     invoke-virtual {p0}, Ljava/lang/String;->length()I
@@ -317,14 +292,14 @@
 
     if-ge v2, v4, :cond_18
 
-    .line 143
+    .line 144
     invoke-static {v1}, Ljava/lang/Character;->isLetter(C)Z
 
     move-result v4
 
     if-eqz v4, :cond_23
 
-    .line 151
+    .line 152
     :cond_18
     invoke-virtual {p0}, Ljava/lang/String;->length()I
 
@@ -332,23 +307,23 @@
 
     if-ne v2, v4, :cond_2d
 
-    .line 152
+    .line 153
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object p0
 
-    .line 159
+    .line 160
     .end local p0    # "name":Ljava/lang/String;
     :cond_22
     :goto_22
     return-object p0
 
-    .line 147
+    .line 148
     .restart local p0    # "name":Ljava/lang/String;
     :cond_23
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 148
+    .line 149
     add-int/lit8 v2, v2, 0x1
 
     invoke-virtual {p0, v2}, Ljava/lang/String;->charAt(I)C
@@ -357,7 +332,7 @@
 
     goto :goto_a
 
-    .line 155
+    .line 156
     :cond_2d
     invoke-static {v1}, Ljava/lang/Character;->isUpperCase(C)Z
 
@@ -365,7 +340,7 @@
 
     if-nez v4, :cond_22
 
-    .line 156
+    .line 157
     invoke-static {v1}, Ljava/lang/Character;->toUpperCase(C)C
 
     move-result v4
@@ -376,7 +351,7 @@
 
     move-result-object v3
 
-    .line 157
+    .line 158
     .local v3, "modifiedTarget":Ljava/lang/String;
     invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -394,7 +369,7 @@
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 30
+    .line 31
     const-class v0, Lcom/google/gson/FieldNamingPolicy;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -410,7 +385,7 @@
     .registers 1
 
     .prologue
-    .line 30
+    .line 31
     sget-object v0, Lcom/google/gson/FieldNamingPolicy;->$VALUES:[Lcom/google/gson/FieldNamingPolicy;
 
     invoke-virtual {v0}, [Lcom/google/gson/FieldNamingPolicy;->clone()Ljava/lang/Object;

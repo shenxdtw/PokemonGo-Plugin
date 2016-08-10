@@ -69,19 +69,19 @@
     .end annotation
 
     .prologue
-    .line 61
+    .line 62
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithStartEndObservable;, "Lrx/internal/operators/OperatorBufferWithStartEndObservable<TT;TTOpening;TTClosing;>;"
     .local p1, "bufferOpenings":Lrx/Observable;, "Lrx/Observable<+TTOpening;>;"
     .local p2, "bufferClosingSelector":Lrx/functions/Func1;, "Lrx/functions/Func1<-TTOpening;+Lrx/Observable<+TTClosing;>;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 62
+    .line 63
     iput-object p1, p0, Lrx/internal/operators/OperatorBufferWithStartEndObservable;->bufferOpening:Lrx/Observable;
 
-    .line 63
+    .line 64
     iput-object p2, p0, Lrx/internal/operators/OperatorBufferWithStartEndObservable;->bufferClosing:Lrx/functions/Func1;
 
-    .line 64
+    .line 65
     return-void
 .end method
 
@@ -92,7 +92,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 49
+    .line 50
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithStartEndObservable;, "Lrx/internal/operators/OperatorBufferWithStartEndObservable<TT;TTOpening;TTClosing;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -119,7 +119,7 @@
     .end annotation
 
     .prologue
-    .line 69
+    .line 70
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithStartEndObservable;, "Lrx/internal/operators/OperatorBufferWithStartEndObservable<TT;TTOpening;TTClosing;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/util/List<TT;>;>;"
     new-instance v0, Lrx/internal/operators/OperatorBufferWithStartEndObservable$BufferingSubscriber;
@@ -130,24 +130,24 @@
 
     invoke-direct {v0, p0, v2}, Lrx/internal/operators/OperatorBufferWithStartEndObservable$BufferingSubscriber;-><init>(Lrx/internal/operators/OperatorBufferWithStartEndObservable;Lrx/Subscriber;)V
 
-    .line 71
+    .line 72
     .local v0, "bsub":Lrx/internal/operators/OperatorBufferWithStartEndObservable$BufferingSubscriber;, "Lrx/internal/operators/OperatorBufferWithStartEndObservable<TT;TTOpening;TTClosing;>.BufferingSubscriber;"
     new-instance v1, Lrx/internal/operators/OperatorBufferWithStartEndObservable$1;
 
     invoke-direct {v1, p0, v0}, Lrx/internal/operators/OperatorBufferWithStartEndObservable$1;-><init>(Lrx/internal/operators/OperatorBufferWithStartEndObservable;Lrx/internal/operators/OperatorBufferWithStartEndObservable$BufferingSubscriber;)V
 
-    .line 89
+    .line 90
     .local v1, "openSubscriber":Lrx/Subscriber;, "Lrx/Subscriber<TTOpening;>;"
     invoke-virtual {p1, v1}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 90
+    .line 91
     invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 92
+    .line 93
     iget-object v2, p0, Lrx/internal/operators/OperatorBufferWithStartEndObservable;->bufferOpening:Lrx/Observable;
 
     invoke-virtual {v2, v1}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    .line 94
+    .line 95
     return-object v0
 .end method

@@ -23,18 +23,18 @@
 
 
 # instance fields
-.field private final module:Lcom/upsight/android/internal/persistence/storable/StorableModule;
-
-.field private final objectMapperProvider:Ljavax/inject/Provider;
+.field private final gsonProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljavax/inject/Provider",
             "<",
-            "Lcom/fasterxml/jackson/databind/ObjectMapper;",
+            "Lcom/google/gson/Gson;",
             ">;"
         }
     .end annotation
 .end field
+
+.field private final module:Lcom/upsight/android/internal/persistence/storable/StorableModule;
 
 
 # direct methods
@@ -42,7 +42,7 @@
     .registers 1
 
     .prologue
-    .line 8
+    .line 9
     const-class v0, Lcom/upsight/android/internal/persistence/storable/StorableModule_ProvideStorableInfoCacheFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -73,17 +73,17 @@
             "Lcom/upsight/android/internal/persistence/storable/StorableModule;",
             "Ljavax/inject/Provider",
             "<",
-            "Lcom/fasterxml/jackson/databind/ObjectMapper;",
+            "Lcom/google/gson/Gson;",
             ">;)V"
         }
     .end annotation
 
     .prologue
-    .line 13
-    .local p2, "objectMapperProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/fasterxml/jackson/databind/ObjectMapper;>;"
+    .line 20
+    .local p2, "gsonProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/google/gson/Gson;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 14
+    .line 21
     sget-boolean v0, Lcom/upsight/android/internal/persistence/storable/StorableModule_ProvideStorableInfoCacheFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -96,11 +96,11 @@
 
     throw v0
 
-    .line 15
+    .line 22
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/internal/persistence/storable/StorableModule_ProvideStorableInfoCacheFactory;->module:Lcom/upsight/android/internal/persistence/storable/StorableModule;
 
-    .line 16
+    .line 23
     sget-boolean v0, Lcom/upsight/android/internal/persistence/storable/StorableModule_ProvideStorableInfoCacheFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -113,11 +113,11 @@
 
     throw v0
 
-    .line 17
+    .line 24
     :cond_1d
-    iput-object p2, p0, Lcom/upsight/android/internal/persistence/storable/StorableModule_ProvideStorableInfoCacheFactory;->objectMapperProvider:Ljavax/inject/Provider;
+    iput-object p2, p0, Lcom/upsight/android/internal/persistence/storable/StorableModule_ProvideStorableInfoCacheFactory;->gsonProvider:Ljavax/inject/Provider;
 
-    .line 18
+    .line 25
     return-void
 .end method
 
@@ -130,7 +130,7 @@
             "Lcom/upsight/android/internal/persistence/storable/StorableModule;",
             "Ljavax/inject/Provider",
             "<",
-            "Lcom/fasterxml/jackson/databind/ObjectMapper;",
+            "Lcom/google/gson/Gson;",
             ">;)",
             "Ldagger/internal/Factory",
             "<",
@@ -140,8 +140,8 @@
     .end annotation
 
     .prologue
-    .line 30
-    .local p1, "objectMapperProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/fasterxml/jackson/databind/ObjectMapper;>;"
+    .line 36
+    .local p1, "gsonProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/google/gson/Gson;>;"
     new-instance v0, Lcom/upsight/android/internal/persistence/storable/StorableModule_ProvideStorableInfoCacheFactory;
 
     invoke-direct {v0, p0, p1}, Lcom/upsight/android/internal/persistence/storable/StorableModule_ProvideStorableInfoCacheFactory;-><init>(Lcom/upsight/android/internal/persistence/storable/StorableModule;Ljavax/inject/Provider;)V
@@ -152,39 +152,34 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;
-    .registers 4
+    .registers 3
 
     .prologue
-    .line 22
-    iget-object v2, p0, Lcom/upsight/android/internal/persistence/storable/StorableModule_ProvideStorableInfoCacheFactory;->module:Lcom/upsight/android/internal/persistence/storable/StorableModule;
+    .line 29
+    iget-object v1, p0, Lcom/upsight/android/internal/persistence/storable/StorableModule_ProvideStorableInfoCacheFactory;->module:Lcom/upsight/android/internal/persistence/storable/StorableModule;
 
-    iget-object v1, p0, Lcom/upsight/android/internal/persistence/storable/StorableModule_ProvideStorableInfoCacheFactory;->objectMapperProvider:Ljavax/inject/Provider;
+    iget-object v0, p0, Lcom/upsight/android/internal/persistence/storable/StorableModule_ProvideStorableInfoCacheFactory;->gsonProvider:Ljavax/inject/Provider;
 
-    invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
-
-    move-result-object v1
-
-    check-cast v1, Lcom/fasterxml/jackson/databind/ObjectMapper;
-
-    invoke-virtual {v2, v1}, Lcom/upsight/android/internal/persistence/storable/StorableModule;->provideStorableInfoCache(Lcom/fasterxml/jackson/databind/ObjectMapper;)Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;
+    .line 30
+    invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 23
-    .local v0, "provided":Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;
-    if-nez v0, :cond_18
+    check-cast v0, Lcom/google/gson/Gson;
 
-    .line 24
-    new-instance v1, Ljava/lang/NullPointerException;
+    invoke-virtual {v1, v0}, Lcom/upsight/android/internal/persistence/storable/StorableModule;->provideStorableInfoCache(Lcom/google/gson/Gson;)Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;
 
-    const-string v2, "Cannot return null from a non-@Nullable @Provides method"
+    move-result-object v0
 
-    invoke-direct {v1, v2}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
-    throw v1
+    .line 29
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
 
-    .line 26
-    :cond_18
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;
+
     return-object v0
 .end method
 
@@ -192,7 +187,7 @@
     .registers 2
 
     .prologue
-    .line 8
+    .line 9
     invoke-virtual {p0}, Lcom/upsight/android/internal/persistence/storable/StorableModule_ProvideStorableInfoCacheFactory;->get()Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;
 
     move-result-object v0

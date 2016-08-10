@@ -29,30 +29,30 @@
 
 
 # direct methods
-.method private constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+.method private constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)V
     .registers 4
     .param p1, "actionContext"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
     .param p2, "type"    # Ljava/lang/String;
-    .param p3, "params"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p3, "params"    # Lcom/google/gson/JsonObject;
 
     .prologue
-    .line 523
-    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/analytics/internal/action/Action;-><init>(Lcom/upsight/android/analytics/internal/action/ActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+    .line 666
+    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/analytics/internal/action/Action;-><init>(Lcom/upsight/android/analytics/internal/action/ActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)V
 
-    .line 524
+    .line 667
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;)V
+.method synthetic constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;)V
     .registers 5
     .param p1, "x0"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
     .param p2, "x1"    # Ljava/lang/String;
-    .param p3, "x2"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p3, "x2"    # Lcom/google/gson/JsonObject;
     .param p4, "x3"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;
 
     .prologue
-    .line 518
-    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$OpenUrl;-><init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+    .line 661
+    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$OpenUrl;-><init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)V
 
     return-void
 .end method
@@ -61,13 +61,11 @@
 # virtual methods
 .method public bridge synthetic execute(Lcom/upsight/android/analytics/internal/action/Actionable;)V
     .registers 2
-    .param p1, "x0"    # Lcom/upsight/android/analytics/internal/action/Actionable;
 
     .prologue
-    .line 518
+    .line 661
     check-cast p1, Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
-    .end local p1    # "x0":Lcom/upsight/android/analytics/internal/action/Actionable;
     invoke-virtual {p0, p1}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$OpenUrl;->execute(Lcom/upsight/android/marketing/internal/content/MarketingContent;)V
 
     return-void
@@ -80,14 +78,14 @@
     .prologue
     const/4 v8, 0x0
 
-    .line 528
+    .line 671
     invoke-virtual {p0}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$OpenUrl;->getActionContext()Lcom/upsight/android/analytics/internal/action/ActionContext;
 
     move-result-object v0
 
     check-cast v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
 
-    .line 529
+    .line 672
     .local v0, "actionContext":Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
     const-string v4, "url"
 
@@ -95,7 +93,7 @@
 
     move-result-object v3
 
-    .line 530
+    .line 673
     .local v3, "uri":Ljava/lang/String;
     invoke-static {v3}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -103,7 +101,7 @@
 
     if-nez v4, :cond_60
 
-    .line 531
+    .line 674
     new-instance v2, Landroid/content/Intent;
 
     const-string v4, "android.intent.action.VIEW"
@@ -114,13 +112,13 @@
 
     invoke-direct {v2, v4, v5}, Landroid/content/Intent;-><init>(Ljava/lang/String;Landroid/net/Uri;)V
 
-    .line 532
+    .line 675
     .local v2, "intent":Landroid/content/Intent;
     const/high16 v4, 0x10000000
 
     invoke-virtual {v2, v4}, Landroid/content/Intent;->setFlags(I)Landroid/content/Intent;
 
-    .line 534
+    .line 677
     :try_start_23
     iget-object v4, v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;->mUpsight:Lcom/upsight/android/UpsightContext;
 
@@ -128,22 +126,22 @@
     :try_end_28
     .catch Landroid/content/ActivityNotFoundException; {:try_start_23 .. :try_end_28} :catch_2e
 
-    .line 543
+    .line 686
     .end local v2    # "intent":Landroid/content/Intent;
     :goto_28
     iget-object v4, v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;->mBus:Lcom/squareup/otto/Bus;
 
     invoke-virtual {p1, v4}, Lcom/upsight/android/marketing/internal/content/MarketingContent;->signalActionCompleted(Lcom/squareup/otto/Bus;)V
 
-    .line 544
+    .line 687
     return-void
 
-    .line 535
+    .line 678
     .restart local v2    # "intent":Landroid/content/Intent;
     :catch_2e
     move-exception v1
 
-    .line 536
+    .line 679
     .local v1, "e":Landroid/content/ActivityNotFoundException;
     iget-object v4, v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
@@ -193,7 +191,7 @@
 
     goto :goto_28
 
-    .line 539
+    .line 682
     .end local v1    # "e":Landroid/content/ActivityNotFoundException;
     .end local v2    # "intent":Landroid/content/Intent;
     :cond_60

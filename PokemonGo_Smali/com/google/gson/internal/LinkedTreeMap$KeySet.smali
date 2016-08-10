@@ -1,4 +1,4 @@
-.class Lcom/google/gson/internal/LinkedTreeMap$KeySet;
+.class final Lcom/google/gson/internal/LinkedTreeMap$KeySet;
 .super Ljava/util/AbstractSet;
 .source "LinkedTreeMap.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x10
     name = "KeySet"
 .end annotation
 
@@ -28,9 +28,10 @@
 # direct methods
 .method constructor <init>(Lcom/google/gson/internal/LinkedTreeMap;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/google/gson/internal/LinkedTreeMap;
 
     .prologue
-    .line 592
+    .line 595
     .local p0, "this":Lcom/google/gson/internal/LinkedTreeMap$KeySet;, "Lcom/google/gson/internal/LinkedTreeMap<TK;TV;>.KeySet;"
     iput-object p1, p0, Lcom/google/gson/internal/LinkedTreeMap$KeySet;->this$0:Lcom/google/gson/internal/LinkedTreeMap;
 
@@ -45,13 +46,13 @@
     .registers 2
 
     .prologue
-    .line 614
+    .line 617
     .local p0, "this":Lcom/google/gson/internal/LinkedTreeMap$KeySet;, "Lcom/google/gson/internal/LinkedTreeMap<TK;TV;>.KeySet;"
     iget-object v0, p0, Lcom/google/gson/internal/LinkedTreeMap$KeySet;->this$0:Lcom/google/gson/internal/LinkedTreeMap;
 
     invoke-virtual {v0}, Lcom/google/gson/internal/LinkedTreeMap;->clear()V
 
-    .line 615
+    .line 618
     return-void
 .end method
 
@@ -60,7 +61,7 @@
     .param p1, "o"    # Ljava/lang/Object;
 
     .prologue
-    .line 606
+    .line 609
     .local p0, "this":Lcom/google/gson/internal/LinkedTreeMap$KeySet;, "Lcom/google/gson/internal/LinkedTreeMap<TK;TV;>.KeySet;"
     iget-object v0, p0, Lcom/google/gson/internal/LinkedTreeMap$KeySet;->this$0:Lcom/google/gson/internal/LinkedTreeMap;
 
@@ -82,7 +83,7 @@
     .end annotation
 
     .prologue
-    .line 598
+    .line 601
     .local p0, "this":Lcom/google/gson/internal/LinkedTreeMap$KeySet;, "Lcom/google/gson/internal/LinkedTreeMap<TK;TV;>.KeySet;"
     new-instance v0, Lcom/google/gson/internal/LinkedTreeMap$KeySet$1;
 
@@ -96,7 +97,7 @@
     .param p1, "key"    # Ljava/lang/Object;
 
     .prologue
-    .line 610
+    .line 613
     .local p0, "this":Lcom/google/gson/internal/LinkedTreeMap$KeySet;, "Lcom/google/gson/internal/LinkedTreeMap<TK;TV;>.KeySet;"
     iget-object v0, p0, Lcom/google/gson/internal/LinkedTreeMap$KeySet;->this$0:Lcom/google/gson/internal/LinkedTreeMap;
 
@@ -121,7 +122,7 @@
     .registers 2
 
     .prologue
-    .line 594
+    .line 597
     .local p0, "this":Lcom/google/gson/internal/LinkedTreeMap$KeySet;, "Lcom/google/gson/internal/LinkedTreeMap<TK;TV;>.KeySet;"
     iget-object v0, p0, Lcom/google/gson/internal/LinkedTreeMap$KeySet;->this$0:Lcom/google/gson/internal/LinkedTreeMap;
 

@@ -27,16 +27,16 @@
     .param p2, "defaultValue"    # Ljava/lang/Object;
 
     .prologue
-    .line 250
+    .line 347
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 251
+    .line 348
     iput-object p1, p0, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->mKey:Ljava/lang/String;
 
-    .line 252
+    .line 349
     iput-object p2, p0, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->mDefaultValue:Ljava/lang/Object;
 
-    .line 253
+    .line 350
     return-void
 .end method
 
@@ -46,7 +46,7 @@
     .registers 2
 
     .prologue
-    .line 264
+    .line 361
     iget-object v0, p0, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->mDefaultValue:Ljava/lang/Object;
 
     return-object v0
@@ -56,7 +56,7 @@
     .registers 2
 
     .prologue
-    .line 260
+    .line 357
     iget-object v0, p0, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->mKey:Ljava/lang/String;
 
     return-object v0
@@ -66,7 +66,7 @@
     .registers 2
 
     .prologue
-    .line 256
+    .line 353
     iget-object v0, p0, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->mDefaultValue:Ljava/lang/Object;
 
     invoke-virtual {v0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;

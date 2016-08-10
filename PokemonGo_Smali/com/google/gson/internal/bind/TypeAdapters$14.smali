@@ -17,7 +17,7 @@
     value = {
         "Lcom/google/gson/TypeAdapter",
         "<",
-        "Ljava/math/BigDecimal;",
+        "Ljava/lang/Number;",
         ">;"
     }
 .end annotation
@@ -36,26 +36,8 @@
 
 
 # virtual methods
-.method public bridge synthetic read(Lcom/google/gson/stream/JsonReader;)Ljava/lang/Object;
-    .registers 3
-    .param p1, "x0"    # Lcom/google/gson/stream/JsonReader;
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Ljava/io/IOException;
-        }
-    .end annotation
-
-    .prologue
-    .line 366
-    invoke-virtual {p0, p1}, Lcom/google/gson/internal/bind/TypeAdapters$14;->read(Lcom/google/gson/stream/JsonReader;)Ljava/math/BigDecimal;
-
-    move-result-object v0
-
-    return-object v0
-.end method
-
-.method public read(Lcom/google/gson/stream/JsonReader;)Ljava/math/BigDecimal;
-    .registers 5
+.method public read(Lcom/google/gson/stream/JsonReader;)Ljava/lang/Number;
+    .registers 6
     .param p1, "in"    # Lcom/google/gson/stream/JsonReader;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -64,56 +46,85 @@
     .end annotation
 
     .prologue
-    .line 368
+    .line 369
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->peek()Lcom/google/gson/stream/JsonToken;
 
-    move-result-object v1
-
-    sget-object v2, Lcom/google/gson/stream/JsonToken;->NULL:Lcom/google/gson/stream/JsonToken;
-
-    if-ne v1, v2, :cond_d
-
-    .line 369
-    invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->nextNull()V
+    move-result-object v0
 
     .line 370
-    const/4 v1, 0x0
+    .local v0, "jsonToken":Lcom/google/gson/stream/JsonToken;
+    sget-object v1, Lcom/google/gson/internal/bind/TypeAdapters$36;->$SwitchMap$com$google$gson$stream$JsonToken:[I
+
+    invoke-virtual {v0}, Lcom/google/gson/stream/JsonToken;->ordinal()I
+
+    move-result v2
+
+    aget v1, v1, v2
+
+    packed-switch v1, :pswitch_data_38
+
+    .line 377
+    :pswitch_f
+    new-instance v1, Lcom/google/gson/JsonSyntaxException;
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "Expecting number, got: "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-direct {v1, v2}, Lcom/google/gson/JsonSyntaxException;-><init>(Ljava/lang/String;)V
+
+    throw v1
+
+    .line 372
+    :pswitch_28
+    invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->nextNull()V
 
     .line 373
-    :goto_c
+    const/4 v1, 0x0
+
+    .line 375
+    :goto_2c
     return-object v1
 
-    :cond_d
-    :try_start_d
-    new-instance v1, Ljava/math/BigDecimal;
+    :pswitch_2d
+    new-instance v1, Lcom/google/gson/internal/LazilyParsedNumber;
 
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->nextString()Ljava/lang/String;
 
     move-result-object v2
 
-    invoke-direct {v1, v2}, Ljava/math/BigDecimal;-><init>(Ljava/lang/String;)V
-    :try_end_16
-    .catch Ljava/lang/NumberFormatException; {:try_start_d .. :try_end_16} :catch_17
+    invoke-direct {v1, v2}, Lcom/google/gson/internal/LazilyParsedNumber;-><init>(Ljava/lang/String;)V
 
-    goto :goto_c
+    goto :goto_2c
 
-    .line 374
-    :catch_17
-    move-exception v0
+    .line 370
+    nop
 
-    .line 375
-    .local v0, "e":Ljava/lang/NumberFormatException;
-    new-instance v1, Lcom/google/gson/JsonSyntaxException;
-
-    invoke-direct {v1, v0}, Lcom/google/gson/JsonSyntaxException;-><init>(Ljava/lang/Throwable;)V
-
-    throw v1
+    :pswitch_data_38
+    .packed-switch 0x1
+        :pswitch_2d
+        :pswitch_f
+        :pswitch_f
+        :pswitch_28
+    .end packed-switch
 .end method
 
-.method public bridge synthetic write(Lcom/google/gson/stream/JsonWriter;Ljava/lang/Object;)V
+.method public bridge synthetic read(Lcom/google/gson/stream/JsonReader;)Ljava/lang/Object;
     .registers 3
-    .param p1, "x0"    # Lcom/google/gson/stream/JsonWriter;
-    .param p2, "x1"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
@@ -122,18 +133,17 @@
 
     .prologue
     .line 366
-    check-cast p2, Ljava/math/BigDecimal;
+    invoke-virtual {p0, p1}, Lcom/google/gson/internal/bind/TypeAdapters$14;->read(Lcom/google/gson/stream/JsonReader;)Ljava/lang/Number;
 
-    .end local p2    # "x1":Ljava/lang/Object;
-    invoke-virtual {p0, p1, p2}, Lcom/google/gson/internal/bind/TypeAdapters$14;->write(Lcom/google/gson/stream/JsonWriter;Ljava/math/BigDecimal;)V
+    move-result-object v0
 
-    return-void
+    return-object v0
 .end method
 
-.method public write(Lcom/google/gson/stream/JsonWriter;Ljava/math/BigDecimal;)V
+.method public write(Lcom/google/gson/stream/JsonWriter;Ljava/lang/Number;)V
     .registers 3
     .param p1, "out"    # Lcom/google/gson/stream/JsonWriter;
-    .param p2, "value"    # Ljava/math/BigDecimal;
+    .param p2, "value"    # Ljava/lang/Number;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
@@ -141,9 +151,26 @@
     .end annotation
 
     .prologue
-    .line 380
+    .line 382
     invoke-virtual {p1, p2}, Lcom/google/gson/stream/JsonWriter;->value(Ljava/lang/Number;)Lcom/google/gson/stream/JsonWriter;
 
-    .line 381
+    .line 383
+    return-void
+.end method
+
+.method public bridge synthetic write(Lcom/google/gson/stream/JsonWriter;Ljava/lang/Object;)V
+    .registers 3
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .prologue
+    .line 366
+    check-cast p2, Ljava/lang/Number;
+
+    invoke-virtual {p0, p1, p2}, Lcom/google/gson/internal/bind/TypeAdapters$14;->write(Lcom/google/gson/stream/JsonWriter;Ljava/lang/Number;)V
+
     return-void
 .end method

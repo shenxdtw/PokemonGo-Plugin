@@ -26,9 +26,10 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender;Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Request;)V
     .registers 3
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender;
 
     .prologue
-    .line 213
+    .line 214
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$1;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender;
 
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$1;->val$request:Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Request;
@@ -44,7 +45,7 @@
     .registers 4
 
     .prologue
-    .line 216
+    .line 217
     new-instance v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$BatchSendTask;
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$1;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender;
@@ -55,6 +56,6 @@
 
     invoke-virtual {v0}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$BatchSendTask;->run()V
 
-    .line 217
+    .line 218
     return-void
 .end method

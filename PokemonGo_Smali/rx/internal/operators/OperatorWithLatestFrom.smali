@@ -52,7 +52,7 @@
     .registers 1
 
     .prologue
-    .line 35
+    .line 36
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
@@ -75,19 +75,19 @@
     .end annotation
 
     .prologue
-    .line 37
+    .line 38
     .local p0, "this":Lrx/internal/operators/OperatorWithLatestFrom;, "Lrx/internal/operators/OperatorWithLatestFrom<TT;TU;TR;>;"
     .local p1, "other":Lrx/Observable;, "Lrx/Observable<+TU;>;"
     .local p2, "resultSelector":Lrx/functions/Func2;, "Lrx/functions/Func2<-TT;-TU;+TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 38
+    .line 39
     iput-object p1, p0, Lrx/internal/operators/OperatorWithLatestFrom;->other:Lrx/Observable;
 
-    .line 39
+    .line 40
     iput-object p2, p0, Lrx/internal/operators/OperatorWithLatestFrom;->resultSelector:Lrx/functions/Func2;
 
-    .line 40
+    .line 41
     return-void
 .end method
 
@@ -98,7 +98,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 31
+    .line 32
     .local p0, "this":Lrx/internal/operators/OperatorWithLatestFrom;, "Lrx/internal/operators/OperatorWithLatestFrom<TT;TU;TR;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -123,7 +123,7 @@
     .end annotation
 
     .prologue
-    .line 44
+    .line 45
     .local p0, "this":Lrx/internal/operators/OperatorWithLatestFrom;, "Lrx/internal/operators/OperatorWithLatestFrom<TT;TU;TR;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
     new-instance v2, Lrx/observers/SerializedSubscriber;
@@ -132,18 +132,18 @@
 
     invoke-direct {v2, p1, v1}, Lrx/observers/SerializedSubscriber;-><init>(Lrx/Subscriber;Z)V
 
-    .line 45
+    .line 46
     .local v2, "s":Lrx/observers/SerializedSubscriber;, "Lrx/observers/SerializedSubscriber<TR;>;"
     invoke-virtual {p1, v2}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 47
+    .line 48
     new-instance v4, Ljava/util/concurrent/atomic/AtomicReference;
 
     sget-object v1, Lrx/internal/operators/OperatorWithLatestFrom;->EMPTY:Ljava/lang/Object;
 
     invoke-direct {v4, v1}, Ljava/util/concurrent/atomic/AtomicReference;-><init>(Ljava/lang/Object;)V
 
-    .line 49
+    .line 50
     .local v4, "current":Ljava/util/concurrent/atomic/AtomicReference;, "Ljava/util/concurrent/atomic/AtomicReference<Ljava/lang/Object;>;"
     new-instance v0, Lrx/internal/operators/OperatorWithLatestFrom$1;
 

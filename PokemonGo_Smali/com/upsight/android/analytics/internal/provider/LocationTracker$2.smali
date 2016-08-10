@@ -36,9 +36,10 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/provider/LocationTracker;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/provider/LocationTracker;
 
     .prologue
-    .line 67
+    .line 66
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/provider/LocationTracker$2;->this$0:Lcom/upsight/android/analytics/internal/provider/LocationTracker;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -53,7 +54,7 @@
     .param p1, "exception"    # Lcom/upsight/android/UpsightException;
 
     .prologue
-    .line 77
+    .line 76
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/provider/LocationTracker$2;->this$0:Lcom/upsight/android/analytics/internal/provider/LocationTracker;
 
     # getter for: Lcom/upsight/android/analytics/internal/provider/LocationTracker;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
@@ -75,19 +76,17 @@
 
     invoke-interface {v0, v1, v2, v3}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 78
+    .line 77
     return-void
 .end method
 
 .method public bridge synthetic onSuccess(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 67
+    .line 66
     check-cast p1, Ljava/util/Set;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/provider/LocationTracker$2;->onSuccess(Ljava/util/Set;)V
 
     return-void
@@ -106,13 +105,12 @@
     .end annotation
 
     .prologue
-    .line 70
+    .line 69
     .local p1, "result":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;>;"
     invoke-interface {p1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v1
 
-    .local v1, "i$":Ljava/util/Iterator;
     :goto_4
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
@@ -126,7 +124,7 @@
 
     check-cast v0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
 
-    .line 71
+    .line 70
     .local v0, "data":Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/provider/LocationTracker$2;->this$0:Lcom/upsight/android/analytics/internal/provider/LocationTracker;
 
@@ -139,7 +137,7 @@
 
     goto :goto_4
 
-    .line 73
+    .line 72
     .end local v0    # "data":Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
     :cond_1a
     return-void

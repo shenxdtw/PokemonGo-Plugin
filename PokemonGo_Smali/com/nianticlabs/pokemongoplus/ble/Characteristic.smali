@@ -16,6 +16,9 @@
 
 
 # virtual methods
+.method public abstract disableNotify(Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;)V
+.end method
+
 .method public abstract enableNotify(Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;)V
 .end method
 

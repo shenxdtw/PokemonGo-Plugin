@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Observable;->replay(I)Lrx/observables/ConnectableObservable;
+    value = Lrx/Observable;->replay(Lrx/functions/Func1;Lrx/Scheduler;)Lrx/Observable;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -21,8 +21,8 @@
         "Ljava/lang/Object;",
         "Lrx/functions/Func0",
         "<",
-        "Lrx/subjects/Subject",
-        "<-TT;+TT;>;>;"
+        "Lrx/observables/ConnectableObservable",
+        "<TT;>;>;"
     }
 .end annotation
 
@@ -30,19 +30,15 @@
 # instance fields
 .field final synthetic this$0:Lrx/Observable;
 
-.field final synthetic val$bufferSize:I
-
 
 # direct methods
-.method constructor <init>(Lrx/Observable;I)V
-    .registers 3
+.method constructor <init>(Lrx/Observable;)V
+    .registers 2
 
     .prologue
-    .line 6324
+    .line 7346
     .local p0, "this":Lrx/Observable$22;, "Lrx/Observable.22;"
     iput-object p1, p0, Lrx/Observable$22;->this$0:Lrx/Observable;
-
-    iput p2, p0, Lrx/Observable$22;->val$bufferSize:I
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -55,31 +51,31 @@
     .registers 2
 
     .prologue
-    .line 6324
+    .line 7346
     .local p0, "this":Lrx/Observable$22;, "Lrx/Observable.22;"
-    invoke-virtual {p0}, Lrx/Observable$22;->call()Lrx/subjects/Subject;
+    invoke-virtual {p0}, Lrx/Observable$22;->call()Lrx/observables/ConnectableObservable;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public call()Lrx/subjects/Subject;
+.method public call()Lrx/observables/ConnectableObservable;
     .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
-            "Lrx/subjects/Subject",
-            "<-TT;+TT;>;"
+            "Lrx/observables/ConnectableObservable",
+            "<TT;>;"
         }
     .end annotation
 
     .prologue
-    .line 6328
+    .line 7349
     .local p0, "this":Lrx/Observable$22;, "Lrx/Observable.22;"
-    iget v0, p0, Lrx/Observable$22;->val$bufferSize:I
+    iget-object v0, p0, Lrx/Observable$22;->this$0:Lrx/Observable;
 
-    invoke-static {v0}, Lrx/subjects/ReplaySubject;->createWithSize(I)Lrx/subjects/ReplaySubject;
+    invoke-virtual {v0}, Lrx/Observable;->replay()Lrx/observables/ConnectableObservable;
 
     move-result-object v0
 

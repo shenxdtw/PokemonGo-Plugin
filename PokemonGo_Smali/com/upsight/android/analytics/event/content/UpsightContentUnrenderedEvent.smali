@@ -30,10 +30,10 @@
     .registers 1
 
     .prologue
-    .line 193
+    .line 195
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/AnalyticsEvent;-><init>()V
 
-    .line 195
+    .line 197
     return-void
 .end method
 
@@ -44,10 +44,10 @@
     .param p3, "publisherData"    # Lcom/upsight/android/analytics/event/UpsightPublisherData;
 
     .prologue
-    .line 190
+    .line 192
     invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/analytics/internal/AnalyticsEvent;-><init>(Ljava/lang/String;Ljava/lang/Object;Lcom/upsight/android/analytics/event/UpsightPublisherData;)V
 
-    .line 191
+    .line 193
     return-void
 .end method
 
@@ -56,7 +56,7 @@
     .param p0, "contentProvider"    # Lorg/json/JSONObject;
 
     .prologue
-    .line 29
+    .line 30
     new-instance v0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
 
     invoke-direct {v0, p0}, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;-><init>(Lorg/json/JSONObject;)V

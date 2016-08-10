@@ -29,15 +29,13 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .registers 1
 
     .prologue
-    .line 12
+    .line 13
     new-instance v0, Lrx/internal/operators/OperatorTakeLastOne;
 
-    const/4 v1, 0x0
-
-    invoke-direct {v0, v1}, Lrx/internal/operators/OperatorTakeLastOne;-><init>(Lrx/internal/operators/OperatorTakeLastOne$1;)V
+    invoke-direct {v0}, Lrx/internal/operators/OperatorTakeLastOne;-><init>()V
 
     sput-object v0, Lrx/internal/operators/OperatorTakeLastOne$Holder;->INSTANCE:Lrx/internal/operators/OperatorTakeLastOne;
 
@@ -48,7 +46,7 @@
     .registers 1
 
     .prologue
-    .line 11
+    .line 12
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

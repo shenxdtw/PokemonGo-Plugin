@@ -28,25 +28,13 @@
 
 
 # direct methods
-.method private constructor <init>()V
+.method constructor <init>()V
     .registers 1
 
     .prologue
-    .line 51
+    .line 52
     .local p0, "this":Lrx/internal/operators/OperatorToObservableList;, "Lrx/internal/operators/OperatorToObservableList<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/internal/operators/OperatorToObservableList$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/internal/operators/OperatorToObservableList$1;
-
-    .prologue
-    .line 38
-    .local p0, "this":Lrx/internal/operators/OperatorToObservableList;, "Lrx/internal/operators/OperatorToObservableList<TT;>;"
-    invoke-direct {p0}, Lrx/internal/operators/OperatorToObservableList;-><init>()V
 
     return-void
 .end method
@@ -64,7 +52,7 @@
     .end annotation
 
     .prologue
-    .line 49
+    .line 50
     sget-object v0, Lrx/internal/operators/OperatorToObservableList$Holder;->INSTANCE:Lrx/internal/operators/OperatorToObservableList;
 
     return-object v0
@@ -77,7 +65,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 38
+    .line 39
     .local p0, "this":Lrx/internal/operators/OperatorToObservableList;, "Lrx/internal/operators/OperatorToObservableList<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -104,26 +92,26 @@
     .end annotation
 
     .prologue
-    .line 54
+    .line 55
     .local p0, "this":Lrx/internal/operators/OperatorToObservableList;, "Lrx/internal/operators/OperatorToObservableList<TT;>;"
     .local p1, "o":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/util/List<TT;>;>;"
     new-instance v0, Lrx/internal/producers/SingleDelayedProducer;
 
     invoke-direct {v0, p1}, Lrx/internal/producers/SingleDelayedProducer;-><init>(Lrx/Subscriber;)V
 
-    .line 55
+    .line 56
     .local v0, "producer":Lrx/internal/producers/SingleDelayedProducer;, "Lrx/internal/producers/SingleDelayedProducer<Ljava/util/List<TT;>;>;"
     new-instance v1, Lrx/internal/operators/OperatorToObservableList$1;
 
     invoke-direct {v1, p0, v0, p1}, Lrx/internal/operators/OperatorToObservableList$1;-><init>(Lrx/internal/operators/OperatorToObservableList;Lrx/internal/producers/SingleDelayedProducer;Lrx/Subscriber;)V
 
-    .line 109
+    .line 110
     .local v1, "result":Lrx/Subscriber;, "Lrx/Subscriber<TT;>;"
     invoke-virtual {p1, v1}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 110
+    .line 111
     invoke-virtual {p1, v0}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
 
-    .line 111
+    .line 112
     return-object v1
 .end method

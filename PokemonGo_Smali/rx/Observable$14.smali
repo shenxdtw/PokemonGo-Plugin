@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Observable;->repeatWhen(Lrx/functions/Func1;)Lrx/Observable;
+    value = Lrx/Observable;->repeatWhen(Lrx/functions/Func1;Lrx/Scheduler;)Lrx/Observable;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -42,7 +42,7 @@
     .registers 3
 
     .prologue
-    .line 5958
+    .line 6979
     .local p0, "this":Lrx/Observable$14;, "Lrx/Observable.14;"
     iput-object p1, p0, Lrx/Observable$14;->this$0:Lrx/Observable;
 
@@ -60,7 +60,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 5958
+    .line 6979
     .local p0, "this":Lrx/Observable$14;, "Lrx/Observable.14;"
     check-cast p1, Lrx/Observable;
 
@@ -87,7 +87,7 @@
     .end annotation
 
     .prologue
-    .line 5961
+    .line 6982
     .local p0, "this":Lrx/Observable$14;, "Lrx/Observable.14;"
     .local p1, "notifications":Lrx/Observable;, "Lrx/Observable<+Lrx/Notification<*>;>;"
     iget-object v0, p0, Lrx/Observable$14;->val$notificationHandler:Lrx/functions/Func1;

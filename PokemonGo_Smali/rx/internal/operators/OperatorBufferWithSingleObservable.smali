@@ -57,22 +57,22 @@
     .end annotation
 
     .prologue
-    .line 66
+    .line 67
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable;, "Lrx/internal/operators/OperatorBufferWithSingleObservable<TT;TTClosing;>;"
     .local p1, "bufferClosing":Lrx/Observable;, "Lrx/Observable<+TTClosing;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 67
+    .line 68
     new-instance v0, Lrx/internal/operators/OperatorBufferWithSingleObservable$1;
 
     invoke-direct {v0, p0, p1}, Lrx/internal/operators/OperatorBufferWithSingleObservable$1;-><init>(Lrx/internal/operators/OperatorBufferWithSingleObservable;Lrx/Observable;)V
 
     iput-object v0, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable;->bufferClosingSelector:Lrx/functions/Func0;
 
-    .line 73
+    .line 74
     iput p2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable;->initialCapacity:I
 
-    .line 74
+    .line 75
     return-void
 .end method
 
@@ -90,18 +90,18 @@
     .end annotation
 
     .prologue
-    .line 55
+    .line 56
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable;, "Lrx/internal/operators/OperatorBufferWithSingleObservable<TT;TTClosing;>;"
     .local p1, "bufferClosingSelector":Lrx/functions/Func0;, "Lrx/functions/Func0<+Lrx/Observable<+TTClosing;>;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 56
+    .line 57
     iput-object p1, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable;->bufferClosingSelector:Lrx/functions/Func0;
 
-    .line 57
+    .line 58
     iput p2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable;->initialCapacity:I
 
-    .line 58
+    .line 59
     return-void
 .end method
 
@@ -112,7 +112,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 45
+    .line 46
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable;, "Lrx/internal/operators/OperatorBufferWithSingleObservable<TT;TTClosing;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -139,7 +139,7 @@
     .end annotation
 
     .prologue
-    .line 80
+    .line 81
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable;, "Lrx/internal/operators/OperatorBufferWithSingleObservable<TT;TTClosing;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/util/List<TT;>;>;"
     :try_start_0
@@ -153,7 +153,7 @@
     :try_end_8
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_8} :catch_21
 
-    .line 85
+    .line 86
     .local v1, "closing":Lrx/Observable;, "Lrx/Observable<+TTClosing;>;"
     new-instance v0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;
 
@@ -163,38 +163,38 @@
 
     invoke-direct {v0, p0, v4}, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;-><init>(Lrx/internal/operators/OperatorBufferWithSingleObservable;Lrx/Subscriber;)V
 
-    .line 87
+    .line 88
     .local v0, "bsub":Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;, "Lrx/internal/operators/OperatorBufferWithSingleObservable<TT;TTClosing;>.BufferingSubscriber;"
     new-instance v2, Lrx/internal/operators/OperatorBufferWithSingleObservable$2;
 
     invoke-direct {v2, p0, v0}, Lrx/internal/operators/OperatorBufferWithSingleObservable$2;-><init>(Lrx/internal/operators/OperatorBufferWithSingleObservable;Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;)V
 
-    .line 105
+    .line 106
     .local v2, "closingSubscriber":Lrx/Subscriber;, "Lrx/Subscriber<TTClosing;>;"
     invoke-virtual {p1, v2}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 106
+    .line 107
     invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 108
+    .line 109
     invoke-virtual {v1, v2}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    .line 110
+    .line 111
     .end local v0    # "bsub":Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;, "Lrx/internal/operators/OperatorBufferWithSingleObservable<TT;TTClosing;>.BufferingSubscriber;"
     .end local v1    # "closing":Lrx/Observable;, "Lrx/Observable<+TTClosing;>;"
     .end local v2    # "closingSubscriber":Lrx/Subscriber;, "Lrx/Subscriber<TTClosing;>;"
     :goto_20
     return-object v0
 
-    .line 81
+    .line 82
     :catch_21
     move-exception v3
 
-    .line 82
-    .local v3, "t":Ljava/lang/Throwable;
-    invoke-virtual {p1, v3}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-
     .line 83
+    .local v3, "t":Ljava/lang/Throwable;
+    invoke-static {v3, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
+
+    .line 84
     invoke-static {}, Lrx/observers/Subscribers;->empty()Lrx/Subscriber;
 
     move-result-object v0

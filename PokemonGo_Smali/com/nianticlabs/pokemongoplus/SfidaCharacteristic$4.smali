@@ -27,7 +27,7 @@
     .param p1, "this$0"    # Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
 
     .prologue
-    .line 124
+    .line 169
     iput-object p1, p0, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic$4;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -43,7 +43,7 @@
     .param p2, "error"    # Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;
 
     .prologue
-    .line 127
+    .line 172
     # getter for: Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->access$300()Ljava/lang/String;
 
@@ -57,7 +57,7 @@
 
     const/4 v3, 0x0
 
-    .line 128
+    .line 173
     invoke-static {p1}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
     move-result-object v4
@@ -94,14 +94,14 @@
 
     aput-object v4, v2, v3
 
-    .line 127
+    .line 172
     invoke-static {v1, v2}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v1
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 130
+    .line 174
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic$4;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
 
     invoke-virtual {p2}, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;->getInt()I
@@ -111,6 +111,6 @@
     # invokes: Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->nativeEnableNotifyCallback(ZI)V
     invoke-static {v0, p1, v1}, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->access$400(Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;ZI)V
 
-    .line 131
+    .line 175
     return-void
 .end method

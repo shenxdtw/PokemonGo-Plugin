@@ -32,7 +32,7 @@
     .registers 1
 
     .prologue
-    .line 57
+    .line 81
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -44,7 +44,7 @@
     .registers 2
 
     .prologue
-    .line 60
+    .line 84
     invoke-static {}, Ljava/lang/ClassLoader;->getSystemClassLoader()Ljava/lang/ClassLoader;
 
     move-result-object v0
@@ -56,7 +56,7 @@
     .registers 2
 
     .prologue
-    .line 57
+    .line 81
     invoke-virtual {p0}, Lrx/internal/util/PlatformDependent$1;->run()Ljava/lang/ClassLoader;
 
     move-result-object v0

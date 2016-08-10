@@ -58,15 +58,15 @@
     .end annotation
 
     .prologue
-    .line 29
+    .line 32
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate;, "Lrx/internal/operators/OperatorRetryWithPredicate<TT;>;"
     .local p1, "predicate":Lrx/functions/Func2;, "Lrx/functions/Func2<Ljava/lang/Integer;Ljava/lang/Throwable;Ljava/lang/Boolean;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 30
+    .line 33
     iput-object p1, p0, Lrx/internal/operators/OperatorRetryWithPredicate;->predicate:Lrx/functions/Func2;
 
-    .line 31
+    .line 34
     return-void
 .end method
 
@@ -77,7 +77,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 27
+    .line 30
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate;, "Lrx/internal/operators/OperatorRetryWithPredicate<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -90,7 +90,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)Lrx/Subscriber;
-    .registers 6
+    .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -104,36 +104,47 @@
     .end annotation
 
     .prologue
-    .line 35
+    .line 38
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate;, "Lrx/internal/operators/OperatorRetryWithPredicate<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     invoke-static {}, Lrx/schedulers/Schedulers;->trampoline()Lrx/Scheduler;
 
-    move-result-object v2
-
-    invoke-virtual {v2}, Lrx/Scheduler;->createWorker()Lrx/Scheduler$Worker;
-
     move-result-object v0
 
-    .line 36
-    .local v0, "inner":Lrx/Scheduler$Worker;
-    invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
+    invoke-virtual {v0}, Lrx/Scheduler;->createWorker()Lrx/Scheduler$Worker;
 
-    .line 38
-    new-instance v1, Lrx/subscriptions/SerialSubscription;
+    move-result-object v3
 
-    invoke-direct {v1}, Lrx/subscriptions/SerialSubscription;-><init>()V
+    .line 39
+    .local v3, "inner":Lrx/Scheduler$Worker;
+    invoke-virtual {p1, v3}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 40
-    .local v1, "serialSubscription":Lrx/subscriptions/SerialSubscription;
-    invoke-virtual {p1, v1}, Lrx/Subscriber;->add(Lrx/Subscription;)V
+    .line 41
+    new-instance v4, Lrx/subscriptions/SerialSubscription;
 
-    .line 42
-    new-instance v2, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
+    invoke-direct {v4}, Lrx/subscriptions/SerialSubscription;-><init>()V
 
-    iget-object v3, p0, Lrx/internal/operators/OperatorRetryWithPredicate;->predicate:Lrx/functions/Func2;
+    .line 43
+    .local v4, "serialSubscription":Lrx/subscriptions/SerialSubscription;
+    invoke-virtual {p1, v4}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    invoke-direct {v2, p1, v3, v0, v1}, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;-><init>(Lrx/Subscriber;Lrx/functions/Func2;Lrx/Scheduler$Worker;Lrx/subscriptions/SerialSubscription;)V
+    .line 44
+    new-instance v5, Lrx/internal/producers/ProducerArbiter;
 
-    return-object v2
+    invoke-direct {v5}, Lrx/internal/producers/ProducerArbiter;-><init>()V
+
+    .line 45
+    .local v5, "pa":Lrx/internal/producers/ProducerArbiter;
+    invoke-virtual {p1, v5}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+
+    .line 46
+    new-instance v0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
+
+    iget-object v2, p0, Lrx/internal/operators/OperatorRetryWithPredicate;->predicate:Lrx/functions/Func2;
+
+    move-object v1, p1
+
+    invoke-direct/range {v0 .. v5}, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;-><init>(Lrx/Subscriber;Lrx/functions/Func2;Lrx/Scheduler$Worker;Lrx/subscriptions/SerialSubscription;Lrx/internal/producers/ProducerArbiter;)V
+
+    return-object v0
 .end method

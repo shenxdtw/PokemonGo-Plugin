@@ -53,7 +53,7 @@
     .registers 1
 
     .prologue
-    .line 8
+    .line 9
     const-class v0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -94,12 +94,12 @@
     .end annotation
 
     .prologue
-    .line 14
+    .line 23
     .local p2, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     .local p3, "uxmSchemaResProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Ljava/lang/Integer;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 15
+    .line 24
     sget-boolean v0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -112,11 +112,11 @@
 
     throw v0
 
-    .line 16
+    .line 25
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;->module:Lcom/upsight/android/managedvariables/internal/type/UxmModule;
 
-    .line 17
+    .line 26
     sget-boolean v0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -129,11 +129,11 @@
 
     throw v0
 
-    .line 18
+    .line 27
     :cond_1d
     iput-object p2, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;->upsightProvider:Ljavax/inject/Provider;
 
-    .line 19
+    .line 28
     sget-boolean v0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_2b
@@ -146,11 +146,11 @@
 
     throw v0
 
-    .line 20
+    .line 29
     :cond_2b
     iput-object p3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;->uxmSchemaResProvider:Ljavax/inject/Provider;
 
-    .line 21
+    .line 30
     return-void
 .end method
 
@@ -177,7 +177,7 @@
     .end annotation
 
     .prologue
-    .line 33
+    .line 43
     .local p1, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     .local p2, "uxmSchemaResProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Ljava/lang/Integer;>;"
     new-instance v0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;
@@ -193,7 +193,7 @@
     .registers 2
 
     .prologue
-    .line 8
+    .line 9
     invoke-virtual {p0}, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;->get()Ljava/lang/String;
 
     move-result-object v0
@@ -202,46 +202,41 @@
 .end method
 
 .method public get()Ljava/lang/String;
-    .registers 5
+    .registers 4
 
     .prologue
-    .line 25
-    iget-object v3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;->module:Lcom/upsight/android/managedvariables/internal/type/UxmModule;
+    .line 34
+    iget-object v2, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;->module:Lcom/upsight/android/managedvariables/internal/type/UxmModule;
 
-    iget-object v1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;->upsightProvider:Ljavax/inject/Provider;
+    iget-object v0, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;->upsightProvider:Ljavax/inject/Provider;
+
+    .line 35
+    invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/UpsightContext;
+
+    iget-object v1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;->uxmSchemaResProvider:Ljavax/inject/Provider;
 
     invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v1
 
-    check-cast v1, Lcom/upsight/android/UpsightContext;
+    check-cast v1, Ljava/lang/Integer;
 
-    iget-object v2, p0, Lcom/upsight/android/managedvariables/internal/type/UxmModule_ProvideUxmSchemaRawStringFactory;->uxmSchemaResProvider:Ljavax/inject/Provider;
-
-    invoke-interface {v2}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
-
-    move-result-object v2
-
-    check-cast v2, Ljava/lang/Integer;
-
-    invoke-virtual {v3, v1, v2}, Lcom/upsight/android/managedvariables/internal/type/UxmModule;->provideUxmSchemaRawString(Lcom/upsight/android/UpsightContext;Ljava/lang/Integer;)Ljava/lang/String;
+    invoke-virtual {v2, v0, v1}, Lcom/upsight/android/managedvariables/internal/type/UxmModule;->provideUxmSchemaRawString(Lcom/upsight/android/UpsightContext;Ljava/lang/Integer;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 26
-    .local v0, "provided":Ljava/lang/String;
-    if-nez v0, :cond_20
+    const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
-    .line 27
-    new-instance v1, Ljava/lang/NullPointerException;
+    .line 34
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
 
-    const-string v2, "Cannot return null from a non-@Nullable @Provides method"
+    move-result-object v0
 
-    invoke-direct {v1, v2}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    check-cast v0, Ljava/lang/String;
 
-    throw v1
-
-    .line 29
-    :cond_20
     return-object v0
 .end method

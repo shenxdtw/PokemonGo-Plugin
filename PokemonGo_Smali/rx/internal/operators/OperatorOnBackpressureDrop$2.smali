@@ -34,7 +34,7 @@
     .registers 5
 
     .prologue
-    .line 63
+    .line 64
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureDrop$2;, "Lrx/internal/operators/OperatorOnBackpressureDrop.2;"
     .local p2, "x0":Lrx/Subscriber;, "Lrx/Subscriber<*>;"
     iput-object p1, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->this$0:Lrx/internal/operators/OperatorOnBackpressureDrop;
@@ -54,13 +54,13 @@
     .registers 2
 
     .prologue
-    .line 71
+    .line 72
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureDrop$2;, "Lrx/internal/operators/OperatorOnBackpressureDrop.2;"
     iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    .line 72
+    .line 73
     return-void
 .end method
 
@@ -69,18 +69,18 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 76
+    .line 77
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureDrop$2;, "Lrx/internal/operators/OperatorOnBackpressureDrop.2;"
     iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 77
+    .line 78
     return-void
 .end method
 
 .method public onNext(Ljava/lang/Object;)V
-    .registers 6
+    .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -88,56 +88,65 @@
     .end annotation
 
     .prologue
-    .line 81
+    .line 82
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureDrop$2;, "Lrx/internal/operators/OperatorOnBackpressureDrop.2;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
-    iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->val$requested:Ljava/util/concurrent/atomic/AtomicLong;
+    iget-object v1, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->val$requested:Ljava/util/concurrent/atomic/AtomicLong;
 
-    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicLong;->get()J
+    invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicLong;->get()J
 
-    move-result-wide v0
+    move-result-wide v2
 
-    const-wide/16 v2, 0x0
+    const-wide/16 v4, 0x0
 
-    cmp-long v0, v0, v2
+    cmp-long v1, v2, v4
 
-    if-lez v0, :cond_17
-
-    .line 82
-    iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->val$child:Lrx/Subscriber;
-
-    invoke-virtual {v0, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+    if-lez v1, :cond_17
 
     .line 83
-    iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->val$requested:Ljava/util/concurrent/atomic/AtomicLong;
+    iget-object v1, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->val$child:Lrx/Subscriber;
 
-    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicLong;->decrementAndGet()J
+    invoke-virtual {v1, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    .line 90
+    .line 84
+    iget-object v1, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->val$requested:Ljava/util/concurrent/atomic/AtomicLong;
+
+    invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicLong;->decrementAndGet()J
+
+    .line 96
     :cond_16
     :goto_16
     return-void
 
-    .line 86
-    :cond_17
-    iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->this$0:Lrx/internal/operators/OperatorOnBackpressureDrop;
-
-    # getter for: Lrx/internal/operators/OperatorOnBackpressureDrop;->onDrop:Lrx/functions/Action1;
-    invoke-static {v0}, Lrx/internal/operators/OperatorOnBackpressureDrop;->access$100(Lrx/internal/operators/OperatorOnBackpressureDrop;)Lrx/functions/Action1;
-
-    move-result-object v0
-
-    if-eqz v0, :cond_16
-
     .line 87
-    iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->this$0:Lrx/internal/operators/OperatorOnBackpressureDrop;
+    :cond_17
+    iget-object v1, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->this$0:Lrx/internal/operators/OperatorOnBackpressureDrop;
 
-    # getter for: Lrx/internal/operators/OperatorOnBackpressureDrop;->onDrop:Lrx/functions/Action1;
-    invoke-static {v0}, Lrx/internal/operators/OperatorOnBackpressureDrop;->access$100(Lrx/internal/operators/OperatorOnBackpressureDrop;)Lrx/functions/Action1;
+    iget-object v1, v1, Lrx/internal/operators/OperatorOnBackpressureDrop;->onDrop:Lrx/functions/Action1;
 
-    move-result-object v0
+    if-eqz v1, :cond_16
 
-    invoke-interface {v0, p1}, Lrx/functions/Action1;->call(Ljava/lang/Object;)V
+    .line 89
+    :try_start_1d
+    iget-object v1, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->this$0:Lrx/internal/operators/OperatorOnBackpressureDrop;
+
+    iget-object v1, v1, Lrx/internal/operators/OperatorOnBackpressureDrop;->onDrop:Lrx/functions/Action1;
+
+    invoke-interface {v1, p1}, Lrx/functions/Action1;->call(Ljava/lang/Object;)V
+    :try_end_24
+    .catch Ljava/lang/Throwable; {:try_start_1d .. :try_end_24} :catch_25
+
+    goto :goto_16
+
+    .line 90
+    :catch_25
+    move-exception v0
+
+    .line 91
+    .local v0, "e":Ljava/lang/Throwable;
+    iget-object v1, p0, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->val$child:Lrx/Subscriber;
+
+    invoke-static {v0, v1, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
     goto :goto_16
 .end method
@@ -146,12 +155,12 @@
     .registers 3
 
     .prologue
-    .line 66
+    .line 67
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureDrop$2;, "Lrx/internal/operators/OperatorOnBackpressureDrop.2;"
     const-wide v0, 0x7fffffffffffffffL
 
     invoke-virtual {p0, v0, v1}, Lrx/internal/operators/OperatorOnBackpressureDrop$2;->request(J)V
 
-    .line 67
+    .line 68
     return-void
 .end method

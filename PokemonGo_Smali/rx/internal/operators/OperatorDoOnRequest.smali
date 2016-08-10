@@ -26,7 +26,7 @@
 
 
 # instance fields
-.field private final request:Lrx/functions/Action1;
+.field final request:Lrx/functions/Action1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Action1",
@@ -62,17 +62,6 @@
 
     .line 35
     return-void
-.end method
-
-.method static synthetic access$100(Lrx/internal/operators/OperatorDoOnRequest;)Lrx/functions/Action1;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorDoOnRequest;
-
-    .prologue
-    .line 29
-    iget-object v0, p0, Lrx/internal/operators/OperatorDoOnRequest;->request:Lrx/functions/Action1;
-
-    return-object v0
 .end method
 
 
@@ -112,9 +101,7 @@
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     new-instance v0, Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;
 
-    const/4 v1, 0x0
-
-    invoke-direct {v0, p1, v1}, Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;-><init>(Lrx/Subscriber;Lrx/internal/operators/OperatorDoOnRequest$1;)V
+    invoke-direct {v0, p1}, Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;-><init>(Lrx/Subscriber;)V
 
     .line 42
     .local v0, "parent":Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;, "Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber<TT;>;"

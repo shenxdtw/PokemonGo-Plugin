@@ -29,7 +29,7 @@
 
 .field private msgId:Ljava/lang/Integer;
 
-.field private payload:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+.field private payload:Lcom/google/gson/JsonObject;
 
 .field private token:Ljava/lang/String;
 
@@ -41,16 +41,16 @@
     .param p2, "token"    # Ljava/lang/String;
 
     .prologue
-    .line 112
+    .line 115
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;-><init>()V
 
-    .line 113
+    .line 116
     iput-object p1, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->msgId:Ljava/lang/Integer;
 
-    .line 114
+    .line 117
     iput-object p2, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->token:Ljava/lang/String;
 
-    .line 115
+    .line 118
     return-void
 .end method
 
@@ -59,7 +59,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;
 
     .prologue
-    .line 95
+    .line 98
     iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->token:Ljava/lang/String;
 
     return-object v0
@@ -70,19 +70,19 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;
 
     .prologue
-    .line 95
+    .line 98
     iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->msgId:Ljava/lang/Integer;
 
     return-object v0
 .end method
 
-.method static synthetic access$200(Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
+.method static synthetic access$200(Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;)Lcom/google/gson/JsonObject;
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;
 
     .prologue
-    .line 95
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->payload:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .line 98
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->payload:Lcom/google/gson/JsonObject;
 
     return-object v0
 .end method
@@ -92,7 +92,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;
 
     .prologue
-    .line 95
+    .line 98
     iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->msgCampaignId:Ljava/lang/Integer;
 
     return-object v0
@@ -104,7 +104,7 @@
     .registers 2
 
     .prologue
-    .line 95
+    .line 98
     invoke-virtual {p0}, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->build()Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent;
 
     move-result-object v0
@@ -116,7 +116,7 @@
     .registers 5
 
     .prologue
-    .line 135
+    .line 138
     new-instance v0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent;
 
     const-string v1, "upsight.comm.send"
@@ -141,10 +141,10 @@
     .param p1, "msgCampaignId"    # Ljava/lang/Integer;
 
     .prologue
-    .line 129
+    .line 132
     iput-object p1, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->msgCampaignId:Ljava/lang/Integer;
 
-    .line 130
+    .line 133
     return-object p0
 .end method
 
@@ -153,13 +153,13 @@
     .param p1, "payload"    # Lorg/json/JSONObject;
 
     .prologue
-    .line 121
-    invoke-static {p1}, Lcom/upsight/android/analytics/internal/util/JacksonHelper$JSONObjectSerializer;->toObjectNode(Lorg/json/JSONObject;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .line 124
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/util/GsonHelper$JSONObjectSerializer;->toJsonObject(Lorg/json/JSONObject;)Lcom/google/gson/JsonObject;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->payload:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->payload:Lcom/google/gson/JsonObject;
 
-    .line 122
+    .line 125
     return-object p0
 .end method

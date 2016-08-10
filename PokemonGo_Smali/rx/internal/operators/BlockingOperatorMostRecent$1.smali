@@ -49,7 +49,7 @@
 
 # virtual methods
 .method public iterator()Ljava/util/Iterator;
-    .registers 4
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -64,9 +64,7 @@
 
     iget-object v1, p0, Lrx/internal/operators/BlockingOperatorMostRecent$1;->val$initialValue:Ljava/lang/Object;
 
-    const/4 v2, 0x0
-
-    invoke-direct {v0, v1, v2}, Lrx/internal/operators/BlockingOperatorMostRecent$MostRecentObserver;-><init>(Ljava/lang/Object;Lrx/internal/operators/BlockingOperatorMostRecent$1;)V
+    invoke-direct {v0, v1}, Lrx/internal/operators/BlockingOperatorMostRecent$MostRecentObserver;-><init>(Ljava/lang/Object;)V
 
     .line 56
     .local v0, "mostRecentObserver":Lrx/internal/operators/BlockingOperatorMostRecent$MostRecentObserver;, "Lrx/internal/operators/BlockingOperatorMostRecent$MostRecentObserver<TT;>;"

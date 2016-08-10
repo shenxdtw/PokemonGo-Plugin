@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->onDescriptorWrite(Landroid/bluetooth/BluetoothGattDescriptor;I)V
+    value = Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->onCharacteristicRead(I)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -29,7 +29,7 @@
     .param p1, "this$0"    # Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
 
     .prologue
-    .line 182
+    .line 249
     iput-object p1, p0, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic$8;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
 
     iput p2, p0, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic$8;->val$status:I
@@ -42,57 +42,96 @@
 
 # virtual methods
 .method public run()V
-    .registers 4
+    .registers 7
 
     .prologue
-    .line 185
-    iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic$8;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
+    const/4 v5, 0x1
 
-    # getter for: Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->onEnableNotifyCallback:Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;
-    invoke-static {v0}, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->access$1100(Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;)Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;
+    const/4 v4, 0x0
 
-    move-result-object v0
-
-    if-eqz v0, :cond_18
-
-    .line 186
+    .line 252
     iget v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic$8;->val$status:I
 
-    if-nez v0, :cond_19
+    if-nez v0, :cond_40
 
-    .line 187
+    .line 253
+    # getter for: Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->TAG:Ljava/lang/String;
+    invoke-static {}, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->access$300()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "onCharacteristicRead: %s"
+
+    new-array v2, v5, [Ljava/lang/Object;
+
+    iget-object v3, p0, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic$8;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
+
+    # getter for: Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->characteristic:Landroid/bluetooth/BluetoothGattCharacteristic;
+    invoke-static {v3}, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->access$600(Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;)Landroid/bluetooth/BluetoothGattCharacteristic;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Landroid/bluetooth/BluetoothGattCharacteristic;->getUuid()Ljava/util/UUID;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/util/UUID;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    aput-object v3, v2, v4
+
+    invoke-static {v1, v2}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 254
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic$8;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
 
-    # getter for: Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->onEnableNotifyCallback:Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;
+    iget-object v1, p0, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic$8;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
+
+    # getter for: Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->characteristic:Landroid/bluetooth/BluetoothGattCharacteristic;
+    invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->access$600(Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;)Landroid/bluetooth/BluetoothGattCharacteristic;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Landroid/bluetooth/BluetoothGattCharacteristic;->getValue()[B
+
+    move-result-object v1
+
+    # invokes: Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->nativeSaveValueChangedCallback([B)V
+    invoke-static {v0, v1}, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->access$800(Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;[B)V
+
+    .line 255
+    iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic$8;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
+
+    # getter for: Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->onReadCallback:Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;
     invoke-static {v0}, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->access$1100(Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;)Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;
 
     move-result-object v0
 
-    const/4 v1, 0x1
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;->Unknown:Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;
 
-    sget-object v2, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;->Unknown:Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;
+    invoke-interface {v0, v5, v1}, Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;->onCompletion(ZLcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;)V
 
-    invoke-interface {v0, v1, v2}, Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;->onCompletion(ZLcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;)V
-
-    .line 192
-    :cond_18
-    :goto_18
+    .line 259
+    :goto_3f
     return-void
 
-    .line 189
-    :cond_19
+    .line 257
+    :cond_40
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic$8;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
 
-    # getter for: Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->onEnableNotifyCallback:Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;
+    # getter for: Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->onReadCallback:Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;
     invoke-static {v0}, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->access$1100(Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;)Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;
 
     move-result-object v0
 
-    const/4 v1, 0x0
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;->Unknown:Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;
 
-    sget-object v2, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;->Unknown:Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;
+    invoke-interface {v0, v4, v1}, Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;->onCompletion(ZLcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;)V
 
-    invoke-interface {v0, v1, v2}, Lcom/nianticlabs/pokemongoplus/ble/callback/CompletionCallback;->onCompletion(ZLcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;)V
-
-    goto :goto_18
+    goto :goto_3f
 .end method

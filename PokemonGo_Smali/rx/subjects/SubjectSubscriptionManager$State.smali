@@ -44,12 +44,12 @@
     .prologue
     const/4 v3, 0x0
 
-    .line 152
+    .line 151
     new-array v0, v3, [Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
     sput-object v0, Lrx/subjects/SubjectSubscriptionManager$State;->NO_OBSERVERS:[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
-    .line 153
+    .line 152
     new-instance v0, Lrx/subjects/SubjectSubscriptionManager$State;
 
     const/4 v1, 0x1
@@ -60,7 +60,7 @@
 
     sput-object v0, Lrx/subjects/SubjectSubscriptionManager$State;->TERMINATED:Lrx/subjects/SubjectSubscriptionManager$State;
 
-    .line 154
+    .line 153
     new-instance v0, Lrx/subjects/SubjectSubscriptionManager$State;
 
     sget-object v1, Lrx/subjects/SubjectSubscriptionManager$State;->NO_OBSERVERS:[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
@@ -78,17 +78,17 @@
     .param p2, "observers"    # [Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
     .prologue
-    .line 156
+    .line 155
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$State;, "Lrx/subjects/SubjectSubscriptionManager$State<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 157
+    .line 156
     iput-boolean p1, p0, Lrx/subjects/SubjectSubscriptionManager$State;->terminated:Z
 
-    .line 158
+    .line 157
     iput-object p2, p0, Lrx/subjects/SubjectSubscriptionManager$State;->observers:[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
-    .line 159
+    .line 158
     return-void
 .end method
 
@@ -102,29 +102,29 @@
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$State;, "Lrx/subjects/SubjectSubscriptionManager$State<TT;>;"
     const/4 v4, 0x0
 
-    .line 161
+    .line 160
     iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$State;->observers:[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
-    .line 162
+    .line 161
     .local v0, "a":[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
     array-length v2, v0
 
-    .line 163
+    .line 162
     .local v2, "n":I
     add-int/lit8 v3, v2, 0x1
 
     new-array v1, v3, [Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
-    .line 164
+    .line 163
     .local v1, "b":[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
     iget-object v3, p0, Lrx/subjects/SubjectSubscriptionManager$State;->observers:[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
     invoke-static {v3, v4, v1, v4, v2}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
 
-    .line 165
+    .line 164
     aput-object p1, v1, v2
 
-    .line 166
+    .line 165
     new-instance v3, Lrx/subjects/SubjectSubscriptionManager$State;
 
     iget-boolean v4, p0, Lrx/subjects/SubjectSubscriptionManager$State;->terminated:Z
@@ -142,14 +142,14 @@
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$State;, "Lrx/subjects/SubjectSubscriptionManager$State<TT;>;"
     const/4 v9, 0x0
 
-    .line 169
+    .line 168
     iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$State;->observers:[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
-    .line 170
+    .line 169
     .local v0, "a":[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
     array-length v7, v0
 
-    .line 171
+    .line 170
     .local v7, "n":I
     const/4 v8, 0x1
 
@@ -159,30 +159,30 @@
 
     if-ne v8, p1, :cond_e
 
-    .line 172
+    .line 171
     sget-object p0, Lrx/subjects/SubjectSubscriptionManager$State;->EMPTY:Lrx/subjects/SubjectSubscriptionManager$State;
 
-    .line 196
+    .line 195
     .end local p0    # "this":Lrx/subjects/SubjectSubscriptionManager$State;, "Lrx/subjects/SubjectSubscriptionManager$State<TT;>;"
     :cond_d
     :goto_d
     return-object p0
 
-    .line 174
+    .line 173
     .restart local p0    # "this":Lrx/subjects/SubjectSubscriptionManager$State;, "Lrx/subjects/SubjectSubscriptionManager$State<TT;>;"
     :cond_e
     if-eqz v7, :cond_d
 
-    .line 177
+    .line 176
     add-int/lit8 v8, v7, -0x1
 
     new-array v2, v8, [Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
-    .line 178
+    .line 177
     .local v2, "b":[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
     const/4 v5, 0x0
 
-    .line 179
+    .line 178
     .local v5, "j":I
     const/4 v4, 0x0
 
@@ -194,26 +194,26 @@
     :goto_17
     if-ge v4, v7, :cond_29
 
-    .line 180
+    .line 179
     aget-object v1, v0, v4
 
-    .line 181
+    .line 180
     .local v1, "ai":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
     if-eq v1, p1, :cond_41
 
-    .line 182
+    .line 181
     add-int/lit8 v8, v7, -0x1
 
     if-eq v6, v8, :cond_d
 
-    .line 185
+    .line 184
     add-int/lit8 v5, v6, 0x1
 
     .end local v6    # "j":I
     .restart local v5    # "j":I
     aput-object v1, v2, v6
 
-    .line 179
+    .line 178
     :goto_25
     add-int/lit8 v4, v4, 0x1
 
@@ -223,33 +223,33 @@
     .restart local v6    # "j":I
     goto :goto_17
 
-    .line 188
+    .line 187
     .end local v1    # "ai":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
     :cond_29
     if-nez v6, :cond_2e
 
-    .line 189
+    .line 188
     sget-object p0, Lrx/subjects/SubjectSubscriptionManager$State;->EMPTY:Lrx/subjects/SubjectSubscriptionManager$State;
 
     goto :goto_d
 
-    .line 191
+    .line 190
     :cond_2e
     add-int/lit8 v8, v7, -0x1
 
     if-ge v6, v8, :cond_38
 
-    .line 192
+    .line 191
     new-array v3, v6, [Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
-    .line 193
+    .line 192
     .local v3, "c":[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
     invoke-static {v2, v9, v3, v9, v6}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
 
-    .line 194
+    .line 193
     move-object v2, v3
 
-    .line 196
+    .line 195
     .end local v3    # "c":[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
     :cond_38
     new-instance v8, Lrx/subjects/SubjectSubscriptionManager$State;

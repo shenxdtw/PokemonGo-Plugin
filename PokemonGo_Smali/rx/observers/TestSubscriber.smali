@@ -29,8 +29,6 @@
 
 
 # instance fields
-.field private final initialRequest:J
-
 .field private volatile lastSeenThread:Ljava/lang/Thread;
 
 .field private final latch:Ljava/util/concurrent/CountDownLatch;
@@ -50,7 +48,7 @@
     .registers 1
 
     .prologue
-    .line 38
+    .line 36
     new-instance v0, Lrx/observers/TestSubscriber$1;
 
     invoke-direct {v0}, Lrx/observers/TestSubscriber$1;-><init>()V
@@ -64,30 +62,28 @@
     .registers 3
 
     .prologue
-    .line 95
+    .line 111
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     const-wide/16 v0, -0x1
 
     invoke-direct {p0, v0, v1}, Lrx/observers/TestSubscriber;-><init>(J)V
 
-    .line 96
+    .line 112
     return-void
 .end method
 
 .method public constructor <init>(J)V
     .registers 4
     .param p1, "initialRequest"    # J
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
 
     .prologue
-    .line 66
+    .line 63
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     sget-object v0, Lrx/observers/TestSubscriber;->INERT:Lrx/Observer;
 
     invoke-direct {p0, v0, p1, p2}, Lrx/observers/TestSubscriber;-><init>(Lrx/Observer;J)V
 
-    .line 67
+    .line 64
     return-void
 .end method
 
@@ -102,14 +98,14 @@
     .end annotation
 
     .prologue
-    .line 91
+    .line 104
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     .local p1, "delegate":Lrx/Observer;, "Lrx/Observer<TT;>;"
     const-wide/16 v0, -0x1
 
     invoke-direct {p0, p1, v0, v1}, Lrx/observers/TestSubscriber;-><init>(Lrx/Observer;J)V
 
-    .line 92
+    .line 105
     return-void
 .end method
 
@@ -124,11 +120,8 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
     .prologue
-    .line 78
+    .line 75
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     .local p1, "delegate":Lrx/Observer;, "Lrx/Observer<TT;>;"
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
@@ -142,17 +135,17 @@
 
     iput-object v0, p0, Lrx/observers/TestSubscriber;->latch:Ljava/util/concurrent/CountDownLatch;
 
-    .line 79
+    .line 76
     if-nez p1, :cond_13
 
-    .line 80
+    .line 77
     new-instance v0, Ljava/lang/NullPointerException;
 
     invoke-direct {v0}, Ljava/lang/NullPointerException;-><init>()V
 
     throw v0
 
-    .line 82
+    .line 79
     :cond_13
     new-instance v0, Lrx/observers/TestObserver;
 
@@ -160,10 +153,18 @@
 
     iput-object v0, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
-    .line 83
-    iput-wide p2, p0, Lrx/observers/TestSubscriber;->initialRequest:J
+    .line 80
+    const-wide/16 v0, 0x0
 
-    .line 84
+    cmp-long v0, p2, v0
+
+    if-ltz v0, :cond_23
+
+    .line 81
+    invoke-virtual {p0, p2, p3}, Lrx/observers/TestSubscriber;->request(J)V
+
+    .line 83
+    :cond_23
     return-void
 .end method
 
@@ -178,14 +179,14 @@
     .end annotation
 
     .prologue
-    .line 87
+    .line 93
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     .local p1, "delegate":Lrx/Subscriber;, "Lrx/Subscriber<TT;>;"
     const-wide/16 v0, -0x1
 
     invoke-direct {p0, p1, v0, v1}, Lrx/observers/TestSubscriber;-><init>(Lrx/Observer;J)V
 
-    .line 88
+    .line 94
     return-void
 .end method
 
@@ -201,11 +202,8 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
     .prologue
-    .line 100
+    .line 121
     new-instance v0, Lrx/observers/TestSubscriber;
 
     invoke-direct {v0}, Lrx/observers/TestSubscriber;-><init>()V
@@ -226,11 +224,8 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
     .prologue
-    .line 105
+    .line 132
     new-instance v0, Lrx/observers/TestSubscriber;
 
     invoke-direct {v0, p0, p1}, Lrx/observers/TestSubscriber;-><init>(J)V
@@ -252,11 +247,8 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
     .prologue
-    .line 120
+    .line 172
     .local p0, "delegate":Lrx/Observer;, "Lrx/Observer<TT;>;"
     new-instance v0, Lrx/observers/TestSubscriber;
 
@@ -280,11 +272,8 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
     .prologue
-    .line 110
+    .line 146
     .local p0, "delegate":Lrx/Observer;, "Lrx/Observer<TT;>;"
     new-instance v0, Lrx/observers/TestSubscriber;
 
@@ -307,11 +296,8 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
     .prologue
-    .line 115
+    .line 159
     .local p0, "delegate":Lrx/Subscriber;, "Lrx/Subscriber<TT;>;"
     new-instance v0, Lrx/observers/TestSubscriber;
 
@@ -324,11 +310,9 @@
 # virtual methods
 .method public assertCompleted()V
     .registers 5
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
 
     .prologue
-    .line 345
+    .line 394
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     iget-object v1, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
@@ -340,11 +324,11 @@
 
     move-result v0
 
-    .line 346
+    .line 395
     .local v0, "s":I
     if-nez v0, :cond_14
 
-    .line 347
+    .line 396
     new-instance v1, Ljava/lang/AssertionError;
 
     const-string v2, "Not completed!"
@@ -353,13 +337,13 @@
 
     throw v1
 
-    .line 349
+    .line 398
     :cond_14
     const/4 v1, 0x1
 
     if-le v0, v1, :cond_30
 
-    .line 350
+    .line 399
     new-instance v1, Ljava/lang/AssertionError;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -384,7 +368,7 @@
 
     throw v1
 
-    .line 352
+    .line 401
     :cond_30
     return-void
 .end method
@@ -401,22 +385,19 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
     .prologue
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     .local p1, "clazz":Ljava/lang/Class;, "Ljava/lang/Class<+Ljava/lang/Throwable;>;"
     const/4 v4, 0x0
 
-    .line 381
+    .line 428
     iget-object v2, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
     invoke-virtual {v2}, Lrx/observers/TestObserver;->getOnErrorEvents()Ljava/util/List;
 
     move-result-object v1
 
-    .line 382
+    .line 429
     .local v1, "err":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Throwable;>;"
     invoke-interface {v1}, Ljava/util/List;->size()I
 
@@ -424,7 +405,7 @@
 
     if-nez v2, :cond_15
 
-    .line 383
+    .line 430
     new-instance v2, Ljava/lang/AssertionError;
 
     const-string v3, "No errors"
@@ -433,7 +414,7 @@
 
     throw v2
 
-    .line 385
+    .line 432
     :cond_15
     invoke-interface {v1}, Ljava/util/List;->size()I
 
@@ -443,7 +424,7 @@
 
     if-le v2, v3, :cond_41
 
-    .line 386
+    .line 433
     new-instance v0, Ljava/lang/AssertionError;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -470,7 +451,7 @@
 
     invoke-direct {v0, v2}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
 
-    .line 387
+    .line 434
     .local v0, "ae":Ljava/lang/AssertionError;
     new-instance v2, Lrx/exceptions/CompositeException;
 
@@ -478,10 +459,10 @@
 
     invoke-virtual {v0, v2}, Ljava/lang/AssertionError;->initCause(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
-    .line 388
+    .line 435
     throw v0
 
-    .line 390
+    .line 437
     .end local v0    # "ae":Ljava/lang/AssertionError;
     :cond_41
     invoke-interface {v1, v4}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -494,7 +475,7 @@
 
     if-nez v2, :cond_7b
 
-    .line 391
+    .line 438
     new-instance v0, Ljava/lang/AssertionError;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -531,7 +512,7 @@
 
     invoke-direct {v0, v2}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
 
-    .line 392
+    .line 439
     .restart local v0    # "ae":Ljava/lang/AssertionError;
     invoke-interface {v1, v4}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
@@ -541,10 +522,10 @@
 
     invoke-virtual {v0, v2}, Ljava/lang/AssertionError;->initCause(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
-    .line 393
+    .line 440
     throw v0
 
-    .line 395
+    .line 442
     .end local v0    # "ae":Ljava/lang/AssertionError;
     :cond_7b
     return-void
@@ -553,21 +534,19 @@
 .method public assertError(Ljava/lang/Throwable;)V
     .registers 7
     .param p1, "throwable"    # Ljava/lang/Throwable;
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
 
     .prologue
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     const/4 v4, 0x0
 
-    .line 407
+    .line 453
     iget-object v2, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
     invoke-virtual {v2}, Lrx/observers/TestObserver;->getOnErrorEvents()Ljava/util/List;
 
     move-result-object v1
 
-    .line 408
+    .line 454
     .local v1, "err":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Throwable;>;"
     invoke-interface {v1}, Ljava/util/List;->size()I
 
@@ -575,7 +554,7 @@
 
     if-nez v2, :cond_15
 
-    .line 409
+    .line 455
     new-instance v2, Ljava/lang/AssertionError;
 
     const-string v3, "No errors"
@@ -584,7 +563,7 @@
 
     throw v2
 
-    .line 411
+    .line 457
     :cond_15
     invoke-interface {v1}, Ljava/util/List;->size()I
 
@@ -594,7 +573,7 @@
 
     if-le v2, v3, :cond_41
 
-    .line 412
+    .line 458
     new-instance v0, Ljava/lang/AssertionError;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -621,7 +600,7 @@
 
     invoke-direct {v0, v2}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
 
-    .line 413
+    .line 459
     .local v0, "ae":Ljava/lang/AssertionError;
     new-instance v2, Lrx/exceptions/CompositeException;
 
@@ -629,10 +608,10 @@
 
     invoke-virtual {v0, v2}, Ljava/lang/AssertionError;->initCause(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
-    .line 414
+    .line 460
     throw v0
 
-    .line 416
+    .line 462
     .end local v0    # "ae":Ljava/lang/AssertionError;
     :cond_41
     invoke-interface {v1, v4}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -645,7 +624,7 @@
 
     if-nez v2, :cond_7b
 
-    .line 417
+    .line 463
     new-instance v0, Ljava/lang/AssertionError;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -682,7 +661,7 @@
 
     invoke-direct {v0, v2}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
 
-    .line 418
+    .line 464
     .restart local v0    # "ae":Ljava/lang/AssertionError;
     invoke-interface {v1, v4}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
@@ -692,10 +671,10 @@
 
     invoke-virtual {v0, v2}, Ljava/lang/AssertionError;->initCause(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
-    .line 419
+    .line 465
     throw v0
 
-    .line 421
+    .line 467
     .end local v0    # "ae":Ljava/lang/AssertionError;
     :cond_7b
     return-void
@@ -705,75 +684,101 @@
     .registers 5
 
     .prologue
-    .line 261
+    .line 306
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     invoke-virtual {p0}, Lrx/observers/TestSubscriber;->getOnErrorEvents()Ljava/util/List;
 
-    move-result-object v0
+    move-result-object v1
 
-    invoke-interface {v0}, Ljava/util/List;->size()I
-
-    move-result v0
-
-    if-lez v0, :cond_36
-
-    .line 263
-    new-instance v1, Ljava/lang/RuntimeException;
-
-    new-instance v0, Ljava/lang/StringBuilder;
-
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v2, "Unexpected onError events: "
-
-    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {p0}, Lrx/observers/TestSubscriber;->getOnErrorEvents()Ljava/util/List;
-
-    move-result-object v2
-
-    invoke-interface {v2}, Ljava/util/List;->size()I
+    .line 307
+    .local v1, "onErrorEvents":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Throwable;>;"
+    invoke-interface {v1}, Ljava/util/List;->size()I
 
     move-result v2
 
-    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    if-lez v2, :cond_49
 
-    move-result-object v0
+    .line 308
+    new-instance v0, Ljava/lang/AssertionError;
 
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "Unexpected onError events: "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v2
 
     invoke-virtual {p0}, Lrx/observers/TestSubscriber;->getOnErrorEvents()Ljava/util/List;
 
-    move-result-object v0
+    move-result-object v3
+
+    invoke-interface {v3}, Ljava/util/List;->size()I
+
+    move-result v3
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-direct {v0, v2}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
+
+    .line 309
+    .local v0, "ae":Ljava/lang/AssertionError;
+    invoke-interface {v1}, Ljava/util/List;->size()I
+
+    move-result v2
+
+    const/4 v3, 0x1
+
+    if-ne v2, v3, :cond_40
+
+    .line 310
+    invoke-virtual {p0}, Lrx/observers/TestSubscriber;->getOnErrorEvents()Ljava/util/List;
+
+    move-result-object v2
 
     const/4 v3, 0x0
 
-    invoke-interface {v0, v3}, Ljava/util/List;->get(I)Ljava/lang/Object;
+    invoke-interface {v2, v3}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
-    move-result-object v0
+    move-result-object v2
 
-    check-cast v0, Ljava/lang/Throwable;
+    check-cast v2, Ljava/lang/Throwable;
 
-    invoke-direct {v1, v2, v0}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
+    invoke-virtual {v0, v2}, Ljava/lang/AssertionError;->initCause(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
-    throw v1
+    .line 314
+    :goto_3f
+    throw v0
 
-    .line 266
-    :cond_36
+    .line 312
+    :cond_40
+    new-instance v2, Lrx/exceptions/CompositeException;
+
+    invoke-direct {v2, v1}, Lrx/exceptions/CompositeException;-><init>(Ljava/util/Collection;)V
+
+    invoke-virtual {v0, v2}, Ljava/lang/AssertionError;->initCause(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+
+    goto :goto_3f
+
+    .line 316
+    .end local v0    # "ae":Ljava/lang/AssertionError;
+    :cond_49
     return-void
 .end method
 
 .method public assertNoTerminalEvent()V
     .registers 7
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
 
     .prologue
-    .line 431
+    .line 476
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     iget-object v3, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
@@ -781,7 +786,7 @@
 
     move-result-object v1
 
-    .line 432
+    .line 477
     .local v1, "err":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Throwable;>;"
     iget-object v3, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
@@ -793,7 +798,7 @@
 
     move-result v2
 
-    .line 433
+    .line 478
     .local v2, "s":I
     invoke-interface {v1}, Ljava/util/List;->size()I
 
@@ -803,7 +808,7 @@
 
     if-lez v2, :cond_be
 
-    .line 434
+    .line 479
     :cond_18
     invoke-interface {v1}, Ljava/util/List;->isEmpty()Z
 
@@ -811,7 +816,7 @@
 
     if-eqz v3, :cond_4b
 
-    .line 435
+    .line 480
     new-instance v3, Ljava/lang/AssertionError;
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -856,7 +861,7 @@
 
     throw v3
 
-    .line 437
+    .line 482
     :cond_4b
     invoke-interface {v1}, Ljava/util/List;->size()I
 
@@ -866,7 +871,7 @@
 
     if-ne v3, v4, :cond_89
 
-    .line 438
+    .line 483
     new-instance v0, Ljava/lang/AssertionError;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -909,7 +914,7 @@
 
     invoke-direct {v0, v3}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
 
-    .line 439
+    .line 484
     .local v0, "ae":Ljava/lang/AssertionError;
     const/4 v3, 0x0
 
@@ -921,10 +926,10 @@
 
     invoke-virtual {v0, v3}, Ljava/lang/AssertionError;->initCause(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
-    .line 440
+    .line 485
     throw v0
 
-    .line 442
+    .line 487
     .end local v0    # "ae":Ljava/lang/AssertionError;
     :cond_89
     new-instance v0, Ljava/lang/AssertionError;
@@ -969,7 +974,7 @@
 
     invoke-direct {v0, v3}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
 
-    .line 443
+    .line 488
     .restart local v0    # "ae":Ljava/lang/AssertionError;
     new-instance v3, Lrx/exceptions/CompositeException;
 
@@ -977,10 +982,10 @@
 
     invoke-virtual {v0, v3}, Ljava/lang/AssertionError;->initCause(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
-    .line 444
+    .line 489
     throw v0
 
-    .line 447
+    .line 492
     .end local v0    # "ae":Ljava/lang/AssertionError;
     :cond_be
     return-void
@@ -988,11 +993,9 @@
 
 .method public assertNoValues()V
     .registers 5
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
 
     .prologue
-    .line 457
+    .line 501
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     iget-object v1, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
@@ -1004,11 +1007,11 @@
 
     move-result v0
 
-    .line 458
+    .line 502
     .local v0, "s":I
     if-lez v0, :cond_25
 
-    .line 459
+    .line 503
     new-instance v1, Ljava/lang/AssertionError;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1033,21 +1036,19 @@
 
     throw v1
 
-    .line 461
+    .line 505
     :cond_25
     return-void
 .end method
 
 .method public assertNotCompleted()V
     .registers 5
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
 
     .prologue
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     const/4 v2, 0x1
 
-    .line 362
+    .line 410
     iget-object v1, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
     invoke-virtual {v1}, Lrx/observers/TestObserver;->getOnCompletedEvents()Ljava/util/List;
@@ -1058,11 +1059,11 @@
 
     move-result v0
 
-    .line 363
+    .line 411
     .local v0, "s":I
     if-ne v0, v2, :cond_15
 
-    .line 364
+    .line 412
     new-instance v1, Ljava/lang/AssertionError;
 
     const-string v2, "Completed!"
@@ -1071,11 +1072,11 @@
 
     throw v1
 
-    .line 366
+    .line 414
     :cond_15
     if-le v0, v2, :cond_30
 
-    .line 367
+    .line 415
     new-instance v1, Ljava/lang/AssertionError;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1100,7 +1101,7 @@
 
     throw v1
 
-    .line 369
+    .line 417
     :cond_30
     return-void
 .end method
@@ -1116,14 +1117,14 @@
     .end annotation
 
     .prologue
-    .line 229
+    .line 274
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     .local p1, "items":Ljava/util/List;, "Ljava/util/List<TT;>;"
     iget-object v0, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
     invoke-virtual {v0, p1}, Lrx/observers/TestObserver;->assertReceivedOnNext(Ljava/util/List;)V
 
-    .line 230
+    .line 275
     return-void
 .end method
 
@@ -1131,13 +1132,13 @@
     .registers 2
 
     .prologue
-    .line 239
+    .line 284
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     iget-object v0, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
     invoke-virtual {v0}, Lrx/observers/TestObserver;->assertTerminalEvent()V
 
-    .line 240
+    .line 285
     return-void
 .end method
 
@@ -1145,7 +1146,7 @@
     .registers 3
 
     .prologue
-    .line 249
+    .line 294
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     invoke-virtual {p0}, Lrx/observers/TestSubscriber;->isUnsubscribed()Z
 
@@ -1153,7 +1154,7 @@
 
     if-nez v0, :cond_e
 
-    .line 250
+    .line 295
     new-instance v0, Ljava/lang/AssertionError;
 
     const-string v1, "Not unsubscribed."
@@ -1162,7 +1163,7 @@
 
     throw v0
 
-    .line 252
+    .line 297
     :cond_e
     return-void
 .end method
@@ -1175,11 +1176,8 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
     .prologue
-    .line 499
+    .line 540
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     .local p1, "value":Ljava/lang/Object;, "TT;"
     invoke-static {p1}, Ljava/util/Collections;->singletonList(Ljava/lang/Object;)Ljava/util/List;
@@ -1188,18 +1186,16 @@
 
     invoke-virtual {p0, v0}, Lrx/observers/TestSubscriber;->assertReceivedOnNext(Ljava/util/List;)V
 
-    .line 500
+    .line 541
     return-void
 .end method
 
 .method public assertValueCount(I)V
     .registers 6
     .param p1, "count"    # I
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
 
     .prologue
-    .line 472
+    .line 515
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     iget-object v1, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
@@ -1211,11 +1207,11 @@
 
     move-result v0
 
-    .line 473
+    .line 516
     .local v0, "s":I
     if-eq v0, p1, :cond_2f
 
-    .line 474
+    .line 517
     new-instance v1, Ljava/lang/AssertionError;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1250,7 +1246,7 @@
 
     throw v1
 
-    .line 476
+    .line 519
     :cond_2f
     return-void
 .end method
@@ -1263,11 +1259,8 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
     .prologue
-    .line 487
+    .line 529
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     .local p1, "values":[Ljava/lang/Object;, "[TT;"
     invoke-static {p1}, Ljava/util/Arrays;->asList([Ljava/lang/Object;)Ljava/util/List;
@@ -1276,7 +1269,7 @@
 
     invoke-virtual {p0, v0}, Lrx/observers/TestSubscriber;->assertReceivedOnNext(Ljava/util/List;)V
 
-    .line 488
+    .line 530
     return-void
 .end method
 
@@ -1284,7 +1277,7 @@
     .registers 4
 
     .prologue
-    .line 278
+    .line 328
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     :try_start_0
     iget-object v1, p0, Lrx/observers/TestSubscriber;->latch:Ljava/util/concurrent/CountDownLatch;
@@ -1293,14 +1286,14 @@
     :try_end_5
     .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_5} :catch_6
 
-    .line 282
+    .line 332
     return-void
 
-    .line 279
+    .line 329
     :catch_6
     move-exception v0
 
-    .line 280
+    .line 330
     .local v0, "e":Ljava/lang/InterruptedException;
     new-instance v1, Ljava/lang/RuntimeException;
 
@@ -1317,7 +1310,7 @@
     .param p3, "unit"    # Ljava/util/concurrent/TimeUnit;
 
     .prologue
-    .line 297
+    .line 347
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     :try_start_0
     iget-object v1, p0, Lrx/observers/TestSubscriber;->latch:Ljava/util/concurrent/CountDownLatch;
@@ -1326,14 +1319,14 @@
     :try_end_5
     .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_5} :catch_6
 
-    .line 301
+    .line 351
     return-void
 
-    .line 298
+    .line 348
     :catch_6
     move-exception v0
 
-    .line 299
+    .line 349
     .local v0, "e":Ljava/lang/InterruptedException;
     new-instance v1, Ljava/lang/RuntimeException;
 
@@ -1350,7 +1343,7 @@
     .param p3, "unit"    # Ljava/util/concurrent/TimeUnit;
 
     .prologue
-    .line 316
+    .line 366
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     :try_start_0
     iget-object v2, p0, Lrx/observers/TestSubscriber;->latch:Ljava/util/concurrent/CountDownLatch;
@@ -1359,26 +1352,26 @@
 
     move-result v1
 
-    .line 317
+    .line 367
     .local v1, "result":Z
     if-nez v1, :cond_b
 
-    .line 319
+    .line 369
     invoke-virtual {p0}, Lrx/observers/TestSubscriber;->unsubscribe()V
     :try_end_b
     .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_b} :catch_c
 
-    .line 324
+    .line 374
     .end local v1    # "result":Z
     :cond_b
     :goto_b
     return-void
 
-    .line 321
+    .line 371
     :catch_c
     move-exception v0
 
-    .line 322
+    .line 372
     .local v0, "e":Ljava/lang/InterruptedException;
     invoke-virtual {p0}, Lrx/observers/TestSubscriber;->unsubscribe()V
 
@@ -1389,7 +1382,7 @@
     .registers 2
 
     .prologue
-    .line 334
+    .line 384
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     iget-object v0, p0, Lrx/observers/TestSubscriber;->lastSeenThread:Ljava/lang/Thread;
 
@@ -1409,7 +1402,7 @@
     .end annotation
 
     .prologue
-    .line 152
+    .line 197
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     iget-object v0, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
@@ -1433,7 +1426,7 @@
     .end annotation
 
     .prologue
-    .line 181
+    .line 226
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     iget-object v0, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
@@ -1455,7 +1448,7 @@
     .end annotation
 
     .prologue
-    .line 217
+    .line 262
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     iget-object v0, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
@@ -1470,7 +1463,7 @@
     .registers 3
 
     .prologue
-    .line 138
+    .line 183
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     :try_start_0
     invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
@@ -1479,22 +1472,22 @@
 
     iput-object v0, p0, Lrx/observers/TestSubscriber;->lastSeenThread:Ljava/lang/Thread;
 
-    .line 139
+    .line 184
     iget-object v0, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
     invoke-virtual {v0}, Lrx/observers/TestObserver;->onCompleted()V
     :try_end_b
     .catchall {:try_start_0 .. :try_end_b} :catchall_11
 
-    .line 141
+    .line 186
     iget-object v0, p0, Lrx/observers/TestSubscriber;->latch:Ljava/util/concurrent/CountDownLatch;
 
     invoke-virtual {v0}, Ljava/util/concurrent/CountDownLatch;->countDown()V
 
-    .line 143
+    .line 188
     return-void
 
-    .line 141
+    .line 186
     :catchall_11
     move-exception v0
 
@@ -1510,7 +1503,7 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 167
+    .line 212
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     :try_start_0
     invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
@@ -1519,22 +1512,22 @@
 
     iput-object v0, p0, Lrx/observers/TestSubscriber;->lastSeenThread:Ljava/lang/Thread;
 
-    .line 168
+    .line 213
     iget-object v0, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
     invoke-virtual {v0, p1}, Lrx/observers/TestObserver;->onError(Ljava/lang/Throwable;)V
     :try_end_b
     .catchall {:try_start_0 .. :try_end_b} :catchall_11
 
-    .line 170
+    .line 215
     iget-object v0, p0, Lrx/observers/TestSubscriber;->latch:Ljava/util/concurrent/CountDownLatch;
 
     invoke-virtual {v0}, Ljava/util/concurrent/CountDownLatch;->countDown()V
 
-    .line 172
+    .line 217
     return-void
 
-    .line 170
+    .line 215
     :catchall_11
     move-exception v0
 
@@ -1554,7 +1547,7 @@
     .end annotation
 
     .prologue
-    .line 197
+    .line 242
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
@@ -1563,36 +1556,12 @@
 
     iput-object v0, p0, Lrx/observers/TestSubscriber;->lastSeenThread:Ljava/lang/Thread;
 
-    .line 198
+    .line 243
     iget-object v0, p0, Lrx/observers/TestSubscriber;->testObserver:Lrx/observers/TestObserver;
 
     invoke-virtual {v0, p1}, Lrx/observers/TestObserver;->onNext(Ljava/lang/Object;)V
 
-    .line 199
-    return-void
-.end method
-
-.method public onStart()V
-    .registers 5
-
-    .prologue
-    .line 125
-    .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
-    iget-wide v0, p0, Lrx/observers/TestSubscriber;->initialRequest:J
-
-    const-wide/16 v2, 0x0
-
-    cmp-long v0, v0, v2
-
-    if-ltz v0, :cond_d
-
-    .line 126
-    iget-wide v0, p0, Lrx/observers/TestSubscriber;->initialRequest:J
-
-    invoke-virtual {p0, v0, v1}, Lrx/observers/TestSubscriber;->requestMore(J)V
-
-    .line 128
-    :cond_d
+    .line 244
     return-void
 .end method
 
@@ -1601,10 +1570,10 @@
     .param p1, "n"    # J
 
     .prologue
-    .line 208
+    .line 253
     .local p0, "this":Lrx/observers/TestSubscriber;, "Lrx/observers/TestSubscriber<TT;>;"
     invoke-virtual {p0, p1, p2}, Lrx/observers/TestSubscriber;->request(J)V
 
-    .line 209
+    .line 254
     return-void
 .end method

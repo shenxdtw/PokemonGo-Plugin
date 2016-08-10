@@ -9,7 +9,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/internal/operators/OperatorOnBackpressureLatest$1;,
         Lrx/internal/operators/OperatorOnBackpressureLatest$LatestSubscriber;,
         Lrx/internal/operators/OperatorOnBackpressureLatest$LatestEmitter;,
         Lrx/internal/operators/OperatorOnBackpressureLatest$Holder;
@@ -80,7 +79,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)Lrx/Subscriber;
-    .registers 5
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -103,9 +102,7 @@
     .local v1, "producer":Lrx/internal/operators/OperatorOnBackpressureLatest$LatestEmitter;, "Lrx/internal/operators/OperatorOnBackpressureLatest$LatestEmitter<TT;>;"
     new-instance v0, Lrx/internal/operators/OperatorOnBackpressureLatest$LatestSubscriber;
 
-    const/4 v2, 0x0
-
-    invoke-direct {v0, v1, v2}, Lrx/internal/operators/OperatorOnBackpressureLatest$LatestSubscriber;-><init>(Lrx/internal/operators/OperatorOnBackpressureLatest$LatestEmitter;Lrx/internal/operators/OperatorOnBackpressureLatest$1;)V
+    invoke-direct {v0, v1}, Lrx/internal/operators/OperatorOnBackpressureLatest$LatestSubscriber;-><init>(Lrx/internal/operators/OperatorOnBackpressureLatest$LatestEmitter;)V
 
     .line 46
     .local v0, "parent":Lrx/internal/operators/OperatorOnBackpressureLatest$LatestSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureLatest$LatestSubscriber<TT;>;"

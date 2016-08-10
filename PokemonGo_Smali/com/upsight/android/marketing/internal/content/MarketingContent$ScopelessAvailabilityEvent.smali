@@ -25,15 +25,15 @@
     .param p2, "parentId"    # Ljava/lang/String;
 
     .prologue
-    .line 258
+    .line 359
     const/4 v0, 0x0
 
     invoke-direct {p0, p1, v0}, Lcom/upsight/android/marketing/internal/content/MarketingContent$AvailabilityEvent;-><init>(Ljava/lang/String;Lcom/upsight/android/marketing/internal/content/MarketingContent$1;)V
 
-    .line 259
+    .line 360
     iput-object p2, p0, Lcom/upsight/android/marketing/internal/content/MarketingContent$ScopelessAvailabilityEvent;->mParentId:Ljava/lang/String;
 
-    .line 260
+    .line 361
     return-void
 .end method
 
@@ -43,7 +43,7 @@
     .registers 2
 
     .prologue
-    .line 263
+    .line 364
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/content/MarketingContent$ScopelessAvailabilityEvent;->mParentId:Ljava/lang/String;
 
     return-object v0

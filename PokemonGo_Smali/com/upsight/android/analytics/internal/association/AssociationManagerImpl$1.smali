@@ -34,6 +34,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/association/AssociationManagerImpl;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/association/AssociationManagerImpl;
 
     .prologue
     .line 98
@@ -66,13 +67,11 @@
 
 .method public bridge synthetic call(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 98
     check-cast p1, Lcom/upsight/android/analytics/internal/association/Association;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/association/AssociationManagerImpl$1;->call(Lcom/upsight/android/analytics/internal/association/Association;)V
 
     return-void

@@ -42,6 +42,7 @@
 
     move-result-object v0
 
+    .line 37
     invoke-virtual {v0}, Lrx/Observable;->onBackpressureBuffer()Lrx/Observable;
 
     move-result-object v0
@@ -79,6 +80,7 @@
 
     move-result-object v0
 
+    .line 43
     invoke-virtual {v0}, Lrx/Observable;->onBackpressureBuffer()Lrx/Observable;
 
     move-result-object v0

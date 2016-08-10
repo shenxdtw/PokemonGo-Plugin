@@ -29,15 +29,13 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .registers 1
 
     .prologue
-    .line 30
+    .line 31
     new-instance v0, Lrx/internal/operators/OperatorOnBackpressureDrop;
 
-    const/4 v1, 0x0
-
-    invoke-direct {v0, v1}, Lrx/internal/operators/OperatorOnBackpressureDrop;-><init>(Lrx/internal/operators/OperatorOnBackpressureDrop$1;)V
+    invoke-direct {v0}, Lrx/internal/operators/OperatorOnBackpressureDrop;-><init>()V
 
     sput-object v0, Lrx/internal/operators/OperatorOnBackpressureDrop$Holder;->INSTANCE:Lrx/internal/operators/OperatorOnBackpressureDrop;
 
@@ -48,7 +46,7 @@
     .registers 1
 
     .prologue
-    .line 28
+    .line 29
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

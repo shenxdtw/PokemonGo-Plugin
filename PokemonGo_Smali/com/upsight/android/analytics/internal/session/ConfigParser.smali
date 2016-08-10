@@ -12,35 +12,35 @@
 
 
 # instance fields
-.field private mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+.field private mGson:Lcom/google/gson/Gson;
 
 
 # direct methods
-.method public constructor <init>(Lcom/fasterxml/jackson/databind/ObjectMapper;)V
+.method public constructor <init>(Lcom/google/gson/Gson;)V
     .registers 2
-    .param p1, "mapper"    # Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .param p1, "gson"    # Lcom/google/gson/Gson;
         .annotation runtime Ljavax/inject/Named;
-            value = "config-mapper"
+            value = "config-gson"
         .end annotation
     .end param
     .annotation runtime Ljavax/inject/Inject;
     .end annotation
 
     .prologue
-    .line 24
+    .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 25
-    iput-object p1, p0, Lcom/upsight/android/analytics/internal/session/ConfigParser;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .line 27
+    iput-object p1, p0, Lcom/upsight/android/analytics/internal/session/ConfigParser;->mGson:Lcom/google/gson/Gson;
 
-    .line 26
+    .line 28
     return-void
 .end method
 
 
 # virtual methods
 .method public parseConfig(Ljava/lang/String;)Lcom/upsight/android/analytics/internal/session/SessionManagerImpl$Config;
-    .registers 6
+    .registers 8
     .param p1, "configContent"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -49,26 +49,42 @@
     .end annotation
 
     .prologue
-    .line 37
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/session/ConfigParser;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .line 41
+    :try_start_0
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/session/ConfigParser;->mGson:Lcom/google/gson/Gson;
 
-    const-class v2, Lcom/upsight/android/analytics/internal/session/ConfigParser$ConfigJson;
+    const-class v3, Lcom/upsight/android/analytics/internal/session/ConfigParser$ConfigJson;
 
-    invoke-virtual {v1, p1, v2}, Lcom/fasterxml/jackson/databind/ObjectMapper;->readValue(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+    invoke-virtual {v2, p1, v3}, Lcom/google/gson/Gson;->fromJson(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/upsight/android/analytics/internal/session/ConfigParser$ConfigJson;
+    :try_end_a
+    .catch Lcom/google/gson/JsonSyntaxException; {:try_start_0 .. :try_end_a} :catch_13
 
-    .line 38
+    .line 45
     .local v0, "configJson":Lcom/upsight/android/analytics/internal/session/ConfigParser$ConfigJson;
-    new-instance v1, Lcom/upsight/android/analytics/internal/session/SessionManagerImpl$Config;
+    new-instance v2, Lcom/upsight/android/analytics/internal/session/SessionManagerImpl$Config;
 
-    iget v2, v0, Lcom/upsight/android/analytics/internal/session/ConfigParser$ConfigJson;->session_gap:I
+    iget v3, v0, Lcom/upsight/android/analytics/internal/session/ConfigParser$ConfigJson;->session_gap:I
 
-    int-to-long v2, v2
+    int-to-long v4, v3
 
-    invoke-direct {v1, v2, v3}, Lcom/upsight/android/analytics/internal/session/SessionManagerImpl$Config;-><init>(J)V
+    invoke-direct {v2, v4, v5}, Lcom/upsight/android/analytics/internal/session/SessionManagerImpl$Config;-><init>(J)V
 
-    return-object v1
+    return-object v2
+
+    .line 42
+    .end local v0    # "configJson":Lcom/upsight/android/analytics/internal/session/ConfigParser$ConfigJson;
+    :catch_13
+    move-exception v1
+
+    .line 43
+    .local v1, "e":Lcom/google/gson/JsonSyntaxException;
+    new-instance v2, Ljava/io/IOException;
+
+    invoke-direct {v2, v1}, Ljava/io/IOException;-><init>(Ljava/lang/Throwable;)V
+
+    throw v2
 .end method

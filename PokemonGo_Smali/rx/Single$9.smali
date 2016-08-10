@@ -1,90 +1,87 @@
-.class Lrx/Single$9;
-.super Lrx/Subscriber;
+.class final Lrx/Single$9;
+.super Ljava/lang/Object;
 .source "Single.java"
+
+# interfaces
+.implements Lrx/functions/FuncN;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Single;->subscribe(Lrx/SingleSubscriber;)Lrx/Subscription;
+    value = Lrx/Single;->zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func5;)Lrx/Single;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x8
     name = null
 .end annotation
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
-        "Lrx/Subscriber",
-        "<TT;>;"
+        "Ljava/lang/Object;",
+        "Lrx/functions/FuncN",
+        "<TR;>;"
     }
 .end annotation
 
 
 # instance fields
-.field final synthetic this$0:Lrx/Single;
-
-.field final synthetic val$te:Lrx/SingleSubscriber;
+.field final synthetic val$zipFunction:Lrx/functions/Func5;
 
 
 # direct methods
-.method constructor <init>(Lrx/Single;Lrx/SingleSubscriber;)V
-    .registers 3
+.method constructor <init>(Lrx/functions/Func5;)V
+    .registers 2
 
     .prologue
-    .line 1610
-    .local p0, "this":Lrx/Single$9;, "Lrx/Single.9;"
-    iput-object p1, p0, Lrx/Single$9;->this$0:Lrx/Single;
+    .line 1051
+    iput-object p1, p0, Lrx/Single$9;->val$zipFunction:Lrx/functions/Func5;
 
-    iput-object p2, p0, Lrx/Single$9;->val$te:Lrx/SingleSubscriber;
-
-    invoke-direct {p0}, Lrx/Subscriber;-><init>()V
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public onCompleted()V
-    .registers 1
-
-    .prologue
-    .line 1615
-    .local p0, "this":Lrx/Single$9;, "Lrx/Single.9;"
-    return-void
-.end method
-
-.method public onError(Ljava/lang/Throwable;)V
-    .registers 3
-    .param p1, "e"    # Ljava/lang/Throwable;
-
-    .prologue
-    .line 1619
-    .local p0, "this":Lrx/Single$9;, "Lrx/Single.9;"
-    iget-object v0, p0, Lrx/Single$9;->val$te:Lrx/SingleSubscriber;
-
-    invoke-virtual {v0, p1}, Lrx/SingleSubscriber;->onError(Ljava/lang/Throwable;)V
-
-    .line 1620
-    return-void
-.end method
-
-.method public onNext(Ljava/lang/Object;)V
-    .registers 3
+.method public varargs call([Ljava/lang/Object;)Ljava/lang/Object;
+    .registers 8
+    .param p1, "args"    # [Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "(TT;)V"
+            "([",
+            "Ljava/lang/Object;",
+            ")TR;"
         }
     .end annotation
 
     .prologue
-    .line 1624
-    .local p0, "this":Lrx/Single$9;, "Lrx/Single.9;"
-    .local p1, "t":Ljava/lang/Object;, "TT;"
-    iget-object v0, p0, Lrx/Single$9;->val$te:Lrx/SingleSubscriber;
+    .line 1054
+    iget-object v0, p0, Lrx/Single$9;->val$zipFunction:Lrx/functions/Func5;
 
-    invoke-virtual {v0, p1}, Lrx/SingleSubscriber;->onSuccess(Ljava/lang/Object;)V
+    const/4 v1, 0x0
 
-    .line 1625
-    return-void
+    aget-object v1, p1, v1
+
+    const/4 v2, 0x1
+
+    aget-object v2, p1, v2
+
+    const/4 v3, 0x2
+
+    aget-object v3, p1, v3
+
+    const/4 v4, 0x3
+
+    aget-object v4, p1, v4
+
+    const/4 v5, 0x4
+
+    aget-object v5, p1, v5
+
+    invoke-interface/range {v0 .. v5}, Lrx/functions/Func5;->call(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    return-object v0
 .end method

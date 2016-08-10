@@ -16,86 +16,119 @@
 
 # instance fields
 .field adGameId:Ljava/lang/Integer;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonInclude;
-        value = .enum Lcom/fasterxml/jackson/annotation/JsonInclude$Include;->NON_NULL:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "ad_game_id"
     .end annotation
 .end field
 
 .field adTypeId:Ljava/lang/Integer;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonInclude;
-        value = .enum Lcom/fasterxml/jackson/annotation/JsonInclude$Include;->NON_NULL:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "ad_type_id"
     .end annotation
 .end field
 
+.field ads:Lcom/google/gson/JsonArray;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
+        value = "ads"
+    .end annotation
+.end field
+
 .field campaignId:Ljava/lang/Integer;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "campaign_id"
     .end annotation
 .end field
 
 .field contentId:Ljava/lang/Integer;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "content_id"
     .end annotation
 .end field
 
 .field contentTypeId:Ljava/lang/Integer;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonInclude;
-        value = .enum Lcom/fasterxml/jackson/annotation/JsonInclude$Include;->NON_NULL:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "content_type_id"
     .end annotation
 .end field
 
 .field creativeId:Ljava/lang/Integer;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "creative_id"
     .end annotation
 .end field
 
-.field ordinal:Ljava/lang/Integer;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonInclude;
-        value = .enum Lcom/fasterxml/jackson/annotation/JsonInclude$Include;->NON_NULL:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+.field impressionId:Ljava/lang/String;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
+        value = "impression_id"
+    .end annotation
+.end field
+
+.field ordinal:Ljava/lang/Integer;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "ordinal"
     .end annotation
 .end field
 
 .field scope:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonInclude;
-        value = .enum Lcom/fasterxml/jackson/annotation/JsonInclude$Include;->NON_NULL:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "scope"
     .end annotation
 .end field
 
 .field streamId:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "stream_id"
     .end annotation
 .end field
 
 .field streamStartTs:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonInclude;
-        value = .enum Lcom/fasterxml/jackson/annotation/JsonInclude$Include;->NON_NULL:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "stream_start_ts"
+    .end annotation
+.end field
+
+.field testDevice:Ljava/lang/Boolean;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
+        value = "test_device"
     .end annotation
 .end field
 
@@ -105,10 +138,10 @@
     .registers 1
 
     .prologue
-    .line 90
+    .line 109
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 92
+    .line 111
     return-void
 .end method
 
@@ -117,10 +150,10 @@
     .param p1, "builder"    # Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;
 
     .prologue
-    .line 77
+    .line 93
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 78
+    .line 94
     # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->ordinal:Ljava/lang/Integer;
     invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$000(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Integer;
 
@@ -128,79 +161,103 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->ordinal:Ljava/lang/Integer;
 
-    .line 79
-    # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->contentTypeId:Ljava/lang/Integer;
-    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$100(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Integer;
+    .line 95
+    # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->impressionId:Ljava/lang/String;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$100(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/String;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->contentTypeId:Ljava/lang/Integer;
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->impressionId:Ljava/lang/String;
 
-    .line 80
+    .line 96
+    # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->ads:Lcom/google/gson/JsonArray;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$200(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Lcom/google/gson/JsonArray;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->ads:Lcom/google/gson/JsonArray;
+
+    .line 97
     # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->creativeId:Ljava/lang/Integer;
-    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$200(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Integer;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$300(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Integer;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->creativeId:Ljava/lang/Integer;
 
-    .line 81
+    .line 98
     # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->campaignId:Ljava/lang/Integer;
-    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$300(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Integer;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$400(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Integer;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->campaignId:Ljava/lang/Integer;
 
-    .line 82
+    .line 99
     # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->adTypeId:Ljava/lang/Integer;
-    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$400(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Integer;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$500(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Integer;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->adTypeId:Ljava/lang/Integer;
 
-    .line 83
+    .line 100
     # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->streamId:Ljava/lang/String;
-    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$500(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/String;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$600(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/String;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->streamId:Ljava/lang/String;
 
-    .line 84
+    .line 101
     # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->adGameId:Ljava/lang/Integer;
-    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$600(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Integer;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$700(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Integer;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->adGameId:Ljava/lang/Integer;
 
-    .line 85
+    .line 102
     # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->streamStartTs:Ljava/lang/String;
-    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$700(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/String;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$800(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/String;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->streamStartTs:Ljava/lang/String;
 
-    .line 86
+    .line 103
     # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->scope:Ljava/lang/String;
-    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$800(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/String;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$900(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/String;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->scope:Ljava/lang/String;
 
-    .line 87
+    .line 104
     # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->contentId:Ljava/lang/Integer;
-    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$900(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Integer;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$1000(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Integer;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->contentId:Ljava/lang/Integer;
 
-    .line 88
+    .line 105
+    # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->testDevice:Ljava/lang/Boolean;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$1100(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Boolean;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->testDevice:Ljava/lang/Boolean;
+
+    .line 106
+    # getter for: Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->contentTypeId:Ljava/lang/Integer;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;->access$1200(Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$Builder;)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->contentTypeId:Ljava/lang/Integer;
+
+    .line 107
     return-void
 .end method
 
@@ -210,7 +267,7 @@
     .registers 2
 
     .prologue
-    .line 140
+    .line 166
     iget-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->adGameId:Ljava/lang/Integer;
 
     return-object v0
@@ -220,8 +277,22 @@
     .registers 2
 
     .prologue
-    .line 126
+    .line 152
     iget-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->adTypeId:Ljava/lang/Integer;
+
+    return-object v0
+.end method
+
+.method public getAds()Lorg/json/JSONArray;
+    .registers 2
+
+    .prologue
+    .line 131
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->ads:Lcom/google/gson/JsonArray;
+
+    invoke-static {v0}, Lcom/upsight/android/analytics/internal/util/GsonHelper$JSONArraySerializer;->fromJsonArray(Lcom/google/gson/JsonArray;)Lorg/json/JSONArray;
+
+    move-result-object v0
 
     return-object v0
 .end method
@@ -230,7 +301,7 @@
     .registers 2
 
     .prologue
-    .line 119
+    .line 145
     iget-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->campaignId:Ljava/lang/Integer;
 
     return-object v0
@@ -240,7 +311,7 @@
     .registers 2
 
     .prologue
-    .line 161
+    .line 187
     iget-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->contentId:Ljava/lang/Integer;
 
     return-object v0
@@ -250,7 +321,7 @@
     .registers 2
 
     .prologue
-    .line 105
+    .line 201
     iget-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->contentTypeId:Ljava/lang/Integer;
 
     return-object v0
@@ -260,8 +331,18 @@
     .registers 2
 
     .prologue
-    .line 112
+    .line 138
     iget-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->creativeId:Ljava/lang/Integer;
+
+    return-object v0
+.end method
+
+.method public getImpressionId()Ljava/lang/String;
+    .registers 2
+
+    .prologue
+    .line 124
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->impressionId:Ljava/lang/String;
 
     return-object v0
 .end method
@@ -270,7 +351,7 @@
     .registers 2
 
     .prologue
-    .line 98
+    .line 117
     iget-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->ordinal:Ljava/lang/Integer;
 
     return-object v0
@@ -280,7 +361,7 @@
     .registers 2
 
     .prologue
-    .line 154
+    .line 180
     iget-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->scope:Ljava/lang/String;
 
     return-object v0
@@ -290,7 +371,7 @@
     .registers 2
 
     .prologue
-    .line 133
+    .line 159
     iget-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->streamId:Ljava/lang/String;
 
     return-object v0
@@ -300,8 +381,18 @@
     .registers 2
 
     .prologue
-    .line 147
+    .line 173
     iget-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->streamStartTs:Ljava/lang/String;
+
+    return-object v0
+.end method
+
+.method public getTestDevice()Ljava/lang/Boolean;
+    .registers 2
+
+    .prologue
+    .line 194
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/campaign/UpsightCampaignImpressionEvent$UpsightData;->testDevice:Ljava/lang/Boolean;
 
     return-object v0
 .end method

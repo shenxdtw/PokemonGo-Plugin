@@ -57,20 +57,128 @@
     .param p1, "element"    # Lcom/google/gson/JsonElement;
 
     .prologue
-    .line 58
+    .line 94
     if-nez p1, :cond_4
 
-    .line 59
+    .line 95
     sget-object p1, Lcom/google/gson/JsonNull;->INSTANCE:Lcom/google/gson/JsonNull;
 
-    .line 61
+    .line 97
     :cond_4
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 62
+    .line 98
     return-void
+.end method
+
+.method public add(Ljava/lang/Boolean;)V
+    .registers 4
+    .param p1, "bool"    # Ljava/lang/Boolean;
+
+    .prologue
+    .line 58
+    iget-object v1, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    if-nez p1, :cond_a
+
+    sget-object v0, Lcom/google/gson/JsonNull;->INSTANCE:Lcom/google/gson/JsonNull;
+
+    :goto_6
+    invoke-interface {v1, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 59
+    return-void
+
+    .line 58
+    :cond_a
+    new-instance v0, Lcom/google/gson/JsonPrimitive;
+
+    invoke-direct {v0, p1}, Lcom/google/gson/JsonPrimitive;-><init>(Ljava/lang/Boolean;)V
+
+    goto :goto_6
+.end method
+
+.method public add(Ljava/lang/Character;)V
+    .registers 4
+    .param p1, "character"    # Ljava/lang/Character;
+
+    .prologue
+    .line 67
+    iget-object v1, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    if-nez p1, :cond_a
+
+    sget-object v0, Lcom/google/gson/JsonNull;->INSTANCE:Lcom/google/gson/JsonNull;
+
+    :goto_6
+    invoke-interface {v1, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 68
+    return-void
+
+    .line 67
+    :cond_a
+    new-instance v0, Lcom/google/gson/JsonPrimitive;
+
+    invoke-direct {v0, p1}, Lcom/google/gson/JsonPrimitive;-><init>(Ljava/lang/Character;)V
+
+    goto :goto_6
+.end method
+
+.method public add(Ljava/lang/Number;)V
+    .registers 4
+    .param p1, "number"    # Ljava/lang/Number;
+
+    .prologue
+    .line 76
+    iget-object v1, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    if-nez p1, :cond_a
+
+    sget-object v0, Lcom/google/gson/JsonNull;->INSTANCE:Lcom/google/gson/JsonNull;
+
+    :goto_6
+    invoke-interface {v1, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 77
+    return-void
+
+    .line 76
+    :cond_a
+    new-instance v0, Lcom/google/gson/JsonPrimitive;
+
+    invoke-direct {v0, p1}, Lcom/google/gson/JsonPrimitive;-><init>(Ljava/lang/Number;)V
+
+    goto :goto_6
+.end method
+
+.method public add(Ljava/lang/String;)V
+    .registers 4
+    .param p1, "string"    # Ljava/lang/String;
+
+    .prologue
+    .line 85
+    iget-object v1, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    if-nez p1, :cond_a
+
+    sget-object v0, Lcom/google/gson/JsonNull;->INSTANCE:Lcom/google/gson/JsonNull;
+
+    :goto_6
+    invoke-interface {v1, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 86
+    return-void
+
+    .line 85
+    :cond_a
+    new-instance v0, Lcom/google/gson/JsonPrimitive;
+
+    invoke-direct {v0, p1}, Lcom/google/gson/JsonPrimitive;-><init>(Ljava/lang/String;)V
+
+    goto :goto_6
 .end method
 
 .method public addAll(Lcom/google/gson/JsonArray;)V
@@ -78,15 +186,30 @@
     .param p1, "array"    # Lcom/google/gson/JsonArray;
 
     .prologue
-    .line 70
+    .line 106
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     iget-object v1, p1, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     invoke-interface {v0, v1}, Ljava/util/List;->addAll(Ljava/util/Collection;)Z
 
-    .line 71
+    .line 107
     return-void
+.end method
+
+.method public contains(Lcom/google/gson/JsonElement;)Z
+    .registers 3
+    .param p1, "element"    # Lcom/google/gson/JsonElement;
+
+    .prologue
+    .line 152
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    invoke-interface {v0, p1}, Ljava/util/List;->contains(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    return v0
 .end method
 
 .method deepCopy()Lcom/google/gson/JsonArray;
@@ -94,27 +217,26 @@
 
     .prologue
     .line 45
-    new-instance v2, Lcom/google/gson/JsonArray;
+    new-instance v1, Lcom/google/gson/JsonArray;
 
-    invoke-direct {v2}, Lcom/google/gson/JsonArray;-><init>()V
+    invoke-direct {v1}, Lcom/google/gson/JsonArray;-><init>()V
 
     .line 46
-    .local v2, "result":Lcom/google/gson/JsonArray;
-    iget-object v3, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+    .local v1, "result":Lcom/google/gson/JsonArray;
+    iget-object v2, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
-    invoke-interface {v3}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+    invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
-    move-result-object v1
+    move-result-object v2
 
-    .local v1, "i$":Ljava/util/Iterator;
     :goto_b
-    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
     if-eqz v3, :cond_1f
 
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
@@ -126,14 +248,14 @@
 
     move-result-object v3
 
-    invoke-virtual {v2, v3}, Lcom/google/gson/JsonArray;->add(Lcom/google/gson/JsonElement;)V
+    invoke-virtual {v1, v3}, Lcom/google/gson/JsonArray;->add(Lcom/google/gson/JsonElement;)V
 
     goto :goto_b
 
     .line 49
     .end local v0    # "element":Lcom/google/gson/JsonElement;
     :cond_1f
-    return-object v2
+    return-object v1
 .end method
 
 .method bridge synthetic deepCopy()Lcom/google/gson/JsonElement;
@@ -153,7 +275,7 @@
     .param p1, "o"    # Ljava/lang/Object;
 
     .prologue
-    .line 284
+    .line 366
     if-eq p1, p0, :cond_12
 
     instance-of v0, p1, Lcom/google/gson/JsonArray;
@@ -190,7 +312,7 @@
     .param p1, "i"    # I
 
     .prologue
-    .line 101
+    .line 183
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     invoke-interface {v0, p1}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -206,7 +328,7 @@
     .registers 3
 
     .prologue
-    .line 163
+    .line 245
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->size()I
@@ -217,7 +339,7 @@
 
     if-ne v0, v1, :cond_17
 
-    .line 164
+    .line 246
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     const/4 v1, 0x0
@@ -234,7 +356,7 @@
 
     return-object v0
 
-    .line 166
+    .line 248
     :cond_17
     new-instance v0, Ljava/lang/IllegalStateException;
 
@@ -247,7 +369,7 @@
     .registers 3
 
     .prologue
-    .line 180
+    .line 262
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->size()I
@@ -258,7 +380,7 @@
 
     if-ne v0, v1, :cond_17
 
-    .line 181
+    .line 263
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     const/4 v1, 0x0
@@ -275,7 +397,7 @@
 
     return-object v0
 
-    .line 183
+    .line 265
     :cond_17
     new-instance v0, Ljava/lang/IllegalStateException;
 
@@ -288,7 +410,7 @@
     .registers 3
 
     .prologue
-    .line 276
+    .line 358
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->size()I
@@ -299,7 +421,7 @@
 
     if-ne v0, v1, :cond_17
 
-    .line 277
+    .line 359
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     const/4 v1, 0x0
@@ -316,7 +438,7 @@
 
     return v0
 
-    .line 279
+    .line 361
     :cond_17
     new-instance v0, Ljava/lang/IllegalStateException;
 
@@ -329,7 +451,7 @@
     .registers 3
 
     .prologue
-    .line 236
+    .line 318
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->size()I
@@ -340,7 +462,7 @@
 
     if-ne v0, v1, :cond_17
 
-    .line 237
+    .line 319
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     const/4 v1, 0x0
@@ -357,7 +479,7 @@
 
     return v0
 
-    .line 239
+    .line 321
     :cond_17
     new-instance v0, Ljava/lang/IllegalStateException;
 
@@ -370,7 +492,7 @@
     .registers 3
 
     .prologue
-    .line 244
+    .line 326
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->size()I
@@ -381,7 +503,7 @@
 
     if-ne v0, v1, :cond_17
 
-    .line 245
+    .line 327
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     const/4 v1, 0x0
@@ -398,7 +520,7 @@
 
     return v0
 
-    .line 247
+    .line 329
     :cond_17
     new-instance v0, Ljava/lang/IllegalStateException;
 
@@ -408,88 +530,6 @@
 .end method
 
 .method public getAsDouble()D
-    .registers 3
-
-    .prologue
-    .line 146
-    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
-
-    invoke-interface {v0}, Ljava/util/List;->size()I
-
-    move-result v0
-
-    const/4 v1, 0x1
-
-    if-ne v0, v1, :cond_17
-
-    .line 147
-    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
-
-    const/4 v1, 0x0
-
-    invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/google/gson/JsonElement;
-
-    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsDouble()D
-
-    move-result-wide v0
-
-    return-wide v0
-
-    .line 149
-    :cond_17
-    new-instance v0, Ljava/lang/IllegalStateException;
-
-    invoke-direct {v0}, Ljava/lang/IllegalStateException;-><init>()V
-
-    throw v0
-.end method
-
-.method public getAsFloat()F
-    .registers 3
-
-    .prologue
-    .line 196
-    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
-
-    invoke-interface {v0}, Ljava/util/List;->size()I
-
-    move-result v0
-
-    const/4 v1, 0x1
-
-    if-ne v0, v1, :cond_17
-
-    .line 197
-    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
-
-    const/4 v1, 0x0
-
-    invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/google/gson/JsonElement;
-
-    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsFloat()F
-
-    move-result v0
-
-    return v0
-
-    .line 199
-    :cond_17
-    new-instance v0, Ljava/lang/IllegalStateException;
-
-    invoke-direct {v0}, Ljava/lang/IllegalStateException;-><init>()V
-
-    throw v0
-.end method
-
-.method public getAsInt()I
     .registers 3
 
     .prologue
@@ -515,11 +555,11 @@
 
     check-cast v0, Lcom/google/gson/JsonElement;
 
-    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsInt()I
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsDouble()D
 
-    move-result v0
+    move-result-wide v0
 
-    return v0
+    return-wide v0
 
     .line 231
     :cond_17
@@ -530,7 +570,212 @@
     throw v0
 .end method
 
+.method public getAsFloat()F
+    .registers 3
+
+    .prologue
+    .line 278
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    invoke-interface {v0}, Ljava/util/List;->size()I
+
+    move-result v0
+
+    const/4 v1, 0x1
+
+    if-ne v0, v1, :cond_17
+
+    .line 279
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    const/4 v1, 0x0
+
+    invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/google/gson/JsonElement;
+
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsFloat()F
+
+    move-result v0
+
+    return v0
+
+    .line 281
+    :cond_17
+    new-instance v0, Ljava/lang/IllegalStateException;
+
+    invoke-direct {v0}, Ljava/lang/IllegalStateException;-><init>()V
+
+    throw v0
+.end method
+
+.method public getAsInt()I
+    .registers 3
+
+    .prologue
+    .line 310
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    invoke-interface {v0}, Ljava/util/List;->size()I
+
+    move-result v0
+
+    const/4 v1, 0x1
+
+    if-ne v0, v1, :cond_17
+
+    .line 311
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    const/4 v1, 0x0
+
+    invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/google/gson/JsonElement;
+
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsInt()I
+
+    move-result v0
+
+    return v0
+
+    .line 313
+    :cond_17
+    new-instance v0, Ljava/lang/IllegalStateException;
+
+    invoke-direct {v0}, Ljava/lang/IllegalStateException;-><init>()V
+
+    throw v0
+.end method
+
 .method public getAsLong()J
+    .registers 3
+
+    .prologue
+    .line 294
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    invoke-interface {v0}, Ljava/util/List;->size()I
+
+    move-result v0
+
+    const/4 v1, 0x1
+
+    if-ne v0, v1, :cond_17
+
+    .line 295
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    const/4 v1, 0x0
+
+    invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/google/gson/JsonElement;
+
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsLong()J
+
+    move-result-wide v0
+
+    return-wide v0
+
+    .line 297
+    :cond_17
+    new-instance v0, Ljava/lang/IllegalStateException;
+
+    invoke-direct {v0}, Ljava/lang/IllegalStateException;-><init>()V
+
+    throw v0
+.end method
+
+.method public getAsNumber()Ljava/lang/Number;
+    .registers 3
+
+    .prologue
+    .line 196
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    invoke-interface {v0}, Ljava/util/List;->size()I
+
+    move-result v0
+
+    const/4 v1, 0x1
+
+    if-ne v0, v1, :cond_17
+
+    .line 197
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    const/4 v1, 0x0
+
+    invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/google/gson/JsonElement;
+
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsNumber()Ljava/lang/Number;
+
+    move-result-object v0
+
+    return-object v0
+
+    .line 199
+    :cond_17
+    new-instance v0, Ljava/lang/IllegalStateException;
+
+    invoke-direct {v0}, Ljava/lang/IllegalStateException;-><init>()V
+
+    throw v0
+.end method
+
+.method public getAsShort()S
+    .registers 3
+
+    .prologue
+    .line 342
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    invoke-interface {v0}, Ljava/util/List;->size()I
+
+    move-result v0
+
+    const/4 v1, 0x1
+
+    if-ne v0, v1, :cond_17
+
+    .line 343
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    const/4 v1, 0x0
+
+    invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/google/gson/JsonElement;
+
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsShort()S
+
+    move-result v0
+
+    return v0
+
+    .line 345
+    :cond_17
+    new-instance v0, Ljava/lang/IllegalStateException;
+
+    invoke-direct {v0}, Ljava/lang/IllegalStateException;-><init>()V
+
+    throw v0
+.end method
+
+.method public getAsString()Ljava/lang/String;
     .registers 3
 
     .prologue
@@ -556,136 +801,13 @@
 
     check-cast v0, Lcom/google/gson/JsonElement;
 
-    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsLong()J
-
-    move-result-wide v0
-
-    return-wide v0
-
-    .line 215
-    :cond_17
-    new-instance v0, Ljava/lang/IllegalStateException;
-
-    invoke-direct {v0}, Ljava/lang/IllegalStateException;-><init>()V
-
-    throw v0
-.end method
-
-.method public getAsNumber()Ljava/lang/Number;
-    .registers 3
-
-    .prologue
-    .line 114
-    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
-
-    invoke-interface {v0}, Ljava/util/List;->size()I
-
-    move-result v0
-
-    const/4 v1, 0x1
-
-    if-ne v0, v1, :cond_17
-
-    .line 115
-    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
-
-    const/4 v1, 0x0
-
-    invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/google/gson/JsonElement;
-
-    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsNumber()Ljava/lang/Number;
-
-    move-result-object v0
-
-    return-object v0
-
-    .line 117
-    :cond_17
-    new-instance v0, Ljava/lang/IllegalStateException;
-
-    invoke-direct {v0}, Ljava/lang/IllegalStateException;-><init>()V
-
-    throw v0
-.end method
-
-.method public getAsShort()S
-    .registers 3
-
-    .prologue
-    .line 260
-    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
-
-    invoke-interface {v0}, Ljava/util/List;->size()I
-
-    move-result v0
-
-    const/4 v1, 0x1
-
-    if-ne v0, v1, :cond_17
-
-    .line 261
-    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
-
-    const/4 v1, 0x0
-
-    invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/google/gson/JsonElement;
-
-    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsShort()S
-
-    move-result v0
-
-    return v0
-
-    .line 263
-    :cond_17
-    new-instance v0, Ljava/lang/IllegalStateException;
-
-    invoke-direct {v0}, Ljava/lang/IllegalStateException;-><init>()V
-
-    throw v0
-.end method
-
-.method public getAsString()Ljava/lang/String;
-    .registers 3
-
-    .prologue
-    .line 130
-    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
-
-    invoke-interface {v0}, Ljava/util/List;->size()I
-
-    move-result v0
-
-    const/4 v1, 0x1
-
-    if-ne v0, v1, :cond_17
-
-    .line 131
-    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
-
-    const/4 v1, 0x0
-
-    invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/google/gson/JsonElement;
-
     invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsString()Ljava/lang/String;
 
     move-result-object v0
 
     return-object v0
 
-    .line 133
+    .line 215
     :cond_17
     new-instance v0, Ljava/lang/IllegalStateException;
 
@@ -698,7 +820,7 @@
     .registers 2
 
     .prologue
-    .line 289
+    .line 371
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->hashCode()I
@@ -721,7 +843,7 @@
     .end annotation
 
     .prologue
-    .line 89
+    .line 171
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
@@ -731,11 +853,61 @@
     return-object v0
 .end method
 
+.method public remove(I)Lcom/google/gson/JsonElement;
+    .registers 3
+    .param p1, "index"    # I
+
+    .prologue
+    .line 142
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    invoke-interface {v0, p1}, Ljava/util/List;->remove(I)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/google/gson/JsonElement;
+
+    return-object v0
+.end method
+
+.method public remove(Lcom/google/gson/JsonElement;)Z
+    .registers 3
+    .param p1, "element"    # Lcom/google/gson/JsonElement;
+
+    .prologue
+    .line 129
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    invoke-interface {v0, p1}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public set(ILcom/google/gson/JsonElement;)Lcom/google/gson/JsonElement;
+    .registers 4
+    .param p1, "index"    # I
+    .param p2, "element"    # Lcom/google/gson/JsonElement;
+
+    .prologue
+    .line 118
+    iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
+
+    invoke-interface {v0, p1, p2}, Ljava/util/List;->set(ILjava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/google/gson/JsonElement;
+
+    return-object v0
+.end method
+
 .method public size()I
     .registers 2
 
     .prologue
-    .line 79
+    .line 161
     iget-object v0, p0, Lcom/google/gson/JsonArray;->elements:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->size()I

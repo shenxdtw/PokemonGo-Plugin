@@ -8,10 +8,10 @@
     .registers 3
 
     .prologue
-    .line 29
+    .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 30
+    .line 27
     new-instance v0, Ljava/lang/IllegalStateException;
 
     const-string v1, "No instances!"
@@ -21,7 +21,7 @@
     throw v0
 .end method
 
-.method public static final create(Lrx/functions/Action1;)Lrx/Subscriber;
+.method public static create(Lrx/functions/Action1;)Lrx/Subscriber;
     .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -36,11 +36,11 @@
     .end annotation
 
     .prologue
-    .line 86
+    .line 82
     .local p0, "onNext":Lrx/functions/Action1;, "Lrx/functions/Action1<-TT;>;"
     if-nez p0, :cond_a
 
-    .line 87
+    .line 83
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "onNext can not be null"
@@ -49,7 +49,7 @@
 
     throw v0
 
-    .line 90
+    .line 86
     :cond_a
     new-instance v0, Lrx/observers/Subscribers$2;
 
@@ -58,7 +58,7 @@
     return-object v0
 .end method
 
-.method public static final create(Lrx/functions/Action1;Lrx/functions/Action1;)Lrx/Subscriber;
+.method public static create(Lrx/functions/Action1;Lrx/functions/Action1;)Lrx/Subscriber;
     .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -77,12 +77,12 @@
     .end annotation
 
     .prologue
-    .line 126
+    .line 122
     .local p0, "onNext":Lrx/functions/Action1;, "Lrx/functions/Action1<-TT;>;"
     .local p1, "onError":Lrx/functions/Action1;, "Lrx/functions/Action1<Ljava/lang/Throwable;>;"
     if-nez p0, :cond_a
 
-    .line 127
+    .line 123
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "onNext can not be null"
@@ -91,11 +91,11 @@
 
     throw v0
 
-    .line 129
+    .line 125
     :cond_a
     if-nez p1, :cond_14
 
-    .line 130
+    .line 126
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "onError can not be null"
@@ -104,7 +104,7 @@
 
     throw v0
 
-    .line 133
+    .line 129
     :cond_14
     new-instance v0, Lrx/observers/Subscribers$3;
 
@@ -113,7 +113,7 @@
     return-object v0
 .end method
 
-.method public static final create(Lrx/functions/Action1;Lrx/functions/Action1;Lrx/functions/Action0;)Lrx/Subscriber;
+.method public static create(Lrx/functions/Action1;Lrx/functions/Action1;Lrx/functions/Action0;)Lrx/Subscriber;
     .registers 5
     .param p2, "onComplete"    # Lrx/functions/Action0;
     .annotation system Ldalvik/annotation/Signature;
@@ -135,12 +135,12 @@
     .end annotation
 
     .prologue
-    .line 172
+    .line 168
     .local p0, "onNext":Lrx/functions/Action1;, "Lrx/functions/Action1<-TT;>;"
     .local p1, "onError":Lrx/functions/Action1;, "Lrx/functions/Action1<Ljava/lang/Throwable;>;"
     if-nez p0, :cond_a
 
-    .line 173
+    .line 169
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "onNext can not be null"
@@ -149,11 +149,11 @@
 
     throw v0
 
-    .line 175
+    .line 171
     :cond_a
     if-nez p1, :cond_14
 
-    .line 176
+    .line 172
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "onError can not be null"
@@ -162,11 +162,11 @@
 
     throw v0
 
-    .line 178
+    .line 174
     :cond_14
     if-nez p2, :cond_1e
 
-    .line 179
+    .line 175
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "onComplete can not be null"
@@ -175,7 +175,7 @@
 
     throw v0
 
-    .line 182
+    .line 178
     :cond_1e
     new-instance v0, Lrx/observers/Subscribers$4;
 
@@ -197,7 +197,7 @@
     .end annotation
 
     .prologue
-    .line 42
+    .line 38
     invoke-static {}, Lrx/observers/Observers;->empty()Lrx/Observer;
 
     move-result-object v0
@@ -224,7 +224,7 @@
     .end annotation
 
     .prologue
-    .line 53
+    .line 49
     .local p0, "o":Lrx/Observer;, "Lrx/Observer<-TT;>;"
     new-instance v0, Lrx/observers/Subscribers$1;
 
@@ -247,11 +247,8 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
     .prologue
-    .line 220
+    .line 215
     .local p0, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     new-instance v0, Lrx/observers/Subscribers$5;
 

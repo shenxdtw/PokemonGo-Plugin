@@ -13,12 +13,6 @@
     name = "SwitchSubscriber"
 .end annotation
 
-.annotation system Ldalvik/annotation/MemberClasses;
-    value = {
-        Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;
-    }
-.end annotation
-
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "<T:",
@@ -32,43 +26,49 @@
 .end annotation
 
 
-# instance fields
-.field active:Z
+# static fields
+.field static final TERMINAL_ERROR:Ljava/lang/Throwable;
 
-.field currentSubscriber:Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;
+
+# instance fields
+.field final child:Lrx/Subscriber;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber",
-            "<TT;>.InnerSubscriber;"
+            "Lrx/Subscriber",
+            "<-TT;>;"
         }
     .end annotation
 .end field
 
+.field final delayError:Z
+
 .field emitting:Z
 
-.field final guard:Ljava/lang/Object;
+.field error:Ljava/lang/Throwable;
 
-.field index:I
+.field final index:Ljava/util/concurrent/atomic/AtomicLong;
 
-.field volatile infinite:Z
+.field innerActive:Z
 
-.field initialRequested:J
+.field volatile mainDone:Z
 
-.field mainDone:Z
+.field missed:Z
 
 .field final nl:Lrx/internal/operators/NotificationLite;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/internal/operators/NotificationLite",
-            "<*>;"
+            "<TT;>;"
         }
     .end annotation
 .end field
 
-.field queue:Ljava/util/List;
+.field producer:Lrx/Producer;
+
+.field final queue:Lrx/internal/util/atomic/SpscLinkedArrayQueue;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Ljava/util/List",
+            "Lrx/internal/util/atomic/SpscLinkedArrayQueue",
             "<",
             "Ljava/lang/Object;",
             ">;"
@@ -76,841 +76,1021 @@
     .end annotation
 .end field
 
-.field final s:Lrx/observers/SerializedSubscriber;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Lrx/observers/SerializedSubscriber",
-            "<TT;>;"
-        }
-    .end annotation
-.end field
+.field requested:J
 
 .field final ssub:Lrx/subscriptions/SerialSubscription;
 
 
 # direct methods
-.method public constructor <init>(Lrx/Subscriber;)V
-    .registers 3
+.method static constructor <clinit>()V
+    .registers 2
+
+    .prologue
+    .line 100
+    new-instance v0, Ljava/lang/Throwable;
+
+    const-string v1, "Terminal error"
+
+    invoke-direct {v0, v1}, Ljava/lang/Throwable;-><init>(Ljava/lang/String;)V
+
+    sput-object v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->TERMINAL_ERROR:Ljava/lang/Throwable;
+
+    return-void
+.end method
+
+.method constructor <init>(Lrx/Subscriber;Z)V
+    .registers 5
+    .param p2, "delayError"    # Z
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
             "Lrx/Subscriber",
-            "<-TT;>;)V"
+            "<-TT;>;Z)V"
         }
     .end annotation
 
     .prologue
-    .line 79
+    .line 102
     .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
-    .line 60
-    new-instance v0, Ljava/lang/Object;
+    .line 103
+    iput-object p1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->child:Lrx/Subscriber;
 
-    invoke-direct {v0}, Ljava/lang/Object;-><init>()V
-
-    iput-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->guard:Ljava/lang/Object;
-
-    .line 61
-    invoke-static {}, Lrx/internal/operators/NotificationLite;->instance()Lrx/internal/operators/NotificationLite;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->nl:Lrx/internal/operators/NotificationLite;
-
-    .line 77
-    const/4 v0, 0x0
-
-    iput-boolean v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->infinite:Z
-
-    .line 80
-    new-instance v0, Lrx/observers/SerializedSubscriber;
-
-    invoke-direct {v0, p1}, Lrx/observers/SerializedSubscriber;-><init>(Lrx/Subscriber;)V
-
-    iput-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->s:Lrx/observers/SerializedSubscriber;
-
-    .line 81
+    .line 104
     new-instance v0, Lrx/subscriptions/SerialSubscription;
 
     invoke-direct {v0}, Lrx/subscriptions/SerialSubscription;-><init>()V
 
     iput-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->ssub:Lrx/subscriptions/SerialSubscription;
 
-    .line 82
-    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->ssub:Lrx/subscriptions/SerialSubscription;
+    .line 105
+    iput-boolean p2, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->delayError:Z
 
-    invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
+    .line 106
+    new-instance v0, Ljava/util/concurrent/atomic/AtomicLong;
 
-    .line 83
-    new-instance v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$1;
+    invoke-direct {v0}, Ljava/util/concurrent/atomic/AtomicLong;-><init>()V
 
-    invoke-direct {v0, p0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$1;-><init>(Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;)V
+    iput-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->index:Ljava/util/concurrent/atomic/AtomicLong;
 
-    invoke-virtual {p1, v0}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+    .line 107
+    new-instance v0, Lrx/internal/util/atomic/SpscLinkedArrayQueue;
 
-    .line 120
+    sget v1, Lrx/internal/util/RxRingBuffer;->SIZE:I
+
+    invoke-direct {v0, v1}, Lrx/internal/util/atomic/SpscLinkedArrayQueue;-><init>(I)V
+
+    iput-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Lrx/internal/util/atomic/SpscLinkedArrayQueue;
+
+    .line 108
+    invoke-static {}, Lrx/internal/operators/NotificationLite;->instance()Lrx/internal/operators/NotificationLite;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->nl:Lrx/internal/operators/NotificationLite;
+
+    .line 109
     return-void
 .end method
 
 
 # virtual methods
-.method complete(I)V
-    .registers 6
-    .param p1, "id"    # I
-
-    .prologue
-    .line 266
-    .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
-    iget-object v2, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->guard:Ljava/lang/Object;
-
-    monitor-enter v2
-
-    .line 267
-    :try_start_3
-    iget v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->index:I
-
-    if-eq p1, v1, :cond_9
-
-    .line 268
-    monitor-exit v2
-
-    .line 290
-    :goto_8
-    return-void
-
-    .line 270
-    :cond_9
-    const/4 v1, 0x0
-
-    iput-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->active:Z
-
-    .line 271
-    iget-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->mainDone:Z
-
-    if-nez v1, :cond_15
-
-    .line 272
-    monitor-exit v2
-
-    goto :goto_8
-
-    .line 285
-    :catchall_12
-    move-exception v1
-
-    monitor-exit v2
-    :try_end_14
-    .catchall {:try_start_3 .. :try_end_14} :catchall_12
-
-    throw v1
-
-    .line 274
-    :cond_15
-    :try_start_15
-    iget-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
-
-    if-eqz v1, :cond_31
-
-    .line 275
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    if-nez v1, :cond_24
-
-    .line 276
-    new-instance v1, Ljava/util/ArrayList;
-
-    invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
-
-    iput-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    .line 278
-    :cond_24
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    iget-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->nl:Lrx/internal/operators/NotificationLite;
-
-    invoke-virtual {v3}, Lrx/internal/operators/NotificationLite;->completed()Ljava/lang/Object;
-
-    move-result-object v3
-
-    invoke-interface {v1, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 279
-    monitor-exit v2
-
-    goto :goto_8
-
-    .line 282
-    :cond_31
-    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    .line 283
-    .local v0, "localQueue":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Object;>;"
-    const/4 v1, 0x0
-
-    iput-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    .line 284
-    const/4 v1, 0x1
-
-    iput-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
-
-    .line 285
-    monitor-exit v2
-    :try_end_3a
-    .catchall {:try_start_15 .. :try_end_3a} :catchall_12
-
-    .line 287
-    invoke-virtual {p0, v0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->drain(Ljava/util/List;)V
-
-    .line 288
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->s:Lrx/observers/SerializedSubscriber;
-
-    invoke-virtual {v1}, Lrx/observers/SerializedSubscriber;->onCompleted()V
-
-    .line 289
-    invoke-virtual {p0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->unsubscribe()V
-
-    goto :goto_8
-.end method
-
-.method drain(Ljava/util/List;)V
-    .registers 7
+.method protected checkTerminated(ZZLjava/lang/Throwable;Lrx/internal/util/atomic/SpscLinkedArrayQueue;Lrx/Subscriber;Z)Z
+    .registers 9
+    .param p1, "localMainDone"    # Z
+    .param p2, "localInnerActive"    # Z
+    .param p3, "localError"    # Ljava/lang/Throwable;
+    .param p6, "empty"    # Z
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "(",
-            "Ljava/util/List",
+            "(ZZ",
+            "Ljava/lang/Throwable;",
+            "Lrx/internal/util/atomic/SpscLinkedArrayQueue",
             "<",
             "Ljava/lang/Object;",
-            ">;)V"
+            ">;",
+            "Lrx/Subscriber",
+            "<-TT;>;Z)Z"
         }
     .end annotation
 
     .prologue
-    .line 222
     .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
-    .local p1, "localQueue":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Object;>;"
-    if-nez p1, :cond_3
+    .local p4, "localQueue":Lrx/internal/util/atomic/SpscLinkedArrayQueue;, "Lrx/internal/util/atomic/SpscLinkedArrayQueue<Ljava/lang/Object;>;"
+    .local p5, "localChild":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
+    const/4 v0, 0x1
 
-    .line 239
-    :cond_2
-    :goto_2
+    .line 360
+    iget-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->delayError:Z
+
+    if-eqz v1, :cond_15
+
+    .line 361
+    if-eqz p1, :cond_28
+
+    if-nez p2, :cond_28
+
+    if-eqz p6, :cond_28
+
+    .line 362
+    if-eqz p3, :cond_11
+
+    .line 363
+    invoke-virtual {p5, p3}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+
+    .line 380
+    :goto_10
+    return v0
+
+    .line 365
+    :cond_11
+    invoke-virtual {p5}, Lrx/Subscriber;->onCompleted()V
+
+    goto :goto_10
+
+    .line 370
+    :cond_15
+    if-eqz p3, :cond_1e
+
+    .line 371
+    invoke-virtual {p4}, Lrx/internal/util/atomic/SpscLinkedArrayQueue;->clear()V
+
+    .line 372
+    invoke-virtual {p5, p3}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+
+    goto :goto_10
+
+    .line 375
+    :cond_1e
+    if-eqz p1, :cond_28
+
+    if-nez p2, :cond_28
+
+    if-eqz p6, :cond_28
+
+    .line 376
+    invoke-virtual {p5}, Lrx/Subscriber;->onCompleted()V
+
+    goto :goto_10
+
+    .line 380
+    :cond_28
+    const/4 v0, 0x0
+
+    goto :goto_10
+.end method
+
+.method childRequested(J)V
+    .registers 8
+    .param p1, "n"    # J
+
+    .prologue
+    .line 259
+    .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
+    monitor-enter p0
+
+    .line 260
+    :try_start_1
+    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->producer:Lrx/Producer;
+
+    .line 261
+    .local v0, "p":Lrx/Producer;
+    iget-wide v2, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->requested:J
+
+    invoke-static {v2, v3, p1, p2}, Lrx/internal/operators/BackpressureUtils;->addCap(JJ)J
+
+    move-result-wide v2
+
+    iput-wide v2, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->requested:J
+
+    .line 262
+    monitor-exit p0
+    :try_end_c
+    .catchall {:try_start_1 .. :try_end_c} :catchall_15
+
+    .line 263
+    if-eqz v0, :cond_11
+
+    .line 264
+    invoke-interface {v0, p1, p2}, Lrx/Producer;->request(J)V
+
+    .line 266
+    :cond_11
+    invoke-virtual {p0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->drain()V
+
+    .line 267
     return-void
 
-    .line 225
-    :cond_3
-    invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+    .line 262
+    .end local v0    # "p":Lrx/Producer;
+    :catchall_15
+    move-exception v1
 
-    move-result-object v0
+    :try_start_16
+    monitor-exit p0
+    :try_end_17
+    .catchall {:try_start_16 .. :try_end_17} :catchall_15
 
-    .local v0, "i$":Ljava/util/Iterator;
-    :goto_7
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+    throw v1
+.end method
 
-    move-result v3
+.method clearProducer()V
+    .registers 2
 
-    if-eqz v3, :cond_2
+    .prologue
+    .line 134
+    .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
+    monitor-enter p0
 
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    .line 135
+    const/4 v0, 0x0
+
+    :try_start_2
+    iput-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->producer:Lrx/Producer;
+
+    .line 136
+    monitor-exit p0
+
+    .line 137
+    return-void
+
+    .line 136
+    :catchall_6
+    move-exception v0
+
+    monitor-exit p0
+    :try_end_8
+    .catchall {:try_start_2 .. :try_end_8} :catchall_6
+
+    throw v0
+.end method
+
+.method complete(J)V
+    .registers 6
+    .param p1, "id"    # J
+
+    .prologue
+    .line 230
+    .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
+    monitor-enter p0
+
+    .line 231
+    :try_start_1
+    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->index:Ljava/util/concurrent/atomic/AtomicLong;
+
+    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicLong;->get()J
+
+    move-result-wide v0
+
+    cmp-long v0, v0, p1
+
+    if-eqz v0, :cond_d
+
+    .line 232
+    monitor-exit p0
+
+    .line 238
+    :goto_c
+    return-void
+
+    .line 234
+    :cond_d
+    const/4 v0, 0x0
+
+    iput-boolean v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->innerActive:Z
+
+    .line 235
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->producer:Lrx/Producer;
+
+    .line 236
+    monitor-exit p0
+    :try_end_14
+    .catchall {:try_start_1 .. :try_end_14} :catchall_18
+
+    .line 237
+    invoke-virtual {p0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->drain()V
+
+    goto :goto_c
+
+    .line 236
+    :catchall_18
+    move-exception v0
+
+    :try_start_19
+    monitor-exit p0
+    :try_end_1a
+    .catchall {:try_start_19 .. :try_end_1a} :catchall_18
+
+    throw v0
+.end method
+
+.method drain()V
+    .registers 26
+
+    .prologue
+    .line 270
+    .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
+    move-object/from16 v0, p0
+
+    iget-boolean v5, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->mainDone:Z
+
+    .line 274
+    .local v5, "localMainDone":Z
+    monitor-enter p0
+
+    .line 275
+    :try_start_5
+    move-object/from16 v0, p0
+
+    iget-boolean v4, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
+
+    if-eqz v4, :cond_12
+
+    .line 276
+    const/4 v4, 0x1
+
+    move-object/from16 v0, p0
+
+    iput-boolean v4, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->missed:Z
+
+    .line 277
+    monitor-exit p0
+
+    .line 344
+    :cond_11
+    :goto_11
+    return-void
+
+    .line 279
+    :cond_12
+    const/4 v4, 0x1
+
+    move-object/from16 v0, p0
+
+    iput-boolean v4, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
+
+    .line 280
+    move-object/from16 v0, p0
+
+    iget-boolean v6, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->innerActive:Z
+
+    .line 281
+    .local v6, "localInnerActive":Z
+    move-object/from16 v0, p0
+
+    iget-wide v0, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->requested:J
+
+    move-wide/from16 v22, v0
+
+    .line 282
+    .local v22, "localRequested":J
+    move-object/from16 v0, p0
+
+    iget-object v7, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->error:Ljava/lang/Throwable;
+
+    .line 283
+    .local v7, "localError":Ljava/lang/Throwable;
+    if-eqz v7, :cond_37
+
+    sget-object v4, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->TERMINAL_ERROR:Ljava/lang/Throwable;
+
+    if-eq v7, v4, :cond_37
+
+    move-object/from16 v0, p0
+
+    iget-boolean v4, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->delayError:Z
+
+    if-nez v4, :cond_37
+
+    .line 284
+    sget-object v4, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->TERMINAL_ERROR:Ljava/lang/Throwable;
+
+    move-object/from16 v0, p0
+
+    iput-object v4, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->error:Ljava/lang/Throwable;
+
+    .line 286
+    :cond_37
+    monitor-exit p0
+    :try_end_38
+    .catchall {:try_start_5 .. :try_end_38} :catchall_a8
+
+    .line 288
+    move-object/from16 v0, p0
+
+    iget-object v8, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Lrx/internal/util/atomic/SpscLinkedArrayQueue;
+
+    .line 289
+    .local v8, "localQueue":Lrx/internal/util/atomic/SpscLinkedArrayQueue;, "Lrx/internal/util/atomic/SpscLinkedArrayQueue<Ljava/lang/Object;>;"
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->index:Ljava/util/concurrent/atomic/AtomicLong;
+
+    move-object/from16 v19, v0
+
+    .line 290
+    .local v19, "localIndex":Ljava/util/concurrent/atomic/AtomicLong;
+    move-object/from16 v0, p0
+
+    iget-object v9, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->child:Lrx/Subscriber;
+
+    .line 294
+    .local v9, "localChild":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
+    :goto_46
+    const-wide/16 v20, 0x0
+
+    .line 296
+    .local v20, "localEmission":J
+    :cond_48
+    :goto_48
+    cmp-long v4, v20, v22
+
+    if-eqz v4, :cond_60
+
+    .line 297
+    invoke-virtual {v9}, Lrx/Subscriber;->isUnsubscribed()Z
+
+    move-result v4
+
+    if-nez v4, :cond_11
+
+    .line 301
+    invoke-virtual {v8}, Lrx/internal/util/atomic/SpscLinkedArrayQueue;->isEmpty()Z
+
+    move-result v10
+
+    .local v10, "empty":Z
+    move-object/from16 v4, p0
+
+    .line 303
+    invoke-virtual/range {v4 .. v10}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->checkTerminated(ZZLjava/lang/Throwable;Lrx/internal/util/atomic/SpscLinkedArrayQueue;Lrx/Subscriber;Z)Z
+
+    move-result v4
+
+    if-nez v4, :cond_11
+
+    .line 308
+    if-eqz v10, :cond_ab
+
+    .line 322
+    .end local v10    # "empty":Z
+    :cond_60
+    cmp-long v4, v20, v22
+
+    if-nez v4, :cond_7f
+
+    .line 323
+    invoke-virtual {v9}, Lrx/Subscriber;->isUnsubscribed()Z
+
+    move-result v4
+
+    if-nez v4, :cond_11
+
+    .line 327
+    move-object/from16 v0, p0
+
+    iget-boolean v12, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->mainDone:Z
+
+    invoke-virtual {v8}, Lrx/internal/util/atomic/SpscLinkedArrayQueue;->isEmpty()Z
+
+    move-result v17
+
+    move-object/from16 v11, p0
+
+    move v13, v6
+
+    move-object v14, v7
+
+    move-object v15, v8
+
+    move-object/from16 v16, v9
+
+    invoke-virtual/range {v11 .. v17}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->checkTerminated(ZZLjava/lang/Throwable;Lrx/internal/util/atomic/SpscLinkedArrayQueue;Lrx/Subscriber;Z)Z
+
+    move-result v4
+
+    if-nez v4, :cond_11
+
+    .line 334
+    :cond_7f
+    monitor-enter p0
+
+    .line 336
+    :try_start_80
+    move-object/from16 v0, p0
+
+    iget-wide v0, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->requested:J
+
+    move-wide/from16 v22, v0
+
+    .line 337
+    const-wide v12, 0x7fffffffffffffffL
+
+    cmp-long v4, v22, v12
+
+    if-eqz v4, :cond_97
+
+    .line 338
+    sub-long v22, v22, v20
+
+    .line 339
+    move-wide/from16 v0, v22
+
+    move-object/from16 v2, p0
+
+    iput-wide v0, v2, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->requested:J
+
+    .line 342
+    :cond_97
+    move-object/from16 v0, p0
+
+    iget-boolean v4, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->missed:Z
+
+    if-nez v4, :cond_d4
+
+    .line 343
+    const/4 v4, 0x0
+
+    move-object/from16 v0, p0
+
+    iput-boolean v4, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
+
+    .line 344
+    monitor-exit p0
+
+    goto/16 :goto_11
+
+    .line 354
+    :catchall_a5
+    move-exception v4
+
+    monitor-exit p0
+    :try_end_a7
+    .catchall {:try_start_80 .. :try_end_a7} :catchall_a5
+
+    throw v4
+
+    .line 286
+    .end local v6    # "localInnerActive":Z
+    .end local v7    # "localError":Ljava/lang/Throwable;
+    .end local v8    # "localQueue":Lrx/internal/util/atomic/SpscLinkedArrayQueue;, "Lrx/internal/util/atomic/SpscLinkedArrayQueue<Ljava/lang/Object;>;"
+    .end local v9    # "localChild":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
+    .end local v19    # "localIndex":Ljava/util/concurrent/atomic/AtomicLong;
+    .end local v20    # "localEmission":J
+    .end local v22    # "localRequested":J
+    :catchall_a8
+    move-exception v4
+
+    :try_start_a9
+    monitor-exit p0
+    :try_end_aa
+    .catchall {:try_start_a9 .. :try_end_aa} :catchall_a8
+
+    throw v4
+
+    .line 313
+    .restart local v6    # "localInnerActive":Z
+    .restart local v7    # "localError":Ljava/lang/Throwable;
+    .restart local v8    # "localQueue":Lrx/internal/util/atomic/SpscLinkedArrayQueue;, "Lrx/internal/util/atomic/SpscLinkedArrayQueue<Ljava/lang/Object;>;"
+    .restart local v9    # "localChild":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
+    .restart local v10    # "empty":Z
+    .restart local v19    # "localIndex":Ljava/util/concurrent/atomic/AtomicLong;
+    .restart local v20    # "localEmission":J
+    .restart local v22    # "localRequested":J
+    :cond_ab
+    invoke-virtual {v8}, Lrx/internal/util/atomic/SpscLinkedArrayQueue;->poll()Ljava/lang/Object;
+
+    move-result-object v18
+
+    check-cast v18, Lrx/internal/operators/OperatorSwitch$InnerSubscriber;
+
+    .line 314
+    .local v18, "inner":Lrx/internal/operators/OperatorSwitch$InnerSubscriber;, "Lrx/internal/operators/OperatorSwitch$InnerSubscriber<TT;>;"
+    move-object/from16 v0, p0
+
+    iget-object v4, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->nl:Lrx/internal/operators/NotificationLite;
+
+    invoke-virtual {v8}, Lrx/internal/util/atomic/SpscLinkedArrayQueue;->poll()Ljava/lang/Object;
+
+    move-result-object v11
+
+    invoke-virtual {v4, v11}, Lrx/internal/operators/NotificationLite;->getValue(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v24
+
+    .line 316
+    .local v24, "value":Ljava/lang/Object;, "TT;"
+    invoke-virtual/range {v19 .. v19}, Ljava/util/concurrent/atomic/AtomicLong;->get()J
+
+    move-result-wide v12
+
+    # getter for: Lrx/internal/operators/OperatorSwitch$InnerSubscriber;->id:J
+    invoke-static/range {v18 .. v18}, Lrx/internal/operators/OperatorSwitch$InnerSubscriber;->access$000(Lrx/internal/operators/OperatorSwitch$InnerSubscriber;)J
+
+    move-result-wide v14
+
+    cmp-long v4, v12, v14
+
+    if-nez v4, :cond_48
+
+    .line 317
+    move-object/from16 v0, v24
+
+    invoke-virtual {v9, v0}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+
+    .line 318
+    const-wide/16 v12, 0x1
+
+    add-long v20, v20, v12
+
+    goto/16 :goto_48
+
+    .line 346
+    .end local v10    # "empty":Z
+    .end local v18    # "inner":Lrx/internal/operators/OperatorSwitch$InnerSubscriber;, "Lrx/internal/operators/OperatorSwitch$InnerSubscriber<TT;>;"
+    .end local v24    # "value":Ljava/lang/Object;, "TT;"
+    :cond_d4
+    const/4 v4, 0x0
+
+    :try_start_d5
+    move-object/from16 v0, p0
+
+    iput-boolean v4, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->missed:Z
+
+    .line 348
+    move-object/from16 v0, p0
+
+    iget-boolean v5, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->mainDone:Z
+
+    .line 349
+    move-object/from16 v0, p0
+
+    iget-boolean v6, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->innerActive:Z
+
+    .line 350
+    move-object/from16 v0, p0
+
+    iget-object v7, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->error:Ljava/lang/Throwable;
+
+    .line 351
+    if-eqz v7, :cond_f7
+
+    sget-object v4, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->TERMINAL_ERROR:Ljava/lang/Throwable;
+
+    if-eq v7, v4, :cond_f7
+
+    move-object/from16 v0, p0
+
+    iget-boolean v4, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->delayError:Z
+
+    if-nez v4, :cond_f7
+
+    .line 352
+    sget-object v4, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->TERMINAL_ERROR:Ljava/lang/Throwable;
+
+    move-object/from16 v0, p0
+
+    iput-object v4, v0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->error:Ljava/lang/Throwable;
+
+    .line 354
+    :cond_f7
+    monitor-exit p0
+    :try_end_f8
+    .catchall {:try_start_d5 .. :try_end_f8} :catchall_a5
+
+    goto/16 :goto_46
+.end method
+
+.method emit(Ljava/lang/Object;Lrx/internal/operators/OperatorSwitch$InnerSubscriber;)V
+    .registers 7
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(TT;",
+            "Lrx/internal/operators/OperatorSwitch$InnerSubscriber",
+            "<TT;>;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 201
+    .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
+    .local p1, "value":Ljava/lang/Object;, "TT;"
+    .local p2, "inner":Lrx/internal/operators/OperatorSwitch$InnerSubscriber;, "Lrx/internal/operators/OperatorSwitch$InnerSubscriber<TT;>;"
+    monitor-enter p0
+
+    .line 202
+    :try_start_1
+    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->index:Ljava/util/concurrent/atomic/AtomicLong;
+
+    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicLong;->get()J
+
+    move-result-wide v0
+
+    # getter for: Lrx/internal/operators/OperatorSwitch$InnerSubscriber;->id:J
+    invoke-static {p2}, Lrx/internal/operators/OperatorSwitch$InnerSubscriber;->access$000(Lrx/internal/operators/OperatorSwitch$InnerSubscriber;)J
+
+    move-result-wide v2
+
+    cmp-long v0, v0, v2
+
+    if-eqz v0, :cond_11
+
+    .line 203
+    monitor-exit p0
+
+    .line 209
+    :goto_10
+    return-void
+
+    .line 206
+    :cond_11
+    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Lrx/internal/util/atomic/SpscLinkedArrayQueue;
+
+    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->nl:Lrx/internal/operators/NotificationLite;
+
+    invoke-virtual {v1, p1}, Lrx/internal/operators/NotificationLite;->next(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
 
-    .line 226
-    .local v1, "o":Ljava/lang/Object;
-    iget-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->nl:Lrx/internal/operators/NotificationLite;
-
-    invoke-virtual {v3, v1}, Lrx/internal/operators/NotificationLite;->isCompleted(Ljava/lang/Object;)Z
-
-    move-result v3
-
-    if-eqz v3, :cond_1f
-
-    .line 227
-    iget-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->s:Lrx/observers/SerializedSubscriber;
-
-    invoke-virtual {v3}, Lrx/observers/SerializedSubscriber;->onCompleted()V
-
-    goto :goto_2
-
-    .line 230
-    :cond_1f
-    iget-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->nl:Lrx/internal/operators/NotificationLite;
-
-    invoke-virtual {v3, v1}, Lrx/internal/operators/NotificationLite;->isError(Ljava/lang/Object;)Z
-
-    move-result v3
-
-    if-eqz v3, :cond_33
-
-    .line 231
-    iget-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->s:Lrx/observers/SerializedSubscriber;
-
-    iget-object v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->nl:Lrx/internal/operators/NotificationLite;
-
-    invoke-virtual {v4, v1}, Lrx/internal/operators/NotificationLite;->getError(Ljava/lang/Object;)Ljava/lang/Throwable;
-
-    move-result-object v4
-
-    invoke-virtual {v3, v4}, Lrx/observers/SerializedSubscriber;->onError(Ljava/lang/Throwable;)V
-
-    goto :goto_2
-
-    .line 235
-    :cond_33
-    move-object v2, v1
-
-    .line 236
-    .local v2, "t":Ljava/lang/Object;, "TT;"
-    iget-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->s:Lrx/observers/SerializedSubscriber;
-
-    invoke-virtual {v3, v2}, Lrx/observers/SerializedSubscriber;->onNext(Ljava/lang/Object;)V
-
-    goto :goto_7
-.end method
-
-.method emit(Ljava/lang/Object;ILrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;)V
-    .registers 14
-    .param p2, "id"    # I
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(TT;I",
-            "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber",
-            "<TT;>.InnerSubscriber;)V"
-        }
-    .end annotation
-
-    .prologue
-    .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
-    .local p1, "value":Ljava/lang/Object;, "TT;"
-    .local p3, "innerSubscriber":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>.InnerSubscriber;"
-    const-wide v8, 0x7fffffffffffffffL
-
-    .line 173
-    iget-object v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->guard:Ljava/lang/Object;
-
-    monitor-enter v4
-
-    .line 174
-    :try_start_8
-    iget v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->index:I
-
-    if-eq p2, v3, :cond_e
-
-    .line 175
-    monitor-exit v4
-
-    .line 220
-    :cond_d
-    :goto_d
-    return-void
-
-    .line 177
-    :cond_e
-    iget-boolean v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
-
-    if-eqz v3, :cond_32
-
-    .line 178
-    iget-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    if-nez v3, :cond_1d
-
-    .line 179
-    new-instance v3, Ljava/util/ArrayList;
-
-    invoke-direct {v3}, Ljava/util/ArrayList;-><init>()V
-
-    iput-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    .line 181
-    :cond_1d
-    # getter for: Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;->requested:J
-    invoke-static {p3}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;->access$100(Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;)J
-
-    move-result-wide v6
-
-    cmp-long v3, v6, v8
-
-    if-eqz v3, :cond_28
-
-    .line 182
-    # operator-- for: Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;->requested:J
-    invoke-static {p3}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;->access$110(Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;)J
-
-    .line 183
-    :cond_28
-    iget-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    invoke-interface {v3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 184
-    monitor-exit v4
-
-    goto :goto_d
-
-    .line 189
-    :catchall_2f
-    move-exception v3
-
-    monitor-exit v4
-    :try_end_31
-    .catchall {:try_start_8 .. :try_end_31} :catchall_2f
-
-    throw v3
-
-    .line 186
-    :cond_32
-    :try_start_32
-    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    .line 187
-    .local v0, "localQueue":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Object;>;"
-    const/4 v3, 0x0
-
-    iput-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    .line 188
-    const/4 v3, 0x1
-
-    iput-boolean v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
-
-    .line 189
-    monitor-exit v4
-    :try_end_3b
-    .catchall {:try_start_32 .. :try_end_3b} :catchall_2f
-
-    .line 190
-    const/4 v1, 0x1
-
-    .line 191
-    .local v1, "once":Z
-    const/4 v2, 0x0
-
-    .line 194
-    .local v2, "skipFinal":Z
-    :cond_3d
-    :try_start_3d
-    invoke-virtual {p0, v0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->drain(Ljava/util/List;)V
-
-    .line 195
-    if-eqz v1, :cond_57
-
-    .line 196
-    const/4 v1, 0x0
-
-    .line 197
-    iget-object v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->guard:Ljava/lang/Object;
-
-    monitor-enter v4
-    :try_end_46
-    .catchall {:try_start_3d .. :try_end_46} :catchall_76
-
-    .line 198
-    :try_start_46
-    # getter for: Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;->requested:J
-    invoke-static {p3}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;->access$100(Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;)J
-
-    move-result-wide v6
-
-    cmp-long v3, v6, v8
-
-    if-eqz v3, :cond_51
-
-    .line 199
-    # operator-- for: Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;->requested:J
-    invoke-static {p3}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;->access$110(Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;)J
-
-    .line 200
-    :cond_51
-    monitor-exit v4
-    :try_end_52
-    .catchall {:try_start_46 .. :try_end_52} :catchall_73
-
-    .line 201
-    :try_start_52
-    iget-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->s:Lrx/observers/SerializedSubscriber;
-
-    invoke-virtual {v3, p1}, Lrx/observers/SerializedSubscriber;->onNext(Ljava/lang/Object;)V
-
-    .line 203
-    :cond_57
-    iget-object v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->guard:Ljava/lang/Object;
-
-    monitor-enter v4
-    :try_end_5a
-    .catchall {:try_start_52 .. :try_end_5a} :catchall_76
-
-    .line 204
-    :try_start_5a
-    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    .line 205
-    const/4 v3, 0x0
-
-    iput-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    .line 206
-    if-nez v0, :cond_81
+    invoke-virtual {v0, p2, v1}, Lrx/internal/util/atomic/SpscLinkedArrayQueue;->offer(Ljava/lang/Object;Ljava/lang/Object;)Z
 
     .line 207
-    const/4 v3, 0x0
-
-    iput-boolean v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
+    monitor-exit p0
+    :try_end_1d
+    .catchall {:try_start_1 .. :try_end_1d} :catchall_21
 
     .line 208
-    const/4 v2, 0x1
+    invoke-virtual {p0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->drain()V
 
-    .line 209
-    monitor-exit v4
-    :try_end_66
-    .catchall {:try_start_5a .. :try_end_66} :catchall_8b
+    goto :goto_10
 
-    .line 214
-    :goto_66
-    if-nez v2, :cond_d
+    .line 207
+    :catchall_21
+    move-exception v0
 
-    .line 215
-    iget-object v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->guard:Ljava/lang/Object;
+    :try_start_22
+    monitor-exit p0
+    :try_end_23
+    .catchall {:try_start_22 .. :try_end_23} :catchall_21
 
-    monitor-enter v4
-
-    .line 216
-    const/4 v3, 0x0
-
-    :try_start_6c
-    iput-boolean v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
-
-    .line 217
-    monitor-exit v4
-
-    goto :goto_d
-
-    :catchall_70
-    move-exception v3
-
-    monitor-exit v4
-    :try_end_72
-    .catchall {:try_start_6c .. :try_end_72} :catchall_70
-
-    throw v3
-
-    .line 200
-    :catchall_73
-    move-exception v3
-
-    :try_start_74
-    monitor-exit v4
-    :try_end_75
-    .catchall {:try_start_74 .. :try_end_75} :catchall_73
-
-    :try_start_75
-    throw v3
-    :try_end_76
-    .catchall {:try_start_75 .. :try_end_76} :catchall_76
-
-    .line 214
-    :catchall_76
-    move-exception v3
-
-    if-nez v2, :cond_80
-
-    .line 215
-    iget-object v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->guard:Ljava/lang/Object;
-
-    monitor-enter v4
-
-    .line 216
-    const/4 v5, 0x0
-
-    :try_start_7d
-    iput-boolean v5, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
-
-    .line 217
-    monitor-exit v4
-    :try_end_80
-    .catchall {:try_start_7d .. :try_end_80} :catchall_8e
-
-    :cond_80
-    throw v3
-
-    .line 211
-    :cond_81
-    :try_start_81
-    monitor-exit v4
-    :try_end_82
-    .catchall {:try_start_81 .. :try_end_82} :catchall_8b
-
-    .line 212
-    :try_start_82
-    iget-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->s:Lrx/observers/SerializedSubscriber;
-
-    invoke-virtual {v3}, Lrx/observers/SerializedSubscriber;->isUnsubscribed()Z
-    :try_end_87
-    .catchall {:try_start_82 .. :try_end_87} :catchall_76
-
-    move-result v3
-
-    if-eqz v3, :cond_3d
-
-    goto :goto_66
-
-    .line 211
-    :catchall_8b
-    move-exception v3
-
-    :try_start_8c
-    monitor-exit v4
-    :try_end_8d
-    .catchall {:try_start_8c .. :try_end_8d} :catchall_8b
-
-    :try_start_8d
-    throw v3
-    :try_end_8e
-    .catchall {:try_start_8d .. :try_end_8e} :catchall_76
-
-    .line 217
-    :catchall_8e
-    move-exception v3
-
-    :try_start_8f
-    monitor-exit v4
-    :try_end_90
-    .catchall {:try_start_8f .. :try_end_90} :catchall_8e
-
-    throw v3
+    throw v0
 .end method
 
-.method error(Ljava/lang/Throwable;I)V
-    .registers 7
+.method error(Ljava/lang/Throwable;J)V
+    .registers 8
     .param p1, "e"    # Ljava/lang/Throwable;
-    .param p2, "id"    # I
+    .param p2, "id"    # J
 
     .prologue
-    .line 243
+    .line 213
     .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
-    iget-object v2, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->guard:Ljava/lang/Object;
+    monitor-enter p0
 
-    monitor-enter v2
+    .line 214
+    :try_start_1
+    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->index:Ljava/util/concurrent/atomic/AtomicLong;
 
-    .line 244
-    :try_start_3
-    iget v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->index:I
+    invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicLong;->get()J
 
-    if-eq p2, v1, :cond_9
+    move-result-wide v2
 
-    .line 245
-    monitor-exit v2
+    cmp-long v1, v2, p2
 
-    .line 263
-    :goto_8
+    if-nez v1, :cond_1c
+
+    .line 215
+    invoke-virtual {p0, p1}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->updateError(Ljava/lang/Throwable;)Z
+
+    move-result v0
+
+    .line 216
+    .local v0, "success":Z
+    const/4 v1, 0x0
+
+    iput-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->innerActive:Z
+
+    .line 217
+    const/4 v1, 0x0
+
+    iput-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->producer:Lrx/Producer;
+
+    .line 221
+    :goto_15
+    monitor-exit p0
+    :try_end_16
+    .catchall {:try_start_1 .. :try_end_16} :catchall_1e
+
+    .line 222
+    if-eqz v0, :cond_21
+
+    .line 223
+    invoke-virtual {p0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->drain()V
+
+    .line 227
+    :goto_1b
     return-void
 
-    .line 247
-    :cond_9
-    iget-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
+    .line 219
+    .end local v0    # "success":Z
+    :cond_1c
+    const/4 v0, 0x1
 
-    if-eqz v1, :cond_28
+    .restart local v0    # "success":Z
+    goto :goto_15
 
-    .line 248
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    if-nez v1, :cond_18
-
-    .line 249
-    new-instance v1, Ljava/util/ArrayList;
-
-    invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
-
-    iput-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    .line 251
-    :cond_18
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    iget-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->nl:Lrx/internal/operators/NotificationLite;
-
-    invoke-virtual {v3, p1}, Lrx/internal/operators/NotificationLite;->error(Ljava/lang/Throwable;)Ljava/lang/Object;
-
-    move-result-object v3
-
-    invoke-interface {v1, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 252
-    monitor-exit v2
-
-    goto :goto_8
-
-    .line 258
-    :catchall_25
+    .line 221
+    .end local v0    # "success":Z
+    :catchall_1e
     move-exception v1
 
-    monitor-exit v2
-    :try_end_27
-    .catchall {:try_start_3 .. :try_end_27} :catchall_25
+    :try_start_1f
+    monitor-exit p0
+    :try_end_20
+    .catchall {:try_start_1f .. :try_end_20} :catchall_1e
 
     throw v1
 
+    .line 225
+    .restart local v0    # "success":Z
+    :cond_21
+    invoke-virtual {p0, p1}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->pluginError(Ljava/lang/Throwable;)V
+
+    goto :goto_1b
+.end method
+
+.method init()V
+    .registers 3
+
+    .prologue
+    .line 112
+    .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
+    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->child:Lrx/Subscriber;
+
+    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->ssub:Lrx/subscriptions/SerialSubscription;
+
+    invoke-virtual {v0, v1}, Lrx/Subscriber;->add(Lrx/Subscription;)V
+
+    .line 113
+    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->child:Lrx/Subscriber;
+
+    new-instance v1, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$1;
+
+    invoke-direct {v1, p0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$1;-><init>(Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;)V
+
+    invoke-static {v1}, Lrx/subscriptions/Subscriptions;->create(Lrx/functions/Action0;)Lrx/Subscription;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Lrx/Subscriber;->add(Lrx/Subscription;)V
+
+    .line 119
+    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->child:Lrx/Subscriber;
+
+    new-instance v1, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$2;
+
+    invoke-direct {v1, p0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$2;-><init>(Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;)V
+
+    invoke-virtual {v0, v1}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+
+    .line 131
+    return-void
+.end method
+
+.method innerProducer(Lrx/Producer;J)V
+    .registers 8
+    .param p1, "p"    # Lrx/Producer;
+    .param p2, "id"    # J
+
+    .prologue
+    .line 246
+    .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
+    monitor-enter p0
+
+    .line 247
+    :try_start_1
+    iget-object v2, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->index:Ljava/util/concurrent/atomic/AtomicLong;
+
+    invoke-virtual {v2}, Ljava/util/concurrent/atomic/AtomicLong;->get()J
+
+    move-result-wide v2
+
+    cmp-long v2, v2, p2
+
+    if-eqz v2, :cond_d
+
+    .line 248
+    monitor-exit p0
+
     .line 255
-    :cond_28
-    :try_start_28
-    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
+    :goto_c
+    return-void
 
-    .line 256
-    .local v0, "localQueue":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Object;>;"
-    const/4 v1, 0x0
+    .line 250
+    :cond_d
+    iget-wide v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->requested:J
 
-    iput-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
+    .line 251
+    .local v0, "n":J
+    iput-object p1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->producer:Lrx/Producer;
 
-    .line 257
-    const/4 v1, 0x1
+    .line 252
+    monitor-exit p0
+    :try_end_12
+    .catchall {:try_start_1 .. :try_end_12} :catchall_16
 
-    iput-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
+    .line 254
+    invoke-interface {p1, v0, v1}, Lrx/Producer;->request(J)V
 
-    .line 258
-    monitor-exit v2
-    :try_end_31
-    .catchall {:try_start_28 .. :try_end_31} :catchall_25
+    goto :goto_c
 
-    .line 260
-    invoke-virtual {p0, v0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->drain(Ljava/util/List;)V
+    .line 252
+    .end local v0    # "n":J
+    :catchall_16
+    move-exception v2
 
-    .line 261
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->s:Lrx/observers/SerializedSubscriber;
+    :try_start_17
+    monitor-exit p0
+    :try_end_18
+    .catchall {:try_start_17 .. :try_end_18} :catchall_16
 
-    invoke-virtual {v1, p1}, Lrx/observers/SerializedSubscriber;->onError(Ljava/lang/Throwable;)V
-
-    .line 262
-    invoke-virtual {p0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->unsubscribe()V
-
-    goto :goto_8
+    throw v2
 .end method
 
 .method public onCompleted()V
-    .registers 5
+    .registers 2
 
     .prologue
-    .line 151
+    .line 196
     .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
-    iget-object v2, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->guard:Ljava/lang/Object;
+    const/4 v0, 0x1
 
-    monitor-enter v2
+    iput-boolean v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->mainDone:Z
 
-    .line 152
-    const/4 v1, 0x1
+    .line 197
+    invoke-virtual {p0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->drain()V
 
-    :try_start_4
-    iput-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->mainDone:Z
-
-    .line 153
-    iget-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->active:Z
-
-    if-eqz v1, :cond_c
-
-    .line 154
-    monitor-exit v2
-
-    .line 170
-    :goto_b
+    .line 198
     return-void
-
-    .line 156
-    :cond_c
-    iget-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
-
-    if-eqz v1, :cond_2b
-
-    .line 157
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    if-nez v1, :cond_1b
-
-    .line 158
-    new-instance v1, Ljava/util/ArrayList;
-
-    invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
-
-    iput-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    .line 160
-    :cond_1b
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    iget-object v3, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->nl:Lrx/internal/operators/NotificationLite;
-
-    invoke-virtual {v3}, Lrx/internal/operators/NotificationLite;->completed()Ljava/lang/Object;
-
-    move-result-object v3
-
-    invoke-interface {v1, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 161
-    monitor-exit v2
-
-    goto :goto_b
-
-    .line 166
-    :catchall_28
-    move-exception v1
-
-    monitor-exit v2
-    :try_end_2a
-    .catchall {:try_start_4 .. :try_end_2a} :catchall_28
-
-    throw v1
-
-    .line 163
-    :cond_2b
-    :try_start_2b
-    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    .line 164
-    .local v0, "localQueue":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Object;>;"
-    const/4 v1, 0x0
-
-    iput-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->queue:Ljava/util/List;
-
-    .line 165
-    const/4 v1, 0x1
-
-    iput-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->emitting:Z
-
-    .line 166
-    monitor-exit v2
-    :try_end_34
-    .catchall {:try_start_2b .. :try_end_34} :catchall_28
-
-    .line 167
-    invoke-virtual {p0, v0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->drain(Ljava/util/List;)V
-
-    .line 168
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->s:Lrx/observers/SerializedSubscriber;
-
-    invoke-virtual {v1}, Lrx/observers/SerializedSubscriber;->onCompleted()V
-
-    .line 169
-    invoke-virtual {p0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->unsubscribe()V
-
-    goto :goto_b
 .end method
 
 .method public onError(Ljava/lang/Throwable;)V
-    .registers 3
+    .registers 4
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 144
+    .line 165
     .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
-    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->s:Lrx/observers/SerializedSubscriber;
+    monitor-enter p0
 
-    invoke-virtual {v0, p1}, Lrx/observers/SerializedSubscriber;->onError(Ljava/lang/Throwable;)V
+    .line 166
+    :try_start_1
+    invoke-virtual {p0, p1}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->updateError(Ljava/lang/Throwable;)Z
 
-    .line 145
-    invoke-virtual {p0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->unsubscribe()V
+    move-result v0
 
-    .line 146
+    .line 167
+    .local v0, "success":Z
+    monitor-exit p0
+    :try_end_6
+    .catchall {:try_start_1 .. :try_end_6} :catchall_f
+
+    .line 168
+    if-eqz v0, :cond_12
+
+    .line 169
+    const/4 v1, 0x1
+
+    iput-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->mainDone:Z
+
+    .line 170
+    invoke-virtual {p0}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->drain()V
+
+    .line 174
+    :goto_e
     return-void
+
+    .line 167
+    .end local v0    # "success":Z
+    :catchall_f
+    move-exception v1
+
+    :try_start_10
+    monitor-exit p0
+    :try_end_11
+    .catchall {:try_start_10 .. :try_end_11} :catchall_f
+
+    throw v1
+
+    .line 172
+    .restart local v0    # "success":Z
+    :cond_12
+    invoke-virtual {p0, p1}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->pluginError(Ljava/lang/Throwable;)V
+
+    goto :goto_e
 .end method
 
 .method public bridge synthetic onNext(Ljava/lang/Object;)V
@@ -918,7 +1098,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 57
+    .line 78
     .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
     check-cast p1, Lrx/Observable;
 
@@ -939,103 +1119,189 @@
     .end annotation
 
     .prologue
-    .line 126
+    .line 141
     .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
     .local p1, "t":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    iget-object v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->guard:Ljava/lang/Object;
+    iget-object v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->index:Ljava/util/concurrent/atomic/AtomicLong;
 
-    monitor-enter v4
+    invoke-virtual {v4}, Ljava/util/concurrent/atomic/AtomicLong;->incrementAndGet()J
 
-    .line 127
-    :try_start_3
-    iget v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->index:I
+    move-result-wide v0
 
-    add-int/lit8 v0, v1, 0x1
+    .line 143
+    .local v0, "id":J
+    iget-object v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->ssub:Lrx/subscriptions/SerialSubscription;
 
-    iput v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->index:I
+    invoke-virtual {v4}, Lrx/subscriptions/SerialSubscription;->get()Lrx/Subscription;
 
-    .line 128
-    .local v0, "id":I
-    const/4 v1, 0x1
+    move-result-object v3
 
-    iput-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->active:Z
+    .line 144
+    .local v3, "s":Lrx/Subscription;
+    if-eqz v3, :cond_11
 
-    .line 129
-    iget-boolean v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->infinite:Z
+    .line 145
+    invoke-interface {v3}, Lrx/Subscription;->unsubscribe()V
 
-    if-eqz v1, :cond_2f
+    .line 150
+    :cond_11
+    monitor-enter p0
 
-    .line 130
-    const-wide v2, 0x7fffffffffffffffL
+    .line 151
+    :try_start_12
+    new-instance v2, Lrx/internal/operators/OperatorSwitch$InnerSubscriber;
 
-    .line 134
-    .local v2, "remainingRequest":J
-    :goto_15
-    new-instance v1, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;
+    invoke-direct {v2, v0, v1, p0}, Lrx/internal/operators/OperatorSwitch$InnerSubscriber;-><init>(JLrx/internal/operators/OperatorSwitch$SwitchSubscriber;)V
 
-    invoke-direct {v1, p0, v0, v2, v3}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;-><init>(Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;IJ)V
+    .line 153
+    .local v2, "inner":Lrx/internal/operators/OperatorSwitch$InnerSubscriber;, "Lrx/internal/operators/OperatorSwitch$InnerSubscriber<TT;>;"
+    const/4 v4, 0x1
 
-    iput-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->currentSubscriber:Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;
+    iput-boolean v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->innerActive:Z
 
-    .line 135
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->currentSubscriber:Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;
+    .line 154
+    const/4 v4, 0x0
 
-    # setter for: Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;->requested:J
-    invoke-static {v1, v2, v3}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;->access$102(Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;J)J
+    iput-object v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->producer:Lrx/Producer;
 
-    .line 136
-    monitor-exit v4
-    :try_end_22
-    .catchall {:try_start_3 .. :try_end_22} :catchall_3d
+    .line 155
+    monitor-exit p0
+    :try_end_1e
+    .catchall {:try_start_12 .. :try_end_1e} :catchall_27
 
-    .line 137
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->ssub:Lrx/subscriptions/SerialSubscription;
+    .line 156
+    iget-object v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->ssub:Lrx/subscriptions/SerialSubscription;
 
-    iget-object v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->currentSubscriber:Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;
+    invoke-virtual {v4, v2}, Lrx/subscriptions/SerialSubscription;->set(Lrx/Subscription;)V
 
-    invoke-virtual {v1, v4}, Lrx/subscriptions/SerialSubscription;->set(Lrx/Subscription;)V
+    .line 158
+    invoke-virtual {p1, v2}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    .line 139
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->currentSubscriber:Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;
-
-    invoke-virtual {p1, v1}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
-
-    .line 140
+    .line 159
     return-void
 
-    .line 132
-    .end local v2    # "remainingRequest":J
-    :cond_2f
-    :try_start_2f
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->currentSubscriber:Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;
+    .line 155
+    .end local v2    # "inner":Lrx/internal/operators/OperatorSwitch$InnerSubscriber;, "Lrx/internal/operators/OperatorSwitch$InnerSubscriber<TT;>;"
+    :catchall_27
+    move-exception v4
 
-    if-nez v1, :cond_36
+    :try_start_28
+    monitor-exit p0
+    :try_end_29
+    .catchall {:try_start_28 .. :try_end_29} :catchall_27
 
-    iget-wide v2, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->initialRequested:J
+    throw v4
+.end method
 
-    .restart local v2    # "remainingRequest":J
-    :goto_35
-    goto :goto_15
+.method pluginError(Ljava/lang/Throwable;)V
+    .registers 3
+    .param p1, "e"    # Ljava/lang/Throwable;
 
-    .end local v2    # "remainingRequest":J
-    :cond_36
-    iget-object v1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->currentSubscriber:Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;
+    .prologue
+    .line 241
+    .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
+    invoke-static {}, Lrx/plugins/RxJavaPlugins;->getInstance()Lrx/plugins/RxJavaPlugins;
 
-    # getter for: Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;->requested:J
-    invoke-static {v1}, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;->access$100(Lrx/internal/operators/OperatorSwitch$SwitchSubscriber$InnerSubscriber;)J
+    move-result-object v0
 
-    move-result-wide v2
+    invoke-virtual {v0}, Lrx/plugins/RxJavaPlugins;->getErrorHandler()Lrx/plugins/RxJavaErrorHandler;
 
-    goto :goto_35
+    move-result-object v0
 
-    .line 136
-    .end local v0    # "id":I
-    :catchall_3d
-    move-exception v1
+    invoke-virtual {v0, p1}, Lrx/plugins/RxJavaErrorHandler;->handleError(Ljava/lang/Throwable;)V
 
-    monitor-exit v4
-    :try_end_3f
-    .catchall {:try_start_2f .. :try_end_3f} :catchall_3d
+    .line 242
+    return-void
+.end method
 
-    throw v1
+.method updateError(Ljava/lang/Throwable;)Z
+    .registers 8
+    .param p1, "next"    # Ljava/lang/Throwable;
+
+    .prologue
+    .local p0, "this":Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;, "Lrx/internal/operators/OperatorSwitch$SwitchSubscriber<TT;>;"
+    const/4 v3, 0x1
+
+    const/4 v2, 0x0
+
+    .line 177
+    iget-object v0, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->error:Ljava/lang/Throwable;
+
+    .line 178
+    .local v0, "e":Ljava/lang/Throwable;
+    sget-object v4, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->TERMINAL_ERROR:Ljava/lang/Throwable;
+
+    if-ne v0, v4, :cond_9
+
+    .line 191
+    .end local v0    # "e":Ljava/lang/Throwable;
+    :goto_8
+    return v2
+
+    .line 181
+    .restart local v0    # "e":Ljava/lang/Throwable;
+    :cond_9
+    if-nez v0, :cond_f
+
+    .line 182
+    iput-object p1, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->error:Ljava/lang/Throwable;
+
+    .end local v0    # "e":Ljava/lang/Throwable;
+    :goto_d
+    move v2, v3
+
+    .line 191
+    goto :goto_8
+
+    .line 184
+    .restart local v0    # "e":Ljava/lang/Throwable;
+    :cond_f
+    instance-of v4, v0, Lrx/exceptions/CompositeException;
+
+    if-eqz v4, :cond_29
+
+    .line 185
+    new-instance v1, Ljava/util/ArrayList;
+
+    check-cast v0, Lrx/exceptions/CompositeException;
+
+    .end local v0    # "e":Ljava/lang/Throwable;
+    invoke-virtual {v0}, Lrx/exceptions/CompositeException;->getExceptions()Ljava/util/List;
+
+    move-result-object v2
+
+    invoke-direct {v1, v2}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
+
+    .line 186
+    .local v1, "list":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Throwable;>;"
+    invoke-interface {v1, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 187
+    new-instance v2, Lrx/exceptions/CompositeException;
+
+    invoke-direct {v2, v1}, Lrx/exceptions/CompositeException;-><init>(Ljava/util/Collection;)V
+
+    iput-object v2, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->error:Ljava/lang/Throwable;
+
+    goto :goto_d
+
+    .line 189
+    .end local v1    # "list":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Throwable;>;"
+    .restart local v0    # "e":Ljava/lang/Throwable;
+    :cond_29
+    new-instance v4, Lrx/exceptions/CompositeException;
+
+    const/4 v5, 0x2
+
+    new-array v5, v5, [Ljava/lang/Throwable;
+
+    aput-object v0, v5, v2
+
+    aput-object p1, v5, v3
+
+    invoke-direct {v4, v5}, Lrx/exceptions/CompositeException;-><init>([Ljava/lang/Throwable;)V
+
+    iput-object v4, p0, Lrx/internal/operators/OperatorSwitch$SwitchSubscriber;->error:Ljava/lang/Throwable;
+
+    goto :goto_d
 .end method

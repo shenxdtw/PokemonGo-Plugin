@@ -12,7 +12,7 @@
     .registers 1
 
     .prologue
-    .line 35
+    .line 34
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -25,18 +25,18 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 49
+    .line 48
     return-void
 .end method
 
 .method public final handleOnNextValueRendering(Ljava/lang/Object;)Ljava/lang/String;
     .registers 6
     .param p1, "item"    # Ljava/lang/Object;
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 74
+    .line 73
     :try_start_0
     invoke-virtual {p0, p1}, Lrx/plugins/RxJavaErrorHandler;->render(Ljava/lang/Object;)Ljava/lang/String;
     :try_end_3
@@ -45,15 +45,15 @@
 
     move-result-object v2
 
-    .line 80
+    .line 79
     :goto_4
     return-object v2
 
-    .line 75
+    .line 74
     :catch_5
     move-exception v0
 
-    .line 76
+    .line 75
     .local v0, "e":Ljava/lang/InterruptedException;
     invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
 
@@ -61,7 +61,7 @@
 
     invoke-virtual {v2}, Ljava/lang/Thread;->interrupt()V
 
-    .line 80
+    .line 79
     .end local v0    # "e":Ljava/lang/InterruptedException;
     :goto_d
     new-instance v2, Ljava/lang/StringBuilder;
@@ -92,11 +92,11 @@
 
     goto :goto_4
 
-    .line 77
+    .line 76
     :catch_29
     move-exception v1
 
-    .line 78
+    .line 77
     .local v1, "t":Ljava/lang/Throwable;
     invoke-static {v1}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
 
@@ -112,11 +112,11 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 104
+    .line 103
     const/4 v0, 0x0
 
     return-object v0

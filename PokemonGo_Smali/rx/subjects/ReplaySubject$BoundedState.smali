@@ -115,43 +115,43 @@
     .end annotation
 
     .prologue
-    .line 594
+    .line 593
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     .local p2, "enterTransform":Lrx/functions/Func1;, "Lrx/functions/Func1<Ljava/lang/Object;Ljava/lang/Object;>;"
     .local p3, "leaveTransform":Lrx/functions/Func1;, "Lrx/functions/Func1<Ljava/lang/Object;Ljava/lang/Object;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 589
+    .line 588
     invoke-static {}, Lrx/internal/operators/NotificationLite;->instance()Lrx/internal/operators/NotificationLite;
 
     move-result-object v0
 
     iput-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->nl:Lrx/internal/operators/NotificationLite;
 
-    .line 595
+    .line 594
     new-instance v0, Lrx/subjects/ReplaySubject$NodeList;
 
     invoke-direct {v0}, Lrx/subjects/ReplaySubject$NodeList;-><init>()V
 
     iput-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->list:Lrx/subjects/ReplaySubject$NodeList;
 
-    .line 596
+    .line 595
     iget-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->list:Lrx/subjects/ReplaySubject$NodeList;
 
     iget-object v0, v0, Lrx/subjects/ReplaySubject$NodeList;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     iput-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 597
+    .line 596
     iput-object p1, p0, Lrx/subjects/ReplaySubject$BoundedState;->evictionPolicy:Lrx/subjects/ReplaySubject$EvictionPolicy;
 
-    .line 598
+    .line 597
     iput-object p2, p0, Lrx/subjects/ReplaySubject$BoundedState;->enterTransform:Lrx/functions/Func1;
 
-    .line 599
+    .line 598
     iput-object p3, p0, Lrx/subjects/ReplaySubject$BoundedState;->leaveTransform:Lrx/functions/Func1;
 
-    .line 600
+    .line 599
     return-void
 .end method
 
@@ -172,7 +172,7 @@
     .end annotation
 
     .prologue
-    .line 630
+    .line 629
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     .local p1, "o":Lrx/Observer;, "Lrx/Observer<-TT;>;"
     .local p2, "node":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
@@ -188,7 +188,7 @@
 
     invoke-virtual {v0, p1, v1}, Lrx/internal/operators/NotificationLite;->accept(Lrx/Observer;Ljava/lang/Object;)Z
 
-    .line 631
+    .line 630
     return-void
 .end method
 
@@ -208,13 +208,13 @@
     .end annotation
 
     .prologue
-    .line 639
+    .line 638
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     .local p1, "o":Lrx/Observer;, "Lrx/Observer<-TT;>;"
     .local p2, "node":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     iget-object v0, p2, Lrx/subjects/ReplaySubject$NodeList$Node;->value:Ljava/lang/Object;
 
-    .line 640
+    .line 639
     .local v0, "v":Ljava/lang/Object;
     iget-object v1, p0, Lrx/subjects/ReplaySubject$BoundedState;->evictionPolicy:Lrx/subjects/ReplaySubject$EvictionPolicy;
 
@@ -224,7 +224,7 @@
 
     if-nez v1, :cond_15
 
-    .line 641
+    .line 640
     iget-object v1, p0, Lrx/subjects/ReplaySubject$BoundedState;->nl:Lrx/internal/operators/NotificationLite;
 
     iget-object v2, p0, Lrx/subjects/ReplaySubject$BoundedState;->leaveTransform:Lrx/functions/Func1;
@@ -235,7 +235,7 @@
 
     invoke-virtual {v1, p1, v2}, Lrx/internal/operators/NotificationLite;->accept(Lrx/Observer;Ljava/lang/Object;)Z
 
-    .line 643
+    .line 642
     :cond_15
     return-void
 .end method
@@ -244,18 +244,18 @@
     .registers 4
 
     .prologue
-    .line 611
+    .line 610
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     iget-boolean v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->terminated:Z
 
     if-nez v0, :cond_25
 
-    .line 612
+    .line 611
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->terminated:Z
 
-    .line 613
+    .line 612
     iget-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->list:Lrx/subjects/ReplaySubject$NodeList;
 
     iget-object v1, p0, Lrx/subjects/ReplaySubject$BoundedState;->enterTransform:Lrx/functions/Func1;
@@ -272,21 +272,21 @@
 
     invoke-virtual {v0, v1}, Lrx/subjects/ReplaySubject$NodeList;->addLast(Ljava/lang/Object;)V
 
-    .line 614
+    .line 613
     iget-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->evictionPolicy:Lrx/subjects/ReplaySubject$EvictionPolicy;
 
     iget-object v1, p0, Lrx/subjects/ReplaySubject$BoundedState;->list:Lrx/subjects/ReplaySubject$NodeList;
 
     invoke-interface {v0, v1}, Lrx/subjects/ReplaySubject$EvictionPolicy;->evictFinal(Lrx/subjects/ReplaySubject$NodeList;)V
 
-    .line 615
+    .line 614
     iget-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->list:Lrx/subjects/ReplaySubject$NodeList;
 
     iget-object v0, v0, Lrx/subjects/ReplaySubject$NodeList;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     iput-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 618
+    .line 617
     :cond_25
     return-void
 .end method
@@ -296,18 +296,18 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 621
+    .line 620
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     iget-boolean v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->terminated:Z
 
     if-nez v0, :cond_25
 
-    .line 622
+    .line 621
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->terminated:Z
 
-    .line 623
+    .line 622
     iget-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->list:Lrx/subjects/ReplaySubject$NodeList;
 
     iget-object v1, p0, Lrx/subjects/ReplaySubject$BoundedState;->enterTransform:Lrx/functions/Func1;
@@ -324,21 +324,21 @@
 
     invoke-virtual {v0, v1}, Lrx/subjects/ReplaySubject$NodeList;->addLast(Ljava/lang/Object;)V
 
-    .line 625
+    .line 624
     iget-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->evictionPolicy:Lrx/subjects/ReplaySubject$EvictionPolicy;
 
     iget-object v1, p0, Lrx/subjects/ReplaySubject$BoundedState;->list:Lrx/subjects/ReplaySubject$NodeList;
 
     invoke-interface {v0, v1}, Lrx/subjects/ReplaySubject$EvictionPolicy;->evictFinal(Lrx/subjects/ReplaySubject$NodeList;)V
 
-    .line 626
+    .line 625
     iget-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->list:Lrx/subjects/ReplaySubject$NodeList;
 
     iget-object v0, v0, Lrx/subjects/ReplaySubject$NodeList;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     iput-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 628
+    .line 627
     :cond_25
     return-void
 .end method
@@ -356,7 +356,7 @@
     .end annotation
 
     .prologue
-    .line 645
+    .line 644
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     iget-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->list:Lrx/subjects/ReplaySubject$NodeList;
 
@@ -372,25 +372,25 @@
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     const/4 v3, 0x1
 
-    .line 709
+    .line 708
     invoke-virtual {p0}, Lrx/subjects/ReplaySubject$BoundedState;->head()Lrx/subjects/ReplaySubject$NodeList$Node;
 
     move-result-object v0
 
-    .line 710
+    .line 709
     .local v0, "l":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     iget-object v1, v0, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 711
+    .line 710
     .local v1, "next":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     if-nez v1, :cond_a
 
-    .line 715
+    .line 714
     :cond_9
     :goto_9
     return v3
 
-    .line 714
+    .line 713
     :cond_a
     iget-object v4, p0, Lrx/subjects/ReplaySubject$BoundedState;->leaveTransform:Lrx/functions/Func1;
 
@@ -400,7 +400,7 @@
 
     move-result-object v2
 
-    .line 715
+    .line 714
     .local v2, "value":Ljava/lang/Object;
     iget-object v4, p0, Lrx/subjects/ReplaySubject$BoundedState;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -435,27 +435,27 @@
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     const/4 v3, 0x0
 
-    .line 738
+    .line 737
     invoke-virtual {p0}, Lrx/subjects/ReplaySubject$BoundedState;->head()Lrx/subjects/ReplaySubject$NodeList$Node;
 
     move-result-object v4
 
     iget-object v0, v4, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 739
+    .line 738
     .local v0, "h":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     if-nez v0, :cond_a
 
-    .line 755
+    .line 754
     :cond_9
     :goto_9
     return-object v3
 
-    .line 742
+    .line 741
     :cond_a
     const/4 v1, 0x0
 
-    .line 743
+    .line 742
     .local v1, "p":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     :goto_b
     invoke-virtual {p0}, Lrx/subjects/ReplaySubject$BoundedState;->tail()Lrx/subjects/ReplaySubject$NodeList$Node;
@@ -464,15 +464,15 @@
 
     if-eq v0, v4, :cond_15
 
-    .line 744
+    .line 743
     move-object v1, v0
 
-    .line 745
+    .line 744
     iget-object v0, v0, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     goto :goto_b
 
-    .line 747
+    .line 746
     :cond_15
     iget-object v4, p0, Lrx/subjects/ReplaySubject$BoundedState;->leaveTransform:Lrx/functions/Func1;
 
@@ -482,7 +482,7 @@
 
     move-result-object v2
 
-    .line 748
+    .line 747
     .local v2, "value":Ljava/lang/Object;
     iget-object v4, p0, Lrx/subjects/ReplaySubject$BoundedState;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -500,11 +500,11 @@
 
     if-eqz v4, :cond_3e
 
-    .line 749
+    .line 748
     :cond_2d
     if-eqz v1, :cond_9
 
-    .line 750
+    .line 749
     iget-object v3, p0, Lrx/subjects/ReplaySubject$BoundedState;->leaveTransform:Lrx/functions/Func1;
 
     iget-object v4, v1, Lrx/subjects/ReplaySubject$NodeList$Node;->value:Ljava/lang/Object;
@@ -513,7 +513,7 @@
 
     move-result-object v2
 
-    .line 751
+    .line 750
     iget-object v3, p0, Lrx/subjects/ReplaySubject$BoundedState;->nl:Lrx/internal/operators/NotificationLite;
 
     invoke-virtual {v3, v2}, Lrx/internal/operators/NotificationLite;->getValue(Ljava/lang/Object;)Ljava/lang/Object;
@@ -522,7 +522,7 @@
 
     goto :goto_9
 
-    .line 755
+    .line 754
     :cond_3e
     iget-object v3, p0, Lrx/subjects/ReplaySubject$BoundedState;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -542,14 +542,14 @@
     .end annotation
 
     .prologue
-    .line 603
+    .line 602
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     .local p1, "value":Ljava/lang/Object;, "TT;"
     iget-boolean v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->terminated:Z
 
     if-nez v0, :cond_22
 
-    .line 604
+    .line 603
     iget-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->list:Lrx/subjects/ReplaySubject$NodeList;
 
     iget-object v1, p0, Lrx/subjects/ReplaySubject$BoundedState;->enterTransform:Lrx/functions/Func1;
@@ -566,21 +566,21 @@
 
     invoke-virtual {v0, v1}, Lrx/subjects/ReplaySubject$NodeList;->addLast(Ljava/lang/Object;)V
 
-    .line 605
+    .line 604
     iget-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->evictionPolicy:Lrx/subjects/ReplaySubject$EvictionPolicy;
 
     iget-object v1, p0, Lrx/subjects/ReplaySubject$BoundedState;->list:Lrx/subjects/ReplaySubject$NodeList;
 
     invoke-interface {v0, v1}, Lrx/subjects/ReplaySubject$EvictionPolicy;->evict(Lrx/subjects/ReplaySubject$NodeList;)V
 
-    .line 606
+    .line 605
     iget-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->list:Lrx/subjects/ReplaySubject$NodeList;
 
     iget-object v0, v0, Lrx/subjects/ReplaySubject$NodeList;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     iput-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 608
+    .line 607
     :cond_22
     return-void
 .end method
@@ -600,56 +600,56 @@
     .local p1, "observer":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<-TT;>;"
     const/4 v2, 0x0
 
-    .line 652
+    .line 651
     monitor-enter p1
 
-    .line 653
+    .line 652
     const/4 v3, 0x0
 
     :try_start_3
     iput-boolean v3, p1, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->first:Z
 
-    .line 654
+    .line 653
     iget-boolean v3, p1, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->emitting:Z
 
     if-eqz v3, :cond_b
 
-    .line 655
+    .line 654
     monitor-exit p1
 
-    .line 662
+    .line 661
     :goto_a
     return v2
 
-    .line 657
+    .line 656
     :cond_b
     monitor-exit p1
     :try_end_c
     .catchall {:try_start_3 .. :try_end_c} :catchall_1b
 
-    .line 659
+    .line 658
     invoke-virtual {p1}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->index()Ljava/lang/Object;
 
     move-result-object v1
 
     check-cast v1, Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 660
+    .line 659
     .local v1, "lastEmittedLink":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     invoke-virtual {p0, v1, p1}, Lrx/subjects/ReplaySubject$BoundedState;->replayObserverFromIndex(Lrx/subjects/ReplaySubject$NodeList$Node;Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;)Lrx/subjects/ReplaySubject$NodeList$Node;
 
     move-result-object v0
 
-    .line 661
+    .line 660
     .local v0, "l":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     invoke-virtual {p1, v0}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->index(Ljava/lang/Object;)V
 
-    .line 662
+    .line 661
     const/4 v2, 0x1
 
     goto :goto_a
 
-    .line 657
+    .line 656
     .end local v0    # "l":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     .end local v1    # "lastEmittedLink":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     :catchall_1b
@@ -669,7 +669,7 @@
     .param p2, "x1"    # Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
     .prologue
-    .line 584
+    .line 583
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     check-cast p1, Lrx/subjects/ReplaySubject$NodeList$Node;
 
@@ -700,7 +700,7 @@
     .end annotation
 
     .prologue
-    .line 668
+    .line 667
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     .local p1, "l":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     .local p2, "observer":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<-TT;>;"
@@ -711,17 +711,17 @@
 
     if-eq p1, v0, :cond_e
 
-    .line 669
+    .line 668
     iget-object v0, p1, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     invoke-virtual {p0, p2, v0}, Lrx/subjects/ReplaySubject$BoundedState;->accept(Lrx/Observer;Lrx/subjects/ReplaySubject$NodeList$Node;)V
 
-    .line 670
+    .line 669
     iget-object p1, p1, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     goto :goto_0
 
-    .line 672
+    .line 671
     :cond_e
     return-object p1
 .end method
@@ -733,7 +733,7 @@
     .param p3, "x2"    # J
 
     .prologue
-    .line 584
+    .line 583
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     check-cast p1, Lrx/subjects/ReplaySubject$NodeList$Node;
 
@@ -765,7 +765,7 @@
     .end annotation
 
     .prologue
-    .line 677
+    .line 676
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     .local p1, "l":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     .local p2, "observer":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<-TT;>;"
@@ -776,17 +776,17 @@
 
     if-eq p1, v0, :cond_e
 
-    .line 678
+    .line 677
     iget-object v0, p1, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     invoke-virtual {p0, p2, v0, p3, p4}, Lrx/subjects/ReplaySubject$BoundedState;->acceptTest(Lrx/Observer;Lrx/subjects/ReplaySubject$NodeList$Node;J)V
 
-    .line 679
+    .line 678
     iget-object p1, p1, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     goto :goto_0
 
-    .line 681
+    .line 680
     :cond_e
     return-object p1
 .end method
@@ -795,43 +795,43 @@
     .registers 7
 
     .prologue
-    .line 691
+    .line 690
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     const/4 v2, 0x0
 
-    .line 692
+    .line 691
     .local v2, "size":I
     invoke-virtual {p0}, Lrx/subjects/ReplaySubject$BoundedState;->head()Lrx/subjects/ReplaySubject$NodeList$Node;
 
     move-result-object v0
 
-    .line 693
+    .line 692
     .local v0, "l":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     iget-object v1, v0, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 694
+    .line 693
     .local v1, "next":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     :goto_7
     if-eqz v1, :cond_f
 
-    .line 695
+    .line 694
     add-int/lit8 v2, v2, 0x1
 
-    .line 696
+    .line 695
     move-object v0, v1
 
-    .line 697
+    .line 696
     iget-object v1, v1, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     goto :goto_7
 
-    .line 699
+    .line 698
     :cond_f
     iget-object v4, v0, Lrx/subjects/ReplaySubject$NodeList$Node;->value:Ljava/lang/Object;
 
     if-eqz v4, :cond_2f
 
-    .line 700
+    .line 699
     iget-object v4, p0, Lrx/subjects/ReplaySubject$BoundedState;->leaveTransform:Lrx/functions/Func1;
 
     iget-object v5, v0, Lrx/subjects/ReplaySubject$NodeList$Node;->value:Ljava/lang/Object;
@@ -840,7 +840,7 @@
 
     move-result-object v3
 
-    .line 701
+    .line 700
     .local v3, "value":Ljava/lang/Object;
     if-eqz v3, :cond_2f
 
@@ -860,11 +860,11 @@
 
     if-eqz v4, :cond_2f
 
-    .line 702
+    .line 701
     :cond_2d
     add-int/lit8 v2, v2, -0x1
 
-    .line 705
+    .line 704
     .end local v2    # "size":I
     .end local v3    # "value":Ljava/lang/Object;
     :cond_2f
@@ -884,7 +884,7 @@
     .end annotation
 
     .prologue
-    .line 648
+    .line 647
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     iget-object v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->tail:Lrx/subjects/ReplaySubject$NodeList$Node;
 
@@ -895,7 +895,7 @@
     .registers 2
 
     .prologue
-    .line 686
+    .line 685
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     iget-boolean v0, p0, Lrx/subjects/ReplaySubject$BoundedState;->terminated:Z
 
@@ -911,29 +911,29 @@
     .end annotation
 
     .prologue
-    .line 720
+    .line 719
     .local p0, "this":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     .local p1, "a":[Ljava/lang/Object;, "[TT;"
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
-    .line 721
+    .line 720
     .local v1, "list":Ljava/util/List;, "Ljava/util/List<TT;>;"
     invoke-virtual {p0}, Lrx/subjects/ReplaySubject$BoundedState;->head()Lrx/subjects/ReplaySubject$NodeList$Node;
 
     move-result-object v0
 
-    .line 722
+    .line 721
     .local v0, "l":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     iget-object v2, v0, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 723
+    .line 722
     .local v2, "next":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     :goto_b
     if-eqz v2, :cond_29
 
-    .line 724
+    .line 723
     iget-object v4, p0, Lrx/subjects/ReplaySubject$BoundedState;->leaveTransform:Lrx/functions/Func1;
 
     iget-object v5, v2, Lrx/subjects/ReplaySubject$NodeList$Node;->value:Ljava/lang/Object;
@@ -942,7 +942,7 @@
 
     move-result-object v3
 
-    .line 726
+    .line 725
     .local v3, "o":Ljava/lang/Object;
     iget-object v4, v2, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
@@ -964,7 +964,7 @@
 
     if-eqz v4, :cond_2e
 
-    .line 734
+    .line 733
     .end local v3    # "o":Ljava/lang/Object;
     :cond_29
     invoke-interface {v1, p1}, Ljava/util/List;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
@@ -973,17 +973,17 @@
 
     return-object v4
 
-    .line 729
+    .line 728
     .restart local v3    # "o":Ljava/lang/Object;
     :cond_2e
     invoke-interface {v1, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 731
+    .line 730
     move-object v0, v2
 
-    .line 732
+    .line 731
     iget-object v2, v2, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 733
+    .line 732
     goto :goto_b
 .end method

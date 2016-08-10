@@ -4,7 +4,7 @@
 
 
 # virtual methods
-.method public abstract associate(Ljava/lang/String;Lcom/fasterxml/jackson/databind/node/ObjectNode;)V
+.method public abstract associate(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
 .end method
 
 .method public abstract launch()V

@@ -3,12 +3,12 @@
 .source "OperatorReplay.java"
 
 # interfaces
-.implements Lrx/Observable$OnSubscribe;
+.implements Lrx/functions/Func0;
 
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/internal/operators/OperatorReplay;->createScheduledSubject(Lrx/subjects/Subject;Lrx/Scheduler;)Lrx/subjects/Subject;
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lrx/internal/operators/OperatorReplay;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -16,27 +16,13 @@
     name = null
 .end annotation
 
-.annotation system Ldalvik/annotation/Signature;
-    value = {
-        "Ljava/lang/Object;",
-        "Lrx/Observable$OnSubscribe",
-        "<TT;>;"
-    }
-.end annotation
-
-
-# instance fields
-.field final synthetic val$observedOn:Lrx/Observable;
-
 
 # direct methods
-.method constructor <init>(Lrx/Observable;)V
-    .registers 2
+.method constructor <init>()V
+    .registers 1
 
     .prologue
-    .line 47
-    iput-object p1, p0, Lrx/internal/operators/OperatorReplay$1;->val$observedOn:Lrx/Observable;
-
+    .line 40
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -44,41 +30,16 @@
 
 
 # virtual methods
-.method public bridge synthetic call(Ljava/lang/Object;)V
-    .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
-
-    .prologue
-    .line 47
-    check-cast p1, Lrx/Subscriber;
-
-    .end local p1    # "x0":Ljava/lang/Object;
-    invoke-virtual {p0, p1}, Lrx/internal/operators/OperatorReplay$1;->call(Lrx/Subscriber;)V
-
-    return-void
-.end method
-
-.method public call(Lrx/Subscriber;)V
+.method public call()Ljava/lang/Object;
     .registers 3
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Lrx/Subscriber",
-            "<-TT;>;)V"
-        }
-    .end annotation
 
     .prologue
-    .line 51
-    .local p1, "o":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    iget-object v0, p0, Lrx/internal/operators/OperatorReplay$1;->val$observedOn:Lrx/Observable;
+    .line 43
+    new-instance v0, Lrx/internal/operators/OperatorReplay$UnboundedReplayBuffer;
 
-    invoke-static {v0}, Lrx/internal/operators/OperatorReplay;->subscriberOf(Lrx/Observable;)Lrx/Observable$OnSubscribe;
+    const/16 v1, 0x10
 
-    move-result-object v0
+    invoke-direct {v0, v1}, Lrx/internal/operators/OperatorReplay$UnboundedReplayBuffer;-><init>(I)V
 
-    invoke-interface {v0, p1}, Lrx/Observable$OnSubscribe;->call(Ljava/lang/Object;)V
-
-    .line 52
-    return-void
+    return-object v0
 .end method

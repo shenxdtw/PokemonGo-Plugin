@@ -9,7 +9,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/observers/SerializedObserver$ErrorSentinel;,
         Lrx/observers/SerializedObserver$FastList;
     }
 .end annotation
@@ -27,11 +26,7 @@
 
 
 # static fields
-.field private static final COMPLETE_SENTINEL:Ljava/lang/Object;
-
-.field private static final MAX_DRAIN_ITERATION:I = 0x7fffffff
-
-.field private static final NULL_SENTINEL:Ljava/lang/Object;
+.field private static final MAX_DRAIN_ITERATION:I = 0x400
 
 
 # instance fields
@@ -46,33 +41,21 @@
 
 .field private emitting:Z
 
+.field private final nl:Lrx/internal/operators/NotificationLite;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Lrx/internal/operators/NotificationLite",
+            "<TT;>;"
+        }
+    .end annotation
+.end field
+
 .field private queue:Lrx/observers/SerializedObserver$FastList;
 
-.field private terminated:Z
+.field private volatile terminated:Z
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .registers 1
-
-    .prologue
-    .line 43
-    new-instance v0, Ljava/lang/Object;
-
-    invoke-direct {v0}, Ljava/lang/Object;-><init>()V
-
-    sput-object v0, Lrx/observers/SerializedObserver;->NULL_SENTINEL:Ljava/lang/Object;
-
-    .line 44
-    new-instance v0, Ljava/lang/Object;
-
-    invoke-direct {v0}, Ljava/lang/Object;-><init>()V
-
-    sput-object v0, Lrx/observers/SerializedObserver;->COMPLETE_SENTINEL:Ljava/lang/Object;
-
-    return-void
-.end method
-
 .method public constructor <init>(Lrx/Observer;)V
     .registers 3
     .annotation system Ldalvik/annotation/Signature;
@@ -84,356 +67,239 @@
     .end annotation
 
     .prologue
+    .line 70
     .local p0, "this":Lrx/observers/SerializedObserver;, "Lrx/observers/SerializedObserver<TT;>;"
     .local p1, "s":Lrx/Observer;, "Lrx/Observer<-TT;>;"
-    const/4 v0, 0x0
-
-    .line 75
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 38
-    iput-boolean v0, p0, Lrx/observers/SerializedObserver;->emitting:Z
+    .line 44
+    invoke-static {}, Lrx/internal/operators/NotificationLite;->instance()Lrx/internal/operators/NotificationLite;
 
-    .line 39
-    iput-boolean v0, p0, Lrx/observers/SerializedObserver;->terminated:Z
+    move-result-object v0
 
-    .line 76
+    iput-object v0, p0, Lrx/observers/SerializedObserver;->nl:Lrx/internal/operators/NotificationLite;
+
+    .line 71
     iput-object p1, p0, Lrx/observers/SerializedObserver;->actual:Lrx/Observer;
 
-    .line 77
+    .line 72
     return-void
 .end method
 
 
 # virtual methods
-.method drainQueue(Lrx/observers/SerializedObserver$FastList;)V
-    .registers 9
-    .param p1, "list"    # Lrx/observers/SerializedObserver$FastList;
-
-    .prologue
-    .line 193
-    .local p0, "this":Lrx/observers/SerializedObserver;, "Lrx/observers/SerializedObserver<TT;>;"
-    if-eqz p1, :cond_6
-
-    iget v5, p1, Lrx/observers/SerializedObserver$FastList;->size:I
-
-    if-nez v5, :cond_7
-
-    .line 212
-    :cond_6
-    return-void
-
-    .line 196
-    :cond_7
-    iget-object v0, p1, Lrx/observers/SerializedObserver$FastList;->array:[Ljava/lang/Object;
-
-    .local v0, "arr$":[Ljava/lang/Object;
-    array-length v2, v0
-
-    .local v2, "len$":I
-    const/4 v1, 0x0
-
-    .local v1, "i$":I
-    :goto_b
-    if-ge v1, v2, :cond_6
-
-    aget-object v4, v0, v1
-
-    .line 197
-    .local v4, "v":Ljava/lang/Object;
-    if-eqz v4, :cond_6
-
-    .line 200
-    sget-object v5, Lrx/observers/SerializedObserver;->NULL_SENTINEL:Ljava/lang/Object;
-
-    if-ne v4, v5, :cond_1e
-
-    .line 201
-    iget-object v5, p0, Lrx/observers/SerializedObserver;->actual:Lrx/Observer;
-
-    const/4 v6, 0x0
-
-    invoke-interface {v5, v6}, Lrx/Observer;->onNext(Ljava/lang/Object;)V
-
-    .line 196
-    .end local v4    # "v":Ljava/lang/Object;
-    :goto_1b
-    add-int/lit8 v1, v1, 0x1
-
-    goto :goto_b
-
-    .line 202
-    .restart local v4    # "v":Ljava/lang/Object;
-    :cond_1e
-    sget-object v5, Lrx/observers/SerializedObserver;->COMPLETE_SENTINEL:Ljava/lang/Object;
-
-    if-ne v4, v5, :cond_28
-
-    .line 203
-    iget-object v5, p0, Lrx/observers/SerializedObserver;->actual:Lrx/Observer;
-
-    invoke-interface {v5}, Lrx/Observer;->onCompleted()V
-
-    goto :goto_1b
-
-    .line 204
-    :cond_28
-    invoke-virtual {v4}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
-
-    move-result-object v5
-
-    const-class v6, Lrx/observers/SerializedObserver$ErrorSentinel;
-
-    if-ne v5, v6, :cond_3a
-
-    .line 205
-    iget-object v5, p0, Lrx/observers/SerializedObserver;->actual:Lrx/Observer;
-
-    check-cast v4, Lrx/observers/SerializedObserver$ErrorSentinel;
-
-    .end local v4    # "v":Ljava/lang/Object;
-    iget-object v6, v4, Lrx/observers/SerializedObserver$ErrorSentinel;->e:Ljava/lang/Throwable;
-
-    invoke-interface {v5, v6}, Lrx/Observer;->onError(Ljava/lang/Throwable;)V
-
-    goto :goto_1b
-
-    .line 208
-    .restart local v4    # "v":Ljava/lang/Object;
-    :cond_3a
-    move-object v3, v4
-
-    .line 209
-    .local v3, "t":Ljava/lang/Object;, "TT;"
-    iget-object v5, p0, Lrx/observers/SerializedObserver;->actual:Lrx/Observer;
-
-    invoke-interface {v5, v3}, Lrx/Observer;->onNext(Ljava/lang/Object;)V
-
-    goto :goto_1b
-.end method
-
 .method public onCompleted()V
-    .registers 4
+    .registers 3
 
     .prologue
-    .line 82
+    .line 163
     .local p0, "this":Lrx/observers/SerializedObserver;, "Lrx/observers/SerializedObserver<TT;>;"
-    monitor-enter p0
-
-    .line 83
-    :try_start_1
     iget-boolean v1, p0, Lrx/observers/SerializedObserver;->terminated:Z
 
-    if-eqz v1, :cond_7
+    if-eqz v1, :cond_5
 
-    .line 84
-    monitor-exit p0
-
-    .line 100
-    :goto_6
+    .line 183
+    :goto_4
     return-void
 
-    .line 86
-    :cond_7
-    const/4 v1, 0x1
+    .line 166
+    :cond_5
+    monitor-enter p0
 
-    iput-boolean v1, p0, Lrx/observers/SerializedObserver;->terminated:Z
+    .line 167
+    :try_start_6
+    iget-boolean v1, p0, Lrx/observers/SerializedObserver;->terminated:Z
 
-    .line 87
-    iget-boolean v1, p0, Lrx/observers/SerializedObserver;->emitting:Z
+    if-eqz v1, :cond_f
 
-    if-eqz v1, :cond_25
-
-    .line 88
-    iget-object v1, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
-
-    if-nez v1, :cond_19
-
-    .line 89
-    new-instance v1, Lrx/observers/SerializedObserver$FastList;
-
-    invoke-direct {v1}, Lrx/observers/SerializedObserver$FastList;-><init>()V
-
-    iput-object v1, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
-
-    .line 91
-    :cond_19
-    iget-object v1, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
-
-    sget-object v2, Lrx/observers/SerializedObserver;->COMPLETE_SENTINEL:Ljava/lang/Object;
-
-    invoke-virtual {v1, v2}, Lrx/observers/SerializedObserver$FastList;->add(Ljava/lang/Object;)V
-
-    .line 92
+    .line 168
     monitor-exit p0
 
-    goto :goto_6
+    goto :goto_4
 
-    .line 97
-    :catchall_22
+    .line 181
+    :catchall_c
     move-exception v1
 
     monitor-exit p0
-    :try_end_24
-    .catchall {:try_start_1 .. :try_end_24} :catchall_22
+    :try_end_e
+    .catchall {:try_start_6 .. :try_end_e} :catchall_c
 
     throw v1
 
-    .line 94
-    :cond_25
+    .line 170
+    :cond_f
     const/4 v1, 0x1
 
-    :try_start_26
-    iput-boolean v1, p0, Lrx/observers/SerializedObserver;->emitting:Z
+    :try_start_10
+    iput-boolean v1, p0, Lrx/observers/SerializedObserver;->terminated:Z
 
-    .line 95
+    .line 171
+    iget-boolean v1, p0, Lrx/observers/SerializedObserver;->emitting:Z
+
+    if-eqz v1, :cond_2c
+
+    .line 172
     iget-object v0, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
 
-    .line 96
+    .line 173
     .local v0, "list":Lrx/observers/SerializedObserver$FastList;
-    const/4 v1, 0x0
+    if-nez v0, :cond_21
 
-    iput-object v1, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+    .line 174
+    new-instance v0, Lrx/observers/SerializedObserver$FastList;
 
-    .line 97
+    .end local v0    # "list":Lrx/observers/SerializedObserver$FastList;
+    invoke-direct {v0}, Lrx/observers/SerializedObserver$FastList;-><init>()V
+
+    .line 175
+    .restart local v0    # "list":Lrx/observers/SerializedObserver$FastList;
+    iput-object v0, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+
+    .line 177
+    :cond_21
+    iget-object v1, p0, Lrx/observers/SerializedObserver;->nl:Lrx/internal/operators/NotificationLite;
+
+    invoke-virtual {v1}, Lrx/internal/operators/NotificationLite;->completed()Ljava/lang/Object;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Lrx/observers/SerializedObserver$FastList;->add(Ljava/lang/Object;)V
+
+    .line 178
     monitor-exit p0
-    :try_end_2e
-    .catchall {:try_start_26 .. :try_end_2e} :catchall_22
 
-    .line 98
-    invoke-virtual {p0, v0}, Lrx/observers/SerializedObserver;->drainQueue(Lrx/observers/SerializedObserver$FastList;)V
+    goto :goto_4
 
-    .line 99
+    .line 180
+    .end local v0    # "list":Lrx/observers/SerializedObserver$FastList;
+    :cond_2c
+    const/4 v1, 0x1
+
+    iput-boolean v1, p0, Lrx/observers/SerializedObserver;->emitting:Z
+
+    .line 181
+    monitor-exit p0
+    :try_end_30
+    .catchall {:try_start_10 .. :try_end_30} :catchall_c
+
+    .line 182
     iget-object v1, p0, Lrx/observers/SerializedObserver;->actual:Lrx/Observer;
 
     invoke-interface {v1}, Lrx/Observer;->onCompleted()V
 
-    goto :goto_6
+    goto :goto_4
 .end method
 
 .method public onError(Ljava/lang/Throwable;)V
-    .registers 5
+    .registers 4
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 104
+    .line 134
     .local p0, "this":Lrx/observers/SerializedObserver;, "Lrx/observers/SerializedObserver<TT;>;"
     invoke-static {p1}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
 
-    .line 106
-    monitor-enter p0
-
-    .line 107
-    :try_start_4
+    .line 135
     iget-boolean v1, p0, Lrx/observers/SerializedObserver;->terminated:Z
 
-    if-eqz v1, :cond_a
+    if-eqz v1, :cond_8
 
-    .line 108
-    monitor-exit p0
-
-    .line 126
-    :goto_9
+    .line 159
+    :goto_7
     return-void
 
-    .line 110
-    :cond_a
-    iget-boolean v1, p0, Lrx/observers/SerializedObserver;->emitting:Z
+    .line 138
+    :cond_8
+    monitor-enter p0
 
-    if-eqz v1, :cond_28
+    .line 139
+    :try_start_9
+    iget-boolean v1, p0, Lrx/observers/SerializedObserver;->terminated:Z
 
-    .line 111
-    iget-object v1, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+    if-eqz v1, :cond_12
 
-    if-nez v1, :cond_19
-
-    .line 112
-    new-instance v1, Lrx/observers/SerializedObserver$FastList;
-
-    invoke-direct {v1}, Lrx/observers/SerializedObserver$FastList;-><init>()V
-
-    iput-object v1, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
-
-    .line 114
-    :cond_19
-    iget-object v1, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
-
-    new-instance v2, Lrx/observers/SerializedObserver$ErrorSentinel;
-
-    invoke-direct {v2, p1}, Lrx/observers/SerializedObserver$ErrorSentinel;-><init>(Ljava/lang/Throwable;)V
-
-    invoke-virtual {v1, v2}, Lrx/observers/SerializedObserver$FastList;->add(Ljava/lang/Object;)V
-
-    .line 115
+    .line 140
     monitor-exit p0
 
-    goto :goto_9
+    goto :goto_7
 
-    .line 120
-    :catchall_25
+    .line 157
+    :catchall_f
     move-exception v1
 
     monitor-exit p0
-    :try_end_27
-    .catchall {:try_start_4 .. :try_end_27} :catchall_25
+    :try_end_11
+    .catchall {:try_start_9 .. :try_end_11} :catchall_f
 
     throw v1
 
-    .line 117
-    :cond_28
+    .line 142
+    :cond_12
     const/4 v1, 0x1
 
-    :try_start_29
-    iput-boolean v1, p0, Lrx/observers/SerializedObserver;->emitting:Z
+    :try_start_13
+    iput-boolean v1, p0, Lrx/observers/SerializedObserver;->terminated:Z
 
-    .line 118
+    .line 143
+    iget-boolean v1, p0, Lrx/observers/SerializedObserver;->emitting:Z
+
+    if-eqz v1, :cond_2f
+
+    .line 148
     iget-object v0, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
 
-    .line 119
+    .line 149
     .local v0, "list":Lrx/observers/SerializedObserver$FastList;
-    const/4 v1, 0x0
+    if-nez v0, :cond_24
 
-    iput-object v1, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+    .line 150
+    new-instance v0, Lrx/observers/SerializedObserver$FastList;
 
-    .line 120
+    .end local v0    # "list":Lrx/observers/SerializedObserver$FastList;
+    invoke-direct {v0}, Lrx/observers/SerializedObserver$FastList;-><init>()V
+
+    .line 151
+    .restart local v0    # "list":Lrx/observers/SerializedObserver$FastList;
+    iput-object v0, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+
+    .line 153
+    :cond_24
+    iget-object v1, p0, Lrx/observers/SerializedObserver;->nl:Lrx/internal/operators/NotificationLite;
+
+    invoke-virtual {v1, p1}, Lrx/internal/operators/NotificationLite;->error(Ljava/lang/Throwable;)Ljava/lang/Object;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Lrx/observers/SerializedObserver$FastList;->add(Ljava/lang/Object;)V
+
+    .line 154
     monitor-exit p0
-    :try_end_31
-    .catchall {:try_start_29 .. :try_end_31} :catchall_25
 
-    .line 121
-    invoke-virtual {p0, v0}, Lrx/observers/SerializedObserver;->drainQueue(Lrx/observers/SerializedObserver$FastList;)V
+    goto :goto_7
 
-    .line 122
+    .line 156
+    .end local v0    # "list":Lrx/observers/SerializedObserver$FastList;
+    :cond_2f
+    const/4 v1, 0x1
+
+    iput-boolean v1, p0, Lrx/observers/SerializedObserver;->emitting:Z
+
+    .line 157
+    monitor-exit p0
+    :try_end_33
+    .catchall {:try_start_13 .. :try_end_33} :catchall_f
+
+    .line 158
     iget-object v1, p0, Lrx/observers/SerializedObserver;->actual:Lrx/Observer;
 
     invoke-interface {v1, p1}, Lrx/Observer;->onError(Ljava/lang/Throwable;)V
 
-    .line 123
-    monitor-enter p0
-
-    .line 124
-    const/4 v1, 0x0
-
-    :try_start_3b
-    iput-boolean v1, p0, Lrx/observers/SerializedObserver;->emitting:Z
-
-    .line 125
-    monitor-exit p0
-
-    goto :goto_9
-
-    :catchall_3f
-    move-exception v1
-
-    monitor-exit p0
-    :try_end_41
-    .catchall {:try_start_3b .. :try_end_41} :catchall_3f
-
-    throw v1
+    goto :goto_7
 .end method
 
 .method public onNext(Ljava/lang/Object;)V
-    .registers 7
+    .registers 12
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -441,337 +307,251 @@
     .end annotation
 
     .prologue
-    .line 132
     .local p0, "this":Lrx/observers/SerializedObserver;, "Lrx/observers/SerializedObserver<TT;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
-    monitor-enter p0
+    const/4 v9, 0x1
 
-    .line 133
-    :try_start_1
-    iget-boolean v3, p0, Lrx/observers/SerializedObserver;->terminated:Z
+    .line 76
+    iget-boolean v7, p0, Lrx/observers/SerializedObserver;->terminated:Z
 
-    if-eqz v3, :cond_7
+    if-eqz v7, :cond_6
 
-    .line 134
-    monitor-exit p0
-
-    .line 190
-    .end local p1    # "t":Ljava/lang/Object;, "TT;"
-    :cond_6
-    :goto_6
+    .line 125
+    :goto_5
     return-void
 
-    .line 136
-    .restart local p1    # "t":Ljava/lang/Object;, "TT;"
-    :cond_7
-    iget-boolean v3, p0, Lrx/observers/SerializedObserver;->emitting:Z
+    .line 79
+    :cond_6
+    monitor-enter p0
 
-    if-eqz v3, :cond_25
+    .line 80
+    :try_start_7
+    iget-boolean v7, p0, Lrx/observers/SerializedObserver;->terminated:Z
 
-    .line 137
-    iget-object v3, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+    if-eqz v7, :cond_10
 
-    if-nez v3, :cond_16
-
-    .line 138
-    new-instance v3, Lrx/observers/SerializedObserver$FastList;
-
-    invoke-direct {v3}, Lrx/observers/SerializedObserver$FastList;-><init>()V
-
-    iput-object v3, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
-
-    .line 140
-    :cond_16
-    iget-object v3, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
-
-    if-eqz p1, :cond_22
-
-    .end local p1    # "t":Ljava/lang/Object;, "TT;"
-    :goto_1a
-    invoke-virtual {v3, p1}, Lrx/observers/SerializedObserver$FastList;->add(Ljava/lang/Object;)V
-
-    .line 142
+    .line 81
     monitor-exit p0
 
-    goto :goto_6
+    goto :goto_5
 
-    .line 149
-    :catchall_1f
-    move-exception v3
+    .line 93
+    :catchall_d
+    move-exception v7
 
     monitor-exit p0
-    :try_end_21
-    .catchall {:try_start_1 .. :try_end_21} :catchall_1f
+    :try_end_f
+    .catchall {:try_start_7 .. :try_end_f} :catchall_d
 
-    throw v3
+    throw v7
 
-    .line 140
-    .restart local p1    # "t":Ljava/lang/Object;, "TT;"
-    :cond_22
-    :try_start_22
-    sget-object p1, Lrx/observers/SerializedObserver;->NULL_SENTINEL:Ljava/lang/Object;
+    .line 83
+    :cond_10
+    :try_start_10
+    iget-boolean v7, p0, Lrx/observers/SerializedObserver;->emitting:Z
 
-    goto :goto_1a
+    if-eqz v7, :cond_2a
 
-    .line 145
-    :cond_25
-    const/4 v3, 0x1
+    .line 84
+    iget-object v5, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
 
-    iput-boolean v3, p0, Lrx/observers/SerializedObserver;->emitting:Z
+    .line 85
+    .local v5, "list":Lrx/observers/SerializedObserver$FastList;
+    if-nez v5, :cond_1f
 
-    .line 147
-    iget-object v1, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+    .line 86
+    new-instance v5, Lrx/observers/SerializedObserver$FastList;
 
-    .line 148
-    .local v1, "list":Lrx/observers/SerializedObserver$FastList;
-    const/4 v3, 0x0
+    .end local v5    # "list":Lrx/observers/SerializedObserver$FastList;
+    invoke-direct {v5}, Lrx/observers/SerializedObserver$FastList;-><init>()V
 
-    iput-object v3, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+    .line 87
+    .restart local v5    # "list":Lrx/observers/SerializedObserver$FastList;
+    iput-object v5, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
 
-    .line 149
+    .line 89
+    :cond_1f
+    iget-object v7, p0, Lrx/observers/SerializedObserver;->nl:Lrx/internal/operators/NotificationLite;
+
+    invoke-virtual {v7, p1}, Lrx/internal/operators/NotificationLite;->next(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v7
+
+    invoke-virtual {v5, v7}, Lrx/observers/SerializedObserver$FastList;->add(Ljava/lang/Object;)V
+
+    .line 90
+    monitor-exit p0
+
+    goto :goto_5
+
+    .line 92
+    .end local v5    # "list":Lrx/observers/SerializedObserver$FastList;
+    :cond_2a
+    const/4 v7, 0x1
+
+    iput-boolean v7, p0, Lrx/observers/SerializedObserver;->emitting:Z
+
+    .line 93
     monitor-exit p0
     :try_end_2e
-    .catchall {:try_start_22 .. :try_end_2e} :catchall_1f
+    .catchall {:try_start_10 .. :try_end_2e} :catchall_d
 
-    .line 152
+    .line 95
+    :try_start_2e
+    iget-object v7, p0, Lrx/observers/SerializedObserver;->actual:Lrx/Observer;
+
+    invoke-interface {v7, p1}, Lrx/Observer;->onNext(Ljava/lang/Object;)V
+    :try_end_33
+    .catch Ljava/lang/Throwable; {:try_start_2e .. :try_end_33} :catch_45
+
+    .line 102
+    :cond_33
     const/4 v2, 0x0
 
-    .line 154
-    .local v2, "skipFinal":Z
-    const v0, 0x7fffffff
+    .local v2, "i":I
+    :goto_34
+    const/16 v7, 0x400
 
-    .line 156
-    .local v0, "iter":I
-    :cond_32
-    :try_start_32
-    invoke-virtual {p0, v1}, Lrx/observers/SerializedObserver;->drainQueue(Lrx/observers/SerializedObserver$FastList;)V
+    if-ge v2, v7, :cond_33
 
-    .line 157
-    const v3, 0x7fffffff
-
-    if-ne v0, v3, :cond_3f
-
-    .line 159
-    iget-object v3, p0, Lrx/observers/SerializedObserver;->actual:Lrx/Observer;
-
-    invoke-interface {v3, p1}, Lrx/Observer;->onNext(Ljava/lang/Object;)V
-
-    .line 161
-    :cond_3f
-    add-int/lit8 v0, v0, -0x1
-
-    .line 162
-    if-lez v0, :cond_67
-
-    .line 163
+    .line 104
     monitor-enter p0
+
+    .line 105
+    :try_start_39
+    iget-object v5, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+
+    .line 106
+    .restart local v5    # "list":Lrx/observers/SerializedObserver$FastList;
+    if-nez v5, :cond_4e
+
+    .line 107
+    const/4 v7, 0x0
+
+    iput-boolean v7, p0, Lrx/observers/SerializedObserver;->emitting:Z
+
+    .line 108
+    monitor-exit p0
+
+    goto :goto_5
+
+    .line 111
+    .end local v5    # "list":Lrx/observers/SerializedObserver$FastList;
+    :catchall_42
+    move-exception v7
+
+    monitor-exit p0
     :try_end_44
-    .catchall {:try_start_32 .. :try_end_44} :catchall_7d
+    .catchall {:try_start_39 .. :try_end_44} :catchall_42
 
-    .line 164
-    :try_start_44
-    iget-object v1, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+    throw v7
 
-    .line 165
+    .line 96
+    .end local v2    # "i":I
+    :catch_45
+    move-exception v1
+
+    .line 97
+    .local v1, "e":Ljava/lang/Throwable;
+    iput-boolean v9, p0, Lrx/observers/SerializedObserver;->terminated:Z
+
+    .line 98
+    iget-object v7, p0, Lrx/observers/SerializedObserver;->actual:Lrx/Observer;
+
+    invoke-static {v1, v7, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
+
+    goto :goto_5
+
+    .line 110
+    .end local v1    # "e":Ljava/lang/Throwable;
+    .restart local v2    # "i":I
+    .restart local v5    # "list":Lrx/observers/SerializedObserver$FastList;
+    :cond_4e
+    const/4 v7, 0x0
+
+    :try_start_4f
+    iput-object v7, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+
+    .line 111
+    monitor-exit p0
+    :try_end_52
+    .catchall {:try_start_4f .. :try_end_52} :catchall_42
+
+    .line 112
+    iget-object v0, v5, Lrx/observers/SerializedObserver$FastList;->array:[Ljava/lang/Object;
+
+    .local v0, "arr$":[Ljava/lang/Object;
+    array-length v4, v0
+
+    .local v4, "len$":I
     const/4 v3, 0x0
 
-    iput-object v3, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+    .local v3, "i$":I
+    :goto_56
+    if-ge v3, v4, :cond_5c
 
-    .line 166
-    if-nez v1, :cond_66
+    aget-object v6, v0, v3
 
-    .line 167
-    const/4 v3, 0x0
+    .line 113
+    .local v6, "o":Ljava/lang/Object;
+    if-nez v6, :cond_5f
 
-    iput-boolean v3, p0, Lrx/observers/SerializedObserver;->emitting:Z
+    .line 102
+    .end local v6    # "o":Ljava/lang/Object;
+    :cond_5c
+    add-int/lit8 v2, v2, 0x1
 
-    .line 168
-    const/4 v2, 0x1
+    goto :goto_34
 
-    .line 169
-    monitor-exit p0
-    :try_end_50
-    .catchall {:try_start_44 .. :try_end_50} :catchall_7a
+    .line 117
+    .restart local v6    # "o":Ljava/lang/Object;
+    :cond_5f
+    :try_start_5f
+    iget-object v7, p0, Lrx/observers/SerializedObserver;->nl:Lrx/internal/operators/NotificationLite;
 
-    .line 175
-    if-nez v2, :cond_6
+    iget-object v8, p0, Lrx/observers/SerializedObserver;->actual:Lrx/Observer;
 
-    .line 176
-    monitor-enter p0
+    invoke-virtual {v7, v8, v6}, Lrx/internal/operators/NotificationLite;->accept(Lrx/Observer;Ljava/lang/Object;)Z
 
-    .line 177
-    :try_start_53
-    iget-boolean v3, p0, Lrx/observers/SerializedObserver;->terminated:Z
+    move-result v7
 
-    if-eqz v3, :cond_61
+    if-eqz v7, :cond_7d
 
-    .line 178
-    iget-object v1, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+    .line 118
+    const/4 v7, 0x1
 
-    .line 179
-    const/4 v3, 0x0
+    iput-boolean v7, p0, Lrx/observers/SerializedObserver;->terminated:Z
+    :try_end_6c
+    .catch Ljava/lang/Throwable; {:try_start_5f .. :try_end_6c} :catch_6d
 
-    iput-object v3, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
+    goto :goto_5
 
-    .line 184
-    :goto_5c
-    monitor-exit p0
+    .line 121
+    :catch_6d
+    move-exception v1
 
-    goto :goto_6
+    .line 122
+    .restart local v1    # "e":Ljava/lang/Throwable;
+    iput-boolean v9, p0, Lrx/observers/SerializedObserver;->terminated:Z
 
-    :catchall_5e
-    move-exception v3
+    .line 123
+    invoke-static {v1}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
 
-    monitor-exit p0
-    :try_end_60
-    .catchall {:try_start_53 .. :try_end_60} :catchall_5e
+    .line 124
+    iget-object v7, p0, Lrx/observers/SerializedObserver;->actual:Lrx/Observer;
 
-    throw v3
+    invoke-static {v1, p1}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
 
-    .line 181
-    :cond_61
-    const/4 v3, 0x0
+    move-result-object v8
 
-    :try_start_62
-    iput-boolean v3, p0, Lrx/observers/SerializedObserver;->emitting:Z
-    :try_end_64
-    .catchall {:try_start_62 .. :try_end_64} :catchall_5e
+    invoke-interface {v7, v8}, Lrx/Observer;->onError(Ljava/lang/Throwable;)V
 
-    .line 182
-    const/4 v1, 0x0
+    goto :goto_5
 
-    goto :goto_5c
+    .line 112
+    .end local v1    # "e":Ljava/lang/Throwable;
+    :cond_7d
+    add-int/lit8 v3, v3, 0x1
 
-    .line 171
-    :cond_66
-    :try_start_66
-    monitor-exit p0
-    :try_end_67
-    .catchall {:try_start_66 .. :try_end_67} :catchall_7a
-
-    .line 173
-    :cond_67
-    if-gtz v0, :cond_32
-
-    .line 175
-    if-nez v2, :cond_76
-
-    .line 176
-    monitor-enter p0
-
-    .line 177
-    :try_start_6c
-    iget-boolean v3, p0, Lrx/observers/SerializedObserver;->terminated:Z
-
-    if-eqz v3, :cond_8c
-
-    .line 178
-    iget-object v1, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
-
-    .line 179
-    const/4 v3, 0x0
-
-    iput-object v3, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
-
-    .line 184
-    :goto_75
-    monitor-exit p0
-    :try_end_76
-    .catchall {:try_start_6c .. :try_end_76} :catchall_91
-
-    .line 189
-    :cond_76
-    invoke-virtual {p0, v1}, Lrx/observers/SerializedObserver;->drainQueue(Lrx/observers/SerializedObserver$FastList;)V
-
-    goto :goto_6
-
-    .line 171
-    :catchall_7a
-    move-exception v3
-
-    :try_start_7b
-    monitor-exit p0
-    :try_end_7c
-    .catchall {:try_start_7b .. :try_end_7c} :catchall_7a
-
-    :try_start_7c
-    throw v3
-    :try_end_7d
-    .catchall {:try_start_7c .. :try_end_7d} :catchall_7d
-
-    .line 175
-    :catchall_7d
-    move-exception v3
-
-    if-nez v2, :cond_8b
-
-    .line 176
-    monitor-enter p0
-
-    .line 177
-    :try_start_81
-    iget-boolean v4, p0, Lrx/observers/SerializedObserver;->terminated:Z
-
-    if-eqz v4, :cond_94
-
-    .line 178
-    iget-object v1, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
-
-    .line 179
-    const/4 v4, 0x0
-
-    iput-object v4, p0, Lrx/observers/SerializedObserver;->queue:Lrx/observers/SerializedObserver$FastList;
-
-    .line 184
-    :goto_8a
-    monitor-exit p0
-    :try_end_8b
-    .catchall {:try_start_81 .. :try_end_8b} :catchall_99
-
-    :cond_8b
-    throw v3
-
-    .line 181
-    :cond_8c
-    const/4 v3, 0x0
-
-    :try_start_8d
-    iput-boolean v3, p0, Lrx/observers/SerializedObserver;->emitting:Z
-
-    .line 182
-    const/4 v1, 0x0
-
-    goto :goto_75
-
-    .line 184
-    :catchall_91
-    move-exception v3
-
-    monitor-exit p0
-    :try_end_93
-    .catchall {:try_start_8d .. :try_end_93} :catchall_91
-
-    throw v3
-
-    .line 181
-    :cond_94
-    const/4 v4, 0x0
-
-    :try_start_95
-    iput-boolean v4, p0, Lrx/observers/SerializedObserver;->emitting:Z
-
-    .line 182
-    const/4 v1, 0x0
-
-    goto :goto_8a
-
-    .line 184
-    :catchall_99
-    move-exception v3
-
-    monitor-exit p0
-    :try_end_9b
-    .catchall {:try_start_95 .. :try_end_9b} :catchall_99
-
-    throw v3
+    goto :goto_56
 .end method

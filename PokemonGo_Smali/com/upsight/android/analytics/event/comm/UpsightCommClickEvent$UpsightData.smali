@@ -16,17 +16,19 @@
 
 # instance fields
 .field msgCampaignId:Ljava/lang/Integer;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonInclude;
-        value = .enum Lcom/fasterxml/jackson/annotation/JsonInclude$Include;->NON_NULL:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "msg_campaign_id"
     .end annotation
 .end field
 
 .field msgId:Ljava/lang/Integer;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "msg_id"
     .end annotation
 .end field
@@ -37,10 +39,10 @@
     .registers 1
 
     .prologue
-    .line 50
+    .line 51
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 52
+    .line 53
     return-void
 .end method
 
@@ -49,10 +51,10 @@
     .param p1, "builder"    # Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;
 
     .prologue
-    .line 45
+    .line 46
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 46
+    .line 47
     # getter for: Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;->msgId:Ljava/lang/Integer;
     invoke-static {p1}, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;->access$000(Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;)Ljava/lang/Integer;
 
@@ -60,7 +62,7 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$UpsightData;->msgId:Ljava/lang/Integer;
 
-    .line 47
+    .line 48
     # getter for: Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;->msgCampaignId:Ljava/lang/Integer;
     invoke-static {p1}, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;->access$100(Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;)Ljava/lang/Integer;
 
@@ -68,7 +70,7 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$UpsightData;->msgCampaignId:Ljava/lang/Integer;
 
-    .line 48
+    .line 49
     return-void
 .end method
 
@@ -78,7 +80,7 @@
     .registers 2
 
     .prologue
-    .line 65
+    .line 66
     iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$UpsightData;->msgCampaignId:Ljava/lang/Integer;
 
     return-object v0
@@ -88,7 +90,7 @@
     .registers 2
 
     .prologue
-    .line 58
+    .line 59
     iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$UpsightData;->msgId:Ljava/lang/Integer;
 
     return-object v0

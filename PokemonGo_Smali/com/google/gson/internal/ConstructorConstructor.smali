@@ -32,14 +32,14 @@
     .end annotation
 
     .prologue
-    .line 47
+    .line 51
     .local p1, "instanceCreators":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/reflect/Type;Lcom/google/gson/InstanceCreator<*>;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 48
+    .line 52
     iput-object p1, p0, Lcom/google/gson/internal/ConstructorConstructor;->instanceCreators:Ljava/util/Map;
 
-    .line 49
+    .line 53
     return-void
 .end method
 
@@ -58,7 +58,7 @@
     .end annotation
 
     .prologue
-    .line 95
+    .line 99
     .local p1, "rawType":Ljava/lang/Class;, "Ljava/lang/Class<-TT;>;"
     const/4 v2, 0x0
 
@@ -69,7 +69,7 @@
 
     move-result-object v0
 
-    .line 96
+    .line 100
     .local v0, "constructor":Ljava/lang/reflect/Constructor;, "Ljava/lang/reflect/Constructor<-TT;>;"
     invoke-virtual {v0}, Ljava/lang/reflect/Constructor;->isAccessible()Z
 
@@ -77,12 +77,12 @@
 
     if-nez v2, :cond_11
 
-    .line 97
+    .line 101
     const/4 v2, 0x1
 
     invoke-virtual {v0, v2}, Ljava/lang/reflect/Constructor;->setAccessible(Z)V
 
-    .line 99
+    .line 103
     :cond_11
     new-instance v2, Lcom/google/gson/internal/ConstructorConstructor$3;
 
@@ -90,16 +90,16 @@
     :try_end_16
     .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_16} :catch_17
 
-    .line 119
+    .line 123
     .end local v0    # "constructor":Ljava/lang/reflect/Constructor;, "Ljava/lang/reflect/Constructor<-TT;>;"
     :goto_16
     return-object v2
 
-    .line 118
+    .line 122
     :catch_17
     move-exception v1
 
-    .line 119
+    .line 123
     .local v1, "e":Ljava/lang/NoSuchMethodException;
     const/4 v2, 0x0
 
@@ -123,7 +123,7 @@
     .end annotation
 
     .prologue
-    .line 130
+    .line 134
     .local p2, "rawType":Ljava/lang/Class;, "Ljava/lang/Class<-TT;>;"
     const-class v0, Ljava/util/Collection;
 
@@ -133,7 +133,7 @@
 
     if-eqz v0, :cond_46
 
-    .line 131
+    .line 135
     const-class v0, Ljava/util/SortedSet;
 
     invoke-virtual {v0, p2}, Ljava/lang/Class;->isAssignableFrom(Ljava/lang/Class;)Z
@@ -142,17 +142,17 @@
 
     if-eqz v0, :cond_16
 
-    .line 132
+    .line 136
     new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$4;
 
     invoke-direct {v0, p0}, Lcom/google/gson/internal/ConstructorConstructor$4;-><init>(Lcom/google/gson/internal/ConstructorConstructor;)V
 
-    .line 197
+    .line 213
     .end local p1    # "type":Ljava/lang/reflect/Type;
     :goto_15
     return-object v0
 
-    .line 137
+    .line 141
     .restart local p1    # "type":Ljava/lang/reflect/Type;
     :cond_16
     const-class v0, Ljava/util/EnumSet;
@@ -163,14 +163,14 @@
 
     if-eqz v0, :cond_24
 
-    .line 138
+    .line 142
     new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$5;
 
     invoke-direct {v0, p0, p1}, Lcom/google/gson/internal/ConstructorConstructor$5;-><init>(Lcom/google/gson/internal/ConstructorConstructor;Ljava/lang/reflect/Type;)V
 
     goto :goto_15
 
-    .line 153
+    .line 157
     :cond_24
     const-class v0, Ljava/util/Set;
 
@@ -180,14 +180,14 @@
 
     if-eqz v0, :cond_32
 
-    .line 154
+    .line 158
     new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$6;
 
     invoke-direct {v0, p0}, Lcom/google/gson/internal/ConstructorConstructor$6;-><init>(Lcom/google/gson/internal/ConstructorConstructor;)V
 
     goto :goto_15
 
-    .line 159
+    .line 163
     :cond_32
     const-class v0, Ljava/util/Queue;
 
@@ -197,14 +197,14 @@
 
     if-eqz v0, :cond_40
 
-    .line 160
+    .line 164
     new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$7;
 
     invoke-direct {v0, p0}, Lcom/google/gson/internal/ConstructorConstructor$7;-><init>(Lcom/google/gson/internal/ConstructorConstructor;)V
 
     goto :goto_15
 
-    .line 166
+    .line 170
     :cond_40
     new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$8;
 
@@ -212,7 +212,7 @@
 
     goto :goto_15
 
-    .line 174
+    .line 178
     :cond_46
     const-class v0, Ljava/util/Map;
 
@@ -220,10 +220,10 @@
 
     move-result v0
 
-    if-eqz v0, :cond_85
+    if-eqz v0, :cond_a3
 
-    .line 175
-    const-class v0, Ljava/util/SortedMap;
+    .line 179
+    const-class v0, Ljava/util/concurrent/ConcurrentNavigableMap;
 
     invoke-virtual {v0, p2}, Ljava/lang/Class;->isAssignableFrom(Ljava/lang/Class;)Z
 
@@ -231,23 +231,58 @@
 
     if-eqz v0, :cond_5c
 
-    .line 176
+    .line 180
     new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$9;
 
     invoke-direct {v0, p0}, Lcom/google/gson/internal/ConstructorConstructor$9;-><init>(Lcom/google/gson/internal/ConstructorConstructor;)V
 
     goto :goto_15
 
-    .line 181
+    .line 185
     :cond_5c
+    const-class v0, Ljava/util/concurrent/ConcurrentMap;
+
+    invoke-virtual {v0, p2}, Ljava/lang/Class;->isAssignableFrom(Ljava/lang/Class;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_6a
+
+    .line 186
+    new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$10;
+
+    invoke-direct {v0, p0}, Lcom/google/gson/internal/ConstructorConstructor$10;-><init>(Lcom/google/gson/internal/ConstructorConstructor;)V
+
+    goto :goto_15
+
+    .line 191
+    :cond_6a
+    const-class v0, Ljava/util/SortedMap;
+
+    invoke-virtual {v0, p2}, Ljava/lang/Class;->isAssignableFrom(Ljava/lang/Class;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_78
+
+    .line 192
+    new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$11;
+
+    invoke-direct {v0, p0}, Lcom/google/gson/internal/ConstructorConstructor$11;-><init>(Lcom/google/gson/internal/ConstructorConstructor;)V
+
+    goto :goto_15
+
+    .line 197
+    :cond_78
     instance-of v0, p1, Ljava/lang/reflect/ParameterizedType;
 
-    if-eqz v0, :cond_7f
+    if-eqz v0, :cond_9c
 
     const-class v0, Ljava/lang/String;
 
     check-cast p1, Ljava/lang/reflect/ParameterizedType;
 
+    .line 198
     .end local p1    # "type":Ljava/lang/reflect/Type;
     invoke-interface {p1}, Ljava/lang/reflect/ParameterizedType;->getActualTypeArguments()[Ljava/lang/reflect/Type;
 
@@ -265,33 +300,34 @@
 
     move-result-object v1
 
+    .line 197
     invoke-virtual {v0, v1}, Ljava/lang/Class;->isAssignableFrom(Ljava/lang/Class;)Z
 
     move-result v0
 
-    if-nez v0, :cond_7f
+    if-nez v0, :cond_9c
 
-    .line 183
-    new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$10;
+    .line 199
+    new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$12;
 
-    invoke-direct {v0, p0}, Lcom/google/gson/internal/ConstructorConstructor$10;-><init>(Lcom/google/gson/internal/ConstructorConstructor;)V
+    invoke-direct {v0, p0}, Lcom/google/gson/internal/ConstructorConstructor$12;-><init>(Lcom/google/gson/internal/ConstructorConstructor;)V
 
-    goto :goto_15
+    goto/16 :goto_15
 
-    .line 189
-    :cond_7f
-    new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$11;
+    .line 205
+    :cond_9c
+    new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$13;
 
-    invoke-direct {v0, p0}, Lcom/google/gson/internal/ConstructorConstructor$11;-><init>(Lcom/google/gson/internal/ConstructorConstructor;)V
+    invoke-direct {v0, p0}, Lcom/google/gson/internal/ConstructorConstructor$13;-><init>(Lcom/google/gson/internal/ConstructorConstructor;)V
 
-    goto :goto_15
+    goto/16 :goto_15
 
-    .line 197
+    .line 213
     .restart local p1    # "type":Ljava/lang/reflect/Type;
-    :cond_85
+    :cond_a3
     const/4 v0, 0x0
 
-    goto :goto_15
+    goto/16 :goto_15
 .end method
 
 .method private newUnsafeAllocator(Ljava/lang/reflect/Type;Ljava/lang/Class;)Lcom/google/gson/internal/ObjectConstructor;
@@ -311,11 +347,11 @@
     .end annotation
 
     .prologue
-    .line 202
+    .line 218
     .local p2, "rawType":Ljava/lang/Class;, "Ljava/lang/Class<-TT;>;"
-    new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$12;
+    new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$14;
 
-    invoke-direct {v0, p0, p2, p1}, Lcom/google/gson/internal/ConstructorConstructor$12;-><init>(Lcom/google/gson/internal/ConstructorConstructor;Ljava/lang/Class;Ljava/lang/reflect/Type;)V
+    invoke-direct {v0, p0, p2, p1}, Lcom/google/gson/internal/ConstructorConstructor$14;-><init>(Lcom/google/gson/internal/ConstructorConstructor;Ljava/lang/Class;Ljava/lang/reflect/Type;)V
 
     return-object v0
 .end method
@@ -337,19 +373,19 @@
     .end annotation
 
     .prologue
-    .line 52
+    .line 56
     .local p1, "typeToken":Lcom/google/gson/reflect/TypeToken;, "Lcom/google/gson/reflect/TypeToken<TT;>;"
     invoke-virtual {p1}, Lcom/google/gson/reflect/TypeToken;->getType()Ljava/lang/reflect/Type;
 
     move-result-object v4
 
-    .line 53
+    .line 57
     .local v4, "type":Ljava/lang/reflect/Type;
     invoke-virtual {p1}, Lcom/google/gson/reflect/TypeToken;->getRawType()Ljava/lang/Class;
 
     move-result-object v2
 
-    .line 58
+    .line 62
     .local v2, "rawType":Ljava/lang/Class;, "Ljava/lang/Class<-TT;>;"
     iget-object v6, p0, Lcom/google/gson/internal/ConstructorConstructor;->instanceCreators:Ljava/util/Map;
 
@@ -359,66 +395,67 @@
 
     check-cast v5, Lcom/google/gson/InstanceCreator;
 
-    .line 59
+    .line 63
     .local v5, "typeCreator":Lcom/google/gson/InstanceCreator;, "Lcom/google/gson/InstanceCreator<TT;>;"
     if-eqz v5, :cond_18
 
-    .line 60
+    .line 64
     new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$1;
 
     invoke-direct {v0, p0, v5, v4}, Lcom/google/gson/internal/ConstructorConstructor$1;-><init>(Lcom/google/gson/internal/ConstructorConstructor;Lcom/google/gson/InstanceCreator;Ljava/lang/reflect/Type;)V
 
-    .line 90
+    .line 94
     :cond_17
     :goto_17
     return-object v0
 
-    .line 69
+    .line 73
     :cond_18
     iget-object v6, p0, Lcom/google/gson/internal/ConstructorConstructor;->instanceCreators:Ljava/util/Map;
 
+    .line 74
     invoke-interface {v6, v2}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v3
 
     check-cast v3, Lcom/google/gson/InstanceCreator;
 
-    .line 71
+    .line 75
     .local v3, "rawTypeCreator":Lcom/google/gson/InstanceCreator;, "Lcom/google/gson/InstanceCreator<TT;>;"
     if-eqz v3, :cond_28
 
-    .line 72
+    .line 76
     new-instance v0, Lcom/google/gson/internal/ConstructorConstructor$2;
 
     invoke-direct {v0, p0, v3, v4}, Lcom/google/gson/internal/ConstructorConstructor$2;-><init>(Lcom/google/gson/internal/ConstructorConstructor;Lcom/google/gson/InstanceCreator;Ljava/lang/reflect/Type;)V
 
     goto :goto_17
 
-    .line 79
+    .line 83
     :cond_28
     invoke-direct {p0, v2}, Lcom/google/gson/internal/ConstructorConstructor;->newDefaultConstructor(Ljava/lang/Class;)Lcom/google/gson/internal/ObjectConstructor;
 
     move-result-object v0
 
-    .line 80
+    .line 84
     .local v0, "defaultConstructor":Lcom/google/gson/internal/ObjectConstructor;, "Lcom/google/gson/internal/ObjectConstructor<TT;>;"
     if-nez v0, :cond_17
 
-    .line 84
+    .line 88
     invoke-direct {p0, v4, v2}, Lcom/google/gson/internal/ConstructorConstructor;->newDefaultImplementationConstructor(Ljava/lang/reflect/Type;Ljava/lang/Class;)Lcom/google/gson/internal/ObjectConstructor;
 
     move-result-object v1
 
-    .line 85
+    .line 89
     .local v1, "defaultImplementation":Lcom/google/gson/internal/ObjectConstructor;, "Lcom/google/gson/internal/ObjectConstructor<TT;>;"
     if-eqz v1, :cond_36
 
     move-object v0, v1
 
-    .line 86
+    .line 90
     goto :goto_17
 
-    .line 90
+    .line 94
     :cond_36
     invoke-direct {p0, v4, v2}, Lcom/google/gson/internal/ConstructorConstructor;->newUnsafeAllocator(Ljava/lang/reflect/Type;Ljava/lang/Class;)Lcom/google/gson/internal/ObjectConstructor;
 
@@ -431,7 +468,7 @@
     .registers 2
 
     .prologue
-    .line 218
+    .line 234
     iget-object v0, p0, Lcom/google/gson/internal/ConstructorConstructor;->instanceCreators:Ljava/util/Map;
 
     invoke-virtual {v0}, Ljava/lang/Object;->toString()Ljava/lang/String;

@@ -27,16 +27,16 @@
     .param p2, "c"    # I
 
     .prologue
-    .line 38
+    .line 36
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 39
+    .line 37
     iput-boolean p1, p0, Lrx/subscriptions/RefCountSubscription$State;->isUnsubscribed:Z
 
-    .line 40
+    .line 38
     iput p2, p0, Lrx/subscriptions/RefCountSubscription$State;->children:I
 
-    .line 41
+    .line 39
     return-void
 .end method
 
@@ -46,7 +46,7 @@
     .registers 4
 
     .prologue
-    .line 44
+    .line 42
     new-instance v0, Lrx/subscriptions/RefCountSubscription$State;
 
     iget-boolean v1, p0, Lrx/subscriptions/RefCountSubscription$State;->isUnsubscribed:Z
@@ -64,7 +64,7 @@
     .registers 4
 
     .prologue
-    .line 48
+    .line 46
     new-instance v0, Lrx/subscriptions/RefCountSubscription$State;
 
     iget-boolean v1, p0, Lrx/subscriptions/RefCountSubscription$State;->isUnsubscribed:Z
@@ -82,7 +82,7 @@
     .registers 4
 
     .prologue
-    .line 52
+    .line 50
     new-instance v0, Lrx/subscriptions/RefCountSubscription$State;
 
     const/4 v1, 0x1

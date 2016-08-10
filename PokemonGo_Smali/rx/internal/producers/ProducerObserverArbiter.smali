@@ -64,7 +64,7 @@
     .registers 1
 
     .prologue
-    .line 48
+    .line 49
     new-instance v0, Lrx/internal/producers/ProducerObserverArbiter$1;
 
     invoke-direct {v0}, Lrx/internal/producers/ProducerObserverArbiter$1;-><init>()V
@@ -85,22 +85,22 @@
     .end annotation
 
     .prologue
-    .line 55
+    .line 56
     .local p0, "this":Lrx/internal/producers/ProducerObserverArbiter;, "Lrx/internal/producers/ProducerObserverArbiter<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 56
+    .line 57
     iput-object p1, p0, Lrx/internal/producers/ProducerObserverArbiter;->child:Lrx/Subscriber;
 
-    .line 57
+    .line 58
     return-void
 .end method
 
 
 # virtual methods
 .method emitLoop()V
-    .registers 25
+    .registers 29
 
     .prologue
     .line 190
@@ -109,439 +109,478 @@
 
     iget-object v4, v0, Lrx/internal/producers/ProducerObserverArbiter;->child:Lrx/Subscriber;
 
-    .line 198
+    .line 192
     .local v4, "c":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    :cond_4
-    :goto_4
+    const-wide/16 v20, 0x0
+
+    .line 193
+    .local v20, "toRequest":J
+    const/16 v17, 0x0
+
+    .line 201
+    .local v17, "requestFrom":Lrx/Producer;
+    :cond_8
+    :goto_8
+    const/16 v16, 0x0
+
+    .line 202
+    .local v16, "quit":Z
     monitor-enter p0
 
-    .line 199
-    :try_start_5
+    .line 203
+    :try_start_b
     move-object/from16 v0, p0
 
     iget-wide v12, v0, Lrx/internal/producers/ProducerObserverArbiter;->missedRequested:J
 
-    .line 200
+    .line 204
     .local v12, "localRequested":J
     move-object/from16 v0, p0
 
-    iget-object v11, v0, Lrx/internal/producers/ProducerObserverArbiter;->missedProducer:Lrx/Producer;
-
-    .line 201
-    .local v11, "localProducer":Lrx/Producer;
-    move-object/from16 v0, p0
-
-    iget-object v14, v0, Lrx/internal/producers/ProducerObserverArbiter;->missedTerminal:Ljava/lang/Object;
-
-    .line 202
-    .local v14, "localTerminal":Ljava/lang/Object;
-    move-object/from16 v0, p0
-
-    iget-object v0, v0, Lrx/internal/producers/ProducerObserverArbiter;->queue:Ljava/util/List;
-
-    move-object/from16 v16, v0
-
-    .line 203
-    .local v16, "q":Ljava/util/List;, "Ljava/util/List<TT;>;"
-    const-wide/16 v22, 0x0
-
-    cmp-long v22, v12, v22
-
-    if-nez v22, :cond_2d
-
-    if-nez v11, :cond_2d
-
-    if-nez v16, :cond_2d
-
-    if-nez v14, :cond_2d
+    iget-object v10, v0, Lrx/internal/producers/ProducerObserverArbiter;->missedProducer:Lrx/Producer;
 
     .line 205
-    const/16 v22, 0x0
+    .local v10, "localProducer":Lrx/Producer;
+    move-object/from16 v0, p0
 
-    move/from16 v0, v22
+    iget-object v11, v0, Lrx/internal/producers/ProducerObserverArbiter;->missedTerminal:Ljava/lang/Object;
+
+    .line 206
+    .local v11, "localTerminal":Ljava/lang/Object;
+    move-object/from16 v0, p0
+
+    iget-object v15, v0, Lrx/internal/producers/ProducerObserverArbiter;->queue:Ljava/util/List;
+
+    .line 207
+    .local v15, "q":Ljava/util/List;, "Ljava/util/List<TT;>;"
+    const-wide/16 v26, 0x0
+
+    cmp-long v25, v12, v26
+
+    if-nez v25, :cond_44
+
+    if-nez v10, :cond_44
+
+    if-nez v15, :cond_44
+
+    if-nez v11, :cond_44
+
+    .line 209
+    const/16 v25, 0x0
+
+    move/from16 v0, v25
 
     move-object/from16 v1, p0
 
     iput-boolean v0, v1, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
 
-    .line 206
-    monitor-exit p0
+    .line 210
+    const/16 v16, 0x1
 
-    .line 239
-    .end local v14    # "localTerminal":Ljava/lang/Object;
-    :cond_2c
-    :goto_2c
+    .line 217
+    :goto_31
+    monitor-exit p0
+    :try_end_32
+    .catchall {:try_start_b .. :try_end_32} :catchall_65
+
+    .line 218
+    if-eqz v16, :cond_68
+
+    .line 219
+    const-wide/16 v26, 0x0
+
+    cmp-long v25, v20, v26
+
+    if-eqz v25, :cond_43
+
+    if-eqz v17, :cond_43
+
+    .line 220
+    move-object/from16 v0, v17
+
+    move-wide/from16 v1, v20
+
+    invoke-interface {v0, v1, v2}, Lrx/Producer;->request(J)V
+
+    .line 249
+    .end local v11    # "localTerminal":Ljava/lang/Object;
+    :cond_43
+    :goto_43
     return-void
 
-    .line 208
-    .restart local v14    # "localTerminal":Ljava/lang/Object;
-    :cond_2d
-    const-wide/16 v22, 0x0
+    .line 212
+    .restart local v11    # "localTerminal":Ljava/lang/Object;
+    :cond_44
+    const-wide/16 v26, 0x0
 
-    move-wide/from16 v0, v22
+    :try_start_46
+    move-wide/from16 v0, v26
 
     move-object/from16 v2, p0
 
     iput-wide v0, v2, Lrx/internal/producers/ProducerObserverArbiter;->missedRequested:J
 
-    .line 209
-    const/16 v22, 0x0
+    .line 213
+    const/16 v25, 0x0
 
-    move-object/from16 v0, v22
+    move-object/from16 v0, v25
 
     move-object/from16 v1, p0
 
     iput-object v0, v1, Lrx/internal/producers/ProducerObserverArbiter;->missedProducer:Lrx/Producer;
 
-    .line 210
-    const/16 v22, 0x0
+    .line 214
+    const/16 v25, 0x0
 
-    move-object/from16 v0, v22
+    move-object/from16 v0, v25
 
     move-object/from16 v1, p0
 
     iput-object v0, v1, Lrx/internal/producers/ProducerObserverArbiter;->queue:Ljava/util/List;
 
-    .line 211
-    const/16 v22, 0x0
+    .line 215
+    const/16 v25, 0x0
 
-    move-object/from16 v0, v22
+    move-object/from16 v0, v25
 
     move-object/from16 v1, p0
 
     iput-object v0, v1, Lrx/internal/producers/ProducerObserverArbiter;->missedTerminal:Ljava/lang/Object;
 
-    .line 212
-    monitor-exit p0
-    :try_end_4e
-    .catchall {:try_start_5 .. :try_end_4e} :catchall_65
+    goto :goto_31
 
-    .line 213
-    if-eqz v16, :cond_56
-
-    invoke-interface/range {v16 .. v16}, Ljava/util/List;->isEmpty()Z
-
-    move-result v22
-
-    if-eqz v22, :cond_68
-
-    :cond_56
-    const/4 v5, 0x1
-
-    .line 214
-    .local v5, "empty":Z
-    :goto_57
-    if-eqz v14, :cond_70
-
-    .line 215
-    sget-object v22, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
-
-    move-object/from16 v0, v22
-
-    if-eq v14, v0, :cond_6a
-
-    .line 216
-    check-cast v14, Ljava/lang/Throwable;
-
-    .end local v14    # "localTerminal":Ljava/lang/Object;
-    invoke-virtual {v4, v14}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-
-    goto :goto_2c
-
-    .line 212
-    .end local v5    # "empty":Z
-    .end local v11    # "localProducer":Lrx/Producer;
+    .line 217
+    .end local v10    # "localProducer":Lrx/Producer;
+    .end local v11    # "localTerminal":Ljava/lang/Object;
     .end local v12    # "localRequested":J
-    .end local v16    # "q":Ljava/util/List;, "Ljava/util/List<TT;>;"
+    .end local v15    # "q":Ljava/util/List;, "Ljava/util/List<TT;>;"
     :catchall_65
-    move-exception v22
+    move-exception v25
 
-    :try_start_66
     monitor-exit p0
     :try_end_67
-    .catchall {:try_start_66 .. :try_end_67} :catchall_65
+    .catchall {:try_start_46 .. :try_end_67} :catchall_65
 
-    throw v22
-
-    .line 213
-    .restart local v11    # "localProducer":Lrx/Producer;
-    .restart local v12    # "localRequested":J
-    .restart local v14    # "localTerminal":Ljava/lang/Object;
-    .restart local v16    # "q":Ljava/util/List;, "Ljava/util/List<TT;>;"
-    :cond_68
-    const/4 v5, 0x0
-
-    goto :goto_57
-
-    .line 219
-    .restart local v5    # "empty":Z
-    :cond_6a
-    if-eqz v5, :cond_70
-
-    .line 220
-    invoke-virtual {v4}, Lrx/Subscriber;->onCompleted()V
-
-    goto :goto_2c
-
-    .line 224
-    :cond_70
-    const-wide/16 v6, 0x0
+    throw v25
 
     .line 225
-    .local v6, "e":J
-    if-eqz v16, :cond_af
+    .restart local v10    # "localProducer":Lrx/Producer;
+    .restart local v11    # "localTerminal":Ljava/lang/Object;
+    .restart local v12    # "localRequested":J
+    .restart local v15    # "q":Ljava/util/List;, "Ljava/util/List<TT;>;"
+    :cond_68
+    if-eqz v15, :cond_70
+
+    invoke-interface {v15}, Ljava/util/List;->isEmpty()Z
+
+    move-result v25
+
+    if-eqz v25, :cond_7f
+
+    :cond_70
+    const/4 v5, 0x1
 
     .line 226
-    invoke-interface/range {v16 .. v16}, Ljava/util/List;->iterator()Ljava/util/Iterator;
-
-    move-result-object v10
-
-    .local v10, "i$":Ljava/util/Iterator;
-    :goto_78
-    invoke-interface {v10}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v22
-
-    if-eqz v22, :cond_a4
-
-    invoke-interface {v10}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v17
+    .local v5, "empty":Z
+    :goto_71
+    if-eqz v11, :cond_87
 
     .line 227
-    .local v17, "v":Ljava/lang/Object;, "TT;"
+    sget-object v25, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
+
+    move-object/from16 v0, v25
+
+    if-eq v11, v0, :cond_81
+
+    .line 228
+    check-cast v11, Ljava/lang/Throwable;
+
+    .end local v11    # "localTerminal":Ljava/lang/Object;
+    invoke-virtual {v4, v11}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+
+    goto :goto_43
+
+    .line 225
+    .end local v5    # "empty":Z
+    .restart local v11    # "localTerminal":Ljava/lang/Object;
+    :cond_7f
+    const/4 v5, 0x0
+
+    goto :goto_71
+
+    .line 231
+    .restart local v5    # "empty":Z
+    :cond_81
+    if-eqz v5, :cond_87
+
+    .line 232
+    invoke-virtual {v4}, Lrx/Subscriber;->onCompleted()V
+
+    goto :goto_43
+
+    .line 236
+    :cond_87
+    const-wide/16 v6, 0x0
+
+    .line 237
+    .local v6, "e":J
+    if-eqz v15, :cond_bf
+
+    .line 238
+    invoke-interface {v15}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v9
+
+    .local v9, "i$":Ljava/util/Iterator;
+    :goto_8f
+    invoke-interface {v9}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v25
+
+    if-eqz v25, :cond_b4
+
+    invoke-interface {v9}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v24
+
+    .line 239
+    .local v24, "v":Ljava/lang/Object;, "TT;"
     invoke-virtual {v4}, Lrx/Subscriber;->isUnsubscribed()Z
 
-    move-result v22
+    move-result v25
 
-    if-nez v22, :cond_2c
+    if-nez v25, :cond_43
 
-    .line 230
+    .line 242
     move-object/from16 v0, p0
 
     iget-boolean v0, v0, Lrx/internal/producers/ProducerObserverArbiter;->hasError:Z
 
-    move/from16 v22, v0
+    move/from16 v25, v0
 
-    if-nez v22, :cond_4
+    if-nez v25, :cond_8
 
-    .line 234
-    :try_start_90
-    move-object/from16 v0, v17
+    .line 246
+    :try_start_a7
+    move-object/from16 v0, v24
 
     invoke-virtual {v4, v0}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
-    :try_end_95
-    .catch Ljava/lang/Throwable; {:try_start_90 .. :try_end_95} :catch_96
+    :try_end_ac
+    .catch Ljava/lang/Throwable; {:try_start_a7 .. :try_end_ac} :catch_ad
 
-    goto :goto_78
+    goto :goto_8f
 
-    .line 235
-    :catch_96
+    .line 247
+    :catch_ad
     move-exception v8
 
-    .line 236
+    .line 248
     .local v8, "ex":Ljava/lang/Throwable;
-    invoke-static {v8}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+    move-object/from16 v0, v24
 
-    .line 237
-    move-object/from16 v0, v17
+    invoke-static {v8, v4, v0}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
-    invoke-static {v8, v0}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
+    goto :goto_43
 
-    move-result-object v9
-
-    .line 238
-    .local v9, "ex1":Ljava/lang/Throwable;
-    invoke-virtual {v4, v9}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-
-    goto :goto_2c
-
-    .line 242
+    .line 252
     .end local v8    # "ex":Ljava/lang/Throwable;
-    .end local v9    # "ex1":Ljava/lang/Throwable;
-    .end local v17    # "v":Ljava/lang/Object;, "TT;"
-    :cond_a4
-    invoke-interface/range {v16 .. v16}, Ljava/util/List;->size()I
+    .end local v24    # "v":Ljava/lang/Object;, "TT;"
+    :cond_b4
+    invoke-interface {v15}, Ljava/util/List;->size()I
 
-    move-result v22
+    move-result v25
 
-    move/from16 v0, v22
+    move/from16 v0, v25
 
     int-to-long v0, v0
 
-    move-wide/from16 v22, v0
+    move-wide/from16 v26, v0
 
-    add-long v6, v6, v22
+    add-long v6, v6, v26
 
-    .line 244
-    .end local v10    # "i$":Ljava/util/Iterator;
-    :cond_af
+    .line 254
+    .end local v9    # "i$":Ljava/util/Iterator;
+    :cond_bf
     move-object/from16 v0, p0
 
     iget-wide v0, v0, Lrx/internal/producers/ProducerObserverArbiter;->requested:J
 
     move-wide/from16 v18, v0
 
-    .line 246
-    .local v18, "r":J
-    const-wide v22, 0x7fffffffffffffffL
-
-    cmp-long v22, v18, v22
-
-    if-eqz v22, :cond_fa
-
-    .line 248
-    const-wide/16 v22, 0x0
-
-    cmp-long v22, v12, v22
-
-    if-eqz v22, :cond_d3
-
-    .line 249
-    add-long v20, v18, v12
-
-    .line 250
-    .local v20, "u":J
-    const-wide/16 v22, 0x0
-
-    cmp-long v22, v20, v22
-
-    if-gez v22, :cond_d1
-
-    .line 251
-    const-wide v20, 0x7fffffffffffffffL
-
-    .line 253
-    :cond_d1
-    move-wide/from16 v18, v20
-
     .line 256
-    .end local v20    # "u":J
-    :cond_d3
-    const-wide/16 v22, 0x0
+    .local v18, "r":J
+    const-wide v26, 0x7fffffffffffffffL
 
-    cmp-long v22, v6, v22
+    cmp-long v25, v18, v26
 
-    if-eqz v22, :cond_f4
-
-    const-wide v22, 0x7fffffffffffffffL
-
-    cmp-long v22, v18, v22
-
-    if-eqz v22, :cond_f4
-
-    .line 257
-    sub-long v20, v18, v6
+    if-eqz v25, :cond_10a
 
     .line 258
-    .restart local v20    # "u":J
-    const-wide/16 v22, 0x0
+    const-wide/16 v26, 0x0
 
-    cmp-long v22, v20, v22
+    cmp-long v25, v12, v26
 
-    if-gez v22, :cond_f2
+    if-eqz v25, :cond_e3
 
     .line 259
-    new-instance v22, Ljava/lang/IllegalStateException;
+    add-long v22, v18, v12
 
-    const-string v23, "More produced than requested"
+    .line 260
+    .local v22, "u":J
+    const-wide/16 v26, 0x0
 
-    invoke-direct/range {v22 .. v23}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+    cmp-long v25, v22, v26
 
-    throw v22
+    if-gez v25, :cond_e1
 
     .line 261
-    :cond_f2
-    move-wide/from16 v18, v20
+    const-wide v22, 0x7fffffffffffffffL
 
     .line 263
-    .end local v20    # "u":J
-    :cond_f4
+    :cond_e1
+    move-wide/from16 v18, v22
+
+    .line 266
+    .end local v22    # "u":J
+    :cond_e3
+    const-wide/16 v26, 0x0
+
+    cmp-long v25, v6, v26
+
+    if-eqz v25, :cond_104
+
+    const-wide v26, 0x7fffffffffffffffL
+
+    cmp-long v25, v18, v26
+
+    if-eqz v25, :cond_104
+
+    .line 267
+    sub-long v22, v18, v6
+
+    .line 268
+    .restart local v22    # "u":J
+    const-wide/16 v26, 0x0
+
+    cmp-long v25, v22, v26
+
+    if-gez v25, :cond_102
+
+    .line 269
+    new-instance v25, Ljava/lang/IllegalStateException;
+
+    const-string v26, "More produced than requested"
+
+    invoke-direct/range {v25 .. v26}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw v25
+
+    .line 271
+    :cond_102
+    move-wide/from16 v18, v22
+
+    .line 273
+    .end local v22    # "u":J
+    :cond_104
     move-wide/from16 v0, v18
 
     move-object/from16 v2, p0
 
     iput-wide v0, v2, Lrx/internal/producers/ProducerObserverArbiter;->requested:J
 
-    .line 265
-    :cond_fa
-    if-eqz v11, :cond_11d
+    .line 275
+    :cond_10a
+    if-eqz v10, :cond_132
 
-    .line 266
-    sget-object v22, Lrx/internal/producers/ProducerObserverArbiter;->NULL_PRODUCER:Lrx/Producer;
+    .line 276
+    sget-object v25, Lrx/internal/producers/ProducerObserverArbiter;->NULL_PRODUCER:Lrx/Producer;
 
-    move-object/from16 v0, v22
+    move-object/from16 v0, v25
 
-    if-ne v11, v0, :cond_10c
+    if-ne v10, v0, :cond_11c
 
-    .line 267
-    const/16 v22, 0x0
+    .line 277
+    const/16 v25, 0x0
 
-    move-object/from16 v0, v22
+    move-object/from16 v0, v25
 
     move-object/from16 v1, p0
 
     iput-object v0, v1, Lrx/internal/producers/ProducerObserverArbiter;->currentProducer:Lrx/Producer;
 
-    goto/16 :goto_4
+    goto/16 :goto_8
 
-    .line 269
-    :cond_10c
+    .line 279
+    :cond_11c
     move-object/from16 v0, p0
 
-    iput-object v11, v0, Lrx/internal/producers/ProducerObserverArbiter;->currentProducer:Lrx/Producer;
+    iput-object v10, v0, Lrx/internal/producers/ProducerObserverArbiter;->currentProducer:Lrx/Producer;
 
-    .line 270
-    const-wide/16 v22, 0x0
+    .line 280
+    const-wide/16 v26, 0x0
 
-    cmp-long v22, v18, v22
+    cmp-long v25, v18, v26
 
-    if-eqz v22, :cond_4
+    if-eqz v25, :cond_8
 
-    .line 271
-    move-wide/from16 v0, v18
+    .line 281
+    move-wide/from16 v0, v20
 
-    invoke-interface {v11, v0, v1}, Lrx/Producer;->request(J)V
+    move-wide/from16 v2, v18
 
-    goto/16 :goto_4
+    invoke-static {v0, v1, v2, v3}, Lrx/internal/operators/BackpressureUtils;->addCap(JJ)J
 
-    .line 275
-    :cond_11d
+    move-result-wide v20
+
+    .line 282
+    move-object/from16 v17, v10
+
+    goto/16 :goto_8
+
+    .line 286
+    :cond_132
     move-object/from16 v0, p0
 
-    iget-object v15, v0, Lrx/internal/producers/ProducerObserverArbiter;->currentProducer:Lrx/Producer;
+    iget-object v14, v0, Lrx/internal/producers/ProducerObserverArbiter;->currentProducer:Lrx/Producer;
 
-    .line 276
-    .local v15, "p":Lrx/Producer;
-    if-eqz v15, :cond_4
+    .line 287
+    .local v14, "p":Lrx/Producer;
+    if-eqz v14, :cond_8
 
-    const-wide/16 v22, 0x0
+    const-wide/16 v26, 0x0
 
-    cmp-long v22, v12, v22
+    cmp-long v25, v12, v26
 
-    if-eqz v22, :cond_4
+    if-eqz v25, :cond_8
 
-    .line 277
-    invoke-interface {v15, v12, v13}, Lrx/Producer;->request(J)V
+    .line 288
+    move-wide/from16 v0, v20
 
-    goto/16 :goto_4
+    invoke-static {v0, v1, v12, v13}, Lrx/internal/operators/BackpressureUtils;->addCap(JJ)J
+
+    move-result-wide v20
+
+    .line 289
+    move-object/from16 v17, v14
+
+    goto/16 :goto_8
 .end method
 
 .method public onCompleted()V
     .registers 2
 
     .prologue
-    .line 113
+    .line 114
     .local p0, "this":Lrx/internal/producers/ProducerObserverArbiter;, "Lrx/internal/producers/ProducerObserverArbiter<TT;>;"
     monitor-enter p0
 
-    .line 114
+    .line 115
     :try_start_1
     iget-boolean v0, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
 
     if-eqz v0, :cond_e
 
-    .line 115
+    .line 116
     const/4 v0, 0x1
 
     invoke-static {v0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -550,32 +589,32 @@
 
     iput-object v0, p0, Lrx/internal/producers/ProducerObserverArbiter;->missedTerminal:Ljava/lang/Object;
 
-    .line 116
+    .line 117
     monitor-exit p0
 
-    .line 121
+    .line 122
     :goto_d
     return-void
 
-    .line 118
+    .line 119
     :cond_e
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
 
-    .line 119
+    .line 120
     monitor-exit p0
     :try_end_12
     .catchall {:try_start_1 .. :try_end_12} :catchall_18
 
-    .line 120
+    .line 121
     iget-object v0, p0, Lrx/internal/producers/ProducerObserverArbiter;->child:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
     goto :goto_d
 
-    .line 119
+    .line 120
     :catchall_18
     move-exception v0
 
@@ -595,41 +634,41 @@
     .local p0, "this":Lrx/internal/producers/ProducerObserverArbiter;, "Lrx/internal/producers/ProducerObserverArbiter<TT;>;"
     const/4 v2, 0x1
 
-    .line 95
+    .line 96
     monitor-enter p0
 
-    .line 96
+    .line 97
     :try_start_2
     iget-boolean v1, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
 
     if-eqz v1, :cond_12
 
-    .line 97
+    .line 98
     iput-object p1, p0, Lrx/internal/producers/ProducerObserverArbiter;->missedTerminal:Ljava/lang/Object;
 
-    .line 98
+    .line 99
     const/4 v0, 0x0
 
-    .line 103
+    .line 104
     .local v0, "emit":Z
     :goto_9
     monitor-exit p0
     :try_end_a
     .catchall {:try_start_2 .. :try_end_a} :catchall_17
 
-    .line 104
+    .line 105
     if-eqz v0, :cond_1a
 
-    .line 105
+    .line 106
     iget-object v1, p0, Lrx/internal/producers/ProducerObserverArbiter;->child:Lrx/Subscriber;
 
     invoke-virtual {v1, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 109
+    .line 110
     :goto_11
     return-void
 
-    .line 100
+    .line 101
     .end local v0    # "emit":Z
     :cond_12
     const/4 v1, 0x1
@@ -637,13 +676,13 @@
     :try_start_13
     iput-boolean v1, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
 
-    .line 101
+    .line 102
     const/4 v0, 0x1
 
     .restart local v0    # "emit":Z
     goto :goto_9
 
-    .line 103
+    .line 104
     .end local v0    # "emit":Z
     :catchall_17
     move-exception v1
@@ -654,7 +693,7 @@
 
     throw v1
 
-    .line 107
+    .line 108
     .restart local v0    # "emit":Z
     :cond_1a
     iput-boolean v2, p0, Lrx/internal/producers/ProducerObserverArbiter;->hasError:Z
@@ -671,25 +710,25 @@
     .end annotation
 
     .prologue
-    .line 61
+    .line 62
     .local p0, "this":Lrx/internal/producers/ProducerObserverArbiter;, "Lrx/internal/producers/ProducerObserverArbiter<TT;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     monitor-enter p0
 
-    .line 62
+    .line 63
     :try_start_1
     iget-boolean v4, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
 
     if-eqz v4, :cond_16
 
-    .line 63
+    .line 64
     iget-object v0, p0, Lrx/internal/producers/ProducerObserverArbiter;->queue:Ljava/util/List;
 
-    .line 64
+    .line 65
     .local v0, "q":Ljava/util/List;, "Ljava/util/List<TT;>;"
     if-nez v0, :cond_11
 
-    .line 65
+    .line 66
     new-instance v0, Ljava/util/ArrayList;
 
     .end local v0    # "q":Ljava/util/List;, "Ljava/util/List<TT;>;"
@@ -697,43 +736,43 @@
 
     invoke-direct {v0, v4}, Ljava/util/ArrayList;-><init>(I)V
 
-    .line 66
+    .line 67
     .restart local v0    # "q":Ljava/util/List;, "Ljava/util/List<TT;>;"
     iput-object v0, p0, Lrx/internal/producers/ProducerObserverArbiter;->queue:Ljava/util/List;
 
-    .line 68
+    .line 69
     :cond_11
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 69
+    .line 70
     monitor-exit p0
 
-    .line 90
+    .line 91
     .end local v0    # "q":Ljava/util/List;, "Ljava/util/List<TT;>;"
     :cond_15
     :goto_15
     return-void
 
-    .line 71
+    .line 72
     :cond_16
     monitor-exit p0
     :try_end_17
     .catchall {:try_start_1 .. :try_end_17} :catchall_3d
 
-    .line 72
+    .line 73
     const/4 v1, 0x0
 
-    .line 74
+    .line 75
     .local v1, "skipFinal":Z
     :try_start_18
     iget-object v4, p0, Lrx/internal/producers/ProducerObserverArbiter;->child:Lrx/Subscriber;
 
     invoke-virtual {v4, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    .line 76
+    .line 77
     iget-wide v2, p0, Lrx/internal/producers/ProducerObserverArbiter;->requested:J
 
-    .line 77
+    .line 78
     .local v2, "r":J
     const-wide v4, 0x7fffffffffffffffL
 
@@ -741,35 +780,35 @@
 
     if-eqz v4, :cond_2e
 
-    .line 78
+    .line 79
     const-wide/16 v4, 0x1
 
     sub-long v4, v2, v4
 
     iput-wide v4, p0, Lrx/internal/producers/ProducerObserverArbiter;->requested:J
 
-    .line 81
+    .line 82
     :cond_2e
     invoke-virtual {p0}, Lrx/internal/producers/ProducerObserverArbiter;->emitLoop()V
     :try_end_31
     .catchall {:try_start_18 .. :try_end_31} :catchall_40
 
-    .line 82
+    .line 83
     const/4 v1, 0x1
 
-    .line 84
+    .line 85
     if-nez v1, :cond_15
 
-    .line 85
+    .line 86
     monitor-enter p0
 
-    .line 86
+    .line 87
     const/4 v4, 0x0
 
     :try_start_36
     iput-boolean v4, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
 
-    .line 87
+    .line 88
     monitor-exit p0
 
     goto :goto_15
@@ -783,7 +822,7 @@
 
     throw v4
 
-    .line 71
+    .line 72
     .end local v1    # "skipFinal":Z
     .end local v2    # "r":J
     :catchall_3d
@@ -796,23 +835,23 @@
 
     throw v4
 
-    .line 84
+    .line 85
     .restart local v1    # "skipFinal":Z
     :catchall_40
     move-exception v4
 
     if-nez v1, :cond_48
 
-    .line 85
+    .line 86
     monitor-enter p0
 
-    .line 86
+    .line 87
     const/4 v5, 0x0
 
     :try_start_45
     iput-boolean v5, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
 
-    .line 87
+    .line 88
     monitor-exit p0
     :try_end_48
     .catchall {:try_start_45 .. :try_end_48} :catchall_49
@@ -839,12 +878,12 @@
     .local p0, "this":Lrx/internal/producers/ProducerObserverArbiter;, "Lrx/internal/producers/ProducerObserverArbiter<TT;>;"
     const-wide/16 v8, 0x0
 
-    .line 125
+    .line 126
     cmp-long v6, p1, v8
 
     if-gez v6, :cond_e
 
-    .line 126
+    .line 127
     new-instance v6, Ljava/lang/IllegalArgumentException;
 
     const-string v7, "n >= 0 required"
@@ -853,7 +892,7 @@
 
     throw v6
 
-    .line 128
+    .line 129
     :cond_e
     cmp-long v6, p1, v8
 
@@ -864,29 +903,29 @@
     :goto_12
     return-void
 
-    .line 131
+    .line 132
     :cond_13
     monitor-enter p0
 
-    .line 132
+    .line 133
     :try_start_14
     iget-boolean v6, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
 
     if-eqz v6, :cond_22
 
-    .line 133
+    .line 134
     iget-wide v6, p0, Lrx/internal/producers/ProducerObserverArbiter;->missedRequested:J
 
     add-long/2addr v6, p1
 
     iput-wide v6, p0, Lrx/internal/producers/ProducerObserverArbiter;->missedRequested:J
 
-    .line 134
+    .line 135
     monitor-exit p0
 
     goto :goto_12
 
-    .line 137
+    .line 138
     :catchall_1f
     move-exception v6
 
@@ -896,90 +935,93 @@
 
     throw v6
 
-    .line 136
+    .line 137
     :cond_22
     const/4 v6, 0x1
 
     :try_start_23
     iput-boolean v6, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
 
-    .line 137
+    .line 138
     monitor-exit p0
     :try_end_26
     .catchall {:try_start_23 .. :try_end_26} :catchall_1f
 
-    .line 138
-    const/4 v1, 0x0
+    .line 139
+    iget-object v0, p0, Lrx/internal/producers/ProducerObserverArbiter;->currentProducer:Lrx/Producer;
 
     .line 140
+    .local v0, "p":Lrx/Producer;
+    const/4 v1, 0x0
+
+    .line 142
     .local v1, "skipFinal":Z
-    :try_start_27
+    :try_start_29
     iget-wide v2, p0, Lrx/internal/producers/ProducerObserverArbiter;->requested:J
 
-    .line 141
+    .line 143
     .local v2, "r":J
     add-long v4, v2, p1
 
-    .line 142
+    .line 144
     .local v4, "u":J
     cmp-long v6, v4, v8
 
-    if-gez v6, :cond_34
-
-    .line 143
-    const-wide v4, 0x7fffffffffffffffL
+    if-gez v6, :cond_36
 
     .line 145
-    :cond_34
-    iput-wide v4, p0, Lrx/internal/producers/ProducerObserverArbiter;->requested:J
+    const-wide v4, 0x7fffffffffffffffL
 
     .line 147
-    iget-object v0, p0, Lrx/internal/producers/ProducerObserverArbiter;->currentProducer:Lrx/Producer;
-
-    .line 148
-    .local v0, "p":Lrx/Producer;
-    if-eqz v0, :cond_3d
+    :cond_36
+    iput-wide v4, p0, Lrx/internal/producers/ProducerObserverArbiter;->requested:J
 
     .line 149
-    invoke-interface {v0, p1, p2}, Lrx/Producer;->request(J)V
-
-    .line 152
-    :cond_3d
     invoke-virtual {p0}, Lrx/internal/producers/ProducerObserverArbiter;->emitLoop()V
-    :try_end_40
-    .catchall {:try_start_27 .. :try_end_40} :catchall_4c
+    :try_end_3b
+    .catchall {:try_start_29 .. :try_end_3b} :catchall_4c
 
-    .line 153
+    .line 150
     const/4 v1, 0x1
 
-    .line 155
-    if-nez v1, :cond_12
+    .line 152
+    if-nez v1, :cond_43
 
-    .line 156
+    .line 153
     monitor-enter p0
 
-    .line 157
+    .line 154
     const/4 v6, 0x0
 
-    :try_start_45
+    :try_start_40
     iput-boolean v6, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
 
-    .line 158
+    .line 155
     monitor-exit p0
+    :try_end_43
+    .catchall {:try_start_40 .. :try_end_43} :catchall_49
+
+    .line 158
+    :cond_43
+    if-eqz v0, :cond_12
+
+    .line 159
+    invoke-interface {v0, p1, p2}, Lrx/Producer;->request(J)V
 
     goto :goto_12
 
+    .line 155
     :catchall_49
     move-exception v6
 
+    :try_start_4a
     monitor-exit p0
     :try_end_4b
-    .catchall {:try_start_45 .. :try_end_4b} :catchall_49
+    .catchall {:try_start_4a .. :try_end_4b} :catchall_49
 
     throw v6
 
-    .line 155
-    .end local v0    # "p":Lrx/Producer;
+    .line 152
     .end local v2    # "r":J
     .end local v4    # "u":J
     :catchall_4c
@@ -987,16 +1029,16 @@
 
     if-nez v1, :cond_54
 
-    .line 156
+    .line 153
     monitor-enter p0
 
-    .line 157
+    .line 154
     const/4 v7, 0x0
 
     :try_start_51
     iput-boolean v7, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
 
-    .line 158
+    .line 155
     monitor-exit p0
     :try_end_54
     .catchall {:try_start_51 .. :try_end_54} :catchall_55
@@ -1061,71 +1103,78 @@
     .line 170
     monitor-exit p0
     :try_end_12
-    .catchall {:try_start_1 .. :try_end_12} :catchall_31
+    .catchall {:try_start_1 .. :try_end_12} :catchall_2e
 
     .line 171
     const/4 v2, 0x0
 
-    .line 173
+    .line 172
     .local v2, "skipFinal":Z
-    :try_start_13
     iput-object p1, p0, Lrx/internal/producers/ProducerObserverArbiter;->currentProducer:Lrx/Producer;
 
-    .line 174
+    .line 173
     iget-wide v0, p0, Lrx/internal/producers/ProducerObserverArbiter;->requested:J
 
     .line 175
     .local v0, "r":J
-    if-eqz p1, :cond_22
+    :try_start_17
+    invoke-virtual {p0}, Lrx/internal/producers/ProducerObserverArbiter;->emitLoop()V
+    :try_end_1a
+    .catchall {:try_start_17 .. :try_end_1a} :catchall_34
+
+    .line 176
+    const/4 v2, 0x1
+
+    .line 178
+    if-nez v2, :cond_22
+
+    .line 179
+    monitor-enter p0
+
+    .line 180
+    const/4 v3, 0x0
+
+    :try_start_1f
+    iput-boolean v3, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
+
+    .line 181
+    monitor-exit p0
+    :try_end_22
+    .catchall {:try_start_1f .. :try_end_22} :catchall_31
+
+    .line 184
+    :cond_22
+    if-eqz p1, :cond_a
 
     const-wide/16 v4, 0x0
 
     cmp-long v3, v0, v4
 
-    if-eqz v3, :cond_22
+    if-eqz v3, :cond_a
 
-    .line 176
+    .line 185
     invoke-interface {p1, v0, v1}, Lrx/Producer;->request(J)V
 
-    .line 178
-    :cond_22
-    invoke-virtual {p0}, Lrx/internal/producers/ProducerObserverArbiter;->emitLoop()V
-    :try_end_25
-    .catchall {:try_start_13 .. :try_end_25} :catchall_34
-
-    .line 179
-    const/4 v2, 0x1
-
-    .line 181
-    if-nez v2, :cond_a
-
-    .line 182
-    monitor-enter p0
-
-    .line 183
-    const/4 v3, 0x0
-
-    :try_start_2a
-    iput-boolean v3, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
-
-    .line 184
-    monitor-exit p0
-
     goto :goto_a
-
-    :catchall_2e
-    move-exception v3
-
-    monitor-exit p0
-    :try_end_30
-    .catchall {:try_start_2a .. :try_end_30} :catchall_2e
-
-    throw v3
 
     .line 170
     .end local v0    # "r":J
     .end local v2    # "skipFinal":Z
     .end local p1    # "p":Lrx/Producer;
+    :catchall_2e
+    move-exception v3
+
+    :try_start_2f
+    monitor-exit p0
+    :try_end_30
+    .catchall {:try_start_2f .. :try_end_30} :catchall_2e
+
+    throw v3
+
+    .line 181
+    .restart local v0    # "r":J
+    .restart local v2    # "skipFinal":Z
+    .restart local p1    # "p":Lrx/Producer;
     :catchall_31
     move-exception v3
 
@@ -1136,24 +1185,22 @@
 
     throw v3
 
-    .line 181
-    .restart local v2    # "skipFinal":Z
-    .restart local p1    # "p":Lrx/Producer;
+    .line 178
     :catchall_34
     move-exception v3
 
     if-nez v2, :cond_3c
 
-    .line 182
+    .line 179
     monitor-enter p0
 
-    .line 183
+    .line 180
     const/4 v4, 0x0
 
     :try_start_39
     iput-boolean v4, p0, Lrx/internal/producers/ProducerObserverArbiter;->emitting:Z
 
-    .line 184
+    .line 181
     monitor-exit p0
     :try_end_3c
     .catchall {:try_start_39 .. :try_end_3c} :catchall_3d

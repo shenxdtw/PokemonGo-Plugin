@@ -74,7 +74,7 @@
 .end method
 
 .method private static emit(Lrx/Subscriber;Ljava/lang/Object;)V
-    .registers 5
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
@@ -91,11 +91,11 @@
     .local p1, "v":Ljava/lang/Object;, "TT;"
     invoke-virtual {p0}, Lrx/Subscriber;->isUnsubscribed()Z
 
-    move-result v2
+    move-result v1
 
-    if-eqz v2, :cond_7
+    if-eqz v1, :cond_7
 
-    .line 114
+    .line 112
     :cond_6
     :goto_6
     return-void
@@ -107,14 +107,14 @@
     :try_end_a
     .catch Ljava/lang/Throwable; {:try_start_7 .. :try_end_a} :catch_14
 
-    .line 109
+    .line 107
     invoke-virtual {p0}, Lrx/Subscriber;->isUnsubscribed()Z
 
-    move-result v2
+    move-result v1
 
-    if-nez v2, :cond_6
+    if-nez v1, :cond_6
 
-    .line 112
+    .line 110
     invoke-virtual {p0}, Lrx/Subscriber;->onCompleted()V
 
     goto :goto_6
@@ -125,16 +125,7 @@
 
     .line 104
     .local v0, "e":Ljava/lang/Throwable;
-    invoke-static {v0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
-
-    .line 105
-    invoke-static {v0, p1}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
-
-    move-result-object v1
-
-    .line 106
-    .local v1, "e1":Ljava/lang/Throwable;
-    invoke-virtual {p0, v1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, p0, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
     goto :goto_6
 .end method

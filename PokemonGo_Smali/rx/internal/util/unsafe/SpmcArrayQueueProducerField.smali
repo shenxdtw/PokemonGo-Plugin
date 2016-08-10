@@ -25,43 +25,21 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 4
+    .registers 2
 
     .prologue
-    .line 34
-    :try_start_0
-    sget-object v1, Lrx/internal/util/unsafe/UnsafeAccess;->UNSAFE:Lsun/misc/Unsafe;
+    .line 31
+    const-class v0, Lrx/internal/util/unsafe/SpmcArrayQueueProducerField;
 
-    const-class v2, Lrx/internal/util/unsafe/SpmcArrayQueueProducerField;
+    const-string v1, "producerIndex"
 
-    const-string v3, "producerIndex"
+    invoke-static {v0, v1}, Lrx/internal/util/unsafe/UnsafeAccess;->addressOf(Ljava/lang/Class;Ljava/lang/String;)J
 
-    invoke-virtual {v2, v3}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+    move-result-wide v0
 
-    move-result-object v2
+    sput-wide v0, Lrx/internal/util/unsafe/SpmcArrayQueueProducerField;->P_INDEX_OFFSET:J
 
-    invoke-virtual {v1, v2}, Lsun/misc/Unsafe;->objectFieldOffset(Ljava/lang/reflect/Field;)J
-
-    move-result-wide v2
-
-    sput-wide v2, Lrx/internal/util/unsafe/SpmcArrayQueueProducerField;->P_INDEX_OFFSET:J
-    :try_end_10
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_10} :catch_11
-
-    .line 39
     return-void
-
-    .line 36
-    :catch_11
-    move-exception v0
-
-    .line 37
-    .local v0, "e":Ljava/lang/NoSuchFieldException;
-    new-instance v1, Ljava/lang/RuntimeException;
-
-    invoke-direct {v1, v0}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/Throwable;)V
-
-    throw v1
 .end method
 
 .method public constructor <init>(I)V
@@ -69,11 +47,11 @@
     .param p1, "capacity"    # I
 
     .prologue
-    .line 51
+    .line 43
     .local p0, "this":Lrx/internal/util/unsafe/SpmcArrayQueueProducerField;, "Lrx/internal/util/unsafe/SpmcArrayQueueProducerField<TE;>;"
     invoke-direct {p0, p1}, Lrx/internal/util/unsafe/SpmcArrayQueueL1Pad;-><init>(I)V
 
-    .line 52
+    .line 44
     return-void
 .end method
 
@@ -83,7 +61,7 @@
     .registers 3
 
     .prologue
-    .line 43
+    .line 35
     .local p0, "this":Lrx/internal/util/unsafe/SpmcArrayQueueProducerField;, "Lrx/internal/util/unsafe/SpmcArrayQueueProducerField<TE;>;"
     iget-wide v0, p0, Lrx/internal/util/unsafe/SpmcArrayQueueProducerField;->producerIndex:J
 
@@ -95,7 +73,7 @@
     .param p1, "v"    # J
 
     .prologue
-    .line 47
+    .line 39
     .local p0, "this":Lrx/internal/util/unsafe/SpmcArrayQueueProducerField;, "Lrx/internal/util/unsafe/SpmcArrayQueueProducerField<TE;>;"
     sget-object v0, Lrx/internal/util/unsafe/UnsafeAccess;->UNSAFE:Lsun/misc/Unsafe;
 
@@ -107,6 +85,6 @@
 
     invoke-virtual/range {v0 .. v5}, Lsun/misc/Unsafe;->putOrderedLong(Ljava/lang/Object;JJ)V
 
-    .line 48
+    .line 40
     return-void
 .end method

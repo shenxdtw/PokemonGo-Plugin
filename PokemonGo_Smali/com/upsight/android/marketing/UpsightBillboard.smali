@@ -8,7 +8,8 @@
     value = {
         Lcom/upsight/android/marketing/UpsightBillboard$Handler;,
         Lcom/upsight/android/marketing/UpsightBillboard$Dimensions;,
-        Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;
+        Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;,
+        Lcom/upsight/android/marketing/UpsightBillboard$AttachParameters;
     }
 .end annotation
 
@@ -18,10 +19,9 @@
     .registers 1
 
     .prologue
-    .line 19
+    .line 18
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 112
     return-void
 .end method
 
@@ -38,7 +38,7 @@
     .end annotation
 
     .prologue
-    .line 39
+    .line 38
     invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v1
@@ -47,7 +47,7 @@
 
     if-eqz p2, :cond_10
 
-    .line 40
+    .line 39
     new-instance v1, Ljava/lang/IllegalArgumentException;
 
     const-string v2, "The billboard scope and handler must be non-null and non-empty."
@@ -56,17 +56,17 @@
 
     throw v1
 
-    .line 42
+    .line 41
     :cond_10
     new-instance v0, Lcom/upsight/android/marketing/internal/billboard/Billboard;
 
     invoke-direct {v0, p1, p2}, Lcom/upsight/android/marketing/internal/billboard/Billboard;-><init>(Ljava/lang/String;Lcom/upsight/android/marketing/UpsightBillboard$Handler;)V
 
-    .line 43
+    .line 42
     .local v0, "billboard":Lcom/upsight/android/marketing/UpsightBillboard;
     invoke-virtual {v0, p0}, Lcom/upsight/android/marketing/UpsightBillboard;->setUp(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/marketing/UpsightBillboard;
 
-    .line 44
+    .line 43
     return-object v0
 .end method
 

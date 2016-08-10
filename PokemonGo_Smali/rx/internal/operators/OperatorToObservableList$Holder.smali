@@ -29,15 +29,13 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .registers 1
 
     .prologue
-    .line 42
+    .line 43
     new-instance v0, Lrx/internal/operators/OperatorToObservableList;
 
-    const/4 v1, 0x0
-
-    invoke-direct {v0, v1}, Lrx/internal/operators/OperatorToObservableList;-><init>(Lrx/internal/operators/OperatorToObservableList$1;)V
+    invoke-direct {v0}, Lrx/internal/operators/OperatorToObservableList;-><init>()V
 
     sput-object v0, Lrx/internal/operators/OperatorToObservableList$Holder;->INSTANCE:Lrx/internal/operators/OperatorToObservableList;
 
@@ -48,7 +46,7 @@
     .registers 1
 
     .prologue
-    .line 40
+    .line 41
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

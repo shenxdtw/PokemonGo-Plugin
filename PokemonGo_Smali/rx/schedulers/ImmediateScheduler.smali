@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/schedulers/ImmediateScheduler$1;,
         Lrx/schedulers/ImmediateScheduler$InnerImmediateScheduler;
     }
 .end annotation
@@ -55,15 +54,13 @@
 
 # virtual methods
 .method public createWorker()Lrx/Scheduler$Worker;
-    .registers 3
+    .registers 2
 
     .prologue
     .line 41
     new-instance v0, Lrx/schedulers/ImmediateScheduler$InnerImmediateScheduler;
 
-    const/4 v1, 0x0
-
-    invoke-direct {v0, p0, v1}, Lrx/schedulers/ImmediateScheduler$InnerImmediateScheduler;-><init>(Lrx/schedulers/ImmediateScheduler;Lrx/schedulers/ImmediateScheduler$1;)V
+    invoke-direct {v0, p0}, Lrx/schedulers/ImmediateScheduler$InnerImmediateScheduler;-><init>(Lrx/schedulers/ImmediateScheduler;)V
 
     return-object v0
 .end method

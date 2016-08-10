@@ -3,12 +3,12 @@
 .source "Observable.java"
 
 # interfaces
-.implements Lrx/functions/Func0;
+.implements Lrx/functions/Func1;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Observable;->replay(Lrx/functions/Func1;JLjava/util/concurrent/TimeUnit;Lrx/Scheduler;)Lrx/Observable;
+    value = Lrx/Observable;->replay(Lrx/functions/Func1;ILrx/Scheduler;)Lrx/Observable;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -19,10 +19,12 @@
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lrx/functions/Func0",
+        "Lrx/functions/Func1",
         "<",
-        "Lrx/subjects/Subject",
-        "<TT;TT;>;>;"
+        "Lrx/Observable",
+        "<TT;>;",
+        "Lrx/Observable",
+        "<TR;>;>;"
     }
 .end annotation
 
@@ -32,25 +34,21 @@
 
 .field final synthetic val$scheduler:Lrx/Scheduler;
 
-.field final synthetic val$time:J
-
-.field final synthetic val$unit:Ljava/util/concurrent/TimeUnit;
+.field final synthetic val$selector:Lrx/functions/Func1;
 
 
 # direct methods
-.method constructor <init>(Lrx/Observable;JLjava/util/concurrent/TimeUnit;Lrx/Scheduler;)V
-    .registers 6
+.method constructor <init>(Lrx/Observable;Lrx/functions/Func1;Lrx/Scheduler;)V
+    .registers 4
 
     .prologue
-    .line 6258
+    .line 7238
     .local p0, "this":Lrx/Observable$20;, "Lrx/Observable.20;"
     iput-object p1, p0, Lrx/Observable$20;->this$0:Lrx/Observable;
 
-    iput-wide p2, p0, Lrx/Observable$20;->val$time:J
+    iput-object p2, p0, Lrx/Observable$20;->val$selector:Lrx/functions/Func1;
 
-    iput-object p4, p0, Lrx/Observable$20;->val$unit:Ljava/util/concurrent/TimeUnit;
-
-    iput-object p5, p0, Lrx/Observable$20;->val$scheduler:Lrx/Scheduler;
+    iput-object p3, p0, Lrx/Observable$20;->val$scheduler:Lrx/Scheduler;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -59,39 +57,50 @@
 
 
 # virtual methods
-.method public bridge synthetic call()Ljava/lang/Object;
-    .registers 2
+.method public bridge synthetic call(Ljava/lang/Object;)Ljava/lang/Object;
+    .registers 3
+    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 6258
+    .line 7238
     .local p0, "this":Lrx/Observable$20;, "Lrx/Observable.20;"
-    invoke-virtual {p0}, Lrx/Observable$20;->call()Lrx/subjects/Subject;
+    check-cast p1, Lrx/Observable;
+
+    .end local p1    # "x0":Ljava/lang/Object;
+    invoke-virtual {p0, p1}, Lrx/Observable$20;->call(Lrx/Observable;)Lrx/Observable;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public final call()Lrx/subjects/Subject;
-    .registers 5
+.method public call(Lrx/Observable;)Lrx/Observable;
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "()",
-            "Lrx/subjects/Subject",
-            "<TT;TT;>;"
+            "(",
+            "Lrx/Observable",
+            "<TT;>;)",
+            "Lrx/Observable",
+            "<TR;>;"
         }
     .end annotation
 
     .prologue
-    .line 6261
+    .line 7241
     .local p0, "this":Lrx/Observable$20;, "Lrx/Observable.20;"
-    iget-wide v0, p0, Lrx/Observable$20;->val$time:J
+    .local p1, "t":Lrx/Observable;, "Lrx/Observable<TT;>;"
+    iget-object v0, p0, Lrx/Observable$20;->val$selector:Lrx/functions/Func1;
 
-    iget-object v2, p0, Lrx/Observable$20;->val$unit:Ljava/util/concurrent/TimeUnit;
+    invoke-interface {v0, p1}, Lrx/functions/Func1;->call(Ljava/lang/Object;)Ljava/lang/Object;
 
-    iget-object v3, p0, Lrx/Observable$20;->val$scheduler:Lrx/Scheduler;
+    move-result-object v0
 
-    invoke-static {v0, v1, v2, v3}, Lrx/subjects/ReplaySubject;->createWithTime(JLjava/util/concurrent/TimeUnit;Lrx/Scheduler;)Lrx/subjects/ReplaySubject;
+    check-cast v0, Lrx/Observable;
+
+    iget-object v1, p0, Lrx/Observable$20;->val$scheduler:Lrx/Scheduler;
+
+    invoke-virtual {v0, v1}, Lrx/Observable;->observeOn(Lrx/Scheduler;)Lrx/Observable;
 
     move-result-object v0
 

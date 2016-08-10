@@ -25,17 +25,12 @@
 .end field
 
 .field latitude:D
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 .end field
 
 .field longitude:D
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
-    .end annotation
-.end field
-
-.field timeZone:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 .end field
 
@@ -45,75 +40,44 @@
     .registers 1
 
     .prologue
-    .line 106
+    .line 85
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 108
+    .line 87
     return-void
 .end method
 
-.method private constructor <init>(DDLjava/lang/String;)V
-    .registers 7
+.method private constructor <init>(DD)V
+    .registers 6
     .param p1, "latitude"    # D
     .param p3, "longitude"    # D
-    .param p5, "timeZone"    # Ljava/lang/String;
 
     .prologue
-    .line 100
+    .line 80
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 101
+    .line 81
     iput-wide p1, p0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->latitude:D
 
-    .line 102
+    .line 82
     iput-wide p3, p0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->longitude:D
 
-    .line 103
-    iput-object p5, p0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->timeZone:Ljava/lang/String;
-
-    .line 104
+    .line 83
     return-void
 .end method
 
 .method public static create(DD)Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
-    .registers 12
+    .registers 6
     .param p0, "latitude"    # D
     .param p2, "longitude"    # D
 
     .prologue
-    .line 95
-    new-instance v1, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
+    .line 77
+    new-instance v0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
 
-    const/4 v6, 0x0
+    invoke-direct {v0, p0, p1, p2, p3}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;-><init>(DD)V
 
-    move-wide v2, p0
-
-    move-wide v4, p2
-
-    invoke-direct/range {v1 .. v6}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;-><init>(DDLjava/lang/String;)V
-
-    return-object v1
-.end method
-
-.method public static create(DDLjava/lang/String;)Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
-    .registers 13
-    .param p0, "latitude"    # D
-    .param p2, "longitude"    # D
-    .param p4, "timeZone"    # Ljava/lang/String;
-
-    .prologue
-    .line 85
-    new-instance v1, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
-
-    move-wide v2, p0
-
-    move-wide v4, p2
-
-    move-object v6, p4
-
-    invoke-direct/range {v1 .. v6}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;-><init>(DDLjava/lang/String;)V
-
-    return-object v1
+    return-object v0
 .end method
 
 
@@ -127,15 +91,15 @@
 
     const/4 v2, 0x0
 
-    .line 170
+    .line 127
     if-ne p0, p1, :cond_5
 
-    .line 184
+    .line 141
     :cond_4
     :goto_4
     return v1
 
-    .line 174
+    .line 131
     :cond_5
     if-eqz p1, :cond_11
 
@@ -152,16 +116,16 @@
     :cond_11
     move v1, v2
 
-    .line 175
+    .line 132
     goto :goto_4
 
     :cond_13
     move-object v0, p1
 
-    .line 178
+    .line 135
     check-cast v0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
 
-    .line 180
+    .line 137
     .local v0, "that":Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
     iget-object v3, p0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->id:Ljava/lang/String;
 
@@ -180,10 +144,10 @@
     :goto_24
     move v1, v2
 
-    .line 181
+    .line 138
     goto :goto_4
 
-    .line 180
+    .line 137
     :cond_26
     iget-object v3, v0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->id:Ljava/lang/String;
 
@@ -196,7 +160,7 @@
     .registers 3
 
     .prologue
-    .line 116
+    .line 95
     iget-wide v0, p0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->latitude:D
 
     return-wide v0
@@ -206,27 +170,17 @@
     .registers 3
 
     .prologue
-    .line 125
+    .line 104
     iget-wide v0, p0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->longitude:D
 
     return-wide v0
-.end method
-
-.method public getTimeZone()Ljava/lang/String;
-    .registers 2
-
-    .prologue
-    .line 134
-    iget-object v0, p0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->timeZone:Ljava/lang/String;
-
-    return-object v0
 .end method
 
 .method public hashCode()I
     .registers 2
 
     .prologue
-    .line 189
+    .line 146
     iget-object v0, p0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->id:Ljava/lang/String;
 
     if-eqz v0, :cond_b
@@ -251,10 +205,10 @@
     .param p1, "latitude"    # D
 
     .prologue
-    .line 143
+    .line 113
     iput-wide p1, p0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->latitude:D
 
-    .line 144
+    .line 114
     return-void
 .end method
 
@@ -263,21 +217,9 @@
     .param p1, "longitude"    # D
 
     .prologue
-    .line 152
+    .line 122
     iput-wide p1, p0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->longitude:D
 
-    .line 153
-    return-void
-.end method
-
-.method public setTimeZone(Ljava/lang/String;)V
-    .registers 2
-    .param p1, "timeZone"    # Ljava/lang/String;
-
-    .prologue
-    .line 165
-    iput-object p1, p0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->timeZone:Ljava/lang/String;
-
-    .line 166
+    .line 123
     return-void
 .end method

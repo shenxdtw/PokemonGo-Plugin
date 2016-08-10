@@ -68,27 +68,27 @@
     .end annotation
 
     .prologue
-    .line 100
+    .line 101
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;, "Lrx/internal/operators/OperatorBufferWithTime<TT;>.InexactSubscriber;"
     .local p2, "child":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/util/List<TT;>;>;"
     iput-object p1, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->this$0:Lrx/internal/operators/OperatorBufferWithTime;
 
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
-    .line 101
+    .line 102
     iput-object p2, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->child:Lrx/Subscriber;
 
-    .line 102
+    .line 103
     iput-object p3, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->inner:Lrx/Scheduler$Worker;
 
-    .line 103
+    .line 104
     new-instance v0, Ljava/util/LinkedList;
 
     invoke-direct {v0}, Ljava/util/LinkedList;-><init>()V
 
     iput-object v0, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->chunks:Ljava/util/List;
 
-    .line 104
+    .line 105
     return-void
 .end method
 
@@ -105,30 +105,30 @@
     .end annotation
 
     .prologue
-    .line 192
+    .line 193
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;, "Lrx/internal/operators/OperatorBufferWithTime<TT;>.InexactSubscriber;"
     .local p1, "chunkToEmit":Ljava/util/List;, "Ljava/util/List<TT;>;"
     const/4 v1, 0x0
 
-    .line 193
+    .line 194
     .local v1, "emit":Z
     monitor-enter p0
 
-    .line 194
+    .line 195
     :try_start_2
     iget-boolean v4, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->done:Z
 
     if-eqz v4, :cond_8
 
-    .line 195
+    .line 196
     monitor-exit p0
 
-    .line 214
+    .line 215
     :cond_7
     :goto_7
     return-void
 
-    .line 197
+    .line 198
     :cond_8
     iget-object v4, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->chunks:Ljava/util/List;
 
@@ -136,7 +136,7 @@
 
     move-result-object v2
 
-    .line 198
+    .line 199
     .local v2, "it":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/util/List<TT;>;>;"
     :cond_e
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
@@ -145,34 +145,34 @@
 
     if-eqz v4, :cond_20
 
-    .line 199
+    .line 200
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Ljava/util/List;
 
-    .line 200
+    .line 201
     .local v0, "chunk":Ljava/util/List;, "Ljava/util/List<TT;>;"
     if-ne v0, p1, :cond_e
 
-    .line 201
+    .line 202
     invoke-interface {v2}, Ljava/util/Iterator;->remove()V
 
-    .line 202
+    .line 203
     const/4 v1, 0x1
 
-    .line 206
+    .line 207
     .end local v0    # "chunk":Ljava/util/List;, "Ljava/util/List<TT;>;"
     :cond_20
     monitor-exit p0
     :try_end_21
     .catchall {:try_start_2 .. :try_end_21} :catchall_2e
 
-    .line 207
+    .line 208
     if-eqz v1, :cond_7
 
-    .line 209
+    .line 210
     :try_start_23
     iget-object v4, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->child:Lrx/Subscriber;
 
@@ -182,17 +182,17 @@
 
     goto :goto_7
 
-    .line 210
+    .line 211
     :catch_29
     move-exception v3
 
-    .line 211
+    .line 212
     .local v3, "t":Ljava/lang/Throwable;
-    invoke-virtual {p0, v3}, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v3, p0}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     goto :goto_7
 
-    .line 206
+    .line 207
     .end local v2    # "it":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/util/List<TT;>;>;"
     .end local v3    # "t":Ljava/lang/Throwable;
     :catchall_2e
@@ -210,51 +210,51 @@
     .registers 6
 
     .prologue
-    .line 150
+    .line 151
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;, "Lrx/internal/operators/OperatorBufferWithTime<TT;>.InexactSubscriber;"
     :try_start_0
     monitor-enter p0
     :try_end_1
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_1} :catch_2d
 
-    .line 151
+    .line 152
     :try_start_1
     iget-boolean v4, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->done:Z
 
     if-eqz v4, :cond_7
 
-    .line 152
+    .line 153
     monitor-exit p0
 
-    .line 167
+    .line 168
     :goto_6
     return-void
 
-    .line 154
+    .line 155
     :cond_7
     const/4 v4, 0x1
 
     iput-boolean v4, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->done:Z
 
-    .line 155
+    .line 156
     new-instance v2, Ljava/util/LinkedList;
 
     iget-object v4, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->chunks:Ljava/util/List;
 
     invoke-direct {v2, v4}, Ljava/util/LinkedList;-><init>(Ljava/util/Collection;)V
 
-    .line 156
+    .line 157
     .local v2, "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     iget-object v4, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->chunks:Ljava/util/List;
 
     invoke-interface {v4}, Ljava/util/List;->clear()V
 
-    .line 157
+    .line 158
     monitor-exit p0
     :try_end_17
     .catchall {:try_start_1 .. :try_end_17} :catchall_34
 
-    .line 158
+    .line 159
     :try_start_17
     invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
@@ -274,7 +274,7 @@
 
     check-cast v0, Ljava/util/List;
 
-    .line 159
+    .line 160
     .local v0, "chunk":Ljava/util/List;, "Ljava/util/List<TT;>;"
     iget-object v4, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->child:Lrx/Subscriber;
 
@@ -284,22 +284,22 @@
 
     goto :goto_1b
 
-    .line 161
+    .line 162
     .end local v0    # "chunk":Ljava/util/List;, "Ljava/util/List<TT;>;"
     .end local v1    # "i$":Ljava/util/Iterator;
     .end local v2    # "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     :catch_2d
     move-exception v3
 
-    .line 162
+    .line 163
     .local v3, "t":Ljava/lang/Throwable;
     iget-object v4, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->child:Lrx/Subscriber;
 
-    invoke-virtual {v4, v3}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v3, v4}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     goto :goto_6
 
-    .line 157
+    .line 158
     .end local v3    # "t":Ljava/lang/Throwable;
     :catchall_34
     move-exception v4
@@ -314,7 +314,7 @@
     :try_end_37
     .catch Ljava/lang/Throwable; {:try_start_36 .. :try_end_37} :catch_2d
 
-    .line 165
+    .line 166
     .restart local v1    # "i$":Ljava/util/Iterator;
     .restart local v2    # "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     :cond_37
@@ -322,7 +322,7 @@
 
     invoke-virtual {v4}, Lrx/Subscriber;->onCompleted()V
 
-    .line 166
+    .line 167
     invoke-virtual {p0}, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->unsubscribe()V
 
     goto :goto_6
@@ -333,50 +333,50 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 135
+    .line 136
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;, "Lrx/internal/operators/OperatorBufferWithTime<TT;>.InexactSubscriber;"
     monitor-enter p0
 
-    .line 136
+    .line 137
     :try_start_1
     iget-boolean v0, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->done:Z
 
     if-eqz v0, :cond_7
 
-    .line 137
+    .line 138
     monitor-exit p0
 
-    .line 144
+    .line 145
     :goto_6
     return-void
 
-    .line 139
+    .line 140
     :cond_7
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->done:Z
 
-    .line 140
+    .line 141
     iget-object v0, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->chunks:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
-    .line 141
+    .line 142
     monitor-exit p0
     :try_end_10
     .catchall {:try_start_1 .. :try_end_10} :catchall_19
 
-    .line 142
+    .line 143
     iget-object v0, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 143
+    .line 144
     invoke-virtual {p0}, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->unsubscribe()V
 
     goto :goto_6
 
-    .line 141
+    .line 142
     :catchall_19
     move-exception v0
 
@@ -397,29 +397,29 @@
     .end annotation
 
     .prologue
-    .line 108
+    .line 109
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;, "Lrx/internal/operators/OperatorBufferWithTime<TT;>.InexactSubscriber;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     const/4 v3, 0x0
 
-    .line 109
+    .line 110
     .local v3, "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     monitor-enter p0
 
-    .line 110
+    .line 111
     :try_start_2
     iget-boolean v5, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->done:Z
 
     if-eqz v5, :cond_8
 
-    .line 111
+    .line 112
     monitor-exit p0
 
-    .line 131
+    .line 132
     :goto_7
     return-void
 
-    .line 113
+    .line 114
     :cond_8
     iget-object v5, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->chunks:Ljava/util/List;
 
@@ -432,7 +432,7 @@
     .local v2, "it":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/util/List<TT;>;>;"
     move-object v4, v3
 
-    .line 114
+    .line 115
     .end local v3    # "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     .local v4, "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     :goto_f
@@ -443,18 +443,18 @@
 
     if-eqz v5, :cond_37
 
-    .line 115
+    .line 116
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Ljava/util/List;
 
-    .line 116
+    .line 117
     .local v0, "chunk":Ljava/util/List;, "Ljava/util/List<TT;>;"
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 117
+    .line 118
     invoke-interface {v0}, Ljava/util/List;->size()I
 
     move-result v5
@@ -465,20 +465,20 @@
 
     if-ne v5, v6, :cond_5a
 
-    .line 118
+    .line 119
     invoke-interface {v2}, Ljava/util/Iterator;->remove()V
 
-    .line 119
+    .line 120
     if-nez v4, :cond_58
 
-    .line 120
+    .line 121
     new-instance v3, Ljava/util/LinkedList;
 
     invoke-direct {v3}, Ljava/util/LinkedList;-><init>()V
     :try_end_32
     .catchall {:try_start_f .. :try_end_32} :catchall_55
 
-    .line 122
+    .line 123
     .end local v4    # "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     .restart local v3    # "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     :goto_32
@@ -490,12 +490,12 @@
     :goto_35
     move-object v4, v3
 
-    .line 124
+    .line 125
     .end local v3    # "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     .restart local v4    # "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     goto :goto_f
 
-    .line 125
+    .line 126
     .end local v0    # "chunk":Ljava/util/List;, "Ljava/util/List<TT;>;"
     :cond_37
     :try_start_37
@@ -503,10 +503,10 @@
     :try_end_38
     .catchall {:try_start_37 .. :try_end_38} :catchall_55
 
-    .line 126
+    .line 127
     if-eqz v4, :cond_53
 
-    .line 127
+    .line 128
     invoke-interface {v4}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v1
@@ -525,7 +525,7 @@
 
     check-cast v0, Ljava/util/List;
 
-    .line 128
+    .line 129
     .restart local v0    # "chunk":Ljava/util/List;, "Ljava/util/List<TT;>;"
     iget-object v5, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->child:Lrx/Subscriber;
 
@@ -533,7 +533,7 @@
 
     goto :goto_3e
 
-    .line 125
+    .line 126
     .end local v0    # "chunk":Ljava/util/List;, "Ljava/util/List<TT;>;"
     .end local v1    # "i$":Ljava/util/Iterator;
     .end local v2    # "it":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/util/List<TT;>;>;"
@@ -556,12 +556,12 @@
     :cond_53
     move-object v3, v4
 
-    .line 131
+    .line 132
     .end local v4    # "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     .restart local v3    # "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     goto :goto_7
 
-    .line 125
+    .line 126
     .end local v3    # "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     .restart local v4    # "sizeReached":Ljava/util/List;, "Ljava/util/List<Ljava/util/List<TT;>;>;"
     :catchall_55
@@ -597,7 +597,7 @@
     .registers 8
 
     .prologue
-    .line 169
+    .line 170
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;, "Lrx/internal/operators/OperatorBufferWithTime<TT;>.InexactSubscriber;"
     iget-object v0, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->inner:Lrx/Scheduler$Worker;
 
@@ -619,7 +619,7 @@
 
     invoke-virtual/range {v0 .. v6}, Lrx/Scheduler$Worker;->schedulePeriodically(Lrx/functions/Action0;JJLjava/util/concurrent/TimeUnit;)Lrx/Subscription;
 
-    .line 175
+    .line 176
     return-void
 .end method
 
@@ -627,41 +627,41 @@
     .registers 7
 
     .prologue
-    .line 177
+    .line 178
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;, "Lrx/internal/operators/OperatorBufferWithTime<TT;>.InexactSubscriber;"
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 178
+    .line 179
     .local v0, "chunk":Ljava/util/List;, "Ljava/util/List<TT;>;"
     monitor-enter p0
 
-    .line 179
+    .line 180
     :try_start_6
     iget-boolean v1, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->done:Z
 
     if-eqz v1, :cond_c
 
-    .line 180
+    .line 181
     monitor-exit p0
 
-    .line 190
+    .line 191
     :goto_b
     return-void
 
-    .line 182
+    .line 183
     :cond_c
     iget-object v1, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->chunks:Ljava/util/List;
 
     invoke-interface {v1, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 183
+    .line 184
     monitor-exit p0
     :try_end_12
     .catchall {:try_start_6 .. :try_end_12} :catchall_25
 
-    .line 184
+    .line 185
     iget-object v1, p0, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->inner:Lrx/Scheduler$Worker;
 
     new-instance v2, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber$2;
@@ -680,7 +680,7 @@
 
     goto :goto_b
 
-    .line 183
+    .line 184
     :catchall_25
     move-exception v1
 

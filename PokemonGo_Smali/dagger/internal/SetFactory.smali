@@ -26,6 +26,19 @@
 
 .field private static final ARGUMENTS_MUST_BE_NON_NULL:Ljava/lang/String; = "SetFactory.create() requires its arguments to be non-null"
 
+.field private static final EMPTY_FACTORY:Ldagger/internal/Factory;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ldagger/internal/Factory",
+            "<",
+            "Ljava/util/Set",
+            "<",
+            "Ljava/lang/Object;",
+            ">;>;"
+        }
+    .end annotation
+.end field
+
 
 # instance fields
 .field private final contributingProviders:Ljava/util/List;
@@ -47,23 +60,31 @@
     .registers 1
 
     .prologue
-    .line 36
+    .line 37
     const-class v0, Ldagger/internal/SetFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
 
     move-result v0
 
-    if-nez v0, :cond_c
+    if-nez v0, :cond_13
 
     const/4 v0, 0x1
 
     :goto_9
     sput-boolean v0, Ldagger/internal/SetFactory;->$assertionsDisabled:Z
 
+    .line 44
+    new-instance v0, Ldagger/internal/SetFactory$1;
+
+    invoke-direct {v0}, Ldagger/internal/SetFactory$1;-><init>()V
+
+    sput-object v0, Ldagger/internal/SetFactory;->EMPTY_FACTORY:Ldagger/internal/Factory;
+
     return-void
 
-    :cond_c
+    .line 37
+    :cond_13
     const/4 v0, 0x0
 
     goto :goto_9
@@ -84,16 +105,37 @@
     .end annotation
 
     .prologue
-    .line 81
+    .line 95
     .local p0, "this":Ldagger/internal/SetFactory;, "Ldagger/internal/SetFactory<TT;>;"
     .local p1, "contributingProviders":Ljava/util/List;, "Ljava/util/List<Ljavax/inject/Provider<Ljava/util/Set<TT;>;>;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 82
+    .line 96
     iput-object p1, p0, Ldagger/internal/SetFactory;->contributingProviders:Ljava/util/List;
 
-    .line 83
+    .line 97
     return-void
+.end method
+
+.method public static create()Ldagger/internal/Factory;
+    .registers 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<T:",
+            "Ljava/lang/Object;",
+            ">()",
+            "Ldagger/internal/Factory",
+            "<",
+            "Ljava/util/Set",
+            "<TT;>;>;"
+        }
+    .end annotation
+
+    .prologue
+    .line 54
+    sget-object v0, Ldagger/internal/SetFactory;->EMPTY_FACTORY:Ldagger/internal/Factory;
+
+    return-object v0
 .end method
 
 .method public static create(Ldagger/internal/Factory;)Ldagger/internal/Factory;
@@ -115,7 +157,7 @@
     .end annotation
 
     .prologue
-    .line 48
+    .line 62
     .local p0, "factory":Ldagger/internal/Factory;, "Ldagger/internal/Factory<Ljava/util/Set<TT;>;>;"
     sget-boolean v0, Ldagger/internal/SetFactory;->$assertionsDisabled:Z
 
@@ -131,7 +173,7 @@
 
     throw v0
 
-    .line 49
+    .line 63
     :cond_e
     return-object p0
 .end method
@@ -155,7 +197,7 @@
     .end annotation
 
     .prologue
-    .line 59
+    .line 73
     .local p0, "providers":[Ljavax/inject/Provider;, "[Ljavax/inject/Provider<Ljava/util/Set<TT;>;>;"
     sget-boolean v1, Ldagger/internal/SetFactory;->$assertionsDisabled:Z
 
@@ -171,13 +213,13 @@
 
     throw v1
 
-    .line 61
+    .line 75
     :cond_e
     invoke-static {p0}, Ljava/util/Arrays;->asList([Ljava/lang/Object;)Ljava/util/List;
 
     move-result-object v0
 
-    .line 64
+    .line 77
     .local v0, "contributingProviders":Ljava/util/List;, "Ljava/util/List<Ljavax/inject/Provider<Ljava/util/Set<TT;>;>;>;"
     sget-boolean v1, Ldagger/internal/SetFactory;->$assertionsDisabled:Z
 
@@ -199,7 +241,7 @@
 
     throw v1
 
-    .line 66
+    .line 79
     :cond_25
     sget-boolean v1, Ldagger/internal/SetFactory;->$assertionsDisabled:Z
 
@@ -219,7 +261,7 @@
 
     throw v1
 
-    .line 68
+    .line 82
     :cond_37
     new-instance v1, Ldagger/internal/SetFactory;
 
@@ -241,13 +283,13 @@
     .end annotation
 
     .prologue
-    .line 75
+    .line 89
     .local p0, "original":Ljava/util/List;, "Ljava/util/List<+Ljava/lang/Object;>;"
     new-instance v0, Ljava/util/HashSet;
 
     invoke-direct {v0, p0}, Ljava/util/HashSet;-><init>(Ljava/util/Collection;)V
 
-    .line 76
+    .line 90
     .local v0, "asSet":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/Object;>;"
     invoke-interface {p0}, Ljava/util/List;->size()I
 
@@ -276,7 +318,7 @@
     .registers 2
 
     .prologue
-    .line 36
+    .line 37
     .local p0, "this":Ldagger/internal/SetFactory;, "Ldagger/internal/SetFactory<TT;>;"
     invoke-virtual {p0}, Ldagger/internal/SetFactory;->get()Ljava/util/Set;
 
@@ -296,173 +338,185 @@
     .end annotation
 
     .prologue
-    .line 94
+    .line 108
     .local p0, "this":Ldagger/internal/SetFactory;, "Ldagger/internal/SetFactory<TT;>;"
-    const/4 v8, 0x0
+    const/4 v7, 0x0
 
-    .line 100
-    .local v8, "size":I
-    new-instance v5, Ljava/util/ArrayList;
+    .line 114
+    .local v7, "size":I
+    new-instance v4, Ljava/util/ArrayList;
 
-    iget-object v9, p0, Ldagger/internal/SetFactory;->contributingProviders:Ljava/util/List;
+    iget-object v8, p0, Ldagger/internal/SetFactory;->contributingProviders:Ljava/util/List;
 
-    invoke-interface {v9}, Ljava/util/List;->size()I
+    invoke-interface {v8}, Ljava/util/List;->size()I
 
-    move-result v9
+    move-result v8
 
-    invoke-direct {v5, v9}, Ljava/util/ArrayList;-><init>(I)V
+    invoke-direct {v4, v8}, Ljava/util/ArrayList;-><init>(I)V
 
-    .line 101
-    .local v5, "providedSets":Ljava/util/List;, "Ljava/util/List<Ljava/util/Set<TT;>;>;"
+    .line 115
+    .local v4, "providedSets":Ljava/util/List;, "Ljava/util/List<Ljava/util/Set<TT;>;>;"
     const/4 v2, 0x0
 
     .local v2, "i":I
-    iget-object v9, p0, Ldagger/internal/SetFactory;->contributingProviders:Ljava/util/List;
+    iget-object v8, p0, Ldagger/internal/SetFactory;->contributingProviders:Ljava/util/List;
 
-    invoke-interface {v9}, Ljava/util/List;->size()I
+    invoke-interface {v8}, Ljava/util/List;->size()I
 
     move-result v0
 
     .local v0, "c":I
     :goto_13
-    if-ge v2, v0, :cond_49
+    if-ge v2, v0, :cond_57
 
-    .line 102
-    iget-object v9, p0, Ldagger/internal/SetFactory;->contributingProviders:Ljava/util/List;
+    .line 116
+    iget-object v8, p0, Ldagger/internal/SetFactory;->contributingProviders:Ljava/util/List;
 
-    invoke-interface {v9, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
+    invoke-interface {v8, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
-    move-result-object v6
+    move-result-object v5
 
-    check-cast v6, Ljavax/inject/Provider;
+    check-cast v5, Ljavax/inject/Provider;
 
-    .line 103
-    .local v6, "provider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Ljava/util/Set<TT;>;>;"
-    invoke-interface {v6}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+    .line 117
+    .local v5, "provider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Ljava/util/Set<TT;>;>;"
+    invoke-interface {v5}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
-    move-result-object v4
+    move-result-object v3
 
-    check-cast v4, Ljava/util/Set;
+    check-cast v3, Ljava/util/Set;
 
-    .line 104
-    .local v4, "providedSet":Ljava/util/Set;, "Ljava/util/Set<TT;>;"
-    if-nez v4, :cond_3e
+    .line 118
+    .local v3, "providedSet":Ljava/util/Set;, "Ljava/util/Set<TT;>;"
+    if-nez v3, :cond_4c
 
-    .line 105
-    new-instance v9, Ljava/lang/NullPointerException;
+    .line 119
+    new-instance v8, Ljava/lang/NullPointerException;
+
+    invoke-static {v5}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v9
 
     new-instance v10, Ljava/lang/StringBuilder;
 
-    invoke-direct {v10}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-static {v9}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
 
-    invoke-virtual {v10, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    move-result-object v11
 
-    move-result-object v10
+    invoke-virtual {v11}, Ljava/lang/String;->length()I
 
-    const-string v11, " returned null"
+    move-result v11
 
-    invoke-virtual {v10, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    add-int/lit8 v11, v11, 0xe
 
-    move-result-object v10
+    invoke-direct {v10, v11}, Ljava/lang/StringBuilder;-><init>(I)V
 
-    invoke-virtual {v10}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v10, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v10
+    move-result-object v9
 
-    invoke-direct {v9, v10}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    const-string v10, " returned null"
 
-    throw v9
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 107
-    :cond_3e
-    invoke-interface {v5, v4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+    move-result-object v9
 
-    .line 108
-    invoke-interface {v4}, Ljava/util/Set;->size()I
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result v9
+    move-result-object v9
 
-    add-int/2addr v8, v9
+    invoke-direct {v8, v9}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
 
-    .line 101
+    throw v8
+
+    .line 121
+    :cond_4c
+    invoke-interface {v4, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 122
+    invoke-interface {v3}, Ljava/util/Set;->size()I
+
+    move-result v8
+
+    add-int/2addr v7, v8
+
+    .line 115
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_13
 
-    .line 111
-    .end local v4    # "providedSet":Ljava/util/Set;, "Ljava/util/Set<TT;>;"
-    .end local v6    # "provider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Ljava/util/Set<TT;>;>;"
-    :cond_49
-    invoke-static {v8}, Ldagger/internal/Collections;->newLinkedHashSetWithExpectedSize(I)Ljava/util/LinkedHashSet;
+    .line 125
+    .end local v3    # "providedSet":Ljava/util/Set;, "Ljava/util/Set<TT;>;"
+    .end local v5    # "provider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Ljava/util/Set<TT;>;>;"
+    :cond_57
+    invoke-static {v7}, Ldagger/internal/Collections;->newLinkedHashSetWithExpectedSize(I)Ljava/util/LinkedHashSet;
 
-    move-result-object v7
+    move-result-object v6
 
-    .line 112
-    .local v7, "result":Ljava/util/Set;, "Ljava/util/Set<TT;>;"
+    .line 126
+    .local v6, "result":Ljava/util/Set;, "Ljava/util/Set<TT;>;"
     const/4 v2, 0x0
 
-    invoke-interface {v5}, Ljava/util/List;->size()I
+    invoke-interface {v4}, Ljava/util/List;->size()I
 
     move-result v0
 
-    :goto_52
-    if-ge v2, v0, :cond_79
+    :goto_60
+    if-ge v2, v0, :cond_87
 
-    .line 113
-    invoke-interface {v5, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
+    .line 127
+    invoke-interface {v4, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
-    move-result-object v9
+    move-result-object v8
 
-    check-cast v9, Ljava/util/Set;
+    check-cast v8, Ljava/util/Set;
 
-    invoke-interface {v9}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+    invoke-interface {v8}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
-    move-result-object v3
+    move-result-object v8
 
-    .local v3, "i$":Ljava/util/Iterator;
-    :goto_5e
-    invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
+    :goto_6c
+    invoke-interface {v8}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v9
 
-    if-eqz v9, :cond_76
+    if-eqz v9, :cond_84
 
-    invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v8}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v1
 
-    .line 114
+    .line 128
     .local v1, "element":Ljava/lang/Object;, "TT;"
-    if-nez v1, :cond_72
+    if-nez v1, :cond_80
 
-    .line 115
-    new-instance v9, Ljava/lang/NullPointerException;
+    .line 129
+    new-instance v8, Ljava/lang/NullPointerException;
 
-    const-string v10, "a null element was provided"
+    const-string v9, "a null element was provided"
 
-    invoke-direct {v9, v10}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    invoke-direct {v8, v9}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
 
-    throw v9
+    throw v8
 
-    .line 117
-    :cond_72
-    invoke-interface {v7, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+    .line 131
+    :cond_80
+    invoke-interface {v6, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    goto :goto_5e
+    goto :goto_6c
 
-    .line 112
+    .line 126
     .end local v1    # "element":Ljava/lang/Object;, "TT;"
-    :cond_76
+    :cond_84
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_52
+    goto :goto_60
 
-    .line 120
-    .end local v3    # "i$":Ljava/util/Iterator;
-    :cond_79
-    invoke-static {v7}, Ljava/util/Collections;->unmodifiableSet(Ljava/util/Set;)Ljava/util/Set;
+    .line 134
+    :cond_87
+    invoke-static {v6}, Ljava/util/Collections;->unmodifiableSet(Ljava/util/Set;)Ljava/util/Set;
 
-    move-result-object v9
+    move-result-object v8
 
-    return-object v9
+    return-object v8
 .end method

@@ -15,13 +15,13 @@
 
 
 # virtual methods
-.method public abstract create(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/upsight/android/analytics/internal/action/Action;
+.method public abstract create(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)Lcom/upsight/android/analytics/internal/action/Action;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
             "Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;",
             "Ljava/lang/String;",
-            "Lcom/fasterxml/jackson/databind/JsonNode;",
+            "Lcom/google/gson/JsonObject;",
             ")",
             "Lcom/upsight/android/analytics/internal/action/Action",
             "<",

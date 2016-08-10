@@ -21,13 +21,19 @@
 .end field
 
 .field tag:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "tag"
     .end annotation
 .end field
 
 .field value:Ljava/lang/Object;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "value"
     .end annotation
 
@@ -44,7 +50,7 @@
     .registers 1
 
     .prologue
-    .line 15
+    .line 16
     .local p0, "this":Lcom/upsight/android/managedvariables/internal/type/ManagedVariableModel;, "Lcom/upsight/android/managedvariables/internal/type/ManagedVariableModel<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -57,7 +63,7 @@
     .registers 2
 
     .prologue
-    .line 27
+    .line 30
     .local p0, "this":Lcom/upsight/android/managedvariables/internal/type/ManagedVariableModel;, "Lcom/upsight/android/managedvariables/internal/type/ManagedVariableModel<TT;>;"
     iget-object v0, p0, Lcom/upsight/android/managedvariables/internal/type/ManagedVariableModel;->tag:Ljava/lang/String;
 
@@ -73,7 +79,7 @@
     .end annotation
 
     .prologue
-    .line 31
+    .line 34
     .local p0, "this":Lcom/upsight/android/managedvariables/internal/type/ManagedVariableModel;, "Lcom/upsight/android/managedvariables/internal/type/ManagedVariableModel<TT;>;"
     iget-object v0, p0, Lcom/upsight/android/managedvariables/internal/type/ManagedVariableModel;->value:Ljava/lang/Object;
 

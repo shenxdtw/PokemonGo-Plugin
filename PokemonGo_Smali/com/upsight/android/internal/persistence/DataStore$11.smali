@@ -34,6 +34,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/internal/persistence/DataStore;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/internal/persistence/DataStore;
 
     .prologue
     .line 295
@@ -65,14 +66,11 @@
 
 .method public bridge synthetic call(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
     .registers 4
-    .param p1, "x0"    # Ljava/lang/Object;
-    .param p2, "x1"    # Ljava/lang/Object;
 
     .prologue
     .line 295
     check-cast p1, Lcom/upsight/android/internal/persistence/Storable;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1, p2}, Lcom/upsight/android/internal/persistence/DataStore$11;->call(Lcom/upsight/android/internal/persistence/Storable;Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0

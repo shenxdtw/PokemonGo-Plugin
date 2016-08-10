@@ -37,22 +37,22 @@
     .param p6, "scheduler"    # Lrx/Scheduler;
 
     .prologue
-    .line 35
+    .line 36
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 36
+    .line 37
     iput-wide p1, p0, Lrx/internal/operators/OnSubscribeTimerPeriodically;->initialDelay:J
 
-    .line 37
+    .line 38
     iput-wide p3, p0, Lrx/internal/operators/OnSubscribeTimerPeriodically;->period:J
 
-    .line 38
+    .line 39
     iput-object p5, p0, Lrx/internal/operators/OnSubscribeTimerPeriodically;->unit:Ljava/util/concurrent/TimeUnit;
 
-    .line 39
+    .line 40
     iput-object p6, p0, Lrx/internal/operators/OnSubscribeTimerPeriodically;->scheduler:Lrx/Scheduler;
 
-    .line 40
+    .line 41
     return-void
 .end method
 
@@ -63,7 +63,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 29
+    .line 30
     check-cast p1, Lrx/Subscriber;
 
     .end local p1    # "x0":Ljava/lang/Object;
@@ -85,7 +85,7 @@
     .end annotation
 
     .prologue
-    .line 44
+    .line 45
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/lang/Long;>;"
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeTimerPeriodically;->scheduler:Lrx/Scheduler;
 
@@ -93,11 +93,11 @@
 
     move-result-object v0
 
-    .line 45
+    .line 46
     .local v0, "worker":Lrx/Scheduler$Worker;
     invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 46
+    .line 47
     new-instance v1, Lrx/internal/operators/OnSubscribeTimerPeriodically$1;
 
     invoke-direct {v1, p0, p1, v0}, Lrx/internal/operators/OnSubscribeTimerPeriodically$1;-><init>(Lrx/internal/operators/OnSubscribeTimerPeriodically;Lrx/Subscriber;Lrx/Scheduler$Worker;)V
@@ -110,6 +110,6 @@
 
     invoke-virtual/range {v0 .. v6}, Lrx/Scheduler$Worker;->schedulePeriodically(Lrx/functions/Action0;JJLjava/util/concurrent/TimeUnit;)Lrx/Subscription;
 
-    .line 62
+    .line 63
     return-void
 .end method

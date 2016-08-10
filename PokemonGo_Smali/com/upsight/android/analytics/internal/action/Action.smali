@@ -25,21 +25,21 @@
     .end annotation
 .end field
 
-.field private mParams:Lcom/fasterxml/jackson/databind/JsonNode;
+.field private mParams:Lcom/google/gson/JsonObject;
 
 .field private mType:Ljava/lang/String;
 
 
 # direct methods
-.method protected constructor <init>(Lcom/upsight/android/analytics/internal/action/ActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+.method protected constructor <init>(Lcom/upsight/android/analytics/internal/action/ActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)V
     .registers 4
     .param p2, "type"    # Ljava/lang/String;
-    .param p3, "params"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p3, "params"    # Lcom/google/gson/JsonObject;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TU;",
             "Ljava/lang/String;",
-            "Lcom/fasterxml/jackson/databind/JsonNode;",
+            "Lcom/google/gson/JsonObject;",
             ")V"
         }
     .end annotation
@@ -57,7 +57,7 @@
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/action/Action;->mType:Ljava/lang/String;
 
     .line 44
-    iput-object p3, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/fasterxml/jackson/databind/JsonNode;
+    iput-object p3, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/google/gson/JsonObject;
 
     .line 45
     return-void
@@ -105,38 +105,95 @@
     .param p1, "key"    # Ljava/lang/String;
 
     .prologue
-    .line 88
+    .line 90
     .local p0, "this":Lcom/upsight/android/analytics/internal/action/Action;, "Lcom/upsight/android/analytics/internal/action/Action<TT;TU;>;"
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/fasterxml/jackson/databind/JsonNode;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/google/gson/JsonObject;
 
-    if-eqz v1, :cond_17
+    if-eqz v1, :cond_21
 
-    .line 89
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/fasterxml/jackson/databind/JsonNode;
+    .line 91
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/google/gson/JsonObject;
 
-    invoke-virtual {v1, p1}, Lcom/fasterxml/jackson/databind/JsonNode;->get(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {v1, p1}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
 
     move-result-object v0
 
-    .line 90
-    .local v0, "jsonNode":Lcom/fasterxml/jackson/databind/JsonNode;
+    .line 92
+    .local v0, "element":Lcom/google/gson/JsonElement;
+    if-eqz v0, :cond_21
+
+    .line 93
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->isJsonPrimitive()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_21
+
+    .line 94
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsJsonPrimitive()Lcom/google/gson/JsonPrimitive;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/google/gson/JsonPrimitive;->isNumber()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_21
+
+    .line 95
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsInt()I
+
+    move-result v1
+
+    .line 98
+    .end local v0    # "element":Lcom/google/gson/JsonElement;
+    :goto_20
+    return v1
+
+    :cond_21
+    const/4 v1, 0x0
+
+    goto :goto_20
+.end method
+
+.method protected optParamJsonArray(Ljava/lang/String;)Lcom/google/gson/JsonArray;
+    .registers 4
+    .param p1, "key"    # Ljava/lang/String;
+
+    .prologue
+    .line 125
+    .local p0, "this":Lcom/upsight/android/analytics/internal/action/Action;, "Lcom/upsight/android/analytics/internal/action/Action<TT;TU;>;"
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/google/gson/JsonObject;
+
+    if-eqz v1, :cond_17
+
+    .line 126
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/google/gson/JsonObject;
+
+    invoke-virtual {v1, p1}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+
+    move-result-object v0
+
+    .line 127
+    .local v0, "element":Lcom/google/gson/JsonElement;
     if-eqz v0, :cond_17
 
-    invoke-virtual {v0}, Lcom/fasterxml/jackson/databind/JsonNode;->isInt()Z
+    .line 128
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->isJsonArray()Z
 
     move-result v1
 
     if-eqz v1, :cond_17
 
-    .line 91
-    invoke-virtual {v0}, Lcom/fasterxml/jackson/databind/JsonNode;->asInt()I
+    .line 129
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsJsonArray()Lcom/google/gson/JsonArray;
 
-    move-result v1
+    move-result-object v1
 
-    .line 94
-    .end local v0    # "jsonNode":Lcom/fasterxml/jackson/databind/JsonNode;
+    .line 132
+    .end local v0    # "element":Lcom/google/gson/JsonElement;
     :goto_16
-    return v1
+    return-object v1
 
     :cond_17
     const/4 v1, 0x0
@@ -144,88 +201,49 @@
     goto :goto_16
 .end method
 
-.method protected optParamJsonArray(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/ArrayNode;
+.method protected optParamJsonObject(Ljava/lang/String;)Lcom/google/gson/JsonObject;
     .registers 4
     .param p1, "key"    # Ljava/lang/String;
 
     .prologue
-    .line 120
+    .line 108
     .local p0, "this":Lcom/upsight/android/analytics/internal/action/Action;, "Lcom/upsight/android/analytics/internal/action/Action<TT;TU;>;"
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/fasterxml/jackson/databind/JsonNode;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/google/gson/JsonObject;
 
-    if-eqz v1, :cond_15
+    if-eqz v1, :cond_17
 
-    .line 121
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/fasterxml/jackson/databind/JsonNode;
+    .line 109
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/google/gson/JsonObject;
 
-    invoke-virtual {v1, p1}, Lcom/fasterxml/jackson/databind/JsonNode;->get(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {v1, p1}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
 
     move-result-object v0
-
-    .line 122
-    .local v0, "jsonArray":Lcom/fasterxml/jackson/databind/JsonNode;
-    if-eqz v0, :cond_15
-
-    invoke-virtual {v0}, Lcom/fasterxml/jackson/databind/JsonNode;->isArray()Z
-
-    move-result v1
-
-    if-eqz v1, :cond_15
-
-    .line 123
-    check-cast v0, Lcom/fasterxml/jackson/databind/node/ArrayNode;
-
-    .line 126
-    .end local v0    # "jsonArray":Lcom/fasterxml/jackson/databind/JsonNode;
-    :goto_14
-    return-object v0
-
-    :cond_15
-    const/4 v0, 0x0
-
-    goto :goto_14
-.end method
-
-.method protected optParamJsonObject(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
-    .registers 4
-    .param p1, "key"    # Ljava/lang/String;
-
-    .prologue
-    .line 104
-    .local p0, "this":Lcom/upsight/android/analytics/internal/action/Action;, "Lcom/upsight/android/analytics/internal/action/Action<TT;TU;>;"
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/fasterxml/jackson/databind/JsonNode;
-
-    if-eqz v1, :cond_15
-
-    .line 105
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/fasterxml/jackson/databind/JsonNode;
-
-    invoke-virtual {v1, p1}, Lcom/fasterxml/jackson/databind/JsonNode;->get(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
-
-    move-result-object v0
-
-    .line 106
-    .local v0, "jsonObject":Lcom/fasterxml/jackson/databind/JsonNode;
-    if-eqz v0, :cond_15
-
-    invoke-virtual {v0}, Lcom/fasterxml/jackson/databind/JsonNode;->isObject()Z
-
-    move-result v1
-
-    if-eqz v1, :cond_15
-
-    .line 107
-    check-cast v0, Lcom/fasterxml/jackson/databind/node/ObjectNode;
 
     .line 110
-    .end local v0    # "jsonObject":Lcom/fasterxml/jackson/databind/JsonNode;
-    :goto_14
-    return-object v0
+    .local v0, "element":Lcom/google/gson/JsonElement;
+    if-eqz v0, :cond_17
 
-    :cond_15
-    const/4 v0, 0x0
+    .line 111
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->isJsonObject()Z
 
-    goto :goto_14
+    move-result v1
+
+    if-eqz v1, :cond_17
+
+    .line 112
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsJsonObject()Lcom/google/gson/JsonObject;
+
+    move-result-object v1
+
+    .line 115
+    .end local v0    # "element":Lcom/google/gson/JsonElement;
+    :goto_16
+    return-object v1
+
+    :cond_17
+    const/4 v1, 0x0
+
+    goto :goto_16
 .end method
 
 .method protected optParamString(Ljava/lang/String;)Ljava/lang/String;
@@ -235,39 +253,51 @@
     .prologue
     .line 72
     .local p0, "this":Lcom/upsight/android/analytics/internal/action/Action;, "Lcom/upsight/android/analytics/internal/action/Action<TT;TU;>;"
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/fasterxml/jackson/databind/JsonNode;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/google/gson/JsonObject;
 
-    if-eqz v1, :cond_17
+    if-eqz v1, :cond_21
 
     .line 73
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/fasterxml/jackson/databind/JsonNode;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/action/Action;->mParams:Lcom/google/gson/JsonObject;
 
-    invoke-virtual {v1, p1}, Lcom/fasterxml/jackson/databind/JsonNode;->get(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {v1, p1}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
 
     move-result-object v0
 
     .line 74
-    .local v0, "jsonNode":Lcom/fasterxml/jackson/databind/JsonNode;
-    if-eqz v0, :cond_17
+    .local v0, "element":Lcom/google/gson/JsonElement;
+    if-eqz v0, :cond_21
 
-    invoke-virtual {v0}, Lcom/fasterxml/jackson/databind/JsonNode;->isTextual()Z
+    .line 75
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->isJsonPrimitive()Z
 
     move-result v1
 
-    if-eqz v1, :cond_17
+    if-eqz v1, :cond_21
 
-    .line 75
-    invoke-virtual {v0}, Lcom/fasterxml/jackson/databind/JsonNode;->asText()Ljava/lang/String;
+    .line 76
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsJsonPrimitive()Lcom/google/gson/JsonPrimitive;
 
     move-result-object v1
 
-    .line 78
-    .end local v0    # "jsonNode":Lcom/fasterxml/jackson/databind/JsonNode;
-    :goto_16
+    invoke-virtual {v1}, Lcom/google/gson/JsonPrimitive;->isString()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_21
+
+    .line 77
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsString()Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 80
+    .end local v0    # "element":Lcom/google/gson/JsonElement;
+    :goto_20
     return-object v1
 
-    :cond_17
+    :cond_21
     const/4 v1, 0x0
 
-    goto :goto_16
+    goto :goto_20
 .end method

@@ -29,7 +29,7 @@
     .param p1, "this$0"    # Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;
 
     .prologue
-    .line 81
+    .line 84
     iput-object p1, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$1;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;
 
     iput-object p2, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$1;->val$callback:Lcom/nianticlabs/pokemongoplus/ble/callback/CentralStateCallback;
@@ -45,7 +45,7 @@
     .registers 4
 
     .prologue
-    .line 84
+    .line 87
     iget-object v1, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$1;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;
 
     # getter for: Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->context:Landroid/content/Context;
@@ -57,11 +57,11 @@
 
     move-result-object v0
 
-    .line 85
+    .line 88
     .local v0, "bluetoothManager":Landroid/bluetooth/BluetoothManager;
     if-eqz v0, :cond_2c
 
-    .line 86
+    .line 89
     iget-object v1, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$1;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;
 
     invoke-virtual {v0}, Landroid/bluetooth/BluetoothManager;->getAdapter()Landroid/bluetooth/BluetoothAdapter;
@@ -71,7 +71,7 @@
     # setter for: Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->bluetoothAdapter:Landroid/bluetooth/BluetoothAdapter;
     invoke-static {v1, v2}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->access$102(Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;Landroid/bluetooth/BluetoothAdapter;)Landroid/bluetooth/BluetoothAdapter;
 
-    .line 87
+    .line 90
     iget-object v2, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$1;->val$callback:Lcom/nianticlabs/pokemongoplus/ble/callback/CentralStateCallback;
 
     iget-object v1, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$1;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;
@@ -92,17 +92,17 @@
     :goto_25
     invoke-interface {v2, v1}, Lcom/nianticlabs/pokemongoplus/ble/callback/CentralStateCallback;->OnStateChanged(Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;)V
 
-    .line 95
+    .line 98
     :goto_28
     return-void
 
-    .line 87
+    .line 90
     :cond_29
     sget-object v1, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;->PoweredOff:Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
     goto :goto_25
 
-    .line 92
+    .line 95
     :cond_2c
     # getter for: Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;->access$200()Ljava/lang/String;
@@ -113,7 +113,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 93
+    .line 96
     iget-object v1, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$1;->val$callback:Lcom/nianticlabs/pokemongoplus/ble/callback/CentralStateCallback;
 
     sget-object v2, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;->Unknown:Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;

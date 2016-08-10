@@ -34,7 +34,7 @@
     .registers 3
 
     .prologue
-    .line 86
+    .line 92
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;, "Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->this$1:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;
 
@@ -51,18 +51,18 @@
     .registers 2
 
     .prologue
-    .line 90
+    .line 96
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;, "Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1.1;"
     iget-boolean v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->done:Z
 
     if-nez v0, :cond_10
 
-    .line 91
+    .line 97
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->done:Z
 
-    .line 92
+    .line 98
     iget-object v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->this$1:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;
 
     iget-object v0, v0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;->this$0:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
@@ -71,7 +71,7 @@
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    .line 94
+    .line 100
     :cond_10
     return-void
 .end method
@@ -81,18 +81,18 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 98
+    .line 104
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;, "Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1.1;"
     iget-boolean v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->done:Z
 
-    if-nez v0, :cond_3a
+    if-nez v0, :cond_3e
 
-    .line 99
+    .line 105
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->done:Z
 
-    .line 100
+    .line 106
     iget-object v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->this$1:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;
 
     iget-object v0, v0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;->this$0:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
@@ -103,7 +103,11 @@
 
     iget-object v1, v1, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;->this$0:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
 
-    iget v1, v1, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->attempts:I
+    iget-object v1, v1, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->attempts:Ljava/util/concurrent/atomic/AtomicInteger;
+
+    invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
+
+    move-result v1
 
     invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
@@ -119,7 +123,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3b
+    if-eqz v0, :cond_3f
 
     iget-object v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->this$1:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;
 
@@ -131,9 +135,9 @@
 
     move-result v0
 
-    if-nez v0, :cond_3b
+    if-nez v0, :cond_3f
 
-    .line 102
+    .line 108
     iget-object v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->this$1:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;
 
     iget-object v0, v0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;->this$0:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
@@ -144,13 +148,13 @@
 
     invoke-virtual {v0, v1}, Lrx/Scheduler$Worker;->schedule(Lrx/functions/Action0;)Lrx/Subscription;
 
-    .line 108
-    :cond_3a
-    :goto_3a
+    .line 114
+    :cond_3e
+    :goto_3e
     return-void
 
-    .line 105
-    :cond_3b
+    .line 111
+    :cond_3f
     iget-object v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->this$1:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;
 
     iget-object v0, v0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;->this$0:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
@@ -159,11 +163,11 @@
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    goto :goto_3a
+    goto :goto_3e
 .end method
 
 .method public onNext(Ljava/lang/Object;)V
-    .registers 3
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -171,14 +175,14 @@
     .end annotation
 
     .prologue
-    .line 112
+    .line 118
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;, "Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1.1;"
     .local p1, "v":Ljava/lang/Object;, "TT;"
     iget-boolean v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->done:Z
 
-    if-nez v0, :cond_d
+    if-nez v0, :cond_18
 
-    .line 113
+    .line 119
     iget-object v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->this$1:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;
 
     iget-object v0, v0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;->this$0:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
@@ -187,7 +191,37 @@
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    .line 115
-    :cond_d
+    .line 120
+    iget-object v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->this$1:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;
+
+    iget-object v0, v0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;->this$0:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
+
+    iget-object v0, v0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->pa:Lrx/internal/producers/ProducerArbiter;
+
+    const-wide/16 v2, 0x1
+
+    invoke-virtual {v0, v2, v3}, Lrx/internal/producers/ProducerArbiter;->produced(J)V
+
+    .line 122
+    :cond_18
+    return-void
+.end method
+
+.method public setProducer(Lrx/Producer;)V
+    .registers 3
+    .param p1, "p"    # Lrx/Producer;
+
+    .prologue
+    .line 126
+    .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;, "Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1.1;"
+    iget-object v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;->this$1:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;
+
+    iget-object v0, v0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;->this$0:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
+
+    iget-object v0, v0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->pa:Lrx/internal/producers/ProducerArbiter;
+
+    invoke-virtual {v0, p1}, Lrx/internal/producers/ProducerArbiter;->setProducer(Lrx/Producer;)V
+
+    .line 127
     return-void
 .end method

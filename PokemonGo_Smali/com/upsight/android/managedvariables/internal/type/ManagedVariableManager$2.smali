@@ -34,6 +34,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;Lcom/upsight/android/managedvariables/type/UpsightManagedVariable$Listener;)V
     .registers 3
+    .param p1, "this$0"    # Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;
 
     .prologue
     .line 134
@@ -69,13 +70,11 @@
 
 .method public bridge synthetic call(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 134
     check-cast p1, Lcom/upsight/android/managedvariables/internal/type/ManagedVariable;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager$2;->call(Lcom/upsight/android/managedvariables/internal/type/ManagedVariable;)V
 
     return-void

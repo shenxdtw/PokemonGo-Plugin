@@ -34,7 +34,7 @@
     .registers 4
 
     .prologue
-    .line 91
+    .line 80
     .local p0, "this":Lrx/Single$1$1;, "Lrx/Single$1.1;"
     iput-object p1, p0, Lrx/Single$1$1;->this$1:Lrx/Single$1;
 
@@ -54,13 +54,13 @@
     .param p1, "error"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 100
+    .line 89
     .local p0, "this":Lrx/Single$1$1;, "Lrx/Single$1.1;"
     iget-object v0, p0, Lrx/Single$1$1;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 101
+    .line 90
     return-void
 .end method
 
@@ -73,13 +73,13 @@
     .end annotation
 
     .prologue
-    .line 95
+    .line 84
     .local p0, "this":Lrx/Single$1$1;, "Lrx/Single$1.1;"
     .local p1, "value":Ljava/lang/Object;, "TT;"
     iget-object v0, p0, Lrx/Single$1$1;->val$producer:Lrx/internal/producers/SingleDelayedProducer;
 
     invoke-virtual {v0, p1}, Lrx/internal/producers/SingleDelayedProducer;->setValue(Ljava/lang/Object;)V
 
-    .line 96
+    .line 85
     return-void
 .end method

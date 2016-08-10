@@ -29,15 +29,13 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .registers 1
 
     .prologue
     .line 31
     new-instance v0, Lrx/internal/operators/OperatorAsObservable;
 
-    const/4 v1, 0x0
-
-    invoke-direct {v0, v1}, Lrx/internal/operators/OperatorAsObservable;-><init>(Lrx/internal/operators/OperatorAsObservable$1;)V
+    invoke-direct {v0}, Lrx/internal/operators/OperatorAsObservable;-><init>()V
 
     sput-object v0, Lrx/internal/operators/OperatorAsObservable$Holder;->INSTANCE:Lrx/internal/operators/OperatorAsObservable;
 

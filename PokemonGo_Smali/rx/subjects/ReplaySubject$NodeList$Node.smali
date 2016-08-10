@@ -52,14 +52,14 @@
     .end annotation
 
     .prologue
-    .line 1043
+    .line 1042
     .local p0, "this":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<TT;>;"
     .local p1, "value":Ljava/lang/Object;, "TT;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 1044
+    .line 1043
     iput-object p1, p0, Lrx/subjects/ReplaySubject$NodeList$Node;->value:Ljava/lang/Object;
 
-    .line 1045
+    .line 1044
     return-void
 .end method

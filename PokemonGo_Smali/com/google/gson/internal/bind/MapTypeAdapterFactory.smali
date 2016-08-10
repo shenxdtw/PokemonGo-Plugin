@@ -15,7 +15,7 @@
 
 
 # instance fields
-.field private final complexMapKeySerialization:Z
+.field final complexMapKeySerialization:Z
 
 .field private final constructorConstructor:Lcom/google/gson/internal/ConstructorConstructor;
 
@@ -38,17 +38,6 @@
 
     .line 113
     return-void
-.end method
-
-.method static synthetic access$000(Lcom/google/gson/internal/bind/MapTypeAdapterFactory;)Z
-    .registers 2
-    .param p0, "x0"    # Lcom/google/gson/internal/bind/MapTypeAdapterFactory;
-
-    .prologue
-    .line 105
-    iget-boolean v0, p0, Lcom/google/gson/internal/bind/MapTypeAdapterFactory;->complexMapKeySerialization:Z
-
-    return v0
 .end method
 
 .method private getKeyAdapter(Lcom/google/gson/Gson;Ljava/lang/reflect/Type;)Lcom/google/gson/TypeAdapter;
@@ -79,6 +68,7 @@
     :cond_8
     sget-object v0, Lcom/google/gson/internal/bind/TypeAdapters;->BOOLEAN_AS_STRING:Lcom/google/gson/TypeAdapter;
 
+    .line 142
     :goto_a
     return-object v0
 

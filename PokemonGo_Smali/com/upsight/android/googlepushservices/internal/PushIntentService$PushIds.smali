@@ -27,26 +27,27 @@
 # direct methods
 .method private constructor <init>(Lcom/upsight/android/googlepushservices/internal/PushIntentService;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)V
     .registers 5
+    .param p1, "this$0"    # Lcom/upsight/android/googlepushservices/internal/PushIntentService;
     .param p2, "messageId"    # Ljava/lang/Integer;
     .param p3, "campaignId"    # Ljava/lang/Integer;
     .param p4, "contentId"    # Ljava/lang/Integer;
 
     .prologue
-    .line 290
+    .line 340
     iput-object p1, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushIds;->this$0:Lcom/upsight/android/googlepushservices/internal/PushIntentService;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 291
+    .line 341
     iput-object p2, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushIds;->messageId:Ljava/lang/Integer;
 
-    .line 292
+    .line 342
     iput-object p3, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushIds;->campaignId:Ljava/lang/Integer;
 
-    .line 293
+    .line 343
     iput-object p4, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushIds;->contentId:Ljava/lang/Integer;
 
-    .line 294
+    .line 344
     return-void
 .end method
 
@@ -59,7 +60,7 @@
     .param p5, "x4"    # Lcom/upsight/android/googlepushservices/internal/PushIntentService$1;
 
     .prologue
-    .line 285
+    .line 335
     invoke-direct {p0, p1, p2, p3, p4}, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushIds;-><init>(Lcom/upsight/android/googlepushservices/internal/PushIntentService;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)V
 
     return-void

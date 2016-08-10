@@ -45,6 +45,17 @@
     .end annotation
 .end field
 
+.field private final lifeCycleTrackerProvider:Ljavax/inject/Provider;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/analytics/UpsightLifeCycleTracker;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 .field private final locationTrackerProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -117,7 +128,7 @@
     .registers 1
 
     .prologue
-    .line 15
+    .line 16
     const-class v0, Lcom/upsight/android/analytics/internal/Analytics_Factory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -139,14 +150,18 @@
     goto :goto_9
 .end method
 
-.method public constructor <init>(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
-    .registers 10
+.method public constructor <init>(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+    .registers 11
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/upsight/android/UpsightContext;",
+            ">;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/analytics/UpsightLifeCycleTracker;",
             ">;",
             "Ljavax/inject/Provider",
             "<",
@@ -180,18 +195,19 @@
     .end annotation
 
     .prologue
-    .line 26
+    .line 48
     .local p1, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
-    .local p2, "sessionManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/SessionManager;>;"
-    .local p3, "schemaSelectorProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;>;"
-    .local p4, "associationManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/association/AssociationManager;>;"
-    .local p5, "optOutStatusProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;>;"
-    .local p6, "locationTrackerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/provider/UpsightLocationTracker;>;"
-    .local p7, "userAttributesProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/provider/UpsightUserAttributes;>;"
-    .local p8, "googlePlayHelperProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/UpsightGooglePlayHelper;>;"
+    .local p2, "lifeCycleTrackerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/UpsightLifeCycleTracker;>;"
+    .local p3, "sessionManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/SessionManager;>;"
+    .local p4, "schemaSelectorProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;>;"
+    .local p5, "associationManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/association/AssociationManager;>;"
+    .local p6, "optOutStatusProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;>;"
+    .local p7, "locationTrackerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/provider/UpsightLocationTracker;>;"
+    .local p8, "userAttributesProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/provider/UpsightUserAttributes;>;"
+    .local p9, "googlePlayHelperProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/UpsightGooglePlayHelper;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 27
+    .line 49
     sget-boolean v0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -204,11 +220,11 @@
 
     throw v0
 
-    .line 28
+    .line 50
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->upsightProvider:Ljavax/inject/Provider;
 
-    .line 29
+    .line 51
     sget-boolean v0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -221,11 +237,11 @@
 
     throw v0
 
-    .line 30
+    .line 52
     :cond_1d
-    iput-object p2, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->sessionManagerProvider:Ljavax/inject/Provider;
+    iput-object p2, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->lifeCycleTrackerProvider:Ljavax/inject/Provider;
 
-    .line 31
+    .line 53
     sget-boolean v0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_2b
@@ -238,11 +254,11 @@
 
     throw v0
 
-    .line 32
+    .line 54
     :cond_2b
-    iput-object p3, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->schemaSelectorProvider:Ljavax/inject/Provider;
+    iput-object p3, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->sessionManagerProvider:Ljavax/inject/Provider;
 
-    .line 33
+    .line 55
     sget-boolean v0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_39
@@ -255,11 +271,11 @@
 
     throw v0
 
-    .line 34
+    .line 56
     :cond_39
-    iput-object p4, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->associationManagerProvider:Ljavax/inject/Provider;
+    iput-object p4, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->schemaSelectorProvider:Ljavax/inject/Provider;
 
-    .line 35
+    .line 57
     sget-boolean v0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_47
@@ -272,11 +288,11 @@
 
     throw v0
 
-    .line 36
+    .line 58
     :cond_47
-    iput-object p5, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->optOutStatusProvider:Ljavax/inject/Provider;
+    iput-object p5, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->associationManagerProvider:Ljavax/inject/Provider;
 
-    .line 37
+    .line 59
     sget-boolean v0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_55
@@ -289,11 +305,11 @@
 
     throw v0
 
-    .line 38
+    .line 60
     :cond_55
-    iput-object p6, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->locationTrackerProvider:Ljavax/inject/Provider;
+    iput-object p6, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->optOutStatusProvider:Ljavax/inject/Provider;
 
-    .line 39
+    .line 61
     sget-boolean v0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_63
@@ -306,11 +322,11 @@
 
     throw v0
 
-    .line 40
+    .line 62
     :cond_63
-    iput-object p7, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->userAttributesProvider:Ljavax/inject/Provider;
+    iput-object p7, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->locationTrackerProvider:Ljavax/inject/Provider;
 
-    .line 41
+    .line 63
     sget-boolean v0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_71
@@ -323,22 +339,43 @@
 
     throw v0
 
-    .line 42
+    .line 64
     :cond_71
-    iput-object p8, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->googlePlayHelperProvider:Ljavax/inject/Provider;
+    iput-object p8, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->userAttributesProvider:Ljavax/inject/Provider;
 
-    .line 43
+    .line 65
+    sget-boolean v0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->$assertionsDisabled:Z
+
+    if-nez v0, :cond_7f
+
+    if-nez p9, :cond_7f
+
+    new-instance v0, Ljava/lang/AssertionError;
+
+    invoke-direct {v0}, Ljava/lang/AssertionError;-><init>()V
+
+    throw v0
+
+    .line 66
+    :cond_7f
+    iput-object p9, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->googlePlayHelperProvider:Ljavax/inject/Provider;
+
+    .line 67
     return-void
 .end method
 
-.method public static create(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-    .registers 17
+.method public static create(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+    .registers 19
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/upsight/android/UpsightContext;",
+            ">;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/analytics/UpsightLifeCycleTracker;",
             ">;",
             "Ljavax/inject/Provider",
             "<",
@@ -376,15 +413,16 @@
     .end annotation
 
     .prologue
-    .line 51
+    .line 93
     .local p0, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
-    .local p1, "sessionManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/SessionManager;>;"
-    .local p2, "schemaSelectorProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;>;"
-    .local p3, "associationManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/association/AssociationManager;>;"
-    .local p4, "optOutStatusProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;>;"
-    .local p5, "locationTrackerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/provider/UpsightLocationTracker;>;"
-    .local p6, "userAttributesProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/provider/UpsightUserAttributes;>;"
-    .local p7, "googlePlayHelperProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/UpsightGooglePlayHelper;>;"
+    .local p1, "lifeCycleTrackerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/UpsightLifeCycleTracker;>;"
+    .local p2, "sessionManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/SessionManager;>;"
+    .local p3, "schemaSelectorProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;>;"
+    .local p4, "associationManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/association/AssociationManager;>;"
+    .local p5, "optOutStatusProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;>;"
+    .local p6, "locationTrackerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/provider/UpsightLocationTracker;>;"
+    .local p7, "userAttributesProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/provider/UpsightUserAttributes;>;"
+    .local p8, "googlePlayHelperProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/UpsightGooglePlayHelper;>;"
     new-instance v0, Lcom/upsight/android/analytics/internal/Analytics_Factory;
 
     move-object v1, p0
@@ -399,11 +437,13 @@
 
     move-object v6, p5
 
-    move-object v7, p6
+    move-object/from16 v7, p6
 
     move-object/from16 v8, p7
 
-    invoke-direct/range {v0 .. v8}, Lcom/upsight/android/analytics/internal/Analytics_Factory;-><init>(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+    move-object/from16 v9, p8
+
+    invoke-direct/range {v0 .. v9}, Lcom/upsight/android/analytics/internal/Analytics_Factory;-><init>(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
 
     return-object v0
 .end method
@@ -411,77 +451,94 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/analytics/internal/Analytics;
-    .registers 10
+    .registers 11
 
     .prologue
-    .line 47
+    .line 71
     new-instance v0, Lcom/upsight/android/analytics/internal/Analytics;
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->upsightProvider:Ljavax/inject/Provider;
 
+    .line 72
     invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v1
 
     check-cast v1, Lcom/upsight/android/UpsightContext;
 
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->sessionManagerProvider:Ljavax/inject/Provider;
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->lifeCycleTrackerProvider:Ljavax/inject/Provider;
 
+    .line 73
     invoke-interface {v2}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v2
 
-    check-cast v2, Lcom/upsight/android/analytics/internal/session/SessionManager;
+    check-cast v2, Lcom/upsight/android/analytics/UpsightLifeCycleTracker;
 
-    iget-object v3, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->schemaSelectorProvider:Ljavax/inject/Provider;
+    iget-object v3, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->sessionManagerProvider:Ljavax/inject/Provider;
 
+    .line 74
     invoke-interface {v3}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v3
 
-    check-cast v3, Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;
+    check-cast v3, Lcom/upsight/android/analytics/internal/session/SessionManager;
 
-    iget-object v4, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->associationManagerProvider:Ljavax/inject/Provider;
+    iget-object v4, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->schemaSelectorProvider:Ljavax/inject/Provider;
 
+    .line 75
     invoke-interface {v4}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v4
 
-    check-cast v4, Lcom/upsight/android/analytics/internal/association/AssociationManager;
+    check-cast v4, Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;
 
-    iget-object v5, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->optOutStatusProvider:Ljavax/inject/Provider;
+    iget-object v5, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->associationManagerProvider:Ljavax/inject/Provider;
 
+    .line 76
     invoke-interface {v5}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v5
 
-    check-cast v5, Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;
+    check-cast v5, Lcom/upsight/android/analytics/internal/association/AssociationManager;
 
-    iget-object v6, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->locationTrackerProvider:Ljavax/inject/Provider;
+    iget-object v6, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->optOutStatusProvider:Ljavax/inject/Provider;
 
+    .line 77
     invoke-interface {v6}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v6
 
-    check-cast v6, Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
+    check-cast v6, Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;
 
-    iget-object v7, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->userAttributesProvider:Ljavax/inject/Provider;
+    iget-object v7, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->locationTrackerProvider:Ljavax/inject/Provider;
 
+    .line 78
     invoke-interface {v7}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v7
 
-    check-cast v7, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
+    check-cast v7, Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
 
-    iget-object v8, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->googlePlayHelperProvider:Ljavax/inject/Provider;
+    iget-object v8, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->userAttributesProvider:Ljavax/inject/Provider;
 
+    .line 79
     invoke-interface {v8}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v8
 
-    check-cast v8, Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
+    check-cast v8, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
 
-    invoke-direct/range {v0 .. v8}, Lcom/upsight/android/analytics/internal/Analytics;-><init>(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/analytics/internal/session/SessionManager;Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;Lcom/upsight/android/analytics/internal/association/AssociationManager;Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;Lcom/upsight/android/analytics/provider/UpsightLocationTracker;Lcom/upsight/android/analytics/provider/UpsightUserAttributes;Lcom/upsight/android/analytics/UpsightGooglePlayHelper;)V
+    iget-object v9, p0, Lcom/upsight/android/analytics/internal/Analytics_Factory;->googlePlayHelperProvider:Ljavax/inject/Provider;
+
+    .line 80
+    invoke-interface {v9}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v9
+
+    check-cast v9, Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
+
+    invoke-direct/range {v0 .. v9}, Lcom/upsight/android/analytics/internal/Analytics;-><init>(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/analytics/UpsightLifeCycleTracker;Lcom/upsight/android/analytics/internal/session/SessionManager;Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;Lcom/upsight/android/analytics/internal/association/AssociationManager;Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;Lcom/upsight/android/analytics/provider/UpsightLocationTracker;Lcom/upsight/android/analytics/provider/UpsightUserAttributes;Lcom/upsight/android/analytics/UpsightGooglePlayHelper;)V
 
     return-object v0
 .end method
@@ -490,7 +547,7 @@
     .registers 2
 
     .prologue
-    .line 15
+    .line 16
     invoke-virtual {p0}, Lcom/upsight/android/analytics/internal/Analytics_Factory;->get()Lcom/upsight/android/analytics/internal/Analytics;
 
     move-result-object v0

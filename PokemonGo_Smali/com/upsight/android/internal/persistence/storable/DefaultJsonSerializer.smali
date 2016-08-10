@@ -29,42 +29,42 @@
     .end annotation
 .end field
 
-.field private final mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+.field private final mGson:Lcom/google/gson/Gson;
 
 
 # direct methods
-.method public constructor <init>(Lcom/fasterxml/jackson/databind/ObjectMapper;Ljava/lang/Class;)V
+.method public constructor <init>(Lcom/google/gson/Gson;Ljava/lang/Class;)V
     .registers 3
-    .param p1, "objectMapper"    # Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .param p1, "gson"    # Lcom/google/gson/Gson;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Lcom/fasterxml/jackson/databind/ObjectMapper;",
+            "Lcom/google/gson/Gson;",
             "Ljava/lang/Class",
             "<TT;>;)V"
         }
     .end annotation
 
     .prologue
-    .line 27
+    .line 24
     .local p0, "this":Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer;, "Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer<TT;>;"
     .local p2, "clazz":Ljava/lang/Class;, "Ljava/lang/Class<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 28
-    iput-object p1, p0, Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer;->mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .line 25
+    iput-object p1, p0, Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer;->mGson:Lcom/google/gson/Gson;
 
-    .line 29
+    .line 26
     iput-object p2, p0, Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer;->mClass:Ljava/lang/Class;
 
-    .line 30
+    .line 27
     return-void
 .end method
 
 
 # virtual methods
 .method public fromString(Ljava/lang/String;)Ljava/lang/Object;
-    .registers 6
+    .registers 5
     .param p1, "string"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -81,33 +81,27 @@
     .end annotation
 
     .prologue
-    .line 40
+    .line 37
     .local p0, "this":Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer;, "Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer<TT;>;"
     :try_start_0
-    iget-object v1, p0, Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer;->mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    iget-object v1, p0, Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer;->mGson:Lcom/google/gson/Gson;
 
-    iget-object v2, p0, Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer;->mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    iget-object v2, p0, Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer;->mClass:Ljava/lang/Class;
 
-    invoke-virtual {v2, p1}, Lcom/fasterxml/jackson/databind/ObjectMapper;->readTree(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
-
-    move-result-object v2
-
-    iget-object v3, p0, Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer;->mClass:Ljava/lang/Class;
-
-    invoke-virtual {v1, v2, v3}, Lcom/fasterxml/jackson/databind/ObjectMapper;->treeToValue(Lcom/fasterxml/jackson/core/TreeNode;Ljava/lang/Class;)Ljava/lang/Object;
-    :try_end_d
-    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_d} :catch_f
+    invoke-virtual {v1, p1, v2}, Lcom/google/gson/Gson;->fromJson(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+    :try_end_7
+    .catch Lcom/google/gson/JsonSyntaxException; {:try_start_0 .. :try_end_7} :catch_9
 
     move-result-object v1
 
     return-object v1
 
-    .line 41
-    :catch_f
+    .line 38
+    :catch_9
     move-exception v0
 
-    .line 42
-    .local v0, "e":Ljava/io/IOException;
+    .line 39
+    .local v0, "e":Lcom/google/gson/JsonSyntaxException;
     new-instance v1, Lcom/upsight/android/UpsightException;
 
     invoke-direct {v1, v0}, Lcom/upsight/android/UpsightException;-><init>(Ljava/lang/Throwable;)V
@@ -125,16 +119,12 @@
     .end annotation
 
     .prologue
-    .line 34
+    .line 31
     .local p0, "this":Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer;, "Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer<TT;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
-    iget-object v0, p0, Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer;->mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    iget-object v0, p0, Lcom/upsight/android/internal/persistence/storable/DefaultJsonSerializer;->mGson:Lcom/google/gson/Gson;
 
-    invoke-virtual {v0, p1}, Lcom/fasterxml/jackson/databind/ObjectMapper;->valueToTree(Ljava/lang/Object;)Lcom/fasterxml/jackson/databind/JsonNode;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Lcom/fasterxml/jackson/databind/JsonNode;->toString()Ljava/lang/String;
+    invoke-virtual {v0, p1}, Lcom/google/gson/Gson;->toJson(Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v0
 

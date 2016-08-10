@@ -9,7 +9,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$1;,
         Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$Builder;
     }
 .end annotation
@@ -75,10 +74,10 @@
     .param p1, "builder"    # Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$Builder;
 
     .prologue
-    .line 16
+    .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 17
+    .line 23
     sget-boolean v0, Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -91,11 +90,11 @@
 
     throw v0
 
-    .line 18
+    .line 24
     :cond_f
     invoke-direct {p0, p1}, Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent;->initialize(Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$Builder;)V
 
-    .line 19
+    .line 25
     return-void
 .end method
 
@@ -105,7 +104,7 @@
     .param p2, "x1"    # Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$1;
 
     .prologue
-    .line 12
+    .line 15
     invoke-direct {p0, p1}, Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent;-><init>(Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$Builder;)V
 
     return-void
@@ -115,7 +114,7 @@
     .registers 2
 
     .prologue
-    .line 22
+    .line 28
     new-instance v0, Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$Builder;
 
     const/4 v1, 0x0
@@ -126,40 +125,40 @@
 .end method
 
 .method private initialize(Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$Builder;)V
-    .registers 4
+    .registers 3
     .param p1, "builder"    # Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$Builder;
 
     .prologue
-    .line 26
+    .line 34
+    .line 37
     # getter for: Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$Builder;->googleAdvertisingProviderModule:Lcom/upsight/android/googleadvertisingid/internal/GoogleAdvertisingProviderModule;
     invoke-static {p1}, Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$Builder;->access$100(Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent$Builder;)Lcom/upsight/android/googleadvertisingid/internal/GoogleAdvertisingProviderModule;
 
     move-result-object v0
 
+    .line 36
     invoke-static {v0}, Lcom/upsight/android/googleadvertisingid/internal/GoogleAdvertisingProviderModule_ProvideGooglePlayAdvertisingProviderFactory;->create(Lcom/upsight/android/googleadvertisingid/internal/GoogleAdvertisingProviderModule;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 35
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent;->provideGooglePlayAdvertisingProvider:Ljavax/inject/Provider;
 
-    .line 27
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
+    .line 39
+    iget-object v0, p0, Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent;->provideGooglePlayAdvertisingProvider:Ljavax/inject/Provider;
 
-    move-result-object v0
-
-    iget-object v1, p0, Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent;->provideGooglePlayAdvertisingProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1}, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    .line 40
+    invoke-static {v0}, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension_MembersInjector;->create(Ljavax/inject/Provider;)Ldagger/MembersInjector;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent;->upsightGoogleAdvertisingIdExtensionMembersInjector:Ldagger/MembersInjector;
 
-    .line 28
+    .line 42
     return-void
 .end method
 
@@ -167,13 +166,11 @@
 # virtual methods
 .method public bridge synthetic inject(Lcom/upsight/android/UpsightExtension;)V
     .registers 2
-    .param p1, "x0"    # Lcom/upsight/android/UpsightExtension;
 
     .prologue
     .line 11
     check-cast p1, Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension;
 
-    .end local p1    # "x0":Lcom/upsight/android/UpsightExtension;
     invoke-virtual {p0, p1}, Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent;->inject(Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension;)V
 
     return-void
@@ -184,11 +181,11 @@
     .param p1, "arg0"    # Lcom/upsight/android/UpsightGoogleAdvertisingIdExtension;
 
     .prologue
-    .line 32
+    .line 46
     iget-object v0, p0, Lcom/upsight/android/googleadvertisingid/internal/DaggerGoogleAdvertisingProviderComponent;->upsightGoogleAdvertisingIdExtensionMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 33
+    .line 47
     return-void
 .end method

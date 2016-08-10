@@ -38,13 +38,13 @@
     .param p1, "scheduler"    # Lrx/Scheduler;
 
     .prologue
-    .line 967
+    .line 966
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 968
+    .line 967
     iput-object p1, p0, Lrx/subjects/ReplaySubject$AddTimestamped;->scheduler:Lrx/Scheduler;
 
-    .line 969
+    .line 968
     return-void
 .end method
 
@@ -55,7 +55,7 @@
     .param p1, "t1"    # Ljava/lang/Object;
 
     .prologue
-    .line 973
+    .line 972
     new-instance v0, Lrx/schedulers/Timestamped;
 
     iget-object v1, p0, Lrx/subjects/ReplaySubject$AddTimestamped;->scheduler:Lrx/Scheduler;

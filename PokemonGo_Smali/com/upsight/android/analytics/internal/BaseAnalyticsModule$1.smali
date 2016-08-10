@@ -24,6 +24,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
 
     .prologue
     .line 41

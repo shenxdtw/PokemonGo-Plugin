@@ -24,13 +24,13 @@
     .param p1, "id"    # Ljava/lang/String;
 
     .prologue
-    .line 271
+    .line 393
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 272
+    .line 394
     iput-object p1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContent$AvailabilityEvent;->mId:Ljava/lang/String;
 
-    .line 273
+    .line 395
     return-void
 .end method
 
@@ -40,7 +40,7 @@
     .param p2, "x1"    # Lcom/upsight/android/marketing/internal/content/MarketingContent$1;
 
     .prologue
-    .line 267
+    .line 389
     invoke-direct {p0, p1}, Lcom/upsight/android/marketing/internal/content/MarketingContent$AvailabilityEvent;-><init>(Ljava/lang/String;)V
 
     return-void
@@ -52,7 +52,7 @@
     .registers 2
 
     .prologue
-    .line 276
+    .line 398
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/content/MarketingContent$AvailabilityEvent;->mId:Ljava/lang/String;
 
     return-object v0

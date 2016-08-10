@@ -22,7 +22,7 @@
 
 
 # instance fields
-.field private final predicate:Lrx/functions/Func1;
+.field final predicate:Lrx/functions/Func1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func1",
@@ -33,7 +33,7 @@
     .end annotation
 .end field
 
-.field private final returnOnEmpty:Z
+.field final returnOnEmpty:Z
 
 
 # direct methods
@@ -51,41 +51,19 @@
     .end annotation
 
     .prologue
-    .line 35
+    .line 33
     .local p0, "this":Lrx/internal/operators/OperatorAny;, "Lrx/internal/operators/OperatorAny<TT;>;"
     .local p1, "predicate":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;Ljava/lang/Boolean;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 36
+    .line 34
     iput-object p1, p0, Lrx/internal/operators/OperatorAny;->predicate:Lrx/functions/Func1;
 
-    .line 37
+    .line 35
     iput-boolean p2, p0, Lrx/internal/operators/OperatorAny;->returnOnEmpty:Z
 
-    .line 38
+    .line 36
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorAny;)Lrx/functions/Func1;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorAny;
-
-    .prologue
-    .line 31
-    iget-object v0, p0, Lrx/internal/operators/OperatorAny;->predicate:Lrx/functions/Func1;
-
-    return-object v0
-.end method
-
-.method static synthetic access$100(Lrx/internal/operators/OperatorAny;)Z
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorAny;
-
-    .prologue
-    .line 31
-    iget-boolean v0, p0, Lrx/internal/operators/OperatorAny;->returnOnEmpty:Z
-
-    return v0
 .end method
 
 
@@ -95,7 +73,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 31
+    .line 29
     .local p0, "this":Lrx/internal/operators/OperatorAny;, "Lrx/internal/operators/OperatorAny<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -122,26 +100,26 @@
     .end annotation
 
     .prologue
-    .line 42
+    .line 40
     .local p0, "this":Lrx/internal/operators/OperatorAny;, "Lrx/internal/operators/OperatorAny<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/lang/Boolean;>;"
     new-instance v0, Lrx/internal/producers/SingleDelayedProducer;
 
     invoke-direct {v0, p1}, Lrx/internal/producers/SingleDelayedProducer;-><init>(Lrx/Subscriber;)V
 
-    .line 43
+    .line 41
     .local v0, "producer":Lrx/internal/producers/SingleDelayedProducer;, "Lrx/internal/producers/SingleDelayedProducer<Ljava/lang/Boolean;>;"
     new-instance v1, Lrx/internal/operators/OperatorAny$1;
 
     invoke-direct {v1, p0, v0, p1}, Lrx/internal/operators/OperatorAny$1;-><init>(Lrx/internal/operators/OperatorAny;Lrx/internal/producers/SingleDelayedProducer;Lrx/Subscriber;)V
 
-    .line 85
+    .line 82
     .local v1, "s":Lrx/Subscriber;, "Lrx/Subscriber<TT;>;"
     invoke-virtual {p1, v1}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 86
+    .line 83
     invoke-virtual {p1, v0}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
 
-    .line 87
+    .line 84
     return-object v1
 .end method

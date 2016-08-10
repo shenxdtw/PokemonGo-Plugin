@@ -47,10 +47,7 @@
     .line 90
     iget-object v0, p0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler$1;->this$0:Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;
 
-    # getter for: Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;->queue:Ljava/util/concurrent/PriorityBlockingQueue;
-    invoke-static {v0}, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;->access$200(Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;)Ljava/util/concurrent/PriorityBlockingQueue;
-
-    move-result-object v0
+    iget-object v0, v0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;->queue:Ljava/util/concurrent/PriorityBlockingQueue;
 
     iget-object v1, p0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler$1;->val$timedAction:Lrx/schedulers/TrampolineScheduler$TimedAction;
 

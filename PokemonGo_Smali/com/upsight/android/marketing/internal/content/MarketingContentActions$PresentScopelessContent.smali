@@ -31,30 +31,30 @@
 
 
 # direct methods
-.method private constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+.method private constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)V
     .registers 4
     .param p1, "actionContext"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
     .param p2, "type"    # Ljava/lang/String;
-    .param p3, "params"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p3, "params"    # Lcom/google/gson/JsonObject;
 
     .prologue
-    .line 443
-    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/analytics/internal/action/Action;-><init>(Lcom/upsight/android/analytics/internal/action/ActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+    .line 586
+    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/analytics/internal/action/Action;-><init>(Lcom/upsight/android/analytics/internal/action/ActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)V
 
-    .line 444
+    .line 587
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;)V
+.method synthetic constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;)V
     .registers 5
     .param p1, "x0"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
     .param p2, "x1"    # Ljava/lang/String;
-    .param p3, "x2"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p3, "x2"    # Lcom/google/gson/JsonObject;
     .param p4, "x3"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;
 
     .prologue
-    .line 436
-    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentScopelessContent;-><init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+    .line 579
+    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentScopelessContent;-><init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)V
 
     return-void
 .end method
@@ -63,13 +63,11 @@
 # virtual methods
 .method public bridge synthetic execute(Lcom/upsight/android/analytics/internal/action/Actionable;)V
     .registers 2
-    .param p1, "x0"    # Lcom/upsight/android/analytics/internal/action/Actionable;
 
     .prologue
-    .line 436
+    .line 579
     check-cast p1, Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
-    .end local p1    # "x0":Lcom/upsight/android/analytics/internal/action/Actionable;
     invoke-virtual {p0, p1}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentScopelessContent;->execute(Lcom/upsight/android/marketing/internal/content/MarketingContent;)V
 
     return-void
@@ -80,14 +78,14 @@
     .param p1, "content"    # Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
     .prologue
-    .line 448
+    .line 591
     const-string v2, "self_id"
 
     invoke-virtual {p0, v2}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentScopelessContent;->optParamString(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 449
+    .line 592
     .local v1, "selfId":Ljava/lang/String;
     const-string v2, "next_id"
 
@@ -95,7 +93,7 @@
 
     move-result-object v0
 
-    .line 450
+    .line 593
     .local v0, "nextId":Ljava/lang/String;
     invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -109,7 +107,7 @@
 
     if-nez v2, :cond_23
 
-    .line 451
+    .line 594
     invoke-virtual {p0}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentScopelessContent;->getActionContext()Lcom/upsight/android/analytics/internal/action/ActionContext;
 
     move-result-object v2
@@ -120,7 +118,7 @@
 
     invoke-interface {v2, v0, v1}, Lcom/upsight/android/marketing/internal/content/MarketingContentStore;->presentScopelessContent(Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 455
+    .line 598
     :cond_23
     invoke-virtual {p0}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentScopelessContent;->getActionContext()Lcom/upsight/android/analytics/internal/action/ActionContext;
 
@@ -132,6 +130,6 @@
 
     invoke-virtual {p1, v2}, Lcom/upsight/android/marketing/internal/content/MarketingContent;->signalActionCompleted(Lcom/squareup/otto/Bus;)V
 
-    .line 456
+    .line 599
     return-void
 .end method

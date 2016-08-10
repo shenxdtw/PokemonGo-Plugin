@@ -25,7 +25,7 @@
 
 
 # instance fields
-.field private uxm:Lcom/fasterxml/jackson/databind/node/ArrayNode;
+.field private uxm:Lcom/google/gson/JsonArray;
 
 
 # direct methods
@@ -34,27 +34,27 @@
     .param p1, "uxm"    # Lorg/json/JSONArray;
 
     .prologue
-    .line 68
+    .line 71
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;-><init>()V
 
-    .line 69
-    invoke-static {p1}, Lcom/upsight/android/analytics/internal/util/JacksonHelper$JSONArraySerializer;->toArrayNode(Lorg/json/JSONArray;)Lcom/fasterxml/jackson/databind/node/ArrayNode;
+    .line 72
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/util/GsonHelper$JSONArraySerializer;->toJsonArray(Lorg/json/JSONArray;)Lcom/google/gson/JsonArray;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;->uxm:Lcom/fasterxml/jackson/databind/node/ArrayNode;
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;->uxm:Lcom/google/gson/JsonArray;
 
-    .line 70
+    .line 73
     return-void
 .end method
 
-.method static synthetic access$000(Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;)Lcom/fasterxml/jackson/databind/node/ArrayNode;
+.method static synthetic access$000(Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;)Lcom/google/gson/JsonArray;
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;
 
     .prologue
-    .line 58
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;->uxm:Lcom/fasterxml/jackson/databind/node/ArrayNode;
+    .line 61
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;->uxm:Lcom/google/gson/JsonArray;
 
     return-object v0
 .end method
@@ -65,7 +65,7 @@
     .registers 2
 
     .prologue
-    .line 58
+    .line 61
     invoke-virtual {p0}, Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;->build()Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent;
 
     move-result-object v0
@@ -77,7 +77,7 @@
     .registers 5
 
     .prologue
-    .line 74
+    .line 77
     new-instance v0, Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent;
 
     const-string v1, "upsight.uxm.enumerate"

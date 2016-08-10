@@ -120,6 +120,7 @@
 
     if-nez v0, :cond_16
 
+    .line 217
     invoke-virtual {p1}, Ljava/lang/Class;->isAnonymousClass()Z
 
     move-result v0
@@ -338,7 +339,7 @@
     .local v0, "e":Ljava/lang/CloneNotSupportedException;
     new-instance v1, Ljava/lang/AssertionError;
 
-    invoke-direct {v1}, Ljava/lang/AssertionError;-><init>()V
+    invoke-direct {v1, v0}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
 
     throw v1
 .end method
@@ -446,7 +447,7 @@
 .end method
 
 .method public excludeClass(Ljava/lang/Class;Z)Z
-    .registers 13
+    .registers 11
     .param p2, "serialize"    # Z
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -458,58 +459,59 @@
 
     .prologue
     .local p1, "clazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
-    const/4 v5, 0x1
+    const/4 v4, 0x1
 
     .line 192
-    iget-wide v6, p0, Lcom/google/gson/internal/Excluder;->version:D
+    iget-wide v2, p0, Lcom/google/gson/internal/Excluder;->version:D
 
-    const-wide/high16 v8, -0x4010000000000000L    # -1.0
+    const-wide/high16 v6, -0x4010000000000000L    # -1.0
 
-    cmpl-double v3, v6, v8
+    cmpl-double v2, v2, v6
 
-    if-eqz v3, :cond_21
+    if-eqz v2, :cond_21
 
-    const-class v3, Lcom/google/gson/annotations/Since;
+    const-class v2, Lcom/google/gson/annotations/Since;
+
+    .line 193
+    invoke-virtual {p1, v2}, Ljava/lang/Class;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+
+    move-result-object v2
+
+    check-cast v2, Lcom/google/gson/annotations/Since;
+
+    const-class v3, Lcom/google/gson/annotations/Until;
 
     invoke-virtual {p1, v3}, Ljava/lang/Class;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
 
     move-result-object v3
 
-    check-cast v3, Lcom/google/gson/annotations/Since;
+    check-cast v3, Lcom/google/gson/annotations/Until;
 
-    const-class v4, Lcom/google/gson/annotations/Until;
+    invoke-direct {p0, v2, v3}, Lcom/google/gson/internal/Excluder;->isValidVersion(Lcom/google/gson/annotations/Since;Lcom/google/gson/annotations/Until;)Z
 
-    invoke-virtual {p1, v4}, Ljava/lang/Class;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+    move-result v2
 
-    move-result-object v4
+    if-nez v2, :cond_21
 
-    check-cast v4, Lcom/google/gson/annotations/Until;
-
-    invoke-direct {p0, v3, v4}, Lcom/google/gson/internal/Excluder;->isValidVersion(Lcom/google/gson/annotations/Since;Lcom/google/gson/annotations/Until;)Z
-
-    move-result v3
-
-    if-nez v3, :cond_21
-
-    move v3, v5
+    move v2, v4
 
     .line 212
     :goto_20
-    return v3
+    return v2
 
     .line 197
     :cond_21
-    iget-boolean v3, p0, Lcom/google/gson/internal/Excluder;->serializeInnerClasses:Z
+    iget-boolean v2, p0, Lcom/google/gson/internal/Excluder;->serializeInnerClasses:Z
 
-    if-nez v3, :cond_2d
+    if-nez v2, :cond_2d
 
     invoke-direct {p0, p1}, Lcom/google/gson/internal/Excluder;->isInnerClass(Ljava/lang/Class;)Z
 
-    move-result v3
+    move-result v2
 
-    if-eqz v3, :cond_2d
+    if-eqz v2, :cond_2d
 
-    move v3, v5
+    move v2, v4
 
     .line 198
     goto :goto_20
@@ -518,11 +520,11 @@
     :cond_2d
     invoke-direct {p0, p1}, Lcom/google/gson/internal/Excluder;->isAnonymousOrLocal(Ljava/lang/Class;)Z
 
-    move-result v3
+    move-result v2
 
-    if-eqz v3, :cond_35
+    if-eqz v2, :cond_35
 
-    move v3, v5
+    move v2, v4
 
     .line 202
     goto :goto_20
@@ -531,24 +533,23 @@
     :cond_35
     if-eqz p2, :cond_51
 
-    iget-object v2, p0, Lcom/google/gson/internal/Excluder;->serializationStrategies:Ljava/util/List;
+    iget-object v1, p0, Lcom/google/gson/internal/Excluder;->serializationStrategies:Ljava/util/List;
 
     .line 206
-    .local v2, "list":Ljava/util/List;, "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;"
+    .local v1, "list":Ljava/util/List;, "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;"
     :goto_39
-    invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+    invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
-    move-result-object v1
+    move-result-object v2
 
-    .local v1, "i$":Ljava/util/Iterator;
     :cond_3d
-    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
     if-eqz v3, :cond_54
 
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
@@ -562,87 +563,86 @@
 
     if-eqz v3, :cond_3d
 
-    move v3, v5
+    move v2, v4
 
     .line 208
     goto :goto_20
 
     .line 205
     .end local v0    # "exclusionStrategy":Lcom/google/gson/ExclusionStrategy;
-    .end local v1    # "i$":Ljava/util/Iterator;
-    .end local v2    # "list":Ljava/util/List;, "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;"
+    .end local v1    # "list":Ljava/util/List;, "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;"
     :cond_51
-    iget-object v2, p0, Lcom/google/gson/internal/Excluder;->deserializationStrategies:Ljava/util/List;
+    iget-object v1, p0, Lcom/google/gson/internal/Excluder;->deserializationStrategies:Ljava/util/List;
 
     goto :goto_39
 
     .line 212
-    .restart local v1    # "i$":Ljava/util/Iterator;
-    .restart local v2    # "list":Ljava/util/List;, "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;"
+    .restart local v1    # "list":Ljava/util/List;, "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;"
     :cond_54
-    const/4 v3, 0x0
+    const/4 v2, 0x0
 
     goto :goto_20
 .end method
 
 .method public excludeField(Ljava/lang/reflect/Field;Z)Z
-    .registers 15
+    .registers 13
     .param p1, "field"    # Ljava/lang/reflect/Field;
     .param p2, "serialize"    # Z
 
     .prologue
-    const/4 v7, 0x1
+    const/4 v6, 0x1
 
     .line 150
-    iget v5, p0, Lcom/google/gson/internal/Excluder;->modifiers:I
+    iget v4, p0, Lcom/google/gson/internal/Excluder;->modifiers:I
 
     invoke-virtual {p1}, Ljava/lang/reflect/Field;->getModifiers()I
 
-    move-result v6
+    move-result v5
 
-    and-int/2addr v5, v6
+    and-int/2addr v4, v5
 
-    if-eqz v5, :cond_c
+    if-eqz v4, :cond_c
 
-    move v5, v7
+    move v4, v6
 
     .line 188
     :goto_b
-    return v5
+    return v4
 
     .line 154
     :cond_c
-    iget-wide v8, p0, Lcom/google/gson/internal/Excluder;->version:D
+    iget-wide v4, p0, Lcom/google/gson/internal/Excluder;->version:D
 
-    const-wide/high16 v10, -0x4010000000000000L    # -1.0
+    const-wide/high16 v8, -0x4010000000000000L    # -1.0
 
-    cmpl-double v5, v8, v10
+    cmpl-double v4, v4, v8
 
-    if-eqz v5, :cond_2c
+    if-eqz v4, :cond_2c
 
-    const-class v5, Lcom/google/gson/annotations/Since;
+    const-class v4, Lcom/google/gson/annotations/Since;
+
+    .line 155
+    invoke-virtual {p1, v4}, Ljava/lang/reflect/Field;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+
+    move-result-object v4
+
+    check-cast v4, Lcom/google/gson/annotations/Since;
+
+    const-class v5, Lcom/google/gson/annotations/Until;
 
     invoke-virtual {p1, v5}, Ljava/lang/reflect/Field;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
 
     move-result-object v5
 
-    check-cast v5, Lcom/google/gson/annotations/Since;
+    check-cast v5, Lcom/google/gson/annotations/Until;
 
-    const-class v6, Lcom/google/gson/annotations/Until;
+    invoke-direct {p0, v4, v5}, Lcom/google/gson/internal/Excluder;->isValidVersion(Lcom/google/gson/annotations/Since;Lcom/google/gson/annotations/Until;)Z
 
-    invoke-virtual {p1, v6}, Ljava/lang/reflect/Field;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+    move-result v4
 
-    move-result-object v6
+    if-nez v4, :cond_2c
 
-    check-cast v6, Lcom/google/gson/annotations/Until;
-
-    invoke-direct {p0, v5, v6}, Lcom/google/gson/internal/Excluder;->isValidVersion(Lcom/google/gson/annotations/Since;Lcom/google/gson/annotations/Until;)Z
-
-    move-result v5
-
-    if-nez v5, :cond_2c
-
-    move v5, v7
+    move v4, v6
 
     .line 156
     goto :goto_b
@@ -651,25 +651,25 @@
     :cond_2c
     invoke-virtual {p1}, Ljava/lang/reflect/Field;->isSynthetic()Z
 
-    move-result v5
+    move-result v4
 
-    if-eqz v5, :cond_34
+    if-eqz v4, :cond_34
 
-    move v5, v7
+    move v4, v6
 
     .line 160
     goto :goto_b
 
     .line 163
     :cond_34
-    iget-boolean v5, p0, Lcom/google/gson/internal/Excluder;->requireExpose:Z
+    iget-boolean v4, p0, Lcom/google/gson/internal/Excluder;->requireExpose:Z
 
-    if-eqz v5, :cond_52
+    if-eqz v4, :cond_52
 
     .line 164
-    const-class v5, Lcom/google/gson/annotations/Expose;
+    const-class v4, Lcom/google/gson/annotations/Expose;
 
-    invoke-virtual {p1, v5}, Ljava/lang/reflect/Field;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+    invoke-virtual {p1, v4}, Ljava/lang/reflect/Field;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
 
     move-result-object v0
 
@@ -683,12 +683,12 @@
 
     invoke-interface {v0}, Lcom/google/gson/annotations/Expose;->serialize()Z
 
-    move-result v5
+    move-result v4
 
-    if-nez v5, :cond_52
+    if-nez v4, :cond_52
 
     :cond_4a
-    move v5, v7
+    move v4, v6
 
     .line 166
     goto :goto_b
@@ -697,28 +697,28 @@
     :cond_4c
     invoke-interface {v0}, Lcom/google/gson/annotations/Expose;->deserialize()Z
 
-    move-result v5
+    move-result v4
 
-    if-eqz v5, :cond_4a
+    if-eqz v4, :cond_4a
 
     .line 170
     .end local v0    # "annotation":Lcom/google/gson/annotations/Expose;
     :cond_52
-    iget-boolean v5, p0, Lcom/google/gson/internal/Excluder;->serializeInnerClasses:Z
+    iget-boolean v4, p0, Lcom/google/gson/internal/Excluder;->serializeInnerClasses:Z
 
-    if-nez v5, :cond_62
+    if-nez v4, :cond_62
 
     invoke-virtual {p1}, Ljava/lang/reflect/Field;->getType()Ljava/lang/Class;
 
-    move-result-object v5
+    move-result-object v4
 
-    invoke-direct {p0, v5}, Lcom/google/gson/internal/Excluder;->isInnerClass(Ljava/lang/Class;)Z
+    invoke-direct {p0, v4}, Lcom/google/gson/internal/Excluder;->isInnerClass(Ljava/lang/Class;)Z
 
-    move-result v5
+    move-result v4
 
-    if-eqz v5, :cond_62
+    if-eqz v4, :cond_62
 
-    move v5, v7
+    move v4, v6
 
     .line 171
     goto :goto_b
@@ -727,15 +727,15 @@
     :cond_62
     invoke-virtual {p1}, Ljava/lang/reflect/Field;->getType()Ljava/lang/Class;
 
-    move-result-object v5
+    move-result-object v4
 
-    invoke-direct {p0, v5}, Lcom/google/gson/internal/Excluder;->isAnonymousOrLocal(Ljava/lang/Class;)Z
+    invoke-direct {p0, v4}, Lcom/google/gson/internal/Excluder;->isAnonymousOrLocal(Ljava/lang/Class;)Z
 
-    move-result v5
+    move-result v4
 
-    if-eqz v5, :cond_6e
+    if-eqz v4, :cond_6e
 
-    move v5, v7
+    move v4, v6
 
     .line 175
     goto :goto_b
@@ -744,16 +744,16 @@
     :cond_6e
     if-eqz p2, :cond_96
 
-    iget-object v4, p0, Lcom/google/gson/internal/Excluder;->serializationStrategies:Ljava/util/List;
+    iget-object v3, p0, Lcom/google/gson/internal/Excluder;->serializationStrategies:Ljava/util/List;
 
     .line 179
-    .local v4, "list":Ljava/util/List;, "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;"
+    .local v3, "list":Ljava/util/List;, "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;"
     :goto_72
-    invoke-interface {v4}, Ljava/util/List;->isEmpty()Z
+    invoke-interface {v3}, Ljava/util/List;->isEmpty()Z
 
-    move-result v5
+    move-result v4
 
-    if-nez v5, :cond_99
+    if-nez v4, :cond_99
 
     .line 180
     new-instance v2, Lcom/google/gson/FieldAttributes;
@@ -762,19 +762,18 @@
 
     .line 181
     .local v2, "fieldAttributes":Lcom/google/gson/FieldAttributes;
-    invoke-interface {v4}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+    invoke-interface {v3}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
-    move-result-object v3
+    move-result-object v4
 
-    .local v3, "i$":Ljava/util/Iterator;
     :cond_81
-    invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v5
 
     if-eqz v5, :cond_99
 
-    invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v1
 
@@ -788,7 +787,7 @@
 
     if-eqz v5, :cond_81
 
-    move v5, v7
+    move v4, v6
 
     .line 183
     goto/16 :goto_b
@@ -796,17 +795,16 @@
     .line 178
     .end local v1    # "exclusionStrategy":Lcom/google/gson/ExclusionStrategy;
     .end local v2    # "fieldAttributes":Lcom/google/gson/FieldAttributes;
-    .end local v3    # "i$":Ljava/util/Iterator;
-    .end local v4    # "list":Ljava/util/List;, "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;"
+    .end local v3    # "list":Ljava/util/List;, "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;"
     :cond_96
-    iget-object v4, p0, Lcom/google/gson/internal/Excluder;->deserializationStrategies:Ljava/util/List;
+    iget-object v3, p0, Lcom/google/gson/internal/Excluder;->deserializationStrategies:Ljava/util/List;
 
     goto :goto_72
 
     .line 188
-    .restart local v4    # "list":Ljava/util/List;, "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;"
+    .restart local v3    # "list":Ljava/util/List;, "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;"
     :cond_99
-    const/4 v5, 0x0
+    const/4 v4, 0x0
 
     goto/16 :goto_b
 .end method
@@ -884,53 +882,46 @@
 .end method
 
 .method public varargs withModifiers([I)Lcom/google/gson/internal/Excluder;
-    .registers 8
+    .registers 7
     .param p1, "modifiers"    # [I
 
     .prologue
+    const/4 v2, 0x0
+
     .line 76
     invoke-virtual {p0}, Lcom/google/gson/internal/Excluder;->clone()Lcom/google/gson/internal/Excluder;
 
-    move-result-object v4
+    move-result-object v1
 
     .line 77
-    .local v4, "result":Lcom/google/gson/internal/Excluder;
-    const/4 v5, 0x0
-
-    iput v5, v4, Lcom/google/gson/internal/Excluder;->modifiers:I
+    .local v1, "result":Lcom/google/gson/internal/Excluder;
+    iput v2, v1, Lcom/google/gson/internal/Excluder;->modifiers:I
 
     .line 78
-    move-object v0, p1
+    array-length v3, p1
 
-    .local v0, "arr$":[I
-    array-length v2, v0
+    :goto_8
+    if-ge v2, v3, :cond_14
 
-    .local v2, "len$":I
-    const/4 v1, 0x0
-
-    .local v1, "i$":I
-    :goto_a
-    if-ge v1, v2, :cond_16
-
-    aget v3, v0, v1
+    aget v0, p1, v2
 
     .line 79
-    .local v3, "modifier":I
-    iget v5, v4, Lcom/google/gson/internal/Excluder;->modifiers:I
+    .local v0, "modifier":I
+    iget v4, v1, Lcom/google/gson/internal/Excluder;->modifiers:I
 
-    or-int/2addr v5, v3
+    or-int/2addr v4, v0
 
-    iput v5, v4, Lcom/google/gson/internal/Excluder;->modifiers:I
+    iput v4, v1, Lcom/google/gson/internal/Excluder;->modifiers:I
 
     .line 78
-    add-int/lit8 v1, v1, 0x1
+    add-int/lit8 v2, v2, 0x1
 
-    goto :goto_a
+    goto :goto_8
 
     .line 81
-    .end local v3    # "modifier":I
-    :cond_16
-    return-object v4
+    .end local v0    # "modifier":I
+    :cond_14
+    return-object v1
 .end method
 
 .method public withVersion(D)Lcom/google/gson/internal/Excluder;

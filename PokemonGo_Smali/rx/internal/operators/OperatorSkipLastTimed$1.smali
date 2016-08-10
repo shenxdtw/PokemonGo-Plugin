@@ -71,23 +71,20 @@
     .local p0, "this":Lrx/internal/operators/OperatorSkipLastTimed$1;, "Lrx/internal/operators/OperatorSkipLastTimed.1;"
     iget-object v3, p0, Lrx/internal/operators/OperatorSkipLastTimed$1;->this$0:Lrx/internal/operators/OperatorSkipLastTimed;
 
-    # getter for: Lrx/internal/operators/OperatorSkipLastTimed;->timeInMillis:J
-    invoke-static {v3}, Lrx/internal/operators/OperatorSkipLastTimed;->access$000(Lrx/internal/operators/OperatorSkipLastTimed;)J
-
-    move-result-wide v4
+    iget-wide v4, v3, Lrx/internal/operators/OperatorSkipLastTimed;->timeInMillis:J
 
     sub-long v0, p1, v4
 
     .line 48
     .local v0, "limit":J
-    :goto_8
+    :goto_6
     iget-object v3, p0, Lrx/internal/operators/OperatorSkipLastTimed$1;->buffer:Ljava/util/Deque;
 
     invoke-interface {v3}, Ljava/util/Deque;->isEmpty()Z
 
     move-result v3
 
-    if-nez v3, :cond_2f
+    if-nez v3, :cond_2d
 
     .line 49
     iget-object v3, p0, Lrx/internal/operators/OperatorSkipLastTimed$1;->buffer:Ljava/util/Deque;
@@ -106,7 +103,7 @@
 
     cmp-long v3, v4, v0
 
-    if-gez v3, :cond_2f
+    if-gez v3, :cond_2d
 
     .line 51
     iget-object v3, p0, Lrx/internal/operators/OperatorSkipLastTimed$1;->buffer:Ljava/util/Deque;
@@ -122,11 +119,11 @@
 
     invoke-virtual {v3, v4}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    goto :goto_8
+    goto :goto_6
 
     .line 57
     .end local v2    # "v":Lrx/schedulers/Timestamped;, "Lrx/schedulers/Timestamped<TT;>;"
-    :cond_2f
+    :cond_2d
     return-void
 .end method
 
@@ -140,10 +137,7 @@
     .local p0, "this":Lrx/internal/operators/OperatorSkipLastTimed$1;, "Lrx/internal/operators/OperatorSkipLastTimed.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorSkipLastTimed$1;->this$0:Lrx/internal/operators/OperatorSkipLastTimed;
 
-    # getter for: Lrx/internal/operators/OperatorSkipLastTimed;->scheduler:Lrx/Scheduler;
-    invoke-static {v0}, Lrx/internal/operators/OperatorSkipLastTimed;->access$100(Lrx/internal/operators/OperatorSkipLastTimed;)Lrx/Scheduler;
-
-    move-result-object v0
+    iget-object v0, v0, Lrx/internal/operators/OperatorSkipLastTimed;->scheduler:Lrx/Scheduler;
 
     invoke-virtual {v0}, Lrx/Scheduler;->now()J
 
@@ -189,10 +183,7 @@
     .local p1, "value":Ljava/lang/Object;, "TT;"
     iget-object v2, p0, Lrx/internal/operators/OperatorSkipLastTimed$1;->this$0:Lrx/internal/operators/OperatorSkipLastTimed;
 
-    # getter for: Lrx/internal/operators/OperatorSkipLastTimed;->scheduler:Lrx/Scheduler;
-    invoke-static {v2}, Lrx/internal/operators/OperatorSkipLastTimed;->access$100(Lrx/internal/operators/OperatorSkipLastTimed;)Lrx/Scheduler;
-
-    move-result-object v2
+    iget-object v2, v2, Lrx/internal/operators/OperatorSkipLastTimed;->scheduler:Lrx/Scheduler;
 
     invoke-virtual {v2}, Lrx/Scheduler;->now()J
 

@@ -20,9 +20,9 @@
 
 
 # instance fields
-.field private volatile baseSubscription:Lrx/subscriptions/CompositeSubscription;
+.field volatile baseSubscription:Lrx/subscriptions/CompositeSubscription;
 
-.field private final lock:Ljava/util/concurrent/locks/ReentrantLock;
+.field final lock:Ljava/util/concurrent/locks/ReentrantLock;
 
 .field private final source:Lrx/observables/ConnectableObservable;
     .annotation system Ldalvik/annotation/Signature;
@@ -33,7 +33,7 @@
     .end annotation
 .end field
 
-.field private final subscriptionCount:Ljava/util/concurrent/atomic/AtomicInteger;
+.field final subscriptionCount:Ljava/util/concurrent/atomic/AtomicInteger;
 
 
 # direct methods
@@ -81,51 +81,6 @@
 
     .line 57
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OnSubscribeRefCount;)Lrx/subscriptions/CompositeSubscription;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OnSubscribeRefCount;
-
-    .prologue
-    .line 38
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeRefCount;->baseSubscription:Lrx/subscriptions/CompositeSubscription;
-
-    return-object v0
-.end method
-
-.method static synthetic access$002(Lrx/internal/operators/OnSubscribeRefCount;Lrx/subscriptions/CompositeSubscription;)Lrx/subscriptions/CompositeSubscription;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OnSubscribeRefCount;
-    .param p1, "x1"    # Lrx/subscriptions/CompositeSubscription;
-
-    .prologue
-    .line 38
-    iput-object p1, p0, Lrx/internal/operators/OnSubscribeRefCount;->baseSubscription:Lrx/subscriptions/CompositeSubscription;
-
-    return-object p1
-.end method
-
-.method static synthetic access$100(Lrx/internal/operators/OnSubscribeRefCount;)Ljava/util/concurrent/locks/ReentrantLock;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OnSubscribeRefCount;
-
-    .prologue
-    .line 38
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeRefCount;->lock:Ljava/util/concurrent/locks/ReentrantLock;
-
-    return-object v0
-.end method
-
-.method static synthetic access$200(Lrx/internal/operators/OnSubscribeRefCount;)Ljava/util/concurrent/atomic/AtomicInteger;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OnSubscribeRefCount;
-
-    .prologue
-    .line 38
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeRefCount;->subscriptionCount:Ljava/util/concurrent/atomic/AtomicInteger;
-
-    return-object v0
 .end method
 
 .method private disconnect(Lrx/subscriptions/CompositeSubscription;)Lrx/Subscription;

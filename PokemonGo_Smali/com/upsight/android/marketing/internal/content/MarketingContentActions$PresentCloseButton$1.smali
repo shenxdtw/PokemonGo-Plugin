@@ -26,9 +26,10 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentCloseButton;Lcom/upsight/android/marketing/internal/content/MarketingContent;)V
     .registers 3
+    .param p1, "this$0"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentCloseButton;
 
     .prologue
-    .line 473
+    .line 616
     iput-object p1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentCloseButton$1;->this$0:Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentCloseButton;
 
     iput-object p2, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentCloseButton$1;->val$content:Lcom/upsight/android/marketing/internal/content/MarketingContent;
@@ -44,14 +45,14 @@
     .registers 4
 
     .prologue
-    .line 476
+    .line 619
     iget-object v2, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentCloseButton$1;->val$content:Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
     invoke-virtual {v2}, Lcom/upsight/android/marketing/internal/content/MarketingContent;->getContentView()Landroid/view/View;
 
     move-result-object v1
 
-    .line 477
+    .line 620
     .local v1, "contentView":Landroid/view/View;
     if-eqz v1, :cond_1a
 
@@ -61,7 +62,7 @@
 
     if-eqz v2, :cond_1a
 
-    .line 478
+    .line 621
     sget v2, Lcom/upsight/android/marketing/R$id;->upsight_marketing_content_view_close_button:I
 
     invoke-virtual {v1, v2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
@@ -70,13 +71,13 @@
 
     check-cast v0, Landroid/widget/ImageView;
 
-    .line 479
+    .line 622
     .local v0, "closeButton":Landroid/widget/ImageView;
     const/4 v2, 0x0
 
     invoke-virtual {v0, v2}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 481
+    .line 624
     .end local v0    # "closeButton":Landroid/widget/ImageView;
     :cond_1a
     return-void

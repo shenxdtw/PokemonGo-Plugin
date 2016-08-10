@@ -9,14 +9,20 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 1
+    .registers 3
 
     .prologue
-    .line 28
+    .line 30
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 30
-    return-void
+    .line 31
+    new-instance v0, Ljava/lang/IllegalStateException;
+
+    const-string v1, "No instances!"
+
+    invoke-direct {v0, v1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw v0
 .end method
 
 .method public static addCause(Ljava/lang/Throwable;Ljava/lang/Throwable;)V
@@ -25,16 +31,16 @@
     .param p1, "cause"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 111
+    .line 108
     new-instance v2, Ljava/util/HashSet;
 
     invoke-direct {v2}, Ljava/util/HashSet;-><init>()V
 
-    .line 113
+    .line 110
     .local v2, "seenCauses":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/Throwable;>;"
     const/4 v0, 0x0
 
-    .line 114
+    .line 111
     .local v0, "i":I
     :goto_6
     invoke-virtual {p0}, Ljava/lang/Throwable;->getCause()Ljava/lang/Throwable;
@@ -43,7 +49,7 @@
 
     if-eqz v3, :cond_23
 
-    .line 115
+    .line 112
     add-int/lit8 v1, v0, 0x1
 
     .end local v0    # "i":I
@@ -54,13 +60,13 @@
 
     move v0, v1
 
-    .line 134
+    .line 131
     .end local v1    # "i":I
     .restart local v0    # "i":I
     :goto_13
     return-void
 
-    .line 119
+    .line 116
     .end local v0    # "i":I
     .restart local v1    # "i":I
     :cond_14
@@ -68,7 +74,7 @@
 
     move-result-object p0
 
-    .line 120
+    .line 117
     invoke-virtual {p0}, Ljava/lang/Throwable;->getCause()Ljava/lang/Throwable;
 
     move-result-object v3
@@ -81,7 +87,7 @@
 
     move v0, v1
 
-    .line 128
+    .line 125
     .end local v1    # "i":I
     .restart local v0    # "i":I
     :cond_23
@@ -92,13 +98,13 @@
 
     goto :goto_13
 
-    .line 129
+    .line 126
     :catch_27
     move-exception v3
 
     goto :goto_13
 
-    .line 123
+    .line 120
     .end local v0    # "i":I
     .restart local v1    # "i":I
     :cond_29
@@ -120,10 +126,10 @@
     .param p0, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 145
+    .line 142
     const/4 v0, 0x0
 
-    .line 146
+    .line 143
     .local v0, "i":I
     :goto_1
     invoke-virtual {p0}, Ljava/lang/Throwable;->getCause()Ljava/lang/Throwable;
@@ -132,7 +138,7 @@
 
     if-eqz v2, :cond_15
 
-    .line 147
+    .line 144
     add-int/lit8 v1, v0, 0x1
 
     .end local v0    # "i":I
@@ -141,7 +147,7 @@
 
     if-lt v0, v2, :cond_16
 
-    .line 149
+    .line 146
     new-instance p0, Ljava/lang/RuntimeException;
 
     .end local p0    # "e":Ljava/lang/Throwable;
@@ -151,13 +157,13 @@
 
     move v0, v1
 
-    .line 153
+    .line 150
     .end local v1    # "i":I
     .restart local v0    # "i":I
     :cond_15
     return-object p0
 
-    .line 151
+    .line 148
     .end local v0    # "i":I
     .restart local v1    # "i":I
     .restart local p0    # "e":Ljava/lang/Throwable;
@@ -178,31 +184,31 @@
     .param p0, "t"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 48
+    .line 50
     instance-of v0, p0, Ljava/lang/RuntimeException;
 
     if-eqz v0, :cond_7
 
-    .line 49
+    .line 51
     check-cast p0, Ljava/lang/RuntimeException;
 
     .end local p0    # "t":Ljava/lang/Throwable;
     throw p0
 
-    .line 50
+    .line 52
     .restart local p0    # "t":Ljava/lang/Throwable;
     :cond_7
     instance-of v0, p0, Ljava/lang/Error;
 
     if-eqz v0, :cond_e
 
-    .line 51
+    .line 53
     check-cast p0, Ljava/lang/Error;
 
     .end local p0    # "t":Ljava/lang/Throwable;
     throw p0
 
-    .line 53
+    .line 55
     .restart local p0    # "t":Ljava/lang/Throwable;
     :cond_e
     new-instance v0, Ljava/lang/RuntimeException;
@@ -224,21 +230,18 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
     .prologue
-    .line 164
+    .line 161
     .local p0, "exceptions":Ljava/util/List;, "Ljava/util/List<+Ljava/lang/Throwable;>;"
-    if-eqz p0, :cond_32
+    if-eqz p0, :cond_30
 
     invoke-interface {p0}, Ljava/util/List;->isEmpty()Z
 
     move-result v1
 
-    if-nez v1, :cond_32
+    if-nez v1, :cond_30
 
-    .line 165
+    .line 162
     invoke-interface {p0}, Ljava/util/List;->size()I
 
     move-result v1
@@ -247,7 +250,7 @@
 
     if-ne v1, v2, :cond_2a
 
-    .line 166
+    .line 163
     const/4 v1, 0x0
 
     invoke-interface {p0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -256,32 +259,32 @@
 
     check-cast v0, Ljava/lang/Throwable;
 
-    .line 169
+    .line 166
     .local v0, "t":Ljava/lang/Throwable;
     instance-of v1, v0, Ljava/lang/RuntimeException;
 
     if-eqz v1, :cond_1d
 
-    .line 170
+    .line 167
     check-cast v0, Ljava/lang/RuntimeException;
 
     .end local v0    # "t":Ljava/lang/Throwable;
     throw v0
 
-    .line 171
+    .line 168
     .restart local v0    # "t":Ljava/lang/Throwable;
     :cond_1d
     instance-of v1, v0, Ljava/lang/Error;
 
     if-eqz v1, :cond_24
 
-    .line 172
+    .line 169
     check-cast v0, Ljava/lang/Error;
 
     .end local v0    # "t":Ljava/lang/Throwable;
     throw v0
 
-    .line 174
+    .line 171
     .restart local v0    # "t":Ljava/lang/Throwable;
     :cond_24
     new-instance v1, Ljava/lang/RuntimeException;
@@ -290,129 +293,191 @@
 
     throw v1
 
-    .line 177
+    .line 174
     .end local v0    # "t":Ljava/lang/Throwable;
     :cond_2a
     new-instance v1, Lrx/exceptions/CompositeException;
 
-    const-string v2, "Multiple exceptions"
-
-    invoke-direct {v1, v2, p0}, Lrx/exceptions/CompositeException;-><init>(Ljava/lang/String;Ljava/util/Collection;)V
+    invoke-direct {v1, p0}, Lrx/exceptions/CompositeException;-><init>(Ljava/util/Collection;)V
 
     throw v1
 
-    .line 180
-    :cond_32
+    .line 176
+    :cond_30
     return-void
 .end method
 
 .method public static throwIfFatal(Ljava/lang/Throwable;)V
-    .registers 3
+    .registers 2
     .param p0, "t"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 77
-    instance-of v1, p0, Lrx/exceptions/OnErrorNotImplementedException;
+    .line 79
+    instance-of v0, p0, Lrx/exceptions/OnErrorNotImplementedException;
 
-    if-eqz v1, :cond_7
+    if-eqz v0, :cond_7
 
-    .line 78
+    .line 80
     check-cast p0, Lrx/exceptions/OnErrorNotImplementedException;
 
     .end local p0    # "t":Ljava/lang/Throwable;
     throw p0
 
-    .line 79
+    .line 81
     .restart local p0    # "t":Ljava/lang/Throwable;
     :cond_7
-    instance-of v1, p0, Lrx/exceptions/OnErrorFailedException;
+    instance-of v0, p0, Lrx/exceptions/OnErrorFailedException;
 
-    if-eqz v1, :cond_1c
-
-    move-object v1, p0
-
-    .line 80
-    check-cast v1, Lrx/exceptions/OnErrorFailedException;
-
-    invoke-virtual {v1}, Lrx/exceptions/OnErrorFailedException;->getCause()Ljava/lang/Throwable;
-
-    move-result-object v0
-
-    .line 81
-    .local v0, "cause":Ljava/lang/Throwable;
-    instance-of v1, v0, Ljava/lang/RuntimeException;
-
-    if-eqz v1, :cond_19
+    if-eqz v0, :cond_e
 
     .line 82
-    check-cast v0, Ljava/lang/RuntimeException;
-
-    .end local v0    # "cause":Ljava/lang/Throwable;
-    throw v0
-
-    .line 84
-    .restart local v0    # "cause":Ljava/lang/Throwable;
-    :cond_19
     check-cast p0, Lrx/exceptions/OnErrorFailedException;
 
     .end local p0    # "t":Ljava/lang/Throwable;
     throw p0
 
-    .line 88
-    .end local v0    # "cause":Ljava/lang/Throwable;
+    .line 85
     .restart local p0    # "t":Ljava/lang/Throwable;
-    :cond_1c
-    instance-of v1, p0, Ljava/lang/StackOverflowError;
+    :cond_e
+    instance-of v0, p0, Ljava/lang/StackOverflowError;
 
-    if-eqz v1, :cond_23
+    if-eqz v0, :cond_15
 
-    .line 89
+    .line 86
     check-cast p0, Ljava/lang/StackOverflowError;
 
     .end local p0    # "t":Ljava/lang/Throwable;
     throw p0
 
-    .line 90
+    .line 87
     .restart local p0    # "t":Ljava/lang/Throwable;
-    :cond_23
-    instance-of v1, p0, Ljava/lang/VirtualMachineError;
+    :cond_15
+    instance-of v0, p0, Ljava/lang/VirtualMachineError;
 
-    if-eqz v1, :cond_2a
+    if-eqz v0, :cond_1c
 
-    .line 91
+    .line 88
     check-cast p0, Ljava/lang/VirtualMachineError;
 
     .end local p0    # "t":Ljava/lang/Throwable;
     throw p0
 
-    .line 92
+    .line 89
     .restart local p0    # "t":Ljava/lang/Throwable;
-    :cond_2a
-    instance-of v1, p0, Ljava/lang/ThreadDeath;
+    :cond_1c
+    instance-of v0, p0, Ljava/lang/ThreadDeath;
 
-    if-eqz v1, :cond_31
+    if-eqz v0, :cond_23
 
-    .line 93
+    .line 90
     check-cast p0, Ljava/lang/ThreadDeath;
+
+    .end local p0    # "t":Ljava/lang/Throwable;
+    throw p0
+
+    .line 91
+    .restart local p0    # "t":Ljava/lang/Throwable;
+    :cond_23
+    instance-of v0, p0, Ljava/lang/LinkageError;
+
+    if-eqz v0, :cond_2a
+
+    .line 92
+    check-cast p0, Ljava/lang/LinkageError;
 
     .end local p0    # "t":Ljava/lang/Throwable;
     throw p0
 
     .line 94
     .restart local p0    # "t":Ljava/lang/Throwable;
-    :cond_31
-    instance-of v1, p0, Ljava/lang/LinkageError;
+    :cond_2a
+    return-void
+.end method
 
-    if-eqz v1, :cond_38
+.method public static throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
+    .registers 2
+    .param p0, "t"    # Ljava/lang/Throwable;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/lang/Throwable;",
+            "Lrx/Observer",
+            "<*>;)V"
+        }
+    .end annotation
 
-    .line 95
-    check-cast p0, Ljava/lang/LinkageError;
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
 
-    .end local p0    # "t":Ljava/lang/Throwable;
-    throw p0
+    .prologue
+    .line 200
+    .local p1, "o":Lrx/Observer;, "Lrx/Observer<*>;"
+    invoke-static {p0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
 
-    .line 97
-    .restart local p0    # "t":Ljava/lang/Throwable;
-    :cond_38
+    .line 201
+    invoke-interface {p1, p0}, Lrx/Observer;->onError(Ljava/lang/Throwable;)V
+
+    .line 202
+    return-void
+.end method
+
+.method public static throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
+    .registers 4
+    .param p0, "t"    # Ljava/lang/Throwable;
+    .param p2, "value"    # Ljava/lang/Object;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/lang/Throwable;",
+            "Lrx/Observer",
+            "<*>;",
+            "Ljava/lang/Object;",
+            ")V"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 188
+    .local p1, "o":Lrx/Observer;, "Lrx/Observer<*>;"
+    invoke-static {p0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+
+    .line 189
+    invoke-static {p0, p2}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
+
+    move-result-object v0
+
+    invoke-interface {p1, v0}, Lrx/Observer;->onError(Ljava/lang/Throwable;)V
+
+    .line 190
+    return-void
+.end method
+
+.method public static throwOrReport(Ljava/lang/Throwable;Lrx/SingleSubscriber;)V
+    .registers 2
+    .param p0, "throwable"    # Ljava/lang/Throwable;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/lang/Throwable;",
+            "Lrx/SingleSubscriber",
+            "<*>;)V"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 213
+    .local p1, "subscriber":Lrx/SingleSubscriber;, "Lrx/SingleSubscriber<*>;"
+    invoke-static {p0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+
+    .line 214
+    invoke-virtual {p1, p0}, Lrx/SingleSubscriber;->onError(Ljava/lang/Throwable;)V
+
+    .line 215
     return-void
 .end method

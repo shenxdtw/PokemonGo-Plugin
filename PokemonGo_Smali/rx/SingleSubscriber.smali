@@ -17,7 +17,7 @@
     }
 .end annotation
 
-.annotation build Lrx/annotations/Experimental;
+.annotation build Lrx/annotations/Beta;
 .end annotation
 
 
@@ -30,11 +30,11 @@
     .registers 2
 
     .prologue
-    .line 34
+    .line 35
     .local p0, "this":Lrx/SingleSubscriber;, "Lrx/SingleSubscriber<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 36
+    .line 37
     new-instance v0, Lrx/internal/util/SubscriptionList;
 
     invoke-direct {v0}, Lrx/internal/util/SubscriptionList;-><init>()V
@@ -51,13 +51,13 @@
     .param p1, "s"    # Lrx/Subscription;
 
     .prologue
-    .line 68
+    .line 69
     .local p0, "this":Lrx/SingleSubscriber;, "Lrx/SingleSubscriber<TT;>;"
     iget-object v0, p0, Lrx/SingleSubscriber;->cs:Lrx/internal/util/SubscriptionList;
 
     invoke-virtual {v0, p1}, Lrx/internal/util/SubscriptionList;->add(Lrx/Subscription;)V
 
-    .line 69
+    .line 70
     return-void
 .end method
 
@@ -65,7 +65,7 @@
     .registers 2
 
     .prologue
-    .line 83
+    .line 84
     .local p0, "this":Lrx/SingleSubscriber;, "Lrx/SingleSubscriber<TT;>;"
     iget-object v0, p0, Lrx/SingleSubscriber;->cs:Lrx/internal/util/SubscriptionList;
 
@@ -91,12 +91,12 @@
     .registers 2
 
     .prologue
-    .line 73
+    .line 74
     .local p0, "this":Lrx/SingleSubscriber;, "Lrx/SingleSubscriber<TT;>;"
     iget-object v0, p0, Lrx/SingleSubscriber;->cs:Lrx/internal/util/SubscriptionList;
 
     invoke-virtual {v0}, Lrx/internal/util/SubscriptionList;->unsubscribe()V
 
-    .line 74
+    .line 75
     return-void
 .end method

@@ -17,15 +17,13 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .registers 1
 
     .prologue
     .line 32
     new-instance v0, Lrx/functions/Actions$EmptyAction;
 
-    const/4 v1, 0x0
-
-    invoke-direct {v0, v1}, Lrx/functions/Actions$EmptyAction;-><init>(Lrx/functions/Actions$1;)V
+    invoke-direct {v0}, Lrx/functions/Actions$EmptyAction;-><init>()V
 
     sput-object v0, Lrx/functions/Actions;->EMPTY_ACTION:Lrx/functions/Actions$EmptyAction;
 
@@ -49,7 +47,7 @@
     throw v0
 .end method
 
-.method public static final empty()Lrx/functions/Actions$EmptyAction;
+.method public static empty()Lrx/functions/Actions$EmptyAction;
     .registers 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -71,11 +69,9 @@
             "Ljava/lang/Object;",
             "T8:",
             "Ljava/lang/Object;",
-            "T9:",
-            "Ljava/lang/Object;",
             ">()",
             "Lrx/functions/Actions$EmptyAction",
-            "<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;>;"
+            "<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;>;"
         }
     .end annotation
 
@@ -102,7 +98,7 @@
     .end annotation
 
     .prologue
-    .line 99
+    .line 102
     const/4 v0, 0x0
 
     check-cast v0, Ljava/lang/Void;
@@ -130,7 +126,7 @@
     .end annotation
 
     .prologue
-    .line 228
+    .line 231
     .local p1, "result":Ljava/lang/Object;, "TR;"
     new-instance v0, Lrx/functions/Actions$1;
 
@@ -156,7 +152,7 @@
     .end annotation
 
     .prologue
-    .line 110
+    .line 113
     .local p0, "action":Lrx/functions/Action1;, "Lrx/functions/Action1<TT1;>;"
     const/4 v0, 0x0
 
@@ -186,7 +182,7 @@
     .end annotation
 
     .prologue
-    .line 247
+    .line 250
     .local p0, "action":Lrx/functions/Action1;, "Lrx/functions/Action1<TT1;>;"
     .local p1, "result":Ljava/lang/Object;, "TR;"
     new-instance v0, Lrx/functions/Actions$2;
@@ -215,7 +211,7 @@
     .end annotation
 
     .prologue
-    .line 121
+    .line 124
     .local p0, "action":Lrx/functions/Action2;, "Lrx/functions/Action2<TT1;TT2;>;"
     const/4 v0, 0x0
 
@@ -247,7 +243,7 @@
     .end annotation
 
     .prologue
-    .line 266
+    .line 269
     .local p0, "action":Lrx/functions/Action2;, "Lrx/functions/Action2<TT1;TT2;>;"
     .local p1, "result":Ljava/lang/Object;, "TR;"
     new-instance v0, Lrx/functions/Actions$3;
@@ -278,7 +274,7 @@
     .end annotation
 
     .prologue
-    .line 132
+    .line 135
     .local p0, "action":Lrx/functions/Action3;, "Lrx/functions/Action3<TT1;TT2;TT3;>;"
     const/4 v0, 0x0
 
@@ -312,7 +308,7 @@
     .end annotation
 
     .prologue
-    .line 285
+    .line 288
     .local p0, "action":Lrx/functions/Action3;, "Lrx/functions/Action3<TT1;TT2;TT3;>;"
     .local p1, "result":Ljava/lang/Object;, "TR;"
     new-instance v0, Lrx/functions/Actions$4;
@@ -345,7 +341,7 @@
     .end annotation
 
     .prologue
-    .line 143
+    .line 146
     .local p0, "action":Lrx/functions/Action4;, "Lrx/functions/Action4<TT1;TT2;TT3;TT4;>;"
     const/4 v0, 0x0
 
@@ -381,7 +377,7 @@
     .end annotation
 
     .prologue
-    .line 304
+    .line 307
     .local p0, "action":Lrx/functions/Action4;, "Lrx/functions/Action4<TT1;TT2;TT3;TT4;>;"
     .local p1, "result":Ljava/lang/Object;, "TR;"
     new-instance v0, Lrx/functions/Actions$5;
@@ -416,7 +412,7 @@
     .end annotation
 
     .prologue
-    .line 155
+    .line 158
     .local p0, "action":Lrx/functions/Action5;, "Lrx/functions/Action5<TT1;TT2;TT3;TT4;TT5;>;"
     const/4 v0, 0x0
 
@@ -454,7 +450,7 @@
     .end annotation
 
     .prologue
-    .line 324
+    .line 327
     .local p0, "action":Lrx/functions/Action5;, "Lrx/functions/Action5<TT1;TT2;TT3;TT4;TT5;>;"
     .local p1, "result":Ljava/lang/Object;, "TR;"
     new-instance v0, Lrx/functions/Actions$6;
@@ -491,7 +487,7 @@
     .end annotation
 
     .prologue
-    .line 167
+    .line 170
     .local p0, "action":Lrx/functions/Action6;, "Lrx/functions/Action6<TT1;TT2;TT3;TT4;TT5;TT6;>;"
     const/4 v0, 0x0
 
@@ -531,7 +527,7 @@
     .end annotation
 
     .prologue
-    .line 344
+    .line 347
     .local p0, "action":Lrx/functions/Action6;, "Lrx/functions/Action6<TT1;TT2;TT3;TT4;TT5;TT6;>;"
     .local p1, "result":Ljava/lang/Object;, "TR;"
     new-instance v0, Lrx/functions/Actions$7;
@@ -570,7 +566,7 @@
     .end annotation
 
     .prologue
-    .line 179
+    .line 182
     .local p0, "action":Lrx/functions/Action7;, "Lrx/functions/Action7<TT1;TT2;TT3;TT4;TT5;TT6;TT7;>;"
     const/4 v0, 0x0
 
@@ -612,7 +608,7 @@
     .end annotation
 
     .prologue
-    .line 364
+    .line 367
     .local p0, "action":Lrx/functions/Action7;, "Lrx/functions/Action7<TT1;TT2;TT3;TT4;TT5;TT6;TT7;>;"
     .local p1, "result":Ljava/lang/Object;, "TR;"
     new-instance v0, Lrx/functions/Actions$8;
@@ -653,7 +649,7 @@
     .end annotation
 
     .prologue
-    .line 191
+    .line 194
     .local p0, "action":Lrx/functions/Action8;, "Lrx/functions/Action8<TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;>;"
     const/4 v0, 0x0
 
@@ -697,7 +693,7 @@
     .end annotation
 
     .prologue
-    .line 384
+    .line 387
     .local p0, "action":Lrx/functions/Action8;, "Lrx/functions/Action8<TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;>;"
     .local p1, "result":Ljava/lang/Object;, "TR;"
     new-instance v0, Lrx/functions/Actions$9;
@@ -740,7 +736,7 @@
     .end annotation
 
     .prologue
-    .line 203
+    .line 206
     .local p0, "action":Lrx/functions/Action9;, "Lrx/functions/Action9<TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;>;"
     const/4 v0, 0x0
 
@@ -786,7 +782,7 @@
     .end annotation
 
     .prologue
-    .line 404
+    .line 407
     .local p0, "action":Lrx/functions/Action9;, "Lrx/functions/Action9<TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;>;"
     .local p1, "result":Ljava/lang/Object;, "TR;"
     new-instance v0, Lrx/functions/Actions$10;
@@ -812,7 +808,7 @@
     .end annotation
 
     .prologue
-    .line 215
+    .line 218
     const/4 v0, 0x0
 
     check-cast v0, Ljava/lang/Void;
@@ -840,7 +836,7 @@
     .end annotation
 
     .prologue
-    .line 424
+    .line 427
     .local p1, "result":Ljava/lang/Object;, "TR;"
     new-instance v0, Lrx/functions/Actions$11;
 

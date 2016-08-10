@@ -20,9 +20,9 @@
 
 
 # instance fields
-.field private final scheduler:Lrx/Scheduler;
+.field final scheduler:Lrx/Scheduler;
 
-.field private final timeInMillis:J
+.field final timeInMillis:J
 
 
 # direct methods
@@ -49,28 +49,6 @@
 
     .line 38
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorSkipLastTimed;)J
-    .registers 3
-    .param p0, "x0"    # Lrx/internal/operators/OperatorSkipLastTimed;
-
-    .prologue
-    .line 30
-    iget-wide v0, p0, Lrx/internal/operators/OperatorSkipLastTimed;->timeInMillis:J
-
-    return-wide v0
-.end method
-
-.method static synthetic access$100(Lrx/internal/operators/OperatorSkipLastTimed;)Lrx/Scheduler;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorSkipLastTimed;
-
-    .prologue
-    .line 30
-    iget-object v0, p0, Lrx/internal/operators/OperatorSkipLastTimed;->scheduler:Lrx/Scheduler;
-
-    return-object v0
 .end method
 
 

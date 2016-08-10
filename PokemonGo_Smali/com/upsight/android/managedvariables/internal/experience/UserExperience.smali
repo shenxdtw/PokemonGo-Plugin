@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/managedvariables/internal/experience/UserExperience$1;,
         Lcom/upsight/android/managedvariables/internal/experience/UserExperience$DefaultHandler;
     }
 .end annotation

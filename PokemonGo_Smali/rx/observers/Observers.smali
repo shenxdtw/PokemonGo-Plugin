@@ -48,7 +48,7 @@
     throw v0
 .end method
 
-.method public static final create(Lrx/functions/Action1;)Lrx/Observer;
+.method public static create(Lrx/functions/Action1;)Lrx/Observer;
     .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -85,7 +85,7 @@
     return-object v0
 .end method
 
-.method public static final create(Lrx/functions/Action1;Lrx/functions/Action1;)Lrx/Observer;
+.method public static create(Lrx/functions/Action1;Lrx/functions/Action1;)Lrx/Observer;
     .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -140,7 +140,7 @@
     return-object v0
 .end method
 
-.method public static final create(Lrx/functions/Action1;Lrx/functions/Action1;Lrx/functions/Action0;)Lrx/Observer;
+.method public static create(Lrx/functions/Action1;Lrx/functions/Action1;Lrx/functions/Action0;)Lrx/Observer;
     .registers 5
     .param p2, "onComplete"    # Lrx/functions/Action0;
     .annotation system Ldalvik/annotation/Signature;

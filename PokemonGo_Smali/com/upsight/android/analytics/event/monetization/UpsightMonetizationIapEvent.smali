@@ -30,10 +30,10 @@
     .registers 1
 
     .prologue
-    .line 245
+    .line 293
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/AnalyticsEvent;-><init>()V
 
-    .line 247
+    .line 295
     return-void
 .end method
 
@@ -44,10 +44,10 @@
     .param p3, "publisherData"    # Lcom/upsight/android/analytics/event/UpsightPublisherData;
 
     .prologue
-    .line 242
+    .line 290
     invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/analytics/internal/AnalyticsEvent;-><init>(Ljava/lang/String;Ljava/lang/Object;Lcom/upsight/android/analytics/event/UpsightPublisherData;)V
 
-    .line 243
+    .line 291
     return-void
 .end method
 
@@ -62,7 +62,7 @@
     .param p6, "product"    # Ljava/lang/String;
 
     .prologue
-    .line 35
+    .line 36
     new-instance v0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
 
     move-object v1, p0

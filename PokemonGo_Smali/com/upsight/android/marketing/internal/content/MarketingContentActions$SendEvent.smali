@@ -37,30 +37,30 @@
 
 
 # direct methods
-.method private constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+.method private constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)V
     .registers 4
     .param p1, "actionContext"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
     .param p2, "type"    # Ljava/lang/String;
-    .param p3, "params"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p3, "params"    # Lcom/google/gson/JsonObject;
 
     .prologue
-    .line 563
-    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/analytics/internal/action/Action;-><init>(Lcom/upsight/android/analytics/internal/action/ActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+    .line 706
+    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/analytics/internal/action/Action;-><init>(Lcom/upsight/android/analytics/internal/action/ActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)V
 
-    .line 564
+    .line 707
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;)V
+.method synthetic constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;)V
     .registers 5
     .param p1, "x0"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
     .param p2, "x1"    # Ljava/lang/String;
-    .param p3, "x2"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p3, "x2"    # Lcom/google/gson/JsonObject;
     .param p4, "x3"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;
 
     .prologue
-    .line 550
-    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$SendEvent;-><init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+    .line 693
+    invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$SendEvent;-><init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)V
 
     return-void
 .end method
@@ -69,13 +69,11 @@
 # virtual methods
 .method public bridge synthetic execute(Lcom/upsight/android/analytics/internal/action/Actionable;)V
     .registers 2
-    .param p1, "x0"    # Lcom/upsight/android/analytics/internal/action/Actionable;
 
     .prologue
-    .line 550
+    .line 693
     check-cast p1, Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
-    .end local p1    # "x0":Lcom/upsight/android/analytics/internal/action/Actionable;
     invoke-virtual {p0, p1}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$SendEvent;->execute(Lcom/upsight/android/marketing/internal/content/MarketingContent;)V
 
     return-void
@@ -88,42 +86,52 @@
     .prologue
     const/4 v8, 0x0
 
-    .line 568
+    .line 711
     invoke-virtual {p0}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$SendEvent;->getActionContext()Lcom/upsight/android/analytics/internal/action/ActionContext;
 
     move-result-object v0
 
     check-cast v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
 
-    .line 569
+    .line 712
     .local v0, "actionContext":Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
     const-string v4, "event"
 
-    invoke-virtual {p0, v4}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$SendEvent;->optParamJsonObject(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    invoke-virtual {p0, v4}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$SendEvent;->optParamJsonObject(Ljava/lang/String;)Lcom/google/gson/JsonObject;
 
     move-result-object v2
 
-    .line 570
-    .local v2, "event":Lcom/fasterxml/jackson/databind/JsonNode;
-    if-eqz v2, :cond_97
+    .line 713
+    .local v2, "event":Lcom/google/gson/JsonObject;
+    if-eqz v2, :cond_b9
 
-    .line 571
+    .line 714
     const-string v4, "type"
 
-    invoke-virtual {v2, v4}, Lcom/fasterxml/jackson/databind/JsonNode;->path(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {v2, v4}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
 
     move-result-object v3
 
-    .line 573
-    .local v3, "type":Lcom/fasterxml/jackson/databind/JsonNode;
-    invoke-virtual {v3}, Lcom/fasterxml/jackson/databind/JsonNode;->isTextual()Z
+    .line 716
+    .local v3, "type":Lcom/google/gson/JsonElement;
+    invoke-virtual {v3}, Lcom/google/gson/JsonElement;->isJsonPrimitive()Z
 
     move-result v4
 
-    if-eqz v4, :cond_66
+    if-eqz v4, :cond_88
 
-    .line 574
-    invoke-virtual {v3}, Lcom/fasterxml/jackson/databind/JsonNode;->asText()Ljava/lang/String;
+    invoke-virtual {v3}, Lcom/google/gson/JsonElement;->getAsJsonPrimitive()Lcom/google/gson/JsonPrimitive;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Lcom/google/gson/JsonPrimitive;->isString()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_88
+
+    .line 717
+    invoke-virtual {v3}, Lcom/google/gson/JsonElement;->getAsString()Ljava/lang/String;
 
     move-result-object v4
 
@@ -133,84 +141,111 @@
 
     const-string v5, "upsight_data"
 
-    invoke-virtual {v2, v5}, Lcom/fasterxml/jackson/databind/JsonNode;->path(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    .line 718
+    invoke-virtual {v2, v5}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
 
     move-result-object v5
 
-    invoke-virtual {v4, v5}, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->putUpsightData(Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;
+    invoke-virtual {v5}, Lcom/google/gson/JsonElement;->getAsJsonObject()Lcom/google/gson/JsonObject;
+
+    move-result-object v5
+
+    invoke-virtual {v4, v5}, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->putUpsightData(Lcom/google/gson/JsonObject;)Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;
 
     move-result-object v1
 
-    .line 576
+    .line 719
     .local v1, "dynamicEventBuilder":Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;
     const-string v4, "pub_data"
 
-    invoke-virtual {v2, v4}, Lcom/fasterxml/jackson/databind/JsonNode;->path(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
-
-    move-result-object v4
-
-    invoke-virtual {v4}, Lcom/fasterxml/jackson/databind/JsonNode;->isMissingNode()Z
+    invoke-virtual {v2, v4}, Lcom/google/gson/JsonObject;->has(Ljava/lang/String;)Z
 
     move-result v4
 
-    if-nez v4, :cond_42
+    if-eqz v4, :cond_4c
 
-    .line 577
+    .line 720
     const-string v4, "pub_data"
 
-    invoke-virtual {v2, v4}, Lcom/fasterxml/jackson/databind/JsonNode;->path(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {v2, v4}, Lcom/google/gson/JsonObject;->getAsJsonObject(Ljava/lang/String;)Lcom/google/gson/JsonObject;
 
     move-result-object v4
 
-    invoke-virtual {v1, v4}, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->putPublisherData(Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;
+    invoke-virtual {v1, v4}, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->putPublisherData(Lcom/google/gson/JsonObject;)Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;
 
-    .line 579
-    :cond_42
+    .line 722
+    :cond_4c
     const-string v4, "identifiers"
 
-    invoke-virtual {v2, v4}, Lcom/fasterxml/jackson/databind/JsonNode;->path(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
-
-    move-result-object v4
-
-    invoke-virtual {v4}, Lcom/fasterxml/jackson/databind/JsonNode;->isTextual()Z
+    invoke-virtual {v2, v4}, Lcom/google/gson/JsonObject;->has(Ljava/lang/String;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_5b
+    if-eqz v4, :cond_7d
 
-    .line 580
     const-string v4, "identifiers"
 
-    invoke-virtual {v2, v4}, Lcom/fasterxml/jackson/databind/JsonNode;->path(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    .line 723
+    invoke-virtual {v2, v4}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
 
     move-result-object v4
 
-    invoke-virtual {v4}, Lcom/fasterxml/jackson/databind/JsonNode;->asText()Ljava/lang/String;
+    invoke-virtual {v4}, Lcom/google/gson/JsonElement;->isJsonPrimitive()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_7d
+
+    const-string v4, "identifiers"
+
+    .line 724
+    invoke-virtual {v2, v4}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Lcom/google/gson/JsonElement;->getAsJsonPrimitive()Lcom/google/gson/JsonPrimitive;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Lcom/google/gson/JsonPrimitive;->isString()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_7d
+
+    .line 725
+    const-string v4, "identifiers"
+
+    invoke-virtual {v2, v4}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Lcom/google/gson/JsonElement;->getAsString()Ljava/lang/String;
 
     move-result-object v4
 
     invoke-virtual {v1, v4}, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->setDynamicIdentifiers(Ljava/lang/String;)Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;
 
-    .line 582
-    :cond_5b
+    .line 727
+    :cond_7d
     iget-object v4, v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v1, v4}, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->record(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/event/UpsightDynamicEvent;
 
-    .line 591
+    .line 736
     .end local v1    # "dynamicEventBuilder":Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;
-    .end local v3    # "type":Lcom/fasterxml/jackson/databind/JsonNode;
-    :goto_60
+    .end local v3    # "type":Lcom/google/gson/JsonElement;
+    :goto_82
     iget-object v4, v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;->mBus:Lcom/squareup/otto/Bus;
 
     invoke-virtual {p1, v4}, Lcom/upsight/android/marketing/internal/content/MarketingContent;->signalActionCompleted(Lcom/squareup/otto/Bus;)V
 
-    .line 592
+    .line 737
     return-void
 
-    .line 584
-    .restart local v3    # "type":Lcom/fasterxml/jackson/databind/JsonNode;
-    :cond_66
+    .line 729
+    .restart local v3    # "type":Lcom/google/gson/JsonElement;
+    :cond_88
     iget-object v4, v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -257,11 +292,11 @@
 
     invoke-interface {v4, v5, v6, v7}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    goto :goto_60
+    goto :goto_82
 
-    .line 587
-    .end local v3    # "type":Lcom/fasterxml/jackson/databind/JsonNode;
-    :cond_97
+    .line 732
+    .end local v3    # "type":Lcom/google/gson/JsonElement;
+    :cond_b9
     iget-object v4, v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -308,5 +343,5 @@
 
     invoke-interface {v4, v5, v6, v7}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    goto :goto_60
+    goto :goto_82
 .end method

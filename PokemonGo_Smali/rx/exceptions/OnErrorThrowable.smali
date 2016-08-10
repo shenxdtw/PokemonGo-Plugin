@@ -71,20 +71,31 @@
     .param p1, "value"    # Ljava/lang/Object;
 
     .prologue
-    .line 96
+    .line 98
+    if-nez p0, :cond_7
+
+    .line 99
+    new-instance p0, Ljava/lang/NullPointerException;
+
+    .end local p0    # "e":Ljava/lang/Throwable;
+    invoke-direct {p0}, Ljava/lang/NullPointerException;-><init>()V
+
+    .line 101
+    .restart local p0    # "e":Ljava/lang/Throwable;
+    :cond_7
     invoke-static {p0}, Lrx/exceptions/Exceptions;->getFinalCause(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
     move-result-object v0
 
-    .line 97
+    .line 102
     .local v0, "lastCause":Ljava/lang/Throwable;
-    if-eqz v0, :cond_13
+    if-eqz v0, :cond_1a
 
     instance-of v1, v0, Lrx/exceptions/OnErrorThrowable$OnNextValue;
 
-    if-eqz v1, :cond_13
+    if-eqz v1, :cond_1a
 
-    .line 99
+    .line 104
     check-cast v0, Lrx/exceptions/OnErrorThrowable$OnNextValue;
 
     .end local v0    # "lastCause":Ljava/lang/Throwable;
@@ -92,21 +103,21 @@
 
     move-result-object v1
 
-    if-ne v1, p1, :cond_13
+    if-ne v1, p1, :cond_1a
 
-    .line 105
-    :goto_12
+    .line 110
+    :goto_19
     return-object p0
 
-    .line 104
-    :cond_13
+    .line 109
+    :cond_1a
     new-instance v1, Lrx/exceptions/OnErrorThrowable$OnNextValue;
 
     invoke-direct {v1, p1}, Lrx/exceptions/OnErrorThrowable$OnNextValue;-><init>(Ljava/lang/Object;)V
 
     invoke-static {p0, v1}, Lrx/exceptions/Exceptions;->addCause(Ljava/lang/Throwable;Ljava/lang/Throwable;)V
 
-    goto :goto_12
+    goto :goto_19
 .end method
 
 .method public static from(Ljava/lang/Throwable;)Lrx/exceptions/OnErrorThrowable;
@@ -115,17 +126,28 @@
 
     .prologue
     .line 76
+    if-nez p0, :cond_7
+
+    .line 77
+    new-instance p0, Ljava/lang/NullPointerException;
+
+    .end local p0    # "t":Ljava/lang/Throwable;
+    invoke-direct {p0}, Ljava/lang/NullPointerException;-><init>()V
+
+    .line 79
+    .restart local p0    # "t":Ljava/lang/Throwable;
+    :cond_7
     invoke-static {p0}, Lrx/exceptions/Exceptions;->getFinalCause(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
     move-result-object v0
 
-    .line 77
+    .line 80
     .local v0, "cause":Ljava/lang/Throwable;
     instance-of v1, v0, Lrx/exceptions/OnErrorThrowable$OnNextValue;
 
-    if-eqz v1, :cond_14
+    if-eqz v1, :cond_1b
 
-    .line 78
+    .line 81
     new-instance v1, Lrx/exceptions/OnErrorThrowable;
 
     check-cast v0, Lrx/exceptions/OnErrorThrowable$OnNextValue;
@@ -137,17 +159,17 @@
 
     invoke-direct {v1, p0, v2}, Lrx/exceptions/OnErrorThrowable;-><init>(Ljava/lang/Throwable;Ljava/lang/Object;)V
 
-    .line 80
-    :goto_13
+    .line 83
+    :goto_1a
     return-object v1
 
     .restart local v0    # "cause":Ljava/lang/Throwable;
-    :cond_14
+    :cond_1b
     new-instance v1, Lrx/exceptions/OnErrorThrowable;
 
     invoke-direct {v1, p0}, Lrx/exceptions/OnErrorThrowable;-><init>(Ljava/lang/Throwable;)V
 
-    goto :goto_13
+    goto :goto_1a
 .end method
 
 

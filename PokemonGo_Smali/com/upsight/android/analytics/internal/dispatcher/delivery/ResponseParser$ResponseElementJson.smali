@@ -15,14 +15,20 @@
 
 
 # instance fields
-.field public content:Lcom/fasterxml/jackson/databind/JsonNode;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+.field public content:Lcom/google/gson/JsonElement;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "content"
     .end annotation
 .end field
 
 .field public type:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "type"
     .end annotation
 .end field
@@ -33,7 +39,7 @@
     .registers 1
 
     .prologue
-    .line 90
+    .line 99
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

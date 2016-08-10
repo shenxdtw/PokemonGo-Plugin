@@ -35,7 +35,7 @@
 
 
 # instance fields
-.field private final collectionFactory:Lrx/functions/Func1;
+.field final collectionFactory:Lrx/functions/Func1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func1",
@@ -46,7 +46,7 @@
     .end annotation
 .end field
 
-.field private final keySelector:Lrx/functions/Func1;
+.field final keySelector:Lrx/functions/Func1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func1",
@@ -68,7 +68,7 @@
     .end annotation
 .end field
 
-.field private final valueSelector:Lrx/functions/Func1;
+.field final valueSelector:Lrx/functions/Func1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func1",
@@ -92,7 +92,7 @@
     .end annotation
 
     .prologue
-    .line 71
+    .line 73
     .local p0, "this":Lrx/internal/operators/OperatorToMultimap;, "Lrx/internal/operators/OperatorToMultimap<TT;TK;TV;>;"
     .local p1, "keySelector":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+TK;>;"
     .local p2, "valueSelector":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+TV;>;"
@@ -106,7 +106,7 @@
 
     invoke-direct {p0, p1, p2, v0, v1}, Lrx/internal/operators/OperatorToMultimap;-><init>(Lrx/functions/Func1;Lrx/functions/Func1;Lrx/functions/Func0;Lrx/functions/Func1;)V
 
-    .line 74
+    .line 76
     return-void
 .end method
 
@@ -129,7 +129,7 @@
     .end annotation
 
     .prologue
-    .line 84
+    .line 86
     .local p0, "this":Lrx/internal/operators/OperatorToMultimap;, "Lrx/internal/operators/OperatorToMultimap<TT;TK;TV;>;"
     .local p1, "keySelector":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+TK;>;"
     .local p2, "valueSelector":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+TV;>;"
@@ -140,7 +140,7 @@
 
     invoke-direct {p0, p1, p2, p3, v0}, Lrx/internal/operators/OperatorToMultimap;-><init>(Lrx/functions/Func1;Lrx/functions/Func1;Lrx/functions/Func0;Lrx/functions/Func1;)V
 
-    .line 87
+    .line 89
     return-void
 .end method
 
@@ -167,7 +167,7 @@
     .end annotation
 
     .prologue
-    .line 97
+    .line 99
     .local p0, "this":Lrx/internal/operators/OperatorToMultimap;, "Lrx/internal/operators/OperatorToMultimap<TT;TK;TV;>;"
     .local p1, "keySelector":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+TK;>;"
     .local p2, "valueSelector":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+TV;>;"
@@ -175,64 +175,20 @@
     .local p4, "collectionFactory":Lrx/functions/Func1;, "Lrx/functions/Func1<-TK;+Ljava/util/Collection<TV;>;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 98
+    .line 100
     iput-object p1, p0, Lrx/internal/operators/OperatorToMultimap;->keySelector:Lrx/functions/Func1;
 
-    .line 99
+    .line 101
     iput-object p2, p0, Lrx/internal/operators/OperatorToMultimap;->valueSelector:Lrx/functions/Func1;
 
-    .line 100
+    .line 102
     iput-object p3, p0, Lrx/internal/operators/OperatorToMultimap;->mapFactory:Lrx/functions/Func0;
 
-    .line 101
+    .line 103
     iput-object p4, p0, Lrx/internal/operators/OperatorToMultimap;->collectionFactory:Lrx/functions/Func1;
 
-    .line 102
+    .line 104
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorToMultimap;)Lrx/functions/Func0;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorToMultimap;
-
-    .prologue
-    .line 36
-    iget-object v0, p0, Lrx/internal/operators/OperatorToMultimap;->mapFactory:Lrx/functions/Func0;
-
-    return-object v0
-.end method
-
-.method static synthetic access$100(Lrx/internal/operators/OperatorToMultimap;)Lrx/functions/Func1;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorToMultimap;
-
-    .prologue
-    .line 36
-    iget-object v0, p0, Lrx/internal/operators/OperatorToMultimap;->keySelector:Lrx/functions/Func1;
-
-    return-object v0
-.end method
-
-.method static synthetic access$200(Lrx/internal/operators/OperatorToMultimap;)Lrx/functions/Func1;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorToMultimap;
-
-    .prologue
-    .line 36
-    iget-object v0, p0, Lrx/internal/operators/OperatorToMultimap;->valueSelector:Lrx/functions/Func1;
-
-    return-object v0
-.end method
-
-.method static synthetic access$300(Lrx/internal/operators/OperatorToMultimap;)Lrx/functions/Func1;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorToMultimap;
-
-    .prologue
-    .line 36
-    iget-object v0, p0, Lrx/internal/operators/OperatorToMultimap;->collectionFactory:Lrx/functions/Func1;
-
-    return-object v0
 .end method
 
 
@@ -242,7 +198,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 36
+    .line 38
     .local p0, "this":Lrx/internal/operators/OperatorToMultimap;, "Lrx/internal/operators/OperatorToMultimap<TT;TK;TV;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -255,7 +211,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)Lrx/Subscriber;
-    .registers 3
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -271,12 +227,54 @@
     .end annotation
 
     .prologue
-    .line 106
+    .line 112
     .local p0, "this":Lrx/internal/operators/OperatorToMultimap;, "Lrx/internal/operators/OperatorToMultimap<TT;TK;TV;>;"
     .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/util/Map<TK;Ljava/util/Collection<TV;>;>;>;"
-    new-instance v0, Lrx/internal/operators/OperatorToMultimap$1;
+    :try_start_0
+    iget-object v4, p0, Lrx/internal/operators/OperatorToMultimap;->mapFactory:Lrx/functions/Func0;
 
-    invoke-direct {v0, p0, p1, p1}, Lrx/internal/operators/OperatorToMultimap$1;-><init>(Lrx/internal/operators/OperatorToMultimap;Lrx/Subscriber;Lrx/Subscriber;)V
+    invoke-interface {v4}, Lrx/functions/Func0;->call()Ljava/lang/Object;
 
-    return-object v0
+    move-result-object v2
+
+    check-cast v2, Ljava/util/Map;
+    :try_end_8
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_8} :catch_f
+
+    .line 122
+    .local v2, "localMap":Ljava/util/Map;, "Ljava/util/Map<TK;Ljava/util/Collection<TV;>;>;"
+    move-object v1, v2
+
+    .line 124
+    .local v1, "fLocalMap":Ljava/util/Map;, "Ljava/util/Map<TK;Ljava/util/Collection<TV;>;>;"
+    new-instance v3, Lrx/internal/operators/OperatorToMultimap$1;
+
+    invoke-direct {v3, p0, p1, v1, p1}, Lrx/internal/operators/OperatorToMultimap$1;-><init>(Lrx/internal/operators/OperatorToMultimap;Lrx/Subscriber;Ljava/util/Map;Lrx/Subscriber;)V
+
+    .end local v1    # "fLocalMap":Ljava/util/Map;, "Ljava/util/Map<TK;Ljava/util/Collection<TV;>;>;"
+    .end local v2    # "localMap":Ljava/util/Map;, "Ljava/util/Map<TK;Ljava/util/Collection<TV;>;>;"
+    :goto_e
+    return-object v3
+
+    .line 113
+    :catch_f
+    move-exception v0
+
+    .line 114
+    .local v0, "ex":Ljava/lang/Throwable;
+    invoke-static {v0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+
+    .line 115
+    invoke-virtual {p1, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+
+    .line 117
+    invoke-static {}, Lrx/observers/Subscribers;->empty()Lrx/Subscriber;
+
+    move-result-object v3
+
+    .line 118
+    .local v3, "parent":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
+    invoke-virtual {v3}, Lrx/Subscriber;->unsubscribe()V
+
+    goto :goto_e
 .end method

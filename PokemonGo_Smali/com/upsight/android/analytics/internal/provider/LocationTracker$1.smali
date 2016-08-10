@@ -38,6 +38,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/provider/LocationTracker;Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;)V
     .registers 3
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/provider/LocationTracker;
 
     .prologue
     .line 40
@@ -57,7 +58,7 @@
     .param p1, "exception"    # Lcom/upsight/android/UpsightException;
 
     .prologue
-    .line 60
+    .line 59
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/provider/LocationTracker$1;->this$0:Lcom/upsight/android/analytics/internal/provider/LocationTracker;
 
     # getter for: Lcom/upsight/android/analytics/internal/provider/LocationTracker;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
@@ -78,19 +79,17 @@
 
     invoke-interface {v0, v1, p1, v2, v3}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 61
+    .line 60
     return-void
 .end method
 
 .method public bridge synthetic onSuccess(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 40
     check-cast p1, Ljava/util/Set;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/provider/LocationTracker$1;->onSuccess(Ljava/util/Set;)V
 
     return-void
@@ -125,7 +124,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_2c
+    if-eqz v2, :cond_23
 
     .line 46
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
@@ -154,24 +153,15 @@
 
     invoke-virtual {v1, v2, v3}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->setLongitude(D)V
 
-    .line 49
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/provider/LocationTracker$1;->val$newLocation:Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
-
-    invoke-virtual {v2}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->getTimeZone()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-virtual {v1, v2}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;->setTimeZone(Ljava/lang/String;)V
+    .line 51
+    :cond_23
+    if-nez v1, :cond_27
 
     .line 52
-    :cond_2c
-    if-nez v1, :cond_30
-
-    .line 53
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/provider/LocationTracker$1;->val$newLocation:Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
 
-    .line 55
-    :cond_30
+    .line 54
+    :cond_27
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/provider/LocationTracker$1;->this$0:Lcom/upsight/android/analytics/internal/provider/LocationTracker;
 
     # getter for: Lcom/upsight/android/analytics/internal/provider/LocationTracker;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
@@ -181,6 +171,6 @@
 
     invoke-interface {v2, v1}, Lcom/upsight/android/persistence/UpsightDataStore;->store(Ljava/lang/Object;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 56
+    .line 55
     return-void
 .end method

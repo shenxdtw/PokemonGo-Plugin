@@ -120,18 +120,21 @@
 
     move-result-object v1
 
+    .line 81
     invoke-virtual {v1}, Lrx/Observable;->toList()Lrx/Observable;
 
     move-result-object v1
 
     iget-object v2, p0, Lcom/upsight/android/internal/persistence/DataStore;->mSubscribeOnScheduler:Lrx/Scheduler;
 
+    .line 82
     invoke-virtual {v1, v2}, Lrx/Observable;->subscribeOn(Lrx/Scheduler;)Lrx/Observable;
 
     move-result-object v1
 
     iget-object v2, p0, Lcom/upsight/android/internal/persistence/DataStore;->mObserveOnScheduler:Lrx/Scheduler;
 
+    .line 83
     invoke-virtual {v1, v2}, Lrx/Observable;->observeOn(Lrx/Scheduler;)Lrx/Observable;
 
     move-result-object v1
@@ -144,6 +147,7 @@
 
     invoke-direct {v3, p0, p2}, Lcom/upsight/android/internal/persistence/DataStore$2;-><init>(Lcom/upsight/android/internal/persistence/DataStore;Lcom/upsight/android/persistence/UpsightDataStoreListener;)V
 
+    .line 84
     invoke-virtual {v1, v2, v3}, Lrx/Observable;->subscribe(Lrx/functions/Action1;Lrx/functions/Action1;)Lrx/Subscription;
 
     move-result-object v0
@@ -201,18 +205,21 @@
 
     move-result-object v2
 
+    .line 104
     invoke-virtual {v2}, Lrx/Observable;->toList()Lrx/Observable;
 
     move-result-object v2
 
     iget-object v3, p0, Lcom/upsight/android/internal/persistence/DataStore;->mSubscribeOnScheduler:Lrx/Scheduler;
 
+    .line 105
     invoke-virtual {v2, v3}, Lrx/Observable;->subscribeOn(Lrx/Scheduler;)Lrx/Observable;
 
     move-result-object v2
 
     iget-object v3, p0, Lcom/upsight/android/internal/persistence/DataStore;->mObserveOnScheduler:Lrx/Scheduler;
 
+    .line 106
     invoke-virtual {v2, v3}, Lrx/Observable;->observeOn(Lrx/Scheduler;)Lrx/Observable;
 
     move-result-object v2
@@ -225,6 +232,7 @@
 
     invoke-direct {v4, p0, p3}, Lcom/upsight/android/internal/persistence/DataStore$4;-><init>(Lcom/upsight/android/internal/persistence/DataStore;Lcom/upsight/android/persistence/UpsightDataStoreListener;)V
 
+    .line 107
     invoke-virtual {v2, v3, v4}, Lrx/Observable;->subscribe(Lrx/functions/Action1;Lrx/functions/Action1;)Lrx/Subscription;
 
     move-result-object v1
@@ -277,6 +285,7 @@
 
     const/4 v6, 0x0
 
+    .line 217
     invoke-virtual {p1}, Ljava/lang/Class;->getName()Ljava/lang/String;
 
     move-result-object v7
@@ -293,6 +302,7 @@
 
     aput-object v7, v5, v6
 
+    .line 216
     invoke-static {v4, v5}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v4
@@ -349,6 +359,7 @@
 
     const/4 v6, 0x0
 
+    .line 223
     invoke-virtual {p1}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
 
     move-result-object v7
@@ -359,12 +370,14 @@
 
     const-class v7, Lcom/upsight/android/persistence/annotation/UpsightStorableType;
 
+    .line 224
     invoke-virtual {v7}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
 
     move-result-object v7
 
     aput-object v7, v5, v6
 
+    .line 223
     invoke-static {v4, v5}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v4
@@ -436,6 +449,7 @@
 
     const/4 v6, 0x0
 
+    .line 239
     invoke-virtual {p1}, Ljava/lang/Class;->getName()Ljava/lang/String;
 
     move-result-object v7
@@ -452,6 +466,7 @@
 
     aput-object v7, v5, v6
 
+    .line 238
     invoke-static {v4, v5}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v4
@@ -586,18 +601,21 @@
 
     move-result-object v2
 
+    .line 126
     invoke-virtual {v2}, Lrx/Observable;->toList()Lrx/Observable;
 
     move-result-object v2
 
     iget-object v3, p0, Lcom/upsight/android/internal/persistence/DataStore;->mSubscribeOnScheduler:Lrx/Scheduler;
 
+    .line 127
     invoke-virtual {v2, v3}, Lrx/Observable;->subscribeOn(Lrx/Scheduler;)Lrx/Observable;
 
     move-result-object v2
 
     iget-object v3, p0, Lcom/upsight/android/internal/persistence/DataStore;->mObserveOnScheduler:Lrx/Scheduler;
 
+    .line 128
     invoke-virtual {v2, v3}, Lrx/Observable;->observeOn(Lrx/Scheduler;)Lrx/Observable;
 
     move-result-object v2
@@ -610,6 +628,7 @@
 
     invoke-direct {v4, p0, p3}, Lcom/upsight/android/internal/persistence/DataStore$6;-><init>(Lcom/upsight/android/internal/persistence/DataStore;Lcom/upsight/android/persistence/UpsightDataStoreListener;)V
 
+    .line 129
     invoke-virtual {v2, v3, v4}, Lrx/Observable;->subscribe(Lrx/functions/Action1;Lrx/functions/Action1;)Lrx/Subscription;
 
     move-result-object v1
@@ -684,12 +703,14 @@
 
     iget-object v2, p0, Lcom/upsight/android/internal/persistence/DataStore;->mSubscribeOnScheduler:Lrx/Scheduler;
 
+    .line 181
     invoke-virtual {v1, v2}, Lrx/Observable;->subscribeOn(Lrx/Scheduler;)Lrx/Observable;
 
     move-result-object v1
 
     iget-object v2, p0, Lcom/upsight/android/internal/persistence/DataStore;->mObserveOnScheduler:Lrx/Scheduler;
 
+    .line 182
     invoke-virtual {v1, v2}, Lrx/Observable;->observeOn(Lrx/Scheduler;)Lrx/Observable;
 
     move-result-object v1
@@ -702,6 +723,7 @@
 
     invoke-direct {v3, p0, p2}, Lcom/upsight/android/internal/persistence/DataStore$10;-><init>(Lcom/upsight/android/internal/persistence/DataStore;Lcom/upsight/android/persistence/UpsightDataStoreListener;)V
 
+    .line 183
     invoke-virtual {v1, v2, v3}, Lrx/Observable;->subscribe(Lrx/functions/Action1;Lrx/functions/Action1;)Lrx/Subscription;
 
     move-result-object v0
@@ -757,6 +779,7 @@
 
     const/4 v6, 0x0
 
+    .line 364
     invoke-virtual {p1}, Ljava/lang/Class;->getName()Ljava/lang/String;
 
     move-result-object v7
@@ -773,6 +796,7 @@
 
     aput-object v7, v5, v6
 
+    .line 363
     invoke-static {v4, v5}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v4
@@ -818,6 +842,7 @@
 
     move-result-object v3
 
+    .line 369
     invoke-static {v1}, Lcom/upsight/android/internal/persistence/storable/Storables;->deserialize(Lcom/upsight/android/internal/persistence/storable/StorableInfo;)Lrx/Observable$Operator;
 
     move-result-object v4
@@ -830,6 +855,7 @@
 
     invoke-direct {v4, p0}, Lcom/upsight/android/internal/persistence/DataStore$15;-><init>(Lcom/upsight/android/internal/persistence/DataStore;)V
 
+    .line 370
     invoke-virtual {v3, v4}, Lrx/Observable;->flatMap(Lrx/functions/Func1;)Lrx/Observable;
     :try_end_4b
     .catch Lcom/upsight/android/UpsightException; {:try_start_2d .. :try_end_4b} :catch_27
@@ -931,6 +957,7 @@
     .local v5, "sourceObservable":Lrx/Observable;, "Lrx/Observable<TT;>;"
     iget-object v7, p0, Lcom/upsight/android/internal/persistence/DataStore;->mIdFactory:Lcom/upsight/android/internal/persistence/storable/StorableIdFactory;
 
+    .line 329
     invoke-static {v3, v7}, Lcom/upsight/android/internal/persistence/storable/Storables;->serialize(Lcom/upsight/android/internal/persistence/storable/StorableInfo;Lcom/upsight/android/internal/persistence/storable/StorableIdFactory;)Lrx/Observable$Operator;
 
     move-result-object v7
@@ -943,6 +970,7 @@
 
     invoke-direct {v8, p0}, Lcom/upsight/android/internal/persistence/DataStore$14;-><init>(Lcom/upsight/android/internal/persistence/DataStore;)V
 
+    .line 330
     invoke-virtual {v7, v8}, Lrx/Observable;->flatMap(Lrx/functions/Func1;)Lrx/Observable;
 
     move-result-object v7
@@ -951,12 +979,14 @@
 
     invoke-direct {v8, p0}, Lcom/upsight/android/internal/persistence/DataStore$13;-><init>(Lcom/upsight/android/internal/persistence/DataStore;)V
 
+    .line 336
     invoke-virtual {v7, v5, v8}, Lrx/Observable;->zipWith(Lrx/Observable;Lrx/functions/Func2;)Lrx/Observable;
 
     move-result-object v7
 
     iget-object v8, p0, Lcom/upsight/android/internal/persistence/DataStore;->mBus:Lcom/squareup/otto/Bus;
 
+    .line 342
     invoke-static {v8, v6}, Lcom/upsight/android/internal/persistence/subscription/Subscriptions;->publishRemoved(Lcom/squareup/otto/Bus;Ljava/lang/String;)Lrx/functions/Action1;
 
     move-result-object v8
@@ -1012,6 +1042,7 @@
 
     const/4 v10, 0x0
 
+    .line 350
     invoke-virtual {v0}, Ljava/lang/Class;->getName()Ljava/lang/String;
 
     move-result-object v11
@@ -1030,6 +1061,7 @@
 
     invoke-direct {v7, v8, v9}, Lcom/upsight/android/UpsightException;-><init>(Ljava/lang/String;[Ljava/lang/Object;)V
 
+    .line 348
     invoke-static {v7}, Lrx/Observable;->error(Ljava/lang/Throwable;)Lrx/Observable;
     :try_end_8a
     .catch Lcom/upsight/android/UpsightException; {:try_start_11 .. :try_end_8a} :catch_8c
@@ -1152,12 +1184,14 @@
 
     iget-object v2, p0, Lcom/upsight/android/internal/persistence/DataStore;->mSubscribeOnScheduler:Lrx/Scheduler;
 
+    .line 152
     invoke-virtual {v1, v2}, Lrx/Observable;->subscribeOn(Lrx/Scheduler;)Lrx/Observable;
 
     move-result-object v1
 
     iget-object v2, p0, Lcom/upsight/android/internal/persistence/DataStore;->mObserveOnScheduler:Lrx/Scheduler;
 
+    .line 153
     invoke-virtual {v1, v2}, Lrx/Observable;->observeOn(Lrx/Scheduler;)Lrx/Observable;
 
     move-result-object v1
@@ -1170,6 +1204,7 @@
 
     invoke-direct {v3, p0, p2}, Lcom/upsight/android/internal/persistence/DataStore$8;-><init>(Lcom/upsight/android/internal/persistence/DataStore;Lcom/upsight/android/persistence/UpsightDataStoreListener;)V
 
+    .line 154
     invoke-virtual {v1, v2, v3}, Lrx/Observable;->subscribe(Lrx/functions/Action1;Lrx/functions/Action1;)Lrx/Subscription;
 
     move-result-object v0
@@ -1243,6 +1278,7 @@
 
     const/4 v10, 0x0
 
+    .line 274
     invoke-virtual {v0}, Ljava/lang/Class;->getName()Ljava/lang/String;
 
     move-result-object v11
@@ -1259,6 +1295,7 @@
 
     aput-object v11, v9, v10
 
+    .line 273
     invoke-static {v8, v9}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v8
@@ -1330,6 +1367,7 @@
     .local v5, "sourceObservable":Lrx/Observable;, "Lrx/Observable<TT;>;"
     iget-object v7, p0, Lcom/upsight/android/internal/persistence/DataStore;->mIdFactory:Lcom/upsight/android/internal/persistence/storable/StorableIdFactory;
 
+    .line 284
     invoke-static {v3, v7}, Lcom/upsight/android/internal/persistence/storable/Storables;->serialize(Lcom/upsight/android/internal/persistence/storable/StorableInfo;Lcom/upsight/android/internal/persistence/storable/StorableIdFactory;)Lrx/Observable$Operator;
 
     move-result-object v7
@@ -1342,6 +1380,7 @@
 
     invoke-direct {v8, p0, v2}, Lcom/upsight/android/internal/persistence/DataStore$12;-><init>(Lcom/upsight/android/internal/persistence/DataStore;Z)V
 
+    .line 285
     invoke-virtual {v7, v8}, Lrx/Observable;->flatMap(Lrx/functions/Func1;)Lrx/Observable;
 
     move-result-object v7
@@ -1350,6 +1389,7 @@
 
     invoke-direct {v8, p0}, Lcom/upsight/android/internal/persistence/DataStore$11;-><init>(Lcom/upsight/android/internal/persistence/DataStore;)V
 
+    .line 295
     invoke-virtual {v7, v5, v8}, Lrx/Observable;->zipWith(Lrx/Observable;Lrx/functions/Func2;)Lrx/Observable;
 
     move-result-object v4
@@ -1426,10 +1466,12 @@
 
     iget-object v2, p0, Lcom/upsight/android/internal/persistence/DataStore;->mObserveOnScheduler:Lrx/Scheduler;
 
+    .line 205
     invoke-virtual {v1, v2}, Lrx/Observable;->observeOn(Lrx/Scheduler;)Lrx/Observable;
 
     move-result-object v1
 
+    .line 206
     invoke-static {p1}, Lcom/upsight/android/internal/persistence/subscription/Subscriptions;->create(Ljava/lang/Object;)Lcom/upsight/android/internal/persistence/subscription/AnnotatedSubscriber;
 
     move-result-object v2

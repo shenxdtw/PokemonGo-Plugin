@@ -29,7 +29,7 @@
 
 
 # instance fields
-.field private final that:Ljava/util/concurrent/Future;
+.field final that:Ljava/util/concurrent/Future;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/concurrent/Future",
@@ -55,25 +55,25 @@
     .end annotation
 
     .prologue
-    .line 47
+    .line 48
     .local p0, "this":Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;, "Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture<TT;>;"
     .local p1, "that":Ljava/util/concurrent/Future;, "Ljava/util/concurrent/Future<+TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 48
+    .line 49
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;->that:Ljava/util/concurrent/Future;
 
-    .line 49
+    .line 50
     const-wide/16 v0, 0x0
 
     iput-wide v0, p0, Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;->time:J
 
-    .line 50
+    .line 51
     const/4 v0, 0x0
 
     iput-object v0, p0, Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;->unit:Ljava/util/concurrent/TimeUnit;
 
-    .line 51
+    .line 52
     return-void
 .end method
 
@@ -92,33 +92,22 @@
     .end annotation
 
     .prologue
-    .line 53
+    .line 54
     .local p0, "this":Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;, "Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture<TT;>;"
     .local p1, "that":Ljava/util/concurrent/Future;, "Ljava/util/concurrent/Future<+TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 54
+    .line 55
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;->that:Ljava/util/concurrent/Future;
 
-    .line 55
+    .line 56
     iput-wide p2, p0, Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;->time:J
 
-    .line 56
+    .line 57
     iput-object p4, p0, Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;->unit:Ljava/util/concurrent/TimeUnit;
 
-    .line 57
+    .line 58
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;)Ljava/util/concurrent/Future;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;
-
-    .prologue
-    .line 42
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;->that:Ljava/util/concurrent/Future;
-
-    return-object v0
 .end method
 
 
@@ -128,7 +117,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 42
+    .line 43
     .local p0, "this":Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;, "Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -149,7 +138,7 @@
     .end annotation
 
     .prologue
-    .line 61
+    .line 62
     .local p0, "this":Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;, "Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture<TT;>;"
     .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     new-instance v2, Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture$1;
@@ -162,7 +151,7 @@
 
     invoke-virtual {p1, v2}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 70
+    .line 71
     :try_start_c
     invoke-virtual {p1}, Lrx/Subscriber;->isUnsubscribed()Z
 
@@ -170,12 +159,12 @@
 
     if-eqz v2, :cond_13
 
-    .line 88
+    .line 89
     :cond_12
     :goto_12
     return-void
 
-    .line 73
+    .line 74
     :cond_13
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeToObservableFuture$ToObservableFuture;->unit:Ljava/util/concurrent/TimeUnit;
 
@@ -187,24 +176,24 @@
 
     move-result-object v1
 
-    .line 74
+    .line 75
     .local v1, "value":Ljava/lang/Object;, "TT;"
     :goto_1d
     invoke-virtual {p1, v1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    .line 75
+    .line 76
     invoke-virtual {p1}, Lrx/Subscriber;->onCompleted()V
     :try_end_23
     .catch Ljava/lang/Throwable; {:try_start_c .. :try_end_23} :catch_24
 
     goto :goto_12
 
-    .line 76
+    .line 77
     .end local v1    # "value":Ljava/lang/Object;, "TT;"
     :catch_24
     move-exception v0
 
-    .line 82
+    .line 83
     .local v0, "e":Ljava/lang/Throwable;
     invoke-virtual {p1}, Lrx/Subscriber;->isUnsubscribed()Z
 
@@ -212,12 +201,12 @@
 
     if-nez v2, :cond_12
 
-    .line 86
-    invoke-virtual {p1, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    .line 87
+    invoke-static {v0, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     goto :goto_12
 
-    .line 73
+    .line 74
     .end local v0    # "e":Ljava/lang/Throwable;
     :cond_2f
     :try_start_2f

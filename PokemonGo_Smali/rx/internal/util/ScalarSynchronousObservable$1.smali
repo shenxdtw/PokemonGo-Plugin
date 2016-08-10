@@ -34,7 +34,7 @@
     .registers 2
 
     .prologue
-    .line 35
+    .line 75
     .local p0, "this":Lrx/internal/util/ScalarSynchronousObservable$1;, "Lrx/internal/util/ScalarSynchronousObservable.1;"
     iput-object p1, p0, Lrx/internal/util/ScalarSynchronousObservable$1;->val$t:Ljava/lang/Object;
 
@@ -50,7 +50,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 35
+    .line 75
     .local p0, "this":Lrx/internal/util/ScalarSynchronousObservable$1;, "Lrx/internal/util/ScalarSynchronousObservable.1;"
     check-cast p1, Lrx/Subscriber;
 
@@ -71,16 +71,17 @@
     .end annotation
 
     .prologue
-    .line 46
+    .line 79
     .local p0, "this":Lrx/internal/util/ScalarSynchronousObservable$1;, "Lrx/internal/util/ScalarSynchronousObservable.1;"
     .local p1, "s":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     iget-object v0, p0, Lrx/internal/util/ScalarSynchronousObservable$1;->val$t:Ljava/lang/Object;
 
-    invoke-virtual {p1, v0}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+    invoke-static {p1, v0}, Lrx/internal/util/ScalarSynchronousObservable;->createProducer(Lrx/Subscriber;Ljava/lang/Object;)Lrx/Producer;
 
-    .line 47
-    invoke-virtual {p1}, Lrx/Subscriber;->onCompleted()V
+    move-result-object v0
 
-    .line 48
+    invoke-virtual {p1, v0}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+
+    .line 80
     return-void
 .end method

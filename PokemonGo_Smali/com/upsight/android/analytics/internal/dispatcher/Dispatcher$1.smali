@@ -36,6 +36,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     .prologue
     .line 148
@@ -81,13 +82,11 @@
 
 .method public bridge synthetic onSuccess(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 148
     check-cast p1, Ljava/util/Set;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$1;->onSuccess(Ljava/util/Set;)V
 
     return-void
@@ -110,33 +109,32 @@
     .local p1, "result":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/DataStoreRecord;>;"
     invoke-interface {p1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
-    move-result-object v0
+    move-result-object v1
 
-    .local v0, "i$":Ljava/util/Iterator;
     :goto_4
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
     if-eqz v2, :cond_16
 
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v1
+    move-result-object v0
 
-    check-cast v1, Lcom/upsight/android/analytics/internal/DataStoreRecord;
+    check-cast v0, Lcom/upsight/android/analytics/internal/DataStoreRecord;
 
     .line 152
-    .local v1, "record":Lcom/upsight/android/analytics/internal/DataStoreRecord;
+    .local v0, "record":Lcom/upsight/android/analytics/internal/DataStoreRecord;
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$1;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     # invokes: Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->routeRecords(Lcom/upsight/android/analytics/internal/DataStoreRecord;)V
-    invoke-static {v2, v1}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->access$000(Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;Lcom/upsight/android/analytics/internal/DataStoreRecord;)V
+    invoke-static {v2, v0}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->access$000(Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;Lcom/upsight/android/analytics/internal/DataStoreRecord;)V
 
     goto :goto_4
 
     .line 154
-    .end local v1    # "record":Lcom/upsight/android/analytics/internal/DataStoreRecord;
+    .end local v0    # "record":Lcom/upsight/android/analytics/internal/DataStoreRecord;
     :cond_16
     return-void
 .end method

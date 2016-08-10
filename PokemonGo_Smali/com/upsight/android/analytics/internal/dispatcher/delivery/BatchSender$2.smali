@@ -26,9 +26,10 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender;Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Request;)V
     .registers 3
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender;
 
     .prologue
-    .line 252
+    .line 253
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$2;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender;
 
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$2;->val$request:Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Request;
@@ -44,7 +45,7 @@
     .registers 4
 
     .prologue
-    .line 255
+    .line 256
     new-instance v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$RetryTask;
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$2;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender;
@@ -55,6 +56,6 @@
 
     invoke-virtual {v0}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$RetryTask;->run()V
 
-    .line 256
+    .line 257
     return-void
 .end method

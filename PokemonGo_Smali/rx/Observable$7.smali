@@ -3,12 +3,12 @@
 .source "Observable.java"
 
 # interfaces
-.implements Lrx/Observer;
+.implements Lrx/Observable$OnSubscribe;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Observable;->doOnCompleted(Lrx/functions/Action0;)Lrx/Observable;
+    value = Lrx/Observable;->defaultIfEmpty(Ljava/lang/Object;)Lrx/Observable;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -19,7 +19,7 @@
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lrx/Observer",
+        "Lrx/Observable$OnSubscribe",
         "<TT;>;"
     }
 .end annotation
@@ -28,19 +28,19 @@
 # instance fields
 .field final synthetic this$0:Lrx/Observable;
 
-.field final synthetic val$onCompleted:Lrx/functions/Action0;
+.field final synthetic val$defaultValue:Ljava/lang/Object;
 
 
 # direct methods
-.method constructor <init>(Lrx/Observable;Lrx/functions/Action0;)V
+.method constructor <init>(Lrx/Observable;Ljava/lang/Object;)V
     .registers 3
 
     .prologue
-    .line 4263
+    .line 4343
     .local p0, "this":Lrx/Observable$7;, "Lrx/Observable.7;"
     iput-object p1, p0, Lrx/Observable$7;->this$0:Lrx/Observable;
 
-    iput-object p2, p0, Lrx/Observable$7;->val$onCompleted:Lrx/functions/Action0;
+    iput-object p2, p0, Lrx/Observable$7;->val$defaultValue:Ljava/lang/Object;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -49,41 +49,43 @@
 
 
 # virtual methods
-.method public final onCompleted()V
+.method public bridge synthetic call(Ljava/lang/Object;)V
     .registers 2
+    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 4266
+    .line 4343
     .local p0, "this":Lrx/Observable$7;, "Lrx/Observable.7;"
-    iget-object v0, p0, Lrx/Observable$7;->val$onCompleted:Lrx/functions/Action0;
+    check-cast p1, Lrx/Subscriber;
 
-    invoke-interface {v0}, Lrx/functions/Action0;->call()V
+    .end local p1    # "x0":Ljava/lang/Object;
+    invoke-virtual {p0, p1}, Lrx/Observable$7;->call(Lrx/Subscriber;)V
 
-    .line 4267
     return-void
 .end method
 
-.method public final onError(Ljava/lang/Throwable;)V
-    .registers 2
-    .param p1, "e"    # Ljava/lang/Throwable;
-
-    .prologue
-    .line 4271
-    .local p0, "this":Lrx/Observable$7;, "Lrx/Observable.7;"
-    return-void
-.end method
-
-.method public final onNext(Ljava/lang/Object;)V
-    .registers 2
+.method public call(Lrx/Subscriber;)V
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "(TT;)V"
+            "(",
+            "Lrx/Subscriber",
+            "<-TT;>;)V"
         }
     .end annotation
 
     .prologue
-    .line 4275
+    .line 4347
     .local p0, "this":Lrx/Observable$7;, "Lrx/Observable.7;"
-    .local p1, "args":Ljava/lang/Object;, "TT;"
+    .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
+    new-instance v0, Lrx/internal/producers/SingleProducer;
+
+    iget-object v1, p0, Lrx/Observable$7;->val$defaultValue:Ljava/lang/Object;
+
+    invoke-direct {v0, p1, v1}, Lrx/internal/producers/SingleProducer;-><init>(Lrx/Subscriber;Ljava/lang/Object;)V
+
+    invoke-virtual {p1, v0}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+
+    .line 4348
     return-void
 .end method

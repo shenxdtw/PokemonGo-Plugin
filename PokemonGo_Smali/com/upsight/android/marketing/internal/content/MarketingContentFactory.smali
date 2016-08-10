@@ -84,11 +84,12 @@
 
     iget-object v4, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentFactory;->mActionContext:Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
 
-    invoke-virtual {p1}, Lcom/upsight/android/analytics/internal/action/ActionMapResponse;->getActionMap()Lcom/fasterxml/jackson/databind/JsonNode;
+    .line 30
+    invoke-virtual {p1}, Lcom/upsight/android/analytics/internal/action/ActionMapResponse;->getActionMap()Lcom/google/gson/JsonArray;
 
     move-result-object v5
 
-    invoke-direct {v0, v3, v4, v5}, Lcom/upsight/android/analytics/internal/action/ActionMap;-><init>(Lcom/upsight/android/analytics/internal/action/ActionFactory;Lcom/upsight/android/analytics/internal/action/ActionContext;Lcom/fasterxml/jackson/databind/JsonNode;)V
+    invoke-direct {v0, v3, v4, v5}, Lcom/upsight/android/analytics/internal/action/ActionMap;-><init>(Lcom/upsight/android/analytics/internal/action/ActionFactory;Lcom/upsight/android/analytics/internal/action/ActionContext;Lcom/google/gson/JsonArray;)V
 
     .line 31
     .local v0, "actionMap":Lcom/upsight/android/analytics/internal/action/ActionMap;, "Lcom/upsight/android/analytics/internal/action/ActionMap<Lcom/upsight/android/marketing/internal/content/MarketingContent;Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;>;"

@@ -294,6 +294,7 @@
 
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/session/SessionManagerImpl;->mClock:Lcom/upsight/android/analytics/internal/session/Clock;
 
+    .line 270
     invoke-interface {v0}, Lcom/upsight/android/analytics/internal/session/Clock;->currentTimeSeconds()J
 
     move-result-wide v0
@@ -360,12 +361,14 @@
 
     iget-object v6, p0, Lcom/upsight/android/analytics/internal/session/SessionManagerImpl;->mUpsight:Lcom/upsight/android/UpsightContext;
 
+    .line 185
     invoke-virtual {v6}, Lcom/upsight/android/UpsightContext;->getPackageName()Ljava/lang/String;
 
     move-result-object v6
 
     const/16 v7, 0x80
 
+    .line 184
     invoke-virtual {v5, v6, v7}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
 
     move-result-object v3
@@ -423,6 +426,7 @@
 
     const/4 v8, 0x0
 
+    .line 193
     invoke-virtual {v1}, Ljava/lang/Class;->getName()Ljava/lang/String;
 
     move-result-object v9
@@ -439,6 +443,7 @@
 
     aput-object v9, v7, v8
 
+    .line 192
     invoke-static {v6, v7}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v6

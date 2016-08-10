@@ -26,7 +26,7 @@
     .registers 2
 
     .prologue
-    .line 232
+    .line 259
     .local p0, "this":Lrx/internal/operators/OperatorPublish$PublishSubscriber$1;, "Lrx/internal/operators/OperatorPublish$PublishSubscriber.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber$1;->this$0:Lrx/internal/operators/OperatorPublish$PublishSubscriber;
 
@@ -41,7 +41,7 @@
     .registers 4
 
     .prologue
-    .line 235
+    .line 262
     .local p0, "this":Lrx/internal/operators/OperatorPublish$PublishSubscriber$1;, "Lrx/internal/operators/OperatorPublish$PublishSubscriber.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber$1;->this$0:Lrx/internal/operators/OperatorPublish$PublishSubscriber;
 
@@ -51,7 +51,7 @@
 
     invoke-virtual {v0, v1}, Ljava/util/concurrent/atomic/AtomicReference;->getAndSet(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 236
+    .line 263
     iget-object v0, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber$1;->this$0:Lrx/internal/operators/OperatorPublish$PublishSubscriber;
 
     iget-object v0, v0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->current:Ljava/util/concurrent/atomic/AtomicReference;
@@ -62,6 +62,6 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/concurrent/atomic/AtomicReference;->compareAndSet(Ljava/lang/Object;Ljava/lang/Object;)Z
 
-    .line 239
+    .line 266
     return-void
 .end method

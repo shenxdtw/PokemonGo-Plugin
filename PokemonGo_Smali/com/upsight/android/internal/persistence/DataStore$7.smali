@@ -34,6 +34,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/internal/persistence/DataStore;Lcom/upsight/android/persistence/UpsightDataStoreListener;)V
     .registers 3
+    .param p1, "this$0"    # Lcom/upsight/android/internal/persistence/DataStore;
 
     .prologue
     .line 154

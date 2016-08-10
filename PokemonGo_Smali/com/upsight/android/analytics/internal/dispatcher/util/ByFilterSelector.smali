@@ -77,32 +77,31 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 29
-    const/4 v2, 0x0
+    const/4 v1, 0x0
 
-    iput-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;->mDefaultValue:Ljava/lang/Object;
+    iput-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;->mDefaultValue:Ljava/lang/Object;
 
     .line 44
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;->mData:Ljava/util/Map;
 
     .line 46
-    new-instance v2, Ljava/util/HashSet;
+    new-instance v1, Ljava/util/HashSet;
 
-    invoke-direct {v2}, Ljava/util/HashSet;-><init>()V
+    invoke-direct {v1}, Ljava/util/HashSet;-><init>()V
 
-    iput-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;->mFilters:Ljava/util/Set;
+    iput-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;->mFilters:Ljava/util/Set;
 
     .line 48
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;->mData:Ljava/util/Map;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;->mData:Ljava/util/Map;
 
-    invoke-interface {v2}, Ljava/util/Map;->keySet()Ljava/util/Set;
-
-    move-result-object v2
-
-    invoke-interface {v2}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+    invoke-interface {v1}, Ljava/util/Map;->keySet()Ljava/util/Set;
 
     move-result-object v1
 
-    .local v1, "i$":Ljava/util/Iterator;
+    invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
     :goto_19
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
@@ -167,25 +166,24 @@
     .prologue
     .line 64
     .local p0, "this":Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;, "Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector<TD;>;"
-    const/4 v2, 0x0
+    const/4 v1, 0x0
 
     .line 66
-    .local v2, "selectedFilter":Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector$Filter;
-    iget-object v3, p0, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;->mFilters:Ljava/util/Set;
+    .local v1, "selectedFilter":Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector$Filter;
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;->mFilters:Ljava/util/Set;
 
-    invoke-interface {v3}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+    invoke-interface {v2}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
-    move-result-object v1
+    move-result-object v2
 
-    .local v1, "i$":Ljava/util/Iterator;
     :goto_7
-    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
     if-eqz v3, :cond_18
 
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
@@ -193,9 +191,9 @@
 
     .line 67
     .local v0, "entry":Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector$Filter;
-    invoke-virtual {v0, p1, v2}, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector$Filter;->getFilterIfBetter(Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector$Filter;)Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector$Filter;
+    invoke-virtual {v0, p1, v1}, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector$Filter;->getFilterIfBetter(Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector$Filter;)Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector$Filter;
 
-    move-result-object v2
+    move-result-object v1
 
     .line 68
     goto :goto_7
@@ -203,19 +201,19 @@
     .line 70
     .end local v0    # "entry":Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector$Filter;
     :cond_18
-    if-nez v2, :cond_1c
+    if-nez v1, :cond_1c
 
     .line 71
-    const/4 v3, 0x0
+    const/4 v2, 0x0
 
     .line 74
     :goto_1b
-    return-object v3
+    return-object v2
 
     :cond_1c
-    invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector$Filter;->getFilter()Ljava/lang/String;
+    invoke-virtual {v1}, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector$Filter;->getFilter()Ljava/lang/String;
 
-    move-result-object v3
+    move-result-object v2
 
     goto :goto_1b
 .end method

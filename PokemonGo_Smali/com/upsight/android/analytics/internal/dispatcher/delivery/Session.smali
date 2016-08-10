@@ -3,334 +3,278 @@
 .source "Session.java"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session$DefaultTypeAdapter;
+    }
+.end annotation
+
+
+# static fields
+.field private static final EVENTS:Ljava/lang/String; = "events"
+
+.field private static final INSTALL_TS:Ljava/lang/String; = "install_ts"
+
+.field private static final MSG_CAMPAIGN_ID:Ljava/lang/String; = "msg_campaign_id"
+
+.field private static final MSG_ID:Ljava/lang/String; = "msg_id"
+
+.field private static final PAST_SESSION_TIME:Ljava/lang/String; = "past_session_time"
+
+.field private static final SESSION_NUM:Ljava/lang/String; = "session_num"
+
+.field private static final SESSION_START:Ljava/lang/String; = "session_start"
+
+
 # instance fields
-.field private mEvents:Ljava/util/Set;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/Set",
-            "<",
-            "Lcom/upsight/android/analytics/internal/DataStoreRecord;",
-            ">;"
-        }
+.field private mEvents:Lcom/google/gson/JsonArray;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
+        value = "events"
     .end annotation
 .end field
 
 .field private mInstallTs:J
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
 
-.field private final mLogger:Lcom/upsight/android/logger/UpsightLogger;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
+        value = "install_ts"
+    .end annotation
+.end field
 
 .field private mMsgCampaignId:Ljava/lang/Integer;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
+        value = "msg_campaign_id"
+    .end annotation
+.end field
 
 .field private mMsgId:Ljava/lang/Integer;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
 
-.field private final mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
+        value = "msg_id"
+    .end annotation
+.end field
 
 .field private mPastSessionTime:J
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
+        value = "past_session_time"
+    .end annotation
+.end field
 
 .field private mSessionNum:I
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
+        value = "session_num"
+    .end annotation
+.end field
 
 .field private mSessionStart:J
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
+        value = "session_start"
+    .end annotation
+.end field
 
 
 # direct methods
-.method public constructor <init>(Lcom/upsight/android/analytics/internal/DataStoreRecord;Lcom/fasterxml/jackson/databind/ObjectMapper;Lcom/upsight/android/logger/UpsightLogger;J)V
-    .registers 8
+.method public constructor <init>(Lcom/upsight/android/analytics/internal/DataStoreRecord;J)V
+    .registers 6
     .param p1, "record"    # Lcom/upsight/android/analytics/internal/DataStoreRecord;
-    .param p2, "mapper"    # Lcom/fasterxml/jackson/databind/ObjectMapper;
-    .param p3, "logger"    # Lcom/upsight/android/logger/UpsightLogger;
-    .param p4, "installTs"    # J
+    .param p2, "installTs"    # J
 
     .prologue
-    .line 48
+    .line 107
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 49
-    new-instance v0, Ljava/util/HashSet;
+    .line 108
+    new-instance v0, Lcom/google/gson/JsonArray;
 
-    invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
+    invoke-direct {v0}, Lcom/google/gson/JsonArray;-><init>()V
 
-    iput-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mEvents:Ljava/util/Set;
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mEvents:Lcom/google/gson/JsonArray;
 
-    .line 51
+    .line 109
     invoke-virtual {p1}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->getSessionID()J
 
     move-result-wide v0
 
     iput-wide v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mSessionStart:J
 
-    .line 52
-    iput-object p2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .line 110
+    iput-wide p2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mInstallTs:J
 
-    .line 53
-    iput-object p3, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
-
-    .line 54
-    iput-wide p4, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mInstallTs:J
-
-    .line 55
+    .line 111
     invoke-virtual {p1}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->getMessageID()Ljava/lang/Integer;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mMsgId:Ljava/lang/Integer;
 
-    .line 56
+    .line 112
     invoke-virtual {p1}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->getCampaignID()Ljava/lang/Integer;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mMsgCampaignId:Ljava/lang/Integer;
 
-    .line 57
+    .line 113
     invoke-virtual {p1}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->getPastSessionTime()J
 
     move-result-wide v0
 
     iput-wide v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mPastSessionTime:J
 
-    .line 58
+    .line 114
     invoke-virtual {p1}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->getSessionNumber()I
 
     move-result v0
 
     iput v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mSessionNum:I
 
-    .line 59
+    .line 115
     return-void
 .end method
 
-
-# virtual methods
-.method public addEvent(Lcom/upsight/android/analytics/internal/DataStoreRecord;)V
-    .registers 3
-    .param p1, "event"    # Lcom/upsight/android/analytics/internal/DataStoreRecord;
-
-    .prologue
-    .line 65
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mEvents:Ljava/util/Set;
-
-    invoke-interface {v0, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
-
-    .line 66
-    return-void
-.end method
-
-.method public getEvents()[Lcom/fasterxml/jackson/databind/node/ObjectNode;
-    .registers 11
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
-        value = "events"
-    .end annotation
-
-    .prologue
-    .line 74
-    new-instance v5, Ljava/util/ArrayList;
-
-    iget-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mEvents:Ljava/util/Set;
-
-    invoke-interface {v6}, Ljava/util/Set;->size()I
-
-    move-result v6
-
-    invoke-direct {v5, v6}, Ljava/util/ArrayList;-><init>(I)V
-
-    .line 76
-    .local v5, "res":Ljava/util/List;, "Ljava/util/List<Lcom/fasterxml/jackson/databind/node/ObjectNode;>;"
-    iget-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mEvents:Ljava/util/Set;
-
-    invoke-interface {v6}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
-
-    move-result-object v1
-
-    .local v1, "i$":Ljava/util/Iterator;
-    :cond_11
-    :goto_11
-    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v6
-
-    if-eqz v6, :cond_4c
-
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v4
-
-    check-cast v4, Lcom/upsight/android/analytics/internal/DataStoreRecord;
-
-    .line 78
-    .local v4, "record":Lcom/upsight/android/analytics/internal/DataStoreRecord;
-    :try_start_1d
-    invoke-virtual {v4}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->getSource()Ljava/lang/String;
-
-    move-result-object v3
-
-    .line 79
-    .local v3, "jsonString":Ljava/lang/String;
-    iget-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
-
-    invoke-virtual {v6, v3}, Lcom/fasterxml/jackson/databind/ObjectMapper;->readTree(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
-
-    move-result-object v2
-
-    .line 80
-    .local v2, "jsonNode":Lcom/fasterxml/jackson/databind/JsonNode;
-    invoke-virtual {v2}, Lcom/fasterxml/jackson/databind/JsonNode;->isObject()Z
-
-    move-result v6
-
-    if-eqz v6, :cond_11
-
-    .line 81
-    check-cast v2, Lcom/fasterxml/jackson/databind/node/ObjectNode;
-
-    .end local v2    # "jsonNode":Lcom/fasterxml/jackson/databind/JsonNode;
-    invoke-interface {v5, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-    :try_end_32
-    .catch Ljava/io/IOException; {:try_start_1d .. :try_end_32} :catch_33
-    .catch Ljava/lang/Exception; {:try_start_1d .. :try_end_32} :catch_47
-
-    goto :goto_11
-
-    .line 83
-    .end local v3    # "jsonString":Ljava/lang/String;
-    :catch_33
-    move-exception v0
-
-    .line 84
-    .local v0, "e":Ljava/io/IOException;
-    iget-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
-
-    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
-
-    move-result-object v7
-
-    invoke-virtual {v7}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
-
-    move-result-object v7
-
-    const-string v8, "Error parsing JSON object."
-
-    const/4 v9, 0x0
-
-    new-array v9, v9, [Ljava/lang/Object;
-
-    invoke-interface {v6, v7, v0, v8, v9}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
-
-    goto :goto_11
-
-    .line 85
-    .end local v0    # "e":Ljava/io/IOException;
-    :catch_47
-    move-exception v0
-
-    .line 86
-    .local v0, "e":Ljava/lang/Exception;
-    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
-
-    goto :goto_11
-
-    .line 90
-    .end local v0    # "e":Ljava/lang/Exception;
-    .end local v4    # "record":Lcom/upsight/android/analytics/internal/DataStoreRecord;
-    :cond_4c
-    iget-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mEvents:Ljava/util/Set;
-
-    invoke-interface {v6}, Ljava/util/Set;->size()I
-
-    move-result v6
-
-    new-array v6, v6, [Lcom/fasterxml/jackson/databind/node/ObjectNode;
-
-    invoke-interface {v5, v6}, Ljava/util/List;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
-
-    move-result-object v6
-
-    check-cast v6, [Lcom/fasterxml/jackson/databind/node/ObjectNode;
-
-    return-object v6
-.end method
-
-.method public getInstallTs()J
-    .registers 3
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
-        value = "install_ts"
-    .end annotation
-
-    .prologue
-    .line 143
-    iget-wide v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mInstallTs:J
-
-    return-wide v0
-.end method
-
-.method public getMsgCampaignId()Ljava/lang/Integer;
+.method static synthetic access$000(Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;)I
     .registers 2
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
-        value = "msg_campaign_id"
-    .end annotation
-
-    .annotation runtime Lcom/fasterxml/jackson/databind/annotation/JsonSerialize;
-        include = .enum Lcom/fasterxml/jackson/databind/annotation/JsonSerialize$Inclusion;->NON_NULL:Lcom/fasterxml/jackson/databind/annotation/JsonSerialize$Inclusion;
-    .end annotation
+    .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
 
     .prologue
-    .line 110
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mMsgCampaignId:Ljava/lang/Integer;
-
-    return-object v0
-.end method
-
-.method public getMsgId()Ljava/lang/Integer;
-    .registers 2
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
-        value = "msg_id"
-    .end annotation
-
-    .annotation runtime Lcom/fasterxml/jackson/databind/annotation/JsonSerialize;
-        include = .enum Lcom/fasterxml/jackson/databind/annotation/JsonSerialize$Inclusion;->NON_NULL:Lcom/fasterxml/jackson/databind/annotation/JsonSerialize$Inclusion;
-    .end annotation
-
-    .prologue
-    .line 101
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mMsgId:Ljava/lang/Integer;
-
-    return-object v0
-.end method
-
-.method public getPastSessionTime()J
-    .registers 3
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
-        value = "past_session_time"
-    .end annotation
-
-    .prologue
-    .line 118
-    iget-wide v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mPastSessionTime:J
-
-    return-wide v0
-.end method
-
-.method public getSessionNum()I
-    .registers 2
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
-        value = "session_num"
-    .end annotation
-
-    .prologue
-    .line 127
+    .line 26
     iget v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mSessionNum:I
 
     return v0
 .end method
 
-.method public getSessionStart()J
+.method static synthetic access$100(Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;)J
     .registers 3
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
-        value = "session_start"
-    .end annotation
+    .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
 
     .prologue
-    .line 135
+    .line 26
     iget-wide v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mSessionStart:J
 
     return-wide v0
+.end method
+
+.method static synthetic access$200(Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;)J
+    .registers 3
+    .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+
+    .prologue
+    .line 26
+    iget-wide v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mPastSessionTime:J
+
+    return-wide v0
+.end method
+
+.method static synthetic access$300(Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;)Ljava/lang/Integer;
+    .registers 2
+    .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+
+    .prologue
+    .line 26
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mMsgId:Ljava/lang/Integer;
+
+    return-object v0
+.end method
+
+.method static synthetic access$400(Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;)Ljava/lang/Integer;
+    .registers 2
+    .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+
+    .prologue
+    .line 26
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mMsgCampaignId:Ljava/lang/Integer;
+
+    return-object v0
+.end method
+
+.method static synthetic access$500(Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;)J
+    .registers 3
+    .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+
+    .prologue
+    .line 26
+    iget-wide v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mInstallTs:J
+
+    return-wide v0
+.end method
+
+.method static synthetic access$600(Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;)Lcom/google/gson/JsonArray;
+    .registers 2
+    .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+
+    .prologue
+    .line 26
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mEvents:Lcom/google/gson/JsonArray;
+
+    return-object v0
+.end method
+
+
+# virtual methods
+.method addEvent(Lcom/upsight/android/analytics/internal/DataStoreRecord;Lcom/google/gson/JsonParser;)V
+    .registers 7
+    .param p1, "record"    # Lcom/upsight/android/analytics/internal/DataStoreRecord;
+    .param p2, "jsonParser"    # Lcom/google/gson/JsonParser;
+
+    .prologue
+    .line 121
+    invoke-virtual {p1}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->getSource()Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 122
+    .local v1, "eventString":Ljava/lang/String;
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_1f
+
+    .line 123
+    invoke-virtual {p2, v1}, Lcom/google/gson/JsonParser;->parse(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+
+    move-result-object v0
+
+    .line 124
+    .local v0, "event":Lcom/google/gson/JsonElement;
+    if-eqz v0, :cond_1f
+
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->isJsonObject()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_1f
+
+    .line 125
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->mEvents:Lcom/google/gson/JsonArray;
+
+    invoke-virtual {v0}, Lcom/google/gson/JsonElement;->getAsJsonObject()Lcom/google/gson/JsonObject;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Lcom/google/gson/JsonArray;->add(Lcom/google/gson/JsonElement;)V
+
+    .line 128
+    .end local v0    # "event":Lcom/google/gson/JsonElement;
+    :cond_1f
+    return-void
 .end method

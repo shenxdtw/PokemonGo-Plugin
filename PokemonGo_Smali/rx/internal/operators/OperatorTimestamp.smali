@@ -22,7 +22,7 @@
 
 
 # instance fields
-.field private final scheduler:Lrx/Scheduler;
+.field final scheduler:Lrx/Scheduler;
 
 
 # direct methods
@@ -40,17 +40,6 @@
 
     .line 34
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorTimestamp;)Lrx/Scheduler;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorTimestamp;
-
-    .prologue
-    .line 28
-    iget-object v0, p0, Lrx/internal/operators/OperatorTimestamp;->scheduler:Lrx/Scheduler;
-
-    return-object v0
 .end method
 
 

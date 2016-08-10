@@ -36,6 +36,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     .prologue
     .line 205
@@ -100,13 +101,11 @@
 
 .method public bridge synthetic onSuccess(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 205
     check-cast p1, Ljava/util/Set;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$2;->onSuccess(Ljava/util/Set;)V
 
     return-void
@@ -127,14 +126,14 @@
     .prologue
     .line 208
     .local p1, "result":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/configuration/UpsightConfiguration;>;"
-    iget-object v3, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$2;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$2;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     # getter for: Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentConfig:Lcom/upsight/android/analytics/internal/dispatcher/Config;
-    invoke-static {v3}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->access$200(Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;)Lcom/upsight/android/analytics/internal/dispatcher/Config;
+    invoke-static {v2}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->access$200(Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;)Lcom/upsight/android/analytics/internal/dispatcher/Config;
 
-    move-result-object v3
+    move-result-object v2
 
-    if-eqz v3, :cond_9
+    if-eqz v2, :cond_9
 
     .line 223
     :cond_8
@@ -151,7 +150,6 @@
 
     move-result-object v2
 
-    .local v2, "i$":Ljava/util/Iterator;
     :cond_e
     :goto_e
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
@@ -182,6 +180,7 @@
 
     iget-object v3, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$2;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
+    .line 215
     # invokes: Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->isUpsightConfigurationValid(Lcom/upsight/android/analytics/configuration/UpsightConfiguration;)Z
     invoke-static {v3, v0}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->access$300(Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;Lcom/upsight/android/analytics/configuration/UpsightConfiguration;)Z
 
@@ -209,10 +208,10 @@
     if-nez v1, :cond_8
 
     .line 221
-    iget-object v3, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$2;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$2;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     # invokes: Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->applyDefaultConfiguration()V
-    invoke-static {v3}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->access$500(Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;)V
+    invoke-static {v2}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->access$500(Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;)V
 
     goto :goto_8
 .end method

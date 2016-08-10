@@ -21,34 +21,23 @@
 
 
 # direct methods
-.method private constructor <init>(Lrx/schedulers/TestScheduler;)V
+.method constructor <init>(Lrx/schedulers/TestScheduler;)V
     .registers 3
 
     .prologue
-    .line 131
+    .line 138
     iput-object p1, p0, Lrx/schedulers/TestScheduler$InnerTestScheduler;->this$0:Lrx/schedulers/TestScheduler;
 
     invoke-direct {p0}, Lrx/Scheduler$Worker;-><init>()V
 
-    .line 133
+    .line 136
     new-instance v0, Lrx/subscriptions/BooleanSubscription;
 
     invoke-direct {v0}, Lrx/subscriptions/BooleanSubscription;-><init>()V
 
     iput-object v0, p0, Lrx/schedulers/TestScheduler$InnerTestScheduler;->s:Lrx/subscriptions/BooleanSubscription;
 
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/schedulers/TestScheduler;Lrx/schedulers/TestScheduler$1;)V
-    .registers 3
-    .param p1, "x0"    # Lrx/schedulers/TestScheduler;
-    .param p2, "x1"    # Lrx/schedulers/TestScheduler$1;
-
-    .prologue
-    .line 131
-    invoke-direct {p0, p1}, Lrx/schedulers/TestScheduler$InnerTestScheduler;-><init>(Lrx/schedulers/TestScheduler;)V
-
+    .line 139
     return-void
 .end method
 
@@ -58,7 +47,7 @@
     .registers 2
 
     .prologue
-    .line 142
+    .line 148
     iget-object v0, p0, Lrx/schedulers/TestScheduler$InnerTestScheduler;->s:Lrx/subscriptions/BooleanSubscription;
 
     invoke-virtual {v0}, Lrx/subscriptions/BooleanSubscription;->isUnsubscribed()Z
@@ -72,7 +61,7 @@
     .registers 3
 
     .prologue
-    .line 175
+    .line 181
     iget-object v0, p0, Lrx/schedulers/TestScheduler$InnerTestScheduler;->this$0:Lrx/schedulers/TestScheduler;
 
     invoke-virtual {v0}, Lrx/schedulers/TestScheduler;->now()J
@@ -83,35 +72,26 @@
 .end method
 
 .method public schedule(Lrx/functions/Action0;)Lrx/Subscription;
-    .registers 8
+    .registers 6
     .param p1, "action"    # Lrx/functions/Action0;
 
     .prologue
-    .line 161
+    .line 167
     new-instance v0, Lrx/schedulers/TestScheduler$TimedAction;
 
     const-wide/16 v2, 0x0
 
-    const/4 v5, 0x0
+    invoke-direct {v0, p0, v2, v3, p1}, Lrx/schedulers/TestScheduler$TimedAction;-><init>(Lrx/Scheduler$Worker;JLrx/functions/Action0;)V
 
-    move-object v1, p0
-
-    move-object v4, p1
-
-    invoke-direct/range {v0 .. v5}, Lrx/schedulers/TestScheduler$TimedAction;-><init>(Lrx/Scheduler$Worker;JLrx/functions/Action0;Lrx/schedulers/TestScheduler$1;)V
-
-    .line 162
+    .line 168
     .local v0, "timedAction":Lrx/schedulers/TestScheduler$TimedAction;
     iget-object v1, p0, Lrx/schedulers/TestScheduler$InnerTestScheduler;->this$0:Lrx/schedulers/TestScheduler;
 
-    # getter for: Lrx/schedulers/TestScheduler;->queue:Ljava/util/Queue;
-    invoke-static {v1}, Lrx/schedulers/TestScheduler;->access$900(Lrx/schedulers/TestScheduler;)Ljava/util/Queue;
-
-    move-result-object v1
+    iget-object v1, v1, Lrx/schedulers/TestScheduler;->queue:Ljava/util/Queue;
 
     invoke-interface {v1, v0}, Ljava/util/Queue;->add(Ljava/lang/Object;)Z
 
-    .line 163
+    .line 169
     new-instance v1, Lrx/schedulers/TestScheduler$InnerTestScheduler$2;
 
     invoke-direct {v1, p0, v0}, Lrx/schedulers/TestScheduler$InnerTestScheduler$2;-><init>(Lrx/schedulers/TestScheduler$InnerTestScheduler;Lrx/schedulers/TestScheduler$TimedAction;)V
@@ -130,15 +110,12 @@
     .param p4, "unit"    # Ljava/util/concurrent/TimeUnit;
 
     .prologue
-    .line 147
+    .line 153
     new-instance v0, Lrx/schedulers/TestScheduler$TimedAction;
 
     iget-object v1, p0, Lrx/schedulers/TestScheduler$InnerTestScheduler;->this$0:Lrx/schedulers/TestScheduler;
 
-    # getter for: Lrx/schedulers/TestScheduler;->time:J
-    invoke-static {v1}, Lrx/schedulers/TestScheduler;->access$700(Lrx/schedulers/TestScheduler;)J
-
-    move-result-wide v2
+    iget-wide v2, v1, Lrx/schedulers/TestScheduler;->time:J
 
     invoke-virtual {p4, p2, p3}, Ljava/util/concurrent/TimeUnit;->toNanos(J)J
 
@@ -146,26 +123,17 @@
 
     add-long/2addr v2, v4
 
-    const/4 v5, 0x0
+    invoke-direct {v0, p0, v2, v3, p1}, Lrx/schedulers/TestScheduler$TimedAction;-><init>(Lrx/Scheduler$Worker;JLrx/functions/Action0;)V
 
-    move-object v1, p0
-
-    move-object v4, p1
-
-    invoke-direct/range {v0 .. v5}, Lrx/schedulers/TestScheduler$TimedAction;-><init>(Lrx/Scheduler$Worker;JLrx/functions/Action0;Lrx/schedulers/TestScheduler$1;)V
-
-    .line 148
+    .line 154
     .local v0, "timedAction":Lrx/schedulers/TestScheduler$TimedAction;
     iget-object v1, p0, Lrx/schedulers/TestScheduler$InnerTestScheduler;->this$0:Lrx/schedulers/TestScheduler;
 
-    # getter for: Lrx/schedulers/TestScheduler;->queue:Ljava/util/Queue;
-    invoke-static {v1}, Lrx/schedulers/TestScheduler;->access$900(Lrx/schedulers/TestScheduler;)Ljava/util/Queue;
-
-    move-result-object v1
+    iget-object v1, v1, Lrx/schedulers/TestScheduler;->queue:Ljava/util/Queue;
 
     invoke-interface {v1, v0}, Ljava/util/Queue;->add(Ljava/lang/Object;)Z
 
-    .line 149
+    .line 155
     new-instance v1, Lrx/schedulers/TestScheduler$InnerTestScheduler$1;
 
     invoke-direct {v1, p0, v0}, Lrx/schedulers/TestScheduler$InnerTestScheduler$1;-><init>(Lrx/schedulers/TestScheduler$InnerTestScheduler;Lrx/schedulers/TestScheduler$TimedAction;)V
@@ -181,11 +149,11 @@
     .registers 2
 
     .prologue
-    .line 137
+    .line 143
     iget-object v0, p0, Lrx/schedulers/TestScheduler$InnerTestScheduler;->s:Lrx/subscriptions/BooleanSubscription;
 
     invoke-virtual {v0}, Lrx/subscriptions/BooleanSubscription;->unsubscribe()V
 
-    .line 138
+    .line 144
     return-void
 .end method

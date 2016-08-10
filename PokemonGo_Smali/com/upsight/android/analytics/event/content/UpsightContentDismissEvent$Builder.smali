@@ -27,13 +27,19 @@
 # instance fields
 .field private action:Ljava/lang/String;
 
+.field private ads:Lcom/google/gson/JsonArray;
+
 .field private contentId:Ljava/lang/Integer;
+
+.field private impressionId:Ljava/lang/String;
 
 .field private scope:Ljava/lang/String;
 
 .field private streamId:Ljava/lang/String;
 
 .field private streamStartTs:Ljava/lang/String;
+
+.field private testDevice:Ljava/lang/Boolean;
 
 
 # direct methods
@@ -44,29 +50,29 @@
     .param p3, "action"    # Ljava/lang/String;
 
     .prologue
-    .line 128
+    .line 173
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;-><init>()V
 
-    .line 129
+    .line 174
     iput-object p1, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->streamId:Ljava/lang/String;
 
-    .line 130
+    .line 175
     iput-object p2, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->contentId:Ljava/lang/Integer;
 
-    .line 131
+    .line 176
     iput-object p3, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->action:Ljava/lang/String;
 
-    .line 132
+    .line 177
     return-void
 .end method
 
-.method static synthetic access$000(Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;)Ljava/lang/String;
+.method static synthetic access$000(Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;)Lcom/google/gson/JsonArray;
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;
 
     .prologue
-    .line 108
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->action:Ljava/lang/String;
+    .line 147
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->ads:Lcom/google/gson/JsonArray;
 
     return-object v0
 .end method
@@ -76,19 +82,19 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;
 
     .prologue
-    .line 108
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->scope:Ljava/lang/String;
+    .line 147
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->impressionId:Ljava/lang/String;
 
     return-object v0
 .end method
 
-.method static synthetic access$200(Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;)Ljava/lang/Integer;
+.method static synthetic access$200(Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;)Ljava/lang/String;
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;
 
     .prologue
-    .line 108
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->contentId:Ljava/lang/Integer;
+    .line 147
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->streamId:Ljava/lang/String;
 
     return-object v0
 .end method
@@ -98,7 +104,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;
 
     .prologue
-    .line 108
+    .line 147
     iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->streamStartTs:Ljava/lang/String;
 
     return-object v0
@@ -109,8 +115,41 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;
 
     .prologue
-    .line 108
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->streamId:Ljava/lang/String;
+    .line 147
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->scope:Ljava/lang/String;
+
+    return-object v0
+.end method
+
+.method static synthetic access$500(Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;)Ljava/lang/Integer;
+    .registers 2
+    .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;
+
+    .prologue
+    .line 147
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->contentId:Ljava/lang/Integer;
+
+    return-object v0
+.end method
+
+.method static synthetic access$600(Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;)Ljava/lang/String;
+    .registers 2
+    .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;
+
+    .prologue
+    .line 147
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->action:Ljava/lang/String;
+
+    return-object v0
+.end method
+
+.method static synthetic access$700(Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;)Ljava/lang/Boolean;
+    .registers 2
+    .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;
+
+    .prologue
+    .line 147
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->testDevice:Ljava/lang/Boolean;
 
     return-object v0
 .end method
@@ -121,7 +160,7 @@
     .registers 2
 
     .prologue
-    .line 108
+    .line 147
     invoke-virtual {p0}, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->build()Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent;
 
     move-result-object v0
@@ -133,7 +172,7 @@
     .registers 5
 
     .prologue
-    .line 152
+    .line 221
     new-instance v0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent;
 
     const-string v1, "upsight.content.dismiss"
@@ -153,15 +192,43 @@
     return-object v0
 .end method
 
+.method public setAds(Lorg/json/JSONArray;)Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;
+    .registers 3
+    .param p1, "ads"    # Lorg/json/JSONArray;
+
+    .prologue
+    .line 183
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/util/GsonHelper$JSONArraySerializer;->toJsonArray(Lorg/json/JSONArray;)Lcom/google/gson/JsonArray;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->ads:Lcom/google/gson/JsonArray;
+
+    .line 184
+    return-object p0
+.end method
+
+.method public setImpressionId(Ljava/lang/String;)Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;
+    .registers 2
+    .param p1, "impressionId"    # Ljava/lang/String;
+
+    .prologue
+    .line 191
+    iput-object p1, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->impressionId:Ljava/lang/String;
+
+    .line 192
+    return-object p0
+.end method
+
 .method public setScope(Ljava/lang/String;)Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;
     .registers 2
     .param p1, "scope"    # Ljava/lang/String;
 
     .prologue
-    .line 138
+    .line 207
     iput-object p1, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->scope:Ljava/lang/String;
 
-    .line 139
+    .line 208
     return-object p0
 .end method
 
@@ -170,9 +237,21 @@
     .param p1, "streamStartTs"    # Ljava/lang/String;
 
     .prologue
-    .line 146
+    .line 199
     iput-object p1, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->streamStartTs:Ljava/lang/String;
 
-    .line 147
+    .line 200
+    return-object p0
+.end method
+
+.method public setTestDevice(Ljava/lang/Boolean;)Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;
+    .registers 2
+    .param p1, "testDevice"    # Ljava/lang/Boolean;
+
+    .prologue
+    .line 215
+    iput-object p1, p0, Lcom/upsight/android/analytics/event/content/UpsightContentDismissEvent$Builder;->testDevice:Ljava/lang/Boolean;
+
+    .line 216
     return-object p0
 .end method

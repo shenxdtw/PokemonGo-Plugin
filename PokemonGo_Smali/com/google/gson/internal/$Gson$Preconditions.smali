@@ -4,14 +4,19 @@
 
 
 # direct methods
-.method public constructor <init>()V
-    .registers 1
+.method private constructor <init>()V
+    .registers 2
 
     .prologue
-    .line 32
+    .line 33
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    return-void
+    .line 34
+    new-instance v0, Ljava/lang/UnsupportedOperationException;
+
+    invoke-direct {v0}, Ljava/lang/UnsupportedOperationException;-><init>()V
+
+    throw v0
 .end method
 
 .method public static checkArgument(Z)V
@@ -19,17 +24,17 @@
     .param p0, "condition"    # Z
 
     .prologue
-    .line 41
+    .line 45
     if-nez p0, :cond_8
 
-    .line 42
+    .line 46
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     invoke-direct {v0}, Ljava/lang/IllegalArgumentException;-><init>()V
 
     throw v0
 
-    .line 44
+    .line 48
     :cond_8
     return-void
 .end method
@@ -45,18 +50,18 @@
     .end annotation
 
     .prologue
-    .line 34
+    .line 38
     .local p0, "obj":Ljava/lang/Object;, "TT;"
     if-nez p0, :cond_8
 
-    .line 35
+    .line 39
     new-instance v0, Ljava/lang/NullPointerException;
 
     invoke-direct {v0}, Ljava/lang/NullPointerException;-><init>()V
 
     throw v0
 
-    .line 37
+    .line 41
     :cond_8
     return-object p0
 .end method

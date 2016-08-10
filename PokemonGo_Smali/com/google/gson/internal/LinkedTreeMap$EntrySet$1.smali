@@ -31,18 +31,17 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/gson/internal/LinkedTreeMap$EntrySet;)V
-    .registers 4
+    .registers 3
+    .param p1, "this$1"    # Lcom/google/gson/internal/LinkedTreeMap$EntrySet;
 
     .prologue
-    .line 563
-    .local p0, "this":Lcom/google/gson/internal/LinkedTreeMap$EntrySet$1;, "Lcom/google/gson/internal/LinkedTreeMap$EntrySet.1;"
+    .line 566
+    .local p0, "this":Lcom/google/gson/internal/LinkedTreeMap$EntrySet$1;, "Lcom/google/gson/internal/LinkedTreeMap$EntrySet$1;"
     iput-object p1, p0, Lcom/google/gson/internal/LinkedTreeMap$EntrySet$1;->this$1:Lcom/google/gson/internal/LinkedTreeMap$EntrySet;
 
     iget-object v0, p1, Lcom/google/gson/internal/LinkedTreeMap$EntrySet;->this$0:Lcom/google/gson/internal/LinkedTreeMap;
 
-    const/4 v1, 0x0
-
-    invoke-direct {p0, v0, v1}, Lcom/google/gson/internal/LinkedTreeMap$LinkedTreeMapIterator;-><init>(Lcom/google/gson/internal/LinkedTreeMap;Lcom/google/gson/internal/LinkedTreeMap$1;)V
+    invoke-direct {p0, v0}, Lcom/google/gson/internal/LinkedTreeMap$LinkedTreeMapIterator;-><init>(Lcom/google/gson/internal/LinkedTreeMap;)V
 
     return-void
 .end method
@@ -53,8 +52,8 @@
     .registers 2
 
     .prologue
-    .line 563
-    .local p0, "this":Lcom/google/gson/internal/LinkedTreeMap$EntrySet$1;, "Lcom/google/gson/internal/LinkedTreeMap$EntrySet.1;"
+    .line 566
+    .local p0, "this":Lcom/google/gson/internal/LinkedTreeMap$EntrySet$1;, "Lcom/google/gson/internal/LinkedTreeMap$EntrySet$1;"
     invoke-virtual {p0}, Lcom/google/gson/internal/LinkedTreeMap$EntrySet$1;->next()Ljava/util/Map$Entry;
 
     move-result-object v0
@@ -73,8 +72,8 @@
     .end annotation
 
     .prologue
-    .line 565
-    .local p0, "this":Lcom/google/gson/internal/LinkedTreeMap$EntrySet$1;, "Lcom/google/gson/internal/LinkedTreeMap$EntrySet.1;"
+    .line 568
+    .local p0, "this":Lcom/google/gson/internal/LinkedTreeMap$EntrySet$1;, "Lcom/google/gson/internal/LinkedTreeMap$EntrySet$1;"
     invoke-virtual {p0}, Lcom/google/gson/internal/LinkedTreeMap$EntrySet$1;->nextNode()Lcom/google/gson/internal/LinkedTreeMap$Node;
 
     move-result-object v0

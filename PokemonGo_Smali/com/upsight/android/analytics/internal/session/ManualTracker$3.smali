@@ -23,7 +23,7 @@
     .registers 3
 
     .prologue
-    .line 51
+    .line 69
     invoke-static {}, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;->values()[Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
     move-result-object v0

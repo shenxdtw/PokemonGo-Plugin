@@ -266,6 +266,7 @@
 
     iget-object v3, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->mUpsight:Lcom/upsight/android/UpsightContext;
 
+    .line 368
     invoke-virtual {v3}, Lcom/upsight/android/UpsightContext;->getPackageName()Ljava/lang/String;
 
     move-result-object v3
@@ -473,6 +474,7 @@
 
     iget-object v2, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->mUiThreadHandler:Landroid/os/Handler;
 
+    .line 177
     invoke-static {v2}, Lrx/android/schedulers/HandlerScheduler;->from(Landroid/os/Handler;)Lrx/android/schedulers/HandlerScheduler;
 
     move-result-object v2
@@ -485,6 +487,7 @@
 
     invoke-direct {v2, p0}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$2;-><init>(Lcom/upsight/android/googlepushservices/internal/GooglePushServices;)V
 
+    .line 178
     invoke-virtual {v1, v2}, Lrx/Observable;->subscribe(Lrx/Observer;)Lrx/Subscription;
 
     .line 220
@@ -555,6 +558,7 @@
 
     iget-object v2, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->mUiThreadHandler:Landroid/os/Handler;
 
+    .line 264
     invoke-static {v2}, Lrx/android/schedulers/HandlerScheduler;->from(Landroid/os/Handler;)Lrx/android/schedulers/HandlerScheduler;
 
     move-result-object v2
@@ -567,6 +571,7 @@
 
     invoke-direct {v2, p0}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$4;-><init>(Lcom/upsight/android/googlepushservices/internal/GooglePushServices;)V
 
+    .line 265
     invoke-virtual {v1, v2}, Lrx/Observable;->subscribe(Lrx/Observer;)Lrx/Subscription;
 
     .line 305
@@ -737,12 +742,14 @@
 
     iget-object v7, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->mUpsight:Lcom/upsight/android/UpsightContext;
 
+    .line 119
     invoke-virtual {v7}, Lcom/upsight/android/UpsightContext;->getPackageName()Ljava/lang/String;
 
     move-result-object v7
 
     const/16 v8, 0x80
 
+    .line 118
     invoke-virtual {v6, v7, v8}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
 
     move-result-object v5
@@ -901,6 +908,7 @@
 
     iget-object v8, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->mUpsight:Lcom/upsight/android/UpsightContext;
 
+    .line 145
     invoke-virtual {v8}, Lcom/upsight/android/UpsightContext;->getPackageName()Ljava/lang/String;
 
     move-result-object v8
@@ -925,6 +933,7 @@
 
     invoke-direct {v6, v7, v8}, Lcom/upsight/android/UpsightException;-><init>(Ljava/lang/String;[Ljava/lang/Object;)V
 
+    .line 144
     invoke-interface {p1, v6}, Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;->onFailure(Lcom/upsight/android/UpsightException;)V
 
     goto/16 :goto_21

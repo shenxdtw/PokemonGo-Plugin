@@ -50,6 +50,7 @@
     .line 48
     new-instance v0, Lcom/upsight/android/internal/persistence/DataStore;
 
+    .line 50
     invoke-static {}, Lrx/schedulers/Schedulers;->immediate()Lrx/Scheduler;
 
     move-result-object v5

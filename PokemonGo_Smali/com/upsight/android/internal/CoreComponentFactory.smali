@@ -33,10 +33,12 @@
 
     invoke-direct {v1, p1}, Lcom/upsight/android/internal/ContextModule;-><init>(Landroid/content/Context;)V
 
+    .line 21
     invoke-virtual {v0, v1}, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->contextModule(Lcom/upsight/android/internal/ContextModule;)Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
 
     move-result-object v0
 
+    .line 22
     invoke-virtual {v0}, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->build()Lcom/upsight/android/internal/CoreComponent;
 
     move-result-object v0

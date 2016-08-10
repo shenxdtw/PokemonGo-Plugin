@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/schedulers/TrampolineScheduler$1;,
         Lrx/schedulers/TrampolineScheduler$TimedAction;,
         Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;
     }
@@ -22,7 +21,7 @@
     .registers 1
 
     .prologue
-    .line 34
+    .line 33
     new-instance v0, Lrx/schedulers/TrampolineScheduler;
 
     invoke-direct {v0}, Lrx/schedulers/TrampolineScheduler;-><init>()V
@@ -36,28 +35,14 @@
     .registers 1
 
     .prologue
-    .line 45
+    .line 44
     invoke-direct {p0}, Lrx/Scheduler;-><init>()V
 
-    .line 46
+    .line 45
     return-void
 .end method
 
-.method static synthetic access$300(II)I
-    .registers 3
-    .param p0, "x0"    # I
-    .param p1, "x1"    # I
-
-    .prologue
-    .line 33
-    invoke-static {p0, p1}, Lrx/schedulers/TrampolineScheduler;->compare(II)I
-
-    move-result v0
-
-    return v0
-.end method
-
-.method private static compare(II)I
+.method static compare(II)I
     .registers 3
     .param p0, "x"    # I
     .param p1, "y"    # I
@@ -88,7 +73,7 @@
     .registers 1
 
     .prologue
-    .line 37
+    .line 36
     sget-object v0, Lrx/schedulers/TrampolineScheduler;->INSTANCE:Lrx/schedulers/TrampolineScheduler;
 
     return-object v0
@@ -97,15 +82,13 @@
 
 # virtual methods
 .method public createWorker()Lrx/Scheduler$Worker;
-    .registers 3
+    .registers 2
 
     .prologue
-    .line 42
+    .line 41
     new-instance v0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;
 
-    const/4 v1, 0x0
-
-    invoke-direct {v0, v1}, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;-><init>(Lrx/schedulers/TrampolineScheduler$1;)V
+    invoke-direct {v0}, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;-><init>()V
 
     return-object v0
 .end method

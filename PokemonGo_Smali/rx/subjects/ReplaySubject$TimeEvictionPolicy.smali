@@ -30,16 +30,16 @@
     .param p3, "scheduler"    # Lrx/Scheduler;
 
     .prologue
-    .line 895
+    .line 894
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 896
+    .line 895
     iput-wide p1, p0, Lrx/subjects/ReplaySubject$TimeEvictionPolicy;->maxAgeMillis:J
 
-    .line 897
+    .line 896
     iput-object p3, p0, Lrx/subjects/ReplaySubject$TimeEvictionPolicy;->scheduler:Lrx/Scheduler;
 
-    .line 898
+    .line 897
     return-void
 .end method
 
@@ -58,7 +58,7 @@
     .end annotation
 
     .prologue
-    .line 902
+    .line 901
     .local p1, "t1":Lrx/subjects/ReplaySubject$NodeList;, "Lrx/subjects/ReplaySubject$NodeList<Ljava/lang/Object;>;"
     iget-object v1, p0, Lrx/subjects/ReplaySubject$TimeEvictionPolicy;->scheduler:Lrx/Scheduler;
 
@@ -66,7 +66,7 @@
 
     move-result-wide v2
 
-    .line 903
+    .line 902
     .local v2, "now":J
     :goto_6
     invoke-virtual {p1}, Lrx/subjects/ReplaySubject$NodeList;->isEmpty()Z
@@ -75,12 +75,12 @@
 
     if-nez v1, :cond_1c
 
-    .line 904
+    .line 903
     iget-object v1, p1, Lrx/subjects/ReplaySubject$NodeList;->head:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     iget-object v0, v1, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 905
+    .line 904
     .local v0, "n":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     iget-object v1, v0, Lrx/subjects/ReplaySubject$NodeList$Node;->value:Ljava/lang/Object;
 
@@ -90,12 +90,12 @@
 
     if-eqz v1, :cond_1c
 
-    .line 906
+    .line 905
     invoke-virtual {p1}, Lrx/subjects/ReplaySubject$NodeList;->removeFirst()Ljava/lang/Object;
 
     goto :goto_6
 
-    .line 911
+    .line 910
     .end local v0    # "n":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     :cond_1c
     return-void
@@ -114,7 +114,7 @@
     .end annotation
 
     .prologue
-    .line 915
+    .line 914
     .local p1, "t1":Lrx/subjects/ReplaySubject$NodeList;, "Lrx/subjects/ReplaySubject$NodeList<Ljava/lang/Object;>;"
     iget-object v1, p0, Lrx/subjects/ReplaySubject$TimeEvictionPolicy;->scheduler:Lrx/Scheduler;
 
@@ -122,7 +122,7 @@
 
     move-result-wide v2
 
-    .line 916
+    .line 915
     .local v2, "now":J
     :goto_6
     iget v1, p1, Lrx/subjects/ReplaySubject$NodeList;->size:I
@@ -131,12 +131,12 @@
 
     if-le v1, v4, :cond_1b
 
-    .line 917
+    .line 916
     iget-object v1, p1, Lrx/subjects/ReplaySubject$NodeList;->head:Lrx/subjects/ReplaySubject$NodeList$Node;
 
     iget-object v0, v1, Lrx/subjects/ReplaySubject$NodeList$Node;->next:Lrx/subjects/ReplaySubject$NodeList$Node;
 
-    .line 918
+    .line 917
     .local v0, "n":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     iget-object v1, v0, Lrx/subjects/ReplaySubject$NodeList$Node;->value:Ljava/lang/Object;
 
@@ -146,12 +146,12 @@
 
     if-eqz v1, :cond_1b
 
-    .line 919
+    .line 918
     invoke-virtual {p1}, Lrx/subjects/ReplaySubject$NodeList;->removeFirst()Ljava/lang/Object;
 
     goto :goto_6
 
-    .line 924
+    .line 923
     .end local v0    # "n":Lrx/subjects/ReplaySubject$NodeList$Node;, "Lrx/subjects/ReplaySubject$NodeList$Node<Ljava/lang/Object;>;"
     :cond_1b
     return-void
@@ -163,12 +163,12 @@
     .param p2, "now"    # J
 
     .prologue
-    .line 928
+    .line 927
     move-object v0, p1
 
     check-cast v0, Lrx/schedulers/Timestamped;
 
-    .line 929
+    .line 928
     .local v0, "ts":Lrx/schedulers/Timestamped;, "Lrx/schedulers/Timestamped<*>;"
     invoke-virtual {v0}, Lrx/schedulers/Timestamped;->getTimestampMillis()J
 

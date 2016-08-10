@@ -75,11 +75,11 @@
     .end annotation
 
     .prologue
-    .line 12
+    .line 15
     .local p1, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 13
+    .line 16
     sget-boolean v0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -92,11 +92,11 @@
 
     throw v0
 
-    .line 14
+    .line 17
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;->upsightProvider:Ljavax/inject/Provider;
 
-    .line 15
+    .line 18
     return-void
 .end method
 
@@ -117,7 +117,7 @@
     .end annotation
 
     .prologue
-    .line 23
+    .line 26
     .local p0, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;
 
@@ -132,7 +132,7 @@
     .registers 3
 
     .prologue
-    .line 19
+    .line 22
     new-instance v1, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
     iget-object v0, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;->upsightProvider:Ljavax/inject/Provider;

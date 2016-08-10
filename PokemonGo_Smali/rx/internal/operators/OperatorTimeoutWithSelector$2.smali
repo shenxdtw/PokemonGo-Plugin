@@ -34,7 +34,7 @@
     .registers 2
 
     .prologue
-    .line 78
+    .line 77
     .local p0, "this":Lrx/internal/operators/OperatorTimeoutWithSelector$2;, "Lrx/internal/operators/OperatorTimeoutWithSelector.2;"
     iput-object p1, p0, Lrx/internal/operators/OperatorTimeoutWithSelector$2;->val$timeoutSelector:Lrx/functions/Func1;
 
@@ -53,7 +53,7 @@
     .param p4, "x3"    # Ljava/lang/Object;
 
     .prologue
-    .line 78
+    .line 77
     .local p0, "this":Lrx/internal/operators/OperatorTimeoutWithSelector$2;, "Lrx/internal/operators/OperatorTimeoutWithSelector.2;"
     check-cast p1, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;
 
@@ -89,13 +89,13 @@
     .end annotation
 
     .prologue
-    .line 84
+    .line 83
     .local p0, "this":Lrx/internal/operators/OperatorTimeoutWithSelector$2;, "Lrx/internal/operators/OperatorTimeoutWithSelector.2;"
     .local p1, "timeoutSubscriber":Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;, "Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber<TT;>;"
     .local p3, "value":Ljava/lang/Object;, "TT;"
     const/4 v1, 0x0
 
-    .line 86
+    .line 85
     .local v1, "o":Lrx/Observable;, "Lrx/Observable<TV;>;"
     :try_start_1
     iget-object v3, p0, Lrx/internal/operators/OperatorTimeoutWithSelector$2;->val$timeoutSelector:Lrx/functions/Func1;
@@ -112,7 +112,7 @@
     :try_end_b
     .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_b} :catch_15
 
-    .line 92
+    .line 90
     new-instance v3, Lrx/internal/operators/OperatorTimeoutWithSelector$2$1;
 
     invoke-direct {v3, p0, p1, p2}, Lrx/internal/operators/OperatorTimeoutWithSelector$2$1;-><init>(Lrx/internal/operators/OperatorTimeoutWithSelector$2;Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;Ljava/lang/Long;)V
@@ -124,18 +124,15 @@
     :goto_14
     return-object v3
 
-    .line 87
+    .line 86
     :catch_15
     move-exception v2
 
-    .line 88
+    .line 87
     .local v2, "t":Ljava/lang/Throwable;
-    invoke-static {v2}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+    invoke-static {v2, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
-    .line 89
-    invoke-virtual {p1, v2}, Lrx/internal/operators/OperatorTimeoutBase$TimeoutSubscriber;->onError(Ljava/lang/Throwable;)V
-
-    .line 90
+    .line 88
     invoke-static {}, Lrx/subscriptions/Subscriptions;->unsubscribed()Lrx/Subscription;
 
     move-result-object v3

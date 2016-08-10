@@ -58,7 +58,7 @@
 
 
 # direct methods
-.method private constructor <init>(Ljava/lang/Object;Lcom/google/gson/reflect/TypeToken;ZLjava/lang/Class;)V
+.method constructor <init>(Ljava/lang/Object;Lcom/google/gson/reflect/TypeToken;ZLjava/lang/Class;)V
     .registers 7
     .param p1, "typeAdapter"    # Ljava/lang/Object;
     .param p3, "matchRawType"    # Z
@@ -152,25 +152,10 @@
     goto :goto_1e
 .end method
 
-.method synthetic constructor <init>(Ljava/lang/Object;Lcom/google/gson/reflect/TypeToken;ZLjava/lang/Class;Lcom/google/gson/TreeTypeAdapter$1;)V
-    .registers 6
-    .param p1, "x0"    # Ljava/lang/Object;
-    .param p2, "x1"    # Lcom/google/gson/reflect/TypeToken;
-    .param p3, "x2"    # Z
-    .param p4, "x3"    # Ljava/lang/Class;
-    .param p5, "x4"    # Lcom/google/gson/TreeTypeAdapter$1;
-
-    .prologue
-    .line 108
-    invoke-direct {p0, p1, p2, p3, p4}, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;-><init>(Ljava/lang/Object;Lcom/google/gson/reflect/TypeToken;ZLjava/lang/Class;)V
-
-    return-void
-.end method
-
 
 # virtual methods
 .method public create(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken;)Lcom/google/gson/TypeAdapter;
-    .registers 11
+    .registers 10
     .param p1, "gson"    # Lcom/google/gson/Gson;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -186,25 +171,24 @@
     .end annotation
 
     .prologue
+    .line 132
     .local p2, "type":Lcom/google/gson/reflect/TypeToken;, "Lcom/google/gson/reflect/TypeToken<TT;>;"
-    const/4 v6, 0x0
-
-    .line 131
     iget-object v0, p0, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;->exactType:Lcom/google/gson/reflect/TypeToken;
 
-    if-eqz v0, :cond_2f
+    if-eqz v0, :cond_2e
 
     iget-object v0, p0, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;->exactType:Lcom/google/gson/reflect/TypeToken;
 
+    .line 133
     invoke-virtual {v0, p2}, Lcom/google/gson/reflect/TypeToken;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-nez v0, :cond_1d
+    if-nez v0, :cond_1c
 
     iget-boolean v0, p0, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;->matchRawType:Z
 
-    if-eqz v0, :cond_2d
+    if-eqz v0, :cond_2c
 
     iget-object v0, p0, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;->exactType:Lcom/google/gson/reflect/TypeToken;
 
@@ -216,15 +200,15 @@
 
     move-result-object v1
 
-    if-ne v0, v1, :cond_2d
+    if-ne v0, v1, :cond_2c
 
-    :cond_1d
-    const/4 v7, 0x1
+    :cond_1c
+    const/4 v6, 0x1
 
-    .line 134
-    .local v7, "matches":Z
-    :goto_1e
-    if-eqz v7, :cond_3a
+    .line 135
+    .local v6, "matches":Z
+    :goto_1d
+    if-eqz v6, :cond_39
 
     new-instance v0, Lcom/google/gson/TreeTypeAdapter;
 
@@ -238,35 +222,36 @@
 
     move-object v5, p0
 
-    invoke-direct/range {v0 .. v6}, Lcom/google/gson/TreeTypeAdapter;-><init>(Lcom/google/gson/JsonSerializer;Lcom/google/gson/JsonDeserializer;Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapterFactory;Lcom/google/gson/TreeTypeAdapter$1;)V
+    invoke-direct/range {v0 .. v5}, Lcom/google/gson/TreeTypeAdapter;-><init>(Lcom/google/gson/JsonSerializer;Lcom/google/gson/JsonDeserializer;Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapterFactory;)V
 
-    :goto_2c
+    :goto_2b
     return-object v0
 
-    .line 131
-    .end local v7    # "matches":Z
-    :cond_2d
-    const/4 v7, 0x0
+    .line 133
+    .end local v6    # "matches":Z
+    :cond_2c
+    const/4 v6, 0x0
 
-    goto :goto_1e
+    goto :goto_1d
 
-    :cond_2f
+    :cond_2e
     iget-object v0, p0, Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;->hierarchyType:Ljava/lang/Class;
 
+    .line 134
     invoke-virtual {p2}, Lcom/google/gson/reflect/TypeToken;->getRawType()Ljava/lang/Class;
 
     move-result-object v1
 
     invoke-virtual {v0, v1}, Ljava/lang/Class;->isAssignableFrom(Ljava/lang/Class;)Z
 
-    move-result v7
+    move-result v6
 
-    goto :goto_1e
+    goto :goto_1d
 
-    .restart local v7    # "matches":Z
-    :cond_3a
-    move-object v0, v6
+    .line 135
+    .restart local v6    # "matches":Z
+    :cond_39
+    const/4 v0, 0x0
 
-    .line 134
-    goto :goto_2c
+    goto :goto_2b
 .end method

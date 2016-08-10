@@ -59,33 +59,27 @@
     const/4 v3, 0x0
 
     .line 75
-    # getter for: Lrx/internal/operators/OperatorSequenceEqual;->LOCAL_ONCOMPLETED:Ljava/lang/Object;
-    invoke-static {}, Lrx/internal/operators/OperatorSequenceEqual;->access$000()Ljava/lang/Object;
+    sget-object v4, Lrx/internal/operators/OperatorSequenceEqual;->LOCAL_ONCOMPLETED:Ljava/lang/Object;
 
-    move-result-object v4
-
-    if-ne p1, v4, :cond_19
+    if-ne p1, v4, :cond_15
 
     move v0, v2
 
     .line 76
     .local v0, "c1":Z
-    :goto_9
-    # getter for: Lrx/internal/operators/OperatorSequenceEqual;->LOCAL_ONCOMPLETED:Ljava/lang/Object;
-    invoke-static {}, Lrx/internal/operators/OperatorSequenceEqual;->access$000()Ljava/lang/Object;
+    :goto_7
+    sget-object v4, Lrx/internal/operators/OperatorSequenceEqual;->LOCAL_ONCOMPLETED:Ljava/lang/Object;
 
-    move-result-object v4
-
-    if-ne p2, v4, :cond_1b
+    if-ne p2, v4, :cond_17
 
     move v1, v2
 
     .line 77
     .local v1, "c2":Z
-    :goto_10
-    if-eqz v0, :cond_1d
+    :goto_c
+    if-eqz v0, :cond_19
 
-    if-eqz v1, :cond_1d
+    if-eqz v1, :cond_19
 
     .line 78
     invoke-static {v2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -93,41 +87,41 @@
     move-result-object v2
 
     .line 84
-    :goto_18
+    :goto_14
     return-object v2
 
     .end local v0    # "c1":Z
     .end local v1    # "c2":Z
-    :cond_19
+    :cond_15
     move v0, v3
 
     .line 75
-    goto :goto_9
+    goto :goto_7
 
     .restart local v0    # "c1":Z
-    :cond_1b
+    :cond_17
     move v1, v3
 
     .line 76
-    goto :goto_10
+    goto :goto_c
 
     .line 80
     .restart local v1    # "c2":Z
-    :cond_1d
-    if-nez v0, :cond_21
+    :cond_19
+    if-nez v0, :cond_1d
 
-    if-eqz v1, :cond_26
+    if-eqz v1, :cond_22
 
     .line 81
-    :cond_21
+    :cond_1d
     invoke-static {v3}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
     move-result-object v2
 
-    goto :goto_18
+    goto :goto_14
 
     .line 84
-    :cond_26
+    :cond_22
     iget-object v2, p0, Lrx/internal/operators/OperatorSequenceEqual$2;->val$equality:Lrx/functions/Func2;
 
     invoke-interface {v2, p1, p2}, Lrx/functions/Func2;->call(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
@@ -136,7 +130,7 @@
 
     check-cast v2, Ljava/lang/Boolean;
 
-    goto :goto_18
+    goto :goto_14
 .end method
 
 .method public bridge synthetic call(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;

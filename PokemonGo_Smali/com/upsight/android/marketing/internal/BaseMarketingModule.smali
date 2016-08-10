@@ -22,13 +22,13 @@
     .param p1, "upsight"    # Lcom/upsight/android/UpsightContext;
 
     .prologue
-    .line 27
+    .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 28
+    .line 29
     iput-object p1, p0, Lcom/upsight/android/marketing/internal/BaseMarketingModule;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    .line 29
+    .line 30
     return-void
 .end method
 
@@ -47,7 +47,7 @@
     .end annotation
 
     .prologue
-    .line 47
+    .line 50
     invoke-static {}, Lrx/android/schedulers/AndroidSchedulers;->mainThread()Lrx/Scheduler;
 
     move-result-object v0
@@ -55,10 +55,11 @@
     return-object v0
 .end method
 
-.method provideMarketingApi(Lcom/upsight/android/marketing/UpsightBillboardManager;Lcom/upsight/android/marketing/UpsightMarketingContentStore;)Lcom/upsight/android/marketing/UpsightMarketingApi;
-    .registers 4
+.method provideMarketingApi(Lcom/upsight/android/marketing/UpsightBillboardManager;Lcom/upsight/android/marketing/UpsightMarketingContentStore;Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;)Lcom/upsight/android/marketing/UpsightMarketingApi;
+    .registers 5
     .param p1, "billboardManager"    # Lcom/upsight/android/marketing/UpsightBillboardManager;
-    .param p2, "marketingContentStore"    # Lcom/upsight/android/marketing/UpsightMarketingContentStore;
+    .param p2, "contentStore"    # Lcom/upsight/android/marketing/UpsightMarketingContentStore;
+    .param p3, "contentMediatorManager"    # Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;
     .annotation runtime Ldagger/Provides;
     .end annotation
 
@@ -66,10 +67,10 @@
     .end annotation
 
     .prologue
-    .line 40
+    .line 43
     new-instance v0, Lcom/upsight/android/marketing/internal/Marketing;
 
-    invoke-direct {v0, p1, p2}, Lcom/upsight/android/marketing/internal/Marketing;-><init>(Lcom/upsight/android/marketing/UpsightBillboardManager;Lcom/upsight/android/marketing/UpsightMarketingContentStore;)V
+    invoke-direct {v0, p1, p2, p3}, Lcom/upsight/android/marketing/internal/Marketing;-><init>(Lcom/upsight/android/marketing/UpsightBillboardManager;Lcom/upsight/android/marketing/UpsightMarketingContentStore;Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;)V
 
     return-object v0
 .end method
@@ -83,7 +84,7 @@
     .end annotation
 
     .prologue
-    .line 34
+    .line 35
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/BaseMarketingModule;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     return-object v0

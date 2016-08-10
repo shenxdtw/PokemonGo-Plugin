@@ -57,11 +57,11 @@
     if-nez p1, :cond_a
 
     .line 72
-    new-instance v2, Ljava/lang/IllegalArgumentException;
+    new-instance v2, Ljava/lang/NullPointerException;
 
     const-string v3, "null elements not allowed"
 
-    invoke-direct {v2, v3}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+    invoke-direct {v2, v3}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
 
     throw v2
 

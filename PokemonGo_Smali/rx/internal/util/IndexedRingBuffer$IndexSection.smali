@@ -30,14 +30,14 @@
 
 
 # direct methods
-.method private constructor <init>()V
+.method constructor <init>()V
     .registers 3
 
     .prologue
-    .line 505
+    .line 512
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 507
+    .line 510
     new-instance v0, Ljava/util/concurrent/atomic/AtomicIntegerArray;
 
     sget v1, Lrx/internal/util/IndexedRingBuffer;->SIZE:I
@@ -46,24 +46,14 @@
 
     iput-object v0, p0, Lrx/internal/util/IndexedRingBuffer$IndexSection;->unsafeArray:Ljava/util/concurrent/atomic/AtomicIntegerArray;
 
-    .line 517
+    .line 523
     new-instance v0, Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-direct {v0}, Ljava/util/concurrent/atomic/AtomicReference;-><init>()V
 
     iput-object v0, p0, Lrx/internal/util/IndexedRingBuffer$IndexSection;->_next:Ljava/util/concurrent/atomic/AtomicReference;
 
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/internal/util/IndexedRingBuffer$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/internal/util/IndexedRingBuffer$1;
-
-    .prologue
-    .line 505
-    invoke-direct {p0}, Lrx/internal/util/IndexedRingBuffer$IndexSection;-><init>()V
-
+    .line 513
     return-void
 .end method
 
@@ -75,7 +65,7 @@
     .param p2, "newValue"    # I
 
     .prologue
-    .line 510
+    .line 516
     iget-object v0, p0, Lrx/internal/util/IndexedRingBuffer$IndexSection;->unsafeArray:Ljava/util/concurrent/atomic/AtomicIntegerArray;
 
     invoke-virtual {v0, p1, p2}, Ljava/util/concurrent/atomic/AtomicIntegerArray;->getAndSet(II)I
@@ -89,7 +79,7 @@
     .registers 4
 
     .prologue
-    .line 520
+    .line 526
     iget-object v1, p0, Lrx/internal/util/IndexedRingBuffer$IndexSection;->_next:Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
@@ -98,7 +88,7 @@
 
     if-eqz v1, :cond_11
 
-    .line 521
+    .line 527
     iget-object v1, p0, Lrx/internal/util/IndexedRingBuffer$IndexSection;->_next:Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
@@ -107,17 +97,17 @@
 
     check-cast v1, Lrx/internal/util/IndexedRingBuffer$IndexSection;
 
-    .line 529
+    .line 535
     :goto_10
     return-object v1
 
-    .line 523
+    .line 529
     :cond_11
     new-instance v0, Lrx/internal/util/IndexedRingBuffer$IndexSection;
 
     invoke-direct {v0}, Lrx/internal/util/IndexedRingBuffer$IndexSection;-><init>()V
 
-    .line 524
+    .line 530
     .local v0, "newSection":Lrx/internal/util/IndexedRingBuffer$IndexSection;
     iget-object v1, p0, Lrx/internal/util/IndexedRingBuffer$IndexSection;->_next:Ljava/util/concurrent/atomic/AtomicReference;
 
@@ -131,10 +121,10 @@
 
     move-object v1, v0
 
-    .line 526
+    .line 532
     goto :goto_10
 
-    .line 529
+    .line 535
     :cond_21
     iget-object v1, p0, Lrx/internal/util/IndexedRingBuffer$IndexSection;->_next:Ljava/util/concurrent/atomic/AtomicReference;
 
@@ -153,11 +143,11 @@
     .param p2, "elementIndex"    # I
 
     .prologue
-    .line 514
+    .line 520
     iget-object v0, p0, Lrx/internal/util/IndexedRingBuffer$IndexSection;->unsafeArray:Ljava/util/concurrent/atomic/AtomicIntegerArray;
 
     invoke-virtual {v0, p1, p2}, Ljava/util/concurrent/atomic/AtomicIntegerArray;->set(II)V
 
-    .line 515
+    .line 521
     return-void
 .end method

@@ -24,11 +24,11 @@
 
 
 # direct methods
-.method private constructor <init>(Lrx/schedulers/ImmediateScheduler;)V
+.method constructor <init>(Lrx/schedulers/ImmediateScheduler;)V
     .registers 3
 
     .prologue
-    .line 44
+    .line 48
     iput-object p1, p0, Lrx/schedulers/ImmediateScheduler$InnerImmediateScheduler;->this$0:Lrx/schedulers/ImmediateScheduler;
 
     invoke-direct {p0}, Lrx/Scheduler$Worker;-><init>()V
@@ -40,18 +40,7 @@
 
     iput-object v0, p0, Lrx/schedulers/ImmediateScheduler$InnerImmediateScheduler;->innerSubscription:Lrx/subscriptions/BooleanSubscription;
 
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/schedulers/ImmediateScheduler;Lrx/schedulers/ImmediateScheduler$1;)V
-    .registers 3
-    .param p1, "x0"    # Lrx/schedulers/ImmediateScheduler;
-    .param p2, "x1"    # Lrx/schedulers/ImmediateScheduler$1;
-
-    .prologue
-    .line 44
-    invoke-direct {p0, p1}, Lrx/schedulers/ImmediateScheduler$InnerImmediateScheduler;-><init>(Lrx/schedulers/ImmediateScheduler;)V
-
+    .line 49
     return-void
 .end method
 
@@ -61,7 +50,7 @@
     .registers 2
 
     .prologue
-    .line 69
+    .line 72
     iget-object v0, p0, Lrx/schedulers/ImmediateScheduler$InnerImmediateScheduler;->innerSubscription:Lrx/subscriptions/BooleanSubscription;
 
     invoke-virtual {v0}, Lrx/subscriptions/BooleanSubscription;->isUnsubscribed()Z
@@ -76,10 +65,10 @@
     .param p1, "action"    # Lrx/functions/Action0;
 
     .prologue
-    .line 58
+    .line 61
     invoke-interface {p1}, Lrx/functions/Action0;->call()V
 
-    .line 59
+    .line 62
     invoke-static {}, Lrx/subscriptions/Subscriptions;->unsubscribed()Lrx/Subscription;
 
     move-result-object v0
@@ -94,7 +83,7 @@
     .param p4, "unit"    # Ljava/util/concurrent/TimeUnit;
 
     .prologue
-    .line 51
+    .line 54
     iget-object v2, p0, Lrx/schedulers/ImmediateScheduler$InnerImmediateScheduler;->this$0:Lrx/schedulers/ImmediateScheduler;
 
     invoke-virtual {v2}, Lrx/schedulers/ImmediateScheduler;->now()J
@@ -107,7 +96,7 @@
 
     add-long v0, v2, v4
 
-    .line 53
+    .line 56
     .local v0, "execTime":J
     new-instance v2, Lrx/schedulers/SleepingAction;
 
@@ -124,11 +113,11 @@
     .registers 2
 
     .prologue
-    .line 64
+    .line 67
     iget-object v0, p0, Lrx/schedulers/ImmediateScheduler$InnerImmediateScheduler;->innerSubscription:Lrx/subscriptions/BooleanSubscription;
 
     invoke-virtual {v0}, Lrx/subscriptions/BooleanSubscription;->unsubscribe()V
 
-    .line 65
+    .line 68
     return-void
 .end method

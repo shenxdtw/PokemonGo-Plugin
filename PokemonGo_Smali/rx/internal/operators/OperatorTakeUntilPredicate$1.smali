@@ -28,7 +28,7 @@
     .registers 3
 
     .prologue
-    .line 90
+    .line 86
     .local p0, "this":Lrx/internal/operators/OperatorTakeUntilPredicate$1;, "Lrx/internal/operators/OperatorTakeUntilPredicate.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorTakeUntilPredicate$1;->this$0:Lrx/internal/operators/OperatorTakeUntilPredicate;
 
@@ -46,12 +46,12 @@
     .param p1, "n"    # J
 
     .prologue
-    .line 93
+    .line 89
     .local p0, "this":Lrx/internal/operators/OperatorTakeUntilPredicate$1;, "Lrx/internal/operators/OperatorTakeUntilPredicate.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorTakeUntilPredicate$1;->val$parent:Lrx/internal/operators/OperatorTakeUntilPredicate$ParentSubscriber;
 
     invoke-virtual {v0, p1, p2}, Lrx/internal/operators/OperatorTakeUntilPredicate$ParentSubscriber;->downstreamRequest(J)V
 
-    .line 94
+    .line 90
     return-void
 .end method

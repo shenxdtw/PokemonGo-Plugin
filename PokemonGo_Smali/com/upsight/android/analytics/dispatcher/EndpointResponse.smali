@@ -11,7 +11,10 @@
 
 # instance fields
 .field id:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "id"
     .end annotation
 
@@ -20,13 +23,19 @@
 .end field
 
 .field private mContent:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "content"
     .end annotation
 .end field
 
 .field private mType:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "type"
     .end annotation
 .end field
@@ -37,10 +46,10 @@
     .registers 1
 
     .prologue
-    .line 32
+    .line 36
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 33
+    .line 37
     return-void
 .end method
 
@@ -50,16 +59,16 @@
     .param p2, "content"    # Ljava/lang/String;
 
     .prologue
-    .line 35
+    .line 39
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 36
+    .line 40
     iput-object p1, p0, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;->mType:Ljava/lang/String;
 
-    .line 37
+    .line 41
     iput-object p2, p0, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;->mContent:Ljava/lang/String;
 
-    .line 38
+    .line 42
     return-void
 .end method
 
@@ -69,7 +78,7 @@
     .param p1, "content"    # Ljava/lang/String;
 
     .prologue
-    .line 18
+    .line 19
     new-instance v0, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;
 
     invoke-direct {v0, p0, p1}, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;-><init>(Ljava/lang/String;Ljava/lang/String;)V
@@ -88,15 +97,15 @@
 
     const/4 v2, 0x0
 
-    .line 55
+    .line 59
     if-ne p0, p1, :cond_5
 
-    .line 65
+    .line 69
     :cond_4
     :goto_4
     return v1
 
-    .line 59
+    .line 63
     :cond_5
     if-eqz p1, :cond_11
 
@@ -113,16 +122,16 @@
     :cond_11
     move v1, v2
 
-    .line 60
+    .line 64
     goto :goto_4
 
     :cond_13
     move-object v0, p1
 
-    .line 63
+    .line 67
     check-cast v0, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;
 
-    .line 65
+    .line 69
     .local v0, "that":Lcom/upsight/android/analytics/dispatcher/EndpointResponse;
     iget-object v3, p0, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;->id:Ljava/lang/String;
 
@@ -152,7 +161,7 @@
     .registers 2
 
     .prologue
-    .line 41
+    .line 45
     iget-object v0, p0, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;->mContent:Ljava/lang/String;
 
     return-object v0
@@ -162,7 +171,7 @@
     .registers 2
 
     .prologue
-    .line 45
+    .line 49
     iget-object v0, p0, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;->mType:Ljava/lang/String;
 
     return-object v0
@@ -172,7 +181,7 @@
     .registers 2
 
     .prologue
-    .line 50
+    .line 54
     iget-object v0, p0, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;->id:Ljava/lang/String;
 
     if-eqz v0, :cond_b

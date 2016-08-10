@@ -9,7 +9,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/internal/operators/OnSubscribeUsing$1;,
         Lrx/internal/operators/OnSubscribeUsing$DisposeAction;
     }
 .end annotation
@@ -111,27 +110,27 @@
     .local p0, "this":Lrx/internal/operators/OnSubscribeUsing;, "Lrx/internal/operators/OnSubscribeUsing<TT;TResource;>;"
     const/4 v0, 0x0
 
-    .line 88
+    .line 90
     iget-boolean v1, p0, Lrx/internal/operators/OnSubscribeUsing;->disposeEagerly:Z
 
     if-eqz v1, :cond_8
 
-    .line 90
+    .line 92
     :try_start_5
     invoke-interface {p1}, Lrx/functions/Action0;->call()V
     :try_end_8
     .catch Ljava/lang/Throwable; {:try_start_5 .. :try_end_8} :catch_9
 
-    .line 96
+    .line 98
     :cond_8
     :goto_8
     return-object v0
 
-    .line 92
+    .line 94
     :catch_9
     move-exception v0
 
-    .line 93
+    .line 95
     .local v0, "e":Ljava/lang/Throwable;
     goto :goto_8
 .end method
@@ -180,9 +179,7 @@
 
     iget-object v6, p0, Lrx/internal/operators/OnSubscribeUsing;->dispose:Lrx/functions/Action1;
 
-    const/4 v7, 0x0
-
-    invoke-direct {v1, v6, v4, v7}, Lrx/internal/operators/OnSubscribeUsing$DisposeAction;-><init>(Lrx/functions/Action1;Ljava/lang/Object;Lrx/internal/operators/OnSubscribeUsing$1;)V
+    invoke-direct {v1, v6, v4}, Lrx/internal/operators/OnSubscribeUsing$DisposeAction;-><init>(Lrx/functions/Action1;Ljava/lang/Object;)V
 
     .line 57
     .local v1, "disposeOnceOnly":Lrx/internal/operators/OnSubscribeUsing$DisposeAction;, "Lrx/internal/operators/OnSubscribeUsing$DisposeAction<TResource;>;"
@@ -201,61 +198,67 @@
     .local v5, "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
     iget-boolean v6, p0, Lrx/internal/operators/OnSubscribeUsing;->disposeEagerly:Z
 
-    if-eqz v6, :cond_29
+    if-eqz v6, :cond_28
 
     .line 65
     invoke-virtual {v5, v1}, Lrx/Observable;->doOnTerminate(Lrx/functions/Action0;)Lrx/Observable;
-    :try_end_20
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_20} :catch_48
+    :try_end_1f
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_1f} :catch_4d
 
     move-result-object v3
 
     .line 72
     .local v3, "observable":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    :goto_21
-    :try_start_21
+    :goto_20
+    :try_start_20
     invoke-static {p1}, Lrx/observers/Subscribers;->wrap(Lrx/Subscriber;)Lrx/Subscriber;
 
     move-result-object v6
 
     invoke-virtual {v3, v6}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
-    :try_end_28
-    .catch Ljava/lang/Throwable; {:try_start_21 .. :try_end_28} :catch_2b
+    :try_end_27
+    .catch Ljava/lang/Throwable; {:try_start_20 .. :try_end_27} :catch_2a
 
-    .line 85
+    .line 87
     .end local v1    # "disposeOnceOnly":Lrx/internal/operators/OnSubscribeUsing$DisposeAction;, "Lrx/internal/operators/OnSubscribeUsing$DisposeAction<TResource;>;"
     .end local v3    # "observable":Lrx/Observable;, "Lrx/Observable<+TT;>;"
     .end local v4    # "resource":Ljava/lang/Object;, "TResource;"
     .end local v5    # "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    :goto_28
+    :goto_27
     return-void
 
     .line 69
     .restart local v1    # "disposeOnceOnly":Lrx/internal/operators/OnSubscribeUsing$DisposeAction;, "Lrx/internal/operators/OnSubscribeUsing$DisposeAction<TResource;>;"
     .restart local v4    # "resource":Ljava/lang/Object;, "TResource;"
     .restart local v5    # "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    :cond_29
+    :cond_28
     move-object v3, v5
 
     .restart local v3    # "observable":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    goto :goto_21
+    goto :goto_20
 
     .line 73
-    :catch_2b
+    :catch_2a
     move-exception v2
 
     .line 74
     .local v2, "e":Ljava/lang/Throwable;
-    :try_start_2c
+    :try_start_2b
     invoke-direct {p0, v1}, Lrx/internal/operators/OnSubscribeUsing;->disposeEagerlyIfRequested(Lrx/functions/Action0;)Ljava/lang/Throwable;
 
     move-result-object v0
 
     .line 75
     .local v0, "disposeError":Ljava/lang/Throwable;
-    if-eqz v0, :cond_4d
+    invoke-static {v2}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
 
     .line 76
+    invoke-static {v0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+
+    .line 77
+    if-eqz v0, :cond_52
+
+    .line 78
     new-instance v6, Lrx/exceptions/CompositeException;
 
     const/4 v7, 0x2
@@ -277,38 +280,38 @@
     invoke-direct {v6, v7}, Lrx/exceptions/CompositeException;-><init>(Ljava/util/Collection;)V
 
     invoke-virtual {p1, v6}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-    :try_end_47
-    .catch Ljava/lang/Throwable; {:try_start_2c .. :try_end_47} :catch_48
+    :try_end_4c
+    .catch Ljava/lang/Throwable; {:try_start_2b .. :try_end_4c} :catch_4d
 
-    goto :goto_28
+    goto :goto_27
 
-    .line 81
+    .line 83
     .end local v0    # "disposeError":Ljava/lang/Throwable;
     .end local v1    # "disposeOnceOnly":Lrx/internal/operators/OnSubscribeUsing$DisposeAction;, "Lrx/internal/operators/OnSubscribeUsing$DisposeAction<TResource;>;"
     .end local v2    # "e":Ljava/lang/Throwable;
     .end local v3    # "observable":Lrx/Observable;, "Lrx/Observable<+TT;>;"
     .end local v4    # "resource":Ljava/lang/Object;, "TResource;"
     .end local v5    # "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    :catch_48
+    :catch_4d
     move-exception v2
 
-    .line 83
+    .line 85
     .restart local v2    # "e":Ljava/lang/Throwable;
-    invoke-virtual {p1, v2}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v2, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
-    goto :goto_28
+    goto :goto_27
 
-    .line 79
+    .line 81
     .restart local v0    # "disposeError":Ljava/lang/Throwable;
     .restart local v1    # "disposeOnceOnly":Lrx/internal/operators/OnSubscribeUsing$DisposeAction;, "Lrx/internal/operators/OnSubscribeUsing$DisposeAction<TResource;>;"
     .restart local v3    # "observable":Lrx/Observable;, "Lrx/Observable<+TT;>;"
     .restart local v4    # "resource":Ljava/lang/Object;, "TResource;"
     .restart local v5    # "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    :cond_4d
-    :try_start_4d
+    :cond_52
+    :try_start_52
     invoke-virtual {p1, v2}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-    :try_end_50
-    .catch Ljava/lang/Throwable; {:try_start_4d .. :try_end_50} :catch_48
+    :try_end_55
+    .catch Ljava/lang/Throwable; {:try_start_52 .. :try_end_55} :catch_4d
 
-    goto :goto_28
+    goto :goto_27
 .end method

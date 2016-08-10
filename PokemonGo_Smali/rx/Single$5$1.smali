@@ -34,7 +34,7 @@
     .registers 3
 
     .prologue
-    .line 660
+    .line 674
     iput-object p1, p0, Lrx/Single$5$1;->this$0:Lrx/Single$5;
 
     iput-object p2, p0, Lrx/Single$5$1;->val$child:Lrx/SingleSubscriber;
@@ -51,12 +51,12 @@
     .param p1, "error"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 669
+    .line 683
     iget-object v0, p0, Lrx/Single$5$1;->val$child:Lrx/SingleSubscriber;
 
     invoke-virtual {v0, p1}, Lrx/SingleSubscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 670
+    .line 684
     return-void
 .end method
 
@@ -65,7 +65,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 660
+    .line 674
     check-cast p1, Lrx/Single;
 
     .end local p1    # "x0":Ljava/lang/Object;
@@ -85,12 +85,12 @@
     .end annotation
 
     .prologue
-    .line 664
+    .line 678
     .local p1, "innerSingle":Lrx/Single;, "Lrx/Single<+TT;>;"
     iget-object v0, p0, Lrx/Single$5$1;->val$child:Lrx/SingleSubscriber;
 
     invoke-virtual {p1, v0}, Lrx/Single;->subscribe(Lrx/SingleSubscriber;)Lrx/Subscription;
 
-    .line 665
+    .line 679
     return-void
 .end method

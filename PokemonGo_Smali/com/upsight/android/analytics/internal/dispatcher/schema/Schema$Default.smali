@@ -26,13 +26,15 @@
     .end annotation
 .end field
 
+.field private static final PARTNERS_KEY:Ljava/lang/String; = "partners"
+
 
 # direct methods
 .method static constructor <clinit>()V
     .registers 1
 
     .prologue
-    .line 23
+    .line 28
     new-instance v0, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;
 
     invoke-direct {v0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default$1;-><init>()V
@@ -59,11 +61,11 @@
     .local p1, "dataProviders":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/analytics/provider/UpsightDataProvider;>;"
     const/4 v1, 0x0
 
-    .line 56
+    .line 62
     sget-object v0, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$Default;->DEFAULT_REQUEST_ATTRIBUTES:Ljava/util/Set;
 
     invoke-direct {p0, v1, v0, p1, v1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;-><init>(Ljava/lang/String;Ljava/util/Set;Ljava/util/Map;Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema$1;)V
 
-    .line 57
+    .line 63
     return-void
 .end method

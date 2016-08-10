@@ -51,54 +51,53 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 40
-    const/4 v2, 0x0
+    const/4 v1, 0x0
 
-    iput v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;->mCurrentStepIndex:I
+    iput v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;->mCurrentStepIndex:I
 
     .line 42
-    new-instance v2, Ljava/util/ArrayList;
+    new-instance v1, Ljava/util/ArrayList;
 
     invoke-interface {p1}, Ljava/util/List;->size()I
 
-    move-result v3
+    move-result v2
 
-    invoke-direct {v2, v3}, Ljava/util/ArrayList;-><init>(I)V
+    invoke-direct {v1, v2}, Ljava/util/ArrayList;-><init>(I)V
 
-    iput-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;->mSteps:Ljava/util/List;
+    iput-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;->mSteps:Ljava/util/List;
 
     .line 43
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
-    move-result-object v0
+    move-result-object v1
 
-    .local v0, "i$":Ljava/util/Iterator;
     :goto_15
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
     if-eqz v2, :cond_2c
 
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v1
+    move-result-object v0
 
-    check-cast v1, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
+    check-cast v0, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
 
     .line 44
-    .local v1, "step":Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
+    .local v0, "step":Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;->mSteps:Ljava/util/List;
 
     new-instance v3, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
 
-    invoke-direct {v3, v1}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;-><init>(Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;)V
+    invoke-direct {v3, v0}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;-><init>(Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;)V
 
     invoke-interface {v2, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     goto :goto_15
 
     .line 46
-    .end local v1    # "step":Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
+    .end local v0    # "step":Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
     :cond_2c
     return-void
 .end method
@@ -154,39 +153,38 @@
 
     .prologue
     .line 61
-    new-instance v1, Ljava/util/LinkedList;
+    new-instance v0, Ljava/util/LinkedList;
 
-    invoke-direct {v1}, Ljava/util/LinkedList;-><init>()V
+    invoke-direct {v0}, Ljava/util/LinkedList;-><init>()V
 
     .line 63
-    .local v1, "res":Ljava/util/List;, "Ljava/util/List<Ljava/lang/String;>;"
-    iget-object v3, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;->mSteps:Ljava/util/List;
+    .local v0, "res":Ljava/util/List;, "Ljava/util/List<Ljava/lang/String;>;"
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;->mSteps:Ljava/util/List;
 
-    invoke-interface {v3}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+    invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
-    move-result-object v0
+    move-result-object v3
 
-    .local v0, "i$":Ljava/util/Iterator;
     :cond_b
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
-    move-result v3
+    move-result v2
 
-    if-eqz v3, :cond_47
+    if-eqz v2, :cond_47
 
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v2
+    move-result-object v1
 
-    check-cast v2, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
+    check-cast v1, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
 
     .line 64
-    .local v2, "step":Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
-    new-instance v3, Ljava/lang/StringBuilder;
+    .local v1, "step":Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
+    new-instance v2, Ljava/lang/StringBuilder;
 
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
-    invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;->getQueue()Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
+    invoke-virtual {v1}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;->getQueue()Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
 
     move-result-object v4
 
@@ -194,65 +192,67 @@
 
     move-result-object v4
 
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v3
+    move-result-object v2
 
     const-string v4, " - "
 
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v4
 
-    invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;->getFailureReason()Ljava/lang/String;
+    .line 65
+    invoke-virtual {v1}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;->getFailureReason()Ljava/lang/String;
 
-    move-result-object v3
+    move-result-object v2
 
-    if-nez v3, :cond_54
+    if-nez v2, :cond_54
 
-    const-string v3, "delivered"
+    const-string v2, "delivered"
 
     :goto_36
-    invoke-virtual {v4, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v4, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v3
+    move-result-object v2
 
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v3
-
-    invoke-interface {v1, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 67
-    invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;->getFailureReason()Ljava/lang/String;
-
-    move-result-object v3
-
-    if-nez v3, :cond_b
-
-    .line 72
-    .end local v2    # "step":Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
-    :cond_47
-    invoke-interface {v1}, Ljava/util/List;->size()I
-
-    move-result v3
-
-    new-array v3, v3, [Ljava/lang/String;
-
-    invoke-interface {v1, v3}, Ljava/util/List;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
-
-    move-result-object v3
-
-    check-cast v3, [Ljava/lang/String;
-
-    return-object v3
+    move-result-object v2
 
     .line 64
-    .restart local v2    # "step":Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
-    :cond_54
-    invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;->getFailureReason()Ljava/lang/String;
+    invoke-interface {v0, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    move-result-object v3
+    .line 67
+    invoke-virtual {v1}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;->getFailureReason()Ljava/lang/String;
+
+    move-result-object v2
+
+    if-nez v2, :cond_b
+
+    .line 72
+    .end local v1    # "step":Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
+    :cond_47
+    invoke-interface {v0}, Ljava/util/List;->size()I
+
+    move-result v2
+
+    new-array v2, v2, [Ljava/lang/String;
+
+    invoke-interface {v0, v2}, Ljava/util/List;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, [Ljava/lang/String;
+
+    return-object v2
+
+    .line 65
+    .restart local v1    # "step":Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
+    :cond_54
+    invoke-virtual {v1}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;->getFailureReason()Ljava/lang/String;
+
+    move-result-object v2
 
     goto :goto_36
 .end method

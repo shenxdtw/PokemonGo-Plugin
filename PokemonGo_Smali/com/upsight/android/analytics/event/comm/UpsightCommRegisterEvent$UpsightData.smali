@@ -16,11 +16,10 @@
 
 # instance fields
 .field token:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonInclude;
-        value = .enum Lcom/fasterxml/jackson/annotation/JsonInclude$Include;->NON_NULL:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "token"
     .end annotation
 .end field

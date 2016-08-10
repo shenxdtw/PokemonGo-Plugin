@@ -36,7 +36,7 @@
     .registers 3
 
     .prologue
-    .line 304
+    .line 307
     iput-object p1, p0, Lrx/functions/Actions$5;->val$action:Lrx/functions/Action4;
 
     iput-object p2, p0, Lrx/functions/Actions$5;->val$result:Ljava/lang/Object;
@@ -57,7 +57,7 @@
     .end annotation
 
     .prologue
-    .line 307
+    .line 310
     .local p1, "t1":Ljava/lang/Object;, "TT1;"
     .local p2, "t2":Ljava/lang/Object;, "TT2;"
     .local p3, "t3":Ljava/lang/Object;, "TT3;"
@@ -66,7 +66,7 @@
 
     invoke-interface {v0, p1, p2, p3, p4}, Lrx/functions/Action4;->call(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
 
-    .line 308
+    .line 311
     iget-object v0, p0, Lrx/functions/Actions$5;->val$result:Ljava/lang/Object;
 
     return-object v0

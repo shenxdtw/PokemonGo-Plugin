@@ -53,10 +53,10 @@
     .param p1, "capacity"    # I
 
     .prologue
-    .line 86
+    .line 70
     .local p0, "this":Lrx/internal/util/unsafe/SpscArrayQueueL3Pad;, "Lrx/internal/util/unsafe/SpscArrayQueueL3Pad<TE;>;"
     invoke-direct {p0, p1}, Lrx/internal/util/unsafe/SpscArrayQueueConsumerField;-><init>(I)V
 
-    .line 87
+    .line 71
     return-void
 .end method

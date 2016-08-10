@@ -28,10 +28,11 @@
 # direct methods
 .method constructor <init>(Lcom/google/gson/TypeAdapter;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/google/gson/TypeAdapter;
 
     .prologue
     .line 186
-    .local p0, "this":Lcom/google/gson/TypeAdapter$1;, "Lcom/google/gson/TypeAdapter.1;"
+    .local p0, "this":Lcom/google/gson/TypeAdapter$1;, "Lcom/google/gson/TypeAdapter$1;"
     iput-object p1, p0, Lcom/google/gson/TypeAdapter$1;->this$0:Lcom/google/gson/TypeAdapter;
 
     invoke-direct {p0}, Lcom/google/gson/TypeAdapter;-><init>()V
@@ -60,7 +61,7 @@
 
     .prologue
     .line 195
-    .local p0, "this":Lcom/google/gson/TypeAdapter$1;, "Lcom/google/gson/TypeAdapter.1;"
+    .local p0, "this":Lcom/google/gson/TypeAdapter$1;, "Lcom/google/gson/TypeAdapter$1;"
     invoke-virtual {p1}, Lcom/google/gson/stream/JsonReader;->peek()Lcom/google/gson/stream/JsonToken;
 
     move-result-object v0
@@ -108,7 +109,7 @@
 
     .prologue
     .line 188
-    .local p0, "this":Lcom/google/gson/TypeAdapter$1;, "Lcom/google/gson/TypeAdapter.1;"
+    .local p0, "this":Lcom/google/gson/TypeAdapter$1;, "Lcom/google/gson/TypeAdapter$1;"
     .local p2, "value":Ljava/lang/Object;, "TT;"
     if-nez p2, :cond_6
 

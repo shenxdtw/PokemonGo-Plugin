@@ -3,12 +3,12 @@
 .source "OperatorSubscribeOn.java"
 
 # interfaces
-.implements Lrx/Producer;
+.implements Lrx/functions/Action0;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/internal/operators/OperatorSubscribeOn$1$1$1;->setProducer(Lrx/Producer;)V
+    value = Lrx/internal/operators/OperatorSubscribeOn$1$1$1;->request(J)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,19 +20,19 @@
 # instance fields
 .field final synthetic this$3:Lrx/internal/operators/OperatorSubscribeOn$1$1$1;
 
-.field final synthetic val$producer:Lrx/Producer;
+.field final synthetic val$n:J
 
 
 # direct methods
-.method constructor <init>(Lrx/internal/operators/OperatorSubscribeOn$1$1$1;Lrx/Producer;)V
-    .registers 3
+.method constructor <init>(Lrx/internal/operators/OperatorSubscribeOn$1$1$1;J)V
+    .registers 4
 
     .prologue
-    .line 81
+    .line 82
     .local p0, "this":Lrx/internal/operators/OperatorSubscribeOn$1$1$1$1;, "Lrx/internal/operators/OperatorSubscribeOn$1$1$1.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorSubscribeOn$1$1$1$1;->this$3:Lrx/internal/operators/OperatorSubscribeOn$1$1$1;
 
-    iput-object p2, p0, Lrx/internal/operators/OperatorSubscribeOn$1$1$1$1;->val$producer:Lrx/Producer;
+    iput-wide p2, p0, Lrx/internal/operators/OperatorSubscribeOn$1$1$1$1;->val$n:J
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -41,47 +41,20 @@
 
 
 # virtual methods
-.method public request(J)V
-    .registers 6
-    .param p1, "n"    # J
+.method public call()V
+    .registers 5
 
     .prologue
     .line 85
     .local p0, "this":Lrx/internal/operators/OperatorSubscribeOn$1$1$1$1;, "Lrx/internal/operators/OperatorSubscribeOn$1$1$1.1;"
-    invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
-
-    move-result-object v0
-
-    iget-object v1, p0, Lrx/internal/operators/OperatorSubscribeOn$1$1$1$1;->this$3:Lrx/internal/operators/OperatorSubscribeOn$1$1$1;
-
-    iget-object v1, v1, Lrx/internal/operators/OperatorSubscribeOn$1$1$1;->val$t:Ljava/lang/Thread;
-
-    if-ne v0, v1, :cond_10
-
-    .line 88
-    iget-object v0, p0, Lrx/internal/operators/OperatorSubscribeOn$1$1$1$1;->val$producer:Lrx/Producer;
-
-    invoke-interface {v0, p1, p2}, Lrx/Producer;->request(J)V
-
-    .line 98
-    :goto_f
-    return-void
-
-    .line 90
-    :cond_10
     iget-object v0, p0, Lrx/internal/operators/OperatorSubscribeOn$1$1$1$1;->this$3:Lrx/internal/operators/OperatorSubscribeOn$1$1$1;
 
-    iget-object v0, v0, Lrx/internal/operators/OperatorSubscribeOn$1$1$1;->this$2:Lrx/internal/operators/OperatorSubscribeOn$1$1;
+    iget-object v0, v0, Lrx/internal/operators/OperatorSubscribeOn$1$1$1;->val$p:Lrx/Producer;
 
-    iget-object v0, v0, Lrx/internal/operators/OperatorSubscribeOn$1$1;->this$1:Lrx/internal/operators/OperatorSubscribeOn$1;
+    iget-wide v2, p0, Lrx/internal/operators/OperatorSubscribeOn$1$1$1$1;->val$n:J
 
-    iget-object v0, v0, Lrx/internal/operators/OperatorSubscribeOn$1;->val$inner:Lrx/Scheduler$Worker;
+    invoke-interface {v0, v2, v3}, Lrx/Producer;->request(J)V
 
-    new-instance v1, Lrx/internal/operators/OperatorSubscribeOn$1$1$1$1$1;
-
-    invoke-direct {v1, p0, p1, p2}, Lrx/internal/operators/OperatorSubscribeOn$1$1$1$1$1;-><init>(Lrx/internal/operators/OperatorSubscribeOn$1$1$1$1;J)V
-
-    invoke-virtual {v0, v1}, Lrx/Scheduler$Worker;->schedule(Lrx/functions/Action0;)Lrx/Subscription;
-
-    goto :goto_f
+    .line 86
+    return-void
 .end method

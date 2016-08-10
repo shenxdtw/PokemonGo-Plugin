@@ -11,7 +11,10 @@
 
 # instance fields
 .field id:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "id"
     .end annotation
 
@@ -20,19 +23,28 @@
 .end field
 
 .field private mFailureReason:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "failure_reason"
     .end annotation
 .end field
 
 .field private mOriginEventId:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "source_event_id"
     .end annotation
 .end field
 
 .field private mStatus:Z
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "status"
     .end annotation
 .end field
@@ -43,10 +55,10 @@
     .registers 1
 
     .prologue
-    .line 43
+    .line 48
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 44
+    .line 49
     return-void
 .end method
 
@@ -57,19 +69,19 @@
     .param p3, "failureReason"    # Ljava/lang/String;
 
     .prologue
-    .line 47
+    .line 52
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 48
+    .line 53
     iput-object p1, p0, Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;->mOriginEventId:Ljava/lang/String;
 
-    .line 49
+    .line 54
     iput-boolean p2, p0, Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;->mStatus:Z
 
-    .line 50
+    .line 55
     iput-object p3, p0, Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;->mFailureReason:Ljava/lang/String;
 
-    .line 51
+    .line 56
     return-void
 .end method
 
@@ -79,7 +91,7 @@
     .param p1, "failureReason"    # Ljava/lang/String;
 
     .prologue
-    .line 26
+    .line 27
     new-instance v0, Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;
 
     const/4 v1, 0x0
@@ -94,7 +106,7 @@
     .param p0, "sourceEventId"    # Ljava/lang/String;
 
     .prologue
-    .line 21
+    .line 22
     new-instance v0, Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;
 
     const/4 v1, 0x1
@@ -117,15 +129,15 @@
 
     const/4 v2, 0x0
 
-    .line 72
+    .line 77
     if-ne p0, p1, :cond_5
 
-    .line 82
+    .line 87
     :cond_4
     :goto_4
     return v1
 
-    .line 76
+    .line 81
     :cond_5
     if-eqz p1, :cond_11
 
@@ -142,16 +154,16 @@
     :cond_11
     move v1, v2
 
-    .line 77
+    .line 82
     goto :goto_4
 
     :cond_13
     move-object v0, p1
 
-    .line 80
+    .line 85
     check-cast v0, Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;
 
-    .line 82
+    .line 87
     .local v0, "that":Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;
     iget-object v3, p0, Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;->id:Ljava/lang/String;
 
@@ -181,7 +193,7 @@
     .registers 2
 
     .prologue
-    .line 62
+    .line 67
     iget-object v0, p0, Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;->mFailureReason:Ljava/lang/String;
 
     return-object v0
@@ -191,7 +203,7 @@
     .registers 2
 
     .prologue
-    .line 58
+    .line 63
     iget-object v0, p0, Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;->mOriginEventId:Ljava/lang/String;
 
     return-object v0
@@ -201,7 +213,7 @@
     .registers 2
 
     .prologue
-    .line 67
+    .line 72
     iget-object v0, p0, Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;->id:Ljava/lang/String;
 
     if-eqz v0, :cond_b
@@ -225,7 +237,7 @@
     .registers 2
 
     .prologue
-    .line 54
+    .line 59
     iget-boolean v0, p0, Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;->mStatus:Z
 
     return v0

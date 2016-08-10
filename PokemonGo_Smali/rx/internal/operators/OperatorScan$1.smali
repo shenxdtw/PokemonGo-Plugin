@@ -34,7 +34,7 @@
     .registers 2
 
     .prologue
-    .line 60
+    .line 63
     .local p0, "this":Lrx/internal/operators/OperatorScan$1;, "Lrx/internal/operators/OperatorScan.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorScan$1;->val$initialValue:Ljava/lang/Object;
 
@@ -54,7 +54,7 @@
     .end annotation
 
     .prologue
-    .line 64
+    .line 67
     .local p0, "this":Lrx/internal/operators/OperatorScan$1;, "Lrx/internal/operators/OperatorScan.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorScan$1;->val$initialValue:Ljava/lang/Object;
 

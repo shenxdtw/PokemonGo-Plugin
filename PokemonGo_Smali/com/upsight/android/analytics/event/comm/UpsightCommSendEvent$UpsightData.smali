@@ -16,33 +16,37 @@
 
 # instance fields
 .field msgCampaignId:Ljava/lang/Integer;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonInclude;
-        value = .enum Lcom/fasterxml/jackson/annotation/JsonInclude$Include;->NON_NULL:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "msg_campaign_id"
     .end annotation
 .end field
 
 .field msgId:Ljava/lang/Integer;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "msg_id"
     .end annotation
 .end field
 
-.field payload:Lcom/fasterxml/jackson/databind/node/ObjectNode;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonInclude;
-        value = .enum Lcom/fasterxml/jackson/annotation/JsonInclude$Include;->NON_NULL:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+.field payload:Lcom/google/gson/JsonObject;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "payload"
     .end annotation
 .end field
 
 .field token:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "token"
     .end annotation
 .end field
@@ -53,10 +57,10 @@
     .registers 1
 
     .prologue
-    .line 59
+    .line 62
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 61
+    .line 64
     return-void
 .end method
 
@@ -65,10 +69,10 @@
     .param p1, "builder"    # Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;
 
     .prologue
-    .line 52
+    .line 55
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 53
+    .line 56
     # getter for: Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->token:Ljava/lang/String;
     invoke-static {p1}, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->access$000(Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;)Ljava/lang/String;
 
@@ -76,7 +80,7 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$UpsightData;->token:Ljava/lang/String;
 
-    .line 54
+    .line 57
     # getter for: Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->msgId:Ljava/lang/Integer;
     invoke-static {p1}, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->access$100(Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;)Ljava/lang/Integer;
 
@@ -84,15 +88,15 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$UpsightData;->msgId:Ljava/lang/Integer;
 
-    .line 55
-    # getter for: Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->payload:Lcom/fasterxml/jackson/databind/node/ObjectNode;
-    invoke-static {p1}, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->access$200(Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .line 58
+    # getter for: Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->payload:Lcom/google/gson/JsonObject;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->access$200(Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;)Lcom/google/gson/JsonObject;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$UpsightData;->payload:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$UpsightData;->payload:Lcom/google/gson/JsonObject;
 
-    .line 56
+    .line 59
     # getter for: Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->msgCampaignId:Ljava/lang/Integer;
     invoke-static {p1}, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;->access$300(Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;)Ljava/lang/Integer;
 
@@ -100,7 +104,7 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$UpsightData;->msgCampaignId:Ljava/lang/Integer;
 
-    .line 57
+    .line 60
     return-void
 .end method
 
@@ -110,7 +114,7 @@
     .registers 2
 
     .prologue
-    .line 88
+    .line 91
     iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$UpsightData;->msgCampaignId:Ljava/lang/Integer;
 
     return-object v0
@@ -120,7 +124,7 @@
     .registers 2
 
     .prologue
-    .line 74
+    .line 77
     iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$UpsightData;->msgId:Ljava/lang/Integer;
 
     return-object v0
@@ -130,10 +134,10 @@
     .registers 2
 
     .prologue
-    .line 81
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$UpsightData;->payload:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .line 84
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$UpsightData;->payload:Lcom/google/gson/JsonObject;
 
-    invoke-static {v0}, Lcom/upsight/android/analytics/internal/util/JacksonHelper$JSONObjectSerializer;->fromObjectNode(Lcom/fasterxml/jackson/databind/node/ObjectNode;)Lorg/json/JSONObject;
+    invoke-static {v0}, Lcom/upsight/android/analytics/internal/util/GsonHelper$JSONObjectSerializer;->fromJsonObject(Lcom/google/gson/JsonObject;)Lorg/json/JSONObject;
 
     move-result-object v0
 
@@ -144,7 +148,7 @@
     .registers 2
 
     .prologue
-    .line 67
+    .line 70
     iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$UpsightData;->token:Ljava/lang/String;
 
     return-object v0

@@ -24,15 +24,15 @@
     .param p1, "printWriter"    # Ljava/io/PrintWriter;
 
     .prologue
-    .line 225
+    .line 251
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lrx/exceptions/CompositeException$PrintStreamOrWriter;-><init>(Lrx/exceptions/CompositeException$1;)V
 
-    .line 226
+    .line 252
     iput-object p1, p0, Lrx/exceptions/CompositeException$WrappedPrintWriter;->printWriter:Ljava/io/PrintWriter;
 
-    .line 227
+    .line 253
     return-void
 .end method
 
@@ -42,7 +42,7 @@
     .registers 2
 
     .prologue
-    .line 231
+    .line 257
     iget-object v0, p0, Lrx/exceptions/CompositeException$WrappedPrintWriter;->printWriter:Ljava/io/PrintWriter;
 
     return-object v0
@@ -53,11 +53,11 @@
     .param p1, "o"    # Ljava/lang/Object;
 
     .prologue
-    .line 236
+    .line 262
     iget-object v0, p0, Lrx/exceptions/CompositeException$WrappedPrintWriter;->printWriter:Ljava/io/PrintWriter;
 
     invoke-virtual {v0, p1}, Ljava/io/PrintWriter;->println(Ljava/lang/Object;)V
 
-    .line 237
+    .line 263
     return-void
 .end method

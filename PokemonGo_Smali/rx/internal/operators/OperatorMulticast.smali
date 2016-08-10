@@ -31,7 +31,7 @@
 
 .field final guard:Ljava/lang/Object;
 
-.field private guardedSubscription:Lrx/Subscription;
+.field guardedSubscription:Lrx/Subscription;
 
 .field final source:Lrx/Observable;
     .annotation system Ldalvik/annotation/Signature;
@@ -53,7 +53,7 @@
     .end annotation
 .end field
 
-.field private subscription:Lrx/Subscriber;
+.field subscription:Lrx/Subscriber;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/Subscriber",
@@ -172,52 +172,6 @@
 
     .line 55
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorMulticast;)Lrx/Subscription;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorMulticast;
-
-    .prologue
-    .line 41
-    iget-object v0, p0, Lrx/internal/operators/OperatorMulticast;->guardedSubscription:Lrx/Subscription;
-
-    return-object v0
-.end method
-
-.method static synthetic access$002(Lrx/internal/operators/OperatorMulticast;Lrx/Subscription;)Lrx/Subscription;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorMulticast;
-    .param p1, "x1"    # Lrx/Subscription;
-
-    .prologue
-    .line 41
-    iput-object p1, p0, Lrx/internal/operators/OperatorMulticast;->guardedSubscription:Lrx/Subscription;
-
-    return-object p1
-.end method
-
-.method static synthetic access$100(Lrx/internal/operators/OperatorMulticast;)Lrx/Subscriber;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorMulticast;
-
-    .prologue
-    .line 41
-    iget-object v0, p0, Lrx/internal/operators/OperatorMulticast;->subscription:Lrx/Subscriber;
-
-    return-object v0
-.end method
-
-.method static synthetic access$102(Lrx/internal/operators/OperatorMulticast;Lrx/Subscriber;)Lrx/Subscriber;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorMulticast;
-    .param p1, "x1"    # Lrx/Subscriber;
-
-    .prologue
-    .line 41
-    iput-object p1, p0, Lrx/internal/operators/OperatorMulticast;->subscription:Lrx/Subscriber;
-
-    return-object p1
 .end method
 
 

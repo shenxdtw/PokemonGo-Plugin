@@ -59,13 +59,11 @@
 # virtual methods
 .method public bridge synthetic call(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 18
     check-cast p1, Lrx/Subscriber;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/internal/persistence/subscription/OnSubscribeBus;->call(Lrx/Subscriber;)V
 
     return-void

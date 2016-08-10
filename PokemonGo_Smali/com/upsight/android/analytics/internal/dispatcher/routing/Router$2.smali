@@ -26,6 +26,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;Lcom/upsight/android/analytics/dispatcher/EndpointResponse;)V
     .registers 3
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
 
     .prologue
     .line 141

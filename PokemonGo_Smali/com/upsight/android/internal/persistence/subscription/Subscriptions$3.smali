@@ -36,7 +36,7 @@
     .registers 3
 
     .prologue
-    .line 45
+    .line 42
     iput-object p1, p0, Lcom/upsight/android/internal/persistence/subscription/Subscriptions$3;->val$bus:Lcom/squareup/otto/Bus;
 
     iput-object p2, p0, Lcom/upsight/android/internal/persistence/subscription/Subscriptions$3;->val$type:Ljava/lang/String;
@@ -57,7 +57,7 @@
     .end annotation
 
     .prologue
-    .line 48
+    .line 45
     .local p1, "t":Ljava/lang/Object;, "TT;"
     iget-object v0, p0, Lcom/upsight/android/internal/persistence/subscription/Subscriptions$3;->val$bus:Lcom/squareup/otto/Bus;
 
@@ -71,6 +71,6 @@
 
     invoke-virtual {v0, v1}, Lcom/squareup/otto/Bus;->post(Ljava/lang/Object;)V
 
-    .line 49
+    .line 46
     return-void
 .end method

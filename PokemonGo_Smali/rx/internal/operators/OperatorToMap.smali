@@ -32,7 +32,7 @@
 
 
 # instance fields
-.field private final keySelector:Lrx/functions/Func1;
+.field final keySelector:Lrx/functions/Func1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func1",
@@ -52,7 +52,7 @@
     .end annotation
 .end field
 
-.field private final valueSelector:Lrx/functions/Func1;
+.field final valueSelector:Lrx/functions/Func1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func1",
@@ -76,7 +76,7 @@
     .end annotation
 
     .prologue
-    .line 59
+    .line 61
     .local p0, "this":Lrx/internal/operators/OperatorToMap;, "Lrx/internal/operators/OperatorToMap<TT;TK;TV;>;"
     .local p1, "keySelector":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+TK;>;"
     .local p2, "valueSelector":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+TV;>;"
@@ -86,7 +86,7 @@
 
     invoke-direct {p0, p1, p2, v0}, Lrx/internal/operators/OperatorToMap;-><init>(Lrx/functions/Func1;Lrx/functions/Func1;Lrx/functions/Func0;)V
 
-    .line 60
+    .line 62
     return-void
 .end method
 
@@ -107,57 +107,24 @@
     .end annotation
 
     .prologue
-    .line 69
+    .line 71
     .local p0, "this":Lrx/internal/operators/OperatorToMap;, "Lrx/internal/operators/OperatorToMap<TT;TK;TV;>;"
     .local p1, "keySelector":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+TK;>;"
     .local p2, "valueSelector":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+TV;>;"
     .local p3, "mapFactory":Lrx/functions/Func0;, "Lrx/functions/Func0<+Ljava/util/Map<TK;TV;>;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 70
+    .line 72
     iput-object p1, p0, Lrx/internal/operators/OperatorToMap;->keySelector:Lrx/functions/Func1;
 
-    .line 71
+    .line 73
     iput-object p2, p0, Lrx/internal/operators/OperatorToMap;->valueSelector:Lrx/functions/Func1;
 
-    .line 72
+    .line 74
     iput-object p3, p0, Lrx/internal/operators/OperatorToMap;->mapFactory:Lrx/functions/Func0;
 
-    .line 74
+    .line 76
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorToMap;)Lrx/functions/Func0;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorToMap;
-
-    .prologue
-    .line 33
-    iget-object v0, p0, Lrx/internal/operators/OperatorToMap;->mapFactory:Lrx/functions/Func0;
-
-    return-object v0
-.end method
-
-.method static synthetic access$100(Lrx/internal/operators/OperatorToMap;)Lrx/functions/Func1;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorToMap;
-
-    .prologue
-    .line 33
-    iget-object v0, p0, Lrx/internal/operators/OperatorToMap;->keySelector:Lrx/functions/Func1;
-
-    return-object v0
-.end method
-
-.method static synthetic access$200(Lrx/internal/operators/OperatorToMap;)Lrx/functions/Func1;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorToMap;
-
-    .prologue
-    .line 33
-    iget-object v0, p0, Lrx/internal/operators/OperatorToMap;->valueSelector:Lrx/functions/Func1;
-
-    return-object v0
 .end method
 
 
@@ -167,7 +134,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 33
+    .line 35
     .local p0, "this":Lrx/internal/operators/OperatorToMap;, "Lrx/internal/operators/OperatorToMap<TT;TK;TV;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -180,7 +147,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)Lrx/Subscriber;
-    .registers 3
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -194,12 +161,51 @@
     .end annotation
 
     .prologue
-    .line 78
+    .line 84
     .local p0, "this":Lrx/internal/operators/OperatorToMap;, "Lrx/internal/operators/OperatorToMap<TT;TK;TV;>;"
     .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/util/Map<TK;TV;>;>;"
-    new-instance v0, Lrx/internal/operators/OperatorToMap$1;
+    :try_start_0
+    iget-object v4, p0, Lrx/internal/operators/OperatorToMap;->mapFactory:Lrx/functions/Func0;
 
-    invoke-direct {v0, p0, p1, p1}, Lrx/internal/operators/OperatorToMap$1;-><init>(Lrx/internal/operators/OperatorToMap;Lrx/Subscriber;Lrx/Subscriber;)V
+    invoke-interface {v4}, Lrx/functions/Func0;->call()Ljava/lang/Object;
 
-    return-object v0
+    move-result-object v2
+
+    check-cast v2, Ljava/util/Map;
+    :try_end_8
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_8} :catch_f
+
+    .line 92
+    .local v2, "localMap":Ljava/util/Map;, "Ljava/util/Map<TK;TV;>;"
+    move-object v1, v2
+
+    .line 94
+    .local v1, "fLocalMap":Ljava/util/Map;, "Ljava/util/Map<TK;TV;>;"
+    new-instance v3, Lrx/internal/operators/OperatorToMap$1;
+
+    invoke-direct {v3, p0, p1, v1, p1}, Lrx/internal/operators/OperatorToMap$1;-><init>(Lrx/internal/operators/OperatorToMap;Lrx/Subscriber;Ljava/util/Map;Lrx/Subscriber;)V
+
+    .end local v1    # "fLocalMap":Ljava/util/Map;, "Ljava/util/Map<TK;TV;>;"
+    .end local v2    # "localMap":Ljava/util/Map;, "Ljava/util/Map<TK;TV;>;"
+    :goto_e
+    return-object v3
+
+    .line 85
+    :catch_f
+    move-exception v0
+
+    .line 86
+    .local v0, "ex":Ljava/lang/Throwable;
+    invoke-static {v0, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
+
+    .line 87
+    invoke-static {}, Lrx/observers/Subscribers;->empty()Lrx/Subscriber;
+
+    move-result-object v3
+
+    .line 88
+    .local v3, "parent":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
+    invoke-virtual {v3}, Lrx/Subscriber;->unsubscribe()V
+
+    goto :goto_e
 .end method

@@ -36,7 +36,7 @@
     .registers 4
 
     .prologue
-    .line 41
+    .line 40
     .local p0, "this":Lrx/internal/operators/OperatorAll$1;, "Lrx/internal/operators/OperatorAll.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorAll$1;->this$0:Lrx/internal/operators/OperatorAll;
 
@@ -58,15 +58,15 @@
     .local p0, "this":Lrx/internal/operators/OperatorAll$1;, "Lrx/internal/operators/OperatorAll.1;"
     const/4 v1, 0x1
 
-    .line 70
+    .line 68
     iget-boolean v0, p0, Lrx/internal/operators/OperatorAll$1;->done:Z
 
     if-nez v0, :cond_10
 
-    .line 71
+    .line 69
     iput-boolean v1, p0, Lrx/internal/operators/OperatorAll$1;->done:Z
 
-    .line 72
+    .line 70
     iget-object v0, p0, Lrx/internal/operators/OperatorAll$1;->val$producer:Lrx/internal/producers/SingleDelayedProducer;
 
     invoke-static {v1}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -75,7 +75,7 @@
 
     invoke-virtual {v0, v1}, Lrx/internal/producers/SingleDelayedProducer;->setValue(Ljava/lang/Object;)V
 
-    .line 74
+    .line 72
     :cond_10
     return-void
 .end method
@@ -85,13 +85,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 65
+    .line 63
     .local p0, "this":Lrx/internal/operators/OperatorAll$1;, "Lrx/internal/operators/OperatorAll.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorAll$1;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 66
+    .line 64
     return-void
 .end method
 
@@ -104,43 +104,40 @@
     .end annotation
 
     .prologue
-    .line 48
+    .line 47
     .local p0, "this":Lrx/internal/operators/OperatorAll$1;, "Lrx/internal/operators/OperatorAll.1;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     :try_start_0
     iget-object v2, p0, Lrx/internal/operators/OperatorAll$1;->this$0:Lrx/internal/operators/OperatorAll;
 
-    # getter for: Lrx/internal/operators/OperatorAll;->predicate:Lrx/functions/Func1;
-    invoke-static {v2}, Lrx/internal/operators/OperatorAll;->access$000(Lrx/internal/operators/OperatorAll;)Lrx/functions/Func1;
-
-    move-result-object v2
+    iget-object v2, v2, Lrx/internal/operators/OperatorAll;->predicate:Lrx/functions/Func1;
 
     invoke-interface {v2, p1}, Lrx/functions/Func1;->call(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
 
     check-cast v1, Ljava/lang/Boolean;
-    :try_end_c
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_c} :catch_27
+    :try_end_a
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_a} :catch_25
 
-    .line 54
+    .line 52
     .local v1, "result":Ljava/lang/Boolean;
     invoke-virtual {v1}, Ljava/lang/Boolean;->booleanValue()Z
 
     move-result v2
 
-    if-nez v2, :cond_26
+    if-nez v2, :cond_24
 
     iget-boolean v2, p0, Lrx/internal/operators/OperatorAll$1;->done:Z
 
-    if-nez v2, :cond_26
+    if-nez v2, :cond_24
 
-    .line 55
+    .line 53
     const/4 v2, 0x1
 
     iput-boolean v2, p0, Lrx/internal/operators/OperatorAll$1;->done:Z
 
-    .line 56
+    .line 54
     iget-object v2, p0, Lrx/internal/operators/OperatorAll$1;->val$producer:Lrx/internal/producers/SingleDelayedProducer;
 
     const/4 v3, 0x0
@@ -151,29 +148,22 @@
 
     invoke-virtual {v2, v3}, Lrx/internal/producers/SingleDelayedProducer;->setValue(Ljava/lang/Object;)V
 
-    .line 57
+    .line 55
     invoke-virtual {p0}, Lrx/internal/operators/OperatorAll$1;->unsubscribe()V
 
-    .line 61
+    .line 59
     .end local v1    # "result":Ljava/lang/Boolean;
-    :cond_26
-    :goto_26
+    :cond_24
+    :goto_24
     return-void
 
-    .line 49
-    :catch_27
+    .line 48
+    :catch_25
     move-exception v0
 
-    .line 50
+    .line 49
     .local v0, "e":Ljava/lang/Throwable;
-    invoke-static {v0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+    invoke-static {v0, p0, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
-    .line 51
-    invoke-static {v0, p1}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
-
-    move-result-object v2
-
-    invoke-virtual {p0, v2}, Lrx/internal/operators/OperatorAll$1;->onError(Ljava/lang/Throwable;)V
-
-    goto :goto_26
+    goto :goto_24
 .end method

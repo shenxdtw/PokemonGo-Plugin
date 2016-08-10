@@ -42,7 +42,7 @@
     .registers 1
 
     .prologue
-    .line 9
+    .line 10
     const-class v0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideGooglePlayHelperFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -79,11 +79,11 @@
     .end annotation
 
     .prologue
-    .line 14
+    .line 21
     .local p2, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 15
+    .line 22
     sget-boolean v0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideGooglePlayHelperFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -96,11 +96,11 @@
 
     throw v0
 
-    .line 16
+    .line 23
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideGooglePlayHelperFactory;->module:Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
 
-    .line 17
+    .line 24
     sget-boolean v0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideGooglePlayHelperFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -113,11 +113,11 @@
 
     throw v0
 
-    .line 18
+    .line 25
     :cond_1d
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideGooglePlayHelperFactory;->upsightProvider:Ljavax/inject/Provider;
 
-    .line 19
+    .line 26
     return-void
 .end method
 
@@ -140,7 +140,7 @@
     .end annotation
 
     .prologue
-    .line 31
+    .line 37
     .local p1, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     new-instance v0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideGooglePlayHelperFactory;
 
@@ -152,39 +152,34 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
-    .registers 4
+    .registers 3
 
     .prologue
-    .line 23
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideGooglePlayHelperFactory;->module:Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
+    .line 30
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideGooglePlayHelperFactory;->module:Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideGooglePlayHelperFactory;->upsightProvider:Ljavax/inject/Provider;
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideGooglePlayHelperFactory;->upsightProvider:Ljavax/inject/Provider;
 
-    invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
-
-    move-result-object v1
-
-    check-cast v1, Lcom/upsight/android/UpsightContext;
-
-    invoke-virtual {v2, v1}, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;->provideGooglePlayHelper(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
+    .line 31
+    invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 24
-    .local v0, "provided":Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
-    if-nez v0, :cond_18
+    check-cast v0, Lcom/upsight/android/UpsightContext;
 
-    .line 25
-    new-instance v1, Ljava/lang/NullPointerException;
+    invoke-virtual {v1, v0}, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;->provideGooglePlayHelper(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
 
-    const-string v2, "Cannot return null from a non-@Nullable @Provides method"
+    move-result-object v0
 
-    invoke-direct {v1, v2}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
-    throw v1
+    .line 30
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
 
-    .line 27
-    :cond_18
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
+
     return-object v0
 .end method
 
@@ -192,7 +187,7 @@
     .registers 2
 
     .prologue
-    .line 9
+    .line 10
     invoke-virtual {p0}, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideGooglePlayHelperFactory;->get()Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
 
     move-result-object v0

@@ -28,7 +28,7 @@
     .registers 3
 
     .prologue
-    .line 77
+    .line 83
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;, "Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;->this$0:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
 
@@ -42,27 +42,27 @@
 
 # virtual methods
 .method public call()V
-    .registers 5
+    .registers 4
 
     .prologue
-    .line 81
+    .line 87
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;, "Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber.1;"
     move-object v0, p0
 
-    .line 82
+    .line 88
     .local v0, "_self":Lrx/functions/Action0;
-    sget-object v2, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->ATTEMPTS_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
+    iget-object v2, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;->this$0:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
 
-    iget-object v3, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;->this$0:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
+    iget-object v2, v2, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->attempts:Ljava/util/concurrent/atomic/AtomicInteger;
 
-    invoke-virtual {v2, v3}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->incrementAndGet(Ljava/lang/Object;)I
+    invoke-virtual {v2}, Ljava/util/concurrent/atomic/AtomicInteger;->incrementAndGet()I
 
-    .line 86
+    .line 92
     new-instance v1, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;
 
     invoke-direct {v1, p0, v0}, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1$1;-><init>(Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;Lrx/functions/Action0;)V
 
-    .line 119
+    .line 130
     .local v1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<TT;>;"
     iget-object v2, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;->this$0:Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
 
@@ -70,11 +70,11 @@
 
     invoke-virtual {v2, v1}, Lrx/subscriptions/SerialSubscription;->set(Lrx/Subscription;)V
 
-    .line 120
+    .line 131
     iget-object v2, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber$1;->val$o:Lrx/Observable;
 
     invoke-virtual {v2, v1}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    .line 121
+    .line 132
     return-void
 .end method

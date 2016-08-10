@@ -113,7 +113,7 @@
     .end annotation
 
     .prologue
-    .line 59
+    .line 52
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>;"
     .local p1, "left":Lrx/Observable;, "Lrx/Observable<TT1;>;"
     .local p2, "right":Lrx/Observable;, "Lrx/Observable<TT2;>;"
@@ -122,22 +122,22 @@
     .local p5, "resultSelector":Lrx/functions/Func2;, "Lrx/functions/Func2<-TT1;-Lrx/Observable<TT2;>;+TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 60
+    .line 53
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeGroupJoin;->left:Lrx/Observable;
 
-    .line 61
+    .line 54
     iput-object p2, p0, Lrx/internal/operators/OnSubscribeGroupJoin;->right:Lrx/Observable;
 
-    .line 62
+    .line 55
     iput-object p3, p0, Lrx/internal/operators/OnSubscribeGroupJoin;->leftDuration:Lrx/functions/Func1;
 
-    .line 63
+    .line 56
     iput-object p4, p0, Lrx/internal/operators/OnSubscribeGroupJoin;->rightDuration:Lrx/functions/Func1;
 
-    .line 64
+    .line 57
     iput-object p5, p0, Lrx/internal/operators/OnSubscribeGroupJoin;->resultSelector:Lrx/functions/Func2;
 
-    .line 65
+    .line 58
     return-void
 .end method
 
@@ -148,7 +148,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 47
+    .line 40
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -169,7 +169,7 @@
     .end annotation
 
     .prologue
-    .line 69
+    .line 62
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
     new-instance v0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
@@ -180,13 +180,13 @@
 
     invoke-direct {v0, p0, v1}, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;-><init>(Lrx/internal/operators/OnSubscribeGroupJoin;Lrx/Subscriber;)V
 
-    .line 70
+    .line 63
     .local v0, "ro":Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>.ResultManager;"
     invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 71
+    .line 64
     invoke-virtual {v0}, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->init()V
 
-    .line 72
+    .line 65
     return-void
 .end method

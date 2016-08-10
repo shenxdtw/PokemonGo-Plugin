@@ -42,7 +42,7 @@
     .registers 1
 
     .prologue
-    .line 8
+    .line 9
     const-class v0, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesUpsightLocationTrackerFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -79,11 +79,11 @@
     .end annotation
 
     .prologue
-    .line 13
+    .line 20
     .local p2, "locationTrackerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/provider/LocationTracker;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 14
+    .line 21
     sget-boolean v0, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesUpsightLocationTrackerFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -96,11 +96,11 @@
 
     throw v0
 
-    .line 15
+    .line 22
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesUpsightLocationTrackerFactory;->module:Lcom/upsight/android/analytics/internal/provider/ProviderModule;
 
-    .line 16
+    .line 23
     sget-boolean v0, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesUpsightLocationTrackerFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -113,11 +113,11 @@
 
     throw v0
 
-    .line 17
+    .line 24
     :cond_1d
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesUpsightLocationTrackerFactory;->locationTrackerProvider:Ljavax/inject/Provider;
 
-    .line 18
+    .line 25
     return-void
 .end method
 
@@ -140,7 +140,7 @@
     .end annotation
 
     .prologue
-    .line 30
+    .line 36
     .local p1, "locationTrackerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/provider/LocationTracker;>;"
     new-instance v0, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesUpsightLocationTrackerFactory;
 
@@ -152,39 +152,34 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
-    .registers 4
+    .registers 3
 
     .prologue
-    .line 22
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesUpsightLocationTrackerFactory;->module:Lcom/upsight/android/analytics/internal/provider/ProviderModule;
+    .line 29
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesUpsightLocationTrackerFactory;->module:Lcom/upsight/android/analytics/internal/provider/ProviderModule;
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesUpsightLocationTrackerFactory;->locationTrackerProvider:Ljavax/inject/Provider;
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesUpsightLocationTrackerFactory;->locationTrackerProvider:Ljavax/inject/Provider;
 
-    invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
-
-    move-result-object v1
-
-    check-cast v1, Lcom/upsight/android/analytics/internal/provider/LocationTracker;
-
-    invoke-virtual {v2, v1}, Lcom/upsight/android/analytics/internal/provider/ProviderModule;->providesUpsightLocationTracker(Lcom/upsight/android/analytics/internal/provider/LocationTracker;)Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
+    .line 30
+    invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 23
-    .local v0, "provided":Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
-    if-nez v0, :cond_18
+    check-cast v0, Lcom/upsight/android/analytics/internal/provider/LocationTracker;
 
-    .line 24
-    new-instance v1, Ljava/lang/NullPointerException;
+    invoke-virtual {v1, v0}, Lcom/upsight/android/analytics/internal/provider/ProviderModule;->providesUpsightLocationTracker(Lcom/upsight/android/analytics/internal/provider/LocationTracker;)Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
 
-    const-string v2, "Cannot return null from a non-@Nullable @Provides method"
+    move-result-object v0
 
-    invoke-direct {v1, v2}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
-    throw v1
+    .line 29
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
 
-    .line 26
-    :cond_18
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
+
     return-object v0
 .end method
 
@@ -192,7 +187,7 @@
     .registers 2
 
     .prologue
-    .line 8
+    .line 9
     invoke-virtual {p0}, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesUpsightLocationTrackerFactory;->get()Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
 
     move-result-object v0

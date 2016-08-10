@@ -38,7 +38,7 @@
     .registers 3
 
     .prologue
-    .line 67
+    .line 68
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable$1;, "Lrx/internal/operators/OperatorBufferWithSingleObservable.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$1;->this$0:Lrx/internal/operators/OperatorBufferWithSingleObservable;
 
@@ -55,7 +55,7 @@
     .registers 2
 
     .prologue
-    .line 67
+    .line 68
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable$1;, "Lrx/internal/operators/OperatorBufferWithSingleObservable.1;"
     invoke-virtual {p0}, Lrx/internal/operators/OperatorBufferWithSingleObservable$1;->call()Lrx/Observable;
 
@@ -75,7 +75,7 @@
     .end annotation
 
     .prologue
-    .line 70
+    .line 71
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable$1;, "Lrx/internal/operators/OperatorBufferWithSingleObservable.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$1;->val$bufferClosing:Lrx/Observable;
 

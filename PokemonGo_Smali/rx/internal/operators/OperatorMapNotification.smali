@@ -9,7 +9,7 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/internal/operators/OperatorMapNotification$SingleEmitter;
+        Lrx/internal/operators/OperatorMapNotification$MapNotificationSubscriber;
     }
 .end annotation
 
@@ -28,7 +28,7 @@
 
 
 # instance fields
-.field private final onCompleted:Lrx/functions/Func0;
+.field final onCompleted:Lrx/functions/Func0;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func0",
@@ -37,7 +37,7 @@
     .end annotation
 .end field
 
-.field private final onError:Lrx/functions/Func1;
+.field final onError:Lrx/functions/Func1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func1",
@@ -48,7 +48,7 @@
     .end annotation
 .end field
 
-.field private final onNext:Lrx/functions/Func1;
+.field final onNext:Lrx/functions/Func1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func1",
@@ -76,57 +76,24 @@
     .end annotation
 
     .prologue
-    .line 45
+    .line 37
     .local p0, "this":Lrx/internal/operators/OperatorMapNotification;, "Lrx/internal/operators/OperatorMapNotification<TT;TR;>;"
     .local p1, "onNext":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+TR;>;"
     .local p2, "onError":Lrx/functions/Func1;, "Lrx/functions/Func1<-Ljava/lang/Throwable;+TR;>;"
     .local p3, "onCompleted":Lrx/functions/Func0;, "Lrx/functions/Func0<+TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 46
+    .line 38
     iput-object p1, p0, Lrx/internal/operators/OperatorMapNotification;->onNext:Lrx/functions/Func1;
 
-    .line 47
+    .line 39
     iput-object p2, p0, Lrx/internal/operators/OperatorMapNotification;->onError:Lrx/functions/Func1;
 
-    .line 48
+    .line 40
     iput-object p3, p0, Lrx/internal/operators/OperatorMapNotification;->onCompleted:Lrx/functions/Func0;
 
-    .line 49
+    .line 41
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorMapNotification;)Lrx/functions/Func0;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorMapNotification;
-
-    .prologue
-    .line 39
-    iget-object v0, p0, Lrx/internal/operators/OperatorMapNotification;->onCompleted:Lrx/functions/Func0;
-
-    return-object v0
-.end method
-
-.method static synthetic access$100(Lrx/internal/operators/OperatorMapNotification;)Lrx/functions/Func1;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorMapNotification;
-
-    .prologue
-    .line 39
-    iget-object v0, p0, Lrx/internal/operators/OperatorMapNotification;->onError:Lrx/functions/Func1;
-
-    return-object v0
-.end method
-
-.method static synthetic access$200(Lrx/internal/operators/OperatorMapNotification;)Lrx/functions/Func1;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorMapNotification;
-
-    .prologue
-    .line 39
-    iget-object v0, p0, Lrx/internal/operators/OperatorMapNotification;->onNext:Lrx/functions/Func1;
-
-    return-object v0
 .end method
 
 
@@ -136,7 +103,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 39
+    .line 31
     .local p0, "this":Lrx/internal/operators/OperatorMapNotification;, "Lrx/internal/operators/OperatorMapNotification<TT;TR;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -149,7 +116,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)Lrx/Subscriber;
-    .registers 3
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -161,17 +128,30 @@
     .end annotation
 
     .prologue
-    .line 53
+    .line 45
     .local p0, "this":Lrx/internal/operators/OperatorMapNotification;, "Lrx/internal/operators/OperatorMapNotification<TT;TR;>;"
-    .local p1, "o":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
-    new-instance v0, Lrx/internal/operators/OperatorMapNotification$1;
+    .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
+    new-instance v0, Lrx/internal/operators/OperatorMapNotification$MapNotificationSubscriber;
 
-    invoke-direct {v0, p0, p1}, Lrx/internal/operators/OperatorMapNotification$1;-><init>(Lrx/internal/operators/OperatorMapNotification;Lrx/Subscriber;)V
+    iget-object v1, p0, Lrx/internal/operators/OperatorMapNotification;->onNext:Lrx/functions/Func1;
 
-    .line 89
-    .local v0, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<TT;>;"
+    iget-object v2, p0, Lrx/internal/operators/OperatorMapNotification;->onError:Lrx/functions/Func1;
+
+    iget-object v3, p0, Lrx/internal/operators/OperatorMapNotification;->onCompleted:Lrx/functions/Func0;
+
+    invoke-direct {v0, p1, v1, v2, v3}, Lrx/internal/operators/OperatorMapNotification$MapNotificationSubscriber;-><init>(Lrx/Subscriber;Lrx/functions/Func1;Lrx/functions/Func1;Lrx/functions/Func0;)V
+
+    .line 46
+    .local v0, "parent":Lrx/internal/operators/OperatorMapNotification$MapNotificationSubscriber;, "Lrx/internal/operators/OperatorMapNotification$MapNotificationSubscriber<TT;TR;>;"
     invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 90
+    .line 47
+    new-instance v1, Lrx/internal/operators/OperatorMapNotification$1;
+
+    invoke-direct {v1, p0, v0}, Lrx/internal/operators/OperatorMapNotification$1;-><init>(Lrx/internal/operators/OperatorMapNotification;Lrx/internal/operators/OperatorMapNotification$MapNotificationSubscriber;)V
+
+    invoke-virtual {p1, v1}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+
+    .line 53
     return-object v0
 .end method

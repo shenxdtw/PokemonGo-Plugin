@@ -50,10 +50,7 @@
     .local p0, "this":Lrx/internal/operators/OperatorDoOnRequest$1;, "Lrx/internal/operators/OperatorDoOnRequest.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorDoOnRequest$1;->this$0:Lrx/internal/operators/OperatorDoOnRequest;
 
-    # getter for: Lrx/internal/operators/OperatorDoOnRequest;->request:Lrx/functions/Action1;
-    invoke-static {v0}, Lrx/internal/operators/OperatorDoOnRequest;->access$100(Lrx/internal/operators/OperatorDoOnRequest;)Lrx/functions/Action1;
-
-    move-result-object v0
+    iget-object v0, v0, Lrx/internal/operators/OperatorDoOnRequest;->request:Lrx/functions/Action1;
 
     invoke-static {p1, p2}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
 
@@ -65,7 +62,7 @@
     iget-object v0, p0, Lrx/internal/operators/OperatorDoOnRequest$1;->val$parent:Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;
 
     # invokes: Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;->requestMore(J)V
-    invoke-static {v0, p1, p2}, Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;->access$200(Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;J)V
+    invoke-static {v0, p1, p2}, Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;->access$000(Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;J)V
 
     .line 48
     return-void

@@ -3,19 +3,15 @@
 .source "Subscriptions.java"
 
 
-# static fields
-.field public static final MAX_QUEUE_LENGTH:I = 0xa
-
-
 # direct methods
 .method private constructor <init>()V
     .registers 1
 
     .prologue
-    .line 69
+    .line 66
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 70
+    .line 67
     return-void
 .end method
 
@@ -24,12 +20,12 @@
     .param p0, "target"    # Ljava/lang/Object;
 
     .prologue
-    .line 62
+    .line 59
     new-instance v1, Lcom/upsight/android/internal/persistence/subscription/SubscriptionHandlerVisitor;
 
     invoke-direct {v1, p0}, Lcom/upsight/android/internal/persistence/subscription/SubscriptionHandlerVisitor;-><init>(Ljava/lang/Object;)V
 
-    .line 63
+    .line 60
     .local v1, "visitor":Lcom/upsight/android/internal/persistence/subscription/SubscriptionHandlerVisitor;
     new-instance v0, Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionReader;
 
@@ -39,11 +35,11 @@
 
     invoke-direct {v0, v2}, Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionReader;-><init>(Ljava/lang/Class;)V
 
-    .line 64
+    .line 61
     .local v0, "reader":Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionReader;
     invoke-virtual {v0, v1}, Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionReader;->accept(Lcom/upsight/android/internal/persistence/subscription/ClassSubscriptionVisitor;)V
 
-    .line 66
+    .line 63
     new-instance v2, Lcom/upsight/android/internal/persistence/subscription/AnnotatedSubscriber;
 
     invoke-virtual {v1}, Lcom/upsight/android/internal/persistence/subscription/SubscriptionHandlerVisitor;->getHandlers()Ljava/util/Set;
@@ -60,7 +56,7 @@
     .param p0, "subscription"    # Lrx/Subscription;
 
     .prologue
-    .line 58
+    .line 55
     new-instance v0, Lcom/upsight/android/internal/persistence/subscription/SubscriptionAdapter;
 
     invoke-direct {v0, p0}, Lcom/upsight/android/internal/persistence/subscription/SubscriptionAdapter;-><init>(Lrx/Subscription;)V
@@ -86,7 +82,7 @@
     .end annotation
 
     .prologue
-    .line 27
+    .line 24
     new-instance v0, Lcom/upsight/android/internal/persistence/subscription/Subscriptions$1;
 
     invoke-direct {v0, p0, p1}, Lcom/upsight/android/internal/persistence/subscription/Subscriptions$1;-><init>(Lcom/squareup/otto/Bus;Ljava/lang/String;)V
@@ -112,7 +108,7 @@
     .end annotation
 
     .prologue
-    .line 45
+    .line 42
     new-instance v0, Lcom/upsight/android/internal/persistence/subscription/Subscriptions$3;
 
     invoke-direct {v0, p0, p1}, Lcom/upsight/android/internal/persistence/subscription/Subscriptions$3;-><init>(Lcom/squareup/otto/Bus;Ljava/lang/String;)V
@@ -138,7 +134,7 @@
     .end annotation
 
     .prologue
-    .line 36
+    .line 33
     new-instance v0, Lcom/upsight/android/internal/persistence/subscription/Subscriptions$2;
 
     invoke-direct {v0, p0, p1}, Lcom/upsight/android/internal/persistence/subscription/Subscriptions$2;-><init>(Lcom/squareup/otto/Bus;Ljava/lang/String;)V
@@ -147,7 +143,7 @@
 .end method
 
 .method public static toObservable(Lcom/squareup/otto/Bus;)Lrx/Observable;
-    .registers 3
+    .registers 2
     .param p0, "bus"    # Lcom/squareup/otto/Bus;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -162,7 +158,7 @@
     .end annotation
 
     .prologue
-    .line 54
+    .line 51
     new-instance v0, Lcom/upsight/android/internal/persistence/subscription/OnSubscribeBus;
 
     invoke-direct {v0, p0}, Lcom/upsight/android/internal/persistence/subscription/OnSubscribeBus;-><init>(Lcom/squareup/otto/Bus;)V
@@ -171,9 +167,7 @@
 
     move-result-object v0
 
-    const/16 v1, 0xa
-
-    invoke-virtual {v0, v1}, Lrx/Observable;->onBackpressureBlock(I)Lrx/Observable;
+    invoke-virtual {v0}, Lrx/Observable;->onBackpressureBuffer()Lrx/Observable;
 
     move-result-object v0
 

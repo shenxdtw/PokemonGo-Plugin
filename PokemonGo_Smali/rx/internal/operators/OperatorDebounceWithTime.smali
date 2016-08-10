@@ -41,20 +41,20 @@
     .param p4, "scheduler"    # Lrx/Scheduler;
 
     .prologue
-    .line 47
+    .line 48
     .local p0, "this":Lrx/internal/operators/OperatorDebounceWithTime;, "Lrx/internal/operators/OperatorDebounceWithTime<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 48
+    .line 49
     iput-wide p1, p0, Lrx/internal/operators/OperatorDebounceWithTime;->timeout:J
 
-    .line 49
+    .line 50
     iput-object p3, p0, Lrx/internal/operators/OperatorDebounceWithTime;->unit:Ljava/util/concurrent/TimeUnit;
 
-    .line 50
+    .line 51
     iput-object p4, p0, Lrx/internal/operators/OperatorDebounceWithTime;->scheduler:Lrx/Scheduler;
 
-    .line 51
+    .line 52
     return-void
 .end method
 
@@ -65,7 +65,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 34
+    .line 35
     .local p0, "this":Lrx/internal/operators/OperatorDebounceWithTime;, "Lrx/internal/operators/OperatorDebounceWithTime<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -90,7 +90,7 @@
     .end annotation
 
     .prologue
-    .line 55
+    .line 56
     .local p0, "this":Lrx/internal/operators/OperatorDebounceWithTime;, "Lrx/internal/operators/OperatorDebounceWithTime<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorDebounceWithTime;->scheduler:Lrx/Scheduler;
@@ -99,26 +99,26 @@
 
     move-result-object v4
 
-    .line 56
+    .line 57
     .local v4, "worker":Lrx/Scheduler$Worker;
     new-instance v5, Lrx/observers/SerializedSubscriber;
 
     invoke-direct {v5, p1}, Lrx/observers/SerializedSubscriber;-><init>(Lrx/Subscriber;)V
 
-    .line 57
+    .line 58
     .local v5, "s":Lrx/observers/SerializedSubscriber;, "Lrx/observers/SerializedSubscriber<TT;>;"
     new-instance v3, Lrx/subscriptions/SerialSubscription;
 
     invoke-direct {v3}, Lrx/subscriptions/SerialSubscription;-><init>()V
 
-    .line 59
+    .line 60
     .local v3, "ssub":Lrx/subscriptions/SerialSubscription;
     invoke-virtual {v5, v4}, Lrx/observers/SerializedSubscriber;->add(Lrx/Subscription;)V
 
-    .line 60
+    .line 61
     invoke-virtual {v5, v3}, Lrx/observers/SerializedSubscriber;->add(Lrx/Subscription;)V
 
-    .line 62
+    .line 63
     new-instance v0, Lrx/internal/operators/OperatorDebounceWithTime$1;
 
     move-object v1, p0

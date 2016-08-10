@@ -26,7 +26,7 @@
 
 
 # direct methods
-.method private constructor <init>()V
+.method constructor <init>()V
     .registers 1
 
     .prologue
@@ -35,18 +35,6 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 34
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/internal/operators/OperatorIgnoreElements$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/internal/operators/OperatorIgnoreElements$1;
-
-    .prologue
-    .line 21
-    .local p0, "this":Lrx/internal/operators/OperatorIgnoreElements;, "Lrx/internal/operators/OperatorIgnoreElements<TT;>;"
-    invoke-direct {p0}, Lrx/internal/operators/OperatorIgnoreElements;-><init>()V
-
     return-void
 .end method
 

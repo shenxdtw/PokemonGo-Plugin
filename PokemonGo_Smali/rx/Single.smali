@@ -20,12 +20,12 @@
     }
 .end annotation
 
-.annotation build Lrx/annotations/Experimental;
+.annotation build Lrx/annotations/Beta;
 .end annotation
 
 
 # static fields
-.field private static final hook:Lrx/plugins/RxJavaObservableExecutionHook;
+.field static hook:Lrx/plugins/RxJavaSingleExecutionHook;
 
 
 # instance fields
@@ -44,16 +44,16 @@
     .registers 1
 
     .prologue
-    .line 115
+    .line 104
     invoke-static {}, Lrx/plugins/RxJavaPlugins;->getInstance()Lrx/plugins/RxJavaPlugins;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lrx/plugins/RxJavaPlugins;->getObservableExecutionHook()Lrx/plugins/RxJavaObservableExecutionHook;
+    invoke-virtual {v0}, Lrx/plugins/RxJavaPlugins;->getSingleExecutionHook()Lrx/plugins/RxJavaSingleExecutionHook;
 
     move-result-object v0
 
-    sput-object v0, Lrx/Single;->hook:Lrx/plugins/RxJavaObservableExecutionHook;
+    sput-object v0, Lrx/Single;->hook:Lrx/plugins/RxJavaSingleExecutionHook;
 
     return-void
 .end method
@@ -69,15 +69,15 @@
     .end annotation
 
     .prologue
-    .line 111
+    .line 100
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "f":Lrx/Observable$OnSubscribe;, "Lrx/Observable$OnSubscribe<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 112
+    .line 101
     iput-object p1, p0, Lrx/Single;->onSubscribe:Lrx/Observable$OnSubscribe;
 
-    .line 113
+    .line 102
     return-void
 .end method
 
@@ -92,30 +92,20 @@
     .end annotation
 
     .prologue
-    .line 83
+    .line 72
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "f":Lrx/Single$OnSubscribe;, "Lrx/Single$OnSubscribe<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 85
+    .line 74
     new-instance v0, Lrx/Single$1;
 
     invoke-direct {v0, p0, p1}, Lrx/Single$1;-><init>(Lrx/Single;Lrx/Single$OnSubscribe;)V
 
     iput-object v0, p0, Lrx/Single;->onSubscribe:Lrx/Observable$OnSubscribe;
 
-    .line 109
+    .line 98
     return-void
-.end method
-
-.method static synthetic access$000()Lrx/plugins/RxJavaObservableExecutionHook;
-    .registers 1
-
-    .prologue
-    .line 69
-    sget-object v0, Lrx/Single;->hook:Lrx/plugins/RxJavaObservableExecutionHook;
-
-    return-object v0
 .end method
 
 .method private static asObservable(Lrx/Single;)Lrx/Observable;
@@ -133,7 +123,7 @@
     .end annotation
 
     .prologue
-    .line 249
+    .line 231
     .local p0, "t":Lrx/Single;, "Lrx/Single<TT;>;"
     iget-object v0, p0, Lrx/Single;->onSubscribe:Lrx/Observable$OnSubscribe;
 
@@ -144,7 +134,7 @@
     return-object v0
 .end method
 
-.method public static final concat(Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static concat(Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -161,7 +151,7 @@
     .end annotation
 
     .prologue
-    .line 293
+    .line 275
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     invoke-static {p0}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
@@ -179,7 +169,7 @@
     return-object v0
 .end method
 
-.method public static final concat(Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static concat(Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -198,7 +188,7 @@
     .end annotation
 
     .prologue
-    .line 315
+    .line 297
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -221,7 +211,7 @@
     return-object v0
 .end method
 
-.method public static final concat(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static concat(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -242,7 +232,7 @@
     .end annotation
 
     .prologue
-    .line 339
+    .line 321
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -270,7 +260,7 @@
     return-object v0
 .end method
 
-.method public static final concat(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static concat(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 10
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -293,7 +283,7 @@
     .end annotation
 
     .prologue
-    .line 365
+    .line 347
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -326,7 +316,7 @@
     return-object v0
 .end method
 
-.method public static final concat(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static concat(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 12
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -351,7 +341,7 @@
     .end annotation
 
     .prologue
-    .line 393
+    .line 375
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -389,7 +379,7 @@
     return-object v0
 .end method
 
-.method public static final concat(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static concat(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 14
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -416,7 +406,7 @@
     .end annotation
 
     .prologue
-    .line 423
+    .line 405
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -459,7 +449,7 @@
     return-object v0
 .end method
 
-.method public static final concat(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static concat(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 16
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -488,7 +478,7 @@
     .end annotation
 
     .prologue
-    .line 455
+    .line 437
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -536,7 +526,7 @@
     return-object v0
 .end method
 
-.method public static final concat(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static concat(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 18
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -567,7 +557,7 @@
     .end annotation
 
     .prologue
-    .line 489
+    .line 471
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -620,8 +610,8 @@
     return-object v0
 .end method
 
-.method public static final create(Lrx/Single$OnSubscribe;)Lrx/Single;
-    .registers 2
+.method public static create(Lrx/Single$OnSubscribe;)Lrx/Single;
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
@@ -635,16 +625,55 @@
     .end annotation
 
     .prologue
-    .line 144
+    .line 133
     .local p0, "f":Lrx/Single$OnSubscribe;, "Lrx/Single$OnSubscribe<TT;>;"
     new-instance v0, Lrx/Single;
 
-    invoke-direct {v0, p0}, Lrx/Single;-><init>(Lrx/Single$OnSubscribe;)V
+    sget-object v1, Lrx/Single;->hook:Lrx/plugins/RxJavaSingleExecutionHook;
+
+    invoke-virtual {v1, p0}, Lrx/plugins/RxJavaSingleExecutionHook;->onCreate(Lrx/Single$OnSubscribe;)Lrx/Single$OnSubscribe;
+
+    move-result-object v1
+
+    invoke-direct {v0, v1}, Lrx/Single;-><init>(Lrx/Single$OnSubscribe;)V
 
     return-object v0
 .end method
 
-.method public static final error(Ljava/lang/Throwable;)Lrx/Single;
+.method public static defer(Ljava/util/concurrent/Callable;)Lrx/Single;
+    .registers 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<T:",
+            "Ljava/lang/Object;",
+            ">(",
+            "Ljava/util/concurrent/Callable",
+            "<",
+            "Lrx/Single",
+            "<TT;>;>;)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 2406
+    .local p0, "singleFactory":Ljava/util/concurrent/Callable;, "Ljava/util/concurrent/Callable<Lrx/Single<TT;>;>;"
+    new-instance v0, Lrx/Single$25;
+
+    invoke-direct {v0, p0}, Lrx/Single$25;-><init>(Ljava/util/concurrent/Callable;)V
+
+    invoke-static {v0}, Lrx/Single;->create(Lrx/Single$OnSubscribe;)Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public static error(Ljava/lang/Throwable;)Lrx/Single;
     .registers 2
     .param p0, "exception"    # Ljava/lang/Throwable;
     .annotation system Ldalvik/annotation/Signature;
@@ -660,7 +689,7 @@
     .end annotation
 
     .prologue
-    .line 511
+    .line 493
     new-instance v0, Lrx/Single$3;
 
     invoke-direct {v0, p0}, Lrx/Single$3;-><init>(Ljava/lang/Throwable;)V
@@ -672,7 +701,7 @@
     return-object v0
 .end method
 
-.method public static final from(Ljava/util/concurrent/Future;)Lrx/Single;
+.method public static from(Ljava/util/concurrent/Future;)Lrx/Single;
     .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -687,7 +716,7 @@
     .end annotation
 
     .prologue
-    .line 545
+    .line 527
     .local p0, "future":Ljava/util/concurrent/Future;, "Ljava/util/concurrent/Future<+TT;>;"
     new-instance v0, Lrx/Single;
 
@@ -700,7 +729,7 @@
     return-object v0
 .end method
 
-.method public static final from(Ljava/util/concurrent/Future;JLjava/util/concurrent/TimeUnit;)Lrx/Single;
+.method public static from(Ljava/util/concurrent/Future;JLjava/util/concurrent/TimeUnit;)Lrx/Single;
     .registers 7
     .param p1, "timeout"    # J
     .param p3, "unit"    # Ljava/util/concurrent/TimeUnit;
@@ -719,7 +748,7 @@
     .end annotation
 
     .prologue
-    .line 576
+    .line 558
     .local p0, "future":Ljava/util/concurrent/Future;, "Ljava/util/concurrent/Future<+TT;>;"
     new-instance v0, Lrx/Single;
 
@@ -732,7 +761,7 @@
     return-object v0
 .end method
 
-.method public static final from(Ljava/util/concurrent/Future;Lrx/Scheduler;)Lrx/Single;
+.method public static from(Ljava/util/concurrent/Future;Lrx/Scheduler;)Lrx/Single;
     .registers 4
     .param p1, "scheduler"    # Lrx/Scheduler;
     .annotation system Ldalvik/annotation/Signature;
@@ -750,7 +779,7 @@
     .end annotation
 
     .prologue
-    .line 604
+    .line 586
     .local p0, "future":Ljava/util/concurrent/Future;, "Ljava/util/concurrent/Future<+TT;>;"
     new-instance v0, Lrx/Single;
 
@@ -767,7 +796,178 @@
     return-object v0
 .end method
 
-.method public static final just(Ljava/lang/Object;)Lrx/Single;
+.method public static fromCallable(Ljava/util/concurrent/Callable;)Lrx/Single;
+    .registers 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<T:",
+            "Ljava/lang/Object;",
+            ">(",
+            "Ljava/util/concurrent/Callable",
+            "<+TT;>;)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Beta;
+    .end annotation
+
+    .prologue
+    .line 608
+    .local p0, "func":Ljava/util/concurrent/Callable;, "Ljava/util/concurrent/Callable<+TT;>;"
+    new-instance v0, Lrx/Single$4;
+
+    invoke-direct {v0, p0}, Lrx/Single$4;-><init>(Ljava/util/concurrent/Callable;)V
+
+    invoke-static {v0}, Lrx/Single;->create(Lrx/Single$OnSubscribe;)Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method static iterableToArray(Ljava/lang/Iterable;)[Lrx/Single;
+    .registers 10
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<T:",
+            "Ljava/lang/Object;",
+            ">(",
+            "Ljava/lang/Iterable",
+            "<+",
+            "Lrx/Single",
+            "<+TT;>;>;)[",
+            "Lrx/Single",
+            "<+TT;>;"
+        }
+    .end annotation
+
+    .prologue
+    .local p0, "singlesIterable":Ljava/lang/Iterable;, "Ljava/lang/Iterable<+Lrx/Single<+TT;>;>;"
+    const/4 v8, 0x0
+
+    .line 2479
+    instance-of v7, p0, Ljava/util/Collection;
+
+    if-eqz v7, :cond_15
+
+    move-object v2, p0
+
+    .line 2480
+    check-cast v2, Ljava/util/Collection;
+
+    .line 2481
+    .local v2, "list":Ljava/util/Collection;, "Ljava/util/Collection<+Lrx/Single<+TT;>;>;"
+    invoke-interface {v2}, Ljava/util/Collection;->size()I
+
+    move-result v0
+
+    .line 2482
+    .local v0, "count":I
+    new-array v7, v0, [Lrx/Single;
+
+    invoke-interface {v2, v7}, Ljava/util/Collection;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+
+    move-result-object v5
+
+    check-cast v5, [Lrx/Single;
+
+    .line 2504
+    .end local v2    # "list":Ljava/util/Collection;, "Ljava/util/Collection<+Lrx/Single<+TT;>;>;"
+    .local v5, "singlesArray":[Lrx/Single;, "[Lrx/Single<+TT;>;"
+    :goto_14
+    return-object v5
+
+    .line 2484
+    .end local v0    # "count":I
+    .end local v5    # "singlesArray":[Lrx/Single;, "[Lrx/Single<+TT;>;"
+    :cond_15
+    const/16 v7, 0x8
+
+    new-array v6, v7, [Lrx/Single;
+
+    .line 2485
+    .local v6, "tempArray":[Lrx/Single;, "[Lrx/Single<+TT;>;"
+    const/4 v0, 0x0
+
+    .line 2486
+    .restart local v0    # "count":I
+    invoke-interface {p0}, Ljava/lang/Iterable;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    .local v1, "i$":Ljava/util/Iterator;
+    :goto_1e
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v7
+
+    if-eqz v7, :cond_3b
+
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Lrx/Single;
+
+    .line 2487
+    .local v3, "s":Lrx/Single;, "Lrx/Single<+TT;>;"
+    array-length v7, v6
+
+    if-ne v0, v7, :cond_36
+
+    .line 2488
+    shr-int/lit8 v7, v0, 0x2
+
+    add-int/2addr v7, v0
+
+    new-array v4, v7, [Lrx/Single;
+
+    .line 2489
+    .local v4, "sb":[Lrx/Single;, "[Lrx/Single<+TT;>;"
+    invoke-static {v6, v8, v4, v8, v0}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+
+    .line 2490
+    move-object v6, v4
+
+    .line 2492
+    .end local v4    # "sb":[Lrx/Single;, "[Lrx/Single<+TT;>;"
+    :cond_36
+    aput-object v3, v6, v0
+
+    .line 2493
+    add-int/lit8 v0, v0, 0x1
+
+    .line 2494
+    goto :goto_1e
+
+    .line 2496
+    .end local v3    # "s":Lrx/Single;, "Lrx/Single<+TT;>;"
+    :cond_3b
+    array-length v7, v6
+
+    if-ne v7, v0, :cond_40
+
+    .line 2497
+    move-object v5, v6
+
+    .restart local v5    # "singlesArray":[Lrx/Single;, "[Lrx/Single<+TT;>;"
+    goto :goto_14
+
+    .line 2499
+    .end local v5    # "singlesArray":[Lrx/Single;, "[Lrx/Single<+TT;>;"
+    :cond_40
+    new-array v5, v0, [Lrx/Single;
+
+    .line 2500
+    .restart local v5    # "singlesArray":[Lrx/Single;, "[Lrx/Single<+TT;>;"
+    invoke-static {v6, v8, v5, v8, v0}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+
+    goto :goto_14
+.end method
+
+.method public static just(Ljava/lang/Object;)Lrx/Single;
     .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -780,49 +980,16 @@
     .end annotation
 
     .prologue
-    .line 628
+    .line 646
     .local p0, "value":Ljava/lang/Object;, "TT;"
-    new-instance v0, Lrx/Single$4;
-
-    invoke-direct {v0, p0}, Lrx/Single$4;-><init>(Ljava/lang/Object;)V
-
-    invoke-static {v0}, Lrx/Single;->create(Lrx/Single$OnSubscribe;)Lrx/Single;
+    invoke-static {p0}, Lrx/internal/util/ScalarSynchronousSingle;->create(Ljava/lang/Object;)Lrx/internal/util/ScalarSynchronousSingle;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method private final lift(Lrx/Observable$Operator;)Lrx/Single;
-    .registers 4
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "<R:",
-            "Ljava/lang/Object;",
-            ">(",
-            "Lrx/Observable$Operator",
-            "<+TR;-TT;>;)",
-            "Lrx/Single",
-            "<TR;>;"
-        }
-    .end annotation
-
-    .prologue
-    .line 179
-    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
-    .local p1, "lift":Lrx/Observable$Operator;, "Lrx/Observable$Operator<+TR;-TT;>;"
-    new-instance v0, Lrx/Single;
-
-    new-instance v1, Lrx/Single$2;
-
-    invoke-direct {v1, p0, p1}, Lrx/Single$2;-><init>(Lrx/Single;Lrx/Observable$Operator;)V
-
-    invoke-direct {v0, v1}, Lrx/Single;-><init>(Lrx/Observable$OnSubscribe;)V
-
-    return-object v0
-.end method
-
-.method public static final merge(Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static merge(Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -839,7 +1006,7 @@
     .end annotation
 
     .prologue
-    .line 697
+    .line 711
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     invoke-static {p0}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
@@ -857,7 +1024,7 @@
     return-object v0
 .end method
 
-.method public static final merge(Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static merge(Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -876,7 +1043,7 @@
     .end annotation
 
     .prologue
-    .line 722
+    .line 736
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -899,7 +1066,7 @@
     return-object v0
 .end method
 
-.method public static final merge(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static merge(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -920,7 +1087,7 @@
     .end annotation
 
     .prologue
-    .line 749
+    .line 763
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -948,7 +1115,7 @@
     return-object v0
 .end method
 
-.method public static final merge(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static merge(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 10
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -971,7 +1138,7 @@
     .end annotation
 
     .prologue
-    .line 778
+    .line 792
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -1004,7 +1171,7 @@
     return-object v0
 .end method
 
-.method public static final merge(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static merge(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 12
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1029,7 +1196,7 @@
     .end annotation
 
     .prologue
-    .line 809
+    .line 823
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -1067,7 +1234,7 @@
     return-object v0
 .end method
 
-.method public static final merge(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static merge(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 14
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1094,7 +1261,7 @@
     .end annotation
 
     .prologue
-    .line 842
+    .line 856
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -1137,7 +1304,7 @@
     return-object v0
 .end method
 
-.method public static final merge(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static merge(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 16
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1166,7 +1333,7 @@
     .end annotation
 
     .prologue
-    .line 877
+    .line 891
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -1214,7 +1381,7 @@
     return-object v0
 .end method
 
-.method public static final merge(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
+.method public static merge(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;)Lrx/Observable;
     .registers 18
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1245,7 +1412,7 @@
     .end annotation
 
     .prologue
-    .line 914
+    .line 928
     .local p0, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p1, "t2":Lrx/Single;, "Lrx/Single<+TT;>;"
     .local p2, "t3":Lrx/Single;, "Lrx/Single<+TT;>;"
@@ -1298,7 +1465,7 @@
     return-object v0
 .end method
 
-.method public static final merge(Lrx/Single;)Lrx/Single;
+.method public static merge(Lrx/Single;)Lrx/Single;
     .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1315,8 +1482,30 @@
     .end annotation
 
     .prologue
-    .line 656
+    .line 667
     .local p0, "source":Lrx/Single;, "Lrx/Single<+Lrx/Single<+TT;>;>;"
+    instance-of v0, p0, Lrx/internal/util/ScalarSynchronousSingle;
+
+    if-eqz v0, :cond_f
+
+    .line 668
+    check-cast p0, Lrx/internal/util/ScalarSynchronousSingle;
+
+    .end local p0    # "source":Lrx/Single;, "Lrx/Single<+Lrx/Single<+TT;>;>;"
+    invoke-static {}, Lrx/internal/util/UtilityFunctions;->identity()Lrx/functions/Func1;
+
+    move-result-object v0
+
+    invoke-virtual {p0, v0}, Lrx/internal/util/ScalarSynchronousSingle;->scalarFlatMap(Lrx/functions/Func1;)Lrx/Single;
+
+    move-result-object v0
+
+    .line 670
+    .restart local p0    # "source":Lrx/Single;, "Lrx/Single<+Lrx/Single<+TT;>;>;"
+    :goto_e
+    return-object v0
+
+    :cond_f
     new-instance v0, Lrx/Single$5;
 
     invoke-direct {v0, p0}, Lrx/Single$5;-><init>(Lrx/Single;)V
@@ -1325,10 +1514,10 @@
 
     move-result-object v0
 
-    return-object v0
+    goto :goto_e
 .end method
 
-.method private final nest()Lrx/Single;
+.method private nest()Lrx/Single;
     .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1341,7 +1530,7 @@
     .end annotation
 
     .prologue
-    .line 268
+    .line 250
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     invoke-static {p0}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
 
@@ -1354,8 +1543,163 @@
     return-object v0
 .end method
 
-.method public static final zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func9;)Lrx/Single;
-    .registers 13
+.method public static using(Lrx/functions/Func0;Lrx/functions/Func1;Lrx/functions/Action1;)Lrx/Single;
+    .registers 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<T:",
+            "Ljava/lang/Object;",
+            "Resource:",
+            "Ljava/lang/Object;",
+            ">(",
+            "Lrx/functions/Func0",
+            "<TResource;>;",
+            "Lrx/functions/Func1",
+            "<-TResource;+",
+            "Lrx/Single",
+            "<+TT;>;>;",
+            "Lrx/functions/Action1",
+            "<-TResource;>;)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 2626
+    .local p0, "resourceFactory":Lrx/functions/Func0;, "Lrx/functions/Func0<TResource;>;"
+    .local p1, "observableFactory":Lrx/functions/Func1;, "Lrx/functions/Func1<-TResource;+Lrx/Single<+TT;>;>;"
+    .local p2, "disposeAction":Lrx/functions/Action1;, "Lrx/functions/Action1<-TResource;>;"
+    const/4 v0, 0x0
+
+    invoke-static {p0, p1, p2, v0}, Lrx/Single;->using(Lrx/functions/Func0;Lrx/functions/Func1;Lrx/functions/Action1;Z)Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public static using(Lrx/functions/Func0;Lrx/functions/Func1;Lrx/functions/Action1;Z)Lrx/Single;
+    .registers 6
+    .param p3, "disposeEagerly"    # Z
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<T:",
+            "Ljava/lang/Object;",
+            "Resource:",
+            "Ljava/lang/Object;",
+            ">(",
+            "Lrx/functions/Func0",
+            "<TResource;>;",
+            "Lrx/functions/Func1",
+            "<-TResource;+",
+            "Lrx/Single",
+            "<+TT;>;>;",
+            "Lrx/functions/Action1",
+            "<-TResource;>;Z)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 2662
+    .local p0, "resourceFactory":Lrx/functions/Func0;, "Lrx/functions/Func0<TResource;>;"
+    .local p1, "singleFactory":Lrx/functions/Func1;, "Lrx/functions/Func1<-TResource;+Lrx/Single<+TT;>;>;"
+    .local p2, "disposeAction":Lrx/functions/Action1;, "Lrx/functions/Action1<-TResource;>;"
+    if-nez p0, :cond_a
+
+    .line 2663
+    new-instance v0, Ljava/lang/NullPointerException;
+
+    const-string v1, "resourceFactory is null"
+
+    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+
+    .line 2665
+    :cond_a
+    if-nez p1, :cond_14
+
+    .line 2666
+    new-instance v0, Ljava/lang/NullPointerException;
+
+    const-string v1, "singleFactory is null"
+
+    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+
+    .line 2668
+    :cond_14
+    if-nez p2, :cond_1e
+
+    .line 2669
+    new-instance v0, Ljava/lang/NullPointerException;
+
+    const-string v1, "disposeAction is null"
+
+    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+
+    .line 2671
+    :cond_1e
+    new-instance v0, Lrx/internal/operators/SingleOnSubscribeUsing;
+
+    invoke-direct {v0, p0, p1, p2, p3}, Lrx/internal/operators/SingleOnSubscribeUsing;-><init>(Lrx/functions/Func0;Lrx/functions/Func1;Lrx/functions/Action1;Z)V
+
+    invoke-static {v0}, Lrx/Single;->create(Lrx/Single$OnSubscribe;)Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public static zip(Ljava/lang/Iterable;Lrx/functions/FuncN;)Lrx/Single;
+    .registers 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<R:",
+            "Ljava/lang/Object;",
+            ">(",
+            "Ljava/lang/Iterable",
+            "<+",
+            "Lrx/Single",
+            "<*>;>;",
+            "Lrx/functions/FuncN",
+            "<+TR;>;)",
+            "Lrx/Single",
+            "<TR;>;"
+        }
+    .end annotation
+
+    .prologue
+    .line 1245
+    .local p0, "singles":Ljava/lang/Iterable;, "Ljava/lang/Iterable<+Lrx/Single<*>;>;"
+    .local p1, "zipFunction":Lrx/functions/FuncN;, "Lrx/functions/FuncN<+TR;>;"
+    invoke-static {p0}, Lrx/Single;->iterableToArray(Ljava/lang/Iterable;)[Lrx/Single;
+
+    move-result-object v0
+
+    .line 1246
+    .local v0, "iterableToArray":[Lrx/Single;
+    invoke-static {v0, p1}, Lrx/internal/operators/SingleOperatorZip;->zip([Lrx/Single;Lrx/functions/FuncN;)Lrx/Single;
+
+    move-result-object v1
+
+    return-object v1
+.end method
+
+.method public static zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func9;)Lrx/Single;
+    .registers 12
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T1:",
@@ -1405,110 +1749,70 @@
     .end annotation
 
     .prologue
-    .line 1166
-    .local p0, "o1":Lrx/Single;, "Lrx/Single<+TT1;>;"
-    .local p1, "o2":Lrx/Single;, "Lrx/Single<+TT2;>;"
-    .local p2, "o3":Lrx/Single;, "Lrx/Single<+TT3;>;"
-    .local p3, "o4":Lrx/Single;, "Lrx/Single<+TT4;>;"
-    .local p4, "o5":Lrx/Single;, "Lrx/Single<+TT5;>;"
-    .local p5, "o6":Lrx/Single;, "Lrx/Single<+TT6;>;"
-    .local p6, "o7":Lrx/Single;, "Lrx/Single<+TT7;>;"
-    .local p7, "o8":Lrx/Single;, "Lrx/Single<+TT8;>;"
-    .local p8, "o9":Lrx/Single;, "Lrx/Single<+TT9;>;"
+    .line 1215
+    .local p0, "s1":Lrx/Single;, "Lrx/Single<+TT1;>;"
+    .local p1, "s2":Lrx/Single;, "Lrx/Single<+TT2;>;"
+    .local p2, "s3":Lrx/Single;, "Lrx/Single<+TT3;>;"
+    .local p3, "s4":Lrx/Single;, "Lrx/Single<+TT4;>;"
+    .local p4, "s5":Lrx/Single;, "Lrx/Single<+TT5;>;"
+    .local p5, "s6":Lrx/Single;, "Lrx/Single<+TT6;>;"
+    .local p6, "s7":Lrx/Single;, "Lrx/Single<+TT7;>;"
+    .local p7, "s8":Lrx/Single;, "Lrx/Single<+TT8;>;"
+    .local p8, "s9":Lrx/Single;, "Lrx/Single<+TT9;>;"
     .local p9, "zipFunction":Lrx/functions/Func9;, "Lrx/functions/Func9<-TT1;-TT2;-TT3;-TT4;-TT5;-TT6;-TT7;-TT8;-TT9;+TR;>;"
     const/16 v0, 0x9
 
-    new-array v0, v0, [Lrx/Observable;
+    new-array v0, v0, [Lrx/Single;
 
     const/4 v1, 0x0
 
-    invoke-static {p0}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p0, v0, v1
 
     const/4 v1, 0x1
 
-    invoke-static {p1}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p1, v0, v1
 
     const/4 v1, 0x2
 
-    invoke-static {p2}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p2, v0, v1
 
     const/4 v1, 0x3
 
-    invoke-static {p3}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p3, v0, v1
 
     const/4 v1, 0x4
 
-    invoke-static {p4}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p4, v0, v1
 
     const/4 v1, 0x5
 
-    invoke-static {p5}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p5, v0, v1
 
     const/4 v1, 0x6
 
-    invoke-static {p6}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p6, v0, v1
 
     const/4 v1, 0x7
 
-    invoke-static {p7}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p7, v0, v1
 
     const/16 v1, 0x8
 
-    invoke-static {p8}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
+    aput-object p8, v0, v1
 
-    move-result-object v2
+    new-instance v1, Lrx/Single$13;
 
-    aput-object v2, v0, v1
+    invoke-direct {v1, p9}, Lrx/Single$13;-><init>(Lrx/functions/Func9;)V
 
-    invoke-static {v0}, Lrx/Single;->just(Ljava/lang/Object;)Lrx/Single;
-
-    move-result-object v0
-
-    new-instance v1, Lrx/internal/operators/OperatorZip;
-
-    invoke-direct {v1, p9}, Lrx/internal/operators/OperatorZip;-><init>(Lrx/functions/Func9;)V
-
-    invoke-direct {v0, v1}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+    invoke-static {v0, v1}, Lrx/internal/operators/SingleOperatorZip;->zip([Lrx/Single;Lrx/functions/FuncN;)Lrx/Single;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public static final zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func8;)Lrx/Single;
-    .registers 12
+.method public static zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func8;)Lrx/Single;
+    .registers 11
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T1:",
@@ -1554,101 +1858,65 @@
     .end annotation
 
     .prologue
-    .line 1127
-    .local p0, "o1":Lrx/Single;, "Lrx/Single<+TT1;>;"
-    .local p1, "o2":Lrx/Single;, "Lrx/Single<+TT2;>;"
-    .local p2, "o3":Lrx/Single;, "Lrx/Single<+TT3;>;"
-    .local p3, "o4":Lrx/Single;, "Lrx/Single<+TT4;>;"
-    .local p4, "o5":Lrx/Single;, "Lrx/Single<+TT5;>;"
-    .local p5, "o6":Lrx/Single;, "Lrx/Single<+TT6;>;"
-    .local p6, "o7":Lrx/Single;, "Lrx/Single<+TT7;>;"
-    .local p7, "o8":Lrx/Single;, "Lrx/Single<+TT8;>;"
+    .line 1171
+    .local p0, "s1":Lrx/Single;, "Lrx/Single<+TT1;>;"
+    .local p1, "s2":Lrx/Single;, "Lrx/Single<+TT2;>;"
+    .local p2, "s3":Lrx/Single;, "Lrx/Single<+TT3;>;"
+    .local p3, "s4":Lrx/Single;, "Lrx/Single<+TT4;>;"
+    .local p4, "s5":Lrx/Single;, "Lrx/Single<+TT5;>;"
+    .local p5, "s6":Lrx/Single;, "Lrx/Single<+TT6;>;"
+    .local p6, "s7":Lrx/Single;, "Lrx/Single<+TT7;>;"
+    .local p7, "s8":Lrx/Single;, "Lrx/Single<+TT8;>;"
     .local p8, "zipFunction":Lrx/functions/Func8;, "Lrx/functions/Func8<-TT1;-TT2;-TT3;-TT4;-TT5;-TT6;-TT7;-TT8;+TR;>;"
     const/16 v0, 0x8
 
-    new-array v0, v0, [Lrx/Observable;
+    new-array v0, v0, [Lrx/Single;
 
     const/4 v1, 0x0
 
-    invoke-static {p0}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p0, v0, v1
 
     const/4 v1, 0x1
 
-    invoke-static {p1}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p1, v0, v1
 
     const/4 v1, 0x2
 
-    invoke-static {p2}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p2, v0, v1
 
     const/4 v1, 0x3
 
-    invoke-static {p3}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p3, v0, v1
 
     const/4 v1, 0x4
 
-    invoke-static {p4}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p4, v0, v1
 
     const/4 v1, 0x5
 
-    invoke-static {p5}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p5, v0, v1
 
     const/4 v1, 0x6
 
-    invoke-static {p6}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p6, v0, v1
 
     const/4 v1, 0x7
 
-    invoke-static {p7}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
+    aput-object p7, v0, v1
 
-    move-result-object v2
+    new-instance v1, Lrx/Single$12;
 
-    aput-object v2, v0, v1
+    invoke-direct {v1, p8}, Lrx/Single$12;-><init>(Lrx/functions/Func8;)V
 
-    invoke-static {v0}, Lrx/Single;->just(Ljava/lang/Object;)Lrx/Single;
-
-    move-result-object v0
-
-    new-instance v1, Lrx/internal/operators/OperatorZip;
-
-    invoke-direct {v1, p8}, Lrx/internal/operators/OperatorZip;-><init>(Lrx/functions/Func8;)V
-
-    invoke-direct {v0, v1}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+    invoke-static {v0, v1}, Lrx/internal/operators/SingleOperatorZip;->zip([Lrx/Single;Lrx/functions/FuncN;)Lrx/Single;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public static final zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func7;)Lrx/Single;
-    .registers 11
+.method public static zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func7;)Lrx/Single;
+    .registers 10
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T1:",
@@ -1690,92 +1958,60 @@
     .end annotation
 
     .prologue
-    .line 1090
-    .local p0, "o1":Lrx/Single;, "Lrx/Single<+TT1;>;"
-    .local p1, "o2":Lrx/Single;, "Lrx/Single<+TT2;>;"
-    .local p2, "o3":Lrx/Single;, "Lrx/Single<+TT3;>;"
-    .local p3, "o4":Lrx/Single;, "Lrx/Single<+TT4;>;"
-    .local p4, "o5":Lrx/Single;, "Lrx/Single<+TT5;>;"
-    .local p5, "o6":Lrx/Single;, "Lrx/Single<+TT6;>;"
-    .local p6, "o7":Lrx/Single;, "Lrx/Single<+TT7;>;"
+    .line 1129
+    .local p0, "s1":Lrx/Single;, "Lrx/Single<+TT1;>;"
+    .local p1, "s2":Lrx/Single;, "Lrx/Single<+TT2;>;"
+    .local p2, "s3":Lrx/Single;, "Lrx/Single<+TT3;>;"
+    .local p3, "s4":Lrx/Single;, "Lrx/Single<+TT4;>;"
+    .local p4, "s5":Lrx/Single;, "Lrx/Single<+TT5;>;"
+    .local p5, "s6":Lrx/Single;, "Lrx/Single<+TT6;>;"
+    .local p6, "s7":Lrx/Single;, "Lrx/Single<+TT7;>;"
     .local p7, "zipFunction":Lrx/functions/Func7;, "Lrx/functions/Func7<-TT1;-TT2;-TT3;-TT4;-TT5;-TT6;-TT7;+TR;>;"
     const/4 v0, 0x7
 
-    new-array v0, v0, [Lrx/Observable;
+    new-array v0, v0, [Lrx/Single;
 
     const/4 v1, 0x0
 
-    invoke-static {p0}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p0, v0, v1
 
     const/4 v1, 0x1
 
-    invoke-static {p1}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p1, v0, v1
 
     const/4 v1, 0x2
 
-    invoke-static {p2}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p2, v0, v1
 
     const/4 v1, 0x3
 
-    invoke-static {p3}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p3, v0, v1
 
     const/4 v1, 0x4
 
-    invoke-static {p4}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p4, v0, v1
 
     const/4 v1, 0x5
 
-    invoke-static {p5}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p5, v0, v1
 
     const/4 v1, 0x6
 
-    invoke-static {p6}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
+    aput-object p6, v0, v1
 
-    move-result-object v2
+    new-instance v1, Lrx/Single$11;
 
-    aput-object v2, v0, v1
+    invoke-direct {v1, p7}, Lrx/Single$11;-><init>(Lrx/functions/Func7;)V
 
-    invoke-static {v0}, Lrx/Single;->just(Ljava/lang/Object;)Lrx/Single;
-
-    move-result-object v0
-
-    new-instance v1, Lrx/internal/operators/OperatorZip;
-
-    invoke-direct {v1, p7}, Lrx/internal/operators/OperatorZip;-><init>(Lrx/functions/Func7;)V
-
-    invoke-direct {v0, v1}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+    invoke-static {v0, v1}, Lrx/internal/operators/SingleOperatorZip;->zip([Lrx/Single;Lrx/functions/FuncN;)Lrx/Single;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public static final zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func6;)Lrx/Single;
-    .registers 10
+.method public static zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func6;)Lrx/Single;
+    .registers 9
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T1:",
@@ -1813,83 +2049,55 @@
     .end annotation
 
     .prologue
-    .line 1055
-    .local p0, "o1":Lrx/Single;, "Lrx/Single<+TT1;>;"
-    .local p1, "o2":Lrx/Single;, "Lrx/Single<+TT2;>;"
-    .local p2, "o3":Lrx/Single;, "Lrx/Single<+TT3;>;"
-    .local p3, "o4":Lrx/Single;, "Lrx/Single<+TT4;>;"
-    .local p4, "o5":Lrx/Single;, "Lrx/Single<+TT5;>;"
-    .local p5, "o6":Lrx/Single;, "Lrx/Single<+TT6;>;"
+    .line 1089
+    .local p0, "s1":Lrx/Single;, "Lrx/Single<+TT1;>;"
+    .local p1, "s2":Lrx/Single;, "Lrx/Single<+TT2;>;"
+    .local p2, "s3":Lrx/Single;, "Lrx/Single<+TT3;>;"
+    .local p3, "s4":Lrx/Single;, "Lrx/Single<+TT4;>;"
+    .local p4, "s5":Lrx/Single;, "Lrx/Single<+TT5;>;"
+    .local p5, "s6":Lrx/Single;, "Lrx/Single<+TT6;>;"
     .local p6, "zipFunction":Lrx/functions/Func6;, "Lrx/functions/Func6<-TT1;-TT2;-TT3;-TT4;-TT5;-TT6;+TR;>;"
     const/4 v0, 0x6
 
-    new-array v0, v0, [Lrx/Observable;
+    new-array v0, v0, [Lrx/Single;
 
     const/4 v1, 0x0
 
-    invoke-static {p0}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p0, v0, v1
 
     const/4 v1, 0x1
 
-    invoke-static {p1}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p1, v0, v1
 
     const/4 v1, 0x2
 
-    invoke-static {p2}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p2, v0, v1
 
     const/4 v1, 0x3
 
-    invoke-static {p3}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p3, v0, v1
 
     const/4 v1, 0x4
 
-    invoke-static {p4}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p4, v0, v1
 
     const/4 v1, 0x5
 
-    invoke-static {p5}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
+    aput-object p5, v0, v1
 
-    move-result-object v2
+    new-instance v1, Lrx/Single$10;
 
-    aput-object v2, v0, v1
+    invoke-direct {v1, p6}, Lrx/Single$10;-><init>(Lrx/functions/Func6;)V
 
-    invoke-static {v0}, Lrx/Single;->just(Ljava/lang/Object;)Lrx/Single;
-
-    move-result-object v0
-
-    new-instance v1, Lrx/internal/operators/OperatorZip;
-
-    invoke-direct {v1, p6}, Lrx/internal/operators/OperatorZip;-><init>(Lrx/functions/Func6;)V
-
-    invoke-direct {v0, v1}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+    invoke-static {v0, v1}, Lrx/internal/operators/SingleOperatorZip;->zip([Lrx/Single;Lrx/functions/FuncN;)Lrx/Single;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public static final zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func5;)Lrx/Single;
-    .registers 9
+.method public static zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func5;)Lrx/Single;
+    .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T1:",
@@ -1923,74 +2131,50 @@
     .end annotation
 
     .prologue
-    .line 1022
-    .local p0, "o1":Lrx/Single;, "Lrx/Single<+TT1;>;"
-    .local p1, "o2":Lrx/Single;, "Lrx/Single<+TT2;>;"
-    .local p2, "o3":Lrx/Single;, "Lrx/Single<+TT3;>;"
-    .local p3, "o4":Lrx/Single;, "Lrx/Single<+TT4;>;"
-    .local p4, "o5":Lrx/Single;, "Lrx/Single<+TT5;>;"
+    .line 1051
+    .local p0, "s1":Lrx/Single;, "Lrx/Single<+TT1;>;"
+    .local p1, "s2":Lrx/Single;, "Lrx/Single<+TT2;>;"
+    .local p2, "s3":Lrx/Single;, "Lrx/Single<+TT3;>;"
+    .local p3, "s4":Lrx/Single;, "Lrx/Single<+TT4;>;"
+    .local p4, "s5":Lrx/Single;, "Lrx/Single<+TT5;>;"
     .local p5, "zipFunction":Lrx/functions/Func5;, "Lrx/functions/Func5<-TT1;-TT2;-TT3;-TT4;-TT5;+TR;>;"
     const/4 v0, 0x5
 
-    new-array v0, v0, [Lrx/Observable;
+    new-array v0, v0, [Lrx/Single;
 
     const/4 v1, 0x0
 
-    invoke-static {p0}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p0, v0, v1
 
     const/4 v1, 0x1
 
-    invoke-static {p1}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p1, v0, v1
 
     const/4 v1, 0x2
 
-    invoke-static {p2}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p2, v0, v1
 
     const/4 v1, 0x3
 
-    invoke-static {p3}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p3, v0, v1
 
     const/4 v1, 0x4
 
-    invoke-static {p4}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
+    aput-object p4, v0, v1
 
-    move-result-object v2
+    new-instance v1, Lrx/Single$9;
 
-    aput-object v2, v0, v1
+    invoke-direct {v1, p5}, Lrx/Single$9;-><init>(Lrx/functions/Func5;)V
 
-    invoke-static {v0}, Lrx/Single;->just(Ljava/lang/Object;)Lrx/Single;
-
-    move-result-object v0
-
-    new-instance v1, Lrx/internal/operators/OperatorZip;
-
-    invoke-direct {v1, p5}, Lrx/internal/operators/OperatorZip;-><init>(Lrx/functions/Func5;)V
-
-    invoke-direct {v0, v1}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+    invoke-static {v0, v1}, Lrx/internal/operators/SingleOperatorZip;->zip([Lrx/Single;Lrx/functions/FuncN;)Lrx/Single;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public static final zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func4;)Lrx/Single;
-    .registers 8
+.method public static zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func4;)Lrx/Single;
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T1:",
@@ -2020,65 +2204,45 @@
     .end annotation
 
     .prologue
-    .line 992
-    .local p0, "o1":Lrx/Single;, "Lrx/Single<+TT1;>;"
-    .local p1, "o2":Lrx/Single;, "Lrx/Single<+TT2;>;"
-    .local p2, "o3":Lrx/Single;, "Lrx/Single<+TT3;>;"
-    .local p3, "o4":Lrx/Single;, "Lrx/Single<+TT4;>;"
+    .line 1016
+    .local p0, "s1":Lrx/Single;, "Lrx/Single<+TT1;>;"
+    .local p1, "s2":Lrx/Single;, "Lrx/Single<+TT2;>;"
+    .local p2, "s3":Lrx/Single;, "Lrx/Single<+TT3;>;"
+    .local p3, "s4":Lrx/Single;, "Lrx/Single<+TT4;>;"
     .local p4, "zipFunction":Lrx/functions/Func4;, "Lrx/functions/Func4<-TT1;-TT2;-TT3;-TT4;+TR;>;"
     const/4 v0, 0x4
 
-    new-array v0, v0, [Lrx/Observable;
+    new-array v0, v0, [Lrx/Single;
 
     const/4 v1, 0x0
 
-    invoke-static {p0}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p0, v0, v1
 
     const/4 v1, 0x1
 
-    invoke-static {p1}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p1, v0, v1
 
     const/4 v1, 0x2
 
-    invoke-static {p2}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p2, v0, v1
 
     const/4 v1, 0x3
 
-    invoke-static {p3}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
+    aput-object p3, v0, v1
 
-    move-result-object v2
+    new-instance v1, Lrx/Single$8;
 
-    aput-object v2, v0, v1
+    invoke-direct {v1, p4}, Lrx/Single$8;-><init>(Lrx/functions/Func4;)V
 
-    invoke-static {v0}, Lrx/Single;->just(Ljava/lang/Object;)Lrx/Single;
-
-    move-result-object v0
-
-    new-instance v1, Lrx/internal/operators/OperatorZip;
-
-    invoke-direct {v1, p4}, Lrx/internal/operators/OperatorZip;-><init>(Lrx/functions/Func4;)V
-
-    invoke-direct {v0, v1}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+    invoke-static {v0, v1}, Lrx/internal/operators/SingleOperatorZip;->zip([Lrx/Single;Lrx/functions/FuncN;)Lrx/Single;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public static final zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func3;)Lrx/Single;
-    .registers 7
+.method public static zip(Lrx/Single;Lrx/Single;Lrx/Single;Lrx/functions/Func3;)Lrx/Single;
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T1:",
@@ -2104,56 +2268,40 @@
     .end annotation
 
     .prologue
-    .line 964
-    .local p0, "o1":Lrx/Single;, "Lrx/Single<+TT1;>;"
-    .local p1, "o2":Lrx/Single;, "Lrx/Single<+TT2;>;"
-    .local p2, "o3":Lrx/Single;, "Lrx/Single<+TT3;>;"
+    .line 983
+    .local p0, "s1":Lrx/Single;, "Lrx/Single<+TT1;>;"
+    .local p1, "s2":Lrx/Single;, "Lrx/Single<+TT2;>;"
+    .local p2, "s3":Lrx/Single;, "Lrx/Single<+TT3;>;"
     .local p3, "zipFunction":Lrx/functions/Func3;, "Lrx/functions/Func3<-TT1;-TT2;-TT3;+TR;>;"
     const/4 v0, 0x3
 
-    new-array v0, v0, [Lrx/Observable;
+    new-array v0, v0, [Lrx/Single;
 
     const/4 v1, 0x0
 
-    invoke-static {p0}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p0, v0, v1
 
     const/4 v1, 0x1
 
-    invoke-static {p1}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p1, v0, v1
 
     const/4 v1, 0x2
 
-    invoke-static {p2}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
+    aput-object p2, v0, v1
 
-    move-result-object v2
+    new-instance v1, Lrx/Single$7;
 
-    aput-object v2, v0, v1
+    invoke-direct {v1, p3}, Lrx/Single$7;-><init>(Lrx/functions/Func3;)V
 
-    invoke-static {v0}, Lrx/Single;->just(Ljava/lang/Object;)Lrx/Single;
-
-    move-result-object v0
-
-    new-instance v1, Lrx/internal/operators/OperatorZip;
-
-    invoke-direct {v1, p3}, Lrx/internal/operators/OperatorZip;-><init>(Lrx/functions/Func3;)V
-
-    invoke-direct {v0, v1}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+    invoke-static {v0, v1}, Lrx/internal/operators/SingleOperatorZip;->zip([Lrx/Single;Lrx/functions/FuncN;)Lrx/Single;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public static final zip(Lrx/Single;Lrx/Single;Lrx/functions/Func2;)Lrx/Single;
-    .registers 6
+.method public static zip(Lrx/Single;Lrx/Single;Lrx/functions/Func2;)Lrx/Single;
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T1:",
@@ -2175,39 +2323,27 @@
     .end annotation
 
     .prologue
-    .line 938
-    .local p0, "o1":Lrx/Single;, "Lrx/Single<+TT1;>;"
-    .local p1, "o2":Lrx/Single;, "Lrx/Single<+TT2;>;"
+    .line 952
+    .local p0, "s1":Lrx/Single;, "Lrx/Single<+TT1;>;"
+    .local p1, "s2":Lrx/Single;, "Lrx/Single<+TT2;>;"
     .local p2, "zipFunction":Lrx/functions/Func2;, "Lrx/functions/Func2<-TT1;-TT2;+TR;>;"
     const/4 v0, 0x2
 
-    new-array v0, v0, [Lrx/Observable;
+    new-array v0, v0, [Lrx/Single;
 
     const/4 v1, 0x0
 
-    invoke-static {p0}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
-
-    move-result-object v2
-
-    aput-object v2, v0, v1
+    aput-object p0, v0, v1
 
     const/4 v1, 0x1
 
-    invoke-static {p1}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
+    aput-object p1, v0, v1
 
-    move-result-object v2
+    new-instance v1, Lrx/Single$6;
 
-    aput-object v2, v0, v1
+    invoke-direct {v1, p2}, Lrx/Single$6;-><init>(Lrx/functions/Func2;)V
 
-    invoke-static {v0}, Lrx/Single;->just(Ljava/lang/Object;)Lrx/Single;
-
-    move-result-object v0
-
-    new-instance v1, Lrx/internal/operators/OperatorZip;
-
-    invoke-direct {v1, p2}, Lrx/internal/operators/OperatorZip;-><init>(Lrx/functions/Func2;)V
-
-    invoke-direct {v0, v1}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+    invoke-static {v0, v1}, Lrx/internal/operators/SingleOperatorZip;->zip([Lrx/Single;Lrx/functions/FuncN;)Lrx/Single;
 
     move-result-object v0
 
@@ -2231,7 +2367,7 @@
     .end annotation
 
     .prologue
-    .line 230
+    .line 212
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "transformer":Lrx/Single$Transformer;, "Lrx/Single$Transformer<-TT;+TR;>;"
     invoke-interface {p1, p0}, Lrx/Single$Transformer;->call(Ljava/lang/Object;)Ljava/lang/Object;
@@ -2256,10 +2392,279 @@
     .end annotation
 
     .prologue
-    .line 1186
+    .line 1266
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     invoke-static {p0, p1}, Lrx/Single;->concat(Lrx/Single;Lrx/Single;)Lrx/Observable;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final delay(JLjava/util/concurrent/TimeUnit;)Lrx/Single;
+    .registers 5
+    .param p1, "delay"    # J
+    .param p3, "unit"    # Ljava/util/concurrent/TimeUnit;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(J",
+            "Ljava/util/concurrent/TimeUnit;",
+            ")",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 2377
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    invoke-static {}, Lrx/schedulers/Schedulers;->computation()Lrx/Scheduler;
+
+    move-result-object v0
+
+    invoke-virtual {p0, p1, p2, p3, v0}, Lrx/Single;->delay(JLjava/util/concurrent/TimeUnit;Lrx/Scheduler;)Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final delay(JLjava/util/concurrent/TimeUnit;Lrx/Scheduler;)Lrx/Single;
+    .registers 6
+    .param p1, "delay"    # J
+    .param p3, "unit"    # Ljava/util/concurrent/TimeUnit;
+    .param p4, "scheduler"    # Lrx/Scheduler;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(J",
+            "Ljava/util/concurrent/TimeUnit;",
+            "Lrx/Scheduler;",
+            ")",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 2355
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    new-instance v0, Lrx/internal/operators/OperatorDelay;
+
+    invoke-direct {v0, p1, p2, p3, p4}, Lrx/internal/operators/OperatorDelay;-><init>(JLjava/util/concurrent/TimeUnit;Lrx/Scheduler;)V
+
+    invoke-virtual {p0, v0}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final delaySubscription(Lrx/Observable;)Lrx/Single;
+    .registers 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lrx/Observable",
+            "<*>;)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 2693
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    .local p1, "other":Lrx/Observable;, "Lrx/Observable<*>;"
+    if-nez p1, :cond_8
+
+    .line 2694
+    new-instance v0, Ljava/lang/NullPointerException;
+
+    invoke-direct {v0}, Ljava/lang/NullPointerException;-><init>()V
+
+    throw v0
+
+    .line 2696
+    :cond_8
+    new-instance v0, Lrx/internal/operators/SingleOnSubscribeDelaySubscriptionOther;
+
+    invoke-direct {v0, p0, p1}, Lrx/internal/operators/SingleOnSubscribeDelaySubscriptionOther;-><init>(Lrx/Single;Lrx/Observable;)V
+
+    invoke-static {v0}, Lrx/Single;->create(Lrx/Single$OnSubscribe;)Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final doAfterTerminate(Lrx/functions/Action0;)Lrx/Single;
+    .registers 3
+    .param p1, "action"    # Lrx/functions/Action0;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lrx/functions/Action0;",
+            ")",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 2462
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    new-instance v0, Lrx/internal/operators/OperatorDoAfterTerminate;
+
+    invoke-direct {v0, p1}, Lrx/internal/operators/OperatorDoAfterTerminate;-><init>(Lrx/functions/Action0;)V
+
+    invoke-virtual {p0, v0}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final doOnError(Lrx/functions/Action1;)Lrx/Single;
+    .registers 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lrx/functions/Action1",
+            "<",
+            "Ljava/lang/Throwable;",
+            ">;)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 2260
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    .local p1, "onError":Lrx/functions/Action1;, "Lrx/functions/Action1<Ljava/lang/Throwable;>;"
+    new-instance v0, Lrx/Single$23;
+
+    invoke-direct {v0, p0, p1}, Lrx/Single$23;-><init>(Lrx/Single;Lrx/functions/Action1;)V
+
+    .line 2275
+    .local v0, "observer":Lrx/Observer;, "Lrx/Observer<TT;>;"
+    new-instance v1, Lrx/internal/operators/OperatorDoOnEach;
+
+    invoke-direct {v1, v0}, Lrx/internal/operators/OperatorDoOnEach;-><init>(Lrx/Observer;)V
+
+    invoke-virtual {p0, v1}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+
+    move-result-object v1
+
+    return-object v1
+.end method
+
+.method public final doOnSubscribe(Lrx/functions/Action0;)Lrx/Single;
+    .registers 3
+    .param p1, "subscribe"    # Lrx/functions/Action0;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lrx/functions/Action0;",
+            ")",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 2331
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    new-instance v0, Lrx/internal/operators/OperatorDoOnSubscribe;
+
+    invoke-direct {v0, p1}, Lrx/internal/operators/OperatorDoOnSubscribe;-><init>(Lrx/functions/Action0;)V
+
+    invoke-virtual {p0, v0}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final doOnSuccess(Lrx/functions/Action1;)Lrx/Single;
+    .registers 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lrx/functions/Action1",
+            "<-TT;>;)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 2294
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    .local p1, "onSuccess":Lrx/functions/Action1;, "Lrx/functions/Action1<-TT;>;"
+    new-instance v0, Lrx/Single$24;
+
+    invoke-direct {v0, p0, p1}, Lrx/Single$24;-><init>(Lrx/Single;Lrx/functions/Action1;)V
+
+    .line 2309
+    .local v0, "observer":Lrx/Observer;, "Lrx/Observer<TT;>;"
+    new-instance v1, Lrx/internal/operators/OperatorDoOnEach;
+
+    invoke-direct {v1, v0}, Lrx/internal/operators/OperatorDoOnEach;-><init>(Lrx/Observer;)V
+
+    invoke-virtual {p0, v1}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+
+    move-result-object v1
+
+    return-object v1
+.end method
+
+.method public final doOnUnsubscribe(Lrx/functions/Action0;)Lrx/Single;
+    .registers 3
+    .param p1, "action"    # Lrx/functions/Action0;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lrx/functions/Action0;",
+            ")",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 2441
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    new-instance v0, Lrx/internal/operators/OperatorDoOnUnsubscribe;
+
+    invoke-direct {v0, p1}, Lrx/internal/operators/OperatorDoOnUnsubscribe;-><init>(Lrx/functions/Action0;)V
+
+    invoke-virtual {p0, v0}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
 
     move-result-object v0
 
@@ -2283,9 +2688,27 @@
     .end annotation
 
     .prologue
-    .line 1205
+    .line 1285
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "func":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+Lrx/Single<+TR;>;>;"
+    instance-of v0, p0, Lrx/internal/util/ScalarSynchronousSingle;
+
+    if-eqz v0, :cond_b
+
+    .line 1286
+    check-cast p0, Lrx/internal/util/ScalarSynchronousSingle;
+
+    .end local p0    # "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    invoke-virtual {p0, p1}, Lrx/internal/util/ScalarSynchronousSingle;->scalarFlatMap(Lrx/functions/Func1;)Lrx/Single;
+
+    move-result-object v0
+
+    .line 1288
+    :goto_a
+    return-object v0
+
+    .restart local p0    # "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    :cond_b
     invoke-virtual {p0, p1}, Lrx/Single;->map(Lrx/functions/Func1;)Lrx/Single;
 
     move-result-object v0
@@ -2294,7 +2717,7 @@
 
     move-result-object v0
 
-    return-object v0
+    goto :goto_a
 .end method
 
 .method public final flatMapObservable(Lrx/functions/Func1;)Lrx/Observable;
@@ -2314,7 +2737,7 @@
     .end annotation
 
     .prologue
-    .line 1225
+    .line 1308
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "func":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+Lrx/Observable<+TR;>;>;"
     invoke-virtual {p0, p1}, Lrx/Single;->map(Lrx/functions/Func1;)Lrx/Single;
@@ -2328,6 +2751,38 @@
     invoke-static {v0}, Lrx/Observable;->merge(Lrx/Observable;)Lrx/Observable;
 
     move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final lift(Lrx/Observable$Operator;)Lrx/Single;
+    .registers 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<R:",
+            "Ljava/lang/Object;",
+            ">(",
+            "Lrx/Observable$Operator",
+            "<+TR;-TT;>;)",
+            "Lrx/Single",
+            "<TR;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 167
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    .local p1, "lift":Lrx/Observable$Operator;, "Lrx/Observable$Operator<+TR;-TT;>;"
+    new-instance v0, Lrx/Single;
+
+    new-instance v1, Lrx/Single$2;
+
+    invoke-direct {v1, p0, p1}, Lrx/Single$2;-><init>(Lrx/Single;Lrx/Observable$Operator;)V
+
+    invoke-direct {v0, v1}, Lrx/Single;-><init>(Lrx/Observable$OnSubscribe;)V
 
     return-object v0
 .end method
@@ -2347,14 +2802,14 @@
     .end annotation
 
     .prologue
-    .line 1244
+    .line 1327
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "func":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+TR;>;"
     new-instance v0, Lrx/internal/operators/OperatorMap;
 
     invoke-direct {v0, p1}, Lrx/internal/operators/OperatorMap;-><init>(Lrx/functions/Func1;)V
 
-    invoke-direct {p0, v0}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+    invoke-virtual {p0, v0}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
 
     move-result-object v0
 
@@ -2374,7 +2829,7 @@
     .end annotation
 
     .prologue
-    .line 1265
+    .line 1348
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "t1":Lrx/Single;, "Lrx/Single<+TT;>;"
     invoke-static {p0, p1}, Lrx/Single;->merge(Lrx/Single;Lrx/Single;)Lrx/Observable;
@@ -2385,7 +2840,7 @@
 .end method
 
 .method public final observeOn(Lrx/Scheduler;)Lrx/Single;
-    .registers 3
+    .registers 4
     .param p1, "scheduler"    # Lrx/Scheduler;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2398,15 +2853,99 @@
     .end annotation
 
     .prologue
-    .line 1287
+    .line 1370
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
-    new-instance v0, Lrx/internal/operators/OperatorObserveOn;
+    instance-of v0, p0, Lrx/internal/util/ScalarSynchronousSingle;
 
-    invoke-direct {v0, p1}, Lrx/internal/operators/OperatorObserveOn;-><init>(Lrx/Scheduler;)V
+    if-eqz v0, :cond_b
 
-    invoke-direct {p0, v0}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+    .line 1371
+    check-cast p0, Lrx/internal/util/ScalarSynchronousSingle;
+
+    .end local p0    # "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    invoke-virtual {p0, p1}, Lrx/internal/util/ScalarSynchronousSingle;->scalarScheduleOn(Lrx/Scheduler;)Lrx/Single;
 
     move-result-object v0
+
+    .line 1375
+    :goto_a
+    return-object v0
+
+    .restart local p0    # "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    :cond_b
+    new-instance v0, Lrx/internal/operators/OperatorObserveOn;
+
+    const/4 v1, 0x0
+
+    invoke-direct {v0, p1, v1}, Lrx/internal/operators/OperatorObserveOn;-><init>(Lrx/Scheduler;Z)V
+
+    invoke-virtual {p0, v0}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+
+    move-result-object v0
+
+    goto :goto_a
+.end method
+
+.method public final onErrorResumeNext(Lrx/Single;)Lrx/Single;
+    .registers 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lrx/Single",
+            "<+TT;>;)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 1439
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    .local p1, "resumeSingleInCaseOfError":Lrx/Single;, "Lrx/Single<+TT;>;"
+    new-instance v0, Lrx/Single;
+
+    invoke-static {p0, p1}, Lrx/internal/operators/SingleOperatorOnErrorResumeNext;->withOther(Lrx/Single;Lrx/Single;)Lrx/internal/operators/SingleOperatorOnErrorResumeNext;
+
+    move-result-object v1
+
+    invoke-direct {v0, v1}, Lrx/Single;-><init>(Lrx/Single$OnSubscribe;)V
+
+    return-object v0
+.end method
+
+.method public final onErrorResumeNext(Lrx/functions/Func1;)Lrx/Single;
+    .registers 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lrx/functions/Func1",
+            "<",
+            "Ljava/lang/Throwable;",
+            "+",
+            "Lrx/Single",
+            "<+TT;>;>;)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 1473
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    .local p1, "resumeFunctionInCaseOfError":Lrx/functions/Func1;, "Lrx/functions/Func1<Ljava/lang/Throwable;+Lrx/Single<+TT;>;>;"
+    new-instance v0, Lrx/Single;
+
+    invoke-static {p0, p1}, Lrx/internal/operators/SingleOperatorOnErrorResumeNext;->withFunction(Lrx/Single;Lrx/functions/Func1;)Lrx/internal/operators/SingleOperatorOnErrorResumeNext;
+
+    move-result-object v1
+
+    invoke-direct {v0, v1}, Lrx/Single;-><init>(Lrx/Single$OnSubscribe;)V
 
     return-object v0
 .end method
@@ -2426,14 +2965,143 @@
     .end annotation
 
     .prologue
-    .line 1317
+    .line 1405
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "resumeFunction":Lrx/functions/Func1;, "Lrx/functions/Func1<Ljava/lang/Throwable;+TT;>;"
-    new-instance v0, Lrx/internal/operators/OperatorOnErrorReturn;
+    invoke-static {p1}, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction;->withSingle(Lrx/functions/Func1;)Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction;
 
-    invoke-direct {v0, p1}, Lrx/internal/operators/OperatorOnErrorReturn;-><init>(Lrx/functions/Func1;)V
+    move-result-object v0
 
-    invoke-direct {p0, v0}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+    invoke-virtual {p0, v0}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final retry()Lrx/Single;
+    .registers 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .prologue
+    .line 2525
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    invoke-virtual {p0}, Lrx/Single;->toObservable()Lrx/Observable;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lrx/Observable;->retry()Lrx/Observable;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lrx/Observable;->toSingle()Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final retry(J)Lrx/Single;
+    .registers 4
+    .param p1, "count"    # J
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(J)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .prologue
+    .line 2550
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    invoke-virtual {p0}, Lrx/Single;->toObservable()Lrx/Observable;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1, p2}, Lrx/Observable;->retry(J)Lrx/Observable;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lrx/Observable;->toSingle()Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final retry(Lrx/functions/Func2;)Lrx/Single;
+    .registers 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lrx/functions/Func2",
+            "<",
+            "Ljava/lang/Integer;",
+            "Ljava/lang/Throwable;",
+            "Ljava/lang/Boolean;",
+            ">;)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .prologue
+    .line 2574
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    .local p1, "predicate":Lrx/functions/Func2;, "Lrx/functions/Func2<Ljava/lang/Integer;Ljava/lang/Throwable;Ljava/lang/Boolean;>;"
+    invoke-virtual {p0}, Lrx/Single;->toObservable()Lrx/Observable;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1}, Lrx/Observable;->retry(Lrx/functions/Func2;)Lrx/Observable;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lrx/Observable;->toSingle()Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final retryWhen(Lrx/functions/Func1;)Lrx/Single;
+    .registers 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lrx/functions/Func1",
+            "<",
+            "Lrx/Observable",
+            "<+",
+            "Ljava/lang/Throwable;",
+            ">;+",
+            "Lrx/Observable",
+            "<*>;>;)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .prologue
+    .line 2600
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    .local p1, "notificationHandler":Lrx/functions/Func1;, "Lrx/functions/Func1<Lrx/Observable<+Ljava/lang/Throwable;>;+Lrx/Observable<*>;>;"
+    invoke-virtual {p0}, Lrx/Single;->toObservable()Lrx/Observable;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1}, Lrx/Observable;->retryWhen(Lrx/functions/Func1;)Lrx/Observable;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lrx/Observable;->toSingle()Lrx/Single;
 
     move-result-object v0
 
@@ -2444,13 +3112,52 @@
     .registers 2
 
     .prologue
-    .line 1333
+    .line 1489
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
-    new-instance v0, Lrx/Single$6;
+    new-instance v0, Lrx/Single$14;
 
-    invoke-direct {v0, p0}, Lrx/Single$6;-><init>(Lrx/Single;)V
+    invoke-direct {v0, p0}, Lrx/Single$14;-><init>(Lrx/Single;)V
 
     invoke-virtual {p0, v0}, Lrx/Single;->subscribe(Lrx/Subscriber;)Lrx/Subscription;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final subscribe(Lrx/Observer;)Lrx/Subscription;
+    .registers 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lrx/Observer",
+            "<-TT;>;)",
+            "Lrx/Subscription;"
+        }
+    .end annotation
+
+    .prologue
+    .line 1645
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    .local p1, "observer":Lrx/Observer;, "Lrx/Observer<-TT;>;"
+    if-nez p1, :cond_a
+
+    .line 1646
+    new-instance v0, Ljava/lang/NullPointerException;
+
+    const-string v1, "observer is null"
+
+    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+
+    .line 1648
+    :cond_a
+    new-instance v0, Lrx/Single$17;
+
+    invoke-direct {v0, p0, p1}, Lrx/Single$17;-><init>(Lrx/Single;Lrx/Observer;)V
+
+    invoke-virtual {p0, v0}, Lrx/Single;->subscribe(Lrx/SingleSubscriber;)Lrx/Subscription;
 
     move-result-object v0
 
@@ -2469,21 +3176,21 @@
     .end annotation
 
     .prologue
-    .line 1610
+    .line 1783
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "te":Lrx/SingleSubscriber;, "Lrx/SingleSubscriber<-TT;>;"
-    new-instance v0, Lrx/Single$9;
+    new-instance v0, Lrx/Single$18;
 
-    invoke-direct {v0, p0, p1}, Lrx/Single$9;-><init>(Lrx/Single;Lrx/SingleSubscriber;)V
+    invoke-direct {v0, p0, p1}, Lrx/Single$18;-><init>(Lrx/Single;Lrx/SingleSubscriber;)V
 
-    .line 1628
+    .line 1801
     .local v0, "s":Lrx/Subscriber;, "Lrx/Subscriber<TT;>;"
     invoke-virtual {p1, v0}, Lrx/SingleSubscriber;->add(Lrx/Subscription;)V
 
-    .line 1629
+    .line 1802
     invoke-virtual {p0, v0}, Lrx/Single;->subscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    .line 1630
+    .line 1803
     return-object v0
 .end method
 
@@ -2499,12 +3206,12 @@
     .end annotation
 
     .prologue
-    .line 1521
+    .line 1698
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     if-nez p1, :cond_a
 
-    .line 1522
+    .line 1699
     new-instance v4, Ljava/lang/IllegalArgumentException;
 
     const-string v5, "observer can not be null"
@@ -2513,13 +3220,13 @@
 
     throw v4
 
-    .line 1524
+    .line 1701
     :cond_a
     iget-object v4, p0, Lrx/Single;->onSubscribe:Lrx/Observable$OnSubscribe;
 
     if-nez v4, :cond_16
 
-    .line 1525
+    .line 1702
     new-instance v4, Ljava/lang/IllegalStateException;
 
     const-string v5, "onSubscribe function can not be null."
@@ -2528,16 +3235,16 @@
 
     throw v4
 
-    .line 1533
+    .line 1710
     :cond_16
     invoke-virtual {p1}, Lrx/Subscriber;->onStart()V
 
-    .line 1540
+    .line 1717
     instance-of v4, p1, Lrx/observers/SafeSubscriber;
 
     if-nez v4, :cond_23
 
-    .line 1542
+    .line 1719
     new-instance v3, Lrx/observers/SafeSubscriber;
 
     invoke-direct {v3, p1}, Lrx/observers/SafeSubscriber;-><init>(Lrx/Subscriber;)V
@@ -2546,71 +3253,70 @@
     .local v3, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     move-object p1, v3
 
-    .line 1550
+    .line 1725
     .end local v3    # "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     .restart local p1    # "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     :cond_23
     :try_start_23
-    iget-object v4, p0, Lrx/Single;->onSubscribe:Lrx/Observable$OnSubscribe;
+    sget-object v4, Lrx/Single;->hook:Lrx/plugins/RxJavaSingleExecutionHook;
 
-    invoke-interface {v4, p1}, Lrx/Observable$OnSubscribe;->call(Ljava/lang/Object;)V
+    iget-object v5, p0, Lrx/Single;->onSubscribe:Lrx/Observable$OnSubscribe;
 
-    .line 1551
-    sget-object v4, Lrx/Single;->hook:Lrx/plugins/RxJavaObservableExecutionHook;
-
-    invoke-virtual {v4, p1}, Lrx/plugins/RxJavaObservableExecutionHook;->onSubscribeReturn(Lrx/Subscription;)Lrx/Subscription;
-    :try_end_2d
-    .catch Ljava/lang/Throwable; {:try_start_23 .. :try_end_2d} :catch_2f
+    invoke-virtual {v4, p0, v5}, Lrx/plugins/RxJavaSingleExecutionHook;->onSubscribeStart(Lrx/Single;Lrx/Observable$OnSubscribe;)Lrx/Observable$OnSubscribe;
 
     move-result-object v4
 
-    .line 1570
-    :goto_2e
+    invoke-interface {v4, p1}, Lrx/Observable$OnSubscribe;->call(Ljava/lang/Object;)V
+
+    .line 1726
+    sget-object v4, Lrx/Single;->hook:Lrx/plugins/RxJavaSingleExecutionHook;
+
+    invoke-virtual {v4, p1}, Lrx/plugins/RxJavaSingleExecutionHook;->onSubscribeReturn(Lrx/Subscription;)Lrx/Subscription;
+    :try_end_33
+    .catch Ljava/lang/Throwable; {:try_start_23 .. :try_end_33} :catch_35
+
+    move-result-object v4
+
+    .line 1743
+    :goto_34
     return-object v4
 
-    .line 1552
-    :catch_2f
+    .line 1727
+    :catch_35
     move-exception v0
 
-    .line 1554
+    .line 1729
     .local v0, "e":Ljava/lang/Throwable;
     invoke-static {v0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
 
-    .line 1557
-    :try_start_33
-    sget-object v4, Lrx/Single;->hook:Lrx/plugins/RxJavaObservableExecutionHook;
+    .line 1732
+    :try_start_39
+    sget-object v4, Lrx/Single;->hook:Lrx/plugins/RxJavaSingleExecutionHook;
 
-    invoke-virtual {v4, v0}, Lrx/plugins/RxJavaObservableExecutionHook;->onSubscribeError(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+    invoke-virtual {v4, v0}, Lrx/plugins/RxJavaSingleExecutionHook;->onSubscribeError(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
     move-result-object v4
 
     invoke-virtual {p1, v4}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-    :try_end_3c
-    .catch Lrx/exceptions/OnErrorNotImplementedException; {:try_start_33 .. :try_end_3c} :catch_41
-    .catch Ljava/lang/Throwable; {:try_start_33 .. :try_end_3c} :catch_43
+    :try_end_42
+    .catch Ljava/lang/Throwable; {:try_start_39 .. :try_end_42} :catch_47
 
-    .line 1570
+    .line 1743
     invoke-static {}, Lrx/subscriptions/Subscriptions;->empty()Lrx/Subscription;
 
     move-result-object v4
 
-    goto :goto_2e
+    goto :goto_34
 
-    .line 1558
-    :catch_41
+    .line 1733
+    :catch_47
     move-exception v1
 
-    .line 1560
-    .local v1, "e2":Lrx/exceptions/OnErrorNotImplementedException;
-    throw v1
-
-    .line 1561
-    .end local v1    # "e2":Lrx/exceptions/OnErrorNotImplementedException;
-    :catch_43
-    move-exception v1
-
-    .line 1564
+    .line 1734
     .local v1, "e2":Ljava/lang/Throwable;
+    invoke-static {v1}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+
+    .line 1737
     new-instance v2, Ljava/lang/RuntimeException;
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -2643,13 +3349,13 @@
 
     invoke-direct {v2, v4, v1}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
 
-    .line 1566
+    .line 1739
     .local v2, "r":Ljava/lang/RuntimeException;
-    sget-object v4, Lrx/Single;->hook:Lrx/plugins/RxJavaObservableExecutionHook;
+    sget-object v4, Lrx/Single;->hook:Lrx/plugins/RxJavaSingleExecutionHook;
 
-    invoke-virtual {v4, v2}, Lrx/plugins/RxJavaObservableExecutionHook;->onSubscribeError(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+    invoke-virtual {v4, v2}, Lrx/plugins/RxJavaSingleExecutionHook;->onSubscribeError(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
-    .line 1568
+    .line 1741
     throw v2
 .end method
 
@@ -2665,12 +3371,12 @@
     .end annotation
 
     .prologue
-    .line 1370
+    .line 1526
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "onSuccess":Lrx/functions/Action1;, "Lrx/functions/Action1<-TT;>;"
     if-nez p1, :cond_a
 
-    .line 1371
+    .line 1527
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "onSuccess can not be null"
@@ -2679,11 +3385,11 @@
 
     throw v0
 
-    .line 1374
+    .line 1530
     :cond_a
-    new-instance v0, Lrx/Single$7;
+    new-instance v0, Lrx/Single$15;
 
-    invoke-direct {v0, p0, p1}, Lrx/Single$7;-><init>(Lrx/Single;Lrx/functions/Action1;)V
+    invoke-direct {v0, p0, p1}, Lrx/Single$15;-><init>(Lrx/Single;Lrx/functions/Action1;)V
 
     invoke-virtual {p0, v0}, Lrx/Single;->subscribe(Lrx/Subscriber;)Lrx/Subscription;
 
@@ -2708,13 +3414,13 @@
     .end annotation
 
     .prologue
-    .line 1414
+    .line 1570
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "onSuccess":Lrx/functions/Action1;, "Lrx/functions/Action1<-TT;>;"
     .local p2, "onError":Lrx/functions/Action1;, "Lrx/functions/Action1<Ljava/lang/Throwable;>;"
     if-nez p1, :cond_a
 
-    .line 1415
+    .line 1571
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "onSuccess can not be null"
@@ -2723,11 +3429,11 @@
 
     throw v0
 
-    .line 1417
+    .line 1573
     :cond_a
     if-nez p2, :cond_14
 
-    .line 1418
+    .line 1574
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "onError can not be null"
@@ -2736,11 +3442,11 @@
 
     throw v0
 
-    .line 1421
+    .line 1577
     :cond_14
-    new-instance v0, Lrx/Single$8;
+    new-instance v0, Lrx/Single$16;
 
-    invoke-direct {v0, p0, p2, p1}, Lrx/Single$8;-><init>(Lrx/Single;Lrx/functions/Action1;Lrx/functions/Action1;)V
+    invoke-direct {v0, p0, p2, p1}, Lrx/Single$16;-><init>(Lrx/Single;Lrx/functions/Action1;Lrx/functions/Action1;)V
 
     invoke-virtual {p0, v0}, Lrx/Single;->subscribe(Lrx/Subscriber;)Lrx/Subscription;
 
@@ -2750,7 +3456,7 @@
 .end method
 
 .method public final subscribeOn(Lrx/Scheduler;)Lrx/Single;
-    .registers 4
+    .registers 3
     .param p1, "scheduler"    # Lrx/Scheduler;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2763,17 +3469,116 @@
     .end annotation
 
     .prologue
-    .line 1650
+    .line 1823
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
-    invoke-direct {p0}, Lrx/Single;->nest()Lrx/Single;
+    instance-of v0, p0, Lrx/internal/util/ScalarSynchronousSingle;
+
+    if-eqz v0, :cond_b
+
+    .line 1824
+    check-cast p0, Lrx/internal/util/ScalarSynchronousSingle;
+
+    .end local p0    # "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    invoke-virtual {p0, p1}, Lrx/internal/util/ScalarSynchronousSingle;->scalarScheduleOn(Lrx/Scheduler;)Lrx/Single;
 
     move-result-object v0
 
-    new-instance v1, Lrx/internal/operators/OperatorSubscribeOn;
+    .line 1826
+    :goto_a
+    return-object v0
 
-    invoke-direct {v1, p1}, Lrx/internal/operators/OperatorSubscribeOn;-><init>(Lrx/Scheduler;)V
+    .restart local p0    # "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    :cond_b
+    new-instance v0, Lrx/Single$19;
 
-    invoke-direct {v0, v1}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+    invoke-direct {v0, p0, p1}, Lrx/Single$19;-><init>(Lrx/Single;Lrx/Scheduler;)V
+
+    invoke-static {v0}, Lrx/Single;->create(Lrx/Single$OnSubscribe;)Lrx/Single;
+
+    move-result-object v0
+
+    goto :goto_a
+.end method
+
+.method public final takeUntil(Lrx/Completable;)Lrx/Single;
+    .registers 3
+    .param p1, "other"    # Lrx/Completable;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lrx/Completable;",
+            ")",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .prologue
+    .line 1882
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    new-instance v0, Lrx/Single$20;
+
+    invoke-direct {v0, p0, p1}, Lrx/Single$20;-><init>(Lrx/Single;Lrx/Completable;)V
+
+    invoke-virtual {p0, v0}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final takeUntil(Lrx/Observable;)Lrx/Single;
+    .registers 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<E:",
+            "Ljava/lang/Object;",
+            ">(",
+            "Lrx/Observable",
+            "<+TE;>;)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .prologue
+    .line 1958
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    .local p1, "other":Lrx/Observable;, "Lrx/Observable<+TE;>;"
+    new-instance v0, Lrx/Single$21;
+
+    invoke-direct {v0, p0, p1}, Lrx/Single$21;-><init>(Lrx/Single;Lrx/Observable;)V
+
+    invoke-virtual {p0, v0}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final takeUntil(Lrx/Single;)Lrx/Single;
+    .registers 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<E:",
+            "Ljava/lang/Object;",
+            ">(",
+            "Lrx/Single",
+            "<+TE;>;)",
+            "Lrx/Single",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .prologue
+    .line 2035
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    .local p1, "other":Lrx/Single;, "Lrx/Single<+TE;>;"
+    new-instance v0, Lrx/Single$22;
+
+    invoke-direct {v0, p0, p1}, Lrx/Single$22;-><init>(Lrx/Single;Lrx/Single;)V
+
+    invoke-virtual {p0, v0}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
 
     move-result-object v0
 
@@ -2795,7 +3600,7 @@
     .end annotation
 
     .prologue
-    .line 1684
+    .line 2118
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     const/4 v5, 0x0
 
@@ -2833,7 +3638,7 @@
     .end annotation
 
     .prologue
-    .line 1709
+    .line 2143
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     const/4 v5, 0x0
 
@@ -2868,7 +3673,7 @@
     .end annotation
 
     .prologue
-    .line 1733
+    .line 2167
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p4, "other":Lrx/Single;, "Lrx/Single<+TT;>;"
     invoke-static {}, Lrx/schedulers/Schedulers;->computation()Lrx/Scheduler;
@@ -2909,12 +3714,12 @@
     .end annotation
 
     .prologue
-    .line 1759
+    .line 2193
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p4, "other":Lrx/Single;, "Lrx/Single<+TT;>;"
     if-nez p4, :cond_b
 
-    .line 1760
+    .line 2194
     new-instance v0, Ljava/util/concurrent/TimeoutException;
 
     invoke-direct {v0}, Ljava/util/concurrent/TimeoutException;-><init>()V
@@ -2923,7 +3728,7 @@
 
     move-result-object p4
 
-    .line 1762
+    .line 2196
     :cond_b
     new-instance v1, Lrx/internal/operators/OperatorTimeout;
 
@@ -2939,7 +3744,30 @@
 
     invoke-direct/range {v1 .. v6}, Lrx/internal/operators/OperatorTimeout;-><init>(JLjava/util/concurrent/TimeUnit;Lrx/Observable;Lrx/Scheduler;)V
 
-    invoke-direct {p0, v1}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+    invoke-virtual {p0, v1}, Lrx/Single;->lift(Lrx/Observable$Operator;)Lrx/Single;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final toBlocking()Lrx/singles/BlockingSingle;
+    .registers 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Lrx/singles/BlockingSingle",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .annotation build Lrx/annotations/Experimental;
+    .end annotation
+
+    .prologue
+    .line 2211
+    .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
+    invoke-static {p0}, Lrx/singles/BlockingSingle;->from(Lrx/Single;)Lrx/singles/BlockingSingle;
 
     move-result-object v0
 
@@ -2957,7 +3785,7 @@
     .end annotation
 
     .prologue
-    .line 1661
+    .line 2095
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     invoke-static {p0}, Lrx/Single;->asObservable(Lrx/Single;)Lrx/Observable;
 
@@ -2966,77 +3794,84 @@
     return-object v0
 .end method
 
-.method public final unsafeSubscribe(Lrx/Subscriber;)V
+.method public final unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
     .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
             "Lrx/Subscriber",
-            "<-TT;>;)V"
+            "<-TT;>;)",
+            "Lrx/Subscription;"
         }
     .end annotation
 
     .prologue
-    .line 1458
+    .line 1614
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     :try_start_0
     invoke-virtual {p1}, Lrx/Subscriber;->onStart()V
 
-    .line 1461
-    iget-object v3, p0, Lrx/Single;->onSubscribe:Lrx/Observable$OnSubscribe;
+    .line 1615
+    sget-object v3, Lrx/Single;->hook:Lrx/plugins/RxJavaSingleExecutionHook;
+
+    iget-object v4, p0, Lrx/Single;->onSubscribe:Lrx/Observable$OnSubscribe;
+
+    invoke-virtual {v3, p0, v4}, Lrx/plugins/RxJavaSingleExecutionHook;->onSubscribeStart(Lrx/Single;Lrx/Observable$OnSubscribe;)Lrx/Observable$OnSubscribe;
+
+    move-result-object v3
 
     invoke-interface {v3, p1}, Lrx/Observable$OnSubscribe;->call(Ljava/lang/Object;)V
 
-    .line 1462
-    sget-object v3, Lrx/Single;->hook:Lrx/plugins/RxJavaObservableExecutionHook;
+    .line 1616
+    sget-object v3, Lrx/Single;->hook:Lrx/plugins/RxJavaSingleExecutionHook;
 
-    invoke-virtual {v3, p1}, Lrx/plugins/RxJavaObservableExecutionHook;->onSubscribeReturn(Lrx/Subscription;)Lrx/Subscription;
-    :try_end_d
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_d} :catch_e
+    invoke-virtual {v3, p1}, Lrx/plugins/RxJavaSingleExecutionHook;->onSubscribeReturn(Lrx/Subscription;)Lrx/Subscription;
+    :try_end_13
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_13} :catch_15
 
-    .line 1482
-    :goto_d
-    return-void
+    move-result-object v3
 
-    .line 1463
-    :catch_e
+    .line 1633
+    :goto_14
+    return-object v3
+
+    .line 1617
+    :catch_15
     move-exception v0
 
-    .line 1465
+    .line 1619
     .local v0, "e":Ljava/lang/Throwable;
     invoke-static {v0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
 
-    .line 1468
-    :try_start_12
-    sget-object v3, Lrx/Single;->hook:Lrx/plugins/RxJavaObservableExecutionHook;
+    .line 1622
+    :try_start_19
+    sget-object v3, Lrx/Single;->hook:Lrx/plugins/RxJavaSingleExecutionHook;
 
-    invoke-virtual {v3, v0}, Lrx/plugins/RxJavaObservableExecutionHook;->onSubscribeError(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+    invoke-virtual {v3, v0}, Lrx/plugins/RxJavaSingleExecutionHook;->onSubscribeError(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
     move-result-object v3
 
     invoke-virtual {p1, v3}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-    :try_end_1b
-    .catch Lrx/exceptions/OnErrorNotImplementedException; {:try_start_12 .. :try_end_1b} :catch_1c
-    .catch Ljava/lang/Throwable; {:try_start_12 .. :try_end_1b} :catch_1e
+    :try_end_22
+    .catch Ljava/lang/Throwable; {:try_start_19 .. :try_end_22} :catch_27
 
-    goto :goto_d
+    .line 1633
+    invoke-static {}, Lrx/subscriptions/Subscriptions;->unsubscribed()Lrx/Subscription;
 
-    .line 1469
-    :catch_1c
+    move-result-object v3
+
+    goto :goto_14
+
+    .line 1623
+    :catch_27
     move-exception v1
 
-    .line 1471
-    .local v1, "e2":Lrx/exceptions/OnErrorNotImplementedException;
-    throw v1
-
-    .line 1472
-    .end local v1    # "e2":Lrx/exceptions/OnErrorNotImplementedException;
-    :catch_1e
-    move-exception v1
-
-    .line 1475
+    .line 1624
     .local v1, "e2":Ljava/lang/Throwable;
+    invoke-static {v1}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+
+    .line 1627
     new-instance v2, Ljava/lang/RuntimeException;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -3069,13 +3904,13 @@
 
     invoke-direct {v2, v3, v1}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
 
-    .line 1477
+    .line 1629
     .local v2, "r":Ljava/lang/RuntimeException;
-    sget-object v3, Lrx/Single;->hook:Lrx/plugins/RxJavaObservableExecutionHook;
+    sget-object v3, Lrx/Single;->hook:Lrx/plugins/RxJavaSingleExecutionHook;
 
-    invoke-virtual {v3, v2}, Lrx/plugins/RxJavaObservableExecutionHook;->onSubscribeError(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+    invoke-virtual {v3, v2}, Lrx/plugins/RxJavaSingleExecutionHook;->onSubscribeError(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
-    .line 1479
+    .line 1631
     throw v2
 .end method
 
@@ -3098,7 +3933,7 @@
     .end annotation
 
     .prologue
-    .line 1789
+    .line 2238
     .local p0, "this":Lrx/Single;, "Lrx/Single<TT;>;"
     .local p1, "other":Lrx/Single;, "Lrx/Single<+TT2;>;"
     .local p2, "zipFunction":Lrx/functions/Func2;, "Lrx/functions/Func2<-TT;-TT2;+TR;>;"

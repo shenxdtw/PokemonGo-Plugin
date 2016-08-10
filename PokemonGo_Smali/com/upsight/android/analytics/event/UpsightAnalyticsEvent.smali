@@ -24,21 +24,24 @@
 
 # instance fields
 .field protected id:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonIgnore;
-    .end annotation
-
     .annotation runtime Lcom/upsight/android/persistence/annotation/UpsightStorableIdentifier;
     .end annotation
 .end field
 
 .field protected mCreationTsMs:J
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "ts"
     .end annotation
 .end field
 
 .field protected mPublisherData:Ljava/lang/Object;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "pub_data"
     .end annotation
 
@@ -50,19 +53,28 @@
 .end field
 
 .field protected mSequenceId:J
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "seq_id"
     .end annotation
 .end field
 
 .field protected mType:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "type"
     .end annotation
 .end field
 
 .field protected mUpsightData:Ljava/lang/Object;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "upsight_data"
     .end annotation
 
@@ -73,12 +85,11 @@
     .end annotation
 .end field
 
-.field protected mUserAttributes:Lcom/fasterxml/jackson/databind/node/ObjectNode;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonInclude;
-        value = .enum Lcom/fasterxml/jackson/annotation/JsonInclude$Include;->NON_NULL:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+.field protected mUserAttributes:Lcom/google/gson/JsonObject;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
     .end annotation
 
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "user_attributes"
     .end annotation
 .end field
@@ -89,11 +100,11 @@
     .registers 1
 
     .prologue
-    .line 56
+    .line 59
     .local p0, "this":Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;, "Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent<TU;TP;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 58
+    .line 61
     return-void
 .end method
 
@@ -109,13 +120,13 @@
     .end annotation
 
     .prologue
-    .line 49
+    .line 52
     .local p0, "this":Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;, "Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent<TU;TP;>;"
     .local p2, "upsightData":Ljava/lang/Object;, "TU;"
     .local p3, "publisherData":Ljava/lang/Object;, "TP;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 50
+    .line 53
     sget-object v0, Ljava/util/concurrent/TimeUnit;->SECONDS:Ljava/util/concurrent/TimeUnit;
 
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
@@ -130,16 +141,16 @@
 
     iput-wide v0, p0, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->mCreationTsMs:J
 
-    .line 51
+    .line 54
     iput-object p1, p0, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->mType:Ljava/lang/String;
 
-    .line 52
+    .line 55
     iput-object p2, p0, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->mUpsightData:Ljava/lang/Object;
 
-    .line 53
+    .line 56
     iput-object p3, p0, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->mPublisherData:Ljava/lang/Object;
 
-    .line 54
+    .line 57
     return-void
 .end method
 
@@ -149,7 +160,7 @@
     .registers 3
 
     .prologue
-    .line 61
+    .line 64
     .local p0, "this":Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;, "Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent<TU;TP;>;"
     iget-wide v0, p0, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->mCreationTsMs:J
 
@@ -160,7 +171,7 @@
     .registers 2
 
     .prologue
-    .line 69
+    .line 72
     .local p0, "this":Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;, "Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent<TU;TP;>;"
     iget-object v0, p0, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->id:Ljava/lang/String;
 
@@ -176,7 +187,7 @@
     .end annotation
 
     .prologue
-    .line 73
+    .line 76
     .local p0, "this":Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;, "Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent<TU;TP;>;"
     iget-object v0, p0, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->mPublisherData:Ljava/lang/Object;
 
@@ -187,7 +198,7 @@
     .registers 3
 
     .prologue
-    .line 81
+    .line 84
     .local p0, "this":Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;, "Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent<TU;TP;>;"
     iget-wide v0, p0, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->mSequenceId:J
 
@@ -198,7 +209,7 @@
     .registers 2
 
     .prologue
-    .line 65
+    .line 68
     .local p0, "this":Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;, "Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent<TU;TP;>;"
     iget-object v0, p0, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->mType:Ljava/lang/String;
 
@@ -214,7 +225,7 @@
     .end annotation
 
     .prologue
-    .line 77
+    .line 80
     .local p0, "this":Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;, "Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent<TU;TP;>;"
     iget-object v0, p0, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->mUpsightData:Ljava/lang/Object;
 
@@ -225,11 +236,11 @@
     .registers 2
 
     .prologue
-    .line 85
+    .line 88
     .local p0, "this":Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;, "Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent<TU;TP;>;"
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->mUserAttributes:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->mUserAttributes:Lcom/google/gson/JsonObject;
 
-    invoke-static {v0}, Lcom/upsight/android/analytics/internal/util/JacksonHelper$JSONObjectSerializer;->fromObjectNode(Lcom/fasterxml/jackson/databind/node/ObjectNode;)Lorg/json/JSONObject;
+    invoke-static {v0}, Lcom/upsight/android/analytics/internal/util/GsonHelper$JSONObjectSerializer;->fromJsonObject(Lcom/google/gson/JsonObject;)Lorg/json/JSONObject;
 
     move-result-object v0
 

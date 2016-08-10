@@ -1,220 +1,92 @@
-.class Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;
-.super Lrx/Subscriber;
+.class final Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;
+.super Ljava/lang/Object;
 .source "OperatorOnErrorResumeNextViaFunction.java"
+
+# interfaces
+.implements Lrx/functions/Func1;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction;->call(Lrx/Subscriber;)Lrx/Subscriber;
+    value = Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction;->withSingle(Lrx/functions/Func1;)Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x8
     name = null
 .end annotation
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
-        "Lrx/Subscriber",
-        "<TT;>;"
+        "Ljava/lang/Object;",
+        "Lrx/functions/Func1",
+        "<",
+        "Ljava/lang/Throwable;",
+        "Lrx/Observable",
+        "<+TT;>;>;"
     }
 .end annotation
 
 
 # instance fields
-.field private done:Z
-
-.field final synthetic this$0:Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction;
-
-.field final synthetic val$child:Lrx/Subscriber;
-
-.field final synthetic val$pa:Lrx/internal/producers/ProducerArbiter;
-
-.field final synthetic val$ssub:Lrx/subscriptions/SerialSubscription;
+.field final synthetic val$resumeFunction:Lrx/functions/Func1;
 
 
 # direct methods
-.method constructor <init>(Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction;Lrx/Subscriber;Lrx/internal/producers/ProducerArbiter;Lrx/subscriptions/SerialSubscription;)V
-    .registers 6
+.method constructor <init>(Lrx/functions/Func1;)V
+    .registers 2
 
     .prologue
-    .line 56
-    .local p0, "this":Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;, "Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction.1;"
-    iput-object p1, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->this$0:Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction;
+    .line 49
+    iput-object p1, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->val$resumeFunction:Lrx/functions/Func1;
 
-    iput-object p2, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->val$child:Lrx/Subscriber;
-
-    iput-object p3, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->val$pa:Lrx/internal/producers/ProducerArbiter;
-
-    iput-object p4, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->val$ssub:Lrx/subscriptions/SerialSubscription;
-
-    invoke-direct {p0}, Lrx/Subscriber;-><init>()V
-
-    .line 58
-    const/4 v0, 0x0
-
-    iput-boolean v0, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->done:Z
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public onCompleted()V
-    .registers 2
-
-    .prologue
-    .line 62
-    .local p0, "this":Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;, "Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction.1;"
-    iget-boolean v0, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->done:Z
-
-    if-eqz v0, :cond_5
-
-    .line 67
-    :goto_4
-    return-void
-
-    .line 65
-    :cond_5
-    const/4 v0, 0x1
-
-    iput-boolean v0, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->done:Z
-
-    .line 66
-    iget-object v0, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->val$child:Lrx/Subscriber;
-
-    invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
-
-    goto :goto_4
-.end method
-
-.method public onError(Ljava/lang/Throwable;)V
-    .registers 6
-    .param p1, "e"    # Ljava/lang/Throwable;
-
-    .prologue
-    .line 71
-    .local p0, "this":Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;, "Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction.1;"
-    iget-boolean v3, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->done:Z
-
-    if-eqz v3, :cond_8
-
-    .line 72
-    invoke-static {p1}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
-
-    .line 104
-    :goto_7
-    return-void
-
-    .line 75
-    :cond_8
-    const/4 v3, 0x1
-
-    iput-boolean v3, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->done:Z
-
-    .line 77
-    :try_start_b
-    invoke-static {}, Lrx/plugins/RxJavaPlugins;->getInstance()Lrx/plugins/RxJavaPlugins;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Lrx/plugins/RxJavaPlugins;->getErrorHandler()Lrx/plugins/RxJavaErrorHandler;
-
-    move-result-object v3
-
-    invoke-virtual {v3, p1}, Lrx/plugins/RxJavaErrorHandler;->handleError(Ljava/lang/Throwable;)V
-
-    .line 78
-    invoke-virtual {p0}, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->unsubscribe()V
-
-    .line 79
-    new-instance v1, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1$1;
-
-    invoke-direct {v1, p0}, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1$1;-><init>(Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;)V
-
-    .line 97
-    .local v1, "next":Lrx/Subscriber;, "Lrx/Subscriber<TT;>;"
-    iget-object v3, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->val$ssub:Lrx/subscriptions/SerialSubscription;
-
-    invoke-virtual {v3, v1}, Lrx/subscriptions/SerialSubscription;->set(Lrx/Subscription;)V
-
-    .line 99
-    iget-object v3, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->this$0:Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction;
-
-    # getter for: Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction;->resumeFunction:Lrx/functions/Func1;
-    invoke-static {v3}, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction;->access$000(Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction;)Lrx/functions/Func1;
-
-    move-result-object v3
-
-    invoke-interface {v3, p1}, Lrx/functions/Func1;->call(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v2
-
-    check-cast v2, Lrx/Observable;
-
-    .line 100
-    .local v2, "resume":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    invoke-virtual {v2, v1}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
-    :try_end_32
-    .catch Ljava/lang/Throwable; {:try_start_b .. :try_end_32} :catch_33
-
-    goto :goto_7
-
-    .line 101
-    .end local v1    # "next":Lrx/Subscriber;, "Lrx/Subscriber<TT;>;"
-    .end local v2    # "resume":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    :catch_33
-    move-exception v0
-
-    .line 102
-    .local v0, "e2":Ljava/lang/Throwable;
-    iget-object v3, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->val$child:Lrx/Subscriber;
-
-    invoke-virtual {v3, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-
-    goto :goto_7
-.end method
-
-.method public onNext(Ljava/lang/Object;)V
+.method public bridge synthetic call(Ljava/lang/Object;)Ljava/lang/Object;
     .registers 3
+    .param p1, "x0"    # Ljava/lang/Object;
+
+    .prologue
+    .line 49
+    check-cast p1, Ljava/lang/Throwable;
+
+    .end local p1    # "x0":Ljava/lang/Object;
+    invoke-virtual {p0, p1}, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->call(Ljava/lang/Throwable;)Lrx/Observable;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public call(Ljava/lang/Throwable;)Lrx/Observable;
+    .registers 3
+    .param p1, "t"    # Ljava/lang/Throwable;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "(TT;)V"
+            "(",
+            "Ljava/lang/Throwable;",
+            ")",
+            "Lrx/Observable",
+            "<+TT;>;"
         }
     .end annotation
 
     .prologue
-    .line 108
-    .local p0, "this":Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;, "Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction.1;"
-    .local p1, "t":Ljava/lang/Object;, "TT;"
-    iget-boolean v0, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->done:Z
+    .line 52
+    iget-object v0, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->val$resumeFunction:Lrx/functions/Func1;
 
-    if-eqz v0, :cond_5
+    invoke-interface {v0, p1}, Lrx/functions/Func1;->call(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 112
-    :goto_4
-    return-void
+    move-result-object v0
 
-    .line 111
-    :cond_5
-    iget-object v0, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->val$child:Lrx/Subscriber;
+    invoke-static {v0}, Lrx/Observable;->just(Ljava/lang/Object;)Lrx/Observable;
 
-    invoke-virtual {v0, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+    move-result-object v0
 
-    goto :goto_4
-.end method
-
-.method public setProducer(Lrx/Producer;)V
-    .registers 3
-    .param p1, "producer"    # Lrx/Producer;
-
-    .prologue
-    .line 116
-    .local p0, "this":Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;, "Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction.1;"
-    iget-object v0, p0, Lrx/internal/operators/OperatorOnErrorResumeNextViaFunction$1;->val$pa:Lrx/internal/producers/ProducerArbiter;
-
-    invoke-virtual {v0, p1}, Lrx/internal/producers/ProducerArbiter;->setProducer(Lrx/Producer;)V
-
-    .line 117
-    return-void
+    return-object v0
 .end method

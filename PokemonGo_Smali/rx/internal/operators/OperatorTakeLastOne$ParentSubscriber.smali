@@ -62,7 +62,7 @@
     .registers 1
 
     .prologue
-    .line 57
+    .line 58
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
@@ -83,17 +83,17 @@
     .end annotation
 
     .prologue
-    .line 70
+    .line 71
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;, "Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
-    .line 62
+    .line 63
     sget-object v0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->ABSENT:Ljava/lang/Object;
 
     iput-object v0, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->last:Ljava/lang/Object;
 
-    .line 68
+    .line 69
     new-instance v0, Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v1, 0x0
@@ -102,10 +102,10 @@
 
     iput-object v0, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->state:Ljava/util/concurrent/atomic/AtomicInteger;
 
-    .line 71
+    .line 72
     iput-object p1, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->child:Lrx/Subscriber;
 
-    .line 72
+    .line 73
     return-void
 .end method
 
@@ -116,35 +116,35 @@
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;, "Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber<TT;>;"
     const/4 v3, 0x0
 
-    .line 138
+    .line 139
     invoke-virtual {p0}, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->isUnsubscribed()Z
 
     move-result v2
 
     if-eqz v2, :cond_a
 
-    .line 140
+    .line 141
     iput-object v3, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->last:Ljava/lang/Object;
 
-    .line 159
+    .line 160
     :cond_9
     :goto_9
     return-void
 
-    .line 146
+    .line 147
     :cond_a
     iget-object v1, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->last:Ljava/lang/Object;
 
-    .line 148
+    .line 149
     .local v1, "t":Ljava/lang/Object;, "TT;"
     iput-object v3, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->last:Ljava/lang/Object;
 
-    .line 149
+    .line 150
     sget-object v2, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->ABSENT:Ljava/lang/Object;
 
     if-eq v1, v2, :cond_17
 
-    .line 151
+    .line 152
     :try_start_12
     iget-object v2, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->child:Lrx/Subscriber;
 
@@ -152,7 +152,7 @@
     :try_end_17
     .catch Ljava/lang/Throwable; {:try_start_12 .. :try_end_17} :catch_23
 
-    .line 157
+    .line 158
     :cond_17
     invoke-virtual {p0}, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->isUnsubscribed()Z
 
@@ -160,22 +160,22 @@
 
     if-nez v2, :cond_9
 
-    .line 158
+    .line 159
     iget-object v2, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v2}, Lrx/Subscriber;->onCompleted()V
 
     goto :goto_9
 
-    .line 152
+    .line 153
     :catch_23
     move-exception v0
 
-    .line 153
+    .line 154
     .local v0, "e":Ljava/lang/Throwable;
     iget-object v2, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->child:Lrx/Subscriber;
 
-    invoke-virtual {v2, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, v2}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     goto :goto_9
 .end method
@@ -189,24 +189,24 @@
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;, "Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber<TT;>;"
     const/4 v4, 0x2
 
-    .line 105
+    .line 106
     iget-object v1, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->last:Ljava/lang/Object;
 
     sget-object v2, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->ABSENT:Ljava/lang/Object;
 
     if-ne v1, v2, :cond_d
 
-    .line 106
+    .line 107
     iget-object v1, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v1}, Lrx/Subscriber;->onCompleted()V
 
-    .line 129
+    .line 130
     :cond_c
     :goto_c
     return-void
 
-    .line 117
+    .line 118
     :cond_d
     iget-object v1, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->state:Ljava/util/concurrent/atomic/AtomicInteger;
 
@@ -214,11 +214,11 @@
 
     move-result v0
 
-    .line 118
+    .line 119
     .local v0, "s":I
     if-nez v0, :cond_20
 
-    .line 119
+    .line 120
     iget-object v1, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->state:Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v2, 0x0
@@ -233,11 +233,11 @@
 
     goto :goto_c
 
-    .line 122
+    .line 123
     :cond_20
     if-ne v0, v4, :cond_c
 
-    .line 123
+    .line 124
     iget-object v1, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->state:Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v2, 0x3
@@ -248,7 +248,7 @@
 
     if-eqz v1, :cond_d
 
-    .line 124
+    .line 125
     invoke-direct {p0}, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->emit()V
 
     goto :goto_c
@@ -259,13 +259,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 163
+    .line 164
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;, "Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 164
+    .line 165
     return-void
 .end method
 
@@ -278,12 +278,12 @@
     .end annotation
 
     .prologue
-    .line 168
+    .line 169
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;, "Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber<TT;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     iput-object p1, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->last:Ljava/lang/Object;
 
-    .line 169
+    .line 170
     return-void
 .end method
 
@@ -295,14 +295,14 @@
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;, "Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber<TT;>;"
     const/4 v4, 0x1
 
-    .line 75
+    .line 76
     const-wide/16 v2, 0x0
 
     cmp-long v1, p1, v2
 
     if-lez v1, :cond_19
 
-    .line 84
+    .line 85
     :cond_7
     iget-object v1, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->state:Ljava/util/concurrent/atomic/AtomicInteger;
 
@@ -310,11 +310,11 @@
 
     move-result v0
 
-    .line 85
+    .line 86
     .local v0, "s":I
     if-nez v0, :cond_1a
 
-    .line 86
+    .line 87
     iget-object v1, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->state:Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v2, 0x0
@@ -327,18 +327,18 @@
 
     if-eqz v1, :cond_7
 
-    .line 100
+    .line 101
     .end local v0    # "s":I
     :cond_19
     :goto_19
     return-void
 
-    .line 90
+    .line 91
     .restart local v0    # "s":I
     :cond_1a
     if-ne v0, v4, :cond_19
 
-    .line 91
+    .line 92
     iget-object v1, p0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->state:Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v2, 0x3
@@ -349,7 +349,7 @@
 
     if-eqz v1, :cond_7
 
-    .line 92
+    .line 93
     invoke-direct {p0}, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->emit()V
 
     goto :goto_19

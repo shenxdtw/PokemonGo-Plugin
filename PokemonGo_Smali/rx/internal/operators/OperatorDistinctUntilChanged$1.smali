@@ -42,7 +42,7 @@
     .registers 4
 
     .prologue
-    .line 53
+    .line 54
     .local p0, "this":Lrx/internal/operators/OperatorDistinctUntilChanged$1;, "Lrx/internal/operators/OperatorDistinctUntilChanged.1;"
     .local p2, "x0":Lrx/Subscriber;, "Lrx/Subscriber<*>;"
     iput-object p1, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->this$0:Lrx/internal/operators/OperatorDistinctUntilChanged;
@@ -60,13 +60,13 @@
     .registers 2
 
     .prologue
-    .line 81
+    .line 88
     .local p0, "this":Lrx/internal/operators/OperatorDistinctUntilChanged$1;, "Lrx/internal/operators/OperatorDistinctUntilChanged.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    .line 82
+    .line 89
     return-void
 .end method
 
@@ -75,18 +75,18 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 76
+    .line 83
     .local p0, "this":Lrx/internal/operators/OperatorDistinctUntilChanged$1;, "Lrx/internal/operators/OperatorDistinctUntilChanged.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 77
+    .line 84
     return-void
 .end method
 
 .method public onNext(Ljava/lang/Object;)V
-    .registers 6
+    .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -94,69 +94,87 @@
     .end annotation
 
     .prologue
-    .line 58
+    .line 59
     .local p0, "this":Lrx/internal/operators/OperatorDistinctUntilChanged$1;, "Lrx/internal/operators/OperatorDistinctUntilChanged.1;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     iget-object v0, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->previousKey:Ljava/lang/Object;
 
-    .line 59
-    .local v0, "currentKey":Ljava/lang/Object;, "TU;"
-    iget-object v2, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->this$0:Lrx/internal/operators/OperatorDistinctUntilChanged;
-
-    iget-object v2, v2, Lrx/internal/operators/OperatorDistinctUntilChanged;->keySelector:Lrx/functions/Func1;
-
-    invoke-interface {v2, p1}, Lrx/functions/Func1;->call(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v1
-
-    .line 60
-    .local v1, "key":Ljava/lang/Object;, "TU;"
-    iput-object v1, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->previousKey:Ljava/lang/Object;
-
     .line 62
-    iget-boolean v2, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->hasPrevious:Z
+    .local v0, "currentKey":Ljava/lang/Object;, "TU;"
+    :try_start_2
+    iget-object v3, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->this$0:Lrx/internal/operators/OperatorDistinctUntilChanged;
 
-    if-eqz v2, :cond_26
+    iget-object v3, v3, Lrx/internal/operators/OperatorDistinctUntilChanged;->keySelector:Lrx/functions/Func1;
 
-    .line 63
-    if-eq v0, v1, :cond_20
+    invoke-interface {v3, p1}, Lrx/functions/Func1;->call(Ljava/lang/Object;)Ljava/lang/Object;
+    :try_end_9
+    .catch Ljava/lang/Throwable; {:try_start_2 .. :try_end_9} :catch_20
 
-    if-eqz v1, :cond_1a
+    move-result-object v2
 
-    invoke-virtual {v1, v0}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+    .line 67
+    .local v2, "key":Ljava/lang/Object;, "TU;"
+    iput-object v2, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->previousKey:Ljava/lang/Object;
 
-    move-result v2
+    .line 69
+    iget-boolean v3, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->hasPrevious:Z
 
-    if-nez v2, :cond_20
+    if-eqz v3, :cond_2d
 
-    .line 64
+    .line 70
+    if-eq v0, v2, :cond_27
+
+    if-eqz v2, :cond_1a
+
+    invoke-virtual {v2, v0}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-nez v3, :cond_27
+
+    .line 71
     :cond_1a
-    iget-object v2, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->val$child:Lrx/Subscriber;
+    iget-object v3, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->val$child:Lrx/Subscriber;
 
-    invoke-virtual {v2, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+    invoke-virtual {v3, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    .line 72
+    .line 79
+    .end local v2    # "key":Ljava/lang/Object;, "TU;"
     :goto_1f
     return-void
 
-    .line 66
-    :cond_20
-    const-wide/16 v2, 0x1
+    .line 63
+    :catch_20
+    move-exception v1
 
-    invoke-virtual {p0, v2, v3}, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->request(J)V
+    .line 64
+    .local v1, "e":Ljava/lang/Throwable;
+    iget-object v3, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->val$child:Lrx/Subscriber;
+
+    invoke-static {v1, v3, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
     goto :goto_1f
 
-    .line 69
-    :cond_26
-    const/4 v2, 0x1
+    .line 73
+    .end local v1    # "e":Ljava/lang/Throwable;
+    .restart local v2    # "key":Ljava/lang/Object;, "TU;"
+    :cond_27
+    const-wide/16 v4, 0x1
 
-    iput-boolean v2, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->hasPrevious:Z
+    invoke-virtual {p0, v4, v5}, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->request(J)V
 
-    .line 70
-    iget-object v2, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->val$child:Lrx/Subscriber;
+    goto :goto_1f
 
-    invoke-virtual {v2, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+    .line 76
+    :cond_2d
+    const/4 v3, 0x1
+
+    iput-boolean v3, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->hasPrevious:Z
+
+    .line 77
+    iget-object v3, p0, Lrx/internal/operators/OperatorDistinctUntilChanged$1;->val$child:Lrx/Subscriber;
+
+    invoke-virtual {v3, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
     goto :goto_1f
 .end method

@@ -36,13 +36,13 @@
     .registers 2
 
     .prologue
-    .line 215
+    .line 210
     .local p0, "this":Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;, "Lrx/internal/operators/OnSubscribeJoin<TTLeft;TTRight;TTLeftDuration;TTRightDuration;TR;>.ResultSink.RightSubscriber;"
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
-    .line 297
+    .line 292
     return-void
 .end method
 
@@ -54,11 +54,11 @@
     .param p2, "resource"    # Lrx/Subscription;
 
     .prologue
-    .line 218
+    .line 213
     .local p0, "this":Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;, "Lrx/internal/operators/OnSubscribeJoin<TTLeft;TTRight;TTLeftDuration;TTRightDuration;TR;>.ResultSink.RightSubscriber;"
     const/4 v0, 0x0
 
-    .line 219
+    .line 214
     .local v0, "complete":Z
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -66,7 +66,7 @@
 
     monitor-enter v2
 
-    .line 220
+    .line 215
     :try_start_6
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -98,37 +98,37 @@
 
     if-eqz v1, :cond_25
 
-    .line 221
+    .line 216
     const/4 v0, 0x1
 
-    .line 223
+    .line 218
     :cond_25
     monitor-exit v2
     :try_end_26
     .catchall {:try_start_6 .. :try_end_26} :catchall_37
 
-    .line 224
+    .line 219
     if-eqz v0, :cond_3a
 
-    .line 225
+    .line 220
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
     iget-object v1, v1, Lrx/internal/operators/OnSubscribeJoin$ResultSink;->subscriber:Lrx/Subscriber;
 
     invoke-virtual {v1}, Lrx/Subscriber;->onCompleted()V
 
-    .line 226
+    .line 221
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
     iget-object v1, v1, Lrx/internal/operators/OnSubscribeJoin$ResultSink;->subscriber:Lrx/Subscriber;
 
     invoke-virtual {v1}, Lrx/Subscriber;->unsubscribe()V
 
-    .line 230
+    .line 225
     :goto_36
     return-void
 
-    .line 223
+    .line 218
     :catchall_37
     move-exception v1
 
@@ -139,7 +139,7 @@
 
     throw v1
 
-    .line 228
+    .line 223
     :cond_3a
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -154,11 +154,11 @@
     .registers 5
 
     .prologue
-    .line 281
+    .line 276
     .local p0, "this":Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;, "Lrx/internal/operators/OnSubscribeJoin<TTLeft;TTRight;TTLeftDuration;TTRightDuration;TR;>.ResultSink.RightSubscriber;"
     const/4 v0, 0x0
 
-    .line 282
+    .line 277
     .local v0, "complete":Z
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -166,7 +166,7 @@
 
     monitor-enter v2
 
-    .line 283
+    .line 278
     :try_start_6
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -174,7 +174,7 @@
 
     iput-boolean v3, v1, Lrx/internal/operators/OnSubscribeJoin$ResultSink;->rightDone:Z
 
-    .line 284
+    .line 279
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
     iget-boolean v1, v1, Lrx/internal/operators/OnSubscribeJoin$ResultSink;->leftDone:Z
@@ -191,38 +191,38 @@
 
     if-eqz v1, :cond_1c
 
-    .line 285
+    .line 280
     :cond_1b
     const/4 v0, 0x1
 
-    .line 287
+    .line 282
     :cond_1c
     monitor-exit v2
     :try_end_1d
     .catchall {:try_start_6 .. :try_end_1d} :catchall_2e
 
-    .line 288
+    .line 283
     if-eqz v0, :cond_31
 
-    .line 289
+    .line 284
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
     iget-object v1, v1, Lrx/internal/operators/OnSubscribeJoin$ResultSink;->subscriber:Lrx/Subscriber;
 
     invoke-virtual {v1}, Lrx/Subscriber;->onCompleted()V
 
-    .line 290
+    .line 285
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
     iget-object v1, v1, Lrx/internal/operators/OnSubscribeJoin$ResultSink;->subscriber:Lrx/Subscriber;
 
     invoke-virtual {v1}, Lrx/Subscriber;->unsubscribe()V
 
-    .line 294
+    .line 289
     :goto_2d
     return-void
 
-    .line 287
+    .line 282
     :catchall_2e
     move-exception v1
 
@@ -233,7 +233,7 @@
 
     throw v1
 
-    .line 292
+    .line 287
     :cond_31
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -249,7 +249,7 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 275
+    .line 270
     .local p0, "this":Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;, "Lrx/internal/operators/OnSubscribeJoin<TTLeft;TTRight;TTLeftDuration;TTRightDuration;TR;>.ResultSink.RightSubscriber;"
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -257,14 +257,14 @@
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 276
+    .line 271
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
     iget-object v0, v0, Lrx/internal/operators/OnSubscribeJoin$ResultSink;->subscriber:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->unsubscribe()V
 
-    .line 277
+    .line 272
     return-void
 .end method
 
@@ -277,7 +277,7 @@
     .end annotation
 
     .prologue
-    .line 236
+    .line 231
     .local p0, "this":Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;, "Lrx/internal/operators/OnSubscribeJoin<TTLeft;TTRight;TTLeftDuration;TTRightDuration;TR;>.ResultSink.RightSubscriber;"
     .local p1, "args":Ljava/lang/Object;, "TTRight;"
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
@@ -286,7 +286,7 @@
 
     monitor-enter v12
 
-    .line 237
+    .line 232
     :try_start_5
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -296,7 +296,7 @@
 
     iput v13, v11, Lrx/internal/operators/OnSubscribeJoin$ResultSink;->rightId:I
 
-    .line 238
+    .line 233
     .local v5, "id":I
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -308,23 +308,23 @@
 
     invoke-interface {v11, v13, p1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 239
+    .line 234
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
     iget v3, v11, Lrx/internal/operators/OnSubscribeJoin$ResultSink;->leftId:I
 
-    .line 240
+    .line 235
     .local v3, "highLeftId":I
     monitor-exit v12
     :try_end_1d
     .catchall {:try_start_5 .. :try_end_1d} :catchall_82
 
-    .line 241
+    .line 236
     new-instance v8, Lrx/subscriptions/SerialSubscription;
 
     invoke-direct {v8}, Lrx/subscriptions/SerialSubscription;-><init>()V
 
-    .line 242
+    .line 237
     .local v8, "md":Lrx/subscriptions/SerialSubscription;
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -332,7 +332,7 @@
 
     invoke-virtual {v11, v8}, Lrx/subscriptions/CompositeSubscription;->add(Lrx/Subscription;)V
 
-    .line 246
+    .line 241
     :try_start_29
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -346,13 +346,13 @@
 
     check-cast v1, Lrx/Observable;
 
-    .line 248
+    .line 243
     .local v1, "duration":Lrx/Observable;, "Lrx/Observable<TTRightDuration;>;"
     new-instance v0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber$RightDurationSubscriber;
 
     invoke-direct {v0, p0, v5}, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber$RightDurationSubscriber;-><init>(Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;I)V
 
-    .line 249
+    .line 244
     .local v0, "d2":Lrx/Subscriber;, "Lrx/Subscriber<TTRightDuration;>;"
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -360,15 +360,15 @@
 
     invoke-virtual {v11, v0}, Lrx/subscriptions/CompositeSubscription;->add(Lrx/Subscription;)V
 
-    .line 251
+    .line 246
     invoke-virtual {v1, v0}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    .line 254
+    .line 249
     new-instance v6, Ljava/util/ArrayList;
 
     invoke-direct {v6}, Ljava/util/ArrayList;-><init>()V
 
-    .line 255
+    .line 250
     .local v6, "leftValues":Ljava/util/List;, "Ljava/util/List<TTLeft;>;"
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -378,7 +378,7 @@
     :try_end_4e
     .catch Ljava/lang/Throwable; {:try_start_29 .. :try_end_4e} :catch_7d
 
-    .line 256
+    .line 251
     :try_start_4e
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -407,7 +407,7 @@
 
     check-cast v2, Ljava/util/Map$Entry;
 
-    .line 257
+    .line 252
     .local v2, "entry":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/Integer;TTLeft;>;"
     invoke-interface {v2}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
 
@@ -421,7 +421,7 @@
 
     if-ge v11, v3, :cond_5a
 
-    .line 258
+    .line 253
     invoke-interface {v2}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
 
     move-result-object v11
@@ -430,7 +430,7 @@
 
     goto :goto_5a
 
-    .line 261
+    .line 256
     .end local v2    # "entry":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/Integer;TTLeft;>;"
     .end local v4    # "i$":Ljava/util/Iterator;
     :catchall_7a
@@ -445,23 +445,23 @@
     :try_end_7d
     .catch Ljava/lang/Throwable; {:try_start_7c .. :try_end_7d} :catch_7d
 
-    .line 268
+    .line 263
     .end local v0    # "d2":Lrx/Subscriber;, "Lrx/Subscriber<TTRightDuration;>;"
     .end local v1    # "duration":Lrx/Observable;, "Lrx/Observable<TTRightDuration;>;"
     .end local v6    # "leftValues":Ljava/util/List;, "Ljava/util/List<TTLeft;>;"
     :catch_7d
     move-exception v10
 
-    .line 269
+    .line 264
     .local v10, "t":Ljava/lang/Throwable;
-    invoke-virtual {p0, v10}, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v10, p0}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
-    .line 271
+    .line 266
     .end local v10    # "t":Ljava/lang/Throwable;
     :cond_81
     return-void
 
-    .line 240
+    .line 235
     .end local v3    # "highLeftId":I
     .end local v5    # "id":I
     .end local v8    # "md":Lrx/subscriptions/SerialSubscription;
@@ -475,7 +475,7 @@
 
     throw v11
 
-    .line 261
+    .line 256
     .restart local v0    # "d2":Lrx/Subscriber;, "Lrx/Subscriber<TTRightDuration;>;"
     .restart local v1    # "duration":Lrx/Observable;, "Lrx/Observable<TTRightDuration;>;"
     .restart local v3    # "highLeftId":I
@@ -489,7 +489,7 @@
     :try_end_86
     .catchall {:try_start_85 .. :try_end_86} :catchall_7a
 
-    .line 263
+    .line 258
     :try_start_86
     invoke-interface {v6}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
@@ -506,7 +506,7 @@
 
     move-result-object v7
 
-    .line 264
+    .line 259
     .local v7, "lv":Ljava/lang/Object;, "TTLeft;"
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 
@@ -518,7 +518,7 @@
 
     move-result-object v9
 
-    .line 265
+    .line 260
     .local v9, "result":Ljava/lang/Object;, "TR;"
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeJoin$ResultSink$RightSubscriber;->this$1:Lrx/internal/operators/OnSubscribeJoin$ResultSink;
 

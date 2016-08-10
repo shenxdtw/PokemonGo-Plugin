@@ -124,7 +124,7 @@
     .registers 3
 
     .prologue
-    .line 104
+    .line 108
     monitor-enter p0
 
     :try_start_1
@@ -144,12 +144,12 @@
     :try_end_10
     .catchall {:try_start_1 .. :try_end_10} :catchall_12
 
-    .line 105
+    .line 109
     monitor-exit p0
 
     return-void
 
-    .line 104
+    .line 108
     :catchall_12
     move-exception v0
 
@@ -177,7 +177,7 @@
     return-object v0
 .end method
 
-.method private native nativeAuthTokenCallback(ILjava/lang/String;)V
+.method private native nativeAuthTokenCallback(ILjava/lang/String;Ljava/lang/String;)V
 .end method
 
 
@@ -200,7 +200,7 @@
 
     .line 63
     .local v3, "resultCode":I
-    if-eqz v3, :cond_29
+    if-eqz v3, :cond_2d
 
     .line 64
     const-string v8, "NianticAccountManager"
@@ -230,23 +230,33 @@
 
     const-string v9, ""
 
-    invoke-virtual {p0, v8, v9}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;)V
+    invoke-virtual {p0}, Lcom/nianticlabs/nia/account/NianticAccountManager;->getAccountName()Ljava/lang/String;
 
-    .line 101
-    :cond_28
-    :goto_28
+    move-result-object v10
+
+    invoke-virtual {p0, v8, v9, v10}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 105
+    :cond_2c
+    :goto_2c
     return-void
 
     .line 71
-    :cond_29
-    :try_start_29
+    :cond_2d
+    :try_start_2d
     invoke-virtual {p0}, Lcom/nianticlabs/nia/account/NianticAccountManager;->getAccountName()Ljava/lang/String;
 
     move-result-object v0
 
     .line 72
     .local v0, "accountName":Ljava/lang/String;
-    if-eqz v0, :cond_70
+    if-eqz v0, :cond_92
+
+    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v8
+
+    if-nez v8, :cond_92
 
     .line 73
     const-string v8, "NianticAccountManager"
@@ -292,107 +302,150 @@
 
     .line 75
     .local v4, "scope":Ljava/lang/String;
+    const-string v8, "NianticAccountManager"
+
+    new-instance v9, Ljava/lang/StringBuilder;
+
+    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v10, "scope: "
+
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v9
+
+    invoke-virtual {v9, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v9
+
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v9
+
+    invoke-static {v8, v9}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 76
     iget-object v8, p0, Lcom/nianticlabs/nia/account/NianticAccountManager;->context:Landroid/content/Context;
 
     invoke-static {v8, v0, v4}, Lcom/google/android/gms/auth/GoogleAuthUtil;->getToken(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v5
 
-    .line 76
+    .line 77
     .local v5, "token":Ljava/lang/String;
     sget-object v8, Lcom/nianticlabs/nia/account/NianticAccountManager$Status;->OK:Lcom/nianticlabs/nia/account/NianticAccountManager$Status;
 
-    invoke-virtual {p0, v8, v5}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;)V
-    :try_end_65
-    .catch Lcom/google/android/gms/auth/UserRecoverableAuthException; {:try_start_29 .. :try_end_65} :catch_72
-    .catch Ljava/io/IOException; {:try_start_29 .. :try_end_65} :catch_75
-    .catch Lcom/google/android/gms/auth/GoogleAuthException; {:try_start_29 .. :try_end_65} :catch_85
+    invoke-virtual {p0, v8, v5, v0}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;Ljava/lang/String;)V
+    :try_end_87
+    .catch Lcom/google/android/gms/auth/UserRecoverableAuthException; {:try_start_2d .. :try_end_87} :catch_94
+    .catch Ljava/io/IOException; {:try_start_2d .. :try_end_87} :catch_9e
+    .catch Lcom/google/android/gms/auth/GoogleAuthException; {:try_start_2d .. :try_end_87} :catch_b2
 
-    .line 91
+    .line 95
     .end local v0    # "accountName":Ljava/lang/String;
     .end local v4    # "scope":Ljava/lang/String;
     .end local v5    # "token":Ljava/lang/String;
-    :goto_65
-    if-eqz v7, :cond_28
+    :goto_87
+    if-eqz v7, :cond_2c
 
-    .line 92
+    .line 96
     new-instance v8, Lcom/nianticlabs/nia/account/NianticAccountManager$1;
 
     invoke-direct {v8, p0, p1}, Lcom/nianticlabs/nia/account/NianticAccountManager$1;-><init>(Lcom/nianticlabs/nia/account/NianticAccountManager;Ljava/lang/String;)V
 
     invoke-static {v8}, Lcom/nianticlabs/nia/account/NianticAccountManager;->runOnUiThread(Ljava/lang/Runnable;)V
 
-    goto :goto_28
+    goto :goto_2c
 
-    .line 78
+    .line 79
     .restart local v0    # "accountName":Ljava/lang/String;
-    :cond_70
+    :cond_92
     const/4 v7, 0x1
 
-    goto :goto_65
+    goto :goto_87
 
-    .line 80
+    .line 81
     .end local v0    # "accountName":Ljava/lang/String;
-    :catch_72
+    :catch_94
     move-exception v2
 
     .line 82
     .local v2, "ex":Lcom/google/android/gms/auth/UserRecoverableAuthException;
-    const/4 v7, 0x1
+    const-string v8, "NianticAccountManager"
 
-    .line 89
-    goto :goto_65
+    const-string v9, "Use account activity"
 
-    .line 83
-    .end local v2    # "ex":Lcom/google/android/gms/auth/UserRecoverableAuthException;
-    :catch_75
-    move-exception v6
+    invoke-static {v8, v9}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 84
+    const/4 v7, 0x1
+
+    .line 93
+    goto :goto_87
+
+    .line 85
+    .end local v2    # "ex":Lcom/google/android/gms/auth/UserRecoverableAuthException;
+    :catch_9e
+    move-exception v6
+
+    .line 86
     .local v6, "transientEx":Ljava/io/IOException;
+    invoke-virtual {p0}, Lcom/nianticlabs/nia/account/NianticAccountManager;->getAccountName()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 87
+    .restart local v0    # "accountName":Ljava/lang/String;
     const-string v8, "NianticAccountManager"
 
     const-string v9, "Unable to get authToken at this time."
 
     invoke-static {v8, v9, v6}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 85
+    .line 88
     sget-object v8, Lcom/nianticlabs/nia/account/NianticAccountManager$Status;->NON_RECOVERABLE_ERROR:Lcom/nianticlabs/nia/account/NianticAccountManager$Status;
 
     const-string v9, ""
 
-    invoke-virtual {p0, v8, v9}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;)V
+    invoke-virtual {p0, v8, v9, v0}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;Ljava/lang/String;)V
 
-    goto :goto_65
+    goto :goto_87
 
-    .line 86
+    .line 89
+    .end local v0    # "accountName":Ljava/lang/String;
     .end local v6    # "transientEx":Ljava/io/IOException;
-    :catch_85
+    :catch_b2
     move-exception v1
 
-    .line 87
+    .line 90
     .local v1, "authEx":Lcom/google/android/gms/auth/GoogleAuthException;
+    invoke-virtual {p0}, Lcom/nianticlabs/nia/account/NianticAccountManager;->getAccountName()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 91
+    .restart local v0    # "accountName":Ljava/lang/String;
     const-string v8, "NianticAccountManager"
 
     const-string v9, "User cannot be authenticated."
 
     invoke-static {v8, v9, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 88
+    .line 92
     sget-object v8, Lcom/nianticlabs/nia/account/NianticAccountManager$Status;->NON_RECOVERABLE_ERROR:Lcom/nianticlabs/nia/account/NianticAccountManager$Status;
 
     const-string v9, ""
 
-    invoke-virtual {p0, v8, v9}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;)V
+    invoke-virtual {p0, v8, v9, v0}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;Ljava/lang/String;)V
 
-    goto :goto_65
+    goto :goto_87
 .end method
 
 .method public declared-synchronized getAccountName()Ljava/lang/String;
     .registers 4
 
     .prologue
-    .line 108
+    .line 112
     monitor-enter p0
 
     :try_start_1
@@ -400,11 +453,11 @@
 
     const-string v1, "accountName"
 
-    const/4 v2, 0x0
+    const-string v2, ""
 
     invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-    :try_end_9
-    .catchall {:try_start_1 .. :try_end_9} :catchall_c
+    :try_end_a
+    .catchall {:try_start_1 .. :try_end_a} :catchall_d
 
     move-result-object v0
 
@@ -412,7 +465,7 @@
 
     return-object v0
 
-    :catchall_c
+    :catchall_d
     move-exception v0
 
     monitor-exit p0
@@ -425,7 +478,7 @@
     .param p1, "accountName"    # Ljava/lang/String;
 
     .prologue
-    .line 112
+    .line 116
     monitor-enter p0
 
     :try_start_1
@@ -445,12 +498,12 @@
     :try_end_10
     .catchall {:try_start_1 .. :try_end_10} :catchall_12
 
-    .line 113
+    .line 117
     monitor-exit p0
 
     return-void
 
-    .line 112
+    .line 116
     :catchall_12
     move-exception v0
 
@@ -459,13 +512,14 @@
     throw v0
 .end method
 
-.method public declared-synchronized setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;)V
-    .registers 5
+.method public declared-synchronized setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;Ljava/lang/String;)V
+    .registers 8
     .param p1, "status"    # Lcom/nianticlabs/nia/account/NianticAccountManager$Status;
     .param p2, "authToken"    # Ljava/lang/String;
+    .param p3, "accountName"    # Ljava/lang/String;
 
     .prologue
-    .line 116
+    .line 120
     monitor-enter p0
 
     :try_start_1
@@ -473,42 +527,75 @@
 
     monitor-enter v1
     :try_end_4
-    .catchall {:try_start_1 .. :try_end_4} :catchall_11
+    .catchall {:try_start_1 .. :try_end_4} :catchall_33
 
-    .line 117
+    .line 121
     :try_start_4
+    const-string v0, "NianticAccountManager"
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "setAuthToken: "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    const-string v3, " - "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 122
     invoke-virtual {p1}, Lcom/nianticlabs/nia/account/NianticAccountManager$Status;->ordinal()I
 
     move-result v0
 
-    invoke-direct {p0, v0, p2}, Lcom/nianticlabs/nia/account/NianticAccountManager;->nativeAuthTokenCallback(ILjava/lang/String;)V
+    invoke-direct {p0, v0, p2, p3}, Lcom/nianticlabs/nia/account/NianticAccountManager;->nativeAuthTokenCallback(ILjava/lang/String;Ljava/lang/String;)V
 
-    .line 118
+    .line 123
     monitor-exit v1
-    :try_end_c
-    .catchall {:try_start_4 .. :try_end_c} :catchall_e
+    :try_end_2e
+    .catchall {:try_start_4 .. :try_end_2e} :catchall_30
 
-    .line 119
+    .line 124
     monitor-exit p0
 
     return-void
 
-    .line 118
-    :catchall_e
+    .line 123
+    :catchall_30
     move-exception v0
 
-    :try_start_f
+    :try_start_31
     monitor-exit v1
-    :try_end_10
-    .catchall {:try_start_f .. :try_end_10} :catchall_e
+    :try_end_32
+    .catchall {:try_start_31 .. :try_end_32} :catchall_30
 
-    :try_start_10
+    :try_start_32
     throw v0
-    :try_end_11
-    .catchall {:try_start_10 .. :try_end_11} :catchall_11
+    :try_end_33
+    .catchall {:try_start_32 .. :try_end_33} :catchall_33
 
-    .line 116
-    :catchall_11
+    .line 120
+    :catchall_33
     move-exception v0
 
     monitor-exit p0

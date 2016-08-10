@@ -45,10 +45,8 @@
 
 
 # virtual methods
-.method public bridge synthetic create(Lcom/upsight/android/analytics/internal/action/ActionContext;Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/upsight/android/analytics/internal/action/Action;
+.method public bridge synthetic create(Lcom/upsight/android/analytics/internal/action/ActionContext;Lcom/google/gson/JsonObject;)Lcom/upsight/android/analytics/internal/action/Action;
     .registers 4
-    .param p1, "x0"    # Lcom/upsight/android/analytics/internal/action/ActionContext;
-    .param p2, "x1"    # Lcom/fasterxml/jackson/databind/JsonNode;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lcom/upsight/android/UpsightException;
@@ -59,23 +57,22 @@
     .line 99
     check-cast p1, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;
 
-    .end local p1    # "x0":Lcom/upsight/android/analytics/internal/action/ActionContext;
-    invoke-virtual {p0, p1, p2}, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionFactory;->create(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/upsight/android/analytics/internal/action/Action;
+    invoke-virtual {p0, p1, p2}, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionFactory;->create(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;Lcom/google/gson/JsonObject;)Lcom/upsight/android/analytics/internal/action/Action;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public create(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/upsight/android/analytics/internal/action/Action;
+.method public create(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;Lcom/google/gson/JsonObject;)Lcom/upsight/android/analytics/internal/action/Action;
     .registers 9
     .param p1, "actionContext"    # Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;
-    .param p2, "actionJSON"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p2, "actionJSON"    # Lcom/google/gson/JsonObject;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
             "Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;",
-            "Lcom/fasterxml/jackson/databind/JsonNode;",
+            "Lcom/google/gson/JsonObject;",
             ")",
             "Lcom/upsight/android/analytics/internal/action/Action",
             "<",
@@ -112,11 +109,11 @@
     :cond_d
     const-string v3, "action_type"
 
-    invoke-virtual {p2, v3}, Lcom/fasterxml/jackson/databind/JsonNode;->get(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {p2, v3}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
 
     move-result-object v3
 
-    invoke-virtual {v3}, Lcom/fasterxml/jackson/databind/JsonNode;->asText()Ljava/lang/String;
+    invoke-virtual {v3}, Lcom/google/gson/JsonElement;->getAsString()Ljava/lang/String;
 
     move-result-object v1
 
@@ -124,12 +121,12 @@
     .local v1, "actionType":Ljava/lang/String;
     const-string v3, "parameters"
 
-    invoke-virtual {p2, v3}, Lcom/fasterxml/jackson/databind/JsonNode;->get(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {p2, v3}, Lcom/google/gson/JsonObject;->getAsJsonObject(Ljava/lang/String;)Lcom/google/gson/JsonObject;
 
     move-result-object v0
 
     .line 113
-    .local v0, "actionParams":Lcom/fasterxml/jackson/databind/JsonNode;
+    .local v0, "actionParams":Lcom/google/gson/JsonObject;
     # getter for: Lcom/upsight/android/managedvariables/internal/type/UxmContentActions;->FACTORY_MAP:Ljava/util/Map;
     invoke-static {}, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions;->access$500()Ljava/util/Map;
 
@@ -158,7 +155,7 @@
 
     .line 117
     :cond_33
-    invoke-interface {v2, p1, v1, v0}, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$InternalFactory;->create(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/upsight/android/analytics/internal/action/Action;
+    invoke-interface {v2, p1, v1, v0}, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$InternalFactory;->create(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)Lcom/upsight/android/analytics/internal/action/Action;
 
     move-result-object v3
 

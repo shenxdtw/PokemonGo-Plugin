@@ -15,19 +15,49 @@
 
 
 # static fields
-.field public static final Loading:I = 0x7f07002a
+.field public static final Captured_Pokemon:I = 0x7f070028
+
+.field public static final Connecting_GO_Plus:I = 0x7f070029
+
+.field public static final Disconnecting_GO_Plus:I = 0x7f07002a
+
+.field public static final Item_Inventory_Full:I = 0x7f07002b
+
+.field public static final Loading:I = 0x7f070039
+
+.field public static final Out_Of_Pokeballs:I = 0x7f07002c
+
+.field public static final Pokemon_Escaped:I = 0x7f07002d
+
+.field public static final Pokemon_Go_Plus:I = 0x7f07002e
+
+.field public static final Pokemon_Inventory_Full:I = 0x7f07002f
+
+.field public static final Pokestop_Cooldown:I = 0x7f070030
+
+.field public static final Pokestop_Out_Of_Range:I = 0x7f070031
+
+.field public static final Retrieved_Items:I = 0x7f070032
+
+.field public static final Retrieved_an_Item:I = 0x7f070033
+
+.field public static final Session_Ended:I = 0x7f070034
+
+.field public static final Tracked_Pokemon_Found:I = 0x7f070035
+
+.field public static final Tracked_Pokemon_Lost:I = 0x7f070036
 
 .field public static final accept:I = 0x7f070024
 
-.field public static final action_settings:I = 0x7f070034
+.field public static final action_settings:I = 0x7f070043
 
-.field public static final app_name:I = 0x7f070028
+.field public static final app_name:I = 0x7f070037
 
 .field public static final auth_google_play_services_client_facebook_display_name:I = 0x7f070001
 
 .field public static final auth_google_play_services_client_google_display_name:I = 0x7f070000
 
-.field public static final com_crashlytics_android_build_id:I = 0x7f070029
+.field public static final com_crashlytics_android_build_id:I = 0x7f070038
 
 .field public static final common_android_wear_notification_needs_update_text:I = 0x7f070004
 
@@ -99,35 +129,35 @@
 
 .field public static final decline:I = 0x7f070025
 
-.field public static final gameservices_app_misconfigured:I = 0x7f070030
+.field public static final gameservices_app_misconfigured:I = 0x7f07003f
 
-.field public static final gameservices_license_failed:I = 0x7f070031
+.field public static final gameservices_license_failed:I = 0x7f070040
 
-.field public static final gameservices_sign_in_failed:I = 0x7f07002f
+.field public static final gameservices_sign_in_failed:I = 0x7f07003e
 
-.field public static final lunar_console_log_details_dialog_button_copy_to_clipboard:I = 0x7f070035
+.field public static final lunar_console_log_details_dialog_button_copy_to_clipboard:I = 0x7f070044
 
-.field public static final lunar_console_log_details_dialog_no_stacktrace_warning:I = 0x7f070036
+.field public static final lunar_console_log_details_dialog_no_stacktrace_warning:I = 0x7f070045
 
-.field public static final lunar_console_overflow_warning_text:I = 0x7f070037
+.field public static final lunar_console_overflow_warning_text:I = 0x7f070046
 
-.field public static final lunar_console_title_fake_status_bar:I = 0x7f070038
+.field public static final lunar_console_title_fake_status_bar:I = 0x7f070047
 
-.field public static final np_toolbar_back:I = 0x7f07002b
+.field public static final np_toolbar_back:I = 0x7f07003a
 
-.field public static final np_toolbar_done:I = 0x7f07002e
+.field public static final np_toolbar_done:I = 0x7f07003d
 
-.field public static final np_toolbar_forward:I = 0x7f07002c
+.field public static final np_toolbar_forward:I = 0x7f07003b
 
-.field public static final np_toolbar_reload:I = 0x7f07002d
+.field public static final np_toolbar_reload:I = 0x7f07003c
 
 .field public static final store_picture_message:I = 0x7f070023
 
 .field public static final store_picture_title:I = 0x7f070022
 
-.field public static final upsight_sdk_build:I = 0x7f070032
+.field public static final upsight_sdk_build:I = 0x7f070041
 
-.field public static final upsight_sdk_version:I = 0x7f070033
+.field public static final upsight_sdk_version:I = 0x7f070042
 
 
 # direct methods
@@ -135,7 +165,7 @@
     .registers 1
 
     .prologue
-    .line 246
+    .line 248
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

@@ -1,6 +1,9 @@
 .class Lrx/internal/operators/OperatorMapNotification$1;
-.super Lrx/Subscriber;
+.super Ljava/lang/Object;
 .source "OperatorMapNotification.java"
+
+# interfaces
+.implements Lrx/Producer;
 
 
 # annotations
@@ -13,203 +16,42 @@
     name = null
 .end annotation
 
-.annotation system Ldalvik/annotation/Signature;
-    value = {
-        "Lrx/Subscriber",
-        "<TT;>;"
-    }
-.end annotation
-
 
 # instance fields
-.field emitter:Lrx/internal/operators/OperatorMapNotification$SingleEmitter;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Lrx/internal/operators/OperatorMapNotification$SingleEmitter",
-            "<TR;>;"
-        }
-    .end annotation
-.end field
-
 .field final synthetic this$0:Lrx/internal/operators/OperatorMapNotification;
 
-.field final synthetic val$o:Lrx/Subscriber;
+.field final synthetic val$parent:Lrx/internal/operators/OperatorMapNotification$MapNotificationSubscriber;
 
 
 # direct methods
-.method constructor <init>(Lrx/internal/operators/OperatorMapNotification;Lrx/Subscriber;)V
+.method constructor <init>(Lrx/internal/operators/OperatorMapNotification;Lrx/internal/operators/OperatorMapNotification$MapNotificationSubscriber;)V
     .registers 3
 
     .prologue
-    .line 53
+    .line 47
     .local p0, "this":Lrx/internal/operators/OperatorMapNotification$1;, "Lrx/internal/operators/OperatorMapNotification.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorMapNotification$1;->this$0:Lrx/internal/operators/OperatorMapNotification;
 
-    iput-object p2, p0, Lrx/internal/operators/OperatorMapNotification$1;->val$o:Lrx/Subscriber;
+    iput-object p2, p0, Lrx/internal/operators/OperatorMapNotification$1;->val$parent:Lrx/internal/operators/OperatorMapNotification$MapNotificationSubscriber;
 
-    invoke-direct {p0}, Lrx/Subscriber;-><init>()V
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public onCompleted()V
+.method public request(J)V
     .registers 4
+    .param p1, "n"    # J
 
     .prologue
-    .line 64
+    .line 50
     .local p0, "this":Lrx/internal/operators/OperatorMapNotification$1;, "Lrx/internal/operators/OperatorMapNotification.1;"
-    :try_start_0
-    iget-object v1, p0, Lrx/internal/operators/OperatorMapNotification$1;->emitter:Lrx/internal/operators/OperatorMapNotification$SingleEmitter;
+    iget-object v0, p0, Lrx/internal/operators/OperatorMapNotification$1;->val$parent:Lrx/internal/operators/OperatorMapNotification$MapNotificationSubscriber;
 
-    iget-object v2, p0, Lrx/internal/operators/OperatorMapNotification$1;->this$0:Lrx/internal/operators/OperatorMapNotification;
+    invoke-virtual {v0, p1, p2}, Lrx/internal/operators/OperatorMapNotification$MapNotificationSubscriber;->requestInner(J)V
 
-    # getter for: Lrx/internal/operators/OperatorMapNotification;->onCompleted:Lrx/functions/Func0;
-    invoke-static {v2}, Lrx/internal/operators/OperatorMapNotification;->access$000(Lrx/internal/operators/OperatorMapNotification;)Lrx/functions/Func0;
-
-    move-result-object v2
-
-    invoke-interface {v2}, Lrx/functions/Func0;->call()Ljava/lang/Object;
-
-    move-result-object v2
-
-    invoke-virtual {v1, v2}, Lrx/internal/operators/OperatorMapNotification$SingleEmitter;->offerAndComplete(Ljava/lang/Object;)V
-    :try_end_f
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_f} :catch_10
-
-    .line 68
-    :goto_f
-    return-void
-
-    .line 65
-    :catch_10
-    move-exception v0
-
-    .line 66
-    .local v0, "e":Ljava/lang/Throwable;
-    iget-object v1, p0, Lrx/internal/operators/OperatorMapNotification$1;->val$o:Lrx/Subscriber;
-
-    invoke-virtual {v1, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-
-    goto :goto_f
-.end method
-
-.method public onError(Ljava/lang/Throwable;)V
-    .registers 5
-    .param p1, "e"    # Ljava/lang/Throwable;
-
-    .prologue
-    .line 73
-    .local p0, "this":Lrx/internal/operators/OperatorMapNotification$1;, "Lrx/internal/operators/OperatorMapNotification.1;"
-    :try_start_0
-    iget-object v1, p0, Lrx/internal/operators/OperatorMapNotification$1;->emitter:Lrx/internal/operators/OperatorMapNotification$SingleEmitter;
-
-    iget-object v2, p0, Lrx/internal/operators/OperatorMapNotification$1;->this$0:Lrx/internal/operators/OperatorMapNotification;
-
-    # getter for: Lrx/internal/operators/OperatorMapNotification;->onError:Lrx/functions/Func1;
-    invoke-static {v2}, Lrx/internal/operators/OperatorMapNotification;->access$100(Lrx/internal/operators/OperatorMapNotification;)Lrx/functions/Func1;
-
-    move-result-object v2
-
-    invoke-interface {v2, p1}, Lrx/functions/Func1;->call(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v2
-
-    invoke-virtual {v1, v2}, Lrx/internal/operators/OperatorMapNotification$SingleEmitter;->offerAndComplete(Ljava/lang/Object;)V
-    :try_end_f
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_f} :catch_10
-
-    .line 77
-    :goto_f
-    return-void
-
-    .line 74
-    :catch_10
-    move-exception v0
-
-    .line 75
-    .local v0, "e2":Ljava/lang/Throwable;
-    iget-object v1, p0, Lrx/internal/operators/OperatorMapNotification$1;->val$o:Lrx/Subscriber;
-
-    invoke-virtual {v1, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-
-    goto :goto_f
-.end method
-
-.method public onNext(Ljava/lang/Object;)V
-    .registers 5
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(TT;)V"
-        }
-    .end annotation
-
-    .prologue
-    .line 82
-    .local p0, "this":Lrx/internal/operators/OperatorMapNotification$1;, "Lrx/internal/operators/OperatorMapNotification.1;"
-    .local p1, "t":Ljava/lang/Object;, "TT;"
-    :try_start_0
-    iget-object v1, p0, Lrx/internal/operators/OperatorMapNotification$1;->emitter:Lrx/internal/operators/OperatorMapNotification$SingleEmitter;
-
-    iget-object v2, p0, Lrx/internal/operators/OperatorMapNotification$1;->this$0:Lrx/internal/operators/OperatorMapNotification;
-
-    # getter for: Lrx/internal/operators/OperatorMapNotification;->onNext:Lrx/functions/Func1;
-    invoke-static {v2}, Lrx/internal/operators/OperatorMapNotification;->access$200(Lrx/internal/operators/OperatorMapNotification;)Lrx/functions/Func1;
-
-    move-result-object v2
-
-    invoke-interface {v2, p1}, Lrx/functions/Func1;->call(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v2
-
-    invoke-virtual {v1, v2}, Lrx/internal/operators/OperatorMapNotification$SingleEmitter;->offer(Ljava/lang/Object;)V
-    :try_end_f
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_f} :catch_10
-
-    .line 86
-    :goto_f
-    return-void
-
-    .line 83
-    :catch_10
-    move-exception v0
-
-    .line 84
-    .local v0, "e":Ljava/lang/Throwable;
-    iget-object v1, p0, Lrx/internal/operators/OperatorMapNotification$1;->val$o:Lrx/Subscriber;
-
-    invoke-static {v0, p1}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
-
-    move-result-object v2
-
-    invoke-virtual {v1, v2}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-
-    goto :goto_f
-.end method
-
-.method public setProducer(Lrx/Producer;)V
-    .registers 4
-    .param p1, "producer"    # Lrx/Producer;
-
-    .prologue
-    .line 57
-    .local p0, "this":Lrx/internal/operators/OperatorMapNotification$1;, "Lrx/internal/operators/OperatorMapNotification.1;"
-    new-instance v0, Lrx/internal/operators/OperatorMapNotification$SingleEmitter;
-
-    iget-object v1, p0, Lrx/internal/operators/OperatorMapNotification$1;->val$o:Lrx/Subscriber;
-
-    invoke-direct {v0, v1, p1, p0}, Lrx/internal/operators/OperatorMapNotification$SingleEmitter;-><init>(Lrx/Subscriber;Lrx/Producer;Lrx/Subscription;)V
-
-    iput-object v0, p0, Lrx/internal/operators/OperatorMapNotification$1;->emitter:Lrx/internal/operators/OperatorMapNotification$SingleEmitter;
-
-    .line 58
-    iget-object v0, p0, Lrx/internal/operators/OperatorMapNotification$1;->val$o:Lrx/Subscriber;
-
-    iget-object v1, p0, Lrx/internal/operators/OperatorMapNotification$1;->emitter:Lrx/internal/operators/OperatorMapNotification$SingleEmitter;
-
-    invoke-virtual {v0, v1}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
-
-    .line 59
+    .line 51
     return-void
 .end method

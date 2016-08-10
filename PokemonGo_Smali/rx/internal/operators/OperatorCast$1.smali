@@ -92,34 +92,27 @@
 
     iget-object v2, p0, Lrx/internal/operators/OperatorCast$1;->this$0:Lrx/internal/operators/OperatorCast;
 
-    # getter for: Lrx/internal/operators/OperatorCast;->castClass:Ljava/lang/Class;
-    invoke-static {v2}, Lrx/internal/operators/OperatorCast;->access$000(Lrx/internal/operators/OperatorCast;)Ljava/lang/Class;
-
-    move-result-object v2
+    iget-object v2, v2, Lrx/internal/operators/OperatorCast;->castClass:Ljava/lang/Class;
 
     invoke-virtual {v2, p1}, Ljava/lang/Class;->cast(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v2
 
     invoke-virtual {v1, v2}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
-    :try_end_f
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_f} :catch_10
+    :try_end_d
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_d} :catch_e
 
     .line 54
-    :goto_f
+    :goto_d
     return-void
 
     .line 51
-    :catch_10
+    :catch_e
     move-exception v0
 
     .line 52
     .local v0, "e":Ljava/lang/Throwable;
-    invoke-static {v0, p1}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
+    invoke-static {v0, p0, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
-    move-result-object v1
-
-    invoke-virtual {p0, v1}, Lrx/internal/operators/OperatorCast$1;->onError(Ljava/lang/Throwable;)V
-
-    goto :goto_f
+    goto :goto_d
 .end method

@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/analytics/internal/action/Actionable$1;,
         Lcom/upsight/android/analytics/internal/action/Actionable$ActionMapFinishedEvent;
     }
 .end annotation

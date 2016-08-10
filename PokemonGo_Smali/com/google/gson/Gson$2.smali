@@ -24,9 +24,10 @@
 # direct methods
 .method constructor <init>(Lcom/google/gson/Gson;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/google/gson/Gson;
 
     .prologue
-    .line 130
+    .line 142
     iput-object p1, p0, Lcom/google/gson/Gson$2;->this$0:Lcom/google/gson/Gson;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -41,7 +42,7 @@
     .param p1, "src"    # Ljava/lang/Object;
 
     .prologue
-    .line 132
+    .line 144
     iget-object v0, p0, Lcom/google/gson/Gson$2;->this$0:Lcom/google/gson/Gson;
 
     invoke-virtual {v0, p1}, Lcom/google/gson/Gson;->toJsonTree(Ljava/lang/Object;)Lcom/google/gson/JsonElement;
@@ -57,7 +58,7 @@
     .param p2, "typeOfSrc"    # Ljava/lang/reflect/Type;
 
     .prologue
-    .line 135
+    .line 147
     iget-object v0, p0, Lcom/google/gson/Gson$2;->this$0:Lcom/google/gson/Gson;
 
     invoke-virtual {v0, p1, p2}, Lcom/google/gson/Gson;->toJsonTree(Ljava/lang/Object;Ljava/lang/reflect/Type;)Lcom/google/gson/JsonElement;

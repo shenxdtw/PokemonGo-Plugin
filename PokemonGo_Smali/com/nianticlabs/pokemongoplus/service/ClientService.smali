@@ -18,7 +18,7 @@
     .registers 1
 
     .prologue
-    .line 17
+    .line 18
     const-class v0, Lcom/nianticlabs/pokemongoplus/service/ClientService;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -27,7 +27,7 @@
 
     sput-object v0, Lcom/nianticlabs/pokemongoplus/service/ClientService;->TAG:Ljava/lang/String;
 
-    .line 18
+    .line 19
     const/4 v0, 0x0
 
     sput-object v0, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
@@ -39,17 +39,17 @@
     .registers 2
 
     .prologue
-    .line 28
+    .line 29
     invoke-direct {p0}, Landroid/app/Service;-><init>()V
 
-    .line 20
+    .line 21
     new-instance v0, Lcom/nianticlabs/pokemongoplus/service/ClientService$1;
 
     invoke-direct {v0, p0}, Lcom/nianticlabs/pokemongoplus/service/ClientService$1;-><init>(Lcom/nianticlabs/pokemongoplus/service/ClientService;)V
 
     iput-object v0, p0, Lcom/nianticlabs/pokemongoplus/service/ClientService;->sfidaReceiver:Landroid/content/BroadcastReceiver;
 
-    .line 29
+    .line 30
     return-void
 .end method
 
@@ -90,20 +90,15 @@
     .param p1, "serviceAction"    # Ljava/lang/String;
 
     .prologue
-    .line 32
+    .line 33
     new-instance v0, Landroid/content/Intent;
 
     const-class v1, Lcom/nianticlabs/pokemongoplus/service/ClientService;
 
     invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
 
-    .line 33
-    .local v0, "i":Landroid/content/Intent;
-    const-string v1, "com.nianticlabs.pokemongoplus.bridge"
-
-    invoke-virtual {v0, v1}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
-
     .line 34
+    .local v0, "i":Landroid/content/Intent;
     const-string v1, "action"
 
     invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
@@ -247,18 +242,18 @@
 .end method
 
 .method protected onHandleIntent(Landroid/content/Intent;)V
-    .registers 22
+    .registers 24
     .param p1, "intent"    # Landroid/content/Intent;
 
     .prologue
     .line 89
     if-eqz p1, :cond_6
 
-    sget-object v15, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
+    sget-object v18, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
 
-    if-nez v15, :cond_7
+    if-nez v18, :cond_7
 
-    .line 150
+    .line 155
     :cond_6
     :goto_6
     :pswitch_6
@@ -266,11 +261,13 @@
 
     .line 92
     :cond_7
-    const-string v15, "action"
+    const-string v18, "action"
 
     move-object/from16 v0, p1
 
-    invoke-virtual {v0, v15}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+    move-object/from16 v1, v18
+
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v4
 
@@ -279,422 +276,502 @@
     if-eqz v4, :cond_6
 
     .line 96
-    const/4 v15, -0x1
+    const/16 v18, -0x1
 
     invoke-virtual {v4}, Ljava/lang/String;->hashCode()I
 
-    move-result v18
+    move-result v19
 
-    sparse-switch v18, :sswitch_data_156
+    sparse-switch v19, :sswitch_data_1aa
 
-    :cond_19
-    :goto_19
-    packed-switch v15, :pswitch_data_180
+    :cond_1c
+    :goto_1c
+    packed-switch v18, :pswitch_data_1d8
 
-    .line 147
-    const-string v15, "ClientService"
+    .line 152
+    const-string v18, "ClientService"
 
-    new-instance v18, Ljava/lang/StringBuilder;
+    new-instance v19, Ljava/lang/StringBuilder;
 
-    invoke-direct/range {v18 .. v18}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct/range {v19 .. v19}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v19, "Can\'t handle intent message: "
+    const-string v20, "Can\'t handle intent message: "
 
-    invoke-virtual/range {v18 .. v19}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual/range {v19 .. v20}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v18
+    move-result-object v19
 
-    move-object/from16 v0, v18
+    move-object/from16 v0, v19
 
     invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v18
+    move-result-object v19
 
-    invoke-virtual/range {v18 .. v18}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual/range {v19 .. v19}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v18
+    move-result-object v19
 
-    move-object/from16 v0, v18
-
-    invoke-static {v15, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static/range {v18 .. v19}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     goto :goto_6
 
     .line 96
-    :sswitch_39
-    const-string v18, "updateTimestamp"
+    :sswitch_3a
+    const-string v19, "updateTimestamp"
 
-    move-object/from16 v0, v18
-
-    invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v18
-
-    if-eqz v18, :cond_19
-
-    const/4 v15, 0x0
-
-    goto :goto_19
-
-    :sswitch_45
-    const-string v18, "sfidaState"
-
-    move-object/from16 v0, v18
+    move-object/from16 v0, v19
 
     invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result v18
+    move-result v19
 
-    if-eqz v18, :cond_19
+    if-eqz v19, :cond_1c
 
-    const/4 v15, 0x1
+    const/16 v18, 0x0
 
-    goto :goto_19
+    goto :goto_1c
 
-    :sswitch_51
-    const-string v18, "encounterId"
+    :sswitch_47
+    const-string v19, "sfidaState"
 
-    move-object/from16 v0, v18
-
-    invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v18
-
-    if-eqz v18, :cond_19
-
-    const/4 v15, 0x2
-
-    goto :goto_19
-
-    :sswitch_5d
-    const-string v18, "pokestop"
-
-    move-object/from16 v0, v18
+    move-object/from16 v0, v19
 
     invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result v18
+    move-result v19
 
-    if-eqz v18, :cond_19
+    if-eqz v19, :cond_1c
 
-    const/4 v15, 0x3
+    const/16 v18, 0x1
 
-    goto :goto_19
+    goto :goto_1c
 
-    :sswitch_69
-    const-string v18, "centralState"
+    :sswitch_54
+    const-string v19, "encounterId"
 
-    move-object/from16 v0, v18
-
-    invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v18
-
-    if-eqz v18, :cond_19
-
-    const/4 v15, 0x4
-
-    goto :goto_19
-
-    :sswitch_75
-    const-string v18, "scannedSfida"
-
-    move-object/from16 v0, v18
+    move-object/from16 v0, v19
 
     invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result v18
+    move-result v19
 
-    if-eqz v18, :cond_19
+    if-eqz v19, :cond_1c
 
-    const/4 v15, 0x5
+    const/16 v18, 0x2
 
-    goto :goto_19
+    goto :goto_1c
 
-    :sswitch_81
-    const-string v18, "pluginState"
+    :sswitch_61
+    const-string v19, "pokestop"
 
-    move-object/from16 v0, v18
-
-    invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v18
-
-    if-eqz v18, :cond_19
-
-    const/4 v15, 0x6
-
-    goto :goto_19
-
-    :sswitch_8d
-    const-string v18, "batteryLevel"
-
-    move-object/from16 v0, v18
+    move-object/from16 v0, v19
 
     invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result v18
+    move-result v19
 
-    if-eqz v18, :cond_19
+    if-eqz v19, :cond_1c
 
-    const/4 v15, 0x7
+    const/16 v18, 0x3
 
-    goto :goto_19
+    goto :goto_1c
 
-    :sswitch_99
-    const-string v18, "startService"
+    :sswitch_6e
+    const-string v19, "centralState"
 
-    move-object/from16 v0, v18
-
-    invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v18
-
-    if-eqz v18, :cond_19
-
-    const/16 v15, 0x8
-
-    goto/16 :goto_19
-
-    :sswitch_a7
-    const-string v18, "confirmBridgeShutdown"
-
-    move-object/from16 v0, v18
+    move-object/from16 v0, v19
 
     invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result v18
+    move-result v19
 
-    if-eqz v18, :cond_19
+    if-eqz v19, :cond_1c
 
-    const/16 v15, 0x9
+    const/16 v18, 0x4
 
-    goto/16 :goto_19
+    goto :goto_1c
+
+    :sswitch_7b
+    const-string v19, "scannedSfida"
+
+    move-object/from16 v0, v19
+
+    invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v19
+
+    if-eqz v19, :cond_1c
+
+    const/16 v18, 0x5
+
+    goto :goto_1c
+
+    :sswitch_88
+    const-string v19, "pluginState"
+
+    move-object/from16 v0, v19
+
+    invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v19
+
+    if-eqz v19, :cond_1c
+
+    const/16 v18, 0x6
+
+    goto :goto_1c
+
+    :sswitch_95
+    const-string v19, "isScanning"
+
+    move-object/from16 v0, v19
+
+    invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v19
+
+    if-eqz v19, :cond_1c
+
+    const/16 v18, 0x7
+
+    goto/16 :goto_1c
+
+    :sswitch_a3
+    const-string v19, "batteryLevel"
+
+    move-object/from16 v0, v19
+
+    invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v19
+
+    if-eqz v19, :cond_1c
+
+    const/16 v18, 0x8
+
+    goto/16 :goto_1c
+
+    :sswitch_b1
+    const-string v19, "startService"
+
+    move-object/from16 v0, v19
+
+    invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v19
+
+    if-eqz v19, :cond_1c
+
+    const/16 v18, 0x9
+
+    goto/16 :goto_1c
+
+    :sswitch_bf
+    const-string v19, "confirmBridgeShutdown"
+
+    move-object/from16 v0, v19
+
+    invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v19
+
+    if-eqz v19, :cond_1c
+
+    const/16 v18, 0xa
+
+    goto/16 :goto_1c
 
     .line 98
-    :pswitch_b5
-    const-string v15, "timestamp"
+    :pswitch_cd
+    const-string v18, "timestamp"
 
-    const-wide/16 v18, 0x0
+    const-wide/16 v20, 0x0
 
     move-object/from16 v0, p1
 
-    move-wide/from16 v1, v18
+    move-object/from16 v1, v18
 
-    invoke-virtual {v0, v15, v1, v2}, Landroid/content/Intent;->getLongExtra(Ljava/lang/String;J)J
+    move-wide/from16 v2, v20
+
+    invoke-virtual {v0, v1, v2, v3}, Landroid/content/Intent;->getLongExtra(Ljava/lang/String;J)J
 
     move-result-wide v16
 
     .line 99
     .local v16, "timestampMs":J
-    sget-object v15, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
+    sget-object v18, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
 
-    invoke-virtual/range {v15 .. v17}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendUpdateTimestamp(J)V
+    move-object/from16 v0, v18
+
+    move-wide/from16 v1, v16
+
+    invoke-virtual {v0, v1, v2}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendUpdateTimestamp(J)V
 
     goto/16 :goto_6
 
     .line 103
     .end local v16    # "timestampMs":J
-    :pswitch_c8
-    const-string v15, "state"
+    :pswitch_e6
+    const-string v18, "state"
 
-    const/16 v18, 0x0
+    const/16 v19, 0x0
 
     move-object/from16 v0, p1
 
-    move/from16 v1, v18
+    move-object/from16 v1, v18
 
-    invoke-virtual {v0, v15, v1}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+    move/from16 v2, v19
 
-    move-result v14
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+
+    move-result v15
 
     .line 104
-    .local v14, "sfidaState":I
-    sget-object v15, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
+    .local v15, "sfidaState":I
+    sget-object v18, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
 
-    invoke-virtual {v15, v14}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendSfidaState(I)V
+    move-object/from16 v0, v18
+
+    invoke-virtual {v0, v15}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendSfidaState(I)V
 
     goto/16 :goto_6
 
     .line 108
-    .end local v14    # "sfidaState":I
-    :pswitch_db
-    const-string v15, "id"
+    .end local v15    # "sfidaState":I
+    :pswitch_fd
+    const-string v18, "id"
 
-    const-wide/16 v18, 0x0
+    const-wide/16 v20, 0x0
 
     move-object/from16 v0, p1
 
-    move-wide/from16 v1, v18
+    move-object/from16 v1, v18
 
-    invoke-virtual {v0, v15, v1, v2}, Landroid/content/Intent;->getLongExtra(Ljava/lang/String;J)J
+    move-wide/from16 v2, v20
+
+    invoke-virtual {v0, v1, v2, v3}, Landroid/content/Intent;->getLongExtra(Ljava/lang/String;J)J
 
     move-result-wide v10
 
     .line 109
     .local v10, "encounterId":J
-    sget-object v15, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
+    sget-object v18, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
 
-    invoke-virtual {v15, v10, v11}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendEncounterId(J)V
+    move-object/from16 v0, v18
+
+    invoke-virtual {v0, v10, v11}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendEncounterId(J)V
 
     goto/16 :goto_6
 
     .line 113
     .end local v10    # "encounterId":J
-    :pswitch_ee
-    const-string v15, "id"
+    :pswitch_114
+    const-string v18, "id"
 
     move-object/from16 v0, p1
 
-    invoke-virtual {v0, v15}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+    move-object/from16 v1, v18
 
-    move-result-object v13
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v14
 
     .line 114
-    .local v13, "pokestop":Ljava/lang/String;
-    sget-object v15, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
+    .local v14, "pokestop":Ljava/lang/String;
+    sget-object v18, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
 
-    invoke-virtual {v15, v13}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendPokestopId(Ljava/lang/String;)V
+    move-object/from16 v0, v18
+
+    invoke-virtual {v0, v14}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendPokestopId(Ljava/lang/String;)V
 
     goto/16 :goto_6
 
     .line 118
-    .end local v13    # "pokestop":Ljava/lang/String;
-    :pswitch_fd
-    const-string v15, "state"
+    .end local v14    # "pokestop":Ljava/lang/String;
+    :pswitch_127
+    const-string v18, "state"
 
-    const/16 v18, 0x0
+    const/16 v19, 0x0
 
     move-object/from16 v0, p1
 
-    move/from16 v1, v18
+    move-object/from16 v1, v18
 
-    invoke-virtual {v0, v15, v1}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+    move/from16 v2, v19
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
 
     move-result v8
 
     .line 119
     .local v8, "centralState":I
-    sget-object v15, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
+    sget-object v18, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
 
-    invoke-virtual {v15, v8}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendCentralState(I)V
+    move-object/from16 v0, v18
+
+    invoke-virtual {v0, v8}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendCentralState(I)V
 
     goto/16 :goto_6
 
     .line 123
     .end local v8    # "centralState":I
-    :pswitch_110
-    const-string v15, "device"
+    :pswitch_13e
+    const-string v18, "device"
 
     move-object/from16 v0, p1
 
-    invoke-virtual {v0, v15}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+    move-object/from16 v1, v18
+
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v9
 
     .line 124
     .local v9, "device":Ljava/lang/String;
-    const-string v15, "button"
+    const-string v18, "button"
 
-    const/16 v18, 0x0
+    const/16 v19, 0x0
 
     move-object/from16 v0, p1
 
-    move/from16 v1, v18
+    move-object/from16 v1, v18
 
-    invoke-virtual {v0, v15, v1}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+    move/from16 v2, v19
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
 
     move-result v5
 
     .line 125
     .local v5, "button":I
-    sget-object v15, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
+    sget-object v18, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
 
-    invoke-virtual {v15, v9, v5}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendScannedSfida(Ljava/lang/String;I)V
+    move-object/from16 v0, v18
+
+    invoke-virtual {v0, v9, v5}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendScannedSfida(Ljava/lang/String;I)V
 
     goto/16 :goto_6
 
     .line 129
     .end local v5    # "button":I
     .end local v9    # "device":Ljava/lang/String;
-    :pswitch_12b
-    const-string v15, "state"
+    :pswitch_15f
+    const-string v18, "state"
 
-    const/16 v18, 0x0
+    const/16 v19, 0x0
 
     move-object/from16 v0, p1
 
-    move/from16 v1, v18
+    move-object/from16 v1, v18
 
-    invoke-virtual {v0, v15, v1}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+    move/from16 v2, v19
 
-    move-result v12
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+
+    move-result v13
 
     .line 130
-    .local v12, "pluginState":I
-    sget-object v15, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
+    .local v13, "pluginState":I
+    sget-object v18, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
 
-    invoke-virtual {v15, v12}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendPluginState(I)V
+    move-object/from16 v0, v18
+
+    invoke-virtual {v0, v13}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendPluginState(I)V
 
     goto/16 :goto_6
 
     .line 134
-    .end local v12    # "pluginState":I
-    :pswitch_13e
-    const-string v15, "level"
+    .end local v13    # "pluginState":I
+    :pswitch_176
+    const-string v18, "isScanning"
 
-    const-wide/16 v18, 0x0
+    const/16 v19, 0x0
 
     move-object/from16 v0, p1
 
-    move-wide/from16 v1, v18
+    move-object/from16 v1, v18
 
-    invoke-virtual {v0, v15, v1, v2}, Landroid/content/Intent;->getDoubleExtra(Ljava/lang/String;D)D
+    move/from16 v2, v19
 
-    move-result-wide v6
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+
+    move-result v12
 
     .line 135
-    .local v6, "batteryLevel":D
-    sget-object v15, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
+    .local v12, "isScanning":I
+    sget-object v18, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
 
-    invoke-virtual {v15, v6, v7}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendBatteryLevel(D)V
+    move-object/from16 v0, v18
+
+    invoke-virtual {v0, v12}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendIsScanning(I)V
 
     goto/16 :goto_6
 
-    .line 144
+    .line 139
+    .end local v12    # "isScanning":I
+    :pswitch_18d
+    const-string v18, "level"
+
+    const-wide/16 v20, 0x0
+
+    move-object/from16 v0, p1
+
+    move-object/from16 v1, v18
+
+    move-wide/from16 v2, v20
+
+    invoke-virtual {v0, v1, v2, v3}, Landroid/content/Intent;->getDoubleExtra(Ljava/lang/String;D)D
+
+    move-result-wide v6
+
+    .line 140
+    .local v6, "batteryLevel":D
+    sget-object v18, Lcom/nianticlabs/pokemongoplus/service/ClientService;->pgpClientBridge:Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;
+
+    move-object/from16 v0, v18
+
+    invoke-virtual {v0, v6, v7}, Lcom/nianticlabs/pokemongoplus/bridge/ClientBridge;->sendBatteryLevel(D)V
+
+    goto/16 :goto_6
+
+    .line 149
     .end local v6    # "batteryLevel":D
-    :pswitch_151
+    :pswitch_1a4
     invoke-virtual/range {p0 .. p0}, Lcom/nianticlabs/pokemongoplus/service/ClientService;->confirmBridgeShutdown()V
 
     goto/16 :goto_6
 
     .line 96
-    :sswitch_data_156
+    nop
+
+    :sswitch_data_1aa
     .sparse-switch
-        -0x65d74289 -> :sswitch_8d
-        -0x40257f22 -> :sswitch_45
-        -0x16ebf7e4 -> :sswitch_69
-        0x662f1ae -> :sswitch_51
-        0x1eb32b1b -> :sswitch_5d
-        0x34d4ed1e -> :sswitch_81
-        0x4b23e24d -> :sswitch_39
-        0x4fbe57df -> :sswitch_a7
-        0x6e4047f3 -> :sswitch_99
-        0x7f76d363 -> :sswitch_75
+        -0x65d74289 -> :sswitch_a3
+        -0x64508005 -> :sswitch_95
+        -0x40257f22 -> :sswitch_47
+        -0x16ebf7e4 -> :sswitch_6e
+        0x662f1ae -> :sswitch_54
+        0x1eb32b1b -> :sswitch_61
+        0x34d4ed1e -> :sswitch_88
+        0x4b23e24d -> :sswitch_3a
+        0x4fbe57df -> :sswitch_bf
+        0x6e4047f3 -> :sswitch_b1
+        0x7f76d363 -> :sswitch_7b
     .end sparse-switch
 
-    :pswitch_data_180
+    :pswitch_data_1d8
     .packed-switch 0x0
-        :pswitch_b5
-        :pswitch_c8
-        :pswitch_db
-        :pswitch_ee
+        :pswitch_cd
+        :pswitch_e6
         :pswitch_fd
-        :pswitch_110
-        :pswitch_12b
+        :pswitch_114
+        :pswitch_127
         :pswitch_13e
+        :pswitch_15f
+        :pswitch_176
+        :pswitch_18d
         :pswitch_6
-        :pswitch_151
+        :pswitch_1a4
     .end packed-switch
 .end method
 

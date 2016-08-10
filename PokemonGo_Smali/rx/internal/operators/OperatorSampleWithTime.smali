@@ -41,20 +41,20 @@
     .param p4, "scheduler"    # Lrx/Scheduler;
 
     .prologue
-    .line 40
+    .line 42
     .local p0, "this":Lrx/internal/operators/OperatorSampleWithTime;, "Lrx/internal/operators/OperatorSampleWithTime<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 41
+    .line 43
     iput-wide p1, p0, Lrx/internal/operators/OperatorSampleWithTime;->time:J
 
-    .line 42
+    .line 44
     iput-object p3, p0, Lrx/internal/operators/OperatorSampleWithTime;->unit:Ljava/util/concurrent/TimeUnit;
 
-    .line 43
+    .line 45
     iput-object p4, p0, Lrx/internal/operators/OperatorSampleWithTime;->scheduler:Lrx/Scheduler;
 
-    .line 44
+    .line 46
     return-void
 .end method
 
@@ -65,7 +65,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 35
+    .line 37
     .local p0, "this":Lrx/internal/operators/OperatorSampleWithTime;, "Lrx/internal/operators/OperatorSampleWithTime<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -90,14 +90,14 @@
     .end annotation
 
     .prologue
-    .line 48
+    .line 50
     .local p0, "this":Lrx/internal/operators/OperatorSampleWithTime;, "Lrx/internal/operators/OperatorSampleWithTime<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     new-instance v7, Lrx/observers/SerializedSubscriber;
 
     invoke-direct {v7, p1}, Lrx/observers/SerializedSubscriber;-><init>(Lrx/Subscriber;)V
 
-    .line 49
+    .line 51
     .local v7, "s":Lrx/observers/SerializedSubscriber;, "Lrx/observers/SerializedSubscriber<TT;>;"
     iget-object v2, p0, Lrx/internal/operators/OperatorSampleWithTime;->scheduler:Lrx/Scheduler;
 
@@ -105,20 +105,20 @@
 
     move-result-object v0
 
-    .line 50
+    .line 52
     .local v0, "worker":Lrx/Scheduler$Worker;
     invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 52
+    .line 54
     new-instance v1, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;
 
     invoke-direct {v1, v7}, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;-><init>(Lrx/Subscriber;)V
 
-    .line 53
+    .line 55
     .local v1, "sampler":Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;, "Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber<TT;>;"
     invoke-virtual {p1, v1}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 54
+    .line 56
     iget-wide v2, p0, Lrx/internal/operators/OperatorSampleWithTime;->time:J
 
     iget-wide v4, p0, Lrx/internal/operators/OperatorSampleWithTime;->time:J
@@ -127,6 +127,6 @@
 
     invoke-virtual/range {v0 .. v6}, Lrx/Scheduler$Worker;->schedulePeriodically(Lrx/functions/Action0;JJLjava/util/concurrent/TimeUnit;)Lrx/Subscription;
 
-    .line 56
+    .line 58
     return-object v1
 .end method

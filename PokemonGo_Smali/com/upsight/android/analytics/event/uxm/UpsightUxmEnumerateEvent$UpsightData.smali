@@ -15,8 +15,11 @@
 
 
 # instance fields
-.field uxm:Lcom/fasterxml/jackson/databind/node/ArrayNode;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+.field uxm:Lcom/google/gson/JsonArray;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "uxm"
     .end annotation
 .end field
@@ -27,10 +30,10 @@
     .registers 1
 
     .prologue
-    .line 43
+    .line 46
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 45
+    .line 48
     return-void
 .end method
 
@@ -39,18 +42,18 @@
     .param p1, "builder"    # Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;
 
     .prologue
-    .line 39
+    .line 42
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 40
-    # getter for: Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;->uxm:Lcom/fasterxml/jackson/databind/node/ArrayNode;
-    invoke-static {p1}, Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;->access$000(Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;)Lcom/fasterxml/jackson/databind/node/ArrayNode;
+    .line 43
+    # getter for: Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;->uxm:Lcom/google/gson/JsonArray;
+    invoke-static {p1}, Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;->access$000(Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$Builder;)Lcom/google/gson/JsonArray;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$UpsightData;->uxm:Lcom/fasterxml/jackson/databind/node/ArrayNode;
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$UpsightData;->uxm:Lcom/google/gson/JsonArray;
 
-    .line 41
+    .line 44
     return-void
 .end method
 
@@ -60,10 +63,10 @@
     .registers 2
 
     .prologue
-    .line 51
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$UpsightData;->uxm:Lcom/fasterxml/jackson/databind/node/ArrayNode;
+    .line 54
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/uxm/UpsightUxmEnumerateEvent$UpsightData;->uxm:Lcom/google/gson/JsonArray;
 
-    invoke-static {v0}, Lcom/upsight/android/analytics/internal/util/JacksonHelper$JSONArraySerializer;->fromArrayNode(Lcom/fasterxml/jackson/databind/node/ArrayNode;)Lorg/json/JSONArray;
+    invoke-static {v0}, Lcom/upsight/android/analytics/internal/util/GsonHelper$JSONArraySerializer;->fromJsonArray(Lcom/google/gson/JsonArray;)Lorg/json/JSONArray;
 
     move-result-object v0
 

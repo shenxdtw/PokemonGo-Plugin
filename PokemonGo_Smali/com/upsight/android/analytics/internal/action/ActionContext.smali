@@ -8,21 +8,21 @@
 
 .field public final mClock:Lcom/upsight/android/analytics/internal/session/Clock;
 
+.field public final mGson:Lcom/google/gson/Gson;
+
 .field public final mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
 .field public final mMainWorker:Lrx/Scheduler$Worker;
-
-.field public final mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
 
 .field public final mUpsight:Lcom/upsight/android/UpsightContext;
 
 
 # direct methods
-.method public constructor <init>(Lcom/upsight/android/UpsightContext;Lcom/squareup/otto/Bus;Lcom/fasterxml/jackson/databind/ObjectMapper;Lcom/upsight/android/analytics/internal/session/Clock;Lrx/Scheduler$Worker;Lcom/upsight/android/logger/UpsightLogger;)V
+.method public constructor <init>(Lcom/upsight/android/UpsightContext;Lcom/squareup/otto/Bus;Lcom/google/gson/Gson;Lcom/upsight/android/analytics/internal/session/Clock;Lrx/Scheduler$Worker;Lcom/upsight/android/logger/UpsightLogger;)V
     .registers 7
     .param p1, "upsight"    # Lcom/upsight/android/UpsightContext;
     .param p2, "bus"    # Lcom/squareup/otto/Bus;
-    .param p3, "mapper"    # Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .param p3, "gson"    # Lcom/google/gson/Gson;
     .param p4, "clock"    # Lcom/upsight/android/analytics/internal/session/Clock;
     .param p5, "mainWorker"    # Lrx/Scheduler$Worker;
     .param p6, "logger"    # Lcom/upsight/android/logger/UpsightLogger;
@@ -38,7 +38,7 @@
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/action/ActionContext;->mBus:Lcom/squareup/otto/Bus;
 
     .line 36
-    iput-object p3, p0, Lcom/upsight/android/analytics/internal/action/ActionContext;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    iput-object p3, p0, Lcom/upsight/android/analytics/internal/action/ActionContext;->mGson:Lcom/google/gson/Gson;
 
     .line 37
     iput-object p4, p0, Lcom/upsight/android/analytics/internal/action/ActionContext;->mClock:Lcom/upsight/android/analytics/internal/session/Clock;

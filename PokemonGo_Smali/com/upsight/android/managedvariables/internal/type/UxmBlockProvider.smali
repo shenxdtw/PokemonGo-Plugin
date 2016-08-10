@@ -312,38 +312,37 @@
 
     .prologue
     .line 132
-    iget-object v3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->mUxmSchema:Lcom/upsight/android/managedvariables/internal/type/UxmSchema;
+    iget-object v2, p0, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->mUxmSchema:Lcom/upsight/android/managedvariables/internal/type/UxmSchema;
 
-    invoke-virtual {v3}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->getAllOrdered()Ljava/util/List;
+    invoke-virtual {v2}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->getAllOrdered()Ljava/util/List;
+
+    move-result-object v1
+
+    .line 133
+    .local v1, "itemSchemaList":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;>;"
+    invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
 
-    .line 133
-    .local v2, "itemSchemaList":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;>;"
-    invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
-
-    move-result-object v0
-
-    .local v0, "i$":Ljava/util/Iterator;
     :cond_a
     :goto_a
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
     if-eqz v3, :cond_76
 
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v1
+    move-result-object v0
 
-    check-cast v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
+    check-cast v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
 
     .line 134
-    .local v1, "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
+    .local v0, "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
     const-string v3, "com.upsight.uxm.string"
 
-    iget-object v4, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
+    iget-object v4, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
 
     invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -354,7 +353,7 @@
     .line 135
     iget-object v3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    iget-object v4, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
+    iget-object v4, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
 
     invoke-static {v3, v4}, Lcom/upsight/android/managedvariables/type/UpsightManagedString;->fetch(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Lcom/upsight/android/managedvariables/type/UpsightManagedString;
 
@@ -370,7 +369,7 @@
     :cond_2e
     const-string v3, "com.upsight.uxm.boolean"
 
-    iget-object v4, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
+    iget-object v4, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
 
     invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -381,7 +380,7 @@
     .line 137
     iget-object v3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    iget-object v4, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
+    iget-object v4, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
 
     invoke-static {v3, v4}, Lcom/upsight/android/managedvariables/type/UpsightManagedBoolean;->fetch(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Lcom/upsight/android/managedvariables/type/UpsightManagedBoolean;
 
@@ -397,7 +396,7 @@
     :cond_46
     const-string v3, "com.upsight.uxm.integer"
 
-    iget-object v4, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
+    iget-object v4, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
 
     invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -408,7 +407,7 @@
     .line 139
     iget-object v3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    iget-object v4, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
+    iget-object v4, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
 
     invoke-static {v3, v4}, Lcom/upsight/android/managedvariables/type/UpsightManagedInt;->fetch(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Lcom/upsight/android/managedvariables/type/UpsightManagedInt;
 
@@ -424,7 +423,7 @@
     :cond_5e
     const-string v3, "com.upsight.uxm.float"
 
-    iget-object v4, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
+    iget-object v4, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
 
     invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -435,7 +434,7 @@
     .line 141
     iget-object v3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    iget-object v4, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
+    iget-object v4, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
 
     invoke-static {v3, v4}, Lcom/upsight/android/managedvariables/type/UpsightManagedFloat;->fetch(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Lcom/upsight/android/managedvariables/type/UpsightManagedFloat;
 
@@ -448,7 +447,7 @@
     goto :goto_a
 
     .line 144
-    .end local v1    # "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
+    .end local v0    # "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
     :cond_76
     return-void
 .end method
@@ -460,47 +459,46 @@
 
     .prologue
     .line 99
-    new-instance v3, Ljava/lang/StringBuilder;
+    new-instance v2, Ljava/lang/StringBuilder;
 
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
     .line 100
-    .local v3, "sb":Ljava/lang/StringBuilder;
-    iget-object v5, p0, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->mUxmSchema:Lcom/upsight/android/managedvariables/internal/type/UxmSchema;
+    .local v2, "sb":Ljava/lang/StringBuilder;
+    iget-object v4, p0, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->mUxmSchema:Lcom/upsight/android/managedvariables/internal/type/UxmSchema;
 
-    invoke-virtual {v5}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->getAllOrdered()Ljava/util/List;
+    invoke-virtual {v4}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->getAllOrdered()Ljava/util/List;
 
-    move-result-object v2
+    move-result-object v1
 
     .line 101
-    .local v2, "itemSchemaList":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;>;"
-    invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+    .local v1, "itemSchemaList":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;>;"
+    invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
-    move-result-object v0
+    move-result-object v4
 
-    .local v0, "i$":Ljava/util/Iterator;
     :goto_f
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v5
 
     if-eqz v5, :cond_87
 
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v1
+    move-result-object v0
 
-    check-cast v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
+    check-cast v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
 
     .line 102
-    .local v1, "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
-    const/4 v4, 0x0
+    .local v0, "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
+    const/4 v3, 0x0
 
     .line 103
-    .local v4, "value":Ljava/lang/Object;
+    .local v3, "value":Ljava/lang/Object;
     const-string v5, "com.upsight.uxm.string"
 
-    iget-object v6, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
+    iget-object v6, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
 
     invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -511,7 +509,7 @@
     .line 104
     iget-object v5, p0, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    iget-object v6, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
+    iget-object v6, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
 
     invoke-static {v5, v6}, Lcom/upsight/android/managedvariables/type/UpsightManagedString;->fetch(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Lcom/upsight/android/managedvariables/type/UpsightManagedString;
 
@@ -519,34 +517,34 @@
 
     invoke-virtual {v5}, Lcom/upsight/android/managedvariables/type/UpsightManagedString;->get()Ljava/lang/Object;
 
-    move-result-object v4
+    move-result-object v3
 
     .line 113
-    .end local v4    # "value":Ljava/lang/Object;
+    .end local v3    # "value":Ljava/lang/Object;
     :cond_32
     :goto_32
-    iget-object v5, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
+    iget-object v5, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
 
-    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    invoke-virtual {v5, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v5
 
-    iget-object v6, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
+    invoke-virtual {v5, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v5
+
+    iget-object v6, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
 
     invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     goto :goto_f
 
     .line 105
-    .restart local v4    # "value":Ljava/lang/Object;
+    .restart local v3    # "value":Ljava/lang/Object;
     :cond_42
     const-string v5, "com.upsight.uxm.boolean"
 
-    iget-object v6, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
+    iget-object v6, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
 
     invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -557,7 +555,7 @@
     .line 106
     iget-object v5, p0, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    iget-object v6, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
+    iget-object v6, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
 
     invoke-static {v5, v6}, Lcom/upsight/android/managedvariables/type/UpsightManagedBoolean;->fetch(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Lcom/upsight/android/managedvariables/type/UpsightManagedBoolean;
 
@@ -565,7 +563,7 @@
 
     invoke-virtual {v5}, Lcom/upsight/android/managedvariables/type/UpsightManagedBoolean;->get()Ljava/lang/Object;
 
-    move-result-object v4
+    move-result-object v3
 
     goto :goto_32
 
@@ -573,7 +571,7 @@
     :cond_59
     const-string v5, "com.upsight.uxm.integer"
 
-    iget-object v6, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
+    iget-object v6, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
 
     invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -584,7 +582,7 @@
     .line 108
     iget-object v5, p0, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    iget-object v6, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
+    iget-object v6, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
 
     invoke-static {v5, v6}, Lcom/upsight/android/managedvariables/type/UpsightManagedInt;->fetch(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Lcom/upsight/android/managedvariables/type/UpsightManagedInt;
 
@@ -592,7 +590,7 @@
 
     invoke-virtual {v5}, Lcom/upsight/android/managedvariables/type/UpsightManagedInt;->get()Ljava/lang/Object;
 
-    move-result-object v4
+    move-result-object v3
 
     goto :goto_32
 
@@ -600,7 +598,7 @@
     :cond_70
     const-string v5, "com.upsight.uxm.float"
 
-    iget-object v6, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
+    iget-object v6, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->type:Ljava/lang/String;
 
     invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -611,7 +609,7 @@
     .line 110
     iget-object v5, p0, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    iget-object v6, v1, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
+    iget-object v6, v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->tag:Ljava/lang/String;
 
     invoke-static {v5, v6}, Lcom/upsight/android/managedvariables/type/UpsightManagedFloat;->fetch(Lcom/upsight/android/UpsightContext;Ljava/lang/String;)Lcom/upsight/android/managedvariables/type/UpsightManagedFloat;
 
@@ -619,23 +617,23 @@
 
     invoke-virtual {v5}, Lcom/upsight/android/managedvariables/type/UpsightManagedFloat;->get()Ljava/lang/Object;
 
-    move-result-object v4
+    move-result-object v3
 
     goto :goto_32
 
     .line 117
-    .end local v1    # "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
-    .end local v4    # "value":Ljava/lang/Object;
+    .end local v0    # "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
+    .end local v3    # "value":Ljava/lang/Object;
     :cond_87
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v5
+    move-result-object v4
 
-    invoke-direct {p0, v5}, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->generateHash(Ljava/lang/String;)Ljava/lang/String;
+    invoke-direct {p0, v4}, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;->generateHash(Ljava/lang/String;)Ljava/lang/String;
 
-    move-result-object v5
+    move-result-object v4
 
-    return-object v5
+    return-object v4
 .end method
 
 .method public getBundleId()Ljava/lang/String;

@@ -9,7 +9,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/internal/operators/OnSubscribeRange$1;,
         Lrx/internal/operators/OnSubscribeRange$RangeProducer;
     }
 .end annotation
@@ -26,9 +25,9 @@
 
 
 # instance fields
-.field private final end:I
+.field private final endIndex:I
 
-.field private final start:I
+.field private final startIndex:I
 
 
 # direct methods
@@ -38,16 +37,16 @@
     .param p2, "end"    # I
 
     .prologue
-    .line 32
+    .line 31
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 32
+    iput p1, p0, Lrx/internal/operators/OnSubscribeRange;->startIndex:I
+
     .line 33
-    iput p1, p0, Lrx/internal/operators/OnSubscribeRange;->start:I
+    iput p2, p0, Lrx/internal/operators/OnSubscribeRange;->endIndex:I
 
     .line 34
-    iput p2, p0, Lrx/internal/operators/OnSubscribeRange;->end:I
-
-    .line 35
     return-void
 .end method
 
@@ -58,7 +57,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 27
+    .line 26
     check-cast p1, Lrx/Subscriber;
 
     .end local p1    # "x0":Ljava/lang/Object;
@@ -68,7 +67,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)V
-    .registers 6
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -80,20 +79,18 @@
     .end annotation
 
     .prologue
-    .line 39
-    .local p1, "o":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/lang/Integer;>;"
+    .line 38
+    .local p1, "childSubscriber":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/lang/Integer;>;"
     new-instance v0, Lrx/internal/operators/OnSubscribeRange$RangeProducer;
 
-    iget v1, p0, Lrx/internal/operators/OnSubscribeRange;->start:I
+    iget v1, p0, Lrx/internal/operators/OnSubscribeRange;->startIndex:I
 
-    iget v2, p0, Lrx/internal/operators/OnSubscribeRange;->end:I
+    iget v2, p0, Lrx/internal/operators/OnSubscribeRange;->endIndex:I
 
-    const/4 v3, 0x0
-
-    invoke-direct {v0, p1, v1, v2, v3}, Lrx/internal/operators/OnSubscribeRange$RangeProducer;-><init>(Lrx/Subscriber;IILrx/internal/operators/OnSubscribeRange$1;)V
+    invoke-direct {v0, p1, v1, v2}, Lrx/internal/operators/OnSubscribeRange$RangeProducer;-><init>(Lrx/Subscriber;II)V
 
     invoke-virtual {p1, v0}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
 
-    .line 40
+    .line 39
     return-void
 .end method

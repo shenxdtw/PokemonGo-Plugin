@@ -2,8 +2,8 @@
 
 ###說明
 1.使用smali-2.1.3.jar將PokemonGo_Smali資料夾內的Smali Code轉為classes.dex檔案<br>
-2.將classes.dex丟進Pokemon Go v0.31.0.apk中<br>
-3.將Pokemon Go v0.29.2.apk重新簽名，即可安裝進Android裝置使用<br>
+2.將classes.dex丟進Pokemon Go v0.33.0.apk中<br>
+3.將Pokemon Go v0.33.0.apk重新簽名，即可安裝進Android裝置使用<br>
 4.啟動Pokemon Go即可看到左上方多了一個Tool，分別為⬆️⬇️⬅️➡️🐱✡️<br>
 5.預設GPS地點為45.417619, -75.701228，使用Tool即可進行角色的移動
 

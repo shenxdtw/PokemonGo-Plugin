@@ -24,26 +24,29 @@
 # instance fields
 .field final synthetic this$0:Lrx/internal/operators/OperatorSampleWithObservable;
 
+.field final synthetic val$main:Ljava/util/concurrent/atomic/AtomicReference;
+
 .field final synthetic val$s:Lrx/observers/SerializedSubscriber;
 
 .field final synthetic val$value:Ljava/util/concurrent/atomic/AtomicReference;
 
 
 # direct methods
-.method constructor <init>(Lrx/internal/operators/OperatorSampleWithObservable;Lrx/Subscriber;Ljava/util/concurrent/atomic/AtomicReference;Lrx/observers/SerializedSubscriber;)V
+.method constructor <init>(Lrx/internal/operators/OperatorSampleWithObservable;Ljava/util/concurrent/atomic/AtomicReference;Lrx/observers/SerializedSubscriber;Ljava/util/concurrent/atomic/AtomicReference;)V
     .registers 5
 
     .prologue
-    .line 47
+    .line 49
     .local p0, "this":Lrx/internal/operators/OperatorSampleWithObservable$1;, "Lrx/internal/operators/OperatorSampleWithObservable.1;"
-    .local p2, "x0":Lrx/Subscriber;, "Lrx/Subscriber<*>;"
     iput-object p1, p0, Lrx/internal/operators/OperatorSampleWithObservable$1;->this$0:Lrx/internal/operators/OperatorSampleWithObservable;
 
-    iput-object p3, p0, Lrx/internal/operators/OperatorSampleWithObservable$1;->val$value:Ljava/util/concurrent/atomic/AtomicReference;
+    iput-object p2, p0, Lrx/internal/operators/OperatorSampleWithObservable$1;->val$value:Ljava/util/concurrent/atomic/AtomicReference;
 
-    iput-object p4, p0, Lrx/internal/operators/OperatorSampleWithObservable$1;->val$s:Lrx/observers/SerializedSubscriber;
+    iput-object p3, p0, Lrx/internal/operators/OperatorSampleWithObservable$1;->val$s:Lrx/observers/SerializedSubscriber;
 
-    invoke-direct {p0, p2}, Lrx/Subscriber;-><init>(Lrx/Subscriber;)V
+    iput-object p4, p0, Lrx/internal/operators/OperatorSampleWithObservable$1;->val$main:Ljava/util/concurrent/atomic/AtomicReference;
+
+    invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
     return-void
 .end method
@@ -54,16 +57,29 @@
     .registers 2
 
     .prologue
-    .line 66
+    .line 69
     .local p0, "this":Lrx/internal/operators/OperatorSampleWithObservable$1;, "Lrx/internal/operators/OperatorSampleWithObservable.1;"
+    const/4 v0, 0x0
+
+    invoke-virtual {p0, v0}, Lrx/internal/operators/OperatorSampleWithObservable$1;->onNext(Ljava/lang/Object;)V
+
+    .line 70
     iget-object v0, p0, Lrx/internal/operators/OperatorSampleWithObservable$1;->val$s:Lrx/observers/SerializedSubscriber;
 
     invoke-virtual {v0}, Lrx/observers/SerializedSubscriber;->onCompleted()V
 
-    .line 67
-    invoke-virtual {p0}, Lrx/internal/operators/OperatorSampleWithObservable$1;->unsubscribe()V
+    .line 72
+    iget-object v0, p0, Lrx/internal/operators/OperatorSampleWithObservable$1;->val$main:Ljava/util/concurrent/atomic/AtomicReference;
 
-    .line 68
+    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lrx/Subscription;
+
+    invoke-interface {v0}, Lrx/Subscription;->unsubscribe()V
+
+    .line 73
     return-void
 .end method
 
@@ -72,16 +88,24 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 60
+    .line 62
     .local p0, "this":Lrx/internal/operators/OperatorSampleWithObservable$1;, "Lrx/internal/operators/OperatorSampleWithObservable.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorSampleWithObservable$1;->val$s:Lrx/observers/SerializedSubscriber;
 
     invoke-virtual {v0, p1}, Lrx/observers/SerializedSubscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 61
-    invoke-virtual {p0}, Lrx/internal/operators/OperatorSampleWithObservable$1;->unsubscribe()V
+    .line 64
+    iget-object v0, p0, Lrx/internal/operators/OperatorSampleWithObservable$1;->val$main:Ljava/util/concurrent/atomic/AtomicReference;
 
-    .line 62
+    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lrx/Subscription;
+
+    invoke-interface {v0}, Lrx/Subscription;->unsubscribe()V
+
+    .line 65
     return-void
 .end method
 
@@ -94,7 +118,7 @@
     .end annotation
 
     .prologue
-    .line 50
+    .line 52
     .local p0, "this":Lrx/internal/operators/OperatorSampleWithObservable$1;, "Lrx/internal/operators/OperatorSampleWithObservable.1;"
     .local p1, "t":Ljava/lang/Object;, "TU;"
     iget-object v2, p0, Lrx/internal/operators/OperatorSampleWithObservable$1;->val$value:Ljava/util/concurrent/atomic/AtomicReference;
@@ -105,22 +129,22 @@
 
     move-result-object v0
 
-    .line 51
+    .line 53
     .local v0, "localValue":Ljava/lang/Object;
     sget-object v2, Lrx/internal/operators/OperatorSampleWithObservable;->EMPTY_TOKEN:Ljava/lang/Object;
 
     if-eq v0, v2, :cond_12
 
-    .line 53
+    .line 55
     move-object v1, v0
 
-    .line 54
+    .line 56
     .local v1, "v":Ljava/lang/Object;, "TT;"
     iget-object v2, p0, Lrx/internal/operators/OperatorSampleWithObservable$1;->val$s:Lrx/observers/SerializedSubscriber;
 
     invoke-virtual {v2, v1}, Lrx/observers/SerializedSubscriber;->onNext(Ljava/lang/Object;)V
 
-    .line 56
+    .line 58
     .end local v1    # "v":Ljava/lang/Object;, "TT;"
     :cond_12
     return-void

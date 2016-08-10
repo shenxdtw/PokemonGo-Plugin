@@ -164,27 +164,25 @@
     goto :goto_23
 .end method
 
-.method private constructor <init>()V
-    .registers 3
+.method constructor <init>()V
+    .registers 2
 
     .prologue
-    .local p0, "this":Lrx/internal/util/IndexedRingBuffer;, "Lrx/internal/util/IndexedRingBuffer<TE;>;"
-    const/4 v1, 0x0
-
     .line 293
+    .local p0, "this":Lrx/internal/util/IndexedRingBuffer;, "Lrx/internal/util/IndexedRingBuffer<TE;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 65
     new-instance v0, Lrx/internal/util/IndexedRingBuffer$ElementSection;
 
-    invoke-direct {v0, v1}, Lrx/internal/util/IndexedRingBuffer$ElementSection;-><init>(Lrx/internal/util/IndexedRingBuffer$1;)V
+    invoke-direct {v0}, Lrx/internal/util/IndexedRingBuffer$ElementSection;-><init>()V
 
     iput-object v0, p0, Lrx/internal/util/IndexedRingBuffer;->elements:Lrx/internal/util/IndexedRingBuffer$ElementSection;
 
     .line 66
     new-instance v0, Lrx/internal/util/IndexedRingBuffer$IndexSection;
 
-    invoke-direct {v0, v1}, Lrx/internal/util/IndexedRingBuffer$IndexSection;-><init>(Lrx/internal/util/IndexedRingBuffer$1;)V
+    invoke-direct {v0}, Lrx/internal/util/IndexedRingBuffer$IndexSection;-><init>()V
 
     iput-object v0, p0, Lrx/internal/util/IndexedRingBuffer;->removed:Lrx/internal/util/IndexedRingBuffer$IndexSection;
 
@@ -203,18 +201,6 @@
     iput-object v0, p0, Lrx/internal/util/IndexedRingBuffer;->removedIndex:Ljava/util/concurrent/atomic/AtomicInteger;
 
     .line 294
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/internal/util/IndexedRingBuffer$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/internal/util/IndexedRingBuffer$1;
-
-    .prologue
-    .line 49
-    .local p0, "this":Lrx/internal/util/IndexedRingBuffer;, "Lrx/internal/util/IndexedRingBuffer<TE;>;"
-    invoke-direct {p0}, Lrx/internal/util/IndexedRingBuffer;-><init>()V
-
     return-void
 .end method
 
@@ -282,7 +268,7 @@
     :goto_18
     sget v7, Lrx/internal/util/IndexedRingBuffer;->SIZE:I
 
-    if-ge v2, v7, :cond_41
+    if-ge v2, v7, :cond_3f
 
     .line 463
     if-ge v5, v4, :cond_20
@@ -304,10 +290,7 @@
     .line 467
     .restart local v2    # "i":I
     :cond_23
-    # getter for: Lrx/internal/util/IndexedRingBuffer$ElementSection;->array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
-    invoke-static {v6}, Lrx/internal/util/IndexedRingBuffer$ElementSection;->access$300(Lrx/internal/util/IndexedRingBuffer$ElementSection;)Ljava/util/concurrent/atomic/AtomicReferenceArray;
-
-    move-result-object v7
+    iget-object v7, v6, Lrx/internal/util/IndexedRingBuffer$ElementSection;->array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
 
     invoke-virtual {v7, v2}, Ljava/util/concurrent/atomic/AtomicReferenceArray;->get(I)Ljava/lang/Object;
 
@@ -315,10 +298,10 @@
 
     .line 468
     .local v1, "element":Ljava/lang/Object;, "TE;"
-    if-nez v1, :cond_32
+    if-nez v1, :cond_30
 
     .line 462
-    :cond_2d
+    :cond_2b
     add-int/lit8 v2, v2, 0x1
 
     add-int/lit8 v5, v5, 0x1
@@ -326,7 +309,7 @@
     goto :goto_18
 
     .line 471
-    :cond_32
+    :cond_30
     move v3, v5
 
     .line 472
@@ -342,7 +325,7 @@
 
     .line 473
     .local v0, "continueLoop":Z
-    if-nez v0, :cond_2d
+    if-nez v0, :cond_2b
 
     move v7, v3
 
@@ -352,11 +335,8 @@
     .line 477
     .end local v0    # "continueLoop":Z
     .end local v1    # "element":Ljava/lang/Object;, "TE;"
-    :cond_41
-    # getter for: Lrx/internal/util/IndexedRingBuffer$ElementSection;->next:Ljava/util/concurrent/atomic/AtomicReference;
-    invoke-static {v6}, Lrx/internal/util/IndexedRingBuffer$ElementSection;->access$400(Lrx/internal/util/IndexedRingBuffer$ElementSection;)Ljava/util/concurrent/atomic/AtomicReference;
-
-    move-result-object v7
+    :cond_3f
+    iget-object v7, v6, Lrx/internal/util/IndexedRingBuffer$ElementSection;->next:Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-virtual {v7}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
 
@@ -635,7 +615,7 @@
     goto :goto_e
 .end method
 
-.method public static final getInstance()Lrx/internal/util/IndexedRingBuffer;
+.method public static getInstance()Lrx/internal/util/IndexedRingBuffer;
     .registers 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -747,24 +727,21 @@
     .local v0, "i":I
     sget v2, Lrx/internal/util/IndexedRingBuffer;->SIZE:I
 
-    if-ge v0, v2, :cond_12
+    if-ge v0, v2, :cond_10
 
     .line 306
     iget-object v2, p0, Lrx/internal/util/IndexedRingBuffer;->elements:Lrx/internal/util/IndexedRingBuffer$ElementSection;
 
-    # getter for: Lrx/internal/util/IndexedRingBuffer$ElementSection;->array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
-    invoke-static {v2}, Lrx/internal/util/IndexedRingBuffer$ElementSection;->access$300(Lrx/internal/util/IndexedRingBuffer$ElementSection;)Ljava/util/concurrent/atomic/AtomicReferenceArray;
-
-    move-result-object v2
+    iget-object v2, v2, Lrx/internal/util/IndexedRingBuffer$ElementSection;->array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
 
     invoke-virtual {v2, v0, p1}, Ljava/util/concurrent/atomic/AtomicReferenceArray;->set(ILjava/lang/Object;)V
 
     .line 311
-    :goto_11
+    :goto_f
     return v0
 
     .line 309
-    :cond_12
+    :cond_10
     sget v2, Lrx/internal/util/IndexedRingBuffer;->SIZE:I
 
     rem-int v1, v0, v2
@@ -775,14 +752,11 @@
 
     move-result-object v2
 
-    # getter for: Lrx/internal/util/IndexedRingBuffer$ElementSection;->array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
-    invoke-static {v2}, Lrx/internal/util/IndexedRingBuffer$ElementSection;->access$300(Lrx/internal/util/IndexedRingBuffer$ElementSection;)Ljava/util/concurrent/atomic/AtomicReferenceArray;
-
-    move-result-object v2
+    iget-object v2, v2, Lrx/internal/util/IndexedRingBuffer$ElementSection;->array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
 
     invoke-virtual {v2, v1, p1}, Ljava/util/concurrent/atomic/AtomicReferenceArray;->set(ILjava/lang/Object;)V
 
-    goto :goto_11
+    goto :goto_f
 .end method
 
 .method public forEach(Lrx/functions/Func1;)I
@@ -922,7 +896,7 @@
     :goto_d
     sget v4, Lrx/internal/util/IndexedRingBuffer;->SIZE:I
 
-    if-ge v0, v4, :cond_31
+    if-ge v0, v4, :cond_2f
 
     .line 272
     if-lt v2, v1, :cond_24
@@ -953,10 +927,7 @@
     .line 278
     .restart local v0    # "i":I
     :cond_24
-    # getter for: Lrx/internal/util/IndexedRingBuffer$ElementSection;->array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
-    invoke-static {v3}, Lrx/internal/util/IndexedRingBuffer$ElementSection;->access$300(Lrx/internal/util/IndexedRingBuffer$ElementSection;)Ljava/util/concurrent/atomic/AtomicReferenceArray;
-
-    move-result-object v4
+    iget-object v4, v3, Lrx/internal/util/IndexedRingBuffer$ElementSection;->array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
 
     const/4 v5, 0x0
 
@@ -970,11 +941,8 @@
     goto :goto_d
 
     .line 280
-    :cond_31
-    # getter for: Lrx/internal/util/IndexedRingBuffer$ElementSection;->next:Ljava/util/concurrent/atomic/AtomicReference;
-    invoke-static {v3}, Lrx/internal/util/IndexedRingBuffer$ElementSection;->access$400(Lrx/internal/util/IndexedRingBuffer$ElementSection;)Ljava/util/concurrent/atomic/AtomicReference;
-
-    move-result-object v4
+    :cond_2f
+    iget-object v4, v3, Lrx/internal/util/IndexedRingBuffer$ElementSection;->next:Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-virtual {v4}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
 
@@ -1003,15 +971,12 @@
     .line 317
     sget v2, Lrx/internal/util/IndexedRingBuffer;->SIZE:I
 
-    if-ge p1, v2, :cond_13
+    if-ge p1, v2, :cond_11
 
     .line 319
     iget-object v2, p0, Lrx/internal/util/IndexedRingBuffer;->elements:Lrx/internal/util/IndexedRingBuffer$ElementSection;
 
-    # getter for: Lrx/internal/util/IndexedRingBuffer$ElementSection;->array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
-    invoke-static {v2}, Lrx/internal/util/IndexedRingBuffer$ElementSection;->access$300(Lrx/internal/util/IndexedRingBuffer$ElementSection;)Ljava/util/concurrent/atomic/AtomicReferenceArray;
-
-    move-result-object v2
+    iget-object v2, v2, Lrx/internal/util/IndexedRingBuffer$ElementSection;->array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
 
     invoke-virtual {v2, p1, v3}, Ljava/util/concurrent/atomic/AtomicReferenceArray;->getAndSet(ILjava/lang/Object;)Ljava/lang/Object;
 
@@ -1019,7 +984,7 @@
 
     .line 324
     .local v0, "e":Ljava/lang/Object;, "TE;"
-    :goto_f
+    :goto_d
     invoke-direct {p0, p1}, Lrx/internal/util/IndexedRingBuffer;->pushRemovedIndex(I)V
 
     .line 325
@@ -1027,7 +992,7 @@
 
     .line 321
     .end local v0    # "e":Ljava/lang/Object;, "TE;"
-    :cond_13
+    :cond_11
     sget v2, Lrx/internal/util/IndexedRingBuffer;->SIZE:I
 
     rem-int v1, p1, v2
@@ -1038,17 +1003,14 @@
 
     move-result-object v2
 
-    # getter for: Lrx/internal/util/IndexedRingBuffer$ElementSection;->array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
-    invoke-static {v2}, Lrx/internal/util/IndexedRingBuffer$ElementSection;->access$300(Lrx/internal/util/IndexedRingBuffer$ElementSection;)Ljava/util/concurrent/atomic/AtomicReferenceArray;
-
-    move-result-object v2
+    iget-object v2, v2, Lrx/internal/util/IndexedRingBuffer$ElementSection;->array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
 
     invoke-virtual {v2, v1, v3}, Ljava/util/concurrent/atomic/AtomicReferenceArray;->getAndSet(ILjava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
 
     .restart local v0    # "e":Ljava/lang/Object;, "TE;"
-    goto :goto_f
+    goto :goto_d
 .end method
 
 .method public unsubscribe()V

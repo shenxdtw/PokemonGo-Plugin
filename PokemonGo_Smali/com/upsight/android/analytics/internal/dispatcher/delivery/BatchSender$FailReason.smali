@@ -40,7 +40,7 @@
 
     const/4 v2, 0x0
 
-    .line 102
+    .line 103
     new-instance v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$FailReason;
 
     const-string v1, "SERVER"
@@ -57,7 +57,7 @@
 
     sput-object v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$FailReason;->NETWORK:Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$FailReason;
 
-    .line 101
+    .line 102
     const/4 v0, 0x2
 
     new-array v0, v0, [Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$FailReason;
@@ -84,7 +84,7 @@
     .end annotation
 
     .prologue
-    .line 101
+    .line 102
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -95,7 +95,7 @@
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 101
+    .line 102
     const-class v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$FailReason;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -111,7 +111,7 @@
     .registers 1
 
     .prologue
-    .line 101
+    .line 102
     sget-object v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$FailReason;->$VALUES:[Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$FailReason;
 
     invoke-virtual {v0}, [Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$FailReason;->clone()Ljava/lang/Object;

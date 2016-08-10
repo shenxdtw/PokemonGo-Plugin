@@ -93,10 +93,7 @@
 
     iget-object v2, p0, Lrx/internal/operators/OperatorTimestamp$1;->this$0:Lrx/internal/operators/OperatorTimestamp;
 
-    # getter for: Lrx/internal/operators/OperatorTimestamp;->scheduler:Lrx/Scheduler;
-    invoke-static {v2}, Lrx/internal/operators/OperatorTimestamp;->access$000(Lrx/internal/operators/OperatorTimestamp;)Lrx/Scheduler;
-
-    move-result-object v2
+    iget-object v2, v2, Lrx/internal/operators/OperatorTimestamp;->scheduler:Lrx/Scheduler;
 
     invoke-virtual {v2}, Lrx/Scheduler;->now()J
 

@@ -31,20 +31,6 @@
 .end annotation
 
 
-# static fields
-.field static final REFERENCE_UPDATER:Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater",
-            "<",
-            "Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;",
-            "Lrx/Notification;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-
 # instance fields
 .field iNotif:Lrx/Notification;
     .annotation system Ldalvik/annotation/Signature;
@@ -57,37 +43,19 @@
 
 .field final notify:Ljava/util/concurrent/Semaphore;
 
-.field volatile value:Lrx/Notification;
+.field final value:Ljava/util/concurrent/atomic/AtomicReference;
     .annotation system Ldalvik/annotation/Signature;
         value = {
+            "Ljava/util/concurrent/atomic/AtomicReference",
+            "<",
             "Lrx/Notification",
-            "<+TT;>;"
+            "<+TT;>;>;"
         }
     .end annotation
 .end field
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .registers 3
-
-    .prologue
-    .line 65
-    const-class v0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;
-
-    const-class v1, Lrx/Notification;
-
-    const-string v2, "value"
-
-    invoke-static {v0, v1, v2}, Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->REFERENCE_UPDATER:Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
-
-    return-void
-.end method
-
 .method constructor <init>()V
     .registers 3
 
@@ -105,6 +73,13 @@
 
     iput-object v0, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->notify:Ljava/util/concurrent/Semaphore;
 
+    .line 62
+    new-instance v0, Ljava/util/concurrent/atomic/AtomicReference;
+
+    invoke-direct {v0}, Ljava/util/concurrent/atomic/AtomicReference;-><init>()V
+
+    iput-object v0, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->value:Ljava/util/concurrent/atomic/AtomicReference;
+
     return-void
 .end method
 
@@ -114,7 +89,7 @@
     .registers 5
 
     .prologue
-    .line 91
+    .line 87
     .local p0, "this":Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;, "Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator<TT;>;"
     iget-object v2, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->iNotif:Lrx/Notification;
 
@@ -128,7 +103,7 @@
 
     if-eqz v2, :cond_17
 
-    .line 92
+    .line 88
     iget-object v2, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->iNotif:Lrx/Notification;
 
     invoke-virtual {v2}, Lrx/Notification;->getThrowable()Ljava/lang/Throwable;
@@ -141,7 +116,7 @@
 
     throw v2
 
-    .line 94
+    .line 90
     :cond_17
     iget-object v2, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->iNotif:Lrx/Notification;
 
@@ -155,13 +130,13 @@
 
     if-nez v2, :cond_60
 
-    .line 95
+    .line 91
     :cond_23
     iget-object v2, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->iNotif:Lrx/Notification;
 
     if-nez v2, :cond_60
 
-    .line 97
+    .line 93
     :try_start_27
     iget-object v2, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->notify:Ljava/util/concurrent/Semaphore;
 
@@ -169,22 +144,22 @@
     :try_end_2c
     .catch Ljava/lang/InterruptedException; {:try_start_27 .. :try_end_2c} :catch_4a
 
-    .line 106
-    sget-object v2, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->REFERENCE_UPDATER:Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
+    .line 102
+    iget-object v2, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->value:Ljava/util/concurrent/atomic/AtomicReference;
 
     const/4 v3, 0x0
 
-    invoke-virtual {v2, p0, v3}, Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;->getAndSet(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-virtual {v2, v3}, Ljava/util/concurrent/atomic/AtomicReference;->getAndSet(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
 
     check-cast v1, Lrx/Notification;
 
-    .line 107
+    .line 103
     .local v1, "n":Lrx/Notification;, "Lrx/Notification<+TT;>;"
     iput-object v1, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->iNotif:Lrx/Notification;
 
-    .line 108
+    .line 104
     iget-object v2, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->iNotif:Lrx/Notification;
 
     invoke-virtual {v2}, Lrx/Notification;->isOnError()Z
@@ -193,7 +168,7 @@
 
     if-eqz v2, :cond_60
 
-    .line 109
+    .line 105
     iget-object v2, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->iNotif:Lrx/Notification;
 
     invoke-virtual {v2}, Lrx/Notification;->getThrowable()Ljava/lang/Throwable;
@@ -206,37 +181,37 @@
 
     throw v2
 
-    .line 98
+    .line 94
     .end local v1    # "n":Lrx/Notification;, "Lrx/Notification<+TT;>;"
     :catch_4a
     move-exception v0
 
-    .line 99
+    .line 95
     .local v0, "ex":Ljava/lang/InterruptedException;
     invoke-virtual {p0}, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->unsubscribe()V
 
-    .line 100
+    .line 96
     invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
 
     move-result-object v2
 
     invoke-virtual {v2}, Ljava/lang/Thread;->interrupt()V
 
-    .line 101
+    .line 97
     invoke-static {v0}, Lrx/Notification;->createOnError(Ljava/lang/Throwable;)Lrx/Notification;
 
     move-result-object v2
 
     iput-object v2, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->iNotif:Lrx/Notification;
 
-    .line 102
+    .line 98
     invoke-static {v0}, Lrx/exceptions/Exceptions;->propagate(Ljava/lang/Throwable;)Ljava/lang/RuntimeException;
 
     move-result-object v2
 
     throw v2
 
-    .line 113
+    .line 109
     .end local v0    # "ex":Ljava/lang/InterruptedException;
     :cond_60
     iget-object v2, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->iNotif:Lrx/Notification;
@@ -267,7 +242,7 @@
     .end annotation
 
     .prologue
-    .line 118
+    .line 114
     .local p0, "this":Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;, "Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator<TT;>;"
     invoke-virtual {p0}, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->hasNext()Z
 
@@ -275,7 +250,7 @@
 
     if-eqz v1, :cond_18
 
-    .line 119
+    .line 115
     iget-object v1, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->iNotif:Lrx/Notification;
 
     invoke-virtual {v1}, Lrx/Notification;->isOnNext()Z
@@ -284,23 +259,23 @@
 
     if-eqz v1, :cond_18
 
-    .line 120
+    .line 116
     iget-object v1, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->iNotif:Lrx/Notification;
 
     invoke-virtual {v1}, Lrx/Notification;->getValue()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 121
+    .line 117
     .local v0, "v":Ljava/lang/Object;, "TT;"
     const/4 v1, 0x0
 
     iput-object v1, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->iNotif:Lrx/Notification;
 
-    .line 122
+    .line 118
     return-object v0
 
-    .line 125
+    .line 121
     .end local v0    # "v":Ljava/lang/Object;, "TT;"
     :cond_18
     new-instance v1, Ljava/util/NoSuchElementException;
@@ -314,7 +289,7 @@
     .registers 1
 
     .prologue
-    .line 84
+    .line 80
     .local p0, "this":Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;, "Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator<TT;>;"
     return-void
 .end method
@@ -324,7 +299,7 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 79
+    .line 75
     .local p0, "this":Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;, "Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator<TT;>;"
     return-void
 .end method
@@ -355,12 +330,12 @@
     .end annotation
 
     .prologue
-    .line 70
+    .line 66
     .local p0, "this":Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;, "Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator<TT;>;"
     .local p1, "args":Lrx/Notification;, "Lrx/Notification<+TT;>;"
-    sget-object v1, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->REFERENCE_UPDATER:Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
+    iget-object v1, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->value:Ljava/util/concurrent/atomic/AtomicReference;
 
-    invoke-virtual {v1, p0, p1}, Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;->getAndSet(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-virtual {v1, p1}, Ljava/util/concurrent/atomic/AtomicReference;->getAndSet(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
 
@@ -368,21 +343,21 @@
 
     const/4 v0, 0x1
 
-    .line 71
+    .line 67
     .local v0, "wasntAvailable":Z
     :goto_9
     if-eqz v0, :cond_10
 
-    .line 72
+    .line 68
     iget-object v1, p0, Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;->notify:Ljava/util/concurrent/Semaphore;
 
     invoke-virtual {v1}, Ljava/util/concurrent/Semaphore;->release()V
 
-    .line 74
+    .line 70
     :cond_10
     return-void
 
-    .line 70
+    .line 66
     .end local v0    # "wasntAvailable":Z
     :cond_11
     const/4 v0, 0x0
@@ -394,7 +369,7 @@
     .registers 3
 
     .prologue
-    .line 130
+    .line 126
     .local p0, "this":Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator;, "Lrx/internal/operators/BlockingOperatorLatest$LatestObserverIterator<TT;>;"
     new-instance v0, Ljava/lang/UnsupportedOperationException;
 

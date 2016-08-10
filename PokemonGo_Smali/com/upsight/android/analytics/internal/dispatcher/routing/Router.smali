@@ -7,14 +7,6 @@
 .implements Lcom/upsight/android/analytics/internal/dispatcher/delivery/OnResponseListener;
 
 
-# annotations
-.annotation system Ldalvik/annotation/MemberClasses;
-    value = {
-        Lcom/upsight/android/analytics/internal/dispatcher/routing/Router$3;
-    }
-.end annotation
-
-
 # instance fields
 .field private final mEventsInRouting:Ljava/util/concurrent/atomic/AtomicInteger;
 

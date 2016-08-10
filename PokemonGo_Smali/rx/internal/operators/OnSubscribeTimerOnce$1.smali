@@ -28,7 +28,7 @@
     .registers 3
 
     .prologue
-    .line 44
+    .line 45
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeTimerOnce$1;->this$0:Lrx/internal/operators/OnSubscribeTimerOnce;
 
     iput-object p2, p0, Lrx/internal/operators/OnSubscribeTimerOnce$1;->val$child:Lrx/Subscriber;
@@ -44,7 +44,7 @@
     .registers 5
 
     .prologue
-    .line 48
+    .line 49
     :try_start_0
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeTimerOnce$1;->val$child:Lrx/Subscriber;
 
@@ -58,24 +58,24 @@
     :try_end_b
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_b} :catch_11
 
-    .line 53
+    .line 54
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeTimerOnce$1;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v1}, Lrx/Subscriber;->onCompleted()V
 
-    .line 54
+    .line 55
     :goto_10
     return-void
 
-    .line 49
+    .line 50
     :catch_11
     move-exception v0
 
-    .line 50
+    .line 51
     .local v0, "t":Ljava/lang/Throwable;
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeTimerOnce$1;->val$child:Lrx/Subscriber;
 
-    invoke-virtual {v1, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, v1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     goto :goto_10
 .end method

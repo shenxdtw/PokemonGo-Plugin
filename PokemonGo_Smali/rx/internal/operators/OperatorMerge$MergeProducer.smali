@@ -54,15 +54,15 @@
     .end annotation
 
     .prologue
-    .line 114
+    .line 119
     .local p0, "this":Lrx/internal/operators/OperatorMerge$MergeProducer;, "Lrx/internal/operators/OperatorMerge$MergeProducer<TT;>;"
     .local p1, "subscriber":Lrx/internal/operators/OperatorMerge$MergeSubscriber;, "Lrx/internal/operators/OperatorMerge$MergeSubscriber<TT;>;"
     invoke-direct {p0}, Ljava/util/concurrent/atomic/AtomicLong;-><init>()V
 
-    .line 115
+    .line 120
     iput-object p1, p0, Lrx/internal/operators/OperatorMerge$MergeProducer;->subscriber:Lrx/internal/operators/OperatorMerge$MergeSubscriber;
 
-    .line 116
+    .line 121
     return-void
 .end method
 
@@ -73,7 +73,7 @@
     .param p1, "n"    # I
 
     .prologue
-    .line 132
+    .line 137
     .local p0, "this":Lrx/internal/operators/OperatorMerge$MergeProducer;, "Lrx/internal/operators/OperatorMerge$MergeProducer<TT;>;"
     neg-int v0, p1
 
@@ -94,12 +94,12 @@
     .local p0, "this":Lrx/internal/operators/OperatorMerge$MergeProducer;, "Lrx/internal/operators/OperatorMerge$MergeProducer<TT;>;"
     const-wide/16 v2, 0x0
 
-    .line 120
+    .line 125
     cmp-long v0, p1, v2
 
     if-lez v0, :cond_1d
 
-    .line 121
+    .line 126
     invoke-virtual {p0}, Lrx/internal/operators/OperatorMerge$MergeProducer;->get()J
 
     move-result-wide v0
@@ -110,29 +110,29 @@
 
     if-nez v0, :cond_14
 
-    .line 130
+    .line 135
     :cond_13
     :goto_13
     return-void
 
-    .line 124
+    .line 129
     :cond_14
     invoke-static {p0, p1, p2}, Lrx/internal/operators/BackpressureUtils;->getAndAddRequest(Ljava/util/concurrent/atomic/AtomicLong;J)J
 
-    .line 125
+    .line 130
     iget-object v0, p0, Lrx/internal/operators/OperatorMerge$MergeProducer;->subscriber:Lrx/internal/operators/OperatorMerge$MergeSubscriber;
 
     invoke-virtual {v0}, Lrx/internal/operators/OperatorMerge$MergeSubscriber;->emit()V
 
     goto :goto_13
 
-    .line 127
+    .line 132
     :cond_1d
     cmp-long v0, p1, v2
 
     if-gez v0, :cond_13
 
-    .line 128
+    .line 133
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "n >= 0 required"

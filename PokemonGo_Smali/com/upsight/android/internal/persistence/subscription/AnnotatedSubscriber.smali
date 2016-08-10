@@ -77,13 +77,12 @@
 
     .prologue
     .line 37
-    iget-object v3, p0, Lcom/upsight/android/internal/persistence/subscription/AnnotatedSubscriber;->mHandlers:Ljava/util/Set;
+    iget-object v2, p0, Lcom/upsight/android/internal/persistence/subscription/AnnotatedSubscriber;->mHandlers:Ljava/util/Set;
 
-    invoke-interface {v3}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+    invoke-interface {v2}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
 
-    .local v2, "i$":Ljava/util/Iterator;
     :cond_6
     :goto_6
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
@@ -141,13 +140,11 @@
 
 .method public bridge synthetic onNext(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 17
     check-cast p1, Lcom/upsight/android/internal/persistence/subscription/DataStoreEvent;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/internal/persistence/subscription/AnnotatedSubscriber;->onNext(Lcom/upsight/android/internal/persistence/subscription/DataStoreEvent;)V
 
     return-void

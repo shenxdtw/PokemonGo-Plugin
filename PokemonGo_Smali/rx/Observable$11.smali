@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Observable;->doOnTerminate(Lrx/functions/Action0;)Lrx/Observable;
+    value = Lrx/Observable;->doOnNext(Lrx/functions/Action1;)Lrx/Observable;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -28,19 +28,19 @@
 # instance fields
 .field final synthetic this$0:Lrx/Observable;
 
-.field final synthetic val$onTerminate:Lrx/functions/Action0;
+.field final synthetic val$onNext:Lrx/functions/Action1;
 
 
 # direct methods
-.method constructor <init>(Lrx/Observable;Lrx/functions/Action0;)V
+.method constructor <init>(Lrx/Observable;Lrx/functions/Action1;)V
     .registers 3
 
     .prologue
-    .line 4464
+    .line 4809
     .local p0, "this":Lrx/Observable$11;, "Lrx/Observable.11;"
     iput-object p1, p0, Lrx/Observable$11;->this$0:Lrx/Observable;
 
-    iput-object p2, p0, Lrx/Observable$11;->val$onTerminate:Lrx/functions/Action0;
+    iput-object p2, p0, Lrx/Observable$11;->val$onNext:Lrx/functions/Action1;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -50,36 +50,26 @@
 
 # virtual methods
 .method public final onCompleted()V
-    .registers 2
+    .registers 1
 
     .prologue
-    .line 4467
+    .line 4812
     .local p0, "this":Lrx/Observable$11;, "Lrx/Observable.11;"
-    iget-object v0, p0, Lrx/Observable$11;->val$onTerminate:Lrx/functions/Action0;
-
-    invoke-interface {v0}, Lrx/functions/Action0;->call()V
-
-    .line 4468
     return-void
 .end method
 
 .method public final onError(Ljava/lang/Throwable;)V
-    .registers 3
+    .registers 2
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 4472
+    .line 4816
     .local p0, "this":Lrx/Observable$11;, "Lrx/Observable.11;"
-    iget-object v0, p0, Lrx/Observable$11;->val$onTerminate:Lrx/functions/Action0;
-
-    invoke-interface {v0}, Lrx/functions/Action0;->call()V
-
-    .line 4473
     return-void
 .end method
 
 .method public final onNext(Ljava/lang/Object;)V
-    .registers 2
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -87,8 +77,13 @@
     .end annotation
 
     .prologue
-    .line 4477
+    .line 4820
     .local p0, "this":Lrx/Observable$11;, "Lrx/Observable.11;"
     .local p1, "args":Ljava/lang/Object;, "TT;"
+    iget-object v0, p0, Lrx/Observable$11;->val$onNext:Lrx/functions/Action1;
+
+    invoke-interface {v0, p1}, Lrx/functions/Action1;->call(Ljava/lang/Object;)V
+
+    .line 4821
     return-void
 .end method

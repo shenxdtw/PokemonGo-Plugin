@@ -52,7 +52,7 @@
     return-void
 .end method
 
-.method public static final create(Ljava/lang/Object;Lrx/Observable$OnSubscribe;)Lrx/observables/GroupedObservable;
+.method public static create(Ljava/lang/Object;Lrx/Observable$OnSubscribe;)Lrx/observables/GroupedObservable;
     .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {

@@ -16,7 +16,10 @@
 
 # instance fields
 .field public session_gap:I
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "session_gap"
     .end annotation
 .end field
@@ -27,7 +30,7 @@
     .registers 1
 
     .prologue
-    .line 44
+    .line 51
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

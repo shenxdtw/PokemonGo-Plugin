@@ -45,7 +45,7 @@
 
 # virtual methods
 .method public iterator()Ljava/util/Iterator;
-    .registers 5
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -55,12 +55,10 @@
     .end annotation
 
     .prologue
-    const/4 v3, 0x0
-
     .line 51
     new-instance v0, Lrx/internal/operators/BlockingOperatorNext$NextObserver;
 
-    invoke-direct {v0, v3}, Lrx/internal/operators/BlockingOperatorNext$NextObserver;-><init>(Lrx/internal/operators/BlockingOperatorNext$1;)V
+    invoke-direct {v0}, Lrx/internal/operators/BlockingOperatorNext$NextObserver;-><init>()V
 
     .line 52
     .local v0, "nextObserver":Lrx/internal/operators/BlockingOperatorNext$NextObserver;, "Lrx/internal/operators/BlockingOperatorNext$NextObserver<TT;>;"
@@ -68,7 +66,7 @@
 
     iget-object v2, p0, Lrx/internal/operators/BlockingOperatorNext$1;->val$items:Lrx/Observable;
 
-    invoke-direct {v1, v2, v0, v3}, Lrx/internal/operators/BlockingOperatorNext$NextIterator;-><init>(Lrx/Observable;Lrx/internal/operators/BlockingOperatorNext$NextObserver;Lrx/internal/operators/BlockingOperatorNext$1;)V
+    invoke-direct {v1, v2, v0}, Lrx/internal/operators/BlockingOperatorNext$NextIterator;-><init>(Lrx/Observable;Lrx/internal/operators/BlockingOperatorNext$NextObserver;)V
 
     return-object v1
 .end method

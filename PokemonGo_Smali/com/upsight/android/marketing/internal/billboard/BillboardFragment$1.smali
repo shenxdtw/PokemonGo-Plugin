@@ -1,80 +1,84 @@
-.class synthetic Lcom/upsight/android/marketing/internal/billboard/BillboardFragment$1;
+.class Lcom/upsight/android/marketing/internal/billboard/BillboardFragment$1;
 .super Ljava/lang/Object;
 .source "BillboardFragment.java"
 
+# interfaces
+.implements Landroid/content/DialogInterface$OnKeyListener;
+
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingClass;
-    value = Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;->onCreateDialog(Landroid/os/Bundle;)Landroid/app/Dialog;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x1008
+    accessFlags = 0x0
     name = null
 .end annotation
 
 
-# static fields
-.field static final synthetic $SwitchMap$com$upsight$android$marketing$UpsightBillboard$Dimensions$LayoutOrientation:[I
+# instance fields
+.field final synthetic this$0:Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .registers 3
+.method constructor <init>(Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;)V
+    .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;
 
     .prologue
-    .line 78
-    invoke-static {}, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;->values()[Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;
+    .line 134
+    iput-object p1, p0, Lcom/upsight/android/marketing/internal/billboard/BillboardFragment$1;->this$0:Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public onKey(Landroid/content/DialogInterface;ILandroid/view/KeyEvent;)Z
+    .registers 7
+    .param p1, "dialog"    # Landroid/content/DialogInterface;
+    .param p2, "keyCode"    # I
+    .param p3, "event"    # Landroid/view/KeyEvent;
+
+    .prologue
+    const/4 v1, 0x0
+
+    .line 137
+    const/4 v2, 0x4
+
+    if-ne p2, v2, :cond_19
+
+    invoke-virtual {p3}, Landroid/view/KeyEvent;->getAction()I
+
+    move-result v2
+
+    if-nez v2, :cond_19
+
+    .line 138
+    iget-object v2, p0, Lcom/upsight/android/marketing/internal/billboard/BillboardFragment$1;->this$0:Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;
+
+    # getter for: Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;->mBackPressHandler:Lcom/upsight/android/marketing/internal/billboard/BillboardFragment$BackPressHandler;
+    invoke-static {v2}, Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;->access$000(Lcom/upsight/android/marketing/internal/billboard/BillboardFragment;)Lcom/upsight/android/marketing/internal/billboard/BillboardFragment$BackPressHandler;
 
     move-result-object v0
 
-    array-length v0, v0
+    .line 139
+    .local v0, "handler":Lcom/upsight/android/marketing/internal/billboard/BillboardFragment$BackPressHandler;
+    if-eqz v0, :cond_19
 
-    new-array v0, v0, [I
+    invoke-interface {v0}, Lcom/upsight/android/marketing/internal/billboard/BillboardFragment$BackPressHandler;->onBackPress()Z
 
-    sput-object v0, Lcom/upsight/android/marketing/internal/billboard/BillboardFragment$1;->$SwitchMap$com$upsight$android$marketing$UpsightBillboard$Dimensions$LayoutOrientation:[I
+    move-result v2
 
-    :try_start_9
-    sget-object v0, Lcom/upsight/android/marketing/internal/billboard/BillboardFragment$1;->$SwitchMap$com$upsight$android$marketing$UpsightBillboard$Dimensions$LayoutOrientation:[I
+    if-eqz v2, :cond_19
 
-    sget-object v1, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;->Portrait:Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;
+    const/4 v1, 0x1
 
-    invoke-virtual {v1}, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;->ordinal()I
-
-    move-result v1
-
-    const/4 v2, 0x1
-
-    aput v2, v0, v1
-    :try_end_14
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_9 .. :try_end_14} :catch_22
-
-    :goto_14
-    :try_start_14
-    sget-object v0, Lcom/upsight/android/marketing/internal/billboard/BillboardFragment$1;->$SwitchMap$com$upsight$android$marketing$UpsightBillboard$Dimensions$LayoutOrientation:[I
-
-    sget-object v1, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;->Landscape:Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;
-
-    invoke-virtual {v1}, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;->ordinal()I
-
-    move-result v1
-
-    const/4 v2, 0x2
-
-    aput v2, v0, v1
-    :try_end_1f
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_14 .. :try_end_1f} :catch_20
-
-    :goto_1f
-    return-void
-
-    :catch_20
-    move-exception v0
-
-    goto :goto_1f
-
-    :catch_22
-    move-exception v0
-
-    goto :goto_14
+    .line 141
+    .end local v0    # "handler":Lcom/upsight/android/marketing/internal/billboard/BillboardFragment$BackPressHandler;
+    :cond_19
+    return v1
 .end method

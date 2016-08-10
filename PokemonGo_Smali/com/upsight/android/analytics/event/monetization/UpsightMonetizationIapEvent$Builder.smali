@@ -25,9 +25,11 @@
 
 
 # instance fields
+.field private cookie:Ljava/lang/String;
+
 .field private currency:Ljava/lang/String;
 
-.field private iapBundle:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+.field private iapBundle:Lcom/google/gson/JsonObject;
 
 .field private price:Ljava/lang/Double;
 
@@ -58,35 +60,35 @@
     .param p7, "product"    # Ljava/lang/String;
 
     .prologue
-    .line 201
+    .line 232
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;-><init>()V
 
-    .line 202
+    .line 233
     iput-object p1, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->store:Ljava/lang/String;
 
-    .line 203
-    invoke-static {p2}, Lcom/upsight/android/analytics/internal/util/JacksonHelper$JSONObjectSerializer;->toObjectNode(Lorg/json/JSONObject;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .line 234
+    invoke-static {p2}, Lcom/upsight/android/analytics/internal/util/GsonHelper$JSONObjectSerializer;->toJsonObject(Lorg/json/JSONObject;)Lcom/google/gson/JsonObject;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->iapBundle:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->iapBundle:Lcom/google/gson/JsonObject;
 
-    .line 204
+    .line 235
     iput-object p3, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->totalPrice:Ljava/lang/Double;
 
-    .line 205
+    .line 236
     iput-object p4, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->price:Ljava/lang/Double;
 
-    .line 206
+    .line 237
     iput-object p5, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->quantity:Ljava/lang/Integer;
 
-    .line 207
+    .line 238
     iput-object p6, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->currency:Ljava/lang/String;
 
-    .line 208
+    .line 239
     iput-object p7, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->product:Ljava/lang/String;
 
-    .line 209
+    .line 240
     return-void
 .end method
 
@@ -95,7 +97,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
 
     .prologue
-    .line 167
+    .line 196
     iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->product:Ljava/lang/String;
 
     return-object v0
@@ -106,8 +108,19 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
 
     .prologue
-    .line 167
+    .line 196
     iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->totalPrice:Ljava/lang/Double;
+
+    return-object v0
+.end method
+
+.method static synthetic access$1000(Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;)Ljava/lang/Integer;
+    .registers 2
+    .param p0, "x0"    # Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
+
+    .prologue
+    .line 196
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->quantity:Ljava/lang/Integer;
 
     return-object v0
 .end method
@@ -117,7 +130,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
 
     .prologue
-    .line 167
+    .line 196
     iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->streamId:Ljava/lang/String;
 
     return-object v0
@@ -128,7 +141,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
 
     .prologue
-    .line 167
+    .line 196
     iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->price:Ljava/lang/Double;
 
     return-object v0
@@ -139,30 +152,30 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
 
     .prologue
-    .line 167
+    .line 196
     iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->currency:Ljava/lang/String;
 
     return-object v0
 .end method
 
-.method static synthetic access$500(Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
+.method static synthetic access$500(Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;)Ljava/lang/String;
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
 
     .prologue
-    .line 167
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->iapBundle:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .line 196
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->cookie:Ljava/lang/String;
 
     return-object v0
 .end method
 
-.method static synthetic access$600(Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;)Ljava/lang/String;
+.method static synthetic access$600(Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;)Lcom/google/gson/JsonObject;
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
 
     .prologue
-    .line 167
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->streamStartTs:Ljava/lang/String;
+    .line 196
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->iapBundle:Lcom/google/gson/JsonObject;
 
     return-object v0
 .end method
@@ -172,8 +185,8 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
 
     .prologue
-    .line 167
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->resolution:Ljava/lang/String;
+    .line 196
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->streamStartTs:Ljava/lang/String;
 
     return-object v0
 .end method
@@ -183,19 +196,19 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
 
     .prologue
-    .line 167
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->store:Ljava/lang/String;
+    .line 196
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->resolution:Ljava/lang/String;
 
     return-object v0
 .end method
 
-.method static synthetic access$900(Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;)Ljava/lang/Integer;
+.method static synthetic access$900(Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;)Ljava/lang/String;
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
 
     .prologue
-    .line 167
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->quantity:Ljava/lang/Integer;
+    .line 196
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->store:Ljava/lang/String;
 
     return-object v0
 .end method
@@ -206,7 +219,7 @@
     .registers 2
 
     .prologue
-    .line 167
+    .line 196
     invoke-virtual {p0}, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->build()Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent;
 
     move-result-object v0
@@ -218,7 +231,7 @@
     .registers 5
 
     .prologue
-    .line 237
+    .line 285
     new-instance v0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent;
 
     const-string v1, "upsight.monetization.iap"
@@ -238,15 +251,27 @@
     return-object v0
 .end method
 
+.method public setCookie(Ljava/lang/String;)Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
+    .registers 2
+    .param p1, "cookie"    # Ljava/lang/String;
+
+    .prologue
+    .line 263
+    iput-object p1, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->cookie:Ljava/lang/String;
+
+    .line 264
+    return-object p0
+.end method
+
 .method public setResolution(Ljava/lang/String;)Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;
     .registers 2
     .param p1, "resolution"    # Ljava/lang/String;
 
     .prologue
-    .line 231
+    .line 279
     iput-object p1, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->resolution:Ljava/lang/String;
 
-    .line 232
+    .line 280
     return-object p0
 .end method
 
@@ -255,10 +280,10 @@
     .param p1, "streamId"    # Ljava/lang/String;
 
     .prologue
-    .line 215
+    .line 246
     iput-object p1, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->streamId:Ljava/lang/String;
 
-    .line 216
+    .line 247
     return-object p0
 .end method
 
@@ -267,9 +292,9 @@
     .param p1, "streamStartTs"    # Ljava/lang/String;
 
     .prologue
-    .line 223
+    .line 271
     iput-object p1, p0, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->streamStartTs:Ljava/lang/String;
 
-    .line 224
+    .line 272
     return-object p0
 .end method

@@ -15,28 +15,28 @@
 
 
 # instance fields
-.field private mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+.field private mGson:Lcom/google/gson/Gson;
 
 
 # direct methods
-.method constructor <init>(Lcom/fasterxml/jackson/databind/ObjectMapper;)V
+.method constructor <init>(Lcom/google/gson/Gson;)V
     .registers 2
-    .param p1, "mapper"    # Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .param p1, "gson"    # Lcom/google/gson/Gson;
         .annotation runtime Ljavax/inject/Named;
-            value = "config-mapper"
+            value = "config-gson"
         .end annotation
     .end param
     .annotation runtime Ljavax/inject/Inject;
     .end annotation
 
     .prologue
-    .line 27
+    .line 29
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 28
-    iput-object p1, p0, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .line 30
+    iput-object p1, p0, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser;->mGson:Lcom/google/gson/Gson;
 
-    .line 29
+    .line 31
     return-void
 .end method
 
@@ -52,32 +52,48 @@
     .end annotation
 
     .prologue
-    .line 40
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .line 44
+    :try_start_0
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser;->mGson:Lcom/google/gson/Gson;
 
-    const-class v2, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser$ConfigJson;
+    const-class v3, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser$ConfigJson;
 
-    invoke-virtual {v1, p1, v2}, Lcom/fasterxml/jackson/databind/ObjectMapper;->readValue(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+    invoke-virtual {v2, p1, v3}, Lcom/google/gson/Gson;->fromJson(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser$ConfigJson;
+    :try_end_a
+    .catch Lcom/google/gson/JsonSyntaxException; {:try_start_0 .. :try_end_a} :catch_19
 
-    .line 42
+    .line 49
     .local v0, "config":Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser$ConfigJson;
-    new-instance v1, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
+    new-instance v2, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
 
-    sget-object v2, Ljava/util/concurrent/TimeUnit;->SECONDS:Ljava/util/concurrent/TimeUnit;
+    sget-object v3, Ljava/util/concurrent/TimeUnit;->SECONDS:Ljava/util/concurrent/TimeUnit;
 
-    iget v3, v0, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser$ConfigJson;->requestInterval:I
+    iget v4, v0, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser$ConfigJson;->requestInterval:I
 
-    int-to-long v4, v3
+    int-to-long v4, v4
 
-    invoke-virtual {v2, v4, v5}, Ljava/util/concurrent/TimeUnit;->toMillis(J)J
+    invoke-virtual {v3, v4, v5}, Ljava/util/concurrent/TimeUnit;->toMillis(J)J
 
-    move-result-wide v2
+    move-result-wide v4
 
-    invoke-direct {v1, v2, v3}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;-><init>(J)V
+    invoke-direct {v2, v4, v5}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;-><init>(J)V
 
-    return-object v1
+    return-object v2
+
+    .line 45
+    .end local v0    # "config":Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser$ConfigJson;
+    :catch_19
+    move-exception v1
+
+    .line 46
+    .local v1, "e":Lcom/google/gson/JsonSyntaxException;
+    new-instance v2, Ljava/io/IOException;
+
+    invoke-direct {v2, v1}, Ljava/io/IOException;-><init>(Ljava/lang/Throwable;)V
+
+    throw v2
 .end method

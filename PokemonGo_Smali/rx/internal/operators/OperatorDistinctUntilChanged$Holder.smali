@@ -30,7 +30,7 @@
     .registers 2
 
     .prologue
-    .line 32
+    .line 33
     new-instance v0, Lrx/internal/operators/OperatorDistinctUntilChanged;
 
     invoke-static {}, Lrx/internal/util/UtilityFunctions;->identity()Lrx/functions/Func1;
@@ -48,7 +48,7 @@
     .registers 1
 
     .prologue
-    .line 31
+    .line 32
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

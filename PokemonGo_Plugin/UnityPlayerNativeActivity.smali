@@ -94,7 +94,6 @@
 
     invoke-static {p0}, Lccu/ant/pokemon_crackview/PokemonGoPlugin;->showTool(Landroid/app/Activity;)V
 
-
     iget-object v0, p0, Lcom/unity3d/player/UnityPlayerNativeActivity;->mUnityPlayer:Lcom/unity3d/player/UnityPlayer;
 
     invoke-virtual {v0}, Lcom/unity3d/player/UnityPlayer;->requestFocus()Z

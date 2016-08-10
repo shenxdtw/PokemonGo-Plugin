@@ -77,43 +77,45 @@
 
 .field public static final ic_launcher:I = 0x7f02001e
 
-.field public static final ic_swap_horiz_white_24dp:I = 0x7f02001f
+.field public static final ic_media_pause:I = 0x7f02001f
 
-.field public static final lunar_console_icon_button_clear:I = 0x7f020020
+.field public static final ic_swap_horiz_white_24dp:I = 0x7f020020
 
-.field public static final lunar_console_icon_button_clipboard:I = 0x7f020021
+.field public static final lunar_console_icon_button_clear:I = 0x7f020021
 
-.field public static final lunar_console_icon_button_close:I = 0x7f020022
+.field public static final lunar_console_icon_button_clipboard:I = 0x7f020022
 
-.field public static final lunar_console_icon_button_console:I = 0x7f020023
+.field public static final lunar_console_icon_button_close:I = 0x7f020023
 
-.field public static final lunar_console_icon_button_email:I = 0x7f020024
+.field public static final lunar_console_icon_button_console:I = 0x7f020024
 
-.field public static final lunar_console_icon_button_lock:I = 0x7f020025
+.field public static final lunar_console_icon_button_email:I = 0x7f020025
 
-.field public static final lunar_console_icon_button_unlock:I = 0x7f020026
+.field public static final lunar_console_icon_button_lock:I = 0x7f020026
 
-.field public static final lunar_console_icon_log:I = 0x7f020027
+.field public static final lunar_console_icon_button_unlock:I = 0x7f020027
 
-.field public static final lunar_console_icon_log_error:I = 0x7f020028
+.field public static final lunar_console_icon_log:I = 0x7f020028
 
-.field public static final lunar_console_icon_log_warning:I = 0x7f020029
+.field public static final lunar_console_icon_log_error:I = 0x7f020029
 
-.field public static final lunar_console_shape_edit_text:I = 0x7f02002a
+.field public static final lunar_console_icon_log_warning:I = 0x7f02002a
 
-.field public static final np_webview_back_button_normal:I = 0x7f02002b
+.field public static final lunar_console_shape_edit_text:I = 0x7f02002b
 
-.field public static final np_webview_close_button_normal:I = 0x7f02002c
+.field public static final np_webview_back_button_normal:I = 0x7f02002c
 
-.field public static final np_webview_forward_button_normal:I = 0x7f02002d
+.field public static final np_webview_close_button_normal:I = 0x7f02002d
 
-.field public static final np_webview_reload_button_normal:I = 0x7f02002e
+.field public static final np_webview_forward_button_normal:I = 0x7f02002e
 
-.field public static final powered_by_google_dark:I = 0x7f02002f
+.field public static final np_webview_reload_button_normal:I = 0x7f02002f
 
-.field public static final powered_by_google_light:I = 0x7f020030
+.field public static final powered_by_google_dark:I = 0x7f020030
 
-.field public static final sfida_icon:I = 0x7f020031
+.field public static final powered_by_google_light:I = 0x7f020031
+
+.field public static final sfida_icon:I = 0x7f020032
 
 
 # direct methods

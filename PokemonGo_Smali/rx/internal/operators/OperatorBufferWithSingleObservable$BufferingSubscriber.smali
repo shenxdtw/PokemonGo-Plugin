@@ -61,17 +61,17 @@
     .end annotation
 
     .prologue
-    .line 119
+    .line 120
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;, "Lrx/internal/operators/OperatorBufferWithSingleObservable<TT;TTClosing;>.BufferingSubscriber;"
     .local p2, "child":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/util/List<TT;>;>;"
     iput-object p1, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->this$0:Lrx/internal/operators/OperatorBufferWithSingleObservable;
 
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
-    .line 120
+    .line 121
     iput-object p2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->child:Lrx/Subscriber;
 
-    .line 121
+    .line 122
     new-instance v0, Ljava/util/ArrayList;
 
     iget v1, p1, Lrx/internal/operators/OperatorBufferWithSingleObservable;->initialCapacity:I
@@ -80,7 +80,7 @@
 
     iput-object v0, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->chunk:Ljava/util/List;
 
-    .line 122
+    .line 123
     return-void
 .end method
 
@@ -90,28 +90,28 @@
     .registers 5
 
     .prologue
-    .line 169
+    .line 170
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;, "Lrx/internal/operators/OperatorBufferWithSingleObservable<TT;TTClosing;>.BufferingSubscriber;"
     monitor-enter p0
 
-    .line 170
+    .line 171
     :try_start_1
     iget-boolean v2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->done:Z
 
     if-eqz v2, :cond_7
 
-    .line 171
+    .line 172
     monitor-exit p0
 
-    .line 188
+    .line 189
     :goto_6
     return-void
 
-    .line 173
+    .line 174
     :cond_7
     iget-object v1, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->chunk:Ljava/util/List;
 
-    .line 174
+    .line 175
     .local v1, "toEmit":Ljava/util/List;, "Ljava/util/List<TT;>;"
     new-instance v2, Ljava/util/ArrayList;
 
@@ -123,12 +123,12 @@
 
     iput-object v2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->chunk:Ljava/util/List;
 
-    .line 175
+    .line 176
     monitor-exit p0
     :try_end_15
     .catchall {:try_start_1 .. :try_end_15} :catchall_29
 
-    .line 177
+    .line 178
     :try_start_15
     iget-object v2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->child:Lrx/Subscriber;
 
@@ -138,29 +138,29 @@
 
     goto :goto_6
 
-    .line 178
+    .line 179
     :catch_1b
     move-exception v0
 
-    .line 179
+    .line 180
     .local v0, "t":Ljava/lang/Throwable;
     invoke-virtual {p0}, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->unsubscribe()V
 
-    .line 180
+    .line 181
     monitor-enter p0
 
-    .line 181
+    .line 182
     :try_start_20
     iget-boolean v2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->done:Z
 
     if-eqz v2, :cond_2c
 
-    .line 182
+    .line 183
     monitor-exit p0
 
     goto :goto_6
 
-    .line 185
+    .line 186
     :catchall_26
     move-exception v2
 
@@ -170,7 +170,7 @@
 
     throw v2
 
-    .line 175
+    .line 176
     .end local v0    # "t":Ljava/lang/Throwable;
     .end local v1    # "toEmit":Ljava/util/List;, "Ljava/util/List<TT;>;"
     :catchall_29
@@ -183,7 +183,7 @@
 
     throw v2
 
-    .line 184
+    .line 185
     .restart local v0    # "t":Ljava/lang/Throwable;
     .restart local v1    # "toEmit":Ljava/util/List;, "Ljava/util/List<TT;>;"
     :cond_2c
@@ -192,15 +192,15 @@
     :try_start_2d
     iput-boolean v2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->done:Z
 
-    .line 185
+    .line 186
     monitor-exit p0
     :try_end_30
     .catchall {:try_start_2d .. :try_end_30} :catchall_26
 
-    .line 186
+    .line 187
     iget-object v2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->child:Lrx/Subscriber;
 
-    invoke-virtual {v2, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, v2}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     goto :goto_6
 .end method
@@ -209,47 +209,47 @@
     .registers 4
 
     .prologue
-    .line 150
+    .line 151
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;, "Lrx/internal/operators/OperatorBufferWithSingleObservable<TT;TTClosing;>.BufferingSubscriber;"
     :try_start_0
     monitor-enter p0
     :try_end_1
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_1} :catch_21
 
-    .line 151
+    .line 152
     :try_start_1
     iget-boolean v2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->done:Z
 
     if-eqz v2, :cond_7
 
-    .line 152
+    .line 153
     monitor-exit p0
 
-    .line 165
+    .line 166
     :goto_6
     return-void
 
-    .line 154
+    .line 155
     :cond_7
     const/4 v2, 0x1
 
     iput-boolean v2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->done:Z
 
-    .line 155
+    .line 156
     iget-object v1, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->chunk:Ljava/util/List;
 
-    .line 156
+    .line 157
     .local v1, "toEmit":Ljava/util/List;, "Ljava/util/List<TT;>;"
     const/4 v2, 0x0
 
     iput-object v2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->chunk:Ljava/util/List;
 
-    .line 157
+    .line 158
     monitor-exit p0
     :try_end_10
     .catchall {:try_start_1 .. :try_end_10} :catchall_1e
 
-    .line 158
+    .line 159
     :try_start_10
     iget-object v2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->child:Lrx/Subscriber;
 
@@ -257,17 +257,17 @@
     :try_end_15
     .catch Ljava/lang/Throwable; {:try_start_10 .. :try_end_15} :catch_21
 
-    .line 163
+    .line 164
     iget-object v2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v2}, Lrx/Subscriber;->onCompleted()V
 
-    .line 164
+    .line 165
     invoke-virtual {p0}, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->unsubscribe()V
 
     goto :goto_6
 
-    .line 157
+    .line 158
     .end local v1    # "toEmit":Ljava/util/List;, "Ljava/util/List<TT;>;"
     :catchall_1e
     move-exception v2
@@ -282,15 +282,15 @@
     :try_end_21
     .catch Ljava/lang/Throwable; {:try_start_20 .. :try_end_21} :catch_21
 
-    .line 159
+    .line 160
     :catch_21
     move-exception v0
 
-    .line 160
+    .line 161
     .local v0, "t":Ljava/lang/Throwable;
     iget-object v2, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->child:Lrx/Subscriber;
 
-    invoke-virtual {v2, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, v2}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     goto :goto_6
 .end method
@@ -300,50 +300,50 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 135
+    .line 136
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;, "Lrx/internal/operators/OperatorBufferWithSingleObservable<TT;TTClosing;>.BufferingSubscriber;"
     monitor-enter p0
 
-    .line 136
+    .line 137
     :try_start_1
     iget-boolean v0, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->done:Z
 
     if-eqz v0, :cond_7
 
-    .line 137
+    .line 138
     monitor-exit p0
 
-    .line 144
+    .line 145
     :goto_6
     return-void
 
-    .line 139
+    .line 140
     :cond_7
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->done:Z
 
-    .line 140
+    .line 141
     const/4 v0, 0x0
 
     iput-object v0, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->chunk:Ljava/util/List;
 
-    .line 141
+    .line 142
     monitor-exit p0
     :try_end_e
     .catchall {:try_start_1 .. :try_end_e} :catchall_17
 
-    .line 142
+    .line 143
     iget-object v0, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 143
+    .line 144
     invoke-virtual {p0}, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->unsubscribe()V
 
     goto :goto_6
 
-    .line 141
+    .line 142
     :catchall_17
     move-exception v0
 
@@ -364,31 +364,31 @@
     .end annotation
 
     .prologue
-    .line 125
+    .line 126
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;, "Lrx/internal/operators/OperatorBufferWithSingleObservable<TT;TTClosing;>.BufferingSubscriber;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     monitor-enter p0
 
-    .line 126
+    .line 127
     :try_start_1
     iget-boolean v0, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->done:Z
 
     if-eqz v0, :cond_7
 
-    .line 127
+    .line 128
     monitor-exit p0
 
-    .line 131
+    .line 132
     :goto_6
     return-void
 
-    .line 129
+    .line 130
     :cond_7
     iget-object v0, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->chunk:Ljava/util/List;
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 130
+    .line 131
     monitor-exit p0
 
     goto :goto_6

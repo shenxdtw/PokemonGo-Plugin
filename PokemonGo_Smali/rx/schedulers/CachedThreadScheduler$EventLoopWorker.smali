@@ -32,6 +32,8 @@
 
 .field volatile once:I
 
+.field private final pool:Lrx/schedulers/CachedThreadScheduler$CachedWorkerPool;
+
 .field private final threadWorker:Lrx/schedulers/CachedThreadScheduler$ThreadWorker;
 
 
@@ -40,7 +42,7 @@
     .registers 2
 
     .prologue
-    .line 115
+    .line 180
     const-class v0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;
 
     const-string v1, "once"
@@ -54,25 +56,32 @@
     return-void
 .end method
 
-.method constructor <init>(Lrx/schedulers/CachedThreadScheduler$ThreadWorker;)V
+.method constructor <init>(Lrx/schedulers/CachedThreadScheduler$CachedWorkerPool;)V
     .registers 3
-    .param p1, "threadWorker"    # Lrx/schedulers/CachedThreadScheduler$ThreadWorker;
+    .param p1, "pool"    # Lrx/schedulers/CachedThreadScheduler$CachedWorkerPool;
 
     .prologue
-    .line 118
+    .line 183
     invoke-direct {p0}, Lrx/Scheduler$Worker;-><init>()V
 
-    .line 111
+    .line 175
     new-instance v0, Lrx/subscriptions/CompositeSubscription;
 
     invoke-direct {v0}, Lrx/subscriptions/CompositeSubscription;-><init>()V
 
     iput-object v0, p0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;->innerSubscription:Lrx/subscriptions/CompositeSubscription;
 
-    .line 119
-    iput-object p1, p0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;->threadWorker:Lrx/schedulers/CachedThreadScheduler$ThreadWorker;
+    .line 184
+    iput-object p1, p0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;->pool:Lrx/schedulers/CachedThreadScheduler$CachedWorkerPool;
 
-    .line 120
+    .line 185
+    invoke-virtual {p1}, Lrx/schedulers/CachedThreadScheduler$CachedWorkerPool;->get()Lrx/schedulers/CachedThreadScheduler$ThreadWorker;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;->threadWorker:Lrx/schedulers/CachedThreadScheduler$ThreadWorker;
+
+    .line 186
     return-void
 .end method
 
@@ -82,7 +91,7 @@
     .registers 2
 
     .prologue
-    .line 133
+    .line 199
     iget-object v0, p0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;->innerSubscription:Lrx/subscriptions/CompositeSubscription;
 
     invoke-virtual {v0}, Lrx/subscriptions/CompositeSubscription;->isUnsubscribed()Z
@@ -97,7 +106,7 @@
     .param p1, "action"    # Lrx/functions/Action0;
 
     .prologue
-    .line 138
+    .line 204
     const-wide/16 v0, 0x0
 
     const/4 v2, 0x0
@@ -116,7 +125,7 @@
     .param p4, "unit"    # Ljava/util/concurrent/TimeUnit;
 
     .prologue
-    .line 143
+    .line 209
     iget-object v1, p0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;->innerSubscription:Lrx/subscriptions/CompositeSubscription;
 
     invoke-virtual {v1}, Lrx/subscriptions/CompositeSubscription;->isUnsubscribed()Z
@@ -125,16 +134,16 @@
 
     if-eqz v1, :cond_d
 
-    .line 145
+    .line 211
     invoke-static {}, Lrx/subscriptions/Subscriptions;->unsubscribed()Lrx/Subscription;
 
     move-result-object v0
 
-    .line 151
+    .line 217
     :goto_c
     return-object v0
 
-    .line 148
+    .line 214
     :cond_d
     iget-object v1, p0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;->threadWorker:Lrx/schedulers/CachedThreadScheduler$ThreadWorker;
 
@@ -142,13 +151,13 @@
 
     move-result-object v0
 
-    .line 149
+    .line 215
     .local v0, "s":Lrx/internal/schedulers/ScheduledAction;
     iget-object v1, p0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;->innerSubscription:Lrx/subscriptions/CompositeSubscription;
 
     invoke-virtual {v1, v0}, Lrx/subscriptions/CompositeSubscription;->add(Lrx/Subscription;)V
 
-    .line 150
+    .line 216
     iget-object v1, p0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;->innerSubscription:Lrx/subscriptions/CompositeSubscription;
 
     invoke-virtual {v0, v1}, Lrx/internal/schedulers/ScheduledAction;->addParent(Lrx/subscriptions/CompositeSubscription;)V
@@ -160,7 +169,7 @@
     .registers 4
 
     .prologue
-    .line 124
+    .line 190
     sget-object v0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;->ONCE_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
 
     const/4 v1, 0x0
@@ -171,24 +180,21 @@
 
     move-result v0
 
-    if-eqz v0, :cond_13
+    if-eqz v0, :cond_11
 
-    .line 126
-    # getter for: Lrx/schedulers/CachedThreadScheduler$CachedWorkerPool;->INSTANCE:Lrx/schedulers/CachedThreadScheduler$CachedWorkerPool;
-    invoke-static {}, Lrx/schedulers/CachedThreadScheduler$CachedWorkerPool;->access$200()Lrx/schedulers/CachedThreadScheduler$CachedWorkerPool;
-
-    move-result-object v0
+    .line 192
+    iget-object v0, p0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;->pool:Lrx/schedulers/CachedThreadScheduler$CachedWorkerPool;
 
     iget-object v1, p0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;->threadWorker:Lrx/schedulers/CachedThreadScheduler$ThreadWorker;
 
     invoke-virtual {v0, v1}, Lrx/schedulers/CachedThreadScheduler$CachedWorkerPool;->release(Lrx/schedulers/CachedThreadScheduler$ThreadWorker;)V
 
-    .line 128
-    :cond_13
+    .line 194
+    :cond_11
     iget-object v0, p0, Lrx/schedulers/CachedThreadScheduler$EventLoopWorker;->innerSubscription:Lrx/subscriptions/CompositeSubscription;
 
     invoke-virtual {v0}, Lrx/subscriptions/CompositeSubscription;->unsubscribe()V
 
-    .line 129
+    .line 195
     return-void
 .end method

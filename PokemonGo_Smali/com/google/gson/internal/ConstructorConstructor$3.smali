@@ -34,9 +34,10 @@
 # direct methods
 .method constructor <init>(Lcom/google/gson/internal/ConstructorConstructor;Ljava/lang/reflect/Constructor;)V
     .registers 3
+    .param p1, "this$0"    # Lcom/google/gson/internal/ConstructorConstructor;
 
     .prologue
-    .line 99
+    .line 103
     iput-object p1, p0, Lcom/google/gson/internal/ConstructorConstructor$3;->this$0:Lcom/google/gson/internal/ConstructorConstructor;
 
     iput-object p2, p0, Lcom/google/gson/internal/ConstructorConstructor$3;->val$constructor:Ljava/lang/reflect/Constructor;
@@ -57,10 +58,10 @@
     .end annotation
 
     .prologue
-    .line 103
+    .line 107
     const/4 v0, 0x0
 
-    .line 104
+    .line 108
     .local v0, "args":[Ljava/lang/Object;
     :try_start_1
     iget-object v2, p0, Lcom/google/gson/internal/ConstructorConstructor$3;->val$constructor:Ljava/lang/reflect/Constructor;
@@ -75,11 +76,11 @@
 
     return-object v2
 
-    .line 105
+    .line 109
     :catch_8
     move-exception v1
 
-    .line 107
+    .line 111
     .local v1, "e":Ljava/lang/InstantiationException;
     new-instance v2, Ljava/lang/RuntimeException;
 
@@ -113,12 +114,12 @@
 
     throw v2
 
-    .line 108
+    .line 112
     .end local v1    # "e":Ljava/lang/InstantiationException;
     :catch_2a
     move-exception v1
 
-    .line 111
+    .line 115
     .local v1, "e":Ljava/lang/reflect/InvocationTargetException;
     new-instance v2, Ljava/lang/RuntimeException;
 
@@ -148,6 +149,7 @@
 
     move-result-object v3
 
+    .line 116
     invoke-virtual {v1}, Ljava/lang/reflect/InvocationTargetException;->getTargetException()Ljava/lang/Throwable;
 
     move-result-object v4
@@ -156,12 +158,12 @@
 
     throw v2
 
-    .line 113
+    .line 117
     .end local v1    # "e":Ljava/lang/reflect/InvocationTargetException;
     :catch_50
     move-exception v1
 
-    .line 114
+    .line 118
     .local v1, "e":Ljava/lang/IllegalAccessException;
     new-instance v2, Ljava/lang/AssertionError;
 

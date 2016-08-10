@@ -29,7 +29,7 @@
     .param p1, "this$0"    # Lcom/nianticlabs/pokemongoplus/service/BackgroundService;
 
     .prologue
-    .line 77
+    .line 148
     iput-object p1, p0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$1;->this$0:Lcom/nianticlabs/pokemongoplus/service/BackgroundService;
 
     iput-object p2, p0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$1;->val$intent:Landroid/content/Intent;
@@ -45,13 +45,13 @@
     .registers 3
 
     .prologue
-    .line 80
+    .line 151
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$1;->this$0:Lcom/nianticlabs/pokemongoplus/service/BackgroundService;
 
     iget-object v1, p0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$1;->val$intent:Landroid/content/Intent;
 
     invoke-virtual {v0, v1}, Lcom/nianticlabs/pokemongoplus/service/BackgroundService;->onHandleIntent(Landroid/content/Intent;)V
 
-    .line 81
+    .line 152
     return-void
 .end method

@@ -34,7 +34,7 @@
     .registers 2
 
     .prologue
-    .line 9589
+    .line 10649
     .local p0, "this":Lrx/Observable$ThrowObservable$1;, "Lrx/Observable$ThrowObservable.1;"
     iput-object p1, p0, Lrx/Observable$ThrowObservable$1;->val$exception:Ljava/lang/Throwable;
 
@@ -50,7 +50,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 9589
+    .line 10649
     .local p0, "this":Lrx/Observable$ThrowObservable$1;, "Lrx/Observable$ThrowObservable.1;"
     check-cast p1, Lrx/Subscriber;
 
@@ -71,13 +71,13 @@
     .end annotation
 
     .prologue
-    .line 9599
+    .line 10659
     .local p0, "this":Lrx/Observable$ThrowObservable$1;, "Lrx/Observable$ThrowObservable.1;"
     .local p1, "observer":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     iget-object v0, p0, Lrx/Observable$ThrowObservable$1;->val$exception:Ljava/lang/Throwable;
 
     invoke-virtual {p1, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 9600
+    .line 10660
     return-void
 .end method

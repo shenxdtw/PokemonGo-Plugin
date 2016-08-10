@@ -9,7 +9,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$1;,
         Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;
     }
 .end annotation
@@ -141,10 +140,10 @@
     .param p1, "builder"    # Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;
 
     .prologue
-    .line 26
+    .line 37
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 27
+    .line 38
     sget-boolean v0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -157,11 +156,11 @@
 
     throw v0
 
-    .line 28
+    .line 39
     :cond_f
     invoke-direct {p0, p1}, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->initialize(Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;)V
 
-    .line 29
+    .line 40
     return-void
 .end method
 
@@ -171,7 +170,7 @@
     .param p2, "x1"    # Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$1;
 
     .prologue
-    .line 16
+    .line 19
     invoke-direct {p0, p1}, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;-><init>(Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;)V
 
     return-void
@@ -181,7 +180,7 @@
     .registers 2
 
     .prologue
-    .line 32
+    .line 43
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;
 
     const/4 v1, 0x0
@@ -196,7 +195,8 @@
     .param p1, "builder"    # Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;
 
     .prologue
-    .line 36
+    .line 49
+    .line 50
     # getter for: Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;->pushModule:Lcom/upsight/android/googlepushservices/internal/PushModule;
     invoke-static {p1}, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;->access$100(Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;)Lcom/upsight/android/googlepushservices/internal/PushModule;
 
@@ -206,26 +206,27 @@
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
-    .line 37
+    .line 52
     iget-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
+    .line 53
     invoke-static {v0}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;->create(Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->googlePushServicesProvider:Ljavax/inject/Provider;
 
-    .line 38
+    .line 58
     # getter for: Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;->pushModule:Lcom/upsight/android/googlepushservices/internal/PushModule;
     invoke-static {p1}, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;->access$100(Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;)Lcom/upsight/android/googlepushservices/internal/PushModule;
 
@@ -233,30 +234,29 @@
 
     iget-object v1, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->googlePushServicesProvider:Ljavax/inject/Provider;
 
+    .line 57
     invoke-static {v0, v1}, Lcom/upsight/android/googlepushservices/internal/PushModule_ProvideGooglePushServicesApiFactory;->create(Lcom/upsight/android/googlepushservices/internal/PushModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 56
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideGooglePushServicesApiProvider:Ljavax/inject/Provider;
 
-    .line 39
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
+    .line 60
+    iget-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideGooglePushServicesApiProvider:Ljavax/inject/Provider;
 
-    move-result-object v0
-
-    iget-object v1, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideGooglePushServicesApiProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1}, Lcom/upsight/android/UpsightGooglePushServicesExtension_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    .line 61
+    invoke-static {v0}, Lcom/upsight/android/UpsightGooglePushServicesExtension_MembersInjector;->create(Ljavax/inject/Provider;)Ldagger/MembersInjector;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->upsightGooglePushServicesExtensionMembersInjector:Ldagger/MembersInjector;
 
-    .line 40
+    .line 67
     # getter for: Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;->googleCloudMessagingModule:Lcom/upsight/android/googlepushservices/internal/GoogleCloudMessagingModule;
     invoke-static {p1}, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;->access$200(Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;)Lcom/upsight/android/googlepushservices/internal/GoogleCloudMessagingModule;
 
@@ -264,30 +264,31 @@
 
     iget-object v1, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
+    .line 66
     invoke-static {v0, v1}, Lcom/upsight/android/googlepushservices/internal/GoogleCloudMessagingModule_ProvideGoogleCloudMessagingFactory;->create(Lcom/upsight/android/googlepushservices/internal/GoogleCloudMessagingModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 65
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideGoogleCloudMessagingProvider:Ljavax/inject/Provider;
 
-    .line 41
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
+    .line 69
+    iget-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideGoogleCloudMessagingProvider:Ljavax/inject/Provider;
 
-    move-result-object v0
+    iget-object v1, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
-    iget-object v1, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideGoogleCloudMessagingProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1}, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    .line 70
+    invoke-static {v0, v1}, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;->create(Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->pushIntentServiceMembersInjector:Ldagger/MembersInjector;
 
-    .line 42
+    .line 76
     # getter for: Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;->pushModule:Lcom/upsight/android/googlepushservices/internal/PushModule;
     invoke-static {p1}, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;->access$100(Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;)Lcom/upsight/android/googlepushservices/internal/PushModule;
 
@@ -295,30 +296,29 @@
 
     iget-object v1, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
+    .line 75
     invoke-static {v0, v1}, Lcom/upsight/android/googlepushservices/internal/PushModule_ProvideSessionManagerFactory;->create(Lcom/upsight/android/googlepushservices/internal/PushModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 74
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideSessionManagerProvider:Ljavax/inject/Provider;
 
-    .line 43
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
+    .line 78
+    iget-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideSessionManagerProvider:Ljavax/inject/Provider;
 
-    move-result-object v0
-
-    iget-object v1, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->provideSessionManagerProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1}, Lcom/upsight/android/googlepushservices/internal/PushClickIntentService_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    .line 79
+    invoke-static {v0}, Lcom/upsight/android/googlepushservices/internal/PushClickIntentService_MembersInjector;->create(Ljavax/inject/Provider;)Ldagger/MembersInjector;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->pushClickIntentServiceMembersInjector:Ldagger/MembersInjector;
 
-    .line 44
+    .line 80
     return-void
 .end method
 
@@ -326,13 +326,11 @@
 # virtual methods
 .method public bridge synthetic inject(Lcom/upsight/android/UpsightExtension;)V
     .registers 2
-    .param p1, "x0"    # Lcom/upsight/android/UpsightExtension;
 
     .prologue
     .line 15
     check-cast p1, Lcom/upsight/android/UpsightGooglePushServicesExtension;
 
-    .end local p1    # "x0":Lcom/upsight/android/UpsightExtension;
     invoke-virtual {p0, p1}, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->inject(Lcom/upsight/android/UpsightGooglePushServicesExtension;)V
 
     return-void
@@ -343,12 +341,12 @@
     .param p1, "arg0"    # Lcom/upsight/android/UpsightGooglePushServicesExtension;
 
     .prologue
-    .line 48
+    .line 84
     iget-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->upsightGooglePushServicesExtensionMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 49
+    .line 85
     return-void
 .end method
 
@@ -357,12 +355,12 @@
     .param p1, "pushClickIntentService"    # Lcom/upsight/android/googlepushservices/internal/PushClickIntentService;
 
     .prologue
-    .line 58
+    .line 94
     iget-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->pushClickIntentServiceMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 59
+    .line 95
     return-void
 .end method
 
@@ -371,11 +369,11 @@
     .param p1, "pushIntentService"    # Lcom/upsight/android/googlepushservices/internal/PushIntentService;
 
     .prologue
-    .line 53
+    .line 89
     iget-object v0, p0, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent;->pushIntentServiceMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 54
+    .line 90
     return-void
 .end method

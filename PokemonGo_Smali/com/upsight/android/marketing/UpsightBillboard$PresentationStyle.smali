@@ -44,7 +44,7 @@
 
     const/4 v2, 0x0
 
-    .line 78
+    .line 154
     new-instance v0, Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;
 
     const-string v1, "None"
@@ -53,7 +53,7 @@
 
     sput-object v0, Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;->None:Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;
 
-    .line 79
+    .line 155
     new-instance v0, Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;
 
     const-string v1, "Dialog"
@@ -62,7 +62,7 @@
 
     sput-object v0, Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;->Dialog:Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;
 
-    .line 80
+    .line 156
     new-instance v0, Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;
 
     const-string v1, "Fullscreen"
@@ -71,7 +71,7 @@
 
     sput-object v0, Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;->Fullscreen:Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;
 
-    .line 77
+    .line 153
     const/4 v0, 0x3
 
     new-array v0, v0, [Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;
@@ -102,7 +102,7 @@
     .end annotation
 
     .prologue
-    .line 77
+    .line 153
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -113,7 +113,7 @@
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 77
+    .line 153
     const-class v0, Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -129,7 +129,7 @@
     .registers 1
 
     .prologue
-    .line 77
+    .line 153
     sget-object v0, Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;->$VALUES:[Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;
 
     invoke-virtual {v0}, [Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;->clone()Ljava/lang/Object;

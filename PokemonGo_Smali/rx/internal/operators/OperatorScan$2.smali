@@ -22,21 +22,13 @@
 
 
 # instance fields
-.field private final initialValue:Ljava/lang/Object;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "TR;"
-        }
-    .end annotation
-.end field
-
-.field initialized:Z
+.field once:Z
 
 .field final synthetic this$0:Lrx/internal/operators/OperatorScan;
 
 .field final synthetic val$child:Lrx/Subscriber;
 
-.field private value:Ljava/lang/Object;
+.field value:Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "TR;"
@@ -47,10 +39,10 @@
 
 # direct methods
 .method constructor <init>(Lrx/internal/operators/OperatorScan;Lrx/Subscriber;Lrx/Subscriber;)V
-    .registers 5
+    .registers 4
 
     .prologue
-    .line 90
+    .line 96
     .local p0, "this":Lrx/internal/operators/OperatorScan$2;, "Lrx/internal/operators/OperatorScan.2;"
     .local p2, "x0":Lrx/Subscriber;, "Lrx/Subscriber<*>;"
     iput-object p1, p0, Lrx/internal/operators/OperatorScan$2;->this$0:Lrx/internal/operators/OperatorScan;
@@ -59,84 +51,6 @@
 
     invoke-direct {p0, p2}, Lrx/Subscriber;-><init>(Lrx/Subscriber;)V
 
-    .line 91
-    iget-object v0, p0, Lrx/internal/operators/OperatorScan$2;->this$0:Lrx/internal/operators/OperatorScan;
-
-    # getter for: Lrx/internal/operators/OperatorScan;->initialValueFactory:Lrx/functions/Func0;
-    invoke-static {v0}, Lrx/internal/operators/OperatorScan;->access$000(Lrx/internal/operators/OperatorScan;)Lrx/functions/Func0;
-
-    move-result-object v0
-
-    invoke-interface {v0}, Lrx/functions/Func0;->call()Ljava/lang/Object;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lrx/internal/operators/OperatorScan$2;->initialValue:Ljava/lang/Object;
-
-    .line 92
-    iget-object v0, p0, Lrx/internal/operators/OperatorScan$2;->initialValue:Ljava/lang/Object;
-
-    iput-object v0, p0, Lrx/internal/operators/OperatorScan$2;->value:Ljava/lang/Object;
-
-    .line 93
-    const/4 v0, 0x0
-
-    iput-boolean v0, p0, Lrx/internal/operators/OperatorScan$2;->initialized:Z
-
-    return-void
-.end method
-
-.method static synthetic access$300(Lrx/internal/operators/OperatorScan$2;)Ljava/lang/Object;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorScan$2;
-
-    .prologue
-    .line 90
-    iget-object v0, p0, Lrx/internal/operators/OperatorScan$2;->initialValue:Ljava/lang/Object;
-
-    return-object v0
-.end method
-
-.method private emitInitialValueIfNeeded(Lrx/Subscriber;)V
-    .registers 4
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Lrx/Subscriber",
-            "<-TR;>;)V"
-        }
-    .end annotation
-
-    .prologue
-    .line 127
-    .local p0, "this":Lrx/internal/operators/OperatorScan$2;, "Lrx/internal/operators/OperatorScan.2;"
-    .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
-    iget-boolean v0, p0, Lrx/internal/operators/OperatorScan$2;->initialized:Z
-
-    if-nez v0, :cond_14
-
-    .line 128
-    const/4 v0, 0x1
-
-    iput-boolean v0, p0, Lrx/internal/operators/OperatorScan$2;->initialized:Z
-
-    .line 130
-    iget-object v0, p0, Lrx/internal/operators/OperatorScan$2;->initialValue:Ljava/lang/Object;
-
-    # getter for: Lrx/internal/operators/OperatorScan;->NO_INITIAL_VALUE:Ljava/lang/Object;
-    invoke-static {}, Lrx/internal/operators/OperatorScan;->access$100()Ljava/lang/Object;
-
-    move-result-object v1
-
-    if-eq v0, v1, :cond_14
-
-    .line 131
-    iget-object v0, p0, Lrx/internal/operators/OperatorScan$2;->initialValue:Ljava/lang/Object;
-
-    invoke-virtual {p1, v0}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
-
-    .line 134
-    :cond_14
     return-void
 .end method
 
@@ -146,18 +60,13 @@
     .registers 2
 
     .prologue
-    .line 122
+    .line 124
     .local p0, "this":Lrx/internal/operators/OperatorScan$2;, "Lrx/internal/operators/OperatorScan.2;"
-    iget-object v0, p0, Lrx/internal/operators/OperatorScan$2;->val$child:Lrx/Subscriber;
-
-    invoke-direct {p0, v0}, Lrx/internal/operators/OperatorScan$2;->emitInitialValueIfNeeded(Lrx/Subscriber;)V
-
-    .line 123
     iget-object v0, p0, Lrx/internal/operators/OperatorScan$2;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    .line 124
+    .line 125
     return-void
 .end method
 
@@ -166,13 +75,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 117
+    .line 120
     .local p0, "this":Lrx/internal/operators/OperatorScan$2;, "Lrx/internal/operators/OperatorScan.2;"
     iget-object v0, p0, Lrx/internal/operators/OperatorScan$2;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 118
+    .line 121
     return-void
 .end method
 
@@ -185,95 +94,64 @@
     .end annotation
 
     .prologue
-    .line 98
+    .line 103
     .local p0, "this":Lrx/internal/operators/OperatorScan$2;, "Lrx/internal/operators/OperatorScan.2;"
-    .local p1, "currentValue":Ljava/lang/Object;, "TT;"
-    iget-object v1, p0, Lrx/internal/operators/OperatorScan$2;->val$child:Lrx/Subscriber;
+    .local p1, "t":Ljava/lang/Object;, "TT;"
+    iget-boolean v2, p0, Lrx/internal/operators/OperatorScan$2;->once:Z
 
-    invoke-direct {p0, v1}, Lrx/internal/operators/OperatorScan$2;->emitInitialValueIfNeeded(Lrx/Subscriber;)V
+    if-nez v2, :cond_10
 
-    .line 100
-    iget-object v1, p0, Lrx/internal/operators/OperatorScan$2;->value:Ljava/lang/Object;
+    .line 104
+    const/4 v2, 0x1
 
-    # getter for: Lrx/internal/operators/OperatorScan;->NO_INITIAL_VALUE:Ljava/lang/Object;
-    invoke-static {}, Lrx/internal/operators/OperatorScan;->access$100()Ljava/lang/Object;
-
-    move-result-object v2
-
-    if-ne v1, v2, :cond_17
-
-    .line 102
-    iput-object p1, p0, Lrx/internal/operators/OperatorScan$2;->value:Ljava/lang/Object;
-
-    .line 112
-    :goto_f
-    iget-object v1, p0, Lrx/internal/operators/OperatorScan$2;->val$child:Lrx/Subscriber;
-
-    iget-object v2, p0, Lrx/internal/operators/OperatorScan$2;->value:Ljava/lang/Object;
-
-    invoke-virtual {v1, v2}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
-
-    .line 113
-    :goto_16
-    return-void
+    iput-boolean v2, p0, Lrx/internal/operators/OperatorScan$2;->once:Z
 
     .line 105
-    :cond_17
-    :try_start_17
-    iget-object v1, p0, Lrx/internal/operators/OperatorScan$2;->this$0:Lrx/internal/operators/OperatorScan;
+    move-object v1, p1
 
-    # getter for: Lrx/internal/operators/OperatorScan;->accumulator:Lrx/functions/Func2;
-    invoke-static {v1}, Lrx/internal/operators/OperatorScan;->access$200(Lrx/internal/operators/OperatorScan;)Lrx/functions/Func2;
-
-    move-result-object v1
-
-    iget-object v2, p0, Lrx/internal/operators/OperatorScan$2;->value:Ljava/lang/Object;
-
-    invoke-interface {v1, v2, p1}, Lrx/functions/Func2;->call(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v1
-
+    .line 115
+    .local v1, "v":Ljava/lang/Object;, "TR;"
+    :goto_8
     iput-object v1, p0, Lrx/internal/operators/OperatorScan$2;->value:Ljava/lang/Object;
-    :try_end_25
-    .catch Ljava/lang/Throwable; {:try_start_17 .. :try_end_25} :catch_26
 
-    goto :goto_f
+    .line 116
+    iget-object v2, p0, Lrx/internal/operators/OperatorScan$2;->val$child:Lrx/Subscriber;
 
-    .line 106
-    :catch_26
-    move-exception v0
+    invoke-virtual {v2, v1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+
+    .line 117
+    :goto_f
+    return-void
 
     .line 107
+    .end local v1    # "v":Ljava/lang/Object;, "TR;"
+    :cond_10
+    iget-object v1, p0, Lrx/internal/operators/OperatorScan$2;->value:Ljava/lang/Object;
+
+    .line 109
+    .restart local v1    # "v":Ljava/lang/Object;, "TR;"
+    :try_start_12
+    iget-object v2, p0, Lrx/internal/operators/OperatorScan$2;->this$0:Lrx/internal/operators/OperatorScan;
+
+    iget-object v2, v2, Lrx/internal/operators/OperatorScan;->accumulator:Lrx/functions/Func2;
+
+    invoke-interface {v2, v1, p1}, Lrx/functions/Func2;->call(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    :try_end_19
+    .catch Ljava/lang/Throwable; {:try_start_12 .. :try_end_19} :catch_1b
+
+    move-result-object v1
+
+    goto :goto_8
+
+    .line 110
+    :catch_1b
+    move-exception v0
+
+    .line 111
     .local v0, "e":Ljava/lang/Throwable;
-    invoke-static {v0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+    iget-object v2, p0, Lrx/internal/operators/OperatorScan$2;->val$child:Lrx/Subscriber;
 
-    .line 108
-    iget-object v1, p0, Lrx/internal/operators/OperatorScan$2;->val$child:Lrx/Subscriber;
+    invoke-static {v0, v2, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
-    invoke-static {v0, p1}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
-
-    move-result-object v2
-
-    invoke-virtual {v1, v2}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-
-    goto :goto_16
-.end method
-
-.method public setProducer(Lrx/Producer;)V
-    .registers 4
-    .param p1, "producer"    # Lrx/Producer;
-
-    .prologue
-    .line 141
-    .local p0, "this":Lrx/internal/operators/OperatorScan$2;, "Lrx/internal/operators/OperatorScan.2;"
-    iget-object v0, p0, Lrx/internal/operators/OperatorScan$2;->val$child:Lrx/Subscriber;
-
-    new-instance v1, Lrx/internal/operators/OperatorScan$2$1;
-
-    invoke-direct {v1, p0, p1}, Lrx/internal/operators/OperatorScan$2$1;-><init>(Lrx/internal/operators/OperatorScan$2;Lrx/Producer;)V
-
-    invoke-virtual {v0, v1}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
-
-    .line 170
-    return-void
+    goto :goto_f
 .end method

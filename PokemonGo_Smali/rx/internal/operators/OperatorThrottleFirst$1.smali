@@ -96,10 +96,7 @@
     .local p1, "v":Ljava/lang/Object;, "TT;"
     iget-object v2, p0, Lrx/internal/operators/OperatorThrottleFirst$1;->this$0:Lrx/internal/operators/OperatorThrottleFirst;
 
-    # getter for: Lrx/internal/operators/OperatorThrottleFirst;->scheduler:Lrx/Scheduler;
-    invoke-static {v2}, Lrx/internal/operators/OperatorThrottleFirst;->access$000(Lrx/internal/operators/OperatorThrottleFirst;)Lrx/Scheduler;
-
-    move-result-object v2
+    iget-object v2, v2, Lrx/internal/operators/OperatorThrottleFirst;->scheduler:Lrx/Scheduler;
 
     invoke-virtual {v2}, Lrx/Scheduler;->now()J
 
@@ -113,7 +110,7 @@
 
     cmp-long v2, v2, v4
 
-    if-eqz v2, :cond_20
+    if-eqz v2, :cond_1c
 
     iget-wide v2, p0, Lrx/internal/operators/OperatorThrottleFirst$1;->lastOnNext:J
 
@@ -121,17 +118,14 @@
 
     iget-object v4, p0, Lrx/internal/operators/OperatorThrottleFirst$1;->this$0:Lrx/internal/operators/OperatorThrottleFirst;
 
-    # getter for: Lrx/internal/operators/OperatorThrottleFirst;->timeInMilliseconds:J
-    invoke-static {v4}, Lrx/internal/operators/OperatorThrottleFirst;->access$100(Lrx/internal/operators/OperatorThrottleFirst;)J
-
-    move-result-wide v4
+    iget-wide v4, v4, Lrx/internal/operators/OperatorThrottleFirst;->timeInMilliseconds:J
 
     cmp-long v2, v2, v4
 
-    if-ltz v2, :cond_27
+    if-ltz v2, :cond_23
 
     .line 51
-    :cond_20
+    :cond_1c
     iput-wide v0, p0, Lrx/internal/operators/OperatorThrottleFirst$1;->lastOnNext:J
 
     .line 52
@@ -140,7 +134,7 @@
     invoke-virtual {v2, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
     .line 54
-    :cond_27
+    :cond_23
     return-void
 .end method
 

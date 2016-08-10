@@ -15,19 +15,7 @@
 
 
 # virtual methods
-.method public abstract onAttach(Ljava/lang/String;Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;Ljava/util/Set;)Landroid/view/ViewGroup;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Ljava/lang/String;",
-            "Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;",
-            "Ljava/util/Set",
-            "<",
-            "Lcom/upsight/android/marketing/UpsightBillboard$Dimensions;",
-            ">;)",
-            "Landroid/view/ViewGroup;"
-        }
-    .end annotation
+.method public abstract onAttach(Ljava/lang/String;)Lcom/upsight/android/marketing/UpsightBillboard$AttachParameters;
 .end method
 
 .method public abstract onDetach()V

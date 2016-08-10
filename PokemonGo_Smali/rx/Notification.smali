@@ -272,21 +272,21 @@
     .line 192
     if-nez p1, :cond_5
 
-    .line 205
+    .line 225
     :cond_4
     :goto_4
     return v1
 
-    .line 194
+    .line 196
     :cond_5
     if-ne p0, p1, :cond_9
 
     move v1, v2
 
-    .line 195
+    .line 197
     goto :goto_4
 
-    .line 196
+    .line 200
     :cond_9
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
@@ -300,10 +300,10 @@
 
     move-object v0, p1
 
-    .line 198
+    .line 204
     check-cast v0, Lrx/Notification;
 
-    .line 199
+    .line 205
     .local v0, "notification":Lrx/Notification;, "Lrx/Notification<*>;"
     invoke-virtual {v0}, Lrx/Notification;->getKind()Lrx/Notification$Kind;
 
@@ -315,7 +315,7 @@
 
     if-ne v3, v4, :cond_4
 
-    .line 201
+    .line 209
     invoke-virtual {p0}, Lrx/Notification;->hasValue()Z
 
     move-result v3
@@ -336,7 +336,7 @@
 
     if-eqz v3, :cond_4
 
-    .line 203
+    .line 213
     :cond_34
     invoke-virtual {p0}, Lrx/Notification;->hasThrowable()Z
 
@@ -358,10 +358,50 @@
 
     if-eqz v3, :cond_4
 
+    .line 217
     :cond_48
+    invoke-virtual {p0}, Lrx/Notification;->hasValue()Z
+
+    move-result v3
+
+    if-nez v3, :cond_5a
+
+    invoke-virtual {p0}, Lrx/Notification;->hasThrowable()Z
+
+    move-result v3
+
+    if-nez v3, :cond_5a
+
+    invoke-virtual {v0}, Lrx/Notification;->hasValue()Z
+
+    move-result v3
+
+    if-nez v3, :cond_4
+
+    .line 221
+    :cond_5a
+    invoke-virtual {p0}, Lrx/Notification;->hasValue()Z
+
+    move-result v3
+
+    if-nez v3, :cond_6c
+
+    invoke-virtual {p0}, Lrx/Notification;->hasThrowable()Z
+
+    move-result v3
+
+    if-nez v3, :cond_6c
+
+    invoke-virtual {v0}, Lrx/Notification;->hasThrowable()Z
+
+    move-result v3
+
+    if-nez v3, :cond_4
+
+    :cond_6c
     move v1, v2
 
-    .line 205
+    .line 225
     goto :goto_4
 .end method
 

@@ -34,7 +34,7 @@
     .registers 2
 
     .prologue
-    .line 511
+    .line 493
     iput-object p1, p0, Lrx/Single$3;->val$exception:Ljava/lang/Throwable;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -49,7 +49,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 511
+    .line 493
     check-cast p1, Lrx/SingleSubscriber;
 
     .end local p1    # "x0":Ljava/lang/Object;
@@ -69,12 +69,12 @@
     .end annotation
 
     .prologue
-    .line 515
+    .line 497
     .local p1, "te":Lrx/SingleSubscriber;, "Lrx/SingleSubscriber<-TT;>;"
     iget-object v0, p0, Lrx/Single$3;->val$exception:Ljava/lang/Throwable;
 
     invoke-virtual {p1, v0}, Lrx/SingleSubscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 516
+    .line 498
     return-void
 .end method

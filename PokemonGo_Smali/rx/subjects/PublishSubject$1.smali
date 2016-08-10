@@ -75,7 +75,7 @@
     .local p1, "o":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
     iget-object v0, p0, Lrx/subjects/PublishSubject$1;->val$state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v0}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v0}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v0
 

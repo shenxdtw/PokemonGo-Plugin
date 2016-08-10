@@ -9,6 +9,7 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
+        Lrx/internal/operators/OperatorMaterialize$ParentSubscriber;,
         Lrx/internal/operators/OperatorMaterialize$Holder;
     }
 .end annotation
@@ -28,26 +29,15 @@
 
 
 # direct methods
-.method private constructor <init>()V
+.method constructor <init>()V
     .registers 1
 
     .prologue
-    .line 44
+    .line 50
     .local p0, "this":Lrx/internal/operators/OperatorMaterialize;, "Lrx/internal/operators/OperatorMaterialize<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/internal/operators/OperatorMaterialize$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/internal/operators/OperatorMaterialize$1;
-
-    .prologue
-    .line 31
-    .local p0, "this":Lrx/internal/operators/OperatorMaterialize;, "Lrx/internal/operators/OperatorMaterialize<TT;>;"
-    invoke-direct {p0}, Lrx/internal/operators/OperatorMaterialize;-><init>()V
-
+    .line 51
     return-void
 .end method
 
@@ -64,7 +54,7 @@
     .end annotation
 
     .prologue
-    .line 42
+    .line 47
     sget-object v0, Lrx/internal/operators/OperatorMaterialize$Holder;->INSTANCE:Lrx/internal/operators/OperatorMaterialize;
 
     return-object v0
@@ -77,7 +67,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 31
+    .line 34
     .local p0, "this":Lrx/internal/operators/OperatorMaterialize;, "Lrx/internal/operators/OperatorMaterialize<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -90,7 +80,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)Lrx/Subscriber;
-    .registers 3
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -104,12 +94,24 @@
     .end annotation
 
     .prologue
-    .line 47
+    .line 55
     .local p0, "this":Lrx/internal/operators/OperatorMaterialize;, "Lrx/internal/operators/OperatorMaterialize<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-Lrx/Notification<TT;>;>;"
-    new-instance v0, Lrx/internal/operators/OperatorMaterialize$1;
+    new-instance v0, Lrx/internal/operators/OperatorMaterialize$ParentSubscriber;
 
-    invoke-direct {v0, p0, p1, p1}, Lrx/internal/operators/OperatorMaterialize$1;-><init>(Lrx/internal/operators/OperatorMaterialize;Lrx/Subscriber;Lrx/Subscriber;)V
+    invoke-direct {v0, p1}, Lrx/internal/operators/OperatorMaterialize$ParentSubscriber;-><init>(Lrx/Subscriber;)V
 
+    .line 56
+    .local v0, "parent":Lrx/internal/operators/OperatorMaterialize$ParentSubscriber;, "Lrx/internal/operators/OperatorMaterialize$ParentSubscriber<TT;>;"
+    invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
+
+    .line 57
+    new-instance v1, Lrx/internal/operators/OperatorMaterialize$1;
+
+    invoke-direct {v1, p0, v0}, Lrx/internal/operators/OperatorMaterialize$1;-><init>(Lrx/internal/operators/OperatorMaterialize;Lrx/internal/operators/OperatorMaterialize$ParentSubscriber;)V
+
+    invoke-virtual {p1, v1}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+
+    .line 65
     return-object v0
 .end method

@@ -36,7 +36,7 @@
     .registers 3
 
     .prologue
-    .line 85
+    .line 74
     .local p0, "this":Lrx/Single$1;, "Lrx/Single.1;"
     iput-object p1, p0, Lrx/Single$1;->this$0:Lrx/Single;
 
@@ -54,7 +54,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 85
+    .line 74
     .local p0, "this":Lrx/Single$1;, "Lrx/Single.1;"
     check-cast p1, Lrx/Subscriber;
 
@@ -75,31 +75,31 @@
     .end annotation
 
     .prologue
-    .line 89
+    .line 78
     .local p0, "this":Lrx/Single$1;, "Lrx/Single.1;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     new-instance v0, Lrx/internal/producers/SingleDelayedProducer;
 
     invoke-direct {v0, p1}, Lrx/internal/producers/SingleDelayedProducer;-><init>(Lrx/Subscriber;)V
 
-    .line 90
+    .line 79
     .local v0, "producer":Lrx/internal/producers/SingleDelayedProducer;, "Lrx/internal/producers/SingleDelayedProducer<TT;>;"
     invoke-virtual {p1, v0}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
 
-    .line 91
+    .line 80
     new-instance v1, Lrx/Single$1$1;
 
     invoke-direct {v1, p0, v0, p1}, Lrx/Single$1$1;-><init>(Lrx/Single$1;Lrx/internal/producers/SingleDelayedProducer;Lrx/Subscriber;)V
 
-    .line 104
+    .line 93
     .local v1, "ss":Lrx/SingleSubscriber;, "Lrx/SingleSubscriber<TT;>;"
     invoke-virtual {p1, v1}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 105
+    .line 94
     iget-object v2, p0, Lrx/Single$1;->val$f:Lrx/Single$OnSubscribe;
 
     invoke-interface {v2, v1}, Lrx/Single$OnSubscribe;->call(Ljava/lang/Object;)V
 
-    .line 106
+    .line 95
     return-void
 .end method

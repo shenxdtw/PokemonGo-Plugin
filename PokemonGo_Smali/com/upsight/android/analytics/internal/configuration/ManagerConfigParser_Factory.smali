@@ -23,12 +23,12 @@
 
 
 # instance fields
-.field private final mapperProvider:Ljavax/inject/Provider;
+.field private final gsonProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljavax/inject/Provider",
             "<",
-            "Lcom/fasterxml/jackson/databind/ObjectMapper;",
+            "Lcom/google/gson/Gson;",
             ">;"
         }
     .end annotation
@@ -69,17 +69,17 @@
             "(",
             "Ljavax/inject/Provider",
             "<",
-            "Lcom/fasterxml/jackson/databind/ObjectMapper;",
+            "Lcom/google/gson/Gson;",
             ">;)V"
         }
     .end annotation
 
     .prologue
-    .line 12
-    .local p1, "mapperProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/fasterxml/jackson/databind/ObjectMapper;>;"
+    .line 15
+    .local p1, "gsonProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/google/gson/Gson;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 13
+    .line 16
     sget-boolean v0, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -92,11 +92,11 @@
 
     throw v0
 
-    .line 14
+    .line 17
     :cond_f
-    iput-object p1, p0, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser_Factory;->mapperProvider:Ljavax/inject/Provider;
+    iput-object p1, p0, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser_Factory;->gsonProvider:Ljavax/inject/Provider;
 
-    .line 15
+    .line 18
     return-void
 .end method
 
@@ -107,7 +107,7 @@
             "(",
             "Ljavax/inject/Provider",
             "<",
-            "Lcom/fasterxml/jackson/databind/ObjectMapper;",
+            "Lcom/google/gson/Gson;",
             ">;)",
             "Ldagger/internal/Factory",
             "<",
@@ -117,8 +117,8 @@
     .end annotation
 
     .prologue
-    .line 23
-    .local p0, "mapperProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/fasterxml/jackson/databind/ObjectMapper;>;"
+    .line 26
+    .local p0, "gsonProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/google/gson/Gson;>;"
     new-instance v0, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser_Factory;
 
     invoke-direct {v0, p0}, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser_Factory;-><init>(Ljavax/inject/Provider;)V
@@ -132,18 +132,18 @@
     .registers 3
 
     .prologue
-    .line 19
+    .line 22
     new-instance v1, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser;
 
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser_Factory;->mapperProvider:Ljavax/inject/Provider;
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser_Factory;->gsonProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v0
 
-    check-cast v0, Lcom/fasterxml/jackson/databind/ObjectMapper;
+    check-cast v0, Lcom/google/gson/Gson;
 
-    invoke-direct {v1, v0}, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser;-><init>(Lcom/fasterxml/jackson/databind/ObjectMapper;)V
+    invoke-direct {v1, v0}, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser;-><init>(Lcom/google/gson/Gson;)V
 
     return-object v1
 .end method

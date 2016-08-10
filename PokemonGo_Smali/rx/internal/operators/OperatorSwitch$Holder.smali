@@ -32,12 +32,12 @@
     .registers 2
 
     .prologue
-    .line 40
+    .line 43
     new-instance v0, Lrx/internal/operators/OperatorSwitch;
 
     const/4 v1, 0x0
 
-    invoke-direct {v0, v1}, Lrx/internal/operators/OperatorSwitch;-><init>(Lrx/internal/operators/OperatorSwitch$1;)V
+    invoke-direct {v0, v1}, Lrx/internal/operators/OperatorSwitch;-><init>(Z)V
 
     sput-object v0, Lrx/internal/operators/OperatorSwitch$Holder;->INSTANCE:Lrx/internal/operators/OperatorSwitch;
 
@@ -48,7 +48,7 @@
     .registers 1
 
     .prologue
-    .line 38
+    .line 41
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

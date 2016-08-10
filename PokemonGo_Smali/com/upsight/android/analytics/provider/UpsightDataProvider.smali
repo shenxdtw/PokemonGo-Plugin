@@ -42,7 +42,7 @@
     .param p1, "provider"    # Lcom/upsight/android/analytics/provider/UpsightDataProvider;
 
     .prologue
-    .line 68
+    .line 70
     const-string v1, "com.upsight.extension.analytics"
 
     invoke-virtual {p0, v1}, Lcom/upsight/android/UpsightContext;->getUpsightExtension(Ljava/lang/String;)Lcom/upsight/android/UpsightExtension;
@@ -51,22 +51,22 @@
 
     check-cast v0, Lcom/upsight/android/UpsightAnalyticsExtension;
 
-    .line 69
+    .line 71
     .local v0, "extension":Lcom/upsight/android/UpsightAnalyticsExtension;
     if-eqz v0, :cond_12
 
-    .line 70
+    .line 72
     invoke-virtual {v0}, Lcom/upsight/android/UpsightAnalyticsExtension;->getApi()Lcom/upsight/android/analytics/UpsightAnalyticsApi;
 
     move-result-object v1
 
     invoke-interface {v1, p1}, Lcom/upsight/android/analytics/UpsightAnalyticsApi;->registerDataProvider(Lcom/upsight/android/analytics/provider/UpsightDataProvider;)V
 
-    .line 74
+    .line 76
     :goto_11
     return-void
 
-    .line 72
+    .line 74
     :cond_12
     invoke-virtual {p0}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 

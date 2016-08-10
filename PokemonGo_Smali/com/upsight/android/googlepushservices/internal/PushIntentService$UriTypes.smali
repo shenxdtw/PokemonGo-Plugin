@@ -52,7 +52,7 @@
 
     const/4 v2, 0x0
 
-    .line 262
+    .line 311
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;
 
     const-string v1, "DEFAULT"
@@ -61,7 +61,7 @@
 
     sput-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;->DEFAULT:Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;
 
-    .line 263
+    .line 312
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;
 
     const-string v1, "CUSTOM"
@@ -70,7 +70,7 @@
 
     sput-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;->CUSTOM:Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;
 
-    .line 264
+    .line 313
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;
 
     const-string v1, "INVALID"
@@ -79,7 +79,7 @@
 
     sput-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;->INVALID:Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;
 
-    .line 265
+    .line 314
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;
 
     const-string v1, "PLACEMENT"
@@ -88,7 +88,7 @@
 
     sput-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;->PLACEMENT:Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;
 
-    .line 266
+    .line 315
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;
 
     const-string v1, "ACTIVITY"
@@ -97,7 +97,7 @@
 
     sput-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;->ACTIVITY:Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;
 
-    .line 261
+    .line 310
     const/4 v0, 0x5
 
     new-array v0, v0, [Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;
@@ -136,7 +136,7 @@
     .end annotation
 
     .prologue
-    .line 261
+    .line 310
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -147,7 +147,7 @@
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 261
+    .line 310
     const-class v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -163,7 +163,7 @@
     .registers 1
 
     .prologue
-    .line 261
+    .line 310
     sget-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;->$VALUES:[Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;
 
     invoke-virtual {v0}, [Lcom/upsight/android/googlepushservices/internal/PushIntentService$UriTypes;->clone()Ljava/lang/Object;

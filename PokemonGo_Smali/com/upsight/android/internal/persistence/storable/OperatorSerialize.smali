@@ -87,14 +87,12 @@
 # virtual methods
 .method public bridge synthetic call(Ljava/lang/Object;)Ljava/lang/Object;
     .registers 3
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 14
     .local p0, "this":Lcom/upsight/android/internal/persistence/storable/OperatorSerialize;, "Lcom/upsight/android/internal/persistence/storable/OperatorSerialize<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/internal/persistence/storable/OperatorSerialize;->call(Lrx/Subscriber;)Lrx/Subscriber;
 
     move-result-object v0

@@ -1,5 +1,5 @@
 .class final Lrx/subjects/ReplaySubject$UnboundedReplayState;
-.super Ljava/lang/Object;
+.super Ljava/util/concurrent/atomic/AtomicInteger;
 .source "ReplaySubject.java"
 
 # interfaces
@@ -21,7 +21,7 @@
         "<T:",
         "Ljava/lang/Object;",
         ">",
-        "Ljava/lang/Object;",
+        "Ljava/util/concurrent/atomic/AtomicInteger;",
         "Lrx/subjects/ReplaySubject$ReplayState",
         "<TT;",
         "Ljava/lang/Integer;",
@@ -30,22 +30,7 @@
 .end annotation
 
 
-# static fields
-.field static final INDEX_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater",
-            "<",
-            "Lrx/subjects/ReplaySubject$UnboundedReplayState;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-
 # instance fields
-.field volatile index:I
-
 .field private final list:Ljava/util/ArrayList;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -70,48 +55,30 @@
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .registers 2
-
-    .prologue
-    .line 451
-    const-class v0, Lrx/subjects/ReplaySubject$UnboundedReplayState;
-
-    const-string v1, "index"
-
-    invoke-static {v0, v1}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->INDEX_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    return-void
-.end method
-
 .method public constructor <init>(I)V
     .registers 3
     .param p1, "initialCapacity"    # I
 
     .prologue
-    .line 453
+    .line 452
     .local p0, "this":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Ljava/util/concurrent/atomic/AtomicInteger;-><init>()V
 
-    .line 443
+    .line 447
     invoke-static {}, Lrx/internal/operators/NotificationLite;->instance()Lrx/internal/operators/NotificationLite;
 
     move-result-object v0
 
     iput-object v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->nl:Lrx/internal/operators/NotificationLite;
 
-    .line 454
+    .line 453
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0, p1}, Ljava/util/ArrayList;-><init>(I)V
 
     iput-object v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->list:Ljava/util/ArrayList;
 
-    .line 455
+    .line 454
     return-void
 .end method
 
@@ -129,7 +96,7 @@
     .end annotation
 
     .prologue
-    .line 466
+    .line 465
     .local p0, "this":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
     .local p1, "o":Lrx/Observer;, "Lrx/Observer<-TT;>;"
     iget-object v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->nl:Lrx/internal/operators/NotificationLite;
@@ -142,7 +109,7 @@
 
     invoke-virtual {v0, p1, v1}, Lrx/internal/operators/NotificationLite;->accept(Lrx/Observer;Ljava/lang/Object;)Z
 
-    .line 467
+    .line 466
     return-void
 .end method
 
@@ -150,18 +117,18 @@
     .registers 3
 
     .prologue
-    .line 471
+    .line 470
     .local p0, "this":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
     iget-boolean v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->terminated:Z
 
-    if-nez v0, :cond_17
+    if-nez v0, :cond_15
 
-    .line 472
+    .line 471
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->terminated:Z
 
-    .line 473
+    .line 472
     iget-object v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->list:Ljava/util/ArrayList;
 
     iget-object v1, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->nl:Lrx/internal/operators/NotificationLite;
@@ -172,13 +139,11 @@
 
     invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 474
-    sget-object v0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->INDEX_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
+    .line 473
+    invoke-virtual {p0}, Lrx/subjects/ReplaySubject$UnboundedReplayState;->getAndIncrement()I
 
-    invoke-virtual {v0, p0}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->getAndIncrement(Ljava/lang/Object;)I
-
-    .line 476
-    :cond_17
+    .line 475
+    :cond_15
     return-void
 .end method
 
@@ -187,18 +152,18 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 479
+    .line 478
     .local p0, "this":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
     iget-boolean v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->terminated:Z
 
-    if-nez v0, :cond_17
+    if-nez v0, :cond_15
 
-    .line 480
+    .line 479
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->terminated:Z
 
-    .line 481
+    .line 480
     iget-object v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->list:Ljava/util/ArrayList;
 
     iget-object v1, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->nl:Lrx/internal/operators/NotificationLite;
@@ -209,13 +174,11 @@
 
     invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 482
-    sget-object v0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->INDEX_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
+    .line 481
+    invoke-virtual {p0}, Lrx/subjects/ReplaySubject$UnboundedReplayState;->getAndIncrement()I
 
-    invoke-virtual {v0, p0}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->getAndIncrement(Ljava/lang/Object;)I
-
-    .line 484
-    :cond_17
+    .line 483
+    :cond_15
     return-void
 .end method
 
@@ -223,7 +186,7 @@
     .registers 2
 
     .prologue
-    .line 540
+    .line 539
     .local p0, "this":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
     invoke-virtual {p0}, Lrx/subjects/ReplaySubject$UnboundedReplayState;->size()I
 
@@ -254,14 +217,16 @@
     .local p0, "this":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
     const/4 v2, 0x0
 
+    .line 563
+    invoke-virtual {p0}, Lrx/subjects/ReplaySubject$UnboundedReplayState;->get()I
+
+    move-result v0
+
     .line 564
-    iget v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->index:I
+    .local v0, "idx":I
+    if-lez v0, :cond_30
 
     .line 565
-    .local v0, "idx":I
-    if-lez v0, :cond_2e
-
-    .line 566
     iget-object v3, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->list:Ljava/util/ArrayList;
 
     add-int/lit8 v4, v0, -0x1
@@ -270,7 +235,7 @@
 
     move-result-object v1
 
-    .line 567
+    .line 566
     .local v1, "o":Ljava/lang/Object;
     iget-object v3, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -278,7 +243,7 @@
 
     move-result v3
 
-    if-nez v3, :cond_1d
+    if-nez v3, :cond_1f
 
     iget-object v3, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -286,15 +251,15 @@
 
     move-result v3
 
-    if-eqz v3, :cond_2f
+    if-eqz v3, :cond_31
 
-    .line 568
-    :cond_1d
+    .line 567
+    :cond_1f
     const/4 v3, 0x1
 
-    if-le v0, v3, :cond_2e
+    if-le v0, v3, :cond_30
 
-    .line 569
+    .line 568
     iget-object v2, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->nl:Lrx/internal/operators/NotificationLite;
 
     iget-object v3, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->list:Ljava/util/ArrayList;
@@ -309,22 +274,22 @@
 
     move-result-object v2
 
-    .line 575
+    .line 574
     .end local v1    # "o":Ljava/lang/Object;
-    :cond_2e
-    :goto_2e
+    :cond_30
+    :goto_30
     return-object v2
 
-    .line 573
+    .line 572
     .restart local v1    # "o":Ljava/lang/Object;
-    :cond_2f
+    :cond_31
     iget-object v2, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->nl:Lrx/internal/operators/NotificationLite;
 
     invoke-virtual {v2, v1}, Lrx/internal/operators/NotificationLite;->getValue(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v2
 
-    goto :goto_2e
+    goto :goto_30
 .end method
 
 .method public next(Ljava/lang/Object;)V
@@ -336,14 +301,14 @@
     .end annotation
 
     .prologue
-    .line 459
+    .line 458
     .local p0, "this":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
     .local p1, "n":Ljava/lang/Object;, "TT;"
     iget-boolean v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->terminated:Z
 
-    if-nez v0, :cond_14
+    if-nez v0, :cond_12
 
-    .line 460
+    .line 459
     iget-object v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->list:Ljava/util/ArrayList;
 
     iget-object v1, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->nl:Lrx/internal/operators/NotificationLite;
@@ -354,13 +319,11 @@
 
     invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 461
-    sget-object v0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->INDEX_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
+    .line 460
+    invoke-virtual {p0}, Lrx/subjects/ReplaySubject$UnboundedReplayState;->getAndIncrement()I
 
-    invoke-virtual {v0, p0}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->getAndIncrement(Ljava/lang/Object;)I
-
-    .line 463
-    :cond_14
+    .line 462
+    :cond_12
     return-void
 .end method
 
@@ -379,45 +342,45 @@
     .local p1, "observer":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<-TT;>;"
     const/4 v2, 0x0
 
-    .line 494
+    .line 493
     monitor-enter p1
 
-    .line 495
+    .line 494
     const/4 v3, 0x0
 
     :try_start_3
     iput-boolean v3, p1, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->first:Z
 
-    .line 496
+    .line 495
     iget-boolean v3, p1, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->emitting:Z
 
     if-eqz v3, :cond_b
 
-    .line 497
+    .line 496
     monitor-exit p1
 
-    .line 505
+    .line 504
     :goto_a
     return v2
 
-    .line 499
+    .line 498
     :cond_b
     monitor-exit p1
     :try_end_c
     .catchall {:try_start_3 .. :try_end_c} :catchall_25
 
-    .line 501
+    .line 500
     invoke-virtual {p1}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->index()Ljava/lang/Object;
 
     move-result-object v1
 
     check-cast v1, Ljava/lang/Integer;
 
-    .line 502
+    .line 501
     .local v1, "lastEmittedLink":Ljava/lang/Integer;
     if-eqz v1, :cond_28
 
-    .line 503
+    .line 502
     invoke-virtual {p0, v1, p1}, Lrx/subjects/ReplaySubject$UnboundedReplayState;->replayObserverFromIndex(Ljava/lang/Integer;Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;)Ljava/lang/Integer;
 
     move-result-object v2
@@ -426,7 +389,7 @@
 
     move-result v0
 
-    .line 504
+    .line 503
     .local v0, "l":I
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
@@ -434,12 +397,12 @@
 
     invoke-virtual {p1, v2}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->index(Ljava/lang/Object;)V
 
-    .line 505
+    .line 504
     const/4 v2, 0x1
 
     goto :goto_a
 
-    .line 499
+    .line 498
     .end local v0    # "l":I
     .end local v1    # "lastEmittedLink":Ljava/lang/Integer;
     :catchall_25
@@ -452,7 +415,7 @@
 
     throw v2
 
-    .line 507
+    .line 506
     .restart local v1    # "lastEmittedLink":Ljava/lang/Integer;
     :cond_28
     new-instance v2, Ljava/lang/IllegalStateException;
@@ -494,30 +457,32 @@
     .end annotation
 
     .prologue
-    .line 513
+    .line 512
     .local p0, "this":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
     .local p2, "observer":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<-TT;>;"
     invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
 
     move-result v0
 
-    .line 514
+    .line 513
     .local v0, "i":I
     :goto_4
-    iget v1, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->index:I
+    invoke-virtual {p0}, Lrx/subjects/ReplaySubject$UnboundedReplayState;->get()I
 
-    if-ge v0, v1, :cond_e
+    move-result v1
 
-    .line 515
+    if-ge v0, v1, :cond_10
+
+    .line 514
     invoke-virtual {p0, p2, v0}, Lrx/subjects/ReplaySubject$UnboundedReplayState;->accept(Lrx/Observer;I)V
 
-    .line 516
+    .line 515
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_4
 
-    .line 519
-    :cond_e
+    .line 518
+    :cond_10
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v1
@@ -531,7 +496,7 @@
     .param p2, "x1"    # Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
     .prologue
-    .line 442
+    .line 446
     .local p0, "this":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
     check-cast p1, Ljava/lang/Integer;
 
@@ -558,7 +523,7 @@
     .end annotation
 
     .prologue
-    .line 524
+    .line 523
     .local p0, "this":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
     .local p2, "observer":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<-TT;>;"
     invoke-virtual {p0, p1, p2}, Lrx/subjects/ReplaySubject$UnboundedReplayState;->replayObserverFromIndex(Ljava/lang/Integer;Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;)Ljava/lang/Integer;
@@ -575,7 +540,7 @@
     .param p3, "x2"    # J
 
     .prologue
-    .line 442
+    .line 446
     .local p0, "this":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
     check-cast p1, Ljava/lang/Integer;
 
@@ -591,15 +556,17 @@
     .registers 5
 
     .prologue
-    .line 529
+    .line 528
     .local p0, "this":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
-    iget v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->index:I
+    invoke-virtual {p0}, Lrx/subjects/ReplaySubject$UnboundedReplayState;->get()I
+
+    move-result v0
+
+    .line 529
+    .local v0, "idx":I
+    if-lez v0, :cond_20
 
     .line 530
-    .local v0, "idx":I
-    if-lez v0, :cond_1e
-
-    .line 531
     iget-object v2, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->list:Ljava/util/ArrayList;
 
     add-int/lit8 v3, v0, -0x1
@@ -608,7 +575,7 @@
 
     move-result-object v1
 
-    .line 532
+    .line 531
     .local v1, "o":Ljava/lang/Object;
     iget-object v2, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -616,7 +583,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_1c
+    if-nez v2, :cond_1e
 
     iget-object v2, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -624,16 +591,16 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1e
+    if-eqz v2, :cond_20
 
-    .line 533
-    :cond_1c
+    .line 532
+    :cond_1e
     add-int/lit8 v0, v0, -0x1
 
-    .line 536
+    .line 535
     .end local v0    # "idx":I
     .end local v1    # "o":Ljava/lang/Object;
-    :cond_1e
+    :cond_20
     return v0
 .end method
 
@@ -641,7 +608,7 @@
     .registers 2
 
     .prologue
-    .line 488
+    .line 487
     .local p0, "this":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
     iget-boolean v0, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->terminated:Z
 
@@ -661,21 +628,21 @@
     .local p1, "a":[Ljava/lang/Object;, "[TT;"
     const/4 v3, 0x0
 
-    .line 545
+    .line 544
     invoke-virtual {p0}, Lrx/subjects/ReplaySubject$UnboundedReplayState;->size()I
 
     move-result v1
 
-    .line 546
+    .line 545
     .local v1, "s":I
     if-lez v1, :cond_2f
 
-    .line 547
+    .line 546
     array-length v2, p1
 
     if-le v1, v2, :cond_1b
 
-    .line 548
+    .line 547
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v2
@@ -694,7 +661,7 @@
 
     check-cast p1, [Ljava/lang/Object;
 
-    .line 550
+    .line 549
     :cond_1b
     const/4 v0, 0x0
 
@@ -702,7 +669,7 @@
     :goto_1c
     if-ge v0, v1, :cond_29
 
-    .line 551
+    .line 550
     iget-object v2, p0, Lrx/subjects/ReplaySubject$UnboundedReplayState;->list:Ljava/util/ArrayList;
 
     invoke-virtual {v2, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
@@ -711,33 +678,33 @@
 
     aput-object v2, p1, v0
 
-    .line 550
+    .line 549
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_1c
 
-    .line 553
+    .line 552
     :cond_29
     array-length v2, p1
 
     if-le v2, v1, :cond_2e
 
-    .line 554
+    .line 553
     aput-object v3, p1, v1
 
-    .line 560
+    .line 559
     .end local v0    # "i":I
     :cond_2e
     :goto_2e
     return-object p1
 
-    .line 557
+    .line 556
     :cond_2f
     array-length v2, p1
 
     if-lez v2, :cond_2e
 
-    .line 558
+    .line 557
     const/4 v2, 0x0
 
     aput-object v3, p1, v2

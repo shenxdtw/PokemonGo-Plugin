@@ -3,41 +3,23 @@
 .source "AndroidSchedulers.java"
 
 
-# static fields
-.field private static final MAIN_THREAD_SCHEDULER:Lrx/Scheduler;
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lrx/android/schedulers/AndroidSchedulers$MainThreadSchedulerHolder;
+    }
+.end annotation
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .registers 3
-
-    .prologue
-    .line 27
-    new-instance v0, Lrx/android/schedulers/HandlerScheduler;
-
-    new-instance v1, Landroid/os/Handler;
-
-    invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
-
-    move-result-object v2
-
-    invoke-direct {v1, v2}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
-
-    invoke-direct {v0, v1}, Lrx/android/schedulers/HandlerScheduler;-><init>(Landroid/os/Handler;)V
-
-    sput-object v0, Lrx/android/schedulers/AndroidSchedulers;->MAIN_THREAD_SCHEDULER:Lrx/Scheduler;
-
-    return-void
-.end method
-
 .method private constructor <init>()V
     .registers 3
 
     .prologue
-    .line 23
+    .line 24
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 24
+    .line 25
     new-instance v0, Ljava/lang/AssertionError;
 
     const-string v1, "No instances"
@@ -51,7 +33,7 @@
     .registers 2
 
     .prologue
-    .line 32
+    .line 37
     invoke-static {}, Lrx/android/plugins/RxAndroidPlugins;->getInstance()Lrx/android/plugins/RxAndroidPlugins;
 
     move-result-object v1
@@ -64,7 +46,7 @@
 
     move-result-object v0
 
-    .line 34
+    .line 39
     .local v0, "scheduler":Lrx/Scheduler;
     if-eqz v0, :cond_f
 
@@ -74,7 +56,7 @@
 
     .restart local v0    # "scheduler":Lrx/Scheduler;
     :cond_f
-    sget-object v0, Lrx/android/schedulers/AndroidSchedulers;->MAIN_THREAD_SCHEDULER:Lrx/Scheduler;
+    sget-object v0, Lrx/android/schedulers/AndroidSchedulers$MainThreadSchedulerHolder;->MAIN_THREAD_SCHEDULER:Lrx/Scheduler;
 
     goto :goto_e
 .end method

@@ -32,7 +32,7 @@
     .registers 3
 
     .prologue
-    .line 71
+    .line 72
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithStartEndObservable$1;, "Lrx/internal/operators/OperatorBufferWithStartEndObservable.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorBufferWithStartEndObservable$1;->this$0:Lrx/internal/operators/OperatorBufferWithStartEndObservable;
 
@@ -49,13 +49,13 @@
     .registers 2
 
     .prologue
-    .line 85
+    .line 86
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithStartEndObservable$1;, "Lrx/internal/operators/OperatorBufferWithStartEndObservable.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorBufferWithStartEndObservable$1;->val$bsub:Lrx/internal/operators/OperatorBufferWithStartEndObservable$BufferingSubscriber;
 
     invoke-virtual {v0}, Lrx/internal/operators/OperatorBufferWithStartEndObservable$BufferingSubscriber;->onCompleted()V
 
-    .line 86
+    .line 87
     return-void
 .end method
 
@@ -64,13 +64,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 80
+    .line 81
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithStartEndObservable$1;, "Lrx/internal/operators/OperatorBufferWithStartEndObservable.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorBufferWithStartEndObservable$1;->val$bsub:Lrx/internal/operators/OperatorBufferWithStartEndObservable$BufferingSubscriber;
 
     invoke-virtual {v0, p1}, Lrx/internal/operators/OperatorBufferWithStartEndObservable$BufferingSubscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 81
+    .line 82
     return-void
 .end method
 
@@ -83,13 +83,13 @@
     .end annotation
 
     .prologue
-    .line 75
+    .line 76
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithStartEndObservable$1;, "Lrx/internal/operators/OperatorBufferWithStartEndObservable.1;"
     .local p1, "t":Ljava/lang/Object;, "TTOpening;"
     iget-object v0, p0, Lrx/internal/operators/OperatorBufferWithStartEndObservable$1;->val$bsub:Lrx/internal/operators/OperatorBufferWithStartEndObservable$BufferingSubscriber;
 
     invoke-virtual {v0, p1}, Lrx/internal/operators/OperatorBufferWithStartEndObservable$BufferingSubscriber;->startBuffer(Ljava/lang/Object;)V
 
-    .line 76
+    .line 77
     return-void
 .end method

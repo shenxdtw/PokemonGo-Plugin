@@ -34,13 +34,13 @@
     .param p1, "scope"    # Ljava/lang/String;
 
     .prologue
-    .line 70
+    .line 71
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;-><init>()V
 
-    .line 71
+    .line 72
     iput-object p1, p0, Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$Builder;->scope:Ljava/lang/String;
 
-    .line 72
+    .line 73
     return-void
 .end method
 
@@ -49,7 +49,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$Builder;
 
     .prologue
-    .line 60
+    .line 61
     iget-object v0, p0, Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$Builder;->scope:Ljava/lang/String;
 
     return-object v0
@@ -61,7 +61,7 @@
     .registers 2
 
     .prologue
-    .line 60
+    .line 61
     invoke-virtual {p0}, Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$Builder;->build()Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent;
 
     move-result-object v0
@@ -73,7 +73,7 @@
     .registers 5
 
     .prologue
-    .line 76
+    .line 77
     new-instance v0, Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent;
 
     const-string v1, "upsight.milestone"

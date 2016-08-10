@@ -30,10 +30,10 @@
     .registers 1
 
     .prologue
-    .line 143
+    .line 146
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/AnalyticsEvent;-><init>()V
 
-    .line 145
+    .line 148
     return-void
 .end method
 
@@ -44,10 +44,10 @@
     .param p3, "publisherData"    # Lcom/upsight/android/analytics/event/UpsightPublisherData;
 
     .prologue
-    .line 140
+    .line 143
     invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/analytics/internal/AnalyticsEvent;-><init>(Ljava/lang/String;Ljava/lang/Object;Lcom/upsight/android/analytics/event/UpsightPublisherData;)V
 
-    .line 141
+    .line 144
     return-void
 .end method
 
@@ -57,7 +57,7 @@
     .param p1, "token"    # Ljava/lang/String;
 
     .prologue
-    .line 30
+    .line 31
     new-instance v0, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;
 
     invoke-direct {v0, p0, p1}, Lcom/upsight/android/analytics/event/comm/UpsightCommSendEvent$Builder;-><init>(Ljava/lang/Integer;Ljava/lang/String;)V

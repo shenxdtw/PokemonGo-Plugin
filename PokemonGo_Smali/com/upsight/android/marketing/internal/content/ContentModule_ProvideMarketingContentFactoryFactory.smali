@@ -23,6 +23,17 @@
 
 
 # instance fields
+.field private final contentMediatorManagerProvider:Ljavax/inject/Provider;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 .field private final contentStoreProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -75,7 +86,7 @@
     .registers 1
 
     .prologue
-    .line 9
+    .line 10
     const-class v0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -97,8 +108,8 @@
     goto :goto_9
 .end method
 
-.method public constructor <init>(Lcom/upsight/android/marketing/internal/content/ContentModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
-    .registers 7
+.method public constructor <init>(Lcom/upsight/android/marketing/internal/content/ContentModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+    .registers 8
     .param p1, "module"    # Lcom/upsight/android/marketing/internal/content/ContentModule;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -114,6 +125,10 @@
             ">;",
             "Ljavax/inject/Provider",
             "<",
+            "Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;",
+            ">;",
+            "Ljavax/inject/Provider",
+            "<",
             "Lcom/upsight/android/marketing/internal/content/MarketingContentStore;",
             ">;",
             "Ljavax/inject/Provider",
@@ -124,14 +139,15 @@
     .end annotation
 
     .prologue
-    .line 17
+    .line 35
     .local p2, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     .local p3, "schedulerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lrx/Scheduler;>;"
-    .local p4, "contentStoreProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/MarketingContentStore;>;"
-    .local p5, "contentTemplateWebViewClientFactoryProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/ContentTemplateWebViewClientFactory;>;"
+    .local p4, "contentMediatorManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;>;"
+    .local p5, "contentStoreProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/MarketingContentStore;>;"
+    .local p6, "contentTemplateWebViewClientFactoryProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/ContentTemplateWebViewClientFactory;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 18
+    .line 36
     sget-boolean v0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -144,11 +160,11 @@
 
     throw v0
 
-    .line 19
+    .line 37
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->module:Lcom/upsight/android/marketing/internal/content/ContentModule;
 
-    .line 20
+    .line 38
     sget-boolean v0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -161,11 +177,11 @@
 
     throw v0
 
-    .line 21
+    .line 39
     :cond_1d
     iput-object p2, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->upsightProvider:Ljavax/inject/Provider;
 
-    .line 22
+    .line 40
     sget-boolean v0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_2b
@@ -178,11 +194,11 @@
 
     throw v0
 
-    .line 23
+    .line 41
     :cond_2b
     iput-object p3, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->schedulerProvider:Ljavax/inject/Provider;
 
-    .line 24
+    .line 42
     sget-boolean v0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_39
@@ -195,11 +211,11 @@
 
     throw v0
 
-    .line 25
+    .line 43
     :cond_39
-    iput-object p4, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->contentStoreProvider:Ljavax/inject/Provider;
+    iput-object p4, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->contentMediatorManagerProvider:Ljavax/inject/Provider;
 
-    .line 26
+    .line 44
     sget-boolean v0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_47
@@ -212,16 +228,33 @@
 
     throw v0
 
-    .line 27
+    .line 45
     :cond_47
-    iput-object p5, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->contentTemplateWebViewClientFactoryProvider:Ljavax/inject/Provider;
+    iput-object p5, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->contentStoreProvider:Ljavax/inject/Provider;
 
-    .line 28
+    .line 46
+    sget-boolean v0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->$assertionsDisabled:Z
+
+    if-nez v0, :cond_55
+
+    if-nez p6, :cond_55
+
+    new-instance v0, Ljava/lang/AssertionError;
+
+    invoke-direct {v0}, Ljava/lang/AssertionError;-><init>()V
+
+    throw v0
+
+    .line 47
+    :cond_55
+    iput-object p6, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->contentTemplateWebViewClientFactoryProvider:Ljavax/inject/Provider;
+
+    .line 48
     return-void
 .end method
 
-.method public static create(Lcom/upsight/android/marketing/internal/content/ContentModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-    .registers 11
+.method public static create(Lcom/upsight/android/marketing/internal/content/ContentModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+    .registers 13
     .param p0, "module"    # Lcom/upsight/android/marketing/internal/content/ContentModule;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -234,6 +267,10 @@
             "Ljavax/inject/Provider",
             "<",
             "Lrx/Scheduler;",
+            ">;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;",
             ">;",
             "Ljavax/inject/Provider",
             "<",
@@ -251,11 +288,12 @@
     .end annotation
 
     .prologue
-    .line 40
+    .line 69
     .local p1, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     .local p2, "schedulerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lrx/Scheduler;>;"
-    .local p3, "contentStoreProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/MarketingContentStore;>;"
-    .local p4, "contentTemplateWebViewClientFactoryProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/ContentTemplateWebViewClientFactory;>;"
+    .local p3, "contentMediatorManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;>;"
+    .local p4, "contentStoreProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/MarketingContentStore;>;"
+    .local p5, "contentTemplateWebViewClientFactoryProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/ContentTemplateWebViewClientFactory;>;"
     new-instance v0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;
 
     move-object v1, p0
@@ -268,7 +306,9 @@
 
     move-object v5, p4
 
-    invoke-direct/range {v0 .. v5}, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;-><init>(Lcom/upsight/android/marketing/internal/content/ContentModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+    move-object v6, p5
+
+    invoke-direct/range {v0 .. v6}, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;-><init>(Lcom/upsight/android/marketing/internal/content/ContentModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
 
     return-object v0
 .end method
@@ -279,11 +319,12 @@
     .registers 7
 
     .prologue
-    .line 32
-    iget-object v5, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->module:Lcom/upsight/android/marketing/internal/content/ContentModule;
+    .line 52
+    iget-object v0, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->module:Lcom/upsight/android/marketing/internal/content/ContentModule;
 
     iget-object v1, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->upsightProvider:Ljavax/inject/Provider;
 
+    .line 54
     invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v1
@@ -292,47 +333,54 @@
 
     iget-object v2, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->schedulerProvider:Ljavax/inject/Provider;
 
+    .line 55
     invoke-interface {v2}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v2
 
     check-cast v2, Lrx/Scheduler;
 
-    iget-object v3, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->contentStoreProvider:Ljavax/inject/Provider;
+    iget-object v3, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->contentMediatorManagerProvider:Ljavax/inject/Provider;
 
+    .line 56
     invoke-interface {v3}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v3
 
-    check-cast v3, Lcom/upsight/android/marketing/internal/content/MarketingContentStore;
+    check-cast v3, Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;
 
-    iget-object v4, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->contentTemplateWebViewClientFactoryProvider:Ljavax/inject/Provider;
+    iget-object v4, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->contentStoreProvider:Ljavax/inject/Provider;
 
+    .line 57
     invoke-interface {v4}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v4
 
-    check-cast v4, Lcom/upsight/android/marketing/internal/content/ContentTemplateWebViewClientFactory;
+    check-cast v4, Lcom/upsight/android/marketing/internal/content/MarketingContentStore;
 
-    invoke-virtual {v5, v1, v2, v3, v4}, Lcom/upsight/android/marketing/internal/content/ContentModule;->provideMarketingContentFactory(Lcom/upsight/android/UpsightContext;Lrx/Scheduler;Lcom/upsight/android/marketing/internal/content/MarketingContentStore;Lcom/upsight/android/marketing/internal/content/ContentTemplateWebViewClientFactory;)Lcom/upsight/android/marketing/internal/content/MarketingContentFactory;
+    iget-object v5, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->contentTemplateWebViewClientFactoryProvider:Ljavax/inject/Provider;
+
+    .line 58
+    invoke-interface {v5}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v5
+
+    check-cast v5, Lcom/upsight/android/marketing/internal/content/ContentTemplateWebViewClientFactory;
+
+    .line 53
+    invoke-virtual/range {v0 .. v5}, Lcom/upsight/android/marketing/internal/content/ContentModule;->provideMarketingContentFactory(Lcom/upsight/android/UpsightContext;Lrx/Scheduler;Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;Lcom/upsight/android/marketing/internal/content/MarketingContentStore;Lcom/upsight/android/marketing/internal/content/ContentTemplateWebViewClientFactory;)Lcom/upsight/android/marketing/internal/content/MarketingContentFactory;
 
     move-result-object v0
 
-    .line 33
-    .local v0, "provided":Lcom/upsight/android/marketing/internal/content/MarketingContentFactory;
-    if-nez v0, :cond_30
+    const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
-    .line 34
-    new-instance v1, Ljava/lang/NullPointerException;
+    .line 52
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
 
-    const-string v2, "Cannot return null from a non-@Nullable @Provides method"
+    move-result-object v0
 
-    invoke-direct {v1, v2}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    check-cast v0, Lcom/upsight/android/marketing/internal/content/MarketingContentFactory;
 
-    throw v1
-
-    .line 36
-    :cond_30
     return-object v0
 .end method
 
@@ -340,7 +388,7 @@
     .registers 2
 
     .prologue
-    .line 9
+    .line 10
     invoke-virtual {p0}, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentFactoryFactory;->get()Lcom/upsight/android/marketing/internal/content/MarketingContentFactory;
 
     move-result-object v0

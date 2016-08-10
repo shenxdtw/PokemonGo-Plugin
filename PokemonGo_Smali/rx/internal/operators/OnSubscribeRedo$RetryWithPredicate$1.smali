@@ -110,10 +110,7 @@
     .local v0, "value":I
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeRedo$RetryWithPredicate$1;->this$0:Lrx/internal/operators/OnSubscribeRedo$RetryWithPredicate;
 
-    # getter for: Lrx/internal/operators/OnSubscribeRedo$RetryWithPredicate;->predicate:Lrx/functions/Func2;
-    invoke-static {v1}, Lrx/internal/operators/OnSubscribeRedo$RetryWithPredicate;->access$100(Lrx/internal/operators/OnSubscribeRedo$RetryWithPredicate;)Lrx/functions/Func2;
-
-    move-result-object v1
+    iget-object v1, v1, Lrx/internal/operators/OnSubscribeRedo$RetryWithPredicate;->predicate:Lrx/functions/Func2;
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
@@ -133,7 +130,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_2e
+    if-eqz v1, :cond_2c
 
     .line 115
     add-int/lit8 v1, v0, 0x1
@@ -148,6 +145,6 @@
 
     .line 117
     .end local p2    # "term":Lrx/Notification;, "Lrx/Notification<*>;"
-    :cond_2e
+    :cond_2c
     return-object p2
 .end method

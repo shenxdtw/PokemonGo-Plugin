@@ -26,6 +26,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/internal/persistence/subscription/OnSubscribeBus;Lcom/upsight/android/internal/persistence/subscription/OnSubscribeBus$BusAdapter;)V
     .registers 3
+    .param p1, "this$0"    # Lcom/upsight/android/internal/persistence/subscription/OnSubscribeBus;
 
     .prologue
     .line 30

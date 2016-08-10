@@ -34,6 +34,8 @@
 
 .field public static final enum RESUMED:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
+.field public static final enum SAVE_INSTANCE_STATE:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
+
 .field public static final enum STARTED:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
 .field public static final enum STOPPED:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
@@ -54,7 +56,7 @@
 
     const/4 v3, 0x0
 
-    .line 22
+    .line 25
     new-instance v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
     const-string v1, "CREATED"
@@ -63,7 +65,7 @@
 
     sput-object v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;->CREATED:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
-    .line 23
+    .line 26
     new-instance v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
     const-string v1, "STARTED"
@@ -72,7 +74,7 @@
 
     sput-object v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;->STARTED:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
-    .line 24
+    .line 27
     new-instance v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
     const-string v1, "RESUMED"
@@ -81,7 +83,7 @@
 
     sput-object v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;->RESUMED:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
-    .line 25
+    .line 28
     new-instance v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
     const-string v1, "PAUSED"
@@ -90,7 +92,7 @@
 
     sput-object v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;->PAUSED:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
-    .line 26
+    .line 29
     new-instance v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
     const-string v1, "STOPPED"
@@ -99,19 +101,30 @@
 
     sput-object v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;->STOPPED:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
-    .line 27
+    .line 30
     new-instance v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
-    const-string v1, "DESTROYED"
+    const-string v1, "SAVE_INSTANCE_STATE"
 
     const/4 v2, 0x5
 
     invoke-direct {v0, v1, v2}, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;-><init>(Ljava/lang/String;I)V
 
+    sput-object v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;->SAVE_INSTANCE_STATE:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
+
+    .line 31
+    new-instance v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
+
+    const-string v1, "DESTROYED"
+
+    const/4 v2, 0x6
+
+    invoke-direct {v0, v1, v2}, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;-><init>(Ljava/lang/String;I)V
+
     sput-object v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;->DESTROYED:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
-    .line 21
-    const/4 v0, 0x6
+    .line 24
+    const/4 v0, 0x7
 
     new-array v0, v0, [Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
@@ -137,6 +150,12 @@
 
     const/4 v1, 0x5
 
+    sget-object v2, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;->SAVE_INSTANCE_STATE:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
+
+    aput-object v2, v0, v1
+
+    const/4 v1, 0x6
+
     sget-object v2, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;->DESTROYED:Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
     aput-object v2, v0, v1
@@ -155,7 +174,7 @@
     .end annotation
 
     .prologue
-    .line 21
+    .line 24
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -166,7 +185,7 @@
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 21
+    .line 24
     const-class v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -182,7 +201,7 @@
     .registers 1
 
     .prologue
-    .line 21
+    .line 24
     sget-object v0, Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;->$VALUES:[Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
 
     invoke-virtual {v0}, [Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;->clone()Ljava/lang/Object;

@@ -29,15 +29,13 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .registers 1
 
     .prologue
-    .line 35
+    .line 39
     new-instance v0, Lrx/internal/operators/OperatorMaterialize;
 
-    const/4 v1, 0x0
-
-    invoke-direct {v0, v1}, Lrx/internal/operators/OperatorMaterialize;-><init>(Lrx/internal/operators/OperatorMaterialize$1;)V
+    invoke-direct {v0}, Lrx/internal/operators/OperatorMaterialize;-><init>()V
 
     sput-object v0, Lrx/internal/operators/OperatorMaterialize$Holder;->INSTANCE:Lrx/internal/operators/OperatorMaterialize;
 
@@ -48,7 +46,7 @@
     .registers 1
 
     .prologue
-    .line 33
+    .line 37
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

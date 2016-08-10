@@ -37,11 +37,13 @@
 
 .field private final mGooglePlayHelper:Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
 
+.field private final mGson:Lcom/google/gson/Gson;
+
+.field private final mLifeCycleTracker:Lcom/upsight/android/analytics/UpsightLifeCycleTracker;
+
 .field private final mLocationTracker:Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
 
 .field private final mLogger:Lcom/upsight/android/logger/UpsightLogger;
-
-.field private final mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
 
 .field private final mOptOutStatus:Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;
 
@@ -59,7 +61,7 @@
     .registers 1
 
     .prologue
-    .line 42
+    .line 44
     const-class v0, Lcom/upsight/android/analytics/internal/Analytics;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -71,70 +73,74 @@
     return-void
 .end method
 
-.method public constructor <init>(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/analytics/internal/session/SessionManager;Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;Lcom/upsight/android/analytics/internal/association/AssociationManager;Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;Lcom/upsight/android/analytics/provider/UpsightLocationTracker;Lcom/upsight/android/analytics/provider/UpsightUserAttributes;Lcom/upsight/android/analytics/UpsightGooglePlayHelper;)V
-    .registers 10
+.method public constructor <init>(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/analytics/UpsightLifeCycleTracker;Lcom/upsight/android/analytics/internal/session/SessionManager;Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;Lcom/upsight/android/analytics/internal/association/AssociationManager;Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;Lcom/upsight/android/analytics/provider/UpsightLocationTracker;Lcom/upsight/android/analytics/provider/UpsightUserAttributes;Lcom/upsight/android/analytics/UpsightGooglePlayHelper;)V
+    .registers 11
     .param p1, "upsight"    # Lcom/upsight/android/UpsightContext;
-    .param p2, "sessionManager"    # Lcom/upsight/android/analytics/internal/session/SessionManager;
-    .param p3, "schemaSelector"    # Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;
-    .param p4, "associationManager"    # Lcom/upsight/android/analytics/internal/association/AssociationManager;
-    .param p5, "optOutStatus"    # Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;
-    .param p6, "locationTracker"    # Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
-    .param p7, "userAttributes"    # Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
-    .param p8, "googlePlayHelper"    # Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
+    .param p2, "lifeCycleTracker"    # Lcom/upsight/android/analytics/UpsightLifeCycleTracker;
+    .param p3, "sessionManager"    # Lcom/upsight/android/analytics/internal/session/SessionManager;
+    .param p4, "schemaSelector"    # Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;
+    .param p5, "associationManager"    # Lcom/upsight/android/analytics/internal/association/AssociationManager;
+    .param p6, "optOutStatus"    # Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;
+    .param p7, "locationTracker"    # Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
+    .param p8, "userAttributes"    # Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
+    .param p9, "googlePlayHelper"    # Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
     .annotation runtime Ljavax/inject/Inject;
     .end annotation
 
     .prologue
-    .line 80
+    .line 85
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 81
+    .line 86
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    .line 82
+    .line 87
     invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getDataStore()Lcom/upsight/android/persistence/UpsightDataStore;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
-    .line 83
-    iput-object p2, p0, Lcom/upsight/android/analytics/internal/Analytics;->mSessionManager:Lcom/upsight/android/analytics/internal/session/SessionManager;
+    .line 88
+    iput-object p2, p0, Lcom/upsight/android/analytics/internal/Analytics;->mLifeCycleTracker:Lcom/upsight/android/analytics/UpsightLifeCycleTracker;
 
-    .line 84
+    .line 89
+    iput-object p3, p0, Lcom/upsight/android/analytics/internal/Analytics;->mSessionManager:Lcom/upsight/android/analytics/internal/session/SessionManager;
+
+    .line 90
     invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getCoreComponent()Lcom/upsight/android/UpsightCoreComponent;
 
     move-result-object v0
 
-    invoke-interface {v0}, Lcom/upsight/android/UpsightCoreComponent;->objectMapper()Lcom/fasterxml/jackson/databind/ObjectMapper;
+    invoke-interface {v0}, Lcom/upsight/android/UpsightCoreComponent;->gson()Lcom/google/gson/Gson;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mGson:Lcom/google/gson/Gson;
 
-    .line 85
+    .line 91
     invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
-    .line 86
-    iput-object p3, p0, Lcom/upsight/android/analytics/internal/Analytics;->mSchemaSelector:Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;
+    .line 92
+    iput-object p4, p0, Lcom/upsight/android/analytics/internal/Analytics;->mSchemaSelector:Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;
 
-    .line 87
-    iput-object p4, p0, Lcom/upsight/android/analytics/internal/Analytics;->mAssociationManager:Lcom/upsight/android/analytics/internal/association/AssociationManager;
+    .line 93
+    iput-object p5, p0, Lcom/upsight/android/analytics/internal/Analytics;->mAssociationManager:Lcom/upsight/android/analytics/internal/association/AssociationManager;
 
-    .line 88
-    iput-object p5, p0, Lcom/upsight/android/analytics/internal/Analytics;->mOptOutStatus:Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;
+    .line 94
+    iput-object p6, p0, Lcom/upsight/android/analytics/internal/Analytics;->mOptOutStatus:Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;
 
-    .line 89
-    iput-object p6, p0, Lcom/upsight/android/analytics/internal/Analytics;->mLocationTracker:Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
+    .line 95
+    iput-object p7, p0, Lcom/upsight/android/analytics/internal/Analytics;->mLocationTracker:Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
 
-    .line 90
-    iput-object p7, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
+    .line 96
+    iput-object p8, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
 
-    .line 91
+    .line 97
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
 
     invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getDefault()Ljava/util/Set;
@@ -143,30 +149,30 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mDefaultUserAttributes:Ljava/util/Set;
 
-    .line 92
-    iput-object p8, p0, Lcom/upsight/android/analytics/internal/Analytics;->mGooglePlayHelper:Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
+    .line 98
+    iput-object p9, p0, Lcom/upsight/android/analytics/internal/Analytics;->mGooglePlayHelper:Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
 
-    .line 93
+    .line 99
     return-void
 .end method
 
-.method private appendAssociationData(Ljava/lang/String;Lcom/fasterxml/jackson/databind/node/ObjectNode;)V
+.method private appendAssociationData(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
     .registers 4
     .param p1, "eventType"    # Ljava/lang/String;
-    .param p2, "eventNode"    # Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .param p2, "eventNode"    # Lcom/google/gson/JsonObject;
 
     .prologue
-    .line 127
+    .line 129
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mAssociationManager:Lcom/upsight/android/analytics/internal/association/AssociationManager;
 
-    invoke-interface {v0, p1, p2}, Lcom/upsight/android/analytics/internal/association/AssociationManager;->associate(Ljava/lang/String;Lcom/fasterxml/jackson/databind/node/ObjectNode;)V
+    invoke-interface {v0, p1, p2}, Lcom/upsight/android/analytics/internal/association/AssociationManager;->associate(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
 
-    .line 128
+    .line 130
     return-void
 .end method
 
-.method private getAllAsJsonNode(Ljava/util/Set;)Lcom/fasterxml/jackson/databind/JsonNode;
-    .registers 9
+.method private getAllAsJsonElement(Ljava/util/Set;)Lcom/google/gson/JsonElement;
+    .registers 14
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -174,307 +180,428 @@
             "<",
             "Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;",
             ">;)",
-            "Lcom/fasterxml/jackson/databind/JsonNode;"
+            "Lcom/google/gson/JsonElement;"
         }
     .end annotation
 
     .prologue
-    .line 210
+    .line 227
     .local p1, "defaultUserAttributes":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;>;"
-    sget-object v3, Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;->instance:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+    new-instance v6, Lcom/google/gson/JsonObject;
 
-    invoke-virtual {v3}, Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;->objectNode()Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    invoke-direct {v6}, Lcom/google/gson/JsonObject;-><init>()V
+
+    .line 228
+    .local v6, "o":Lcom/google/gson/JsonObject;
+    invoke-interface {p1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    move-result-object v8
+
+    :cond_9
+    :goto_9
+    invoke-interface {v8}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v7
+
+    if-eqz v7, :cond_169
+
+    invoke-interface {v8}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;
+
+    .line 229
+    .local v3, "entry":Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;
+    const-class v7, Ljava/lang/String;
+
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getType()Ljava/lang/Class;
+
+    move-result-object v9
+
+    invoke-virtual {v7, v9}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+
+    move-result v7
+
+    if-eqz v7, :cond_4c
+
+    .line 230
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
+
+    move-result-object v9
+
+    iget-object v10, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUpsight:Lcom/upsight/android/UpsightContext;
+
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v11, "com.upsight.user_attribute."
+
+    invoke-virtual {v7, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    .line 231
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
+
+    move-result-object v11
+
+    invoke-virtual {v7, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v11
+
+    .line 232
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getDefaultValue()Ljava/lang/Object;
+
+    move-result-object v7
+
+    check-cast v7, Ljava/lang/String;
+
+    .line 230
+    invoke-static {v10, v11, v7}, Lcom/upsight/android/internal/util/PreferencesHelper;->getString(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {v6, v9, v7}, Lcom/google/gson/JsonObject;->addProperty(Ljava/lang/String;Ljava/lang/String;)V
+
+    goto :goto_9
+
+    .line 233
+    :cond_4c
+    const-class v7, Ljava/lang/Integer;
+
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getType()Ljava/lang/Class;
+
+    move-result-object v9
+
+    invoke-virtual {v7, v9}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+
+    move-result v7
+
+    if-eqz v7, :cond_8c
+
+    .line 234
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
+
+    move-result-object v9
+
+    iget-object v10, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUpsight:Lcom/upsight/android/UpsightContext;
+
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v11, "com.upsight.user_attribute."
+
+    invoke-virtual {v7, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    .line 235
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
+
+    move-result-object v11
+
+    invoke-virtual {v7, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v11
+
+    .line 236
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getDefaultValue()Ljava/lang/Object;
+
+    move-result-object v7
+
+    check-cast v7, Ljava/lang/Integer;
+
+    invoke-virtual {v7}, Ljava/lang/Integer;->intValue()I
+
+    move-result v7
+
+    .line 234
+    invoke-static {v10, v11, v7}, Lcom/upsight/android/internal/util/PreferencesHelper;->getInt(Landroid/content/Context;Ljava/lang/String;I)I
+
+    move-result v7
+
+    invoke-static {v7}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v7
+
+    invoke-virtual {v6, v9, v7}, Lcom/google/gson/JsonObject;->addProperty(Ljava/lang/String;Ljava/lang/Number;)V
+
+    goto/16 :goto_9
+
+    .line 237
+    :cond_8c
+    const-class v7, Ljava/lang/Boolean;
+
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getType()Ljava/lang/Class;
+
+    move-result-object v9
+
+    invoke-virtual {v7, v9}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+
+    move-result v7
+
+    if-eqz v7, :cond_cc
+
+    .line 238
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
+
+    move-result-object v9
+
+    iget-object v10, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUpsight:Lcom/upsight/android/UpsightContext;
+
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v11, "com.upsight.user_attribute."
+
+    invoke-virtual {v7, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    .line 239
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
+
+    move-result-object v11
+
+    invoke-virtual {v7, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v11
+
+    .line 240
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getDefaultValue()Ljava/lang/Object;
+
+    move-result-object v7
+
+    check-cast v7, Ljava/lang/Boolean;
+
+    invoke-virtual {v7}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v7
+
+    .line 238
+    invoke-static {v10, v11, v7}, Lcom/upsight/android/internal/util/PreferencesHelper;->getBoolean(Landroid/content/Context;Ljava/lang/String;Z)Z
+
+    move-result v7
+
+    invoke-static {v7}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v7
+
+    invoke-virtual {v6, v9, v7}, Lcom/google/gson/JsonObject;->addProperty(Ljava/lang/String;Ljava/lang/Boolean;)V
+
+    goto/16 :goto_9
+
+    .line 241
+    :cond_cc
+    const-class v7, Ljava/lang/Float;
+
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getType()Ljava/lang/Class;
+
+    move-result-object v9
+
+    invoke-virtual {v7, v9}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+
+    move-result v7
+
+    if-eqz v7, :cond_10c
+
+    .line 242
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
+
+    move-result-object v9
+
+    iget-object v10, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUpsight:Lcom/upsight/android/UpsightContext;
+
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v11, "com.upsight.user_attribute."
+
+    invoke-virtual {v7, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    .line 243
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
+
+    move-result-object v11
+
+    invoke-virtual {v7, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v11
+
+    .line 244
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getDefaultValue()Ljava/lang/Object;
+
+    move-result-object v7
+
+    check-cast v7, Ljava/lang/Float;
+
+    invoke-virtual {v7}, Ljava/lang/Float;->floatValue()F
+
+    move-result v7
+
+    .line 242
+    invoke-static {v10, v11, v7}, Lcom/upsight/android/internal/util/PreferencesHelper;->getFloat(Landroid/content/Context;Ljava/lang/String;F)F
+
+    move-result v7
+
+    invoke-static {v7}, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
+
+    move-result-object v7
+
+    invoke-virtual {v6, v9, v7}, Lcom/google/gson/JsonObject;->addProperty(Ljava/lang/String;Ljava/lang/Number;)V
+
+    goto/16 :goto_9
+
+    .line 245
+    :cond_10c
+    const-class v7, Ljava/util/Date;
+
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getType()Ljava/lang/Class;
+
+    move-result-object v9
+
+    invoke-virtual {v7, v9}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+
+    move-result v7
+
+    if-eqz v7, :cond_9
+
+    .line 246
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getDefaultValue()Ljava/lang/Object;
 
     move-result-object v2
 
-    .line 211
-    .local v2, "o":Lcom/fasterxml/jackson/databind/node/ObjectNode;
-    invoke-interface {p1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+    check-cast v2, Ljava/util/Date;
+
+    .line 247
+    .local v2, "defaultDatetime":Ljava/util/Date;
+    sget-object v7, Ljava/util/concurrent/TimeUnit;->SECONDS:Ljava/util/concurrent/TimeUnit;
+
+    invoke-virtual {v2}, Ljava/util/Date;->getTime()J
+
+    move-result-wide v10
+
+    sget-object v9, Ljava/util/concurrent/TimeUnit;->MILLISECONDS:Ljava/util/concurrent/TimeUnit;
+
+    invoke-virtual {v7, v10, v11, v9}, Ljava/util/concurrent/TimeUnit;->convert(JLjava/util/concurrent/TimeUnit;)J
+
+    move-result-wide v4
+
+    .line 248
+    .local v4, "defaultDatetimeS":J
+    iget-object v7, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUpsight:Lcom/upsight/android/UpsightContext;
+
+    new-instance v9, Ljava/lang/StringBuilder;
+
+    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v10, "com.upsight.user_attribute."
+
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v9
+
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
+
+    move-result-object v10
+
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v9
+
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v9
+
+    invoke-static {v7, v9, v4, v5}, Lcom/upsight/android/internal/util/PreferencesHelper;->getLong(Landroid/content/Context;Ljava/lang/String;J)J
+
+    move-result-wide v0
+
+    .line 252
+    .local v0, "datetimeS":J
+    const-wide v10, 0x3afff4417fL
+
+    cmp-long v7, v0, v10
+
+    if-eqz v7, :cond_15d
+
+    .line 253
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-static {v0, v1}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
+
+    move-result-object v9
+
+    invoke-virtual {v6, v7, v9}, Lcom/google/gson/JsonObject;->addProperty(Ljava/lang/String;Ljava/lang/Number;)V
+
+    goto/16 :goto_9
+
+    .line 255
+    :cond_15d
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
+
+    move-result-object v9
+
+    const/4 v7, 0x0
+
+    check-cast v7, Ljava/lang/Long;
+
+    invoke-virtual {v6, v9, v7}, Lcom/google/gson/JsonObject;->addProperty(Ljava/lang/String;Ljava/lang/Number;)V
+
+    goto/16 :goto_9
+
+    .line 259
+    .end local v0    # "datetimeS":J
+    .end local v2    # "defaultDatetime":Ljava/util/Date;
+    .end local v3    # "entry":Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;
+    .end local v4    # "defaultDatetimeS":J
+    :cond_169
+    return-object v6
+.end method
+
+.method private toJsonElement(Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;)Lcom/google/gson/JsonObject;
+    .registers 6
+    .param p1, "event"    # Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
+
+    .prologue
+    .line 122
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/Analytics;->mGson:Lcom/google/gson/Gson;
+
+    invoke-virtual {v1, p1}, Lcom/google/gson/Gson;->toJsonTree(Ljava/lang/Object;)Lcom/google/gson/JsonElement;
 
     move-result-object v1
 
-    .local v1, "i$":Ljava/util/Iterator;
-    :cond_a
-    :goto_a
-    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v3
-
-    if-eqz v3, :cond_100
-
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-virtual {v1}, Lcom/google/gson/JsonElement;->getAsJsonObject()Lcom/google/gson/JsonObject;
 
     move-result-object v0
 
-    check-cast v0, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;
-
-    .line 212
-    .local v0, "entry":Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;
-    const-class v3, Ljava/lang/String;
-
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getType()Ljava/lang/Class;
-
-    move-result-object v4
-
-    invoke-virtual {v3, v4}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
-
-    move-result v3
-
-    if-eqz v3, :cond_4d
-
-    .line 213
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
-
-    move-result-object v4
-
-    iget-object v5, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v6, "com.upsight.user_attribute."
-
-    invoke-virtual {v3, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-virtual {v3, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getDefaultValue()Ljava/lang/Object;
-
-    move-result-object v3
-
-    check-cast v3, Ljava/lang/String;
-
-    invoke-static {v5, v6, v3}, Lcom/upsight/android/internal/util/PreferencesHelper;->getString(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-virtual {v2, v4, v3}, Lcom/fasterxml/jackson/databind/node/ObjectNode;->put(Ljava/lang/String;Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
-
-    goto :goto_a
-
-    .line 216
-    :cond_4d
-    const-class v3, Ljava/lang/Integer;
-
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getType()Ljava/lang/Class;
-
-    move-result-object v4
-
-    invoke-virtual {v3, v4}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
-
-    move-result v3
-
-    if-eqz v3, :cond_88
-
-    .line 217
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
-
-    move-result-object v4
-
-    iget-object v5, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v6, "com.upsight.user_attribute."
-
-    invoke-virtual {v3, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-virtual {v3, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getDefaultValue()Ljava/lang/Object;
-
-    move-result-object v3
-
-    check-cast v3, Ljava/lang/Integer;
-
-    invoke-virtual {v3}, Ljava/lang/Integer;->intValue()I
-
-    move-result v3
-
-    invoke-static {v5, v6, v3}, Lcom/upsight/android/internal/util/PreferencesHelper;->getInt(Landroid/content/Context;Ljava/lang/String;I)I
-
-    move-result v3
-
-    invoke-virtual {v2, v4, v3}, Lcom/fasterxml/jackson/databind/node/ObjectNode;->put(Ljava/lang/String;I)Lcom/fasterxml/jackson/databind/node/ObjectNode;
-
-    goto :goto_a
-
-    .line 220
-    :cond_88
-    const-class v3, Ljava/lang/Boolean;
-
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getType()Ljava/lang/Class;
-
-    move-result-object v4
-
-    invoke-virtual {v3, v4}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
-
-    move-result v3
-
-    if-eqz v3, :cond_c4
-
-    .line 221
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
-
-    move-result-object v4
-
-    iget-object v5, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v6, "com.upsight.user_attribute."
-
-    invoke-virtual {v3, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-virtual {v3, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getDefaultValue()Ljava/lang/Object;
-
-    move-result-object v3
-
-    check-cast v3, Ljava/lang/Boolean;
-
-    invoke-virtual {v3}, Ljava/lang/Boolean;->booleanValue()Z
-
-    move-result v3
-
-    invoke-static {v5, v6, v3}, Lcom/upsight/android/internal/util/PreferencesHelper;->getBoolean(Landroid/content/Context;Ljava/lang/String;Z)Z
-
-    move-result v3
-
-    invoke-virtual {v2, v4, v3}, Lcom/fasterxml/jackson/databind/node/ObjectNode;->put(Ljava/lang/String;Z)Lcom/fasterxml/jackson/databind/node/ObjectNode;
-
-    goto/16 :goto_a
-
-    .line 224
-    :cond_c4
-    const-class v3, Ljava/lang/Float;
-
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getType()Ljava/lang/Class;
-
-    move-result-object v4
-
-    invoke-virtual {v3, v4}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
-
-    move-result v3
-
-    if-eqz v3, :cond_a
-
-    .line 225
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
-
-    move-result-object v4
-
-    iget-object v5, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v6, "com.upsight.user_attribute."
-
-    invoke-virtual {v3, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getKey()Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-virtual {v3, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;->getDefaultValue()Ljava/lang/Object;
-
-    move-result-object v3
-
-    check-cast v3, Ljava/lang/Float;
-
-    invoke-virtual {v3}, Ljava/lang/Float;->floatValue()F
-
-    move-result v3
-
-    invoke-static {v5, v6, v3}, Lcom/upsight/android/internal/util/PreferencesHelper;->getFloat(Landroid/content/Context;Ljava/lang/String;F)F
-
-    move-result v3
-
-    invoke-virtual {v2, v4, v3}, Lcom/fasterxml/jackson/databind/node/ObjectNode;->put(Ljava/lang/String;F)Lcom/fasterxml/jackson/databind/node/ObjectNode;
-
-    goto/16 :goto_a
-
-    .line 230
-    .end local v0    # "entry":Lcom/upsight/android/analytics/provider/UpsightUserAttributes$Entry;
-    :cond_100
-    return-object v2
-.end method
-
-.method private toJsonNode(Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
-    .registers 6
-    .param p1, "event"    # Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Lcom/fasterxml/jackson/core/JsonProcessingException;
-        }
-    .end annotation
-
-    .prologue
-    .line 120
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/Analytics;->mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
-
-    invoke-virtual {v1, p1}, Lcom/fasterxml/jackson/databind/ObjectMapper;->valueToTree(Ljava/lang/Object;)Lcom/fasterxml/jackson/databind/JsonNode;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/fasterxml/jackson/databind/node/ObjectNode;
-
-    .line 121
-    .local v0, "node":Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .line 123
+    .local v0, "node":Lcom/google/gson/JsonObject;
     const-string v1, "seq_id"
 
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUpsight:Lcom/upsight/android/UpsightContext;
@@ -483,20 +610,24 @@
 
     move-result-wide v2
 
-    invoke-virtual {v0, v1, v2, v3}, Lcom/fasterxml/jackson/databind/node/ObjectNode;->put(Ljava/lang/String;J)Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    invoke-static {v2, v3}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
 
-    .line 122
+    move-result-object v2
+
+    invoke-virtual {v0, v1, v2}, Lcom/google/gson/JsonObject;->addProperty(Ljava/lang/String;Ljava/lang/Number;)V
+
+    .line 124
     const-string v1, "user_attributes"
 
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/Analytics;->mDefaultUserAttributes:Ljava/util/Set;
 
-    invoke-direct {p0, v2}, Lcom/upsight/android/analytics/internal/Analytics;->getAllAsJsonNode(Ljava/util/Set;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-direct {p0, v2}, Lcom/upsight/android/analytics/internal/Analytics;->getAllAsJsonElement(Ljava/util/Set;)Lcom/google/gson/JsonElement;
 
     move-result-object v2
 
-    invoke-virtual {v0, v1, v2}, Lcom/fasterxml/jackson/databind/node/ObjectNode;->put(Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {v0, v1, v2}, Lcom/google/gson/JsonObject;->add(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
 
-    .line 123
+    .line 125
     return-object v0
 .end method
 
@@ -507,10 +638,25 @@
     .param p1, "key"    # Ljava/lang/String;
 
     .prologue
-    .line 187
+    .line 199
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
 
     invoke-virtual {v0, p1}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getBoolean(Ljava/lang/String;)Ljava/lang/Boolean;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public getDatetimeUserAttribute(Ljava/lang/String;)Ljava/util/Date;
+    .registers 3
+    .param p1, "key"    # Ljava/lang/String;
+
+    .prologue
+    .line 209
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
+
+    invoke-virtual {v0, p1}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getDatetime(Ljava/lang/String;)Ljava/util/Date;
 
     move-result-object v0
 
@@ -530,7 +676,7 @@
     .end annotation
 
     .prologue
-    .line 197
+    .line 214
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
 
     invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getDefault()Ljava/util/Set;
@@ -545,7 +691,7 @@
     .param p1, "key"    # Ljava/lang/String;
 
     .prologue
-    .line 192
+    .line 204
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
 
     invoke-virtual {v0, p1}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getFloat(Ljava/lang/String;)Ljava/lang/Float;
@@ -560,7 +706,7 @@
     .param p1, "key"    # Ljava/lang/String;
 
     .prologue
-    .line 182
+    .line 194
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
 
     invoke-virtual {v0, p1}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getInt(Ljava/lang/String;)Ljava/lang/Integer;
@@ -574,7 +720,7 @@
     .registers 2
 
     .prologue
-    .line 137
+    .line 139
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mOptOutStatus:Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;
 
     invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;->get()Z
@@ -589,7 +735,7 @@
     .param p1, "key"    # Ljava/lang/String;
 
     .prologue
-    .line 177
+    .line 189
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
 
     invoke-virtual {v0, p1}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->getString(Ljava/lang/String;)Ljava/lang/String;
@@ -603,12 +749,12 @@
     .registers 2
 
     .prologue
-    .line 152
+    .line 159
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mLocationTracker:Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
 
     invoke-virtual {v0}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker;->purge()V
 
-    .line 153
+    .line 160
     return-void
 .end method
 
@@ -618,12 +764,12 @@
     .param p2, "value"    # Ljava/lang/Boolean;
 
     .prologue
-    .line 167
+    .line 174
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
 
     invoke-virtual {v0, p1, p2}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->put(Ljava/lang/String;Ljava/lang/Boolean;)V
 
-    .line 168
+    .line 175
     return-void
 .end method
 
@@ -633,12 +779,12 @@
     .param p2, "value"    # Ljava/lang/Float;
 
     .prologue
-    .line 172
+    .line 179
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
 
     invoke-virtual {v0, p1, p2}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->put(Ljava/lang/String;Ljava/lang/Float;)V
 
-    .line 173
+    .line 180
     return-void
 .end method
 
@@ -648,12 +794,12 @@
     .param p2, "value"    # Ljava/lang/Integer;
 
     .prologue
-    .line 162
+    .line 169
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
 
     invoke-virtual {v0, p1, p2}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->put(Ljava/lang/String;Ljava/lang/Integer;)V
 
-    .line 163
+    .line 170
     return-void
 .end method
 
@@ -663,152 +809,127 @@
     .param p2, "value"    # Ljava/lang/String;
 
     .prologue
-    .line 157
+    .line 164
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
 
     invoke-virtual {v0, p1, p2}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->put(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 158
+    .line 165
+    return-void
+.end method
+
+.method public putUserAttribute(Ljava/lang/String;Ljava/util/Date;)V
+    .registers 4
+    .param p1, "key"    # Ljava/lang/String;
+    .param p2, "value"    # Ljava/util/Date;
+
+    .prologue
+    .line 184
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mUserAttributes:Lcom/upsight/android/analytics/provider/UpsightUserAttributes;
+
+    invoke-virtual {v0, p1, p2}, Lcom/upsight/android/analytics/provider/UpsightUserAttributes;->put(Ljava/lang/String;Ljava/util/Date;)V
+
+    .line 185
     return-void
 .end method
 
 .method public record(Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;)V
-    .registers 18
+    .registers 15
     .param p1, "event"    # Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
 
     .prologue
-    .line 98
-    :try_start_0
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/upsight/android/analytics/internal/Analytics;->mSessionManager:Lcom/upsight/android/analytics/internal/session/SessionManager;
-
-    invoke-interface {v1}, Lcom/upsight/android/analytics/internal/session/SessionManager;->getCurrentSession()Lcom/upsight/android/analytics/internal/session/Session;
-
-    move-result-object v11
-
-    .line 99
-    .local v11, "currentSession":Lcom/upsight/android/analytics/internal/session/Session;
-    invoke-interface {v11}, Lcom/upsight/android/analytics/internal/session/Session;->getTimeStamp()J
-
-    move-result-wide v2
-
-    .line 100
-    .local v2, "sessionStart":J
-    invoke-interface {v11}, Lcom/upsight/android/analytics/internal/session/Session;->getMessageID()Ljava/lang/Integer;
-
-    move-result-object v4
-
-    .line 101
-    .local v4, "messageID":Ljava/lang/Integer;
-    invoke-interface {v11}, Lcom/upsight/android/analytics/internal/session/Session;->getCampaignID()Ljava/lang/Integer;
-
-    move-result-object v5
-
-    .line 102
-    .local v5, "campaignID":Ljava/lang/Integer;
-    invoke-interface {v11}, Lcom/upsight/android/analytics/internal/session/Session;->getSessionNumber()I
-
-    move-result v6
-
     .line 103
-    .local v6, "sessionNum":I
-    invoke-interface {v11}, Lcom/upsight/android/analytics/internal/session/Session;->getPreviousTos()J
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mSessionManager:Lcom/upsight/android/analytics/internal/session/SessionManager;
 
-    move-result-wide v7
-
-    .line 105
-    .local v7, "prevTos":J
-    invoke-direct/range {p0 .. p1}, Lcom/upsight/android/analytics/internal/Analytics;->toJsonNode(Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
-
-    move-result-object v13
-
-    .line 106
-    .local v13, "eventNode":Lcom/fasterxml/jackson/databind/node/ObjectNode;
-    invoke-virtual/range {p1 .. p1}, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->getType()Ljava/lang/String;
-
-    move-result-object v1
-
-    move-object/from16 v0, p0
-
-    invoke-direct {v0, v1, v13}, Lcom/upsight/android/analytics/internal/Analytics;->appendAssociationData(Ljava/lang/String;Lcom/fasterxml/jackson/databind/node/ObjectNode;)V
-
-    .line 108
-    sget-object v1, Lcom/upsight/android/analytics/internal/DataStoreRecord$Action;->Created:Lcom/upsight/android/analytics/internal/DataStoreRecord$Action;
-
-    invoke-virtual {v13}, Lcom/fasterxml/jackson/databind/node/ObjectNode;->toString()Ljava/lang/String;
-
-    move-result-object v9
-
-    invoke-virtual/range {p1 .. p1}, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->getType()Ljava/lang/String;
+    invoke-interface {v0}, Lcom/upsight/android/analytics/internal/session/SessionManager;->getCurrentSession()Lcom/upsight/android/analytics/internal/session/Session;
 
     move-result-object v10
 
-    invoke-static/range {v1 .. v10}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->create(Lcom/upsight/android/analytics/internal/DataStoreRecord$Action;JLjava/lang/Integer;Ljava/lang/Integer;IJLjava/lang/String;Ljava/lang/String;)Lcom/upsight/android/analytics/internal/DataStoreRecord;
+    .line 104
+    .local v10, "currentSession":Lcom/upsight/android/analytics/internal/session/Session;
+    invoke-interface {v10}, Lcom/upsight/android/analytics/internal/session/Session;->getTimeStamp()J
 
-    move-result-object v14
+    move-result-wide v1
+
+    .line 105
+    .local v1, "sessionStart":J
+    invoke-interface {v10}, Lcom/upsight/android/analytics/internal/session/Session;->getMessageID()Ljava/lang/Integer;
+
+    move-result-object v3
+
+    .line 106
+    .local v3, "messageID":Ljava/lang/Integer;
+    invoke-interface {v10}, Lcom/upsight/android/analytics/internal/session/Session;->getCampaignID()Ljava/lang/Integer;
+
+    move-result-object v4
+
+    .line 107
+    .local v4, "campaignID":Ljava/lang/Integer;
+    invoke-interface {v10}, Lcom/upsight/android/analytics/internal/session/Session;->getSessionNumber()I
+
+    move-result v5
+
+    .line 108
+    .local v5, "sessionNum":I
+    invoke-interface {v10}, Lcom/upsight/android/analytics/internal/session/Session;->getPreviousTos()J
+
+    move-result-wide v6
 
     .line 110
-    .local v14, "record":Lcom/upsight/android/analytics/internal/DataStoreRecord;
-    move-object/from16 v0, p1
+    .local v6, "prevTos":J
+    invoke-direct {p0, p1}, Lcom/upsight/android/analytics/internal/Analytics;->toJsonElement(Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;)Lcom/google/gson/JsonObject;
 
-    instance-of v1, v0, Lcom/upsight/android/analytics/internal/DynamicIdentifiers;
-
-    if-eqz v1, :cond_46
+    move-result-object v11
 
     .line 111
+    .local v11, "eventNode":Lcom/google/gson/JsonObject;
+    invoke-virtual {p1}, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->getType()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-direct {p0, v0, v11}, Lcom/upsight/android/analytics/internal/Analytics;->appendAssociationData(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
+
+    .line 113
+    sget-object v0, Lcom/upsight/android/analytics/internal/DataStoreRecord$Action;->Created:Lcom/upsight/android/analytics/internal/DataStoreRecord$Action;
+
+    .line 114
+    invoke-virtual {v11}, Lcom/google/gson/JsonObject;->toString()Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-virtual {p1}, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;->getType()Ljava/lang/String;
+
+    move-result-object v9
+
+    .line 113
+    invoke-static/range {v0 .. v9}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->create(Lcom/upsight/android/analytics/internal/DataStoreRecord$Action;JLjava/lang/Integer;Ljava/lang/Integer;IJLjava/lang/String;Ljava/lang/String;)Lcom/upsight/android/analytics/internal/DataStoreRecord;
+
+    move-result-object v12
+
+    .line 115
+    .local v12, "record":Lcom/upsight/android/analytics/internal/DataStoreRecord;
+    instance-of v0, p1, Lcom/upsight/android/analytics/internal/DynamicIdentifiers;
+
+    if-eqz v0, :cond_40
+
+    .line 116
     check-cast p1, Lcom/upsight/android/analytics/internal/DynamicIdentifiers;
 
     .end local p1    # "event":Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
-    invoke-interface/range {p1 .. p1}, Lcom/upsight/android/analytics/internal/DynamicIdentifiers;->getIdentifiersName()Ljava/lang/String;
+    invoke-interface {p1}, Lcom/upsight/android/analytics/internal/DynamicIdentifiers;->getIdentifiersName()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v0
 
-    invoke-virtual {v14, v1}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->setIdentifiers(Ljava/lang/String;)V
+    invoke-virtual {v12, v0}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->setIdentifiers(Ljava/lang/String;)V
 
-    .line 113
-    :cond_46
-    move-object/from16 v0, p0
+    .line 118
+    :cond_40
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
-    iget-object v1, v0, Lcom/upsight/android/analytics/internal/Analytics;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
+    invoke-interface {v0, v12}, Lcom/upsight/android/persistence/UpsightDataStore;->store(Ljava/lang/Object;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    invoke-interface {v1, v14}, Lcom/upsight/android/persistence/UpsightDataStore;->store(Ljava/lang/Object;)Lcom/upsight/android/persistence/UpsightSubscription;
-    :try_end_4d
-    .catch Lcom/fasterxml/jackson/core/JsonProcessingException; {:try_start_0 .. :try_end_4d} :catch_4e
-
-    .line 117
-    .end local v2    # "sessionStart":J
-    .end local v4    # "messageID":Ljava/lang/Integer;
-    .end local v5    # "campaignID":Ljava/lang/Integer;
-    .end local v6    # "sessionNum":I
-    .end local v7    # "prevTos":J
-    .end local v11    # "currentSession":Lcom/upsight/android/analytics/internal/session/Session;
-    .end local v13    # "eventNode":Lcom/fasterxml/jackson/databind/node/ObjectNode;
-    .end local v14    # "record":Lcom/upsight/android/analytics/internal/DataStoreRecord;
-    :goto_4d
+    .line 119
     return-void
-
-    .line 114
-    :catch_4e
-    move-exception v12
-
-    .line 115
-    .local v12, "e":Lcom/fasterxml/jackson/core/JsonProcessingException;
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/upsight/android/analytics/internal/Analytics;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
-
-    sget-object v9, Lcom/upsight/android/analytics/internal/Analytics;->LOG_TAG:Ljava/lang/String;
-
-    const-string v10, "Failed to record event."
-
-    const/4 v15, 0x0
-
-    new-array v15, v15, [Ljava/lang/Object;
-
-    invoke-interface {v1, v9, v12, v10, v15}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
-
-    goto :goto_4d
 .end method
 
 .method public registerDataProvider(Lcom/upsight/android/analytics/provider/UpsightDataProvider;)V
@@ -816,12 +937,12 @@
     .param p1, "provider"    # Lcom/upsight/android/analytics/provider/UpsightDataProvider;
 
     .prologue
-    .line 142
+    .line 144
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mSchemaSelector:Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;
 
     invoke-virtual {v0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;->registerDataProvider(Lcom/upsight/android/analytics/provider/UpsightDataProvider;)V
 
-    .line 143
+    .line 145
     return-void
 .end method
 
@@ -830,12 +951,29 @@
     .param p1, "optOut"    # Z
 
     .prologue
-    .line 132
+    .line 134
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mOptOutStatus:Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;
 
     invoke-virtual {v0, p1}, Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;->set(Z)V
 
-    .line 133
+    .line 135
+    return-void
+.end method
+
+.method public trackActivity(Landroid/app/Activity;Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;)V
+    .registers 5
+    .param p1, "activity"    # Landroid/app/Activity;
+    .param p2, "activityState"    # Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;
+
+    .prologue
+    .line 149
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mLifeCycleTracker:Lcom/upsight/android/analytics/UpsightLifeCycleTracker;
+
+    const/4 v1, 0x0
+
+    invoke-virtual {v0, p1, p2, v1}, Lcom/upsight/android/analytics/UpsightLifeCycleTracker;->track(Landroid/app/Activity;Lcom/upsight/android/analytics/UpsightLifeCycleTracker$ActivityState;Lcom/upsight/android/analytics/internal/session/SessionInitializer;)V
+
+    .line 150
     return-void
 .end method
 
@@ -844,12 +982,12 @@
     .param p1, "locationData"    # Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
 
     .prologue
-    .line 147
+    .line 154
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/Analytics;->mLocationTracker:Lcom/upsight/android/analytics/provider/UpsightLocationTracker;
 
     invoke-virtual {v0, p1}, Lcom/upsight/android/analytics/provider/UpsightLocationTracker;->track(Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;)V
 
-    .line 148
+    .line 155
     return-void
 .end method
 
@@ -869,7 +1007,7 @@
     .end annotation
 
     .prologue
-    .line 203
+    .line 220
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/Analytics;->mGooglePlayHelper:Lcom/upsight/android/analytics/UpsightGooglePlayHelper;
 
     move v2, p1
@@ -888,6 +1026,6 @@
 
     invoke-virtual/range {v1 .. v10}, Lcom/upsight/android/analytics/UpsightGooglePlayHelper;->trackPurchase(ILjava/lang/String;DDLjava/lang/String;Landroid/content/Intent;Lcom/upsight/android/analytics/event/UpsightPublisherData;)V
 
-    .line 204
+    .line 221
     return-void
 .end method

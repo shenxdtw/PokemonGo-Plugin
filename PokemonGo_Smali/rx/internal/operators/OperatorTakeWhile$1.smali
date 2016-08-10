@@ -37,7 +37,7 @@
     .registers 2
 
     .prologue
-    .line 36
+    .line 34
     .local p0, "this":Lrx/internal/operators/OperatorTakeWhile$1;, "Lrx/internal/operators/OperatorTakeWhile.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorTakeWhile$1;->val$underlying:Lrx/functions/Func1;
 
@@ -61,7 +61,7 @@
     .end annotation
 
     .prologue
-    .line 39
+    .line 37
     .local p0, "this":Lrx/internal/operators/OperatorTakeWhile$1;, "Lrx/internal/operators/OperatorTakeWhile.1;"
     .local p1, "input":Ljava/lang/Object;, "TT;"
     iget-object v0, p0, Lrx/internal/operators/OperatorTakeWhile$1;->val$underlying:Lrx/functions/Func1;
@@ -81,7 +81,7 @@
     .param p2, "x1"    # Ljava/lang/Object;
 
     .prologue
-    .line 36
+    .line 34
     .local p0, "this":Lrx/internal/operators/OperatorTakeWhile$1;, "Lrx/internal/operators/OperatorTakeWhile.1;"
     check-cast p2, Ljava/lang/Integer;
 

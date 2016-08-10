@@ -61,7 +61,7 @@
 .end method
 
 .method public call(Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;)V
-    .registers 5
+    .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -75,7 +75,7 @@
     .local p1, "o":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
     iget-object v2, p0, Lrx/subjects/AsyncSubject$1;->val$state:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v2}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v2}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v1
 
@@ -87,28 +87,54 @@
 
     .line 72
     .local v0, "nl":Lrx/internal/operators/NotificationLite;, "Lrx/internal/operators/NotificationLite<TT;>;"
-    invoke-virtual {p1, v1, v0}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->accept(Ljava/lang/Object;Lrx/internal/operators/NotificationLite;)V
-
-    .line 73
-    if-eqz v1, :cond_1b
+    if-eqz v1, :cond_12
 
     invoke-virtual {v0, v1}, Lrx/internal/operators/NotificationLite;->isCompleted(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-nez v2, :cond_1e
+    if-eqz v2, :cond_16
 
+    .line 73
+    :cond_12
+    invoke-virtual {p1}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->onCompleted()V
+
+    .line 80
+    :goto_15
+    return-void
+
+    .line 75
+    :cond_16
     invoke-virtual {v0, v1}, Lrx/internal/operators/NotificationLite;->isError(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-nez v2, :cond_1e
-
-    .line 74
-    :cond_1b
-    invoke-virtual {p1}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->onCompleted()V
+    if-eqz v2, :cond_24
 
     .line 76
-    :cond_1e
-    return-void
+    invoke-virtual {v0, v1}, Lrx/internal/operators/NotificationLite;->getError(Ljava/lang/Object;)Ljava/lang/Throwable;
+
+    move-result-object v2
+
+    invoke-virtual {p1, v2}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->onError(Ljava/lang/Throwable;)V
+
+    goto :goto_15
+
+    .line 78
+    :cond_24
+    iget-object v2, p1, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Subscriber;
+
+    new-instance v3, Lrx/internal/producers/SingleProducer;
+
+    iget-object v4, p1, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Subscriber;
+
+    invoke-virtual {v0, v1}, Lrx/internal/operators/NotificationLite;->getValue(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v5
+
+    invoke-direct {v3, v4, v5}, Lrx/internal/producers/SingleProducer;-><init>(Lrx/Subscriber;Ljava/lang/Object;)V
+
+    invoke-virtual {v2, v3}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+
+    goto :goto_15
 .end method

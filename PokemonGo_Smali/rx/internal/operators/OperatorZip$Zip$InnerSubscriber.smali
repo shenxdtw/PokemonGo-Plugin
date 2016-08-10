@@ -25,13 +25,13 @@
     .registers 3
 
     .prologue
-    .line 302
+    .line 303
     .local p0, "this":Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;, "Lrx/internal/operators/OperatorZip$Zip<TR;>.InnerSubscriber;"
     iput-object p1, p0, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;->this$0:Lrx/internal/operators/OperatorZip$Zip;
 
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
-    .line 304
+    .line 305
     invoke-static {}, Lrx/internal/util/RxRingBuffer;->getSpmcInstance()Lrx/internal/util/RxRingBuffer;
 
     move-result-object v0
@@ -47,18 +47,18 @@
     .registers 2
 
     .prologue
-    .line 317
+    .line 318
     .local p0, "this":Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;, "Lrx/internal/operators/OperatorZip$Zip<TR;>.InnerSubscriber;"
     iget-object v0, p0, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;->items:Lrx/internal/util/RxRingBuffer;
 
     invoke-virtual {v0}, Lrx/internal/util/RxRingBuffer;->onCompleted()V
 
-    .line 318
+    .line 319
     iget-object v0, p0, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;->this$0:Lrx/internal/operators/OperatorZip$Zip;
 
     invoke-virtual {v0}, Lrx/internal/operators/OperatorZip$Zip;->tick()V
 
-    .line 319
+    .line 320
     return-void
 .end method
 
@@ -67,18 +67,15 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 324
+    .line 325
     .local p0, "this":Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;, "Lrx/internal/operators/OperatorZip$Zip<TR;>.InnerSubscriber;"
     iget-object v0, p0, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;->this$0:Lrx/internal/operators/OperatorZip$Zip;
 
-    # getter for: Lrx/internal/operators/OperatorZip$Zip;->child:Lrx/Observer;
-    invoke-static {v0}, Lrx/internal/operators/OperatorZip$Zip;->access$000(Lrx/internal/operators/OperatorZip$Zip;)Lrx/Observer;
-
-    move-result-object v0
+    iget-object v0, v0, Lrx/internal/operators/OperatorZip$Zip;->child:Lrx/Observer;
 
     invoke-interface {v0, p1}, Lrx/Observer;->onError(Ljava/lang/Throwable;)V
 
-    .line 325
+    .line 326
     return-void
 .end method
 
@@ -87,7 +84,7 @@
     .param p1, "t"    # Ljava/lang/Object;
 
     .prologue
-    .line 330
+    .line 331
     .local p0, "this":Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;, "Lrx/internal/operators/OperatorZip$Zip<TR;>.InnerSubscriber;"
     :try_start_0
     iget-object v1, p0, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;->items:Lrx/internal/util/RxRingBuffer;
@@ -96,20 +93,20 @@
     :try_end_5
     .catch Lrx/exceptions/MissingBackpressureException; {:try_start_0 .. :try_end_5} :catch_b
 
-    .line 334
+    .line 335
     :goto_5
     iget-object v1, p0, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;->this$0:Lrx/internal/operators/OperatorZip$Zip;
 
     invoke-virtual {v1}, Lrx/internal/operators/OperatorZip$Zip;->tick()V
 
-    .line 335
+    .line 336
     return-void
 
-    .line 331
+    .line 332
     :catch_b
     move-exception v0
 
-    .line 332
+    .line 333
     .local v0, "e":Lrx/exceptions/MissingBackpressureException;
     invoke-virtual {p0, v0}, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;->onError(Ljava/lang/Throwable;)V
 
@@ -120,7 +117,7 @@
     .registers 3
 
     .prologue
-    .line 308
+    .line 309
     .local p0, "this":Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;, "Lrx/internal/operators/OperatorZip$Zip<TR;>.InnerSubscriber;"
     sget v0, Lrx/internal/util/RxRingBuffer;->SIZE:I
 
@@ -128,7 +125,7 @@
 
     invoke-virtual {p0, v0, v1}, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;->request(J)V
 
-    .line 309
+    .line 310
     return-void
 .end method
 
@@ -137,10 +134,10 @@
     .param p1, "n"    # J
 
     .prologue
-    .line 312
+    .line 313
     .local p0, "this":Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;, "Lrx/internal/operators/OperatorZip$Zip<TR;>.InnerSubscriber;"
     invoke-virtual {p0, p1, p2}, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;->request(J)V
 
-    .line 313
+    .line 314
     return-void
 .end method

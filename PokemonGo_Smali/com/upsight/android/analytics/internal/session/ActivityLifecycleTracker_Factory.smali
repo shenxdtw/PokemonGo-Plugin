@@ -75,11 +75,11 @@
     .end annotation
 
     .prologue
-    .line 11
+    .line 14
     .local p1, "trackerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/ManualTracker;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 12
+    .line 15
     sget-boolean v0, Lcom/upsight/android/analytics/internal/session/ActivityLifecycleTracker_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -92,11 +92,11 @@
 
     throw v0
 
-    .line 13
+    .line 16
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/session/ActivityLifecycleTracker_Factory;->trackerProvider:Ljavax/inject/Provider;
 
-    .line 14
+    .line 17
     return-void
 .end method
 
@@ -117,7 +117,7 @@
     .end annotation
 
     .prologue
-    .line 22
+    .line 25
     .local p0, "trackerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/ManualTracker;>;"
     new-instance v0, Lcom/upsight/android/analytics/internal/session/ActivityLifecycleTracker_Factory;
 
@@ -132,7 +132,7 @@
     .registers 3
 
     .prologue
-    .line 18
+    .line 21
     new-instance v1, Lcom/upsight/android/analytics/internal/session/ActivityLifecycleTracker;
 
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/session/ActivityLifecycleTracker_Factory;->trackerProvider:Ljavax/inject/Provider;

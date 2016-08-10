@@ -100,21 +100,21 @@
     .registers 1
 
     .prologue
-    .line 51
+    .line 53
     new-instance v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$1;
 
     invoke-direct {v0}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$1;-><init>()V
 
     sput-object v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->sClassSchemaMap:Ljava/util/Map;
 
-    .line 62
+    .line 64
     new-instance v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$2;
 
     invoke-direct {v0}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$2;-><init>()V
 
     sput-object v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->sTypeSchemaMap:Ljava/util/Map;
 
-    .line 73
+    .line 75
     new-instance v0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$3;
 
     invoke-direct {v0}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$3;-><init>()V
@@ -129,32 +129,32 @@
     .param p1, "logger"    # Lcom/upsight/android/logger/UpsightLogger;
 
     .prologue
-    .line 191
+    .line 207
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 85
+    .line 87
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->mItemList:Ljava/util/List;
 
-    .line 90
+    .line 92
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->mItemSchemaMap:Ljava/util/Map;
 
-    .line 192
+    .line 208
     iput-object p1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
-    .line 193
+    .line 209
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->mSchemaJsonString:Ljava/lang/String;
 
-    .line 194
+    .line 210
     return-void
 .end method
 
@@ -181,46 +181,47 @@
     .end annotation
 
     .prologue
-    .line 208
+    .line 224
     .local p1, "itemList":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;>;"
     .local p2, "itemSchemaMap":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 85
+    .line 87
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->mItemList:Ljava/util/List;
 
-    .line 90
+    .line 92
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->mItemSchemaMap:Ljava/util/Map;
 
-    .line 209
+    .line 225
     iput-object p1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->mItemList:Ljava/util/List;
 
-    .line 210
+    .line 226
     iput-object p2, p0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->mItemSchemaMap:Ljava/util/Map;
 
-    .line 211
+    .line 227
     iput-object p3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
-    .line 212
+    .line 228
     iput-object p4, p0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->mSchemaJsonString:Ljava/lang/String;
 
-    .line 213
+    .line 229
     return-void
 .end method
 
-.method public static create(Ljava/lang/String;Lcom/fasterxml/jackson/databind/ObjectMapper;Lcom/upsight/android/logger/UpsightLogger;)Lcom/upsight/android/managedvariables/internal/type/UxmSchema;
-    .registers 16
+.method public static create(Ljava/lang/String;Lcom/google/gson/Gson;Lcom/google/gson/JsonParser;Lcom/upsight/android/logger/UpsightLogger;)Lcom/upsight/android/managedvariables/internal/type/UxmSchema;
+    .registers 22
     .param p0, "uxmSchemaString"    # Ljava/lang/String;
-    .param p1, "mapper"    # Lcom/fasterxml/jackson/databind/ObjectMapper;
-    .param p2, "logger"    # Lcom/upsight/android/logger/UpsightLogger;
+    .param p1, "gson"    # Lcom/google/gson/Gson;
+    .param p2, "parser"    # Lcom/google/gson/JsonParser;
+    .param p3, "logger"    # Lcom/upsight/android/logger/UpsightLogger;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/IllegalArgumentException;
@@ -228,560 +229,693 @@
     .end annotation
 
     .prologue
-    .line 113
-    new-instance v4, Ljava/util/ArrayList;
+    .line 116
+    new-instance v5, Ljava/util/ArrayList;
 
-    invoke-direct {v4}, Ljava/util/ArrayList;-><init>()V
-
-    .line 114
-    .local v4, "itemList":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;>;"
-    new-instance v7, Ljava/util/HashMap;
-
-    invoke-direct {v7}, Ljava/util/HashMap;-><init>()V
+    invoke-direct {v5}, Ljava/util/ArrayList;-><init>()V
 
     .line 117
-    .local v7, "itemSchemaMap":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;>;"
-    const/4 v10, 0x0
+    .local v5, "itemList":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;>;"
+    new-instance v8, Ljava/util/HashMap;
 
-    .line 119
-    .local v10, "uxmSchemaNode":Lcom/fasterxml/jackson/databind/node/ArrayNode;
-    :try_start_b
-    invoke-virtual {p1, p0}, Lcom/fasterxml/jackson/databind/ObjectMapper;->readTree(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
-
-    move-result-object v10
-
-    .end local v10    # "uxmSchemaNode":Lcom/fasterxml/jackson/databind/node/ArrayNode;
-    check-cast v10, Lcom/fasterxml/jackson/databind/node/ArrayNode;
-    :try_end_11
-    .catch Ljava/io/IOException; {:try_start_b .. :try_end_11} :catch_48
-    .catch Ljava/lang/ClassCastException; {:try_start_b .. :try_end_11} :catch_6a
-
-    .line 131
-    .restart local v10    # "uxmSchemaNode":Lcom/fasterxml/jackson/databind/node/ArrayNode;
-    invoke-virtual {v10}, Lcom/fasterxml/jackson/databind/node/ArrayNode;->iterator()Ljava/util/Iterator;
-
-    move-result-object v3
-
-    .local v3, "i$":Ljava/util/Iterator;
-    :goto_15
-    invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v11
-
-    if-eqz v11, :cond_1b5
-
-    invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v5
-
-    check-cast v5, Lcom/fasterxml/jackson/databind/JsonNode;
-
-    .line 132
-    .local v5, "itemNode":Lcom/fasterxml/jackson/databind/JsonNode;
-    invoke-virtual {v5}, Lcom/fasterxml/jackson/databind/JsonNode;->isObject()Z
-
-    move-result v11
-
-    if-nez v11, :cond_8c
-
-    .line 133
-    new-instance v11, Ljava/lang/StringBuilder;
-
-    invoke-direct {v11}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v12, "Managed variable schema must be a JSON object: "
-
-    invoke-virtual {v11, v12}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v11
-
-    invoke-virtual {v11, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    move-result-object v11
-
-    invoke-virtual {v11}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    .line 134
-    .local v2, "errMsg":Ljava/lang/String;
-    const-string v11, "Upsight"
-
-    const/4 v12, 0x0
-
-    new-array v12, v12, [Ljava/lang/Object;
-
-    invoke-interface {p2, v11, v2, v12}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
-
-    .line 135
-    new-instance v11, Ljava/lang/IllegalArgumentException;
-
-    invoke-direct {v11, v2}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
-
-    throw v11
+    invoke-direct {v8}, Ljava/util/HashMap;-><init>()V
 
     .line 120
-    .end local v2    # "errMsg":Ljava/lang/String;
-    .end local v3    # "i$":Ljava/util/Iterator;
-    .end local v5    # "itemNode":Lcom/fasterxml/jackson/databind/JsonNode;
-    .end local v10    # "uxmSchemaNode":Lcom/fasterxml/jackson/databind/node/ArrayNode;
-    :catch_48
-    move-exception v1
-
-    .line 121
-    .local v1, "e":Ljava/io/IOException;
-    new-instance v11, Ljava/lang/StringBuilder;
-
-    invoke-direct {v11}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v12, "Failed to parse UXM schema JSON: "
-
-    invoke-virtual {v11, v12}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v11
-
-    invoke-virtual {v11, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v11
-
-    invoke-virtual {v11}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
+    .local v8, "itemSchemaMap":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;>;"
+    const/4 v13, 0x0
 
     .line 122
-    .restart local v2    # "errMsg":Ljava/lang/String;
-    const-string v11, "Upsight"
+    .local v13, "uxmSchemaArray":Lcom/google/gson/JsonArray;
+    :try_start_b
+    move-object/from16 v0, p2
 
-    const/4 v12, 0x0
+    move-object/from16 v1, p0
 
-    new-array v12, v12, [Ljava/lang/Object;
+    invoke-virtual {v0, v1}, Lcom/google/gson/JsonParser;->parse(Ljava/lang/String;)Lcom/google/gson/JsonElement;
 
-    invoke-interface {p2, v11, v1, v2, v12}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
+    move-result-object v14
 
     .line 123
-    new-instance v11, Ljava/lang/IllegalArgumentException;
+    .local v14, "uxmSchemaElement":Lcom/google/gson/JsonElement;
+    if-eqz v14, :cond_5f
 
-    invoke-direct {v11, v2, v1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
+    invoke-virtual {v14}, Lcom/google/gson/JsonElement;->isJsonArray()Z
 
-    throw v11
+    move-result v15
+
+    if-eqz v15, :cond_5f
 
     .line 124
-    .end local v1    # "e":Ljava/io/IOException;
-    .end local v2    # "errMsg":Ljava/lang/String;
-    :catch_6a
-    move-exception v1
+    invoke-virtual {v14}, Lcom/google/gson/JsonElement;->getAsJsonArray()Lcom/google/gson/JsonArray;
+    :try_end_1e
+    .catch Lcom/google/gson/JsonSyntaxException; {:try_start_b .. :try_end_1e} :catch_8b
 
-    .line 125
-    .local v1, "e":Ljava/lang/ClassCastException;
-    new-instance v11, Ljava/lang/StringBuilder;
-
-    invoke-direct {v11}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v12, "UXM schema must be a JSON array: "
-
-    invoke-virtual {v11, v12}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v11
-
-    invoke-virtual {v11, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v11
-
-    invoke-virtual {v11}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    .line 126
-    .restart local v2    # "errMsg":Ljava/lang/String;
-    const-string v11, "Upsight"
-
-    const/4 v12, 0x0
-
-    new-array v12, v12, [Ljava/lang/Object;
-
-    invoke-interface {p2, v11, v1, v2, v12}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
-
-    .line 127
-    new-instance v11, Ljava/lang/IllegalArgumentException;
-
-    invoke-direct {v11, v2, v1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
-
-    throw v11
+    move-result-object v13
 
     .line 137
-    .end local v1    # "e":Ljava/lang/ClassCastException;
-    .end local v2    # "errMsg":Ljava/lang/String;
-    .restart local v3    # "i$":Ljava/util/Iterator;
-    .restart local v5    # "itemNode":Lcom/fasterxml/jackson/databind/JsonNode;
-    .restart local v10    # "uxmSchemaNode":Lcom/fasterxml/jackson/databind/node/ArrayNode;
-    :cond_8c
-    const-string v11, "tag"
+    invoke-virtual {v13}, Lcom/google/gson/JsonArray;->iterator()Ljava/util/Iterator;
 
-    invoke-virtual {v5, v11}, Lcom/fasterxml/jackson/databind/JsonNode;->path(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    move-result-object v15
 
-    move-result-object v11
+    :goto_23
+    invoke-interface {v15}, Ljava/util/Iterator;->hasNext()Z
 
-    invoke-virtual {v11}, Lcom/fasterxml/jackson/databind/JsonNode;->isTextual()Z
+    move-result v16
 
-    move-result v11
+    if-eqz v16, :cond_23b
 
-    if-nez v11, :cond_b9
-
-    .line 138
-    new-instance v11, Ljava/lang/StringBuilder;
-
-    invoke-direct {v11}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v12, "Managed variable schema must contain a tag: "
-
-    invoke-virtual {v11, v12}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v11
-
-    invoke-virtual {v11, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    move-result-object v11
-
-    invoke-virtual {v11}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    .line 139
-    .restart local v2    # "errMsg":Ljava/lang/String;
-    const-string v11, "Upsight"
-
-    const/4 v12, 0x0
-
-    new-array v12, v12, [Ljava/lang/Object;
-
-    invoke-interface {p2, v11, v2, v12}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
-
-    .line 140
-    new-instance v11, Ljava/lang/IllegalArgumentException;
-
-    invoke-direct {v11, v2}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
-
-    throw v11
-
-    .line 142
-    .end local v2    # "errMsg":Ljava/lang/String;
-    :cond_b9
-    const-string v11, "type"
-
-    invoke-virtual {v5, v11}, Lcom/fasterxml/jackson/databind/JsonNode;->path(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
-
-    move-result-object v11
-
-    invoke-virtual {v11}, Lcom/fasterxml/jackson/databind/JsonNode;->isTextual()Z
-
-    move-result v11
-
-    if-nez v11, :cond_e6
-
-    .line 143
-    new-instance v11, Ljava/lang/StringBuilder;
-
-    invoke-direct {v11}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v12, "Managed variable schema must contain a type: "
-
-    invoke-virtual {v11, v12}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v11
-
-    invoke-virtual {v11, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    move-result-object v11
-
-    invoke-virtual {v11}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    .line 144
-    .restart local v2    # "errMsg":Ljava/lang/String;
-    const-string v11, "Upsight"
-
-    const/4 v12, 0x0
-
-    new-array v12, v12, [Ljava/lang/Object;
-
-    invoke-interface {p2, v11, v2, v12}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
-
-    .line 145
-    new-instance v11, Ljava/lang/IllegalArgumentException;
-
-    invoke-direct {v11, v2}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
-
-    throw v11
-
-    .line 147
-    .end local v2    # "errMsg":Ljava/lang/String;
-    :cond_e6
-    const-string v11, "default"
-
-    invoke-virtual {v5, v11}, Lcom/fasterxml/jackson/databind/JsonNode;->has(Ljava/lang/String;)Z
-
-    move-result v11
-
-    if-nez v11, :cond_10f
-
-    .line 148
-    new-instance v11, Ljava/lang/StringBuilder;
-
-    invoke-direct {v11}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v12, "Managed variable schema must contain a default value: "
-
-    invoke-virtual {v11, v12}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v11
-
-    invoke-virtual {v11, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    move-result-object v11
-
-    invoke-virtual {v11}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    .line 149
-    .restart local v2    # "errMsg":Ljava/lang/String;
-    const-string v11, "Upsight"
-
-    const/4 v12, 0x0
-
-    new-array v12, v12, [Ljava/lang/Object;
-
-    invoke-interface {p2, v11, v2, v12}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
-
-    .line 150
-    new-instance v11, Ljava/lang/IllegalArgumentException;
-
-    invoke-direct {v11, v2}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
-
-    throw v11
-
-    .line 154
-    .end local v2    # "errMsg":Ljava/lang/String;
-    :cond_10f
-    sget-object v11, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->sTypeSchemaMap:Ljava/util/Map;
-
-    const-string v12, "type"
-
-    invoke-virtual {v5, v12}, Lcom/fasterxml/jackson/databind/JsonNode;->path(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
-
-    move-result-object v12
-
-    invoke-virtual {v12}, Lcom/fasterxml/jackson/databind/JsonNode;->asText()Ljava/lang/String;
-
-    move-result-object v12
-
-    invoke-interface {v11, v12}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v9
-
-    check-cast v9, Ljava/lang/String;
-
-    .line 155
-    .local v9, "type":Ljava/lang/String;
-    invoke-static {v9}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v11
-
-    if-nez v11, :cond_173
-
-    move-object v11, v5
-
-    .line 156
-    check-cast v11, Lcom/fasterxml/jackson/databind/node/ObjectNode;
-
-    const-string v12, "type"
-
-    invoke-virtual {v11, v12, v9}, Lcom/fasterxml/jackson/databind/node/ObjectNode;->put(Ljava/lang/String;Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
-
-    .line 164
-    const-string v11, "tag"
-
-    invoke-virtual {v5, v11}, Lcom/fasterxml/jackson/databind/JsonNode;->path(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
-
-    move-result-object v11
-
-    invoke-virtual {v11}, Lcom/fasterxml/jackson/databind/JsonNode;->asText()Ljava/lang/String;
-
-    move-result-object v8
-
-    .line 165
-    .local v8, "tag":Ljava/lang/String;
-    sget-object v11, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->sModelTypeSchemaMap:Ljava/util/Map;
-
-    invoke-interface {v11, v9}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Ljava/lang/Class;
-
-    .line 166
-    .local v0, "clazz":Ljava/lang/Class;
-    if-eqz v0, :cond_194
-
-    .line 168
-    :try_start_143
-    invoke-virtual {p1, v5, v0}, Lcom/fasterxml/jackson/databind/ObjectMapper;->treeToValue(Lcom/fasterxml/jackson/core/TreeNode;Ljava/lang/Class;)Ljava/lang/Object;
+    invoke-interface {v15}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v6
 
-    check-cast v6, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
+    check-cast v6, Lcom/google/gson/JsonElement;
 
-    .line 169
-    .local v6, "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
-    invoke-interface {v4, v6}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+    .line 138
+    .local v6, "itemNode":Lcom/google/gson/JsonElement;
+    invoke-virtual {v6}, Lcom/google/gson/JsonElement;->isJsonObject()Z
 
-    .line 170
-    invoke-interface {v7, v8, v6}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_14f
-    .catch Lcom/fasterxml/jackson/core/JsonProcessingException; {:try_start_143 .. :try_end_14f} :catch_151
+    move-result v16
 
-    goto/16 :goto_15
+    if-nez v16, :cond_b8
 
-    .line 171
-    .end local v6    # "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
-    :catch_151
-    move-exception v1
+    .line 139
+    new-instance v15, Ljava/lang/StringBuilder;
 
-    .line 172
-    .local v1, "e":Lcom/fasterxml/jackson/core/JsonProcessingException;
-    new-instance v11, Ljava/lang/StringBuilder;
+    invoke-direct {v15}, Ljava/lang/StringBuilder;-><init>()V
 
-    invoke-direct {v11}, Ljava/lang/StringBuilder;-><init>()V
+    const-string v16, "Managed variable schema must be a JSON object: "
 
-    const-string v12, "Managed variable contains invalid fields: "
+    invoke-virtual/range {v15 .. v16}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v11, v12}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result-object v15
 
-    move-result-object v11
+    invoke-virtual {v15, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v11, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    move-result-object v15
 
-    move-result-object v11
+    invoke-virtual {v15}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    invoke-virtual {v11}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v4
 
-    move-result-object v2
+    .line 140
+    .local v4, "errMsg":Ljava/lang/String;
+    const-string v15, "Upsight"
 
-    .line 173
-    .restart local v2    # "errMsg":Ljava/lang/String;
-    const-string v11, "Upsight"
+    const/16 v16, 0x0
 
-    const/4 v12, 0x0
+    move/from16 v0, v16
 
-    new-array v12, v12, [Ljava/lang/Object;
+    new-array v0, v0, [Ljava/lang/Object;
 
-    invoke-interface {p2, v11, v1, v2, v12}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
+    move-object/from16 v16, v0
 
-    .line 174
-    new-instance v11, Ljava/lang/IllegalArgumentException;
+    move-object/from16 v0, p3
 
-    invoke-direct {v11, v2, v1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
+    move-object/from16 v1, v16
 
-    throw v11
+    invoke-interface {v0, v15, v4, v1}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 158
-    .end local v0    # "clazz":Ljava/lang/Class;
-    .end local v1    # "e":Lcom/fasterxml/jackson/core/JsonProcessingException;
-    .end local v2    # "errMsg":Ljava/lang/String;
-    .end local v8    # "tag":Ljava/lang/String;
-    :cond_173
-    new-instance v11, Ljava/lang/StringBuilder;
+    .line 141
+    new-instance v15, Ljava/lang/IllegalArgumentException;
 
-    invoke-direct {v11}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v15, v4}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
 
-    const-string v12, "Managed variable contains invalid types: "
+    throw v15
 
-    invoke-virtual {v11, v12}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .line 126
+    .end local v4    # "errMsg":Ljava/lang/String;
+    .end local v6    # "itemNode":Lcom/google/gson/JsonElement;
+    :cond_5f
+    :try_start_5f
+    new-instance v15, Ljava/lang/StringBuilder;
 
-    move-result-object v11
+    invoke-direct {v15}, Ljava/lang/StringBuilder;-><init>()V
 
-    invoke-virtual {v11, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    const-string v16, "UXM schema must be a JSON array: "
 
-    move-result-object v11
+    invoke-virtual/range {v15 .. v16}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v11}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v15
 
-    move-result-object v2
+    move-object/from16 v0, p0
 
-    .line 159
-    .restart local v2    # "errMsg":Ljava/lang/String;
-    const-string v11, "Upsight"
+    invoke-virtual {v15, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    const/4 v12, 0x0
+    move-result-object v15
 
-    new-array v12, v12, [Ljava/lang/Object;
+    invoke-virtual {v15}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    invoke-interface {p2, v11, v2, v12}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    move-result-object v4
 
-    .line 160
-    new-instance v11, Ljava/lang/IllegalArgumentException;
+    .line 127
+    .restart local v4    # "errMsg":Ljava/lang/String;
+    const-string v15, "Upsight"
 
-    invoke-direct {v11, v2}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+    const/16 v16, 0x0
 
-    throw v11
+    move/from16 v0, v16
 
-    .line 177
-    .end local v2    # "errMsg":Ljava/lang/String;
-    .restart local v0    # "clazz":Ljava/lang/Class;
-    .restart local v8    # "tag":Ljava/lang/String;
-    :cond_194
-    new-instance v11, Ljava/lang/StringBuilder;
+    new-array v0, v0, [Ljava/lang/Object;
 
-    invoke-direct {v11}, Ljava/lang/StringBuilder;-><init>()V
+    move-object/from16 v16, v0
 
-    const-string v12, "Unknown managed variable type: "
+    move-object/from16 v0, p3
 
-    invoke-virtual {v11, v12}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-object/from16 v1, v16
 
-    move-result-object v11
+    invoke-interface {v0, v15, v4, v1}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    invoke-virtual {v11, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .line 128
+    new-instance v15, Ljava/lang/IllegalArgumentException;
 
-    move-result-object v11
+    invoke-direct {v15, v4}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
 
-    invoke-virtual {v11}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    throw v15
+    :try_end_8b
+    .catch Lcom/google/gson/JsonSyntaxException; {:try_start_5f .. :try_end_8b} :catch_8b
 
-    move-result-object v2
+    .line 130
+    .end local v4    # "errMsg":Ljava/lang/String;
+    .end local v14    # "uxmSchemaElement":Lcom/google/gson/JsonElement;
+    :catch_8b
+    move-exception v3
 
-    .line 178
-    .restart local v2    # "errMsg":Ljava/lang/String;
-    const-string v11, "Upsight"
+    .line 131
+    .local v3, "e":Lcom/google/gson/JsonSyntaxException;
+    new-instance v15, Ljava/lang/StringBuilder;
 
-    const/4 v12, 0x0
+    invoke-direct {v15}, Ljava/lang/StringBuilder;-><init>()V
 
-    new-array v12, v12, [Ljava/lang/Object;
+    const-string v16, "Failed to parse UXM schema JSON: "
 
-    invoke-interface {p2, v11, v2, v12}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    invoke-virtual/range {v15 .. v16}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 179
-    new-instance v11, Ljava/lang/IllegalArgumentException;
+    move-result-object v15
 
-    invoke-direct {v11, v2}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+    move-object/from16 v0, p0
 
-    throw v11
+    invoke-virtual {v15, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 183
-    .end local v0    # "clazz":Ljava/lang/Class;
-    .end local v2    # "errMsg":Ljava/lang/String;
-    .end local v5    # "itemNode":Lcom/fasterxml/jackson/databind/JsonNode;
-    .end local v8    # "tag":Ljava/lang/String;
-    .end local v9    # "type":Ljava/lang/String;
-    :cond_1b5
-    new-instance v11, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;
+    move-result-object v15
 
-    invoke-virtual {v10}, Lcom/fasterxml/jackson/databind/node/ArrayNode;->toString()Ljava/lang/String;
+    invoke-virtual {v15}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    .line 132
+    .restart local v4    # "errMsg":Ljava/lang/String;
+    const-string v15, "Upsight"
+
+    const/16 v16, 0x0
+
+    move/from16 v0, v16
+
+    new-array v0, v0, [Ljava/lang/Object;
+
+    move-object/from16 v16, v0
+
+    move-object/from16 v0, p3
+
+    move-object/from16 v1, v16
+
+    invoke-interface {v0, v15, v3, v4, v1}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 133
+    new-instance v15, Ljava/lang/IllegalArgumentException;
+
+    invoke-direct {v15, v4, v3}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    throw v15
+
+    .line 144
+    .end local v3    # "e":Lcom/google/gson/JsonSyntaxException;
+    .end local v4    # "errMsg":Ljava/lang/String;
+    .restart local v6    # "itemNode":Lcom/google/gson/JsonElement;
+    .restart local v14    # "uxmSchemaElement":Lcom/google/gson/JsonElement;
+    :cond_b8
+    invoke-virtual {v6}, Lcom/google/gson/JsonElement;->getAsJsonObject()Lcom/google/gson/JsonObject;
+
+    move-result-object v16
+
+    const-string v17, "tag"
+
+    invoke-virtual/range {v16 .. v17}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+
+    move-result-object v10
+
+    .line 145
+    .local v10, "tagElement":Lcom/google/gson/JsonElement;
+    if-eqz v10, :cond_d4
+
+    invoke-virtual {v10}, Lcom/google/gson/JsonElement;->isJsonPrimitive()Z
+
+    move-result v16
+
+    if-eqz v16, :cond_d4
+
+    invoke-virtual {v10}, Lcom/google/gson/JsonElement;->getAsJsonPrimitive()Lcom/google/gson/JsonPrimitive;
+
+    move-result-object v16
+
+    invoke-virtual/range {v16 .. v16}, Lcom/google/gson/JsonPrimitive;->isString()Z
+
+    move-result v16
+
+    if-nez v16, :cond_fe
+
+    .line 146
+    :cond_d4
+    new-instance v15, Ljava/lang/StringBuilder;
+
+    invoke-direct {v15}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v16, "Managed variable schema must contain a tag: "
+
+    invoke-virtual/range {v15 .. v16}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v15
+
+    invoke-virtual {v15, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v15
+
+    invoke-virtual {v15}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    .line 147
+    .restart local v4    # "errMsg":Ljava/lang/String;
+    const-string v15, "Upsight"
+
+    const/16 v16, 0x0
+
+    move/from16 v0, v16
+
+    new-array v0, v0, [Ljava/lang/Object;
+
+    move-object/from16 v16, v0
+
+    move-object/from16 v0, p3
+
+    move-object/from16 v1, v16
+
+    invoke-interface {v0, v15, v4, v1}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 148
+    new-instance v15, Ljava/lang/IllegalArgumentException;
+
+    invoke-direct {v15, v4}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw v15
+
+    .line 151
+    .end local v4    # "errMsg":Ljava/lang/String;
+    :cond_fe
+    invoke-virtual {v6}, Lcom/google/gson/JsonElement;->getAsJsonObject()Lcom/google/gson/JsonObject;
+
+    move-result-object v16
+
+    const-string v17, "type"
+
+    invoke-virtual/range {v16 .. v17}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
 
     move-result-object v12
 
-    invoke-direct {v11, v4, v7, p2, v12}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;-><init>(Ljava/util/List;Ljava/util/Map;Lcom/upsight/android/logger/UpsightLogger;Ljava/lang/String;)V
+    .line 152
+    .local v12, "typeElement":Lcom/google/gson/JsonElement;
+    if-eqz v12, :cond_11a
 
-    return-object v11
+    invoke-virtual {v12}, Lcom/google/gson/JsonElement;->isJsonPrimitive()Z
+
+    move-result v16
+
+    if-eqz v16, :cond_11a
+
+    invoke-virtual {v12}, Lcom/google/gson/JsonElement;->getAsJsonPrimitive()Lcom/google/gson/JsonPrimitive;
+
+    move-result-object v16
+
+    invoke-virtual/range {v16 .. v16}, Lcom/google/gson/JsonPrimitive;->isString()Z
+
+    move-result v16
+
+    if-nez v16, :cond_144
+
+    .line 153
+    :cond_11a
+    new-instance v15, Ljava/lang/StringBuilder;
+
+    invoke-direct {v15}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v16, "Managed variable schema must contain a type: "
+
+    invoke-virtual/range {v15 .. v16}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v15
+
+    invoke-virtual {v15, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v15
+
+    invoke-virtual {v15}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    .line 154
+    .restart local v4    # "errMsg":Ljava/lang/String;
+    const-string v15, "Upsight"
+
+    const/16 v16, 0x0
+
+    move/from16 v0, v16
+
+    new-array v0, v0, [Ljava/lang/Object;
+
+    move-object/from16 v16, v0
+
+    move-object/from16 v0, p3
+
+    move-object/from16 v1, v16
+
+    invoke-interface {v0, v15, v4, v1}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 155
+    new-instance v15, Ljava/lang/IllegalArgumentException;
+
+    invoke-direct {v15, v4}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw v15
+
+    .line 158
+    .end local v4    # "errMsg":Ljava/lang/String;
+    :cond_144
+    invoke-virtual {v6}, Lcom/google/gson/JsonElement;->getAsJsonObject()Lcom/google/gson/JsonObject;
+
+    move-result-object v16
+
+    const-string v17, "default"
+
+    invoke-virtual/range {v16 .. v17}, Lcom/google/gson/JsonObject;->has(Ljava/lang/String;)Z
+
+    move-result v16
+
+    if-nez v16, :cond_17a
+
+    .line 159
+    new-instance v15, Ljava/lang/StringBuilder;
+
+    invoke-direct {v15}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v16, "Managed variable schema must contain a default value: "
+
+    invoke-virtual/range {v15 .. v16}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v15
+
+    invoke-virtual {v15, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v15
+
+    invoke-virtual {v15}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    .line 160
+    .restart local v4    # "errMsg":Ljava/lang/String;
+    const-string v15, "Upsight"
+
+    const/16 v16, 0x0
+
+    move/from16 v0, v16
+
+    new-array v0, v0, [Ljava/lang/Object;
+
+    move-object/from16 v16, v0
+
+    move-object/from16 v0, p3
+
+    move-object/from16 v1, v16
+
+    invoke-interface {v0, v15, v4, v1}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 161
+    new-instance v15, Ljava/lang/IllegalArgumentException;
+
+    invoke-direct {v15, v4}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw v15
+
+    .line 165
+    .end local v4    # "errMsg":Ljava/lang/String;
+    :cond_17a
+    sget-object v16, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->sTypeSchemaMap:Ljava/util/Map;
+
+    invoke-virtual {v12}, Lcom/google/gson/JsonElement;->getAsString()Ljava/lang/String;
+
+    move-result-object v17
+
+    invoke-interface/range {v16 .. v17}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v11
+
+    check-cast v11, Ljava/lang/String;
+
+    .line 166
+    .local v11, "type":Ljava/lang/String;
+    invoke-static {v11}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v16
+
+    if-nez v16, :cond_1e7
+
+    .line 167
+    invoke-virtual {v6}, Lcom/google/gson/JsonElement;->getAsJsonObject()Lcom/google/gson/JsonObject;
+
+    move-result-object v16
+
+    const-string v17, "type"
+
+    move-object/from16 v0, v16
+
+    move-object/from16 v1, v17
+
+    invoke-virtual {v0, v1, v11}, Lcom/google/gson/JsonObject;->addProperty(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 175
+    invoke-virtual {v10}, Lcom/google/gson/JsonElement;->getAsString()Ljava/lang/String;
+
+    move-result-object v9
+
+    .line 176
+    .local v9, "tag":Ljava/lang/String;
+    sget-object v16, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->sModelTypeSchemaMap:Ljava/util/Map;
+
+    move-object/from16 v0, v16
+
+    invoke-interface {v0, v11}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Ljava/lang/Class;
+
+    .line 177
+    .local v2, "clazz":Ljava/lang/Class;
+    if-eqz v2, :cond_211
+
+    .line 179
+    :try_start_1a9
+    move-object/from16 v0, p1
+
+    invoke-virtual {v0, v6, v2}, Lcom/google/gson/Gson;->fromJson(Lcom/google/gson/JsonElement;Ljava/lang/Class;)Ljava/lang/Object;
+
+    move-result-object v7
+
+    check-cast v7, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
+
+    .line 182
+    .local v7, "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
+    # invokes: Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->validate(Lcom/google/gson/JsonElement;)V
+    invoke-static {v7, v6}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;->access$000(Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;Lcom/google/gson/JsonElement;)V
+
+    .line 185
+    invoke-interface {v5, v7}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 186
+    invoke-interface {v8, v9, v7}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    :try_end_1ba
+    .catch Lcom/google/gson/JsonSyntaxException; {:try_start_1a9 .. :try_end_1ba} :catch_1bc
+
+    goto/16 :goto_23
+
+    .line 187
+    .end local v7    # "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
+    :catch_1bc
+    move-exception v3
+
+    .line 188
+    .restart local v3    # "e":Lcom/google/gson/JsonSyntaxException;
+    new-instance v15, Ljava/lang/StringBuilder;
+
+    invoke-direct {v15}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v16, "Managed variable contains invalid fields: "
+
+    invoke-virtual/range {v15 .. v16}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v15
+
+    invoke-virtual {v15, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v15
+
+    invoke-virtual {v15}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    .line 189
+    .restart local v4    # "errMsg":Ljava/lang/String;
+    const-string v15, "Upsight"
+
+    const/16 v16, 0x0
+
+    move/from16 v0, v16
+
+    new-array v0, v0, [Ljava/lang/Object;
+
+    move-object/from16 v16, v0
+
+    move-object/from16 v0, p3
+
+    move-object/from16 v1, v16
+
+    invoke-interface {v0, v15, v3, v4, v1}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 190
+    new-instance v15, Ljava/lang/IllegalArgumentException;
+
+    invoke-direct {v15, v4, v3}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    throw v15
+
+    .line 169
+    .end local v2    # "clazz":Ljava/lang/Class;
+    .end local v3    # "e":Lcom/google/gson/JsonSyntaxException;
+    .end local v4    # "errMsg":Ljava/lang/String;
+    .end local v9    # "tag":Ljava/lang/String;
+    :cond_1e7
+    new-instance v15, Ljava/lang/StringBuilder;
+
+    invoke-direct {v15}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v16, "Managed variable contains invalid types: "
+
+    invoke-virtual/range {v15 .. v16}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v15
+
+    invoke-virtual {v15, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v15
+
+    invoke-virtual {v15}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    .line 170
+    .restart local v4    # "errMsg":Ljava/lang/String;
+    const-string v15, "Upsight"
+
+    const/16 v16, 0x0
+
+    move/from16 v0, v16
+
+    new-array v0, v0, [Ljava/lang/Object;
+
+    move-object/from16 v16, v0
+
+    move-object/from16 v0, p3
+
+    move-object/from16 v1, v16
+
+    invoke-interface {v0, v15, v4, v1}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 171
+    new-instance v15, Ljava/lang/IllegalArgumentException;
+
+    invoke-direct {v15, v4}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw v15
+
+    .line 193
+    .end local v4    # "errMsg":Ljava/lang/String;
+    .restart local v2    # "clazz":Ljava/lang/Class;
+    .restart local v9    # "tag":Ljava/lang/String;
+    :cond_211
+    new-instance v15, Ljava/lang/StringBuilder;
+
+    invoke-direct {v15}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v16, "Unknown managed variable type: "
+
+    invoke-virtual/range {v15 .. v16}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v15
+
+    invoke-virtual {v15, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v15
+
+    invoke-virtual {v15}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    .line 194
+    .restart local v4    # "errMsg":Ljava/lang/String;
+    const-string v15, "Upsight"
+
+    const/16 v16, 0x0
+
+    move/from16 v0, v16
+
+    new-array v0, v0, [Ljava/lang/Object;
+
+    move-object/from16 v16, v0
+
+    move-object/from16 v0, p3
+
+    move-object/from16 v1, v16
+
+    invoke-interface {v0, v15, v4, v1}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 195
+    new-instance v15, Ljava/lang/IllegalArgumentException;
+
+    invoke-direct {v15, v4}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw v15
+
+    .line 199
+    .end local v2    # "clazz":Ljava/lang/Class;
+    .end local v4    # "errMsg":Ljava/lang/String;
+    .end local v6    # "itemNode":Lcom/google/gson/JsonElement;
+    .end local v9    # "tag":Ljava/lang/String;
+    .end local v10    # "tagElement":Lcom/google/gson/JsonElement;
+    .end local v11    # "type":Ljava/lang/String;
+    .end local v12    # "typeElement":Lcom/google/gson/JsonElement;
+    :cond_23b
+    new-instance v15, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;
+
+    invoke-virtual {v13}, Lcom/google/gson/JsonArray;->toString()Ljava/lang/String;
+
+    move-result-object v16
+
+    move-object/from16 v0, p3
+
+    move-object/from16 v1, v16
+
+    invoke-direct {v15, v5, v8, v0, v1}, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;-><init>(Ljava/util/List;Ljava/util/Map;Lcom/upsight/android/logger/UpsightLogger;Ljava/lang/String;)V
+
+    return-object v15
 .end method
 
 
@@ -803,7 +937,7 @@
     .end annotation
 
     .prologue
-    .line 236
+    .line 252
     .local p1, "clazz":Ljava/lang/Class;, "Ljava/lang/Class<TT;>;"
     iget-object v4, p0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->mItemSchemaMap:Ljava/util/Map;
 
@@ -813,19 +947,19 @@
 
     check-cast v2, Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
 
-    .line 237
+    .line 253
     .local v2, "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
     if-nez v2, :cond_c
 
-    .line 238
+    .line 254
     const/4 v2, 0x0
 
-    .line 248
+    .line 264
     .end local v2    # "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
     :cond_b
     return-object v2
 
-    .line 241
+    .line 257
     .restart local v2    # "itemSchema":Lcom/upsight/android/managedvariables/internal/type/UxmSchema$BaseSchema;
     :cond_c
     sget-object v4, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->sClassSchemaMap:Ljava/util/Map;
@@ -836,7 +970,7 @@
 
     check-cast v1, Ljava/lang/Class;
 
-    .line 242
+    .line 258
     .local v1, "expectedClass":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
     sget-object v4, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->sModelTypeSchemaMap:Ljava/util/Map;
 
@@ -848,7 +982,7 @@
 
     check-cast v3, Ljava/lang/Class;
 
-    .line 243
+    .line 259
     .local v3, "tagClass":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
     if-eqz v1, :cond_28
 
@@ -860,7 +994,7 @@
 
     if-nez v4, :cond_b
 
-    .line 244
+    .line 260
     :cond_28
     new-instance v4, Ljava/lang/StringBuilder;
 
@@ -880,7 +1014,7 @@
 
     move-result-object v0
 
-    .line 245
+    .line 261
     .local v0, "errMsg":Ljava/lang/String;
     iget-object v4, p0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
@@ -892,7 +1026,7 @@
 
     invoke-interface {v4, v5, v0, v6}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 246
+    .line 262
     new-instance v4, Ljava/lang/IllegalArgumentException;
 
     invoke-direct {v4, v0}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
@@ -913,7 +1047,7 @@
     .end annotation
 
     .prologue
-    .line 222
+    .line 238
     new-instance v0, Ljava/util/ArrayList;
 
     iget-object v1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmSchema;->mItemList:Ljava/util/List;

@@ -4,12 +4,6 @@
 
 
 # annotations
-.annotation system Ldalvik/annotation/MemberClasses;
-    value = {
-        Lcom/google/gson/internal/bind/ObjectTypeAdapter$2;
-    }
-.end annotation
-
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Lcom/google/gson/TypeAdapter",
@@ -43,7 +37,7 @@
     return-void
 .end method
 
-.method private constructor <init>(Lcom/google/gson/Gson;)V
+.method constructor <init>(Lcom/google/gson/Gson;)V
     .registers 2
     .param p1, "gson"    # Lcom/google/gson/Gson;
 
@@ -55,18 +49,6 @@
     iput-object p1, p0, Lcom/google/gson/internal/bind/ObjectTypeAdapter;->gson:Lcom/google/gson/Gson;
 
     .line 52
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lcom/google/gson/Gson;Lcom/google/gson/internal/bind/ObjectTypeAdapter$1;)V
-    .registers 3
-    .param p1, "x0"    # Lcom/google/gson/Gson;
-    .param p2, "x1"    # Lcom/google/gson/internal/bind/ObjectTypeAdapter$1;
-
-    .prologue
-    .line 37
-    invoke-direct {p0, p1}, Lcom/google/gson/internal/bind/ObjectTypeAdapter;-><init>(Lcom/google/gson/Gson;)V
-
     return-void
 .end method
 

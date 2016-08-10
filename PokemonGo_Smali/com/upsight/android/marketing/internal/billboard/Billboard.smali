@@ -6,8 +6,6 @@
 # instance fields
 .field private mBillboardManager:Lcom/upsight/android/marketing/UpsightBillboardManager;
 
-.field private mContent:Lcom/upsight/android/marketing/internal/content/MarketingContent;
-
 .field protected final mHandler:Lcom/upsight/android/marketing/UpsightBillboard$Handler;
 
 .field protected final mScope:Ljava/lang/String;
@@ -15,26 +13,21 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/String;Lcom/upsight/android/marketing/UpsightBillboard$Handler;)V
-    .registers 4
+    .registers 3
     .param p1, "scope"    # Ljava/lang/String;
     .param p2, "handler"    # Lcom/upsight/android/marketing/UpsightBillboard$Handler;
 
     .prologue
-    .line 49
+    .line 42
     invoke-direct {p0}, Lcom/upsight/android/marketing/UpsightBillboard;-><init>()V
 
-    .line 40
-    const/4 v0, 0x0
-
-    iput-object v0, p0, Lcom/upsight/android/marketing/internal/billboard/Billboard;->mContent:Lcom/upsight/android/marketing/internal/content/MarketingContent;
-
-    .line 50
+    .line 43
     iput-object p1, p0, Lcom/upsight/android/marketing/internal/billboard/Billboard;->mScope:Ljava/lang/String;
 
-    .line 51
+    .line 44
     iput-object p2, p0, Lcom/upsight/android/marketing/internal/billboard/Billboard;->mHandler:Lcom/upsight/android/marketing/UpsightBillboard$Handler;
 
-    .line 52
+    .line 45
     return-void
 .end method
 
@@ -44,22 +37,22 @@
     .registers 3
 
     .prologue
-    .line 81
+    .line 74
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/billboard/Billboard;->mBillboardManager:Lcom/upsight/android/marketing/UpsightBillboardManager;
 
-    .line 82
+    .line 75
     .local v0, "billboardManager":Lcom/upsight/android/marketing/UpsightBillboardManager;
     if-eqz v0, :cond_a
 
-    .line 83
+    .line 76
     invoke-interface {v0, p0}, Lcom/upsight/android/marketing/UpsightBillboardManager;->unregisterBillboard(Lcom/upsight/android/marketing/internal/billboard/Billboard;)Z
 
-    .line 84
+    .line 77
     const/4 v1, 0x0
 
     iput-object v1, p0, Lcom/upsight/android/marketing/internal/billboard/Billboard;->mBillboardManager:Lcom/upsight/android/marketing/UpsightBillboardManager;
 
-    .line 86
+    .line 79
     :cond_a
     return-void
 .end method
@@ -68,18 +61,8 @@
     .registers 2
 
     .prologue
-    .line 103
+    .line 96
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/billboard/Billboard;->mHandler:Lcom/upsight/android/marketing/UpsightBillboard$Handler;
-
-    return-object v0
-.end method
-
-.method getMarketingContent()Lcom/upsight/android/marketing/internal/content/MarketingContent;
-    .registers 2
-
-    .prologue
-    .line 121
-    iget-object v0, p0, Lcom/upsight/android/marketing/internal/billboard/Billboard;->mContent:Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
     return-object v0
 .end method
@@ -88,22 +71,10 @@
     .registers 2
 
     .prologue
-    .line 94
+    .line 87
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/billboard/Billboard;->mScope:Ljava/lang/String;
 
     return-object v0
-.end method
-
-.method setMarketingContent(Lcom/upsight/android/marketing/internal/content/MarketingContent;)V
-    .registers 2
-    .param p1, "content"    # Lcom/upsight/android/marketing/internal/content/MarketingContent;
-
-    .prologue
-    .line 112
-    iput-object p1, p0, Lcom/upsight/android/marketing/internal/billboard/Billboard;->mContent:Lcom/upsight/android/marketing/internal/content/MarketingContent;
-
-    .line 113
-    return-void
 .end method
 
 .method public final setUp(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/marketing/UpsightBillboard;
@@ -116,10 +87,10 @@
     .end annotation
 
     .prologue
-    .line 56
+    .line 49
     const/4 v3, 0x0
 
-    .line 59
+    .line 52
     .local v3, "marketingApi":Lcom/upsight/android/marketing/UpsightMarketingApi;
     const-string v4, "com.upsight.extension.marketing"
 
@@ -129,41 +100,41 @@
 
     check-cast v1, Lcom/upsight/android/UpsightMarketingExtension;
 
-    .line 60
+    .line 53
     .local v1, "extension":Lcom/upsight/android/UpsightMarketingExtension;
     if-eqz v1, :cond_4a
 
-    .line 61
+    .line 54
     invoke-virtual {v1}, Lcom/upsight/android/UpsightMarketingExtension;->getApi()Lcom/upsight/android/marketing/UpsightMarketingApi;
 
     move-result-object v3
 
-    .line 66
+    .line 59
     :goto_f
     if-eqz v3, :cond_59
 
-    .line 67
+    .line 60
     iput-object v3, p0, Lcom/upsight/android/marketing/internal/billboard/Billboard;->mBillboardManager:Lcom/upsight/android/marketing/UpsightBillboardManager;
 
-    .line 68
+    .line 61
     iget-object v4, p0, Lcom/upsight/android/marketing/internal/billboard/Billboard;->mBillboardManager:Lcom/upsight/android/marketing/UpsightBillboardManager;
 
     invoke-interface {v4, p0}, Lcom/upsight/android/marketing/UpsightBillboardManager;->registerBillboard(Lcom/upsight/android/marketing/internal/billboard/Billboard;)Z
 
     move-result v2
 
-    .line 69
+    .line 62
     .local v2, "isSuccessful":Z
     if-nez v2, :cond_59
 
-    .line 70
+    .line 63
     const-class v4, Lcom/upsight/android/marketing/UpsightBillboard;
 
     invoke-virtual {v4}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 71
+    .line 64
     .local v0, "billboardClassName":Ljava/lang/String;
     new-instance v4, Ljava/lang/IllegalStateException;
 
@@ -205,7 +176,7 @@
 
     throw v4
 
-    .line 63
+    .line 56
     .end local v0    # "billboardClassName":Ljava/lang/String;
     .end local v2    # "isSuccessful":Z
     :cond_4a
@@ -225,7 +196,7 @@
 
     goto :goto_f
 
-    .line 76
+    .line 69
     :cond_59
     return-object p0
 .end method

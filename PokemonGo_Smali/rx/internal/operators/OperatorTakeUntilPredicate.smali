@@ -24,12 +24,9 @@
     }
 .end annotation
 
-.annotation build Lrx/annotations/Experimental;
-.end annotation
-
 
 # instance fields
-.field private final stopPredicate:Lrx/functions/Func1;
+.field final stopPredicate:Lrx/functions/Func1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func1",
@@ -55,27 +52,16 @@
     .end annotation
 
     .prologue
-    .line 82
+    .line 78
     .local p0, "this":Lrx/internal/operators/OperatorTakeUntilPredicate;, "Lrx/internal/operators/OperatorTakeUntilPredicate<TT;>;"
     .local p1, "stopPredicate":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;Ljava/lang/Boolean;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 83
+    .line 79
     iput-object p1, p0, Lrx/internal/operators/OperatorTakeUntilPredicate;->stopPredicate:Lrx/functions/Func1;
 
-    .line 84
+    .line 80
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorTakeUntilPredicate;)Lrx/functions/Func1;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorTakeUntilPredicate;
-
-    .prologue
-    .line 31
-    iget-object v0, p0, Lrx/internal/operators/OperatorTakeUntilPredicate;->stopPredicate:Lrx/functions/Func1;
-
-    return-object v0
 .end method
 
 
@@ -85,7 +71,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 30
+    .line 28
     .local p0, "this":Lrx/internal/operators/OperatorTakeUntilPredicate;, "Lrx/internal/operators/OperatorTakeUntilPredicate<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -110,26 +96,24 @@
     .end annotation
 
     .prologue
-    .line 88
+    .line 84
     .local p0, "this":Lrx/internal/operators/OperatorTakeUntilPredicate;, "Lrx/internal/operators/OperatorTakeUntilPredicate<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     new-instance v0, Lrx/internal/operators/OperatorTakeUntilPredicate$ParentSubscriber;
 
-    const/4 v1, 0x0
+    invoke-direct {v0, p0, p1}, Lrx/internal/operators/OperatorTakeUntilPredicate$ParentSubscriber;-><init>(Lrx/internal/operators/OperatorTakeUntilPredicate;Lrx/Subscriber;)V
 
-    invoke-direct {v0, p0, p1, v1}, Lrx/internal/operators/OperatorTakeUntilPredicate$ParentSubscriber;-><init>(Lrx/internal/operators/OperatorTakeUntilPredicate;Lrx/Subscriber;Lrx/internal/operators/OperatorTakeUntilPredicate$1;)V
-
-    .line 89
+    .line 85
     .local v0, "parent":Lrx/internal/operators/OperatorTakeUntilPredicate$ParentSubscriber;, "Lrx/internal/operators/OperatorTakeUntilPredicate<TT;>.ParentSubscriber;"
     invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 90
+    .line 86
     new-instance v1, Lrx/internal/operators/OperatorTakeUntilPredicate$1;
 
     invoke-direct {v1, p0, v0}, Lrx/internal/operators/OperatorTakeUntilPredicate$1;-><init>(Lrx/internal/operators/OperatorTakeUntilPredicate;Lrx/internal/operators/OperatorTakeUntilPredicate$ParentSubscriber;)V
 
     invoke-virtual {p1, v1}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
 
-    .line 97
+    .line 93
     return-object v0
 .end method

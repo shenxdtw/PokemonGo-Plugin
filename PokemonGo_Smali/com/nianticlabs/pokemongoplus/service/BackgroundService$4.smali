@@ -1,5 +1,5 @@
-.class Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;
-.super Landroid/content/BroadcastReceiver;
+.class synthetic Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;
+.super Ljava/lang/Object;
 .source "BackgroundService.java"
 
 
@@ -9,223 +9,275 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1008
     name = null
 .end annotation
 
 
-# instance fields
-.field final synthetic this$0:Lcom/nianticlabs/pokemongoplus/service/BackgroundService;
+# static fields
+.field static final synthetic $SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$PgpState:[I
+
+.field static final synthetic $SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$SfidaState:[I
 
 
 # direct methods
-.method constructor <init>(Lcom/nianticlabs/pokemongoplus/service/BackgroundService;)V
-    .registers 2
-    .param p1, "this$0"    # Lcom/nianticlabs/pokemongoplus/service/BackgroundService;
+.method static constructor <clinit>()V
+    .registers 3
 
     .prologue
-    .line 336
-    iput-object p1, p0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->this$0:Lcom/nianticlabs/pokemongoplus/service/BackgroundService;
-
-    invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
-
-    return-void
-.end method
-
-.method static synthetic access$300(Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;Landroid/content/Intent;)V
-    .registers 2
-    .param p0, "x0"    # Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;
-    .param p1, "x1"    # Landroid/content/Intent;
-
-    .prologue
-    .line 336
-    invoke-direct {p0, p1}, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->onHandleBluetoothIntent(Landroid/content/Intent;)V
-
-    return-void
-.end method
-
-.method private onHandleBluetoothIntent(Landroid/content/Intent;)V
-    .registers 6
-    .param p1, "intent"    # Landroid/content/Intent;
-
-    .prologue
-    .line 349
-    invoke-virtual {p1}, Landroid/content/Intent;->getAction()Ljava/lang/String;
+    .line 470
+    invoke-static {}, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;->values()[Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;
 
     move-result-object v0
 
-    .line 350
-    .local v0, "action":Ljava/lang/String;
-    if-nez v0, :cond_10
+    array-length v0, v0
 
-    .line 351
-    # getter for: Lcom/nianticlabs/pokemongoplus/service/BackgroundService;->TAG:Ljava/lang/String;
-    invoke-static {}, Lcom/nianticlabs/pokemongoplus/service/BackgroundService;->access$000()Ljava/lang/String;
+    new-array v0, v0, [I
 
-    move-result-object v1
+    sput-object v0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->$SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$SfidaState:[I
 
-    const-string v2, "onReceived() action was null"
+    :try_start_9
+    sget-object v0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->$SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$SfidaState:[I
 
-    invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;->Disconnecting:Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;
 
-    .line 368
-    :goto_f
-    return-void
+    invoke-virtual {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;->ordinal()I
 
-    .line 355
-    :cond_10
-    const/4 v1, -0x1
+    move-result v1
 
-    invoke-virtual {v0}, Ljava/lang/String;->hashCode()I
+    const/4 v2, 0x1
 
-    move-result v2
+    aput v2, v0, v1
+    :try_end_14
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_9 .. :try_end_14} :catch_a0
 
-    sparse-switch v2, :sswitch_data_58
+    :goto_14
+    :try_start_14
+    sget-object v0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->$SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$SfidaState:[I
 
-    :cond_18
-    :goto_18
-    packed-switch v1, :pswitch_data_62
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;->Disconnected:Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;
 
-    .line 364
-    # getter for: Lcom/nianticlabs/pokemongoplus/service/BackgroundService;->TAG:Ljava/lang/String;
-    invoke-static {}, Lcom/nianticlabs/pokemongoplus/service/BackgroundService;->access$000()Ljava/lang/String;
+    invoke-virtual {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;->ordinal()I
 
-    move-result-object v1
+    move-result v1
 
-    new-instance v2, Ljava/lang/StringBuilder;
+    const/4 v2, 0x2
 
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+    aput v2, v0, v1
+    :try_end_1f
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_14 .. :try_end_1f} :catch_9e
 
-    const-string v3, "onReceive() : "
+    :goto_1f
+    :try_start_1f
+    sget-object v0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->$SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$SfidaState:[I
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;->Connected:Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;
 
-    move-result-object v2
+    invoke-virtual {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;->ordinal()I
 
-    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result v1
 
-    move-result-object v2
+    const/4 v2, 0x3
 
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    aput v2, v0, v1
+    :try_end_2a
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_1f .. :try_end_2a} :catch_9c
 
-    move-result-object v2
+    :goto_2a
+    :try_start_2a
+    sget-object v0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->$SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$SfidaState:[I
 
-    invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;->Certified:Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;
 
-    goto :goto_f
+    invoke-virtual {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$SfidaState;->ordinal()I
 
-    .line 355
-    :sswitch_36
-    const-string v2, "android.bluetooth.device.action.BOND_STATE_CHANGED"
+    move-result v1
 
-    invoke-virtual {v0, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    const/4 v2, 0x4
 
-    move-result v2
+    aput v2, v0, v1
+    :try_end_35
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_2a .. :try_end_35} :catch_9a
 
-    if-eqz v2, :cond_18
-
-    const/4 v1, 0x0
-
-    goto :goto_18
-
-    :sswitch_40
-    const-string v2, "android.bluetooth.device.action.PAIRING_REQUEST"
-
-    invoke-virtual {v0, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_18
-
-    const/4 v1, 0x1
-
-    goto :goto_18
-
-    .line 357
-    :pswitch_4a
-    iget-object v1, p0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->this$0:Lcom/nianticlabs/pokemongoplus/service/BackgroundService;
-
-    invoke-static {v1, p1}, Lcom/nianticlabs/pokemongoplus/service/BackgroundService;->access$400(Lcom/nianticlabs/pokemongoplus/service/BackgroundService;Landroid/content/Intent;)V
-
-    goto :goto_f
-
-    .line 361
-    :pswitch_50
-    iget-object v1, p0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->this$0:Lcom/nianticlabs/pokemongoplus/service/BackgroundService;
-
-    const-string v2, "BluetoothDevice.ACTION_PAIRING_REQUEST"
-
-    # invokes: Lcom/nianticlabs/pokemongoplus/service/BackgroundService;->createPlayerNotification(Ljava/lang/String;)V
-    invoke-static {v1, v2}, Lcom/nianticlabs/pokemongoplus/service/BackgroundService;->access$200(Lcom/nianticlabs/pokemongoplus/service/BackgroundService;Ljava/lang/String;)V
-
-    goto :goto_f
-
-    .line 355
-    :sswitch_data_58
-    .sparse-switch
-        -0xd553507 -> :sswitch_40
-        0x7e2cc189 -> :sswitch_36
-    .end sparse-switch
-
-    :pswitch_data_62
-    .packed-switch 0x0
-        :pswitch_4a
-        :pswitch_50
-    .end packed-switch
-.end method
-
-
-# virtual methods
-.method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
-    .registers 6
-    .param p1, "context"    # Landroid/content/Context;
-    .param p2, "intent"    # Landroid/content/Intent;
-
-    .prologue
-    .line 339
-    iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->this$0:Lcom/nianticlabs/pokemongoplus/service/BackgroundService;
-
-    # getter for: Lcom/nianticlabs/pokemongoplus/service/BackgroundService;->handler:Landroid/os/Handler;
-    invoke-static {v0}, Lcom/nianticlabs/pokemongoplus/service/BackgroundService;->access$100(Lcom/nianticlabs/pokemongoplus/service/BackgroundService;)Landroid/os/Handler;
+    .line 305
+    :goto_35
+    invoke-static {}, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->values()[Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;
 
     move-result-object v0
 
-    new-instance v1, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4$1;
+    array-length v0, v0
 
-    invoke-direct {v1, p0, p2}, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4$1;-><init>(Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;Landroid/content/Intent;)V
+    new-array v0, v0, [I
 
-    invoke-virtual {v0, v1}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+    sput-object v0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->$SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$PgpState:[I
 
-    .line 345
-    # getter for: Lcom/nianticlabs/pokemongoplus/service/BackgroundService;->TAG:Ljava/lang/String;
-    invoke-static {}, Lcom/nianticlabs/pokemongoplus/service/BackgroundService;->access$000()Ljava/lang/String;
+    :try_start_3e
+    sget-object v0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->$SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$PgpState:[I
 
-    move-result-object v0
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->Started:Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;
 
-    new-instance v1, Ljava/lang/StringBuilder;
+    invoke-virtual {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->ordinal()I
 
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    move-result v1
 
-    const-string v2, "onReceive() : "
+    const/4 v2, 0x1
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    aput v2, v0, v1
+    :try_end_49
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_3e .. :try_end_49} :catch_98
 
-    move-result-object v1
+    :goto_49
+    :try_start_49
+    sget-object v0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->$SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$PgpState:[I
 
-    invoke-virtual {p2}, Landroid/content/Intent;->getAction()Ljava/lang/String;
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->Resumed:Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;
 
-    move-result-object v2
+    invoke-virtual {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->ordinal()I
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result v1
 
-    move-result-object v1
+    const/4 v2, 0x2
 
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    aput v2, v0, v1
+    :try_end_54
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_49 .. :try_end_54} :catch_96
 
-    move-result-object v1
+    :goto_54
+    :try_start_54
+    sget-object v0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->$SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$PgpState:[I
 
-    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->Initialized:Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;
 
-    .line 346
+    invoke-virtual {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->ordinal()I
+
+    move-result v1
+
+    const/4 v2, 0x3
+
+    aput v2, v0, v1
+    :try_end_5f
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_54 .. :try_end_5f} :catch_94
+
+    :goto_5f
+    :try_start_5f
+    sget-object v0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->$SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$PgpState:[I
+
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->Paused:Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;
+
+    invoke-virtual {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->ordinal()I
+
+    move-result v1
+
+    const/4 v2, 0x4
+
+    aput v2, v0, v1
+    :try_end_6a
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_5f .. :try_end_6a} :catch_92
+
+    :goto_6a
+    :try_start_6a
+    sget-object v0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->$SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$PgpState:[I
+
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->Stopped:Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;
+
+    invoke-virtual {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->ordinal()I
+
+    move-result v1
+
+    const/4 v2, 0x5
+
+    aput v2, v0, v1
+    :try_end_75
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_6a .. :try_end_75} :catch_90
+
+    :goto_75
+    :try_start_75
+    sget-object v0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->$SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$PgpState:[I
+
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->BadValue:Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;
+
+    invoke-virtual {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->ordinal()I
+
+    move-result v1
+
+    const/4 v2, 0x6
+
+    aput v2, v0, v1
+    :try_end_80
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_75 .. :try_end_80} :catch_8e
+
+    :goto_80
+    :try_start_80
+    sget-object v0, Lcom/nianticlabs/pokemongoplus/service/BackgroundService$4;->$SwitchMap$com$nianticlabs$pokemongoplus$bridge$BridgeConstants$PgpState:[I
+
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->Unknown:Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;
+
+    invoke-virtual {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BridgeConstants$PgpState;->ordinal()I
+
+    move-result v1
+
+    const/4 v2, 0x7
+
+    aput v2, v0, v1
+    :try_end_8b
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_80 .. :try_end_8b} :catch_8c
+
+    :goto_8b
     return-void
+
+    :catch_8c
+    move-exception v0
+
+    goto :goto_8b
+
+    :catch_8e
+    move-exception v0
+
+    goto :goto_80
+
+    :catch_90
+    move-exception v0
+
+    goto :goto_75
+
+    :catch_92
+    move-exception v0
+
+    goto :goto_6a
+
+    :catch_94
+    move-exception v0
+
+    goto :goto_5f
+
+    :catch_96
+    move-exception v0
+
+    goto :goto_54
+
+    :catch_98
+    move-exception v0
+
+    goto :goto_49
+
+    .line 470
+    :catch_9a
+    move-exception v0
+
+    goto :goto_35
+
+    :catch_9c
+    move-exception v0
+
+    goto :goto_2a
+
+    :catch_9e
+    move-exception v0
+
+    goto :goto_1f
+
+    :catch_a0
+    move-exception v0
+
+    goto/16 :goto_14
 .end method

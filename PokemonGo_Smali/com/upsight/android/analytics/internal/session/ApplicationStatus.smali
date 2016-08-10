@@ -17,12 +17,23 @@
 
 # instance fields
 .field id:Ljava/lang/String;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
+        value = "id"
+    .end annotation
+
     .annotation runtime Lcom/upsight/android/persistence/annotation/UpsightStorableIdentifier;
     .end annotation
 .end field
 
 .field state:Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
+        value = "state"
     .end annotation
 .end field
 
@@ -32,10 +43,10 @@
     .registers 1
 
     .prologue
-    .line 42
+    .line 46
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 44
+    .line 48
     return-void
 .end method
 
@@ -44,13 +55,13 @@
     .param p1, "state"    # Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;
 
     .prologue
-    .line 38
+    .line 42
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 39
+    .line 43
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;->state:Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;
 
-    .line 40
+    .line 44
     return-void
 .end method
 
@@ -60,7 +71,7 @@
     .registers 2
 
     .prologue
-    .line 47
+    .line 51
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;->state:Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;
 
     return-object v0

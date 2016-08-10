@@ -23,11 +23,11 @@
 
 
 # virtual methods
-.method public abstract create(Lcom/upsight/android/analytics/internal/action/ActionContext;Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/upsight/android/analytics/internal/action/Action;
+.method public abstract create(Lcom/upsight/android/analytics/internal/action/ActionContext;Lcom/google/gson/JsonObject;)Lcom/upsight/android/analytics/internal/action/Action;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TU;",
-            "Lcom/fasterxml/jackson/databind/JsonNode;",
+            "Lcom/google/gson/JsonObject;",
             ")",
             "Lcom/upsight/android/analytics/internal/action/Action",
             "<TT;TU;>;"

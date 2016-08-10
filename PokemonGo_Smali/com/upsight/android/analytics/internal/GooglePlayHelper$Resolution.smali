@@ -44,7 +44,7 @@
 
     const/4 v2, 0x0
 
-    .line 41
+    .line 39
     new-instance v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
 
     const-string v1, "buy"
@@ -53,7 +53,7 @@
 
     sput-object v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->buy:Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
 
-    .line 42
+    .line 40
     new-instance v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
 
     const-string v1, "cancel"
@@ -62,7 +62,7 @@
 
     sput-object v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->cancel:Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
 
-    .line 43
+    .line 41
     new-instance v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
 
     const-string v1, "refund"
@@ -71,7 +71,7 @@
 
     sput-object v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->refund:Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
 
-    .line 40
+    .line 38
     const/4 v0, 0x3
 
     new-array v0, v0, [Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
@@ -102,7 +102,7 @@
     .end annotation
 
     .prologue
-    .line 40
+    .line 38
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -113,7 +113,7 @@
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 40
+    .line 38
     const-class v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -129,7 +129,7 @@
     .registers 1
 
     .prologue
-    .line 40
+    .line 38
     sget-object v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->$VALUES:[Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
 
     invoke-virtual {v0}, [Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->clone()Ljava/lang/Object;

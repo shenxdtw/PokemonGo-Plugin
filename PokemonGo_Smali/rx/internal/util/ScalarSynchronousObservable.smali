@@ -6,9 +6,9 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/internal/util/ScalarSynchronousObservable$ScalarSynchronousAction;,
-        Lrx/internal/util/ScalarSynchronousObservable$NormalScheduledEmission;,
-        Lrx/internal/util/ScalarSynchronousObservable$DirectScheduledEmission;
+        Lrx/internal/util/ScalarSynchronousObservable$WeakSingleProducer;,
+        Lrx/internal/util/ScalarSynchronousObservable$ScalarAsyncProducer;,
+        Lrx/internal/util/ScalarSynchronousObservable$ScalarAsyncOnSubscribe;
     }
 .end annotation
 
@@ -23,8 +23,12 @@
 .end annotation
 
 
+# static fields
+.field static final STRONG_MODE:Z
+
+
 # instance fields
-.field private final t:Ljava/lang/Object;
+.field final t:Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "TT;"
@@ -34,6 +38,35 @@
 
 
 # direct methods
+.method static constructor <clinit>()V
+    .registers 3
+
+    .prologue
+    .line 43
+    const-string v1, "rx.just.strong-mode"
+
+    const-string v2, "false"
+
+    invoke-static {v1, v2}, Ljava/lang/System;->getProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 44
+    .local v0, "wp":Ljava/lang/String;
+    invoke-static {v0}, Ljava/lang/Boolean;->valueOf(Ljava/lang/String;)Ljava/lang/Boolean;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v1
+
+    sput-boolean v1, Lrx/internal/util/ScalarSynchronousObservable;->STRONG_MODE:Z
+
+    .line 45
+    return-void
+.end method
+
 .method protected constructor <init>(Ljava/lang/Object;)V
     .registers 3
     .annotation system Ldalvik/annotation/Signature;
@@ -43,7 +76,7 @@
     .end annotation
 
     .prologue
-    .line 35
+    .line 75
     .local p0, "this":Lrx/internal/util/ScalarSynchronousObservable;, "Lrx/internal/util/ScalarSynchronousObservable<TT;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     new-instance v0, Lrx/internal/util/ScalarSynchronousObservable$1;
@@ -52,25 +85,14 @@
 
     invoke-direct {p0, v0}, Lrx/Observable;-><init>(Lrx/Observable$OnSubscribe;)V
 
-    .line 51
+    .line 83
     iput-object p1, p0, Lrx/internal/util/ScalarSynchronousObservable;->t:Ljava/lang/Object;
 
-    .line 52
+    .line 84
     return-void
 .end method
 
-.method static synthetic access$100(Lrx/internal/util/ScalarSynchronousObservable;)Ljava/lang/Object;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/util/ScalarSynchronousObservable;
-
-    .prologue
-    .line 26
-    iget-object v0, p0, Lrx/internal/util/ScalarSynchronousObservable;->t:Ljava/lang/Object;
-
-    return-object v0
-.end method
-
-.method public static final create(Ljava/lang/Object;)Lrx/internal/util/ScalarSynchronousObservable;
+.method public static create(Ljava/lang/Object;)Lrx/internal/util/ScalarSynchronousObservable;
     .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -83,13 +105,51 @@
     .end annotation
 
     .prologue
-    .line 29
+    .line 68
     .local p0, "t":Ljava/lang/Object;, "TT;"
     new-instance v0, Lrx/internal/util/ScalarSynchronousObservable;
 
     invoke-direct {v0, p0}, Lrx/internal/util/ScalarSynchronousObservable;-><init>(Ljava/lang/Object;)V
 
     return-object v0
+.end method
+
+.method static createProducer(Lrx/Subscriber;Ljava/lang/Object;)Lrx/Producer;
+    .registers 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<T:",
+            "Ljava/lang/Object;",
+            ">(",
+            "Lrx/Subscriber",
+            "<-TT;>;TT;)",
+            "Lrx/Producer;"
+        }
+    .end annotation
+
+    .prologue
+    .line 55
+    .local p0, "s":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
+    .local p1, "v":Ljava/lang/Object;, "TT;"
+    sget-boolean v0, Lrx/internal/util/ScalarSynchronousObservable;->STRONG_MODE:Z
+
+    if-eqz v0, :cond_a
+
+    .line 56
+    new-instance v0, Lrx/internal/producers/SingleProducer;
+
+    invoke-direct {v0, p0, p1}, Lrx/internal/producers/SingleProducer;-><init>(Lrx/Subscriber;Ljava/lang/Object;)V
+
+    .line 58
+    :goto_9
+    return-object v0
+
+    :cond_a
+    new-instance v0, Lrx/internal/util/ScalarSynchronousObservable$WeakSingleProducer;
+
+    invoke-direct {v0, p0, p1}, Lrx/internal/util/ScalarSynchronousObservable$WeakSingleProducer;-><init>(Lrx/Subscriber;Ljava/lang/Object;)V
+
+    goto :goto_9
 .end method
 
 
@@ -103,7 +163,7 @@
     .end annotation
 
     .prologue
-    .line 55
+    .line 91
     .local p0, "this":Lrx/internal/util/ScalarSynchronousObservable;, "Lrx/internal/util/ScalarSynchronousObservable<TT;>;"
     iget-object v0, p0, Lrx/internal/util/ScalarSynchronousObservable;->t:Ljava/lang/Object;
 
@@ -127,12 +187,12 @@
     .end annotation
 
     .prologue
-    .line 125
+    .line 220
     .local p0, "this":Lrx/internal/util/ScalarSynchronousObservable;, "Lrx/internal/util/ScalarSynchronousObservable<TT;>;"
     .local p1, "func":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+Lrx/Observable<+TR;>;>;"
-    new-instance v0, Lrx/internal/util/ScalarSynchronousObservable$2;
+    new-instance v0, Lrx/internal/util/ScalarSynchronousObservable$4;
 
-    invoke-direct {v0, p0, p1}, Lrx/internal/util/ScalarSynchronousObservable$2;-><init>(Lrx/internal/util/ScalarSynchronousObservable;Lrx/functions/Func1;)V
+    invoke-direct {v0, p0, p1}, Lrx/internal/util/ScalarSynchronousObservable$4;-><init>(Lrx/internal/util/ScalarSynchronousObservable;Lrx/functions/Func1;)V
 
     invoke-static {v0}, Lrx/internal/util/ScalarSynchronousObservable;->create(Lrx/Observable$OnSubscribe;)Lrx/Observable;
 
@@ -142,7 +202,7 @@
 .end method
 
 .method public scalarScheduleOn(Lrx/Scheduler;)Lrx/Observable;
-    .registers 5
+    .registers 6
     .param p1, "scheduler"    # Lrx/Scheduler;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -155,44 +215,46 @@
     .end annotation
 
     .prologue
-    .line 64
+    .line 103
     .local p0, "this":Lrx/internal/util/ScalarSynchronousObservable;, "Lrx/internal/util/ScalarSynchronousObservable<TT;>;"
-    instance-of v1, p1, Lrx/internal/schedulers/EventLoopsScheduler;
+    instance-of v2, p1, Lrx/internal/schedulers/EventLoopsScheduler;
 
-    if-eqz v1, :cond_13
+    if-eqz v2, :cond_18
 
     move-object v0, p1
 
-    .line 65
+    .line 104
     check-cast v0, Lrx/internal/schedulers/EventLoopsScheduler;
 
-    .line 66
-    .local v0, "es":Lrx/internal/schedulers/EventLoopsScheduler;
-    new-instance v1, Lrx/internal/util/ScalarSynchronousObservable$DirectScheduledEmission;
+    .line 105
+    .local v0, "els":Lrx/internal/schedulers/EventLoopsScheduler;
+    new-instance v1, Lrx/internal/util/ScalarSynchronousObservable$2;
 
-    iget-object v2, p0, Lrx/internal/util/ScalarSynchronousObservable;->t:Ljava/lang/Object;
+    invoke-direct {v1, p0, v0}, Lrx/internal/util/ScalarSynchronousObservable$2;-><init>(Lrx/internal/util/ScalarSynchronousObservable;Lrx/internal/schedulers/EventLoopsScheduler;)V
 
-    invoke-direct {v1, v0, v2}, Lrx/internal/util/ScalarSynchronousObservable$DirectScheduledEmission;-><init>(Lrx/internal/schedulers/EventLoopsScheduler;Ljava/lang/Object;)V
+    .line 131
+    .end local v0    # "els":Lrx/internal/schedulers/EventLoopsScheduler;
+    .local v1, "onSchedule":Lrx/functions/Func1;, "Lrx/functions/Func1<Lrx/functions/Action0;Lrx/Subscription;>;"
+    :goto_c
+    new-instance v2, Lrx/internal/util/ScalarSynchronousObservable$ScalarAsyncOnSubscribe;
 
-    invoke-static {v1}, Lrx/internal/util/ScalarSynchronousObservable;->create(Lrx/Observable$OnSubscribe;)Lrx/Observable;
+    iget-object v3, p0, Lrx/internal/util/ScalarSynchronousObservable;->t:Ljava/lang/Object;
 
-    move-result-object v1
+    invoke-direct {v2, v3, v1}, Lrx/internal/util/ScalarSynchronousObservable$ScalarAsyncOnSubscribe;-><init>(Ljava/lang/Object;Lrx/functions/Func1;)V
 
-    .line 68
-    .end local v0    # "es":Lrx/internal/schedulers/EventLoopsScheduler;
-    :goto_12
-    return-object v1
+    invoke-static {v2}, Lrx/internal/util/ScalarSynchronousObservable;->create(Lrx/Observable$OnSubscribe;)Lrx/Observable;
 
-    :cond_13
-    new-instance v1, Lrx/internal/util/ScalarSynchronousObservable$NormalScheduledEmission;
+    move-result-object v2
 
-    iget-object v2, p0, Lrx/internal/util/ScalarSynchronousObservable;->t:Ljava/lang/Object;
+    return-object v2
 
-    invoke-direct {v1, p1, v2}, Lrx/internal/util/ScalarSynchronousObservable$NormalScheduledEmission;-><init>(Lrx/Scheduler;Ljava/lang/Object;)V
+    .line 112
+    .end local v1    # "onSchedule":Lrx/functions/Func1;, "Lrx/functions/Func1<Lrx/functions/Action0;Lrx/Subscription;>;"
+    :cond_18
+    new-instance v1, Lrx/internal/util/ScalarSynchronousObservable$3;
 
-    invoke-static {v1}, Lrx/internal/util/ScalarSynchronousObservable;->create(Lrx/Observable$OnSubscribe;)Lrx/Observable;
+    invoke-direct {v1, p0, p1}, Lrx/internal/util/ScalarSynchronousObservable$3;-><init>(Lrx/internal/util/ScalarSynchronousObservable;Lrx/Scheduler;)V
 
-    move-result-object v1
-
-    goto :goto_12
+    .restart local v1    # "onSchedule":Lrx/functions/Func1;, "Lrx/functions/Func1<Lrx/functions/Action0;Lrx/Subscription;>;"
+    goto :goto_c
 .end method

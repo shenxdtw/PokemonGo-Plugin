@@ -135,6 +135,7 @@
 
     iget-object v1, p0, Lcom/upsight/android/UpsightAnalyticsExtension;->mUpsightLifeCycleCallbacks:Landroid/app/Application$ActivityLifecycleCallbacks;
 
+    .line 67
     invoke-virtual {v0, v1}, Landroid/app/Application;->registerActivityLifecycleCallbacks(Landroid/app/Application$ActivityLifecycleCallbacks;)V
 
     .line 68
@@ -185,7 +186,6 @@
 
 .method protected bridge synthetic onResolve(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/UpsightExtension$BaseComponent;
     .registers 3
-    .param p1, "x0"    # Lcom/upsight/android/UpsightContext;
 
     .prologue
     .line 25
@@ -210,10 +210,12 @@
 
     invoke-direct {v1, p1}, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;-><init>(Lcom/upsight/android/UpsightContext;)V
 
+    .line 56
     invoke-virtual {v0, v1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->baseAnalyticsModule(Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;)Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;
 
     move-result-object v0
 
+    .line 57
     invoke-virtual {v0}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->build()Lcom/upsight/android/analytics/internal/AnalyticsComponent;
 
     move-result-object v0

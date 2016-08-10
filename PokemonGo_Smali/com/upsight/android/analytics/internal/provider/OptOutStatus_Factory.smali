@@ -23,7 +23,7 @@
 
 
 # instance fields
-.field private final membersInjector:Ldagger/MembersInjector;
+.field private final optOutStatusMembersInjector:Ldagger/MembersInjector;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ldagger/MembersInjector",
@@ -51,7 +51,7 @@
     .registers 1
 
     .prologue
-    .line 9
+    .line 10
     const-class v0, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -90,12 +90,12 @@
     .end annotation
 
     .prologue
-    .line 14
-    .local p1, "membersInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Lcom/upsight/android/analytics/internal/provider/OptOutStatus;>;"
+    .line 21
+    .local p1, "optOutStatusMembersInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Lcom/upsight/android/analytics/internal/provider/OptOutStatus;>;"
     .local p2, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 15
+    .line 22
     sget-boolean v0, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -108,11 +108,11 @@
 
     throw v0
 
-    .line 16
+    .line 23
     :cond_f
-    iput-object p1, p0, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;->membersInjector:Ldagger/MembersInjector;
+    iput-object p1, p0, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;->optOutStatusMembersInjector:Ldagger/MembersInjector;
 
-    .line 17
+    .line 24
     sget-boolean v0, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -125,11 +125,11 @@
 
     throw v0
 
-    .line 18
+    .line 25
     :cond_1d
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;->upsightProvider:Ljavax/inject/Provider;
 
-    .line 19
+    .line 26
     return-void
 .end method
 
@@ -154,8 +154,8 @@
     .end annotation
 
     .prologue
-    .line 29
-    .local p0, "membersInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Lcom/upsight/android/analytics/internal/provider/OptOutStatus;>;"
+    .line 37
+    .local p0, "optOutStatusMembersInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Lcom/upsight/android/analytics/internal/provider/OptOutStatus;>;"
     .local p1, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     new-instance v0, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;
 
@@ -167,29 +167,32 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/analytics/internal/provider/OptOutStatus;
-    .registers 3
+    .registers 4
 
     .prologue
-    .line 23
-    new-instance v0, Lcom/upsight/android/analytics/internal/provider/OptOutStatus;
+    .line 30
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;->optOutStatusMembersInjector:Ldagger/MembersInjector;
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;->upsightProvider:Ljavax/inject/Provider;
+    new-instance v2, Lcom/upsight/android/analytics/internal/provider/OptOutStatus;
 
-    invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;->upsightProvider:Ljavax/inject/Provider;
 
-    move-result-object v1
+    .line 31
+    invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
-    check-cast v1, Lcom/upsight/android/UpsightContext;
+    move-result-object v0
 
-    invoke-direct {v0, v1}, Lcom/upsight/android/analytics/internal/provider/OptOutStatus;-><init>(Lcom/upsight/android/UpsightContext;)V
+    check-cast v0, Lcom/upsight/android/UpsightContext;
 
-    .line 24
-    .local v0, "instance":Lcom/upsight/android/analytics/internal/provider/OptOutStatus;
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;->membersInjector:Ldagger/MembersInjector;
+    invoke-direct {v2, v0}, Lcom/upsight/android/analytics/internal/provider/OptOutStatus;-><init>(Lcom/upsight/android/UpsightContext;)V
 
-    invoke-interface {v1, v0}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
+    .line 30
+    invoke-static {v1, v2}, Ldagger/internal/MembersInjectors;->injectMembers(Ldagger/MembersInjector;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 25
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/analytics/internal/provider/OptOutStatus;
+
     return-object v0
 .end method
 
@@ -197,7 +200,7 @@
     .registers 2
 
     .prologue
-    .line 9
+    .line 10
     invoke-virtual {p0}, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;->get()Lcom/upsight/android/analytics/internal/provider/OptOutStatus;
 
     move-result-object v0

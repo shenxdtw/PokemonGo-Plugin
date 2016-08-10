@@ -182,14 +182,12 @@
 
 .method public bridge synthetic onNext(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 30
     .local p0, "this":Lcom/upsight/android/internal/persistence/storable/OperatorDeserialize$DeserializeSubscriber;, "Lcom/upsight/android/internal/persistence/storable/OperatorDeserialize$DeserializeSubscriber<TT;>;"
     check-cast p1, Lcom/upsight/android/internal/persistence/Storable;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/internal/persistence/storable/OperatorDeserialize$DeserializeSubscriber;->onNext(Lcom/upsight/android/internal/persistence/Storable;)V
 
     return-void

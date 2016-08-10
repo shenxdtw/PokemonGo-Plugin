@@ -90,10 +90,7 @@
     :try_start_0
     iget-object v1, p0, Lrx/internal/operators/OperatorFilter$1;->this$0:Lrx/internal/operators/OperatorFilter;
 
-    # getter for: Lrx/internal/operators/OperatorFilter;->predicate:Lrx/functions/Func1;
-    invoke-static {v1}, Lrx/internal/operators/OperatorFilter;->access$000(Lrx/internal/operators/OperatorFilter;)Lrx/functions/Func1;
-
-    move-result-object v1
+    iget-object v1, v1, Lrx/internal/operators/OperatorFilter;->predicate:Lrx/functions/Func1;
 
     invoke-interface {v1, p1}, Lrx/functions/Func1;->call(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -105,7 +102,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_18
+    if-eqz v1, :cond_16
 
     .line 54
     iget-object v1, p0, Lrx/internal/operators/OperatorFilter$1;->val$child:Lrx/Subscriber;
@@ -113,32 +110,28 @@
     invoke-virtual {v1, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
     .line 62
-    :goto_17
+    :goto_15
     return-void
 
     .line 57
-    :cond_18
+    :cond_16
     const-wide/16 v2, 0x1
 
     invoke-virtual {p0, v2, v3}, Lrx/internal/operators/OperatorFilter$1;->request(J)V
-    :try_end_1d
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_1d} :catch_1e
+    :try_end_1b
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_1b} :catch_1c
 
-    goto :goto_17
+    goto :goto_15
 
     .line 59
-    :catch_1e
+    :catch_1c
     move-exception v0
 
     .line 60
     .local v0, "e":Ljava/lang/Throwable;
     iget-object v1, p0, Lrx/internal/operators/OperatorFilter$1;->val$child:Lrx/Subscriber;
 
-    invoke-static {v0, p1}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
+    invoke-static {v0, v1, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
-    move-result-object v2
-
-    invoke-virtual {v1, v2}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-
-    goto :goto_17
+    goto :goto_15
 .end method

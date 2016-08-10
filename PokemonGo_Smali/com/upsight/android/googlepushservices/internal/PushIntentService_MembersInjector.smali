@@ -34,12 +34,12 @@
     .end annotation
 .end field
 
-.field private final supertypeInjector:Ldagger/MembersInjector;
+.field private final mUpsightProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Ldagger/MembersInjector",
+            "Ljavax/inject/Provider",
             "<",
-            "Landroid/app/IntentService;",
+            "Lcom/upsight/android/UpsightContext;",
             ">;"
         }
     .end annotation
@@ -73,29 +73,29 @@
     goto :goto_9
 .end method
 
-.method public constructor <init>(Ldagger/MembersInjector;Ljavax/inject/Provider;)V
+.method public constructor <init>(Ljavax/inject/Provider;Ljavax/inject/Provider;)V
     .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Ldagger/MembersInjector",
-            "<",
-            "Landroid/app/IntentService;",
-            ">;",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/google/android/gms/gcm/GoogleCloudMessaging;",
+            ">;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/UpsightContext;",
             ">;)V"
         }
     .end annotation
 
     .prologue
-    .line 14
-    .local p1, "supertypeInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Landroid/app/IntentService;>;"
-    .local p2, "mGcmProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/google/android/gms/gcm/GoogleCloudMessaging;>;"
+    .line 19
+    .local p1, "mGcmProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/google/android/gms/gcm/GoogleCloudMessaging;>;"
+    .local p2, "mUpsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 15
+    .line 20
     sget-boolean v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -108,11 +108,11 @@
 
     throw v0
 
-    .line 16
+    .line 21
     :cond_f
-    iput-object p1, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;->supertypeInjector:Ldagger/MembersInjector;
+    iput-object p1, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;->mGcmProvider:Ljavax/inject/Provider;
 
-    .line 17
+    .line 22
     sget-boolean v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -125,26 +125,26 @@
 
     throw v0
 
-    .line 18
+    .line 23
     :cond_1d
-    iput-object p2, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;->mGcmProvider:Ljavax/inject/Provider;
+    iput-object p2, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;->mUpsightProvider:Ljavax/inject/Provider;
 
-    .line 19
+    .line 24
     return-void
 .end method
 
-.method public static create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+.method public static create(Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
     .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Ldagger/MembersInjector",
-            "<",
-            "Landroid/app/IntentService;",
-            ">;",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/google/android/gms/gcm/GoogleCloudMessaging;",
+            ">;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/UpsightContext;",
             ">;)",
             "Ldagger/MembersInjector",
             "<",
@@ -154,14 +154,72 @@
     .end annotation
 
     .prologue
-    .line 31
-    .local p0, "supertypeInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Landroid/app/IntentService;>;"
-    .local p1, "mGcmProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/google/android/gms/gcm/GoogleCloudMessaging;>;"
+    .line 28
+    .local p0, "mGcmProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/google/android/gms/gcm/GoogleCloudMessaging;>;"
+    .local p1, "mUpsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;
 
-    invoke-direct {v0, p0, p1}, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;-><init>(Ldagger/MembersInjector;Ljavax/inject/Provider;)V
+    invoke-direct {v0, p0, p1}, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;-><init>(Ljavax/inject/Provider;Ljavax/inject/Provider;)V
 
     return-object v0
+.end method
+
+.method public static injectMGcm(Lcom/upsight/android/googlepushservices/internal/PushIntentService;Ljavax/inject/Provider;)V
+    .registers 3
+    .param p0, "instance"    # Lcom/upsight/android/googlepushservices/internal/PushIntentService;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/upsight/android/googlepushservices/internal/PushIntentService;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/google/android/gms/gcm/GoogleCloudMessaging;",
+            ">;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 42
+    .local p1, "mGcmProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/google/android/gms/gcm/GoogleCloudMessaging;>;"
+    invoke-interface {p1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/google/android/gms/gcm/GoogleCloudMessaging;
+
+    iput-object v0, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService;->mGcm:Lcom/google/android/gms/gcm/GoogleCloudMessaging;
+
+    .line 43
+    return-void
+.end method
+
+.method public static injectMUpsight(Lcom/upsight/android/googlepushservices/internal/PushIntentService;Ljavax/inject/Provider;)V
+    .registers 3
+    .param p0, "instance"    # Lcom/upsight/android/googlepushservices/internal/PushIntentService;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/upsight/android/googlepushservices/internal/PushIntentService;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/UpsightContext;",
+            ">;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 47
+    .local p1, "mUpsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
+    invoke-interface {p1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/UpsightContext;
+
+    iput-object v0, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService;->mUpsight:Lcom/upsight/android/UpsightContext;
+
+    .line 48
+    return-void
 .end method
 
 
@@ -171,10 +229,10 @@
     .param p1, "instance"    # Lcom/upsight/android/googlepushservices/internal/PushIntentService;
 
     .prologue
-    .line 23
+    .line 33
     if-nez p1, :cond_a
 
-    .line 24
+    .line 34
     new-instance v0, Ljava/lang/NullPointerException;
 
     const-string v1, "Cannot inject members into a null reference"
@@ -183,13 +241,8 @@
 
     throw v0
 
-    .line 26
+    .line 36
     :cond_a
-    iget-object v0, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;->supertypeInjector:Ldagger/MembersInjector;
-
-    invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
-
-    .line 27
     iget-object v0, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;->mGcmProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -200,19 +253,28 @@
 
     iput-object v0, p1, Lcom/upsight/android/googlepushservices/internal/PushIntentService;->mGcm:Lcom/google/android/gms/gcm/GoogleCloudMessaging;
 
-    .line 28
+    .line 37
+    iget-object v0, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;->mUpsightProvider:Ljavax/inject/Provider;
+
+    invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/UpsightContext;
+
+    iput-object v0, p1, Lcom/upsight/android/googlepushservices/internal/PushIntentService;->mUpsight:Lcom/upsight/android/UpsightContext;
+
+    .line 38
     return-void
 .end method
 
 .method public bridge synthetic injectMembers(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 9
     check-cast p1, Lcom/upsight/android/googlepushservices/internal/PushIntentService;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/googlepushservices/internal/PushIntentService_MembersInjector;->injectMembers(Lcom/upsight/android/googlepushservices/internal/PushIntentService;)V
 
     return-void

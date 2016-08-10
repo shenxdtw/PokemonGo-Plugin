@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Single;->just(Ljava/lang/Object;)Lrx/Single;
+    value = Lrx/Single;->fromCallable(Ljava/util/concurrent/Callable;)Lrx/Single;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -26,16 +26,16 @@
 
 
 # instance fields
-.field final synthetic val$value:Ljava/lang/Object;
+.field final synthetic val$func:Ljava/util/concurrent/Callable;
 
 
 # direct methods
-.method constructor <init>(Ljava/lang/Object;)V
+.method constructor <init>(Ljava/util/concurrent/Callable;)V
     .registers 2
 
     .prologue
-    .line 628
-    iput-object p1, p0, Lrx/Single$4;->val$value:Ljava/lang/Object;
+    .line 608
+    iput-object p1, p0, Lrx/Single$4;->val$func:Ljava/util/concurrent/Callable;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -49,7 +49,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 628
+    .line 608
     check-cast p1, Lrx/SingleSubscriber;
 
     .end local p1    # "x0":Ljava/lang/Object;
@@ -59,7 +59,7 @@
 .end method
 
 .method public call(Lrx/SingleSubscriber;)V
-    .registers 3
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -69,12 +69,36 @@
     .end annotation
 
     .prologue
-    .line 632
-    .local p1, "te":Lrx/SingleSubscriber;, "Lrx/SingleSubscriber<-TT;>;"
-    iget-object v0, p0, Lrx/Single$4;->val$value:Ljava/lang/Object;
+    .line 614
+    .local p1, "singleSubscriber":Lrx/SingleSubscriber;, "Lrx/SingleSubscriber<-TT;>;"
+    :try_start_0
+    iget-object v2, p0, Lrx/Single$4;->val$func:Ljava/util/concurrent/Callable;
 
-    invoke-virtual {p1, v0}, Lrx/SingleSubscriber;->onSuccess(Ljava/lang/Object;)V
+    invoke-interface {v2}, Ljava/util/concurrent/Callable;->call()Ljava/lang/Object;
+    :try_end_5
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_5} :catch_a
 
-    .line 633
+    move-result-object v1
+
+    .line 621
+    .local v1, "value":Ljava/lang/Object;, "TT;"
+    invoke-virtual {p1, v1}, Lrx/SingleSubscriber;->onSuccess(Ljava/lang/Object;)V
+
+    .line 622
+    .end local v1    # "value":Ljava/lang/Object;, "TT;"
+    :goto_9
     return-void
+
+    .line 615
+    :catch_a
+    move-exception v0
+
+    .line 616
+    .local v0, "t":Ljava/lang/Throwable;
+    invoke-static {v0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+
+    .line 617
+    invoke-virtual {p1, v0}, Lrx/SingleSubscriber;->onError(Ljava/lang/Throwable;)V
+
+    goto :goto_9
 .end method

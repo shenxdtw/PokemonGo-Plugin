@@ -66,15 +66,15 @@
 
     move-result-object v1
 
-    invoke-interface {v1}, Lcom/upsight/android/UpsightCoreComponent;->objectMapper()Lcom/fasterxml/jackson/databind/ObjectMapper;
+    invoke-interface {v1}, Lcom/upsight/android/UpsightCoreComponent;->gson()Lcom/google/gson/Gson;
 
     move-result-object v0
 
     .line 65
-    .local v0, "mapper":Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .local v0, "gson":Lcom/google/gson/Gson;
     new-instance v1, Lcom/upsight/android/analytics/internal/GooglePlayHelper;
 
-    invoke-direct {v1, p1, v0}, Lcom/upsight/android/analytics/internal/GooglePlayHelper;-><init>(Lcom/upsight/android/UpsightContext;Lcom/fasterxml/jackson/databind/ObjectMapper;)V
+    invoke-direct {v1, p1, v0}, Lcom/upsight/android/analytics/internal/GooglePlayHelper;-><init>(Lcom/upsight/android/UpsightContext;Lcom/google/gson/Gson;)V
 
     return-object v1
 .end method

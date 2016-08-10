@@ -36,8 +36,8 @@
 
 
 # direct methods
-.method private constructor <init>(Lrx/Subscriber;)V
-    .registers 2
+.method constructor <init>(Lrx/Subscriber;)V
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -56,23 +56,15 @@
     iput-object p1, p0, Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;->child:Lrx/Subscriber;
 
     .line 60
+    const-wide/16 v0, 0x0
+
+    invoke-virtual {p0, v0, v1}, Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;->request(J)V
+
+    .line 61
     return-void
 .end method
 
-.method synthetic constructor <init>(Lrx/Subscriber;Lrx/internal/operators/OperatorDoOnRequest$1;)V
-    .registers 3
-    .param p1, "x0"    # Lrx/Subscriber;
-    .param p2, "x1"    # Lrx/internal/operators/OperatorDoOnRequest$1;
-
-    .prologue
-    .line 55
-    .local p0, "this":Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;, "Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber<TT;>;"
-    invoke-direct {p0, p1}, Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;-><init>(Lrx/Subscriber;)V
-
-    return-void
-.end method
-
-.method static synthetic access$200(Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;J)V
+.method static synthetic access$000(Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;J)V
     .registers 4
     .param p0, "x0"    # Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;
     .param p1, "x1"    # J
@@ -89,11 +81,11 @@
     .param p1, "n"    # J
 
     .prologue
-    .line 63
+    .line 64
     .local p0, "this":Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;, "Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber<TT;>;"
     invoke-virtual {p0, p1, p2}, Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;->request(J)V
 
-    .line 64
+    .line 65
     return-void
 .end method
 
@@ -103,13 +95,13 @@
     .registers 2
 
     .prologue
-    .line 68
+    .line 69
     .local p0, "this":Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;, "Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    .line 69
+    .line 70
     return-void
 .end method
 
@@ -118,13 +110,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 73
+    .line 74
     .local p0, "this":Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;, "Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 74
+    .line 75
     return-void
 .end method
 
@@ -137,13 +129,13 @@
     .end annotation
 
     .prologue
-    .line 78
+    .line 79
     .local p0, "this":Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;, "Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber<TT;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     iget-object v0, p0, Lrx/internal/operators/OperatorDoOnRequest$ParentSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    .line 79
+    .line 80
     return-void
 .end method

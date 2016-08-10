@@ -11,19 +11,28 @@
 
 # instance fields
 .field actionFactory:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "action_factory"
     .end annotation
 .end field
 
-.field actionMap:Lcom/fasterxml/jackson/databind/JsonNode;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+.field actionMap:Lcom/google/gson/JsonArray;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "action_map"
     .end annotation
 .end field
 
 .field actionMapId:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "id"
     .end annotation
 .end field
@@ -39,7 +48,7 @@
     .registers 1
 
     .prologue
-    .line 16
+    .line 17
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -56,15 +65,15 @@
 
     const/4 v2, 0x0
 
-    .line 59
+    .line 63
     if-ne p0, p1, :cond_5
 
-    .line 72
+    .line 76
     :cond_4
     :goto_4
     return v1
 
-    .line 62
+    .line 66
     :cond_5
     if-eqz p1, :cond_11
 
@@ -81,16 +90,16 @@
     :cond_11
     move v1, v2
 
-    .line 63
+    .line 67
     goto :goto_4
 
     :cond_13
     move-object v0, p1
 
-    .line 66
+    .line 70
     check-cast v0, Lcom/upsight/android/analytics/internal/action/ActionMapResponse;
 
-    .line 68
+    .line 72
     .local v0, "that":Lcom/upsight/android/analytics/internal/action/ActionMapResponse;
     iget-object v3, p0, Lcom/upsight/android/analytics/internal/action/ActionMapResponse;->id:Ljava/lang/String;
 
@@ -109,10 +118,10 @@
     :goto_24
     move v1, v2
 
-    .line 69
+    .line 73
     goto :goto_4
 
-    .line 68
+    .line 72
     :cond_26
     iget-object v3, v0, Lcom/upsight/android/analytics/internal/action/ActionMapResponse;->id:Ljava/lang/String;
 
@@ -125,18 +134,18 @@
     .registers 2
 
     .prologue
-    .line 45
+    .line 49
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/action/ActionMapResponse;->actionFactory:Ljava/lang/String;
 
     return-object v0
 .end method
 
-.method public getActionMap()Lcom/fasterxml/jackson/databind/JsonNode;
+.method public getActionMap()Lcom/google/gson/JsonArray;
     .registers 2
 
     .prologue
-    .line 54
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/action/ActionMapResponse;->actionMap:Lcom/fasterxml/jackson/databind/JsonNode;
+    .line 58
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/action/ActionMapResponse;->actionMap:Lcom/google/gson/JsonArray;
 
     return-object v0
 .end method
@@ -145,7 +154,7 @@
     .registers 2
 
     .prologue
-    .line 36
+    .line 40
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/action/ActionMapResponse;->actionMapId:Ljava/lang/String;
 
     return-object v0
@@ -155,7 +164,7 @@
     .registers 2
 
     .prologue
-    .line 77
+    .line 81
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/action/ActionMapResponse;->id:Ljava/lang/String;
 
     if-eqz v0, :cond_b

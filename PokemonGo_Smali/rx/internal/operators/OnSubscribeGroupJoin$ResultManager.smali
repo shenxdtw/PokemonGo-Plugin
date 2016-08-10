@@ -88,45 +88,45 @@
     .end annotation
 
     .prologue
-    .line 93
+    .line 86
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>.ResultManager;"
     .local p2, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->this$0:Lrx/internal/operators/OnSubscribeGroupJoin;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 79
+    .line 72
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
     iput-object v0, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->guard:Ljava/lang/Object;
 
-    .line 85
+    .line 78
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
     iput-object v0, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->leftMap:Ljava/util/Map;
 
-    .line 87
+    .line 80
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
     iput-object v0, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->rightMap:Ljava/util/Map;
 
-    .line 94
+    .line 87
     iput-object p2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->subscriber:Lrx/Subscriber;
 
-    .line 95
+    .line 88
     new-instance v0, Lrx/subscriptions/CompositeSubscription;
 
     invoke-direct {v0}, Lrx/subscriptions/CompositeSubscription;-><init>()V
 
     iput-object v0, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->group:Lrx/subscriptions/CompositeSubscription;
 
-    .line 96
+    .line 89
     new-instance v0, Lrx/subscriptions/RefCountSubscription;
 
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->group:Lrx/subscriptions/CompositeSubscription;
@@ -135,7 +135,7 @@
 
     iput-object v0, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->cancel:Lrx/subscriptions/RefCountSubscription;
 
-    .line 97
+    .line 90
     return-void
 .end method
 
@@ -154,12 +154,12 @@
     .end annotation
 
     .prologue
-    .line 150
+    .line 143
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>.ResultManager;"
     .local p1, "list":Ljava/util/List;, "Ljava/util/List<Lrx/Observer<TT2;>;>;"
     if-eqz p1, :cond_20
 
-    .line 151
+    .line 144
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v0
@@ -178,25 +178,25 @@
 
     check-cast v1, Lrx/Observer;
 
-    .line 152
+    .line 145
     .local v1, "o":Lrx/Observer;, "Lrx/Observer<TT2;>;"
     invoke-interface {v1}, Lrx/Observer;->onCompleted()V
 
     goto :goto_6
 
-    .line 154
+    .line 147
     .end local v1    # "o":Lrx/Observer;, "Lrx/Observer<TT2;>;"
     :cond_16
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->subscriber:Lrx/Subscriber;
 
     invoke-virtual {v2}, Lrx/Subscriber;->onCompleted()V
 
-    .line 155
+    .line 148
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->cancel:Lrx/subscriptions/RefCountSubscription;
 
     invoke-virtual {v2}, Lrx/subscriptions/RefCountSubscription;->unsubscribe()V
 
-    .line 157
+    .line 150
     .end local v0    # "i$":Ljava/util/Iterator;
     :cond_20
     return-void
@@ -207,13 +207,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 126
+    .line 119
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>.ResultManager;"
     iget-object v4, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->guard:Ljava/lang/Object;
 
     monitor-enter v4
 
-    .line 127
+    .line 120
     :try_start_3
     new-instance v1, Ljava/util/ArrayList;
 
@@ -225,23 +225,23 @@
 
     invoke-direct {v1, v3}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
 
-    .line 128
+    .line 121
     .local v1, "list":Ljava/util/List;, "Ljava/util/List<Lrx/Observer<TT2;>;>;"
     iget-object v3, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->leftMap:Ljava/util/Map;
 
     invoke-interface {v3}, Ljava/util/Map;->clear()V
 
-    .line 129
+    .line 122
     iget-object v3, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->rightMap:Ljava/util/Map;
 
     invoke-interface {v3}, Ljava/util/Map;->clear()V
 
-    .line 130
+    .line 123
     monitor-exit v4
     :try_end_19
     .catchall {:try_start_3 .. :try_end_19} :catchall_2d
 
-    .line 131
+    .line 124
     invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v0
@@ -260,13 +260,13 @@
 
     check-cast v2, Lrx/Observer;
 
-    .line 132
+    .line 125
     .local v2, "o":Lrx/Observer;, "Lrx/Observer<TT2;>;"
     invoke-interface {v2, p1}, Lrx/Observer;->onError(Ljava/lang/Throwable;)V
 
     goto :goto_1d
 
-    .line 130
+    .line 123
     .end local v0    # "i$":Ljava/util/Iterator;
     .end local v1    # "list":Ljava/util/List;, "Ljava/util/List<Lrx/Observer<TT2;>;>;"
     .end local v2    # "o":Lrx/Observer;, "Lrx/Observer<TT2;>;"
@@ -280,7 +280,7 @@
 
     throw v3
 
-    .line 134
+    .line 127
     .restart local v0    # "i$":Ljava/util/Iterator;
     .restart local v1    # "list":Ljava/util/List;, "Ljava/util/List<Lrx/Observer<TT2;>;>;"
     :cond_30
@@ -288,12 +288,12 @@
 
     invoke-virtual {v3, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 135
+    .line 128
     iget-object v3, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->cancel:Lrx/subscriptions/RefCountSubscription;
 
     invoke-virtual {v3}, Lrx/subscriptions/RefCountSubscription;->unsubscribe()V
 
-    .line 136
+    .line 129
     return-void
 .end method
 
@@ -302,42 +302,42 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 142
+    .line 135
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>.ResultManager;"
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->guard:Ljava/lang/Object;
 
     monitor-enter v1
 
-    .line 143
+    .line 136
     :try_start_3
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->leftMap:Ljava/util/Map;
 
     invoke-interface {v0}, Ljava/util/Map;->clear()V
 
-    .line 144
+    .line 137
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->rightMap:Ljava/util/Map;
 
     invoke-interface {v0}, Ljava/util/Map;->clear()V
 
-    .line 145
+    .line 138
     monitor-exit v1
     :try_end_e
     .catchall {:try_start_3 .. :try_end_e} :catchall_19
 
-    .line 146
+    .line 139
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->subscriber:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 147
+    .line 140
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->cancel:Lrx/subscriptions/RefCountSubscription;
 
     invoke-virtual {v0}, Lrx/subscriptions/RefCountSubscription;->unsubscribe()V
 
-    .line 148
+    .line 141
     return-void
 
-    .line 145
+    .line 138
     :catchall_19
     move-exception v0
 
@@ -353,44 +353,44 @@
     .registers 4
 
     .prologue
-    .line 101
+    .line 94
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>.ResultManager;"
     new-instance v0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;
 
     invoke-direct {v0, p0}, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;-><init>(Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;)V
 
-    .line 102
+    .line 95
     .local v0, "s1":Lrx/Subscriber;, "Lrx/Subscriber<TT1;>;"
     new-instance v1, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$RightObserver;
 
     invoke-direct {v1, p0}, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$RightObserver;-><init>(Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;)V
 
-    .line 104
+    .line 97
     .local v1, "s2":Lrx/Subscriber;, "Lrx/Subscriber<TT2;>;"
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->group:Lrx/subscriptions/CompositeSubscription;
 
     invoke-virtual {v2, v0}, Lrx/subscriptions/CompositeSubscription;->add(Lrx/Subscription;)V
 
-    .line 105
+    .line 98
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->group:Lrx/subscriptions/CompositeSubscription;
 
     invoke-virtual {v2, v1}, Lrx/subscriptions/CompositeSubscription;->add(Lrx/Subscription;)V
 
-    .line 107
+    .line 100
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->this$0:Lrx/internal/operators/OnSubscribeGroupJoin;
 
     iget-object v2, v2, Lrx/internal/operators/OnSubscribeGroupJoin;->left:Lrx/Observable;
 
     invoke-virtual {v2, v0}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    .line 108
+    .line 101
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->this$0:Lrx/internal/operators/OnSubscribeGroupJoin;
 
     iget-object v2, v2, Lrx/internal/operators/OnSubscribeGroupJoin;->right:Lrx/Observable;
 
     invoke-virtual {v2, v1}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    .line 109
+    .line 102
     return-void
 .end method
 
@@ -398,7 +398,7 @@
     .registers 2
 
     .prologue
-    .line 118
+    .line 111
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>.ResultManager;"
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->cancel:Lrx/subscriptions/RefCountSubscription;
 
@@ -413,12 +413,12 @@
     .registers 2
 
     .prologue
-    .line 113
+    .line 106
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>.ResultManager;"
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->cancel:Lrx/subscriptions/RefCountSubscription;
 
     invoke-virtual {v0}, Lrx/subscriptions/RefCountSubscription;->unsubscribe()V
 
-    .line 114
+    .line 107
     return-void
 .end method

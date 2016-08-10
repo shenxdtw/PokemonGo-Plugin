@@ -30,19 +30,19 @@
     .param p3, "maxRetryCount"    # I
 
     .prologue
-    .line 63
+    .line 64
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 64
+    .line 65
     iput-boolean p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Config;->countNetworkFail:Z
 
-    .line 65
+    .line 66
     iput p2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Config;->retryInterval:I
 
-    .line 66
+    .line 67
     iput p3, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Config;->maxRetryCount:I
 
-    .line 67
+    .line 68
     return-void
 .end method
 
@@ -57,15 +57,15 @@
 
     const/4 v2, 0x0
 
-    .line 82
+    .line 83
     if-ne p0, p1, :cond_5
 
-    .line 92
+    .line 93
     :cond_4
     :goto_4
     return v1
 
-    .line 86
+    .line 87
     :cond_5
     if-eqz p1, :cond_11
 
@@ -82,16 +82,16 @@
     :cond_11
     move v1, v2
 
-    .line 87
+    .line 88
     goto :goto_4
 
     :cond_13
     move-object v0, p1
 
-    .line 90
+    .line 91
     check-cast v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Config;
 
-    .line 92
+    .line 93
     .local v0, "that":Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Config;
     iget-boolean v3, v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Config;->countNetworkFail:Z
 
@@ -121,7 +121,7 @@
     .registers 2
 
     .prologue
-    .line 73
+    .line 74
     iget v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Config;->retryInterval:I
 
     if-lez v0, :cond_a

@@ -44,18 +44,18 @@
     .param p1, "size"    # I
 
     .prologue
-    .line 63
+    .line 75
     .local p0, "this":Ldagger/internal/MapProviderFactory$Builder;, "Ldagger/internal/MapProviderFactory$Builder<TK;TV;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 65
+    .line 77
     invoke-static {p1}, Ldagger/internal/Collections;->newLinkedHashMapWithExpectedSize(I)Ljava/util/LinkedHashMap;
 
     move-result-object v0
 
     iput-object v0, p0, Ldagger/internal/MapProviderFactory$Builder;->mapBuilder:Ljava/util/LinkedHashMap;
 
-    .line 66
+    .line 78
     return-void
 .end method
 
@@ -65,7 +65,7 @@
     .param p2, "x1"    # Ldagger/internal/MapProviderFactory$1;
 
     .prologue
-    .line 60
+    .line 72
     .local p0, "this":Ldagger/internal/MapProviderFactory$Builder;, "Ldagger/internal/MapProviderFactory$Builder<TK;TV;>;"
     invoke-direct {p0, p1}, Ldagger/internal/MapProviderFactory$Builder;-><init>(I)V
 
@@ -85,7 +85,7 @@
     .end annotation
 
     .prologue
-    .line 72
+    .line 84
     .local p0, "this":Ldagger/internal/MapProviderFactory$Builder;, "Ldagger/internal/MapProviderFactory$Builder<TK;TV;>;"
     new-instance v0, Ldagger/internal/MapProviderFactory;
 
@@ -93,7 +93,7 @@
 
     const/4 v2, 0x0
 
-    invoke-direct {v0, v1, v2}, Ldagger/internal/MapProviderFactory;-><init>(Ljava/util/LinkedHashMap;Ldagger/internal/MapProviderFactory$1;)V
+    invoke-direct {v0, v1, v2}, Ldagger/internal/MapProviderFactory;-><init>(Ljava/util/Map;Ldagger/internal/MapProviderFactory$1;)V
 
     return-object v0
 .end method
@@ -111,13 +111,13 @@
     .end annotation
 
     .prologue
-    .line 79
+    .line 91
     .local p0, "this":Ldagger/internal/MapProviderFactory$Builder;, "Ldagger/internal/MapProviderFactory$Builder<TK;TV;>;"
     .local p1, "key":Ljava/lang/Object;, "TK;"
     .local p2, "providerOfValue":Ljavax/inject/Provider;, "Ljavax/inject/Provider<TV;>;"
     if-nez p1, :cond_a
 
-    .line 80
+    .line 92
     new-instance v0, Ljava/lang/NullPointerException;
 
     const-string v1, "The key is null"
@@ -126,11 +126,11 @@
 
     throw v0
 
-    .line 82
+    .line 94
     :cond_a
     if-nez p2, :cond_14
 
-    .line 83
+    .line 95
     new-instance v0, Ljava/lang/NullPointerException;
 
     const-string v1, "The provider of the value is null"
@@ -139,12 +139,12 @@
 
     throw v0
 
-    .line 86
+    .line 98
     :cond_14
     iget-object v0, p0, Ldagger/internal/MapProviderFactory$Builder;->mapBuilder:Ljava/util/LinkedHashMap;
 
     invoke-virtual {v0, p1, p2}, Ljava/util/LinkedHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 87
+    .line 99
     return-object p0
 .end method

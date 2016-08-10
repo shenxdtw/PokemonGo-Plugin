@@ -31,7 +31,7 @@
     .registers 1
 
     .prologue
-    .line 6
+    .line 7
     const-class v0, Lcom/upsight/android/managedvariables/internal/ResourceModule_ProvideUxmSchemaResourceFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -58,10 +58,10 @@
     .param p1, "module"    # Lcom/upsight/android/managedvariables/internal/ResourceModule;
 
     .prologue
-    .line 10
+    .line 14
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 11
+    .line 15
     sget-boolean v0, Lcom/upsight/android/managedvariables/internal/ResourceModule_ProvideUxmSchemaResourceFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -74,11 +74,11 @@
 
     throw v0
 
-    .line 12
+    .line 16
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/managedvariables/internal/ResourceModule_ProvideUxmSchemaResourceFactory;->module:Lcom/upsight/android/managedvariables/internal/ResourceModule;
 
-    .line 13
+    .line 17
     return-void
 .end method
 
@@ -98,7 +98,7 @@
     .end annotation
 
     .prologue
-    .line 25
+    .line 27
     new-instance v0, Lcom/upsight/android/managedvariables/internal/ResourceModule_ProvideUxmSchemaResourceFactory;
 
     invoke-direct {v0, p0}, Lcom/upsight/android/managedvariables/internal/ResourceModule_ProvideUxmSchemaResourceFactory;-><init>(Lcom/upsight/android/managedvariables/internal/ResourceModule;)V
@@ -109,31 +109,26 @@
 
 # virtual methods
 .method public get()Ljava/lang/Integer;
-    .registers 4
+    .registers 3
 
     .prologue
-    .line 17
-    iget-object v1, p0, Lcom/upsight/android/managedvariables/internal/ResourceModule_ProvideUxmSchemaResourceFactory;->module:Lcom/upsight/android/managedvariables/internal/ResourceModule;
+    .line 21
+    iget-object v0, p0, Lcom/upsight/android/managedvariables/internal/ResourceModule_ProvideUxmSchemaResourceFactory;->module:Lcom/upsight/android/managedvariables/internal/ResourceModule;
 
-    invoke-virtual {v1}, Lcom/upsight/android/managedvariables/internal/ResourceModule;->provideUxmSchemaResource()Ljava/lang/Integer;
+    .line 22
+    invoke-virtual {v0}, Lcom/upsight/android/managedvariables/internal/ResourceModule;->provideUxmSchemaResource()Ljava/lang/Integer;
 
     move-result-object v0
 
-    .line 18
-    .local v0, "provided":Ljava/lang/Integer;
-    if-nez v0, :cond_10
-
-    .line 19
-    new-instance v1, Ljava/lang/NullPointerException;
-
-    const-string v2, "Cannot return null from a non-@Nullable @Provides method"
-
-    invoke-direct {v1, v2}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
-
-    throw v1
+    const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
     .line 21
-    :cond_10
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Ljava/lang/Integer;
+
     return-object v0
 .end method
 
@@ -141,7 +136,7 @@
     .registers 2
 
     .prologue
-    .line 6
+    .line 7
     invoke-virtual {p0}, Lcom/upsight/android/managedvariables/internal/ResourceModule_ProvideUxmSchemaResourceFactory;->get()Ljava/lang/Integer;
 
     move-result-object v0

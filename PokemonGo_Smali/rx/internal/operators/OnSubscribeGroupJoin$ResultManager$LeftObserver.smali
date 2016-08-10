@@ -30,7 +30,7 @@
     .registers 2
 
     .prologue
-    .line 160
+    .line 153
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>.ResultManager.LeftObserver;"
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
@@ -45,11 +45,11 @@
     .registers 6
 
     .prologue
-    .line 201
+    .line 194
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>.ResultManager.LeftObserver;"
     const/4 v0, 0x0
 
-    .line 202
+    .line 195
     .local v0, "list":Ljava/util/List;, "Ljava/util/List<Lrx/Observer<TT2;>;>;"
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
@@ -57,7 +57,7 @@
 
     monitor-enter v3
 
-    .line 203
+    .line 196
     :try_start_6
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
@@ -65,14 +65,14 @@
 
     iput-boolean v4, v2, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->leftDone:Z
 
-    .line 204
+    .line 197
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
     iget-boolean v2, v2, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->rightDone:Z
 
     if-eqz v2, :cond_2d
 
-    .line 205
+    .line 198
     new-instance v1, Ljava/util/ArrayList;
 
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
@@ -87,7 +87,7 @@
     :try_end_1e
     .catchall {:try_start_6 .. :try_end_1e} :catchall_34
 
-    .line 206
+    .line 199
     .end local v0    # "list":Ljava/util/List;, "Ljava/util/List<Lrx/Observer<TT2;>;>;"
     .local v1, "list":Ljava/util/List;, "Ljava/util/List<Lrx/Observer<TT2;>;>;"
     :try_start_1e
@@ -97,7 +97,7 @@
 
     invoke-interface {v2}, Ljava/util/Map;->clear()V
 
-    .line 207
+    .line 200
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
     iget-object v2, v2, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->rightMap:Ljava/util/Map;
@@ -108,7 +108,7 @@
 
     move-object v0, v1
 
-    .line 209
+    .line 202
     .end local v1    # "list":Ljava/util/List;, "Ljava/util/List<Lrx/Observer<TT2;>;>;"
     .restart local v0    # "list":Ljava/util/List;, "Ljava/util/List<Lrx/Observer<TT2;>;>;"
     :cond_2d
@@ -117,15 +117,15 @@
     :try_end_2e
     .catchall {:try_start_2d .. :try_end_2e} :catchall_34
 
-    .line 210
+    .line 203
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
     invoke-virtual {v2, v0}, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->complete(Ljava/util/List;)V
 
-    .line 211
+    .line 204
     return-void
 
-    .line 209
+    .line 202
     :catchall_34
     move-exception v2
 
@@ -154,13 +154,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 215
+    .line 208
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>.ResultManager.LeftObserver;"
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
     invoke-virtual {v0, p1}, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->errorAll(Ljava/lang/Throwable;)V
 
-    .line 216
+    .line 209
     return-void
 .end method
 
@@ -173,7 +173,7 @@
     .end annotation
 
     .prologue
-    .line 165
+    .line 158
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;, "Lrx/internal/operators/OnSubscribeGroupJoin<TT1;TT2;TD1;TD2;TR;>.ResultManager.LeftObserver;"
     .local p1, "args":Ljava/lang/Object;, "TT1;"
     :try_start_0
@@ -181,13 +181,13 @@
 
     move-result-object v6
 
-    .line 166
+    .line 159
     .local v6, "subj":Lrx/subjects/Subject;, "Lrx/subjects/Subject<TT2;TT2;>;"
     new-instance v7, Lrx/observers/SerializedObserver;
 
     invoke-direct {v7, v6}, Lrx/observers/SerializedObserver;-><init>(Lrx/Observer;)V
 
-    .line 168
+    .line 161
     .local v7, "subjSerial":Lrx/Observer;, "Lrx/Observer<TT2;>;"
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
@@ -197,7 +197,7 @@
     :try_end_e
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_e} :catch_82
 
-    .line 169
+    .line 162
     :try_start_e
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
@@ -207,7 +207,7 @@
 
     iput v13, v11, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->leftIds:I
 
-    .line 170
+    .line 163
     .local v3, "id":I
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
@@ -219,12 +219,12 @@
 
     invoke-interface {v11, v13, v7}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 171
+    .line 164
     monitor-exit v12
     :try_end_22
     .catchall {:try_start_e .. :try_end_22} :catchall_87
 
-    .line 173
+    .line 166
     :try_start_22
     new-instance v11, Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc;
 
@@ -238,7 +238,7 @@
 
     move-result-object v10
 
-    .line 175
+    .line 168
     .local v10, "window":Lrx/Observable;, "Lrx/Observable<TT2;>;"
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
@@ -252,7 +252,7 @@
 
     check-cast v1, Lrx/Observable;
 
-    .line 177
+    .line 170
     .local v1, "duration":Lrx/Observable;, "Lrx/Observable<TD1;>;"
     new-instance v0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftDurationObserver;
 
@@ -260,7 +260,7 @@
 
     invoke-direct {v0, v11, v3}, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftDurationObserver;-><init>(Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;I)V
 
-    .line 178
+    .line 171
     .local v0, "d1":Lrx/Subscriber;, "Lrx/Subscriber<TD1;>;"
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
@@ -268,10 +268,10 @@
 
     invoke-virtual {v11, v0}, Lrx/subscriptions/CompositeSubscription;->add(Lrx/Subscription;)V
 
-    .line 179
+    .line 172
     invoke-virtual {v1, v0}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    .line 181
+    .line 174
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
     iget-object v11, v11, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;->this$0:Lrx/internal/operators/OnSubscribeGroupJoin;
@@ -282,7 +282,7 @@
 
     move-result-object v4
 
-    .line 184
+    .line 177
     .local v4, "result":Ljava/lang/Object;, "TR;"
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
@@ -292,7 +292,7 @@
     :try_end_5b
     .catch Ljava/lang/Throwable; {:try_start_22 .. :try_end_5b} :catch_82
 
-    .line 185
+    .line 178
     :try_start_5b
     new-instance v5, Ljava/util/ArrayList;
 
@@ -306,13 +306,13 @@
 
     invoke-direct {v5, v11}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
 
-    .line 186
+    .line 179
     .local v5, "rightMapValues":Ljava/util/List;, "Ljava/util/List<TT2;>;"
     monitor-exit v12
     :try_end_69
     .catchall {:try_start_5b .. :try_end_69} :catchall_8a
 
-    .line 188
+    .line 181
     :try_start_69
     iget-object v11, p0, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->this$1:Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager;
 
@@ -320,7 +320,7 @@
 
     invoke-virtual {v11, v4}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    .line 189
+    .line 182
     invoke-interface {v5}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
@@ -337,7 +337,7 @@
 
     move-result-object v9
 
-    .line 190
+    .line 183
     .local v9, "t2":Ljava/lang/Object;, "TT2;"
     invoke-interface {v7, v9}, Lrx/Observer;->onNext(Ljava/lang/Object;)V
     :try_end_81
@@ -345,7 +345,7 @@
 
     goto :goto_74
 
-    .line 194
+    .line 187
     .end local v0    # "d1":Lrx/Subscriber;, "Lrx/Subscriber<TD1;>;"
     .end local v1    # "duration":Lrx/Observable;, "Lrx/Observable<TD1;>;"
     .end local v2    # "i$":Ljava/util/Iterator;
@@ -359,16 +359,16 @@
     :catch_82
     move-exception v8
 
-    .line 195
+    .line 188
     .local v8, "t":Ljava/lang/Throwable;
-    invoke-virtual {p0, v8}, Lrx/internal/operators/OnSubscribeGroupJoin$ResultManager$LeftObserver;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v8, p0}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
-    .line 197
+    .line 190
     .end local v8    # "t":Ljava/lang/Throwable;
     :cond_86
     return-void
 
-    .line 171
+    .line 164
     .restart local v6    # "subj":Lrx/subjects/Subject;, "Lrx/subjects/Subject<TT2;TT2;>;"
     .restart local v7    # "subjSerial":Lrx/Observer;, "Lrx/Observer<TT2;>;"
     :catchall_87
@@ -384,7 +384,7 @@
     :try_end_8a
     .catch Ljava/lang/Throwable; {:try_start_89 .. :try_end_8a} :catch_82
 
-    .line 186
+    .line 179
     .restart local v0    # "d1":Lrx/Subscriber;, "Lrx/Subscriber<TD1;>;"
     .restart local v1    # "duration":Lrx/Observable;, "Lrx/Observable<TD1;>;"
     .restart local v3    # "id":I

@@ -697,6 +697,7 @@
 
     if-eqz v0, :cond_19
 
+    .line 240
     invoke-direct {p0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->isUpsightConfigurationValid(Lcom/upsight/android/analytics/configuration/UpsightConfiguration;)Z
 
     move-result v0

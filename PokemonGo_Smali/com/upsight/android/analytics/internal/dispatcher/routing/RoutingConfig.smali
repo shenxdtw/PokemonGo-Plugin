@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig$1;,
         Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig$Builder;
     }
 .end annotation
@@ -86,17 +85,16 @@
 
     .prologue
     .line 111
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;->mQueuesConfigs:Ljava/util/Map;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;->mQueuesConfigs:Ljava/util/Map;
 
-    invoke-interface {v2}, Ljava/util/Map;->values()Ljava/util/Collection;
-
-    move-result-object v2
-
-    invoke-interface {v2}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
+    invoke-interface {v1}, Ljava/util/Map;->values()Ljava/util/Collection;
 
     move-result-object v1
 
-    .local v1, "i$":Ljava/util/Iterator;
+    invoke-interface {v1}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
     :cond_a
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
@@ -122,84 +120,83 @@
 
     .line 113
     :cond_1e
-    const/4 v2, 0x0
+    const/4 v1, 0x0
 
     .line 117
     .end local v0    # "dc":Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueConfig;
     :goto_1f
-    return v2
+    return v1
 
     :cond_20
-    const/4 v2, 0x1
+    const/4 v1, 0x1
 
     goto :goto_1f
 .end method
 
 .method private areRoutesValid()Z
-    .registers 9
+    .registers 8
 
     .prologue
-    const/4 v5, 0x0
+    const/4 v3, 0x0
 
     .line 125
-    iget-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;->mRoutes:Ljava/util/Map;
+    iget-object v4, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;->mRoutes:Ljava/util/Map;
 
-    invoke-interface {v6}, Ljava/util/Map;->values()Ljava/util/Collection;
+    invoke-interface {v4}, Ljava/util/Map;->values()Ljava/util/Collection;
 
-    move-result-object v6
+    move-result-object v4
 
-    invoke-interface {v6}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
+    invoke-interface {v4}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
+
+    move-result-object v4
+
+    :cond_b
+    invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_4b
+
+    invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
-    :cond_b
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v6
-
-    if-eqz v6, :cond_4b
-
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v2
-
-    check-cast v2, Ljava/util/List;
+    check-cast v0, Ljava/util/List;
 
     .line 126
-    .local v2, "route":Ljava/util/List;, "Ljava/util/List<Ljava/lang/String;>;"
-    if-nez v2, :cond_1a
+    .local v0, "route":Ljava/util/List;, "Ljava/util/List<Ljava/lang/String;>;"
+    if-nez v0, :cond_1a
 
     .line 138
-    .end local v2    # "route":Ljava/util/List;, "Ljava/util/List<Ljava/lang/String;>;"
+    .end local v0    # "route":Ljava/util/List;, "Ljava/util/List<Ljava/lang/String;>;"
     :goto_19
-    return v5
+    return v3
 
     .line 128
-    .restart local v2    # "route":Ljava/util/List;, "Ljava/util/List<Ljava/lang/String;>;"
+    .restart local v0    # "route":Ljava/util/List;, "Ljava/util/List<Ljava/lang/String;>;"
     :cond_1a
-    invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+    invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
-    move-result-object v1
+    move-result-object v5
 
-    .local v1, "i$":Ljava/util/Iterator;
     :cond_1e
-    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v5}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v6
 
     if-eqz v6, :cond_3b
 
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v5}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v3
+    move-result-object v1
 
-    check-cast v3, Ljava/lang/String;
+    check-cast v1, Ljava/lang/String;
 
     .line 129
-    .local v3, "routeStep":Ljava/lang/String;
+    .local v1, "routeStep":Ljava/lang/String;
     iget-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;->mQueuesConfigs:Ljava/util/Map;
 
-    invoke-interface {v6, v3}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
+    invoke-interface {v6, v1}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
 
     move-result v6
 
@@ -207,7 +204,7 @@
 
     const-string v6, "trash"
 
-    invoke-virtual {v6, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v6, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v6
 
@@ -216,32 +213,31 @@
     goto :goto_19
 
     .line 133
-    .end local v3    # "routeStep":Ljava/lang/String;
+    .end local v1    # "routeStep":Ljava/lang/String;
     :cond_3b
-    new-instance v4, Ljava/util/HashSet;
+    new-instance v2, Ljava/util/HashSet;
 
-    invoke-direct {v4, v2}, Ljava/util/HashSet;-><init>(Ljava/util/Collection;)V
+    invoke-direct {v2, v0}, Ljava/util/HashSet;-><init>(Ljava/util/Collection;)V
 
     .line 134
-    .local v4, "uniqueTestSet":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
-    invoke-interface {v4}, Ljava/util/Set;->size()I
+    .local v2, "uniqueTestSet":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    invoke-interface {v2}, Ljava/util/Set;->size()I
+
+    move-result v5
+
+    invoke-interface {v0}, Ljava/util/List;->size()I
 
     move-result v6
 
-    invoke-interface {v2}, Ljava/util/List;->size()I
-
-    move-result v7
-
-    if-eq v6, v7, :cond_b
+    if-eq v5, v6, :cond_b
 
     goto :goto_19
 
     .line 138
-    .end local v1    # "i$":Ljava/util/Iterator;
-    .end local v2    # "route":Ljava/util/List;, "Ljava/util/List<Ljava/lang/String;>;"
-    .end local v4    # "uniqueTestSet":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    .end local v0    # "route":Ljava/util/List;, "Ljava/util/List<Ljava/lang/String;>;"
+    .end local v2    # "uniqueTestSet":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
     :cond_4b
-    const/4 v5, 0x1
+    const/4 v3, 0x1
 
     goto :goto_19
 .end method
@@ -260,7 +256,7 @@
     .line 143
     if-ne p0, p1, :cond_5
 
-    .line 150
+    .line 151
     :cond_4
     :goto_4
     return v1
@@ -307,6 +303,7 @@
 
     iget-object v4, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;->mRoutes:Ljava/util/Map;
 
+    .line 151
     invoke-interface {v3, v4}, Ljava/util/Map;->equals(Ljava/lang/Object;)Z
 
     move-result v3

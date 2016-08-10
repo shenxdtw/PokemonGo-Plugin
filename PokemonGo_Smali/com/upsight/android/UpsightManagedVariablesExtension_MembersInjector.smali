@@ -56,27 +56,13 @@
     .end annotation
 .end field
 
-.field private final supertypeInjector:Ldagger/MembersInjector;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ldagger/MembersInjector",
-            "<",
-            "Lcom/upsight/android/UpsightExtension",
-            "<",
-            "Lcom/upsight/android/managedvariables/UpsightManagedVariablesComponent;",
-            "Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;",
-            ">;>;"
-        }
-    .end annotation
-.end field
-
 
 # direct methods
 .method static constructor <clinit>()V
     .registers 1
 
     .prologue
-    .line 11
+    .line 10
     const-class v0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -98,18 +84,11 @@
     goto :goto_9
 .end method
 
-.method public constructor <init>(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
-    .registers 6
+.method public constructor <init>(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Ldagger/MembersInjector",
-            "<",
-            "Lcom/upsight/android/UpsightExtension",
-            "<",
-            "Lcom/upsight/android/managedvariables/UpsightManagedVariablesComponent;",
-            "Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;",
-            ">;>;",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;",
@@ -126,14 +105,13 @@
     .end annotation
 
     .prologue
-    .line 18
-    .local p1, "supertypeInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Lcom/upsight/android/UpsightExtension<Lcom/upsight/android/managedvariables/UpsightManagedVariablesComponent;Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;>;>;"
-    .local p2, "mManagedVariablesProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;>;"
-    .local p3, "mUxmContentFactoryProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/UxmContentFactory;>;"
-    .local p4, "mUxmBlockProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;>;"
+    .line 25
+    .local p1, "mManagedVariablesProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;>;"
+    .local p2, "mUxmContentFactoryProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/UxmContentFactory;>;"
+    .local p3, "mUxmBlockProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 19
+    .line 26
     sget-boolean v0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -146,11 +124,11 @@
 
     throw v0
 
-    .line 20
+    .line 27
     :cond_f
-    iput-object p1, p0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->supertypeInjector:Ldagger/MembersInjector;
+    iput-object p1, p0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->mManagedVariablesProvider:Ljavax/inject/Provider;
 
-    .line 21
+    .line 28
     sget-boolean v0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -163,11 +141,11 @@
 
     throw v0
 
-    .line 22
+    .line 29
     :cond_1d
-    iput-object p2, p0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->mManagedVariablesProvider:Ljavax/inject/Provider;
+    iput-object p2, p0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->mUxmContentFactoryProvider:Ljavax/inject/Provider;
 
-    .line 23
+    .line 30
     sget-boolean v0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->$assertionsDisabled:Z
 
     if-nez v0, :cond_2b
@@ -180,43 +158,19 @@
 
     throw v0
 
-    .line 24
+    .line 31
     :cond_2b
-    iput-object p3, p0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->mUxmContentFactoryProvider:Ljavax/inject/Provider;
+    iput-object p3, p0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->mUxmBlockProvider:Ljavax/inject/Provider;
 
-    .line 25
-    sget-boolean v0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->$assertionsDisabled:Z
-
-    if-nez v0, :cond_39
-
-    if-nez p4, :cond_39
-
-    new-instance v0, Ljava/lang/AssertionError;
-
-    invoke-direct {v0}, Ljava/lang/AssertionError;-><init>()V
-
-    throw v0
-
-    .line 26
-    :cond_39
-    iput-object p4, p0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->mUxmBlockProvider:Ljavax/inject/Provider;
-
-    .line 27
+    .line 32
     return-void
 .end method
 
-.method public static create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
-    .registers 5
+.method public static create(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Ldagger/MembersInjector",
-            "<",
-            "Lcom/upsight/android/UpsightExtension",
-            "<",
-            "Lcom/upsight/android/managedvariables/UpsightManagedVariablesComponent;",
-            "Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;",
-            ">;>;",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;",
@@ -237,16 +191,102 @@
     .end annotation
 
     .prologue
-    .line 41
-    .local p0, "supertypeInjector":Ldagger/MembersInjector;, "Ldagger/MembersInjector<Lcom/upsight/android/UpsightExtension<Lcom/upsight/android/managedvariables/UpsightManagedVariablesComponent;Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;>;>;"
-    .local p1, "mManagedVariablesProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;>;"
-    .local p2, "mUxmContentFactoryProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/UxmContentFactory;>;"
-    .local p3, "mUxmBlockProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;>;"
+    .line 38
+    .local p0, "mManagedVariablesProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;>;"
+    .local p1, "mUxmContentFactoryProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/UxmContentFactory;>;"
+    .local p2, "mUxmBlockProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;>;"
     new-instance v0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;
 
-    invoke-direct {v0, p0, p1, p2, p3}, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;-><init>(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+    invoke-direct {v0, p0, p1, p2}, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;-><init>(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
 
     return-object v0
+.end method
+
+.method public static injectMManagedVariables(Lcom/upsight/android/UpsightManagedVariablesExtension;Ljavax/inject/Provider;)V
+    .registers 3
+    .param p0, "instance"    # Lcom/upsight/android/UpsightManagedVariablesExtension;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/upsight/android/UpsightManagedVariablesExtension;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;",
+            ">;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 55
+    .local p1, "mManagedVariablesProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;>;"
+    invoke-interface {p1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;
+
+    iput-object v0, p0, Lcom/upsight/android/UpsightManagedVariablesExtension;->mManagedVariables:Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;
+
+    .line 56
+    return-void
+.end method
+
+.method public static injectMUxmBlockProvider(Lcom/upsight/android/UpsightManagedVariablesExtension;Ljavax/inject/Provider;)V
+    .registers 3
+    .param p0, "instance"    # Lcom/upsight/android/UpsightManagedVariablesExtension;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/upsight/android/UpsightManagedVariablesExtension;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;",
+            ">;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 66
+    .local p1, "mUxmBlockProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;>;"
+    invoke-interface {p1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;
+
+    iput-object v0, p0, Lcom/upsight/android/UpsightManagedVariablesExtension;->mUxmBlockProvider:Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;
+
+    .line 67
+    return-void
+.end method
+
+.method public static injectMUxmContentFactory(Lcom/upsight/android/UpsightManagedVariablesExtension;Ljavax/inject/Provider;)V
+    .registers 3
+    .param p0, "instance"    # Lcom/upsight/android/UpsightManagedVariablesExtension;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/upsight/android/UpsightManagedVariablesExtension;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/managedvariables/internal/type/UxmContentFactory;",
+            ">;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 61
+    .local p1, "mUxmContentFactoryProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/UxmContentFactory;>;"
+    invoke-interface {p1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/managedvariables/internal/type/UxmContentFactory;
+
+    iput-object v0, p0, Lcom/upsight/android/UpsightManagedVariablesExtension;->mUxmContentFactory:Lcom/upsight/android/managedvariables/internal/type/UxmContentFactory;
+
+    .line 62
+    return-void
 .end method
 
 
@@ -256,10 +296,10 @@
     .param p1, "instance"    # Lcom/upsight/android/UpsightManagedVariablesExtension;
 
     .prologue
-    .line 31
+    .line 44
     if-nez p1, :cond_a
 
-    .line 32
+    .line 45
     new-instance v0, Ljava/lang/NullPointerException;
 
     const-string v1, "Cannot inject members into a null reference"
@@ -268,13 +308,8 @@
 
     throw v0
 
-    .line 34
+    .line 47
     :cond_a
-    iget-object v0, p0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->supertypeInjector:Ldagger/MembersInjector;
-
-    invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
-
-    .line 35
     iget-object v0, p0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->mManagedVariablesProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -285,7 +320,7 @@
 
     iput-object v0, p1, Lcom/upsight/android/UpsightManagedVariablesExtension;->mManagedVariables:Lcom/upsight/android/managedvariables/UpsightManagedVariablesApi;
 
-    .line 36
+    .line 48
     iget-object v0, p0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->mUxmContentFactoryProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -296,7 +331,7 @@
 
     iput-object v0, p1, Lcom/upsight/android/UpsightManagedVariablesExtension;->mUxmContentFactory:Lcom/upsight/android/managedvariables/internal/type/UxmContentFactory;
 
-    .line 37
+    .line 49
     iget-object v0, p0, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->mUxmBlockProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -307,19 +342,17 @@
 
     iput-object v0, p1, Lcom/upsight/android/UpsightManagedVariablesExtension;->mUxmBlockProvider:Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;
 
-    .line 38
+    .line 50
     return-void
 .end method
 
 .method public bridge synthetic injectMembers(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 11
+    .line 10
     check-cast p1, Lcom/upsight/android/UpsightManagedVariablesExtension;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/UpsightManagedVariablesExtension_MembersInjector;->injectMembers(Lcom/upsight/android/UpsightManagedVariablesExtension;)V
 
     return-void

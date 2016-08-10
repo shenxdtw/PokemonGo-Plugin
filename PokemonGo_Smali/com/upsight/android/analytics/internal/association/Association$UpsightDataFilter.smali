@@ -16,13 +16,19 @@
 
 # instance fields
 .field matchKey:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "match_key"
     .end annotation
 .end field
 
-.field matchValues:Lcom/fasterxml/jackson/databind/node/ArrayNode;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+.field matchValues:Lcom/google/gson/JsonArray;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "match_values"
     .end annotation
 .end field
@@ -33,7 +39,7 @@
     .registers 1
 
     .prologue
-    .line 113
+    .line 125
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -45,18 +51,18 @@
     .registers 2
 
     .prologue
-    .line 122
+    .line 136
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/association/Association$UpsightDataFilter;->matchKey:Ljava/lang/String;
 
     return-object v0
 .end method
 
-.method public getMatchValues()Lcom/fasterxml/jackson/databind/node/ArrayNode;
+.method public getMatchValues()Lcom/google/gson/JsonArray;
     .registers 2
 
     .prologue
-    .line 126
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/association/Association$UpsightDataFilter;->matchValues:Lcom/fasterxml/jackson/databind/node/ArrayNode;
+    .line 140
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/association/Association$UpsightDataFilter;->matchValues:Lcom/google/gson/JsonArray;
 
     return-object v0
 .end method

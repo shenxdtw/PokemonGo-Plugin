@@ -27,26 +27,6 @@
 
 
 # instance fields
-.field final choice:Ljava/util/concurrent/atomic/AtomicReference;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/atomic/AtomicReference",
-            "<",
-            "Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber",
-            "<TT;>;>;"
-        }
-    .end annotation
-.end field
-
-.field final selection:Lrx/internal/operators/OnSubscribeAmb$Selection;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Lrx/internal/operators/OnSubscribeAmb$Selection",
-            "<TT;>;"
-        }
-    .end annotation
-.end field
-
 .field final sources:Ljava/lang/Iterable;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -61,7 +41,7 @@
 
 # direct methods
 .method private constructor <init>(Ljava/lang/Iterable;)V
-    .registers 4
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -73,42 +53,15 @@
     .end annotation
 
     .prologue
-    .line 359
+    .line 357
     .local p0, "this":Lrx/internal/operators/OnSubscribeAmb;, "Lrx/internal/operators/OnSubscribeAmb<TT;>;"
     .local p1, "sources":Ljava/lang/Iterable;, "Ljava/lang/Iterable<+Lrx/Observable<+TT;>;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 356
-    new-instance v0, Lrx/internal/operators/OnSubscribeAmb$Selection;
-
-    const/4 v1, 0x0
-
-    invoke-direct {v0, v1}, Lrx/internal/operators/OnSubscribeAmb$Selection;-><init>(Lrx/internal/operators/OnSubscribeAmb$1;)V
-
-    iput-object v0, p0, Lrx/internal/operators/OnSubscribeAmb;->selection:Lrx/internal/operators/OnSubscribeAmb$Selection;
-
-    .line 357
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeAmb;->selection:Lrx/internal/operators/OnSubscribeAmb$Selection;
-
-    iget-object v0, v0, Lrx/internal/operators/OnSubscribeAmb$Selection;->choice:Ljava/util/concurrent/atomic/AtomicReference;
-
-    iput-object v0, p0, Lrx/internal/operators/OnSubscribeAmb;->choice:Ljava/util/concurrent/atomic/AtomicReference;
-
-    .line 360
+    .line 358
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeAmb;->sources:Ljava/lang/Iterable;
 
-    .line 361
-    return-void
-.end method
-
-.method static synthetic access$100(Ljava/util/Collection;)V
-    .registers 1
-    .param p0, "x0"    # Ljava/util/Collection;
-
-    .prologue
-    .line 34
-    invoke-static {p0}, Lrx/internal/operators/OnSubscribeAmb;->unsubscribeAmbSubscribers(Ljava/util/Collection;)V
-
+    .line 359
     return-void
 .end method
 
@@ -618,7 +571,7 @@
     return-object v1
 .end method
 
-.method private static unsubscribeAmbSubscribers(Ljava/util/Collection;)V
+.method static unsubscribeAmbSubscribers(Ljava/util/Collection;)V
     .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -695,7 +648,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)V
-    .registers 11
+    .registers 10
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -705,121 +658,119 @@
     .end annotation
 
     .prologue
-    .line 367
+    .line 363
     .local p0, "this":Lrx/internal/operators/OnSubscribeAmb;, "Lrx/internal/operators/OnSubscribeAmb<TT;>;"
     .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    new-instance v2, Lrx/internal/operators/OnSubscribeAmb$1;
-
-    invoke-direct {v2, p0}, Lrx/internal/operators/OnSubscribeAmb$1;-><init>(Lrx/internal/operators/OnSubscribeAmb;)V
-
-    invoke-static {v2}, Lrx/subscriptions/Subscriptions;->create(Lrx/functions/Action0;)Lrx/Subscription;
-
-    move-result-object v2
-
-    invoke-virtual {p1, v2}, Lrx/Subscriber;->add(Lrx/Subscription;)V
-
-    .line 386
-    iget-object v2, p0, Lrx/internal/operators/OnSubscribeAmb;->sources:Ljava/lang/Iterable;
-
-    invoke-interface {v2}, Ljava/lang/Iterable;->iterator()Ljava/util/Iterator;
-
-    move-result-object v7
-
-    .local v7, "i$":Ljava/util/Iterator;
-    :goto_12
-    invoke-interface {v7}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_24
-
-    invoke-interface {v7}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v8
-
-    check-cast v8, Lrx/Observable;
-
-    .line 387
-    .local v8, "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    invoke-virtual {p1}, Lrx/Subscriber;->isUnsubscribed()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_3a
-
-    .line 404
-    .end local v8    # "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    :cond_24
-    invoke-virtual {p1}, Lrx/Subscriber;->isUnsubscribed()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_31
-
-    .line 405
-    iget-object v2, p0, Lrx/internal/operators/OnSubscribeAmb;->selection:Lrx/internal/operators/OnSubscribeAmb$Selection;
-
-    iget-object v2, v2, Lrx/internal/operators/OnSubscribeAmb$Selection;->ambSubscribers:Ljava/util/Collection;
-
-    invoke-static {v2}, Lrx/internal/operators/OnSubscribeAmb;->unsubscribeAmbSubscribers(Ljava/util/Collection;)V
-
-    .line 408
-    :cond_31
-    new-instance v2, Lrx/internal/operators/OnSubscribeAmb$2;
-
-    invoke-direct {v2, p0}, Lrx/internal/operators/OnSubscribeAmb$2;-><init>(Lrx/internal/operators/OnSubscribeAmb;)V
-
-    invoke-virtual {p1, v2}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
-
-    .line 435
-    :goto_39
-    return-void
-
-    .line 390
-    .restart local v8    # "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    :cond_3a
-    new-instance v1, Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;
-
-    const-wide/16 v2, 0x0
-
-    iget-object v5, p0, Lrx/internal/operators/OnSubscribeAmb;->selection:Lrx/internal/operators/OnSubscribeAmb$Selection;
+    new-instance v4, Lrx/internal/operators/OnSubscribeAmb$Selection;
 
     const/4 v6, 0x0
 
-    move-object v4, p1
+    invoke-direct {v4, v6}, Lrx/internal/operators/OnSubscribeAmb$Selection;-><init>(Lrx/internal/operators/OnSubscribeAmb$1;)V
 
-    invoke-direct/range {v1 .. v6}, Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;-><init>(JLrx/Subscriber;Lrx/internal/operators/OnSubscribeAmb$Selection;Lrx/internal/operators/OnSubscribeAmb$1;)V
+    .line 364
+    .local v4, "selection":Lrx/internal/operators/OnSubscribeAmb$Selection;, "Lrx/internal/operators/OnSubscribeAmb$Selection<TT;>;"
+    iget-object v2, v4, Lrx/internal/operators/OnSubscribeAmb$Selection;->choice:Ljava/util/concurrent/atomic/AtomicReference;
+
+    .line 367
+    .local v2, "choice":Ljava/util/concurrent/atomic/AtomicReference;, "Ljava/util/concurrent/atomic/AtomicReference<Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber<TT;>;>;"
+    new-instance v6, Lrx/internal/operators/OnSubscribeAmb$1;
+
+    invoke-direct {v6, p0, v2, v4}, Lrx/internal/operators/OnSubscribeAmb$1;-><init>(Lrx/internal/operators/OnSubscribeAmb;Ljava/util/concurrent/atomic/AtomicReference;Lrx/internal/operators/OnSubscribeAmb$Selection;)V
+
+    invoke-static {v6}, Lrx/subscriptions/Subscriptions;->create(Lrx/functions/Action0;)Lrx/Subscription;
+
+    move-result-object v6
+
+    invoke-virtual {p1, v6}, Lrx/Subscriber;->add(Lrx/Subscription;)V
+
+    .line 386
+    iget-object v6, p0, Lrx/internal/operators/OnSubscribeAmb;->sources:Ljava/lang/Iterable;
+
+    invoke-interface {v6}, Ljava/lang/Iterable;->iterator()Ljava/util/Iterator;
+
+    move-result-object v3
+
+    .local v3, "i$":Ljava/util/Iterator;
+    :goto_1a
+    invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_2c
+
+    invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v5
+
+    check-cast v5, Lrx/Observable;
+
+    .line 387
+    .local v5, "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
+    invoke-virtual {p1}, Lrx/Subscriber;->isUnsubscribed()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_40
+
+    .line 404
+    .end local v5    # "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
+    :cond_2c
+    invoke-virtual {p1}, Lrx/Subscriber;->isUnsubscribed()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_37
+
+    .line 405
+    iget-object v6, v4, Lrx/internal/operators/OnSubscribeAmb$Selection;->ambSubscribers:Ljava/util/Collection;
+
+    invoke-static {v6}, Lrx/internal/operators/OnSubscribeAmb;->unsubscribeAmbSubscribers(Ljava/util/Collection;)V
+
+    .line 408
+    :cond_37
+    new-instance v6, Lrx/internal/operators/OnSubscribeAmb$2;
+
+    invoke-direct {v6, p0, v2, v4}, Lrx/internal/operators/OnSubscribeAmb$2;-><init>(Lrx/internal/operators/OnSubscribeAmb;Ljava/util/concurrent/atomic/AtomicReference;Lrx/internal/operators/OnSubscribeAmb$Selection;)V
+
+    invoke-virtual {p1, v6}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+
+    .line 435
+    :goto_3f
+    return-void
+
+    .line 390
+    .restart local v5    # "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
+    :cond_40
+    new-instance v0, Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;
+
+    const-wide/16 v6, 0x0
+
+    invoke-direct {v0, v6, v7, p1, v4}, Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;-><init>(JLrx/Subscriber;Lrx/internal/operators/OnSubscribeAmb$Selection;)V
 
     .line 391
-    .local v1, "ambSubscriber":Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;, "Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber<TT;>;"
-    iget-object v2, p0, Lrx/internal/operators/OnSubscribeAmb;->selection:Lrx/internal/operators/OnSubscribeAmb$Selection;
+    .local v0, "ambSubscriber":Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;, "Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber<TT;>;"
+    iget-object v6, v4, Lrx/internal/operators/OnSubscribeAmb$Selection;->ambSubscribers:Ljava/util/Collection;
 
-    iget-object v2, v2, Lrx/internal/operators/OnSubscribeAmb$Selection;->ambSubscribers:Ljava/util/Collection;
-
-    invoke-interface {v2, v1}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
+    invoke-interface {v6, v0}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
 
     .line 396
-    iget-object v2, p0, Lrx/internal/operators/OnSubscribeAmb;->choice:Ljava/util/concurrent/atomic/AtomicReference;
-
     invoke-virtual {v2}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
 
-    move-result-object v0
+    move-result-object v1
 
-    check-cast v0, Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;
+    check-cast v1, Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;
 
-    .local v0, "c":Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;, "Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber<TT;>;"
-    if-eqz v0, :cond_5c
+    .local v1, "c":Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;, "Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber<TT;>;"
+    if-eqz v1, :cond_58
 
     .line 398
-    iget-object v2, p0, Lrx/internal/operators/OnSubscribeAmb;->selection:Lrx/internal/operators/OnSubscribeAmb$Selection;
+    invoke-virtual {v4, v1}, Lrx/internal/operators/OnSubscribeAmb$Selection;->unsubscribeOthers(Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;)V
 
-    invoke-virtual {v2, v0}, Lrx/internal/operators/OnSubscribeAmb$Selection;->unsubscribeOthers(Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;)V
-
-    goto :goto_39
+    goto :goto_3f
 
     .line 401
-    :cond_5c
-    invoke-virtual {v8, v1}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
+    :cond_58
+    invoke-virtual {v5, v0}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    goto :goto_12
+    goto :goto_1a
 .end method

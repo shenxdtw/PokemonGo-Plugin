@@ -2,6 +2,9 @@
 .super Ljava/lang/Object;
 .source "ObjectPool.java"
 
+# interfaces
+.implements Lrx/internal/schedulers/SchedulerLifecycle;
+
 
 # annotations
 .annotation system Ldalvik/annotation/Signature;
@@ -9,15 +12,18 @@
         "<T:",
         "Ljava/lang/Object;",
         ">",
-        "Ljava/lang/Object;"
+        "Ljava/lang/Object;",
+        "Lrx/internal/schedulers/SchedulerLifecycle;"
     }
 .end annotation
 
 
 # instance fields
-.field private final maxSize:I
+.field final maxSize:I
 
-.field private pool:Ljava/util/Queue;
+.field final minSize:I
+
+.field pool:Ljava/util/Queue;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/Queue",
@@ -26,7 +32,18 @@
     .end annotation
 .end field
 
-.field private schedulerWorker:Lrx/Scheduler$Worker;
+.field private final schedulerWorker:Ljava/util/concurrent/atomic/AtomicReference;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/concurrent/atomic/AtomicReference",
+            "<",
+            "Lrx/Scheduler$Worker;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private final validationInterval:J
 
 
 # direct methods
@@ -37,71 +54,50 @@
     .local p0, "this":Lrx/internal/util/ObjectPool;, "Lrx/internal/util/ObjectPool<TT;>;"
     const/4 v2, 0x0
 
-    .line 37
+    .line 39
     const-wide/16 v0, 0x43
 
     invoke-direct {p0, v2, v2, v0, v1}, Lrx/internal/util/ObjectPool;-><init>(IIJ)V
 
-    .line 38
+    .line 40
     return-void
 .end method
 
 .method private constructor <init>(IIJ)V
-    .registers 12
+    .registers 6
     .param p1, "min"    # I
     .param p2, "max"    # I
     .param p3, "validationInterval"    # J
 
     .prologue
-    .line 52
+    .line 54
     .local p0, "this":Lrx/internal/util/ObjectPool;, "Lrx/internal/util/ObjectPool<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 53
+    .line 55
+    iput p1, p0, Lrx/internal/util/ObjectPool;->minSize:I
+
+    .line 56
     iput p2, p0, Lrx/internal/util/ObjectPool;->maxSize:I
 
-    .line 55
-    invoke-direct {p0, p1}, Lrx/internal/util/ObjectPool;->initialize(I)V
-
     .line 57
-    invoke-static {}, Lrx/schedulers/Schedulers;->computation()Lrx/Scheduler;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Lrx/Scheduler;->createWorker()Lrx/Scheduler$Worker;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lrx/internal/util/ObjectPool;->schedulerWorker:Lrx/Scheduler$Worker;
+    iput-wide p3, p0, Lrx/internal/util/ObjectPool;->validationInterval:J
 
     .line 58
-    iget-object v0, p0, Lrx/internal/util/ObjectPool;->schedulerWorker:Lrx/Scheduler$Worker;
+    new-instance v0, Ljava/util/concurrent/atomic/AtomicReference;
 
-    new-instance v1, Lrx/internal/util/ObjectPool$1;
+    invoke-direct {v0}, Ljava/util/concurrent/atomic/AtomicReference;-><init>()V
 
-    invoke-direct {v1, p0, p1, p2}, Lrx/internal/util/ObjectPool$1;-><init>(Lrx/internal/util/ObjectPool;II)V
+    iput-object v0, p0, Lrx/internal/util/ObjectPool;->schedulerWorker:Ljava/util/concurrent/atomic/AtomicReference;
 
-    sget-object v6, Ljava/util/concurrent/TimeUnit;->SECONDS:Ljava/util/concurrent/TimeUnit;
+    .line 60
+    invoke-direct {p0, p1}, Lrx/internal/util/ObjectPool;->initialize(I)V
 
-    move-wide v2, p3
+    .line 62
+    invoke-virtual {p0}, Lrx/internal/util/ObjectPool;->start()V
 
-    move-wide v4, p3
-
-    invoke-virtual/range {v0 .. v6}, Lrx/Scheduler$Worker;->schedulePeriodically(Lrx/functions/Action0;JJLjava/util/concurrent/TimeUnit;)Lrx/Subscription;
-
-    .line 78
+    .line 63
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/util/ObjectPool;)Ljava/util/Queue;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/util/ObjectPool;
-
-    .prologue
-    .line 30
-    iget-object v0, p0, Lrx/internal/util/ObjectPool;->pool:Ljava/util/Queue;
-
-    return-object v0
 .end method
 
 .method private initialize(I)V
@@ -109,7 +105,7 @@
     .param p1, "min"    # I
 
     .prologue
-    .line 124
+    .line 142
     .local p0, "this":Lrx/internal/util/ObjectPool;, "Lrx/internal/util/ObjectPool<TT;>;"
     invoke-static {}, Lrx/internal/util/unsafe/UnsafeAccess;->isUnsafeAvailable()Z
 
@@ -117,7 +113,7 @@
 
     if-eqz v1, :cond_24
 
-    .line 125
+    .line 143
     new-instance v1, Lrx/internal/util/unsafe/MpmcArrayQueue;
 
     iget v2, p0, Lrx/internal/util/ObjectPool;->maxSize:I
@@ -132,7 +128,7 @@
 
     iput-object v1, p0, Lrx/internal/util/ObjectPool;->pool:Ljava/util/Queue;
 
-    .line 130
+    .line 148
     :goto_15
     const/4 v0, 0x0
 
@@ -140,7 +136,7 @@
     :goto_16
     if-ge v0, p1, :cond_2c
 
-    .line 131
+    .line 149
     iget-object v1, p0, Lrx/internal/util/ObjectPool;->pool:Ljava/util/Queue;
 
     invoke-virtual {p0}, Lrx/internal/util/ObjectPool;->createObject()Ljava/lang/Object;
@@ -149,12 +145,12 @@
 
     invoke-interface {v1, v2}, Ljava/util/Queue;->add(Ljava/lang/Object;)Z
 
-    .line 130
+    .line 148
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_16
 
-    .line 127
+    .line 145
     .end local v0    # "i":I
     :cond_24
     new-instance v1, Ljava/util/concurrent/ConcurrentLinkedQueue;
@@ -165,7 +161,7 @@
 
     goto :goto_15
 
-    .line 133
+    .line 151
     .restart local v0    # "i":I
     :cond_2c
     return-void
@@ -182,7 +178,7 @@
     .end annotation
 
     .prologue
-    .line 88
+    .line 73
     .local p0, "this":Lrx/internal/util/ObjectPool;, "Lrx/internal/util/ObjectPool<TT;>;"
     iget-object v1, p0, Lrx/internal/util/ObjectPool;->pool:Ljava/util/Queue;
 
@@ -193,12 +189,12 @@
     .local v0, "object":Ljava/lang/Object;, "TT;"
     if-nez v0, :cond_c
 
-    .line 89
+    .line 74
     invoke-virtual {p0}, Lrx/internal/util/ObjectPool;->createObject()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 92
+    .line 77
     :cond_c
     return-object v0
 .end method
@@ -220,16 +216,16 @@
     .end annotation
 
     .prologue
-    .line 102
+    .line 87
     .local p0, "this":Lrx/internal/util/ObjectPool;, "Lrx/internal/util/ObjectPool<TT;>;"
     .local p1, "object":Ljava/lang/Object;, "TT;"
     if-nez p1, :cond_3
 
-    .line 107
+    .line 92
     :goto_2
     return-void
 
-    .line 106
+    .line 91
     :cond_3
     iget-object v0, p0, Lrx/internal/util/ObjectPool;->pool:Ljava/util/Queue;
 
@@ -239,15 +235,79 @@
 .end method
 
 .method public shutdown()V
-    .registers 2
+    .registers 4
 
     .prologue
-    .line 113
+    .line 99
     .local p0, "this":Lrx/internal/util/ObjectPool;, "Lrx/internal/util/ObjectPool<TT;>;"
-    iget-object v0, p0, Lrx/internal/util/ObjectPool;->schedulerWorker:Lrx/Scheduler$Worker;
+    iget-object v1, p0, Lrx/internal/util/ObjectPool;->schedulerWorker:Ljava/util/concurrent/atomic/AtomicReference;
 
+    const/4 v2, 0x0
+
+    invoke-virtual {v1, v2}, Ljava/util/concurrent/atomic/AtomicReference;->getAndSet(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lrx/Scheduler$Worker;
+
+    .line 100
+    .local v0, "w":Lrx/Scheduler$Worker;
+    if-eqz v0, :cond_e
+
+    .line 101
     invoke-virtual {v0}, Lrx/Scheduler$Worker;->unsubscribe()V
 
-    .line 114
+    .line 103
+    :cond_e
     return-void
+.end method
+
+.method public start()V
+    .registers 8
+
+    .prologue
+    .line 107
+    .local p0, "this":Lrx/internal/util/ObjectPool;, "Lrx/internal/util/ObjectPool<TT;>;"
+    invoke-static {}, Lrx/schedulers/Schedulers;->computation()Lrx/Scheduler;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lrx/Scheduler;->createWorker()Lrx/Scheduler$Worker;
+
+    move-result-object v0
+
+    .line 108
+    .local v0, "w":Lrx/Scheduler$Worker;
+    iget-object v1, p0, Lrx/internal/util/ObjectPool;->schedulerWorker:Ljava/util/concurrent/atomic/AtomicReference;
+
+    const/4 v2, 0x0
+
+    invoke-virtual {v1, v2, v0}, Ljava/util/concurrent/atomic/AtomicReference;->compareAndSet(Ljava/lang/Object;Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_20
+
+    .line 109
+    new-instance v1, Lrx/internal/util/ObjectPool$1;
+
+    invoke-direct {v1, p0}, Lrx/internal/util/ObjectPool$1;-><init>(Lrx/internal/util/ObjectPool;)V
+
+    iget-wide v2, p0, Lrx/internal/util/ObjectPool;->validationInterval:J
+
+    iget-wide v4, p0, Lrx/internal/util/ObjectPool;->validationInterval:J
+
+    sget-object v6, Ljava/util/concurrent/TimeUnit;->SECONDS:Ljava/util/concurrent/TimeUnit;
+
+    invoke-virtual/range {v0 .. v6}, Lrx/Scheduler$Worker;->schedulePeriodically(Lrx/functions/Action0;JJLjava/util/concurrent/TimeUnit;)Lrx/Subscription;
+
+    .line 132
+    :goto_1f
+    return-void
+
+    .line 130
+    :cond_20
+    invoke-virtual {v0}, Lrx/Scheduler$Worker;->unsubscribe()V
+
+    goto :goto_1f
 .end method

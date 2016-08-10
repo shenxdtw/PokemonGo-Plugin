@@ -24,7 +24,7 @@
 
 
 # instance fields
-.field private final array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
+.field final array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/concurrent/atomic/AtomicReferenceArray",
@@ -33,7 +33,7 @@
     .end annotation
 .end field
 
-.field private final next:Ljava/util/concurrent/atomic/AtomicReference;
+.field final next:Ljava/util/concurrent/atomic/AtomicReference;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/concurrent/atomic/AtomicReference",
@@ -46,11 +46,11 @@
 
 
 # direct methods
-.method private constructor <init>()V
+.method constructor <init>()V
     .registers 3
 
     .prologue
-    .line 485
+    .line 489
     .local p0, "this":Lrx/internal/util/IndexedRingBuffer$ElementSection;, "Lrx/internal/util/IndexedRingBuffer$ElementSection<TE;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -70,41 +70,8 @@
 
     iput-object v0, p0, Lrx/internal/util/IndexedRingBuffer$ElementSection;->next:Ljava/util/concurrent/atomic/AtomicReference;
 
+    .line 490
     return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/internal/util/IndexedRingBuffer$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/internal/util/IndexedRingBuffer$1;
-
-    .prologue
-    .line 485
-    .local p0, "this":Lrx/internal/util/IndexedRingBuffer$ElementSection;, "Lrx/internal/util/IndexedRingBuffer$ElementSection<TE;>;"
-    invoke-direct {p0}, Lrx/internal/util/IndexedRingBuffer$ElementSection;-><init>()V
-
-    return-void
-.end method
-
-.method static synthetic access$300(Lrx/internal/util/IndexedRingBuffer$ElementSection;)Ljava/util/concurrent/atomic/AtomicReferenceArray;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/util/IndexedRingBuffer$ElementSection;
-
-    .prologue
-    .line 485
-    iget-object v0, p0, Lrx/internal/util/IndexedRingBuffer$ElementSection;->array:Ljava/util/concurrent/atomic/AtomicReferenceArray;
-
-    return-object v0
-.end method
-
-.method static synthetic access$400(Lrx/internal/util/IndexedRingBuffer$ElementSection;)Ljava/util/concurrent/atomic/AtomicReference;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/util/IndexedRingBuffer$ElementSection;
-
-    .prologue
-    .line 485
-    iget-object v0, p0, Lrx/internal/util/IndexedRingBuffer$ElementSection;->next:Ljava/util/concurrent/atomic/AtomicReference;
-
-    return-object v0
 .end method
 
 
@@ -120,7 +87,7 @@
     .end annotation
 
     .prologue
-    .line 490
+    .line 493
     .local p0, "this":Lrx/internal/util/IndexedRingBuffer$ElementSection;, "Lrx/internal/util/IndexedRingBuffer$ElementSection<TE;>;"
     iget-object v1, p0, Lrx/internal/util/IndexedRingBuffer$ElementSection;->next:Ljava/util/concurrent/atomic/AtomicReference;
 
@@ -130,7 +97,7 @@
 
     if-eqz v1, :cond_11
 
-    .line 491
+    .line 494
     iget-object v1, p0, Lrx/internal/util/IndexedRingBuffer$ElementSection;->next:Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
@@ -139,17 +106,17 @@
 
     check-cast v1, Lrx/internal/util/IndexedRingBuffer$ElementSection;
 
-    .line 499
+    .line 502
     :goto_10
     return-object v1
 
-    .line 493
+    .line 496
     :cond_11
     new-instance v0, Lrx/internal/util/IndexedRingBuffer$ElementSection;
 
     invoke-direct {v0}, Lrx/internal/util/IndexedRingBuffer$ElementSection;-><init>()V
 
-    .line 494
+    .line 497
     .local v0, "newSection":Lrx/internal/util/IndexedRingBuffer$ElementSection;, "Lrx/internal/util/IndexedRingBuffer$ElementSection<TE;>;"
     iget-object v1, p0, Lrx/internal/util/IndexedRingBuffer$ElementSection;->next:Ljava/util/concurrent/atomic/AtomicReference;
 
@@ -163,10 +130,10 @@
 
     move-object v1, v0
 
-    .line 496
+    .line 499
     goto :goto_10
 
-    .line 499
+    .line 502
     :cond_21
     iget-object v1, p0, Lrx/internal/util/IndexedRingBuffer$ElementSection;->next:Ljava/util/concurrent/atomic/AtomicReference;
 

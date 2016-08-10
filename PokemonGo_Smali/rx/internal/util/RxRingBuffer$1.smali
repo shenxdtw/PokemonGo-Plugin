@@ -30,7 +30,7 @@
     .registers 1
 
     .prologue
-    .line 278
+    .line 280
     invoke-direct {p0}, Lrx/internal/util/ObjectPool;-><init>()V
 
     return-void
@@ -42,7 +42,7 @@
     .registers 2
 
     .prologue
-    .line 278
+    .line 280
     invoke-virtual {p0}, Lrx/internal/util/RxRingBuffer$1;->createObject()Lrx/internal/util/unsafe/SpscArrayQueue;
 
     move-result-object v0
@@ -63,7 +63,7 @@
     .end annotation
 
     .prologue
-    .line 282
+    .line 284
     new-instance v0, Lrx/internal/util/unsafe/SpscArrayQueue;
 
     sget v1, Lrx/internal/util/RxRingBuffer;->SIZE:I

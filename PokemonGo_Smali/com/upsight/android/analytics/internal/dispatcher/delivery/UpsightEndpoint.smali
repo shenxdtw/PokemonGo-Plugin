@@ -52,9 +52,13 @@
 # instance fields
 .field private mEndpointAddress:Ljava/lang/String;
 
+.field private mGson:Lcom/google/gson/Gson;
+
+.field private mJsonParser:Lcom/google/gson/JsonParser;
+
 .field private mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
-.field private mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+.field private mRequestLoggingGson:Lcom/google/gson/Gson;
 
 .field private mSignatureVerifier:Lcom/upsight/android/analytics/internal/dispatcher/delivery/SignatureVerifier;
 
@@ -64,7 +68,7 @@
     .registers 2
 
     .prologue
-    .line 67
+    .line 68
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -90,30 +94,38 @@
     return-void
 .end method
 
-.method public constructor <init>(Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/delivery/SignatureVerifier;Lcom/fasterxml/jackson/databind/ObjectMapper;Lcom/upsight/android/logger/UpsightLogger;)V
-    .registers 5
+.method public constructor <init>(Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/delivery/SignatureVerifier;Lcom/google/gson/Gson;Lcom/google/gson/JsonParser;Lcom/google/gson/Gson;Lcom/upsight/android/logger/UpsightLogger;)V
+    .registers 7
     .param p1, "endpointAddress"    # Ljava/lang/String;
     .param p2, "signatureVerifier"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/SignatureVerifier;
-    .param p3, "mapper"    # Lcom/fasterxml/jackson/databind/ObjectMapper;
-    .param p4, "logger"    # Lcom/upsight/android/logger/UpsightLogger;
+    .param p3, "gson"    # Lcom/google/gson/Gson;
+    .param p4, "jsonParser"    # Lcom/google/gson/JsonParser;
+    .param p5, "requestLoggingGson"    # Lcom/google/gson/Gson;
+    .param p6, "logger"    # Lcom/upsight/android/logger/UpsightLogger;
 
     .prologue
-    .line 151
+    .line 163
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 152
+    .line 164
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mEndpointAddress:Ljava/lang/String;
 
-    .line 153
+    .line 165
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mSignatureVerifier:Lcom/upsight/android/analytics/internal/dispatcher/delivery/SignatureVerifier;
 
-    .line 154
-    iput-object p3, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .line 166
+    iput-object p3, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mGson:Lcom/google/gson/Gson;
 
-    .line 155
-    iput-object p4, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+    .line 167
+    iput-object p4, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mJsonParser:Lcom/google/gson/JsonParser;
 
-    .line 156
+    .line 168
+    iput-object p5, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mRequestLoggingGson:Lcom/google/gson/Gson;
+
+    .line 169
+    iput-object p6, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    .line 170
     return-void
 .end method
 
@@ -128,7 +140,7 @@
     .end annotation
 
     .prologue
-    .line 238
+    .line 259
     if-eqz p2, :cond_7
 
     invoke-static {p1}, Lcom/upsight/android/internal/util/GzipHelper;->compress(Ljava/lang/String;)[B
@@ -156,10 +168,10 @@
     .end annotation
 
     .prologue
-    .line 250
+    .line 271
     const-string v3, ""
 
-    .line 252
+    .line 273
     .local v3, "respBody":Ljava/lang/String;
     const-string v9, "X-US-Ref-Id"
 
@@ -167,7 +179,7 @@
 
     move-result-object v2
 
-    .line 253
+    .line 274
     .local v2, "refId":Ljava/lang/String;
     const-string v9, "X-US-DIGEST"
 
@@ -175,7 +187,7 @@
 
     move-result-object v4
 
-    .line 254
+    .line 275
     .local v4, "signature":Ljava/lang/String;
     invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -189,21 +201,21 @@
 
     if-nez v9, :cond_54
 
-    .line 255
+    .line 276
     invoke-virtual {p1}, Ljava/net/HttpURLConnection;->getInputStream()Ljava/io/InputStream;
 
     move-result-object v1
 
-    .line 256
+    .line 277
     .local v1, "is":Ljava/io/InputStream;
     if-eqz v1, :cond_54
 
-    .line 257
+    .line 278
     invoke-static {v1}, Lorg/apache/commons/io/IOUtils;->toString(Ljava/io/InputStream;)Ljava/lang/String;
 
     move-result-object v8
 
-    .line 258
+    .line 279
     .local v8, "unverifiedRespBody":Ljava/lang/String;
     invoke-static {v8}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -211,36 +223,40 @@
 
     if-nez v9, :cond_54
 
-    .line 260
+    .line 281
     new-instance v9, Ljava/lang/StringBuilder;
 
     invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
 
+    .line 282
     invoke-virtual {v9, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v9
 
     const-string v10, ":"
 
+    .line 283
     invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v9
 
+    .line 284
     invoke-virtual {v9, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v9
 
+    .line 285
     invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v7
 
-    .line 265
+    .line 286
     .local v7, "signedMessage":Ljava/lang/String;
     invoke-virtual {v7}, Ljava/lang/String;->getBytes()[B
 
     move-result-object v6
 
-    .line 269
+    .line 290
     .local v6, "signedBytes":[B
     const/16 v9, 0x8
 
@@ -249,7 +265,7 @@
 
     move-result-object v5
 
-    .line 272
+    .line 293
     .local v5, "signatureBytes":[B
     iget-object v9, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mSignatureVerifier:Lcom/upsight/android/analytics/internal/dispatcher/delivery/SignatureVerifier;
 
@@ -261,10 +277,10 @@
 
     if-eqz v9, :cond_54
 
-    .line 274
+    .line 295
     move-object v3, v8
 
-    .line 284
+    .line 305
     .end local v1    # "is":Ljava/io/InputStream;
     .end local v5    # "signatureBytes":[B
     .end local v6    # "signedBytes":[B
@@ -274,7 +290,7 @@
     :goto_54
     return-object v3
 
-    .line 276
+    .line 297
     .restart local v1    # "is":Ljava/io/InputStream;
     .restart local v6    # "signedBytes":[B
     .restart local v7    # "signedMessage":Ljava/lang/String;
@@ -282,7 +298,7 @@
     :catch_55
     move-exception v0
 
-    .line 277
+    .line 298
     .local v0, "e":Ljava/lang/IllegalArgumentException;
     iget-object v9, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
@@ -318,7 +334,7 @@
 
 # virtual methods
 .method public send(Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;)Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint$Response;
-    .registers 14
+    .registers 16
     .param p1, "request"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -327,285 +343,322 @@
     .end annotation
 
     .prologue
-    .line 166
+    .line 180
     invoke-static {}, Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
-
-    move-result-object v8
-
-    invoke-virtual {v8}, Ljava/util/UUID;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    .line 168
-    .local v2, "refId":Ljava/lang/String;
-    const/4 v7, 0x0
-
-    .line 170
-    .local v7, "urlConnection":Ljava/net/HttpURLConnection;
-    :try_start_9
-    iget-object v8, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
-
-    invoke-virtual {v8, p1}, Lcom/fasterxml/jackson/databind/ObjectMapper;->writeValueAsString(Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v3
-
-    .line 172
-    .local v3, "requestBody":Ljava/lang/String;
-    new-instance v8, Ljava/lang/StringBuilder;
-
-    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v9, "POSTING:       "
-
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v8
-
-    invoke-virtual {v8, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v8
-
-    const-string v9, "\nTO:            "
-
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v8
-
-    iget-object v9, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mEndpointAddress:Ljava/lang/String;
-
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v8
-
-    const-string v9, "\nREQUEST BODY:  "
-
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v8
-
-    invoke-virtual {v8, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    .line 179
-    .local v5, "sb":Ljava/lang/StringBuilder;
-    iget-object v8, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
-
-    const-string v9, "Upsight"
-
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v10
 
-    const/4 v11, 0x0
-
-    new-array v11, v11, [Ljava/lang/Object;
-
-    invoke-interface {v8, v9, v10, v11}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
-
-    .line 181
-    const/4 v8, 0x0
-
-    invoke-direct {p0, v3, v8}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->getRequestBodyBytes(Ljava/lang/String;Z)[B
-
-    move-result-object v1
-
-    .line 183
-    .local v1, "body":[B
-    new-instance v8, Ljava/net/URL;
-
-    iget-object v9, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mEndpointAddress:Ljava/lang/String;
-
-    invoke-direct {v8, v9}, Ljava/net/URL;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v8}, Ljava/net/URL;->openConnection()Ljava/net/URLConnection;
-
-    move-result-object v8
-
-    move-object v0, v8
-
-    check-cast v0, Ljava/net/HttpURLConnection;
-
-    move-object v7, v0
-
-    .line 185
-    const-string v8, "POST"
-
-    invoke-virtual {v7, v8}, Ljava/net/HttpURLConnection;->setRequestMethod(Ljava/lang/String;)V
-
-    .line 187
-    const-string v8, "X-US-Ref-Id"
-
-    invoke-virtual {v7, v8, v2}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 188
-    const-string v8, "Content-Type"
-
-    const-string v9, "application/json"
-
-    invoke-virtual {v7, v8, v9}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 192
-    const-string v8, "User-Agent"
-
-    sget-object v9, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->USER_AGENT_ANDROID:Ljava/lang/String;
-
-    invoke-virtual {v7, v8, v9}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 193
-    const-string v8, "Connection"
-
-    const-string v9, "close"
-
-    invoke-virtual {v7, v8, v9}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 195
-    const/16 v8, 0x7530
-
-    invoke-virtual {v7, v8}, Ljava/net/HttpURLConnection;->setConnectTimeout(I)V
-
-    .line 196
-    const/16 v8, 0x7530
-
-    invoke-virtual {v7, v8}, Ljava/net/HttpURLConnection;->setReadTimeout(I)V
-
-    .line 198
-    const/4 v8, 0x1
-
-    invoke-virtual {v7, v8}, Ljava/net/HttpURLConnection;->setDoInput(Z)V
-
-    .line 199
-    const/4 v8, 0x1
-
-    invoke-virtual {v7, v8}, Ljava/net/HttpURLConnection;->setDoOutput(Z)V
-
-    .line 200
-    array-length v8, v1
-
-    invoke-virtual {v7, v8}, Ljava/net/HttpURLConnection;->setFixedLengthStreamingMode(I)V
-
-    .line 202
-    invoke-virtual {v7}, Ljava/net/HttpURLConnection;->getOutputStream()Ljava/io/OutputStream;
-
-    move-result-object v8
-
-    invoke-static {v1, v8}, Lorg/apache/commons/io/IOUtils;->write([BLjava/io/OutputStream;)V
-
-    .line 204
-    const/4 v4, 0x0
-
-    .line 205
-    .local v4, "respBody":Ljava/lang/String;
-    invoke-virtual {v7}, Ljava/net/HttpURLConnection;->getResponseCode()I
-
-    move-result v6
-
-    .line 207
-    .local v6, "statusCode":I
-    new-instance v8, Ljava/lang/StringBuilder;
-
-    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v9, "RECEIVING:     "
-
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v8
-
-    invoke-virtual {v8, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v8
-
-    const-string v9, "\nSTATUS CODE:   "
-
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v8
-
-    invoke-virtual {v8, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    .line 213
-    const/16 v8, 0xc8
-
-    if-ne v6, v8, :cond_c9
-
-    .line 214
-    invoke-direct {p0, v7}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->getVerifiedResponse(Ljava/net/HttpURLConnection;)Ljava/lang/String;
+    invoke-virtual {v10}, Ljava/util/UUID;->toString()Ljava/lang/String;
 
     move-result-object v4
 
-    .line 215
-    const-string v8, "\nRESPONSE BODY: "
+    .line 182
+    .local v4, "refId":Ljava/lang/String;
+    const/4 v9, 0x0
 
-    invoke-virtual {v5, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .line 184
+    .local v9, "urlConnection":Ljava/net/HttpURLConnection;
+    :try_start_9
+    iget-object v10, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mGson:Lcom/google/gson/Gson;
 
-    move-result-object v9
+    invoke-virtual {v10, p1}, Lcom/google/gson/Gson;->toJson(Ljava/lang/Object;)Ljava/lang/String;
 
-    invoke-static {v4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+    move-result-object v5
 
-    move-result v8
+    .line 185
+    .local v5, "requestBody":Ljava/lang/String;
+    iget-object v10, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mRequestLoggingGson:Lcom/google/gson/Gson;
 
-    if-eqz v8, :cond_e2
+    invoke-virtual {v10, p1}, Lcom/google/gson/Gson;->toJson(Ljava/lang/Object;)Ljava/lang/String;
 
-    const-string v8, "[NONE]"
+    move-result-object v2
 
-    :goto_c6
-    invoke-virtual {v9, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .line 188
+    .local v2, "logRequestBody":Ljava/lang/String;
+    new-instance v10, Ljava/lang/StringBuilder;
 
-    .line 219
-    :cond_c9
-    iget-object v8, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+    invoke-direct {v10}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v9, "Upsight"
+    const-string v11, "POSTING:       "
 
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    .line 189
+    invoke-virtual {v10, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v10
 
-    const/4 v11, 0x0
+    .line 190
+    invoke-virtual {v10, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    new-array v11, v11, [Ljava/lang/Object;
+    move-result-object v10
 
-    invoke-interface {v8, v9, v10, v11}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    const-string v11, "\nTO:            "
 
-    .line 221
-    new-instance v8, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint$Response;
+    .line 191
+    invoke-virtual {v10, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-direct {v8, v6, v4}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint$Response;-><init>(ILjava/lang/String;)V
-    :try_end_dc
-    .catchall {:try_start_9 .. :try_end_dc} :catchall_e4
+    move-result-object v10
 
-    .line 223
-    if-eqz v7, :cond_e1
+    iget-object v11, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mEndpointAddress:Ljava/lang/String;
 
-    .line 224
-    invoke-virtual {v7}, Ljava/net/HttpURLConnection;->disconnect()V
+    .line 192
+    invoke-virtual {v10, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    :cond_e1
-    return-object v8
+    move-result-object v10
 
-    :cond_e2
-    move-object v8, v4
+    const-string v11, "\nREQUEST BODY:  "
+
+    .line 193
+    invoke-virtual {v10, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v10
+
+    .line 194
+    invoke-virtual {v10, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    .line 195
+    .local v7, "sb":Ljava/lang/StringBuilder;
+    iget-object v10, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    const-string v11, "Upsight"
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v12
+
+    const/4 v13, 0x0
+
+    new-array v13, v13, [Ljava/lang/Object;
+
+    invoke-interface {v10, v11, v12, v13}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 197
+    const/4 v10, 0x0
+
+    invoke-direct {p0, v5, v10}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->getRequestBodyBytes(Ljava/lang/String;Z)[B
+
+    move-result-object v1
+
+    .line 199
+    .local v1, "body":[B
+    new-instance v10, Ljava/net/URL;
+
+    iget-object v11, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mEndpointAddress:Ljava/lang/String;
+
+    invoke-direct {v10, v11}, Ljava/net/URL;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v10}, Ljava/net/URL;->openConnection()Ljava/net/URLConnection;
+
+    move-result-object v10
+
+    move-object v0, v10
+
+    check-cast v0, Ljava/net/HttpURLConnection;
+
+    move-object v9, v0
+
+    .line 201
+    const-string v10, "POST"
+
+    invoke-virtual {v9, v10}, Ljava/net/HttpURLConnection;->setRequestMethod(Ljava/lang/String;)V
+
+    .line 203
+    const-string v10, "X-US-Ref-Id"
+
+    invoke-virtual {v9, v10, v4}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 204
+    const-string v10, "Content-Type"
+
+    const-string v11, "application/json"
+
+    invoke-virtual {v9, v10, v11}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 208
+    const-string v10, "User-Agent"
+
+    sget-object v11, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->USER_AGENT_ANDROID:Ljava/lang/String;
+
+    invoke-virtual {v9, v10, v11}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 209
+    const-string v10, "Connection"
+
+    const-string v11, "close"
+
+    invoke-virtual {v9, v10, v11}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 211
+    const/16 v10, 0x7530
+
+    invoke-virtual {v9, v10}, Ljava/net/HttpURLConnection;->setConnectTimeout(I)V
+
+    .line 212
+    const/16 v10, 0x7530
+
+    invoke-virtual {v9, v10}, Ljava/net/HttpURLConnection;->setReadTimeout(I)V
+
+    .line 214
+    const/4 v10, 0x1
+
+    invoke-virtual {v9, v10}, Ljava/net/HttpURLConnection;->setDoInput(Z)V
 
     .line 215
-    goto :goto_c6
+    const/4 v10, 0x1
+
+    invoke-virtual {v9, v10}, Ljava/net/HttpURLConnection;->setDoOutput(Z)V
+
+    .line 216
+    array-length v10, v1
+
+    invoke-virtual {v9, v10}, Ljava/net/HttpURLConnection;->setFixedLengthStreamingMode(I)V
+
+    .line 218
+    invoke-virtual {v9}, Ljava/net/HttpURLConnection;->getOutputStream()Ljava/io/OutputStream;
+
+    move-result-object v10
+
+    invoke-static {v1, v10}, Lorg/apache/commons/io/IOUtils;->write([BLjava/io/OutputStream;)V
+
+    .line 220
+    const/4 v6, 0x0
+
+    .line 221
+    .local v6, "respBody":Ljava/lang/String;
+    invoke-virtual {v9}, Ljava/net/HttpURLConnection;->getResponseCode()I
+
+    move-result v8
 
     .line 223
-    .end local v1    # "body":[B
-    .end local v3    # "requestBody":Ljava/lang/String;
-    .end local v4    # "respBody":Ljava/lang/String;
-    .end local v5    # "sb":Ljava/lang/StringBuilder;
-    .end local v6    # "statusCode":I
-    :catchall_e4
-    move-exception v8
+    .local v8, "statusCode":I
+    new-instance v10, Ljava/lang/StringBuilder;
 
-    if-eqz v7, :cond_ea
+    invoke-direct {v10}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v11, "RECEIVING:     "
 
     .line 224
-    invoke-virtual {v7}, Ljava/net/HttpURLConnection;->disconnect()V
+    invoke-virtual {v10, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    :cond_ea
-    throw v8
+    move-result-object v10
+
+    .line 225
+    invoke-virtual {v10, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v10
+
+    const-string v11, "\nSTATUS CODE:   "
+
+    .line 226
+    invoke-virtual {v10, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v10
+
+    .line 227
+    invoke-virtual {v10, v8}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    .line 229
+    const/16 v10, 0xc8
+
+    if-ne v8, v10, :cond_cf
+
+    .line 230
+    invoke-direct {p0, v9}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->getVerifiedResponse(Ljava/net/HttpURLConnection;)Ljava/lang/String;
+
+    move-result-object v6
+
+    .line 233
+    invoke-static {v6}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_e8
+
+    const-string v3, "[NONE]"
+
+    .line 236
+    .local v3, "logRespBody":Ljava/lang/String;
+    :goto_c6
+    const-string v10, "\nRESPONSE BODY: "
+
+    invoke-virtual {v7, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v10
+
+    .line 237
+    invoke-virtual {v10, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 240
+    .end local v3    # "logRespBody":Ljava/lang/String;
+    :cond_cf
+    iget-object v10, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    const-string v11, "Upsight"
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v12
+
+    const/4 v13, 0x0
+
+    new-array v13, v13, [Ljava/lang/Object;
+
+    invoke-interface {v10, v11, v12, v13}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 242
+    new-instance v10, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint$Response;
+
+    invoke-direct {v10, v8, v6}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint$Response;-><init>(ILjava/lang/String;)V
+    :try_end_e2
+    .catchall {:try_start_9 .. :try_end_e2} :catchall_f5
+
+    .line 244
+    if-eqz v9, :cond_e7
+
+    .line 245
+    invoke-virtual {v9}, Ljava/net/HttpURLConnection;->disconnect()V
+
+    :cond_e7
+    return-object v10
+
+    .line 233
+    :cond_e8
+    :try_start_e8
+    iget-object v10, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mRequestLoggingGson:Lcom/google/gson/Gson;
+
+    iget-object v11, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint;->mJsonParser:Lcom/google/gson/JsonParser;
+
+    .line 235
+    invoke-virtual {v11, v6}, Lcom/google/gson/JsonParser;->parse(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+
+    move-result-object v11
+
+    invoke-virtual {v10, v11}, Lcom/google/gson/Gson;->toJson(Lcom/google/gson/JsonElement;)Ljava/lang/String;
+    :try_end_f3
+    .catchall {:try_start_e8 .. :try_end_f3} :catchall_f5
+
+    move-result-object v3
+
+    goto :goto_c6
+
+    .line 244
+    .end local v1    # "body":[B
+    .end local v2    # "logRequestBody":Ljava/lang/String;
+    .end local v5    # "requestBody":Ljava/lang/String;
+    .end local v6    # "respBody":Ljava/lang/String;
+    .end local v7    # "sb":Ljava/lang/StringBuilder;
+    .end local v8    # "statusCode":I
+    :catchall_f5
+    move-exception v10
+
+    if-eqz v9, :cond_fb
+
+    .line 245
+    invoke-virtual {v9}, Ljava/net/HttpURLConnection;->disconnect()V
+
+    :cond_fb
+    throw v10
 .end method

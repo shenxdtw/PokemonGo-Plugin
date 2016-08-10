@@ -32,7 +32,7 @@
 
 
 # instance fields
-.field private final count:J
+.field final count:J
 
 
 # direct methods
@@ -49,17 +49,6 @@
 
     .line 74
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OnSubscribeRedo$RedoFinite;)J
-    .registers 3
-    .param p0, "x0"    # Lrx/internal/operators/OnSubscribeRedo$RedoFinite;
-
-    .prologue
-    .line 69
-    iget-wide v0, p0, Lrx/internal/operators/OnSubscribeRedo$RedoFinite;->count:J
-
-    return-wide v0
 .end method
 
 

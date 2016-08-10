@@ -31,7 +31,7 @@
 
 
 # direct methods
-.method private constructor <init>(Lrx/internal/schedulers/ScheduledAction;Ljava/util/concurrent/Future;)V
+.method constructor <init>(Lrx/internal/schedulers/ScheduledAction;Ljava/util/concurrent/Future;)V
     .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -52,19 +52,6 @@
     iput-object p2, p0, Lrx/internal/schedulers/ScheduledAction$FutureCompleter;->f:Ljava/util/concurrent/Future;
 
     .line 136
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/internal/schedulers/ScheduledAction;Ljava/util/concurrent/Future;Lrx/internal/schedulers/ScheduledAction$1;)V
-    .registers 4
-    .param p1, "x0"    # Lrx/internal/schedulers/ScheduledAction;
-    .param p2, "x1"    # Ljava/util/concurrent/Future;
-    .param p3, "x2"    # Lrx/internal/schedulers/ScheduledAction$1;
-
-    .prologue
-    .line 131
-    invoke-direct {p0, p1, p2}, Lrx/internal/schedulers/ScheduledAction$FutureCompleter;-><init>(Lrx/internal/schedulers/ScheduledAction;Ljava/util/concurrent/Future;)V
-
     return-void
 .end method
 

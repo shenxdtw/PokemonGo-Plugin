@@ -40,14 +40,14 @@
     .end annotation
 
     .prologue
-    .line 93
+    .line 91
     .local p1, "f":Ljava/util/concurrent/Future;, "Ljava/util/concurrent/Future<*>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 94
+    .line 92
     iput-object p1, p0, Lrx/subscriptions/Subscriptions$FutureSubscription;->f:Ljava/util/concurrent/Future;
 
-    .line 95
+    .line 93
     return-void
 .end method
 
@@ -57,7 +57,7 @@
     .registers 2
 
     .prologue
-    .line 103
+    .line 101
     iget-object v0, p0, Lrx/subscriptions/Subscriptions$FutureSubscription;->f:Ljava/util/concurrent/Future;
 
     invoke-interface {v0}, Ljava/util/concurrent/Future;->isCancelled()Z
@@ -71,13 +71,13 @@
     .registers 3
 
     .prologue
-    .line 98
+    .line 96
     iget-object v0, p0, Lrx/subscriptions/Subscriptions$FutureSubscription;->f:Ljava/util/concurrent/Future;
 
     const/4 v1, 0x1
 
     invoke-interface {v0, v1}, Ljava/util/concurrent/Future;->cancel(Z)Z
 
-    .line 99
+    .line 97
     return-void
 .end method

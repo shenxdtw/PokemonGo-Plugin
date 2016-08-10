@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue;->modifyValue(Lcom/upsight/android/managedvariables/internal/type/UxmContent;Ljava/lang/Class;Lcom/fasterxml/jackson/databind/JsonNode;Lcom/fasterxml/jackson/databind/JsonNode;)V
+    value = Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue;->modifyValue(Lcom/upsight/android/managedvariables/internal/type/UxmContent;Ljava/lang/Class;Lcom/google/gson/JsonArray;Lcom/google/gson/JsonArray;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -21,7 +21,7 @@
         "Ljava/lang/Object;",
         "Lrx/functions/Func1",
         "<",
-        "Lcom/fasterxml/jackson/databind/node/ObjectNode;",
+        "Lcom/google/gson/JsonObject;",
         "Ljava/lang/Boolean;",
         ">;"
     }
@@ -33,12 +33,13 @@
 
 .field final synthetic val$propertyName:Ljava/lang/String;
 
-.field final synthetic val$propertyValue:Lcom/fasterxml/jackson/databind/JsonNode;
+.field final synthetic val$propertyValue:Lcom/google/gson/JsonElement;
 
 
 # direct methods
-.method constructor <init>(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)V
+.method constructor <init>(Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue;Ljava/lang/String;Lcom/google/gson/JsonElement;)V
     .registers 4
+    .param p1, "this$0"    # Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue;
 
     .prologue
     .line 280
@@ -46,7 +47,7 @@
 
     iput-object p2, p0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$2;->val$propertyName:Ljava/lang/String;
 
-    iput-object p3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$2;->val$propertyValue:Lcom/fasterxml/jackson/databind/JsonNode;
+    iput-object p3, p0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$2;->val$propertyValue:Lcom/google/gson/JsonElement;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -55,21 +56,25 @@
 
 
 # virtual methods
-.method public call(Lcom/fasterxml/jackson/databind/node/ObjectNode;)Ljava/lang/Boolean;
+.method public call(Lcom/google/gson/JsonObject;)Ljava/lang/Boolean;
     .registers 4
-    .param p1, "model"    # Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .param p1, "model"    # Lcom/google/gson/JsonObject;
 
     .prologue
     .line 283
-    iget-object v0, p0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$2;->val$propertyName:Ljava/lang/String;
-
-    invoke-virtual {p1, v0}, Lcom/fasterxml/jackson/databind/node/ObjectNode;->path(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {p1}, Lcom/google/gson/JsonObject;->getAsJsonObject()Lcom/google/gson/JsonObject;
 
     move-result-object v0
 
-    iget-object v1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$2;->val$propertyValue:Lcom/fasterxml/jackson/databind/JsonNode;
+    iget-object v1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$2;->val$propertyName:Ljava/lang/String;
 
-    invoke-virtual {v0, v1}, Lcom/fasterxml/jackson/databind/JsonNode;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v0, v1}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$2;->val$propertyValue:Lcom/google/gson/JsonElement;
+
+    invoke-virtual {v0, v1}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
@@ -82,14 +87,12 @@
 
 .method public bridge synthetic call(Ljava/lang/Object;)Ljava/lang/Object;
     .registers 3
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 280
-    check-cast p1, Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    check-cast p1, Lcom/google/gson/JsonObject;
 
-    .end local p1    # "x0":Ljava/lang/Object;
-    invoke-virtual {p0, p1}, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$2;->call(Lcom/fasterxml/jackson/databind/node/ObjectNode;)Ljava/lang/Boolean;
+    invoke-virtual {p0, p1}, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$ModifyValue$2;->call(Lcom/google/gson/JsonObject;)Ljava/lang/Boolean;
 
     move-result-object v0
 

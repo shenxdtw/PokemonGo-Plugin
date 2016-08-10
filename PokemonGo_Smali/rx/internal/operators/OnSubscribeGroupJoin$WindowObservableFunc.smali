@@ -62,18 +62,18 @@
     .end annotation
 
     .prologue
-    .line 345
+    .line 338
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc;, "Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc<TT;>;"
     .local p1, "underlying":Lrx/Observable;, "Lrx/Observable<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 346
+    .line 339
     iput-object p2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc;->refCount:Lrx/subscriptions/RefCountSubscription;
 
-    .line 347
+    .line 340
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc;->underlying:Lrx/Observable;
 
-    .line 348
+    .line 341
     return-void
 .end method
 
@@ -84,7 +84,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 341
+    .line 334
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc;, "Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -105,7 +105,7 @@
     .end annotation
 
     .prologue
-    .line 352
+    .line 345
     .local p0, "this":Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc;, "Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc<TT;>;"
     .local p1, "t1":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc;->refCount:Lrx/subscriptions/RefCountSubscription;
@@ -114,21 +114,21 @@
 
     move-result-object v0
 
-    .line 353
+    .line 346
     .local v0, "ref":Lrx/Subscription;
     new-instance v1, Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc$WindowSubscriber;
 
     invoke-direct {v1, p0, p1, v0}, Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc$WindowSubscriber;-><init>(Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc;Lrx/Subscriber;Lrx/Subscription;)V
 
-    .line 354
+    .line 347
     .local v1, "wo":Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc$WindowSubscriber;, "Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc<TT;>.WindowSubscriber;"
     invoke-virtual {v1, v0}, Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc$WindowSubscriber;->add(Lrx/Subscription;)V
 
-    .line 356
+    .line 349
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeGroupJoin$WindowObservableFunc;->underlying:Lrx/Observable;
 
     invoke-virtual {v2, v1}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    .line 357
+    .line 350
     return-void
 .end method

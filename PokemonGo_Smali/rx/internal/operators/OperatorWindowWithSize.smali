@@ -9,9 +9,9 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/internal/operators/OperatorWindowWithSize$CountedSubject;,
-        Lrx/internal/operators/OperatorWindowWithSize$InexactSubscriber;,
-        Lrx/internal/operators/OperatorWindowWithSize$ExactSubscriber;
+        Lrx/internal/operators/OperatorWindowWithSize$WindowOverlap;,
+        Lrx/internal/operators/OperatorWindowWithSize$WindowSkip;,
+        Lrx/internal/operators/OperatorWindowWithSize$WindowExact;
     }
 .end annotation
 
@@ -42,17 +42,17 @@
     .param p2, "skip"    # I
 
     .prologue
-    .line 43
+    .line 45
     .local p0, "this":Lrx/internal/operators/OperatorWindowWithSize;, "Lrx/internal/operators/OperatorWindowWithSize<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 44
+    .line 46
     iput p1, p0, Lrx/internal/operators/OperatorWindowWithSize;->size:I
 
-    .line 45
+    .line 47
     iput p2, p0, Lrx/internal/operators/OperatorWindowWithSize;->skip:I
 
-    .line 46
+    .line 48
     return-void
 .end method
 
@@ -63,7 +63,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 39
+    .line 41
     .local p0, "this":Lrx/internal/operators/OperatorWindowWithSize;, "Lrx/internal/operators/OperatorWindowWithSize<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -76,7 +76,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)Lrx/Subscriber;
-    .registers 6
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -90,41 +90,101 @@
     .end annotation
 
     .prologue
-    .line 50
+    .line 52
     .local p0, "this":Lrx/internal/operators/OperatorWindowWithSize;, "Lrx/internal/operators/OperatorWindowWithSize<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-Lrx/Observable<TT;>;>;"
-    iget v2, p0, Lrx/internal/operators/OperatorWindowWithSize;->skip:I
+    iget v3, p0, Lrx/internal/operators/OperatorWindowWithSize;->skip:I
+
+    iget v4, p0, Lrx/internal/operators/OperatorWindowWithSize;->size:I
+
+    if-ne v3, v4, :cond_1a
+
+    .line 53
+    new-instance v0, Lrx/internal/operators/OperatorWindowWithSize$WindowExact;
 
     iget v3, p0, Lrx/internal/operators/OperatorWindowWithSize;->size:I
 
-    if-ne v2, v3, :cond_f
-
-    .line 51
-    new-instance v0, Lrx/internal/operators/OperatorWindowWithSize$ExactSubscriber;
-
-    invoke-direct {v0, p0, p1}, Lrx/internal/operators/OperatorWindowWithSize$ExactSubscriber;-><init>(Lrx/internal/operators/OperatorWindowWithSize;Lrx/Subscriber;)V
-
-    .line 52
-    .local v0, "e":Lrx/internal/operators/OperatorWindowWithSize$ExactSubscriber;, "Lrx/internal/operators/OperatorWindowWithSize<TT;>.ExactSubscriber;"
-    invoke-virtual {v0}, Lrx/internal/operators/OperatorWindowWithSize$ExactSubscriber;->init()V
-
-    .line 57
-    .end local v0    # "e":Lrx/internal/operators/OperatorWindowWithSize$ExactSubscriber;, "Lrx/internal/operators/OperatorWindowWithSize<TT;>.ExactSubscriber;"
-    :goto_e
-    return-object v0
+    invoke-direct {v0, p1, v3}, Lrx/internal/operators/OperatorWindowWithSize$WindowExact;-><init>(Lrx/Subscriber;I)V
 
     .line 55
-    :cond_f
-    new-instance v1, Lrx/internal/operators/OperatorWindowWithSize$InexactSubscriber;
+    .local v0, "parent":Lrx/internal/operators/OperatorWindowWithSize$WindowExact;, "Lrx/internal/operators/OperatorWindowWithSize$WindowExact<TT;>;"
+    iget-object v3, v0, Lrx/internal/operators/OperatorWindowWithSize$WindowExact;->cancel:Lrx/Subscription;
 
-    invoke-direct {v1, p0, p1}, Lrx/internal/operators/OperatorWindowWithSize$InexactSubscriber;-><init>(Lrx/internal/operators/OperatorWindowWithSize;Lrx/Subscriber;)V
+    invoke-virtual {p1, v3}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
     .line 56
-    .local v1, "ie":Lrx/internal/operators/OperatorWindowWithSize$InexactSubscriber;, "Lrx/internal/operators/OperatorWindowWithSize<TT;>.InexactSubscriber;"
-    invoke-virtual {v1}, Lrx/internal/operators/OperatorWindowWithSize$InexactSubscriber;->init()V
+    invoke-virtual {v0}, Lrx/internal/operators/OperatorWindowWithSize$WindowExact;->createProducer()Lrx/Producer;
+
+    move-result-object v3
+
+    invoke-virtual {p1, v3}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+
+    .line 74
+    .end local v0    # "parent":Lrx/internal/operators/OperatorWindowWithSize$WindowExact;, "Lrx/internal/operators/OperatorWindowWithSize$WindowExact<TT;>;"
+    :goto_19
+    return-object v0
+
+    .line 60
+    :cond_1a
+    iget v3, p0, Lrx/internal/operators/OperatorWindowWithSize;->skip:I
+
+    iget v4, p0, Lrx/internal/operators/OperatorWindowWithSize;->size:I
+
+    if-le v3, v4, :cond_37
+
+    .line 61
+    new-instance v2, Lrx/internal/operators/OperatorWindowWithSize$WindowSkip;
+
+    iget v3, p0, Lrx/internal/operators/OperatorWindowWithSize;->size:I
+
+    iget v4, p0, Lrx/internal/operators/OperatorWindowWithSize;->skip:I
+
+    invoke-direct {v2, p1, v3, v4}, Lrx/internal/operators/OperatorWindowWithSize$WindowSkip;-><init>(Lrx/Subscriber;II)V
+
+    .line 63
+    .local v2, "parent":Lrx/internal/operators/OperatorWindowWithSize$WindowSkip;, "Lrx/internal/operators/OperatorWindowWithSize$WindowSkip<TT;>;"
+    iget-object v3, v2, Lrx/internal/operators/OperatorWindowWithSize$WindowSkip;->cancel:Lrx/Subscription;
+
+    invoke-virtual {p1, v3}, Lrx/Subscriber;->add(Lrx/Subscription;)V
+
+    .line 64
+    invoke-virtual {v2}, Lrx/internal/operators/OperatorWindowWithSize$WindowSkip;->createProducer()Lrx/Producer;
+
+    move-result-object v3
+
+    invoke-virtual {p1, v3}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+
+    move-object v0, v2
+
+    .line 66
+    goto :goto_19
+
+    .line 69
+    .end local v2    # "parent":Lrx/internal/operators/OperatorWindowWithSize$WindowSkip;, "Lrx/internal/operators/OperatorWindowWithSize$WindowSkip<TT;>;"
+    :cond_37
+    new-instance v1, Lrx/internal/operators/OperatorWindowWithSize$WindowOverlap;
+
+    iget v3, p0, Lrx/internal/operators/OperatorWindowWithSize;->size:I
+
+    iget v4, p0, Lrx/internal/operators/OperatorWindowWithSize;->skip:I
+
+    invoke-direct {v1, p1, v3, v4}, Lrx/internal/operators/OperatorWindowWithSize$WindowOverlap;-><init>(Lrx/Subscriber;II)V
+
+    .line 71
+    .local v1, "parent":Lrx/internal/operators/OperatorWindowWithSize$WindowOverlap;, "Lrx/internal/operators/OperatorWindowWithSize$WindowOverlap<TT;>;"
+    iget-object v3, v1, Lrx/internal/operators/OperatorWindowWithSize$WindowOverlap;->cancel:Lrx/Subscription;
+
+    invoke-virtual {p1, v3}, Lrx/Subscriber;->add(Lrx/Subscription;)V
+
+    .line 72
+    invoke-virtual {v1}, Lrx/internal/operators/OperatorWindowWithSize$WindowOverlap;->createProducer()Lrx/Producer;
+
+    move-result-object v3
+
+    invoke-virtual {p1, v3}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
 
     move-object v0, v1
 
-    .line 57
-    goto :goto_e
+    .line 74
+    goto :goto_19
 .end method

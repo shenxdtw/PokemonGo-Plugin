@@ -99,7 +99,7 @@
 
     if-nez v3, :cond_13
 
-    .line 78
+    .line 77
     :cond_12
     :goto_12
     return-void
@@ -137,14 +137,14 @@
     :try_end_28
     .catch Ljava/lang/Throwable; {:try_start_25 .. :try_end_28} :catch_32
 
-    .line 72
+    .line 71
     invoke-virtual {v0}, Lrx/Subscriber;->isUnsubscribed()Z
 
     move-result v3
 
     if-nez v3, :cond_12
 
-    .line 76
+    .line 75
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
     goto :goto_12
@@ -155,14 +155,7 @@
 
     .line 67
     .local v1, "e":Ljava/lang/Throwable;
-    invoke-static {v1}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
-
-    .line 68
-    invoke-static {v1, v2}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
-
-    move-result-object v3
-
-    invoke-virtual {v0, v3}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v1, v0, v2}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
     goto :goto_12
 .end method

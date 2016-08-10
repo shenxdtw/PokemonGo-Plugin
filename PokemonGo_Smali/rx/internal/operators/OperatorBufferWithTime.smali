@@ -50,26 +50,26 @@
     .param p7, "scheduler"    # Lrx/Scheduler;
 
     .prologue
-    .line 64
+    .line 65
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithTime;, "Lrx/internal/operators/OperatorBufferWithTime<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 65
+    .line 66
     iput-wide p1, p0, Lrx/internal/operators/OperatorBufferWithTime;->timespan:J
 
-    .line 66
+    .line 67
     iput-wide p3, p0, Lrx/internal/operators/OperatorBufferWithTime;->timeshift:J
 
-    .line 67
+    .line 68
     iput-object p5, p0, Lrx/internal/operators/OperatorBufferWithTime;->unit:Ljava/util/concurrent/TimeUnit;
 
-    .line 68
+    .line 69
     iput p6, p0, Lrx/internal/operators/OperatorBufferWithTime;->count:I
 
-    .line 69
+    .line 70
     iput-object p7, p0, Lrx/internal/operators/OperatorBufferWithTime;->scheduler:Lrx/Scheduler;
 
-    .line 70
+    .line 71
     return-void
 .end method
 
@@ -80,7 +80,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 45
+    .line 46
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithTime;, "Lrx/internal/operators/OperatorBufferWithTime<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -107,7 +107,7 @@
     .end annotation
 
     .prologue
-    .line 74
+    .line 75
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithTime;, "Lrx/internal/operators/OperatorBufferWithTime<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/util/List<TT;>;>;"
     iget-object v4, p0, Lrx/internal/operators/OperatorBufferWithTime;->scheduler:Lrx/Scheduler;
@@ -116,13 +116,13 @@
 
     move-result-object v2
 
-    .line 75
+    .line 76
     .local v2, "inner":Lrx/Scheduler$Worker;
     new-instance v3, Lrx/observers/SerializedSubscriber;
 
     invoke-direct {v3, p1}, Lrx/observers/SerializedSubscriber;-><init>(Lrx/Subscriber;)V
 
-    .line 77
+    .line 78
     .local v3, "serialized":Lrx/observers/SerializedSubscriber;, "Lrx/observers/SerializedSubscriber<Ljava/util/List<TT;>;>;"
     iget-wide v4, p0, Lrx/internal/operators/OperatorBufferWithTime;->timespan:J
 
@@ -132,47 +132,47 @@
 
     if-nez v4, :cond_22
 
-    .line 78
+    .line 79
     new-instance v0, Lrx/internal/operators/OperatorBufferWithTime$ExactSubscriber;
 
     invoke-direct {v0, p0, v3, v2}, Lrx/internal/operators/OperatorBufferWithTime$ExactSubscriber;-><init>(Lrx/internal/operators/OperatorBufferWithTime;Lrx/Subscriber;Lrx/Scheduler$Worker;)V
 
-    .line 79
+    .line 80
     .local v0, "bsub":Lrx/internal/operators/OperatorBufferWithTime$ExactSubscriber;, "Lrx/internal/operators/OperatorBufferWithTime<TT;>.ExactSubscriber;"
     invoke-virtual {v0, v2}, Lrx/internal/operators/OperatorBufferWithTime$ExactSubscriber;->add(Lrx/Subscription;)V
 
-    .line 80
+    .line 81
     invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 81
+    .line 82
     invoke-virtual {v0}, Lrx/internal/operators/OperatorBufferWithTime$ExactSubscriber;->scheduleExact()V
 
-    .line 90
+    .line 91
     .end local v0    # "bsub":Lrx/internal/operators/OperatorBufferWithTime$ExactSubscriber;, "Lrx/internal/operators/OperatorBufferWithTime<TT;>.ExactSubscriber;"
     :goto_21
     return-object v0
 
-    .line 85
+    .line 86
     :cond_22
     new-instance v1, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;
 
     invoke-direct {v1, p0, v3, v2}, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;-><init>(Lrx/internal/operators/OperatorBufferWithTime;Lrx/Subscriber;Lrx/Scheduler$Worker;)V
 
-    .line 86
+    .line 87
     .local v1, "bsub":Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;, "Lrx/internal/operators/OperatorBufferWithTime<TT;>.InexactSubscriber;"
     invoke-virtual {v1, v2}, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->add(Lrx/Subscription;)V
 
-    .line 87
+    .line 88
     invoke-virtual {p1, v1}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 88
+    .line 89
     invoke-virtual {v1}, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->startNewChunk()V
 
-    .line 89
+    .line 90
     invoke-virtual {v1}, Lrx/internal/operators/OperatorBufferWithTime$InexactSubscriber;->scheduleChunk()V
 
     move-object v0, v1
 
-    .line 90
+    .line 91
     goto :goto_21
 .end method

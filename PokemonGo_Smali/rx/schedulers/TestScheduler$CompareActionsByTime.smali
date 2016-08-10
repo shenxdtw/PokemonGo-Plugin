@@ -28,24 +28,14 @@
 
 
 # direct methods
-.method private constructor <init>()V
+.method constructor <init>()V
     .registers 1
 
     .prologue
-    .line 56
+    .line 57
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/schedulers/TestScheduler$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/schedulers/TestScheduler$1;
-
-    .prologue
-    .line 56
-    invoke-direct {p0}, Lrx/schedulers/TestScheduler$CompareActionsByTime;-><init>()V
-
+    .line 58
     return-void
 .end method
 
@@ -72,75 +62,95 @@
 .end method
 
 .method public compare(Lrx/schedulers/TestScheduler$TimedAction;Lrx/schedulers/TestScheduler$TimedAction;)I
-    .registers 7
+    .registers 11
     .param p1, "action1"    # Lrx/schedulers/TestScheduler$TimedAction;
     .param p2, "action2"    # Lrx/schedulers/TestScheduler$TimedAction;
 
     .prologue
-    .line 59
-    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->time:J
-    invoke-static {p1}, Lrx/schedulers/TestScheduler$TimedAction;->access$200(Lrx/schedulers/TestScheduler$TimedAction;)J
+    const/4 v1, 0x1
 
-    move-result-wide v0
+    const/4 v2, 0x0
 
-    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->time:J
-    invoke-static {p2}, Lrx/schedulers/TestScheduler$TimedAction;->access$200(Lrx/schedulers/TestScheduler$TimedAction;)J
-
-    move-result-wide v2
-
-    cmp-long v0, v0, v2
-
-    if-nez v0, :cond_21
-
-    .line 60
-    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->count:J
-    invoke-static {p1}, Lrx/schedulers/TestScheduler$TimedAction;->access$300(Lrx/schedulers/TestScheduler$TimedAction;)J
-
-    move-result-wide v0
-
-    invoke-static {v0, v1}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
-
-    move-result-object v0
-
-    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->count:J
-    invoke-static {p2}, Lrx/schedulers/TestScheduler$TimedAction;->access$300(Lrx/schedulers/TestScheduler$TimedAction;)J
-
-    move-result-wide v2
-
-    invoke-static {v2, v3}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Ljava/lang/Long;->compareTo(Ljava/lang/Long;)I
-
-    move-result v0
+    const/4 v0, -0x1
 
     .line 62
-    :goto_20
+    iget-wide v4, p1, Lrx/schedulers/TestScheduler$TimedAction;->time:J
+
+    iget-wide v6, p2, Lrx/schedulers/TestScheduler$TimedAction;->time:J
+
+    cmp-long v3, v4, v6
+
+    if-nez v3, :cond_28
+
+    .line 63
+    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->count:J
+    invoke-static {p1}, Lrx/schedulers/TestScheduler$TimedAction;->access$000(Lrx/schedulers/TestScheduler$TimedAction;)J
+
+    move-result-wide v4
+
+    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->count:J
+    invoke-static {p2}, Lrx/schedulers/TestScheduler$TimedAction;->access$000(Lrx/schedulers/TestScheduler$TimedAction;)J
+
+    move-result-wide v6
+
+    cmp-long v3, v4, v6
+
+    if-gez v3, :cond_18
+
+    .line 65
+    :cond_17
+    :goto_17
     return v0
 
-    :cond_21
-    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->time:J
-    invoke-static {p1}, Lrx/schedulers/TestScheduler$TimedAction;->access$200(Lrx/schedulers/TestScheduler$TimedAction;)J
+    .line 63
+    :cond_18
+    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->count:J
+    invoke-static {p1}, Lrx/schedulers/TestScheduler$TimedAction;->access$000(Lrx/schedulers/TestScheduler$TimedAction;)J
 
-    move-result-wide v0
+    move-result-wide v4
 
-    invoke-static {v0, v1}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
+    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->count:J
+    invoke-static {p2}, Lrx/schedulers/TestScheduler$TimedAction;->access$000(Lrx/schedulers/TestScheduler$TimedAction;)J
 
-    move-result-object v0
+    move-result-wide v6
 
-    # getter for: Lrx/schedulers/TestScheduler$TimedAction;->time:J
-    invoke-static {p2}, Lrx/schedulers/TestScheduler$TimedAction;->access$200(Lrx/schedulers/TestScheduler$TimedAction;)J
+    cmp-long v0, v4, v6
 
-    move-result-wide v2
+    if-lez v0, :cond_26
 
-    invoke-static {v2, v3}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
+    move v0, v1
 
-    move-result-object v1
+    goto :goto_17
 
-    invoke-virtual {v0, v1}, Ljava/lang/Long;->compareTo(Ljava/lang/Long;)I
+    :cond_26
+    move v0, v2
 
-    move-result v0
+    goto :goto_17
 
-    goto :goto_20
+    .line 65
+    :cond_28
+    iget-wide v4, p1, Lrx/schedulers/TestScheduler$TimedAction;->time:J
+
+    iget-wide v6, p2, Lrx/schedulers/TestScheduler$TimedAction;->time:J
+
+    cmp-long v3, v4, v6
+
+    if-ltz v3, :cond_17
+
+    iget-wide v4, p1, Lrx/schedulers/TestScheduler$TimedAction;->time:J
+
+    iget-wide v6, p2, Lrx/schedulers/TestScheduler$TimedAction;->time:J
+
+    cmp-long v0, v4, v6
+
+    if-lez v0, :cond_3a
+
+    move v0, v1
+
+    goto :goto_17
+
+    :cond_3a
+    move v0, v2
+
+    goto :goto_17
 .end method

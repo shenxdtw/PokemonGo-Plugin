@@ -24,6 +24,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/managedvariables/internal/type/UxmBlockProvider;
 
     .prologue
     .line 47

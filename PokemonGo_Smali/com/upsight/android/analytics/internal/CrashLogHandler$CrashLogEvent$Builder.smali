@@ -39,13 +39,13 @@
     .param p1, "stacktrace"    # Ljava/lang/String;
 
     .prologue
-    .line 111
+    .line 114
     invoke-direct {p0}, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent$Builder;-><init>()V
 
-    .line 112
+    .line 115
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/CrashLogHandler$CrashLogEvent$Builder;->stacktrace:Ljava/lang/String;
 
-    .line 113
+    .line 116
     new-instance v0, Lcom/upsight/android/analytics/event/UpsightPublisherData$Builder;
 
     invoke-direct {v0}, Lcom/upsight/android/analytics/event/UpsightPublisherData$Builder;-><init>()V
@@ -56,7 +56,7 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/CrashLogHandler$CrashLogEvent$Builder;->publisherData:Lcom/upsight/android/analytics/event/UpsightPublisherData;
 
-    .line 114
+    .line 117
     return-void
 .end method
 
@@ -65,7 +65,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/internal/CrashLogHandler$CrashLogEvent$Builder;
 
     .prologue
-    .line 100
+    .line 103
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/CrashLogHandler$CrashLogEvent$Builder;->stacktrace:Ljava/lang/String;
 
     return-object v0
@@ -76,7 +76,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/internal/CrashLogHandler$CrashLogEvent$Builder;
 
     .prologue
-    .line 100
+    .line 103
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/CrashLogHandler$CrashLogEvent$Builder;->crashID:Ljava/lang/String;
 
     return-object v0
@@ -88,7 +88,7 @@
     .registers 2
 
     .prologue
-    .line 100
+    .line 103
     invoke-virtual {p0}, Lcom/upsight/android/analytics/internal/CrashLogHandler$CrashLogEvent$Builder;->build()Lcom/upsight/android/analytics/internal/CrashLogHandler$CrashLogEvent;
 
     move-result-object v0
@@ -100,7 +100,7 @@
     .registers 5
 
     .prologue
-    .line 138
+    .line 141
     new-instance v0, Lcom/upsight/android/analytics/internal/CrashLogHandler$CrashLogEvent;
 
     const-string v1, "upsight.crashlog"
@@ -121,10 +121,10 @@
     .param p1, "crashID"    # Ljava/lang/String;
 
     .prologue
-    .line 128
+    .line 131
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/CrashLogHandler$CrashLogEvent$Builder;->crashID:Ljava/lang/String;
 
-    .line 129
+    .line 132
     return-object p0
 .end method
 
@@ -133,9 +133,9 @@
     .param p1, "data"    # Lcom/upsight/android/analytics/event/UpsightPublisherData;
 
     .prologue
-    .line 120
+    .line 123
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/CrashLogHandler$CrashLogEvent$Builder;->publisherData:Lcom/upsight/android/analytics/event/UpsightPublisherData;
 
-    .line 121
+    .line 124
     return-object p0
 .end method

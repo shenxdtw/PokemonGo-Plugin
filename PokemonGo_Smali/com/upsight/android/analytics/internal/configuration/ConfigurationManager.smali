@@ -64,7 +64,7 @@
 
     iput-boolean v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mIsLaunched:Z
 
-    .line 231
+    .line 239
     new-instance v0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$2;
 
     invoke-direct {v0, p0}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$2;-><init>(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)V
@@ -108,7 +108,18 @@
     return-object v0
 .end method
 
-.method static synthetic access$100(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;Ljava/lang/String;)Z
+.method static synthetic access$100(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)Lcom/upsight/android/logger/UpsightLogger;
+    .registers 2
+    .param p0, "x0"    # Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
+
+    .prologue
+    .line 34
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    return-object v0
+.end method
+
+.method static synthetic access$200(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;Ljava/lang/String;)Z
     .registers 3
     .param p0, "x0"    # Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
     .param p1, "x1"    # Ljava/lang/String;
@@ -122,7 +133,7 @@
     return v0
 .end method
 
-.method static synthetic access$200(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)V
+.method static synthetic access$300(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)V
     .registers 1
     .param p0, "x0"    # Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
@@ -131,17 +142,6 @@
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->applyDefaultConfiguration()V
 
     return-void
-.end method
-
-.method static synthetic access$300(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)Lcom/upsight/android/logger/UpsightLogger;
-    .registers 2
-    .param p0, "x0"    # Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
-
-    .prologue
-    .line 34
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
-
-    return-object v0
 .end method
 
 .method static synthetic access$400(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)Lcom/upsight/android/UpsightContext;
@@ -166,8 +166,8 @@
     return-object v0
 .end method
 
-.method private applyConfiguration(Ljava/lang/String;)Z
-    .registers 13
+.method private declared-synchronized applyConfiguration(Ljava/lang/String;)Z
+    .registers 16
     .param p1, "jsonConfiguration"    # Ljava/lang/String;
 
     .prologue
@@ -175,26 +175,28 @@
 
     const/4 v10, 0x0
 
-    .line 197
-    :try_start_2
+    .line 201
+    monitor-enter p0
+
+    :try_start_3
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mConfigParser:Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser;
 
     invoke-virtual {v0, p1}, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser;->parse(Ljava/lang/String;)Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
 
     move-result-object v7
 
-    .line 199
+    .line 203
     .local v7, "config":Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
-    if-eqz v7, :cond_10
+    if-eqz v7, :cond_11
 
     invoke-virtual {v7}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;->isValid()Z
 
     move-result v0
 
-    if-nez v0, :cond_1e
+    if-nez v0, :cond_20
 
-    .line 200
-    :cond_10
+    .line 204
+    :cond_11
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
     const-string v1, "Configurator"
@@ -206,26 +208,32 @@
     new-array v5, v5, [Ljava/lang/Object;
 
     invoke-interface {v0, v1, v4, v5}, Lcom/upsight/android/logger/UpsightLogger;->w(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    :try_end_1d
+    .catch Ljava/io/IOException; {:try_start_3 .. :try_end_1d} :catch_9c
+    .catchall {:try_start_3 .. :try_end_1d} :catchall_af
 
     move v0, v10
 
-    .line 224
+    .line 232
     .end local v7    # "config":Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
-    :goto_1d
+    :goto_1e
+    monitor-exit p0
+
     return v0
 
-    .line 204
+    .line 208
     .restart local v7    # "config":Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
-    :cond_1e
+    :cond_20
+    :try_start_20
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mCurrentConfig:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
 
     invoke-virtual {v7, v0}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_34
+    if-eqz v0, :cond_36
 
-    .line 205
+    .line 209
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
     const-string v1, "Configurator"
@@ -240,14 +248,14 @@
 
     move v0, v9
 
-    .line 206
-    goto :goto_1d
+    .line 210
+    goto :goto_1e
 
-    .line 209
-    :cond_34
+    .line 213
+    :cond_36
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mWorkerSubscription:Lrx/Subscription;
 
-    if-eqz v0, :cond_45
+    if-eqz v0, :cond_53
 
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mWorkerSubscription:Lrx/Subscription;
 
@@ -255,24 +263,80 @@
 
     move-result v0
 
-    if-nez v0, :cond_45
+    if-nez v0, :cond_53
 
-    .line 210
+    .line 214
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    const-string v1, "Configurator"
+
+    const-string v4, "Stop config.expired recording scheduler"
+
+    const/4 v5, 0x0
+
+    new-array v5, v5, [Ljava/lang/Object;
+
+    invoke-interface {v0, v1, v4, v5}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 215
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mWorkerSubscription:Lrx/Subscription;
 
     invoke-interface {v0}, Lrx/Subscription;->unsubscribe()V
 
-    .line 214
-    :cond_45
+    .line 219
+    :cond_53
     iget-boolean v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mIsOutOfSync:Z
 
-    if-eqz v0, :cond_60
+    if-eqz v0, :cond_99
 
     const-wide/16 v2, 0x0
 
-    .line 215
+    .line 221
     .local v2, "initialDelay":J
-    :goto_4b
+    :goto_59
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    const-string v1, "Configurator"
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "Schedule recording of config.expired every "
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    iget-wide v12, v7, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;->requestInterval:J
+
+    invoke-virtual {v4, v12, v13}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    const-string v5, " ms, mIsOutOfSync="
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    iget-boolean v5, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mIsOutOfSync:Z
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    const/4 v5, 0x0
+
+    new-array v5, v5, [Ljava/lang/Object;
+
+    invoke-interface {v0, v1, v4, v5}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 223
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mWorker:Lrx/Scheduler$Worker;
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mSyncAction:Lrx/functions/Action0;
@@ -287,59 +351,78 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mWorkerSubscription:Lrx/Subscription;
 
-    .line 217
+    .line 225
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mIsOutOfSync:Z
 
-    .line 219
+    .line 227
     iput-object v7, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mCurrentConfig:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
 
     move v0, v9
 
-    .line 221
-    goto :goto_1d
+    .line 229
+    goto :goto_1e
 
-    .line 214
+    .line 219
     .end local v2    # "initialDelay":J
-    :cond_60
+    :cond_99
     iget-wide v2, v7, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;->requestInterval:J
-    :try_end_62
-    .catch Ljava/io/IOException; {:try_start_2 .. :try_end_62} :catch_63
+    :try_end_9b
+    .catch Ljava/io/IOException; {:try_start_20 .. :try_end_9b} :catch_9c
+    .catchall {:try_start_20 .. :try_end_9b} :catchall_af
 
-    goto :goto_4b
+    goto :goto_59
 
-    .line 222
+    .line 230
     .end local v7    # "config":Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
-    :catch_63
+    :catch_9c
     move-exception v8
 
-    .line 223
+    .line 231
     .local v8, "e":Ljava/io/IOException;
+    :try_start_9d
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
     const-string v1, "Configurator"
 
     const-string v4, "Could not parse incoming configuration"
 
-    new-array v5, v9, [Ljava/lang/Object;
+    const/4 v5, 0x1
 
-    aput-object v8, v5, v10
+    new-array v5, v5, [Ljava/lang/Object;
+
+    const/4 v6, 0x0
+
+    aput-object v8, v5, v6
 
     invoke-interface {v0, v1, v4, v5}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    :try_end_ac
+    .catchall {:try_start_9d .. :try_end_ac} :catchall_af
 
     move v0, v10
 
-    .line 224
-    goto :goto_1d
+    .line 232
+    goto/16 :goto_1e
+
+    .line 201
+    .end local v8    # "e":Ljava/io/IOException;
+    :catchall_af
+    move-exception v0
+
+    monitor-exit p0
+
+    throw v0
 .end method
 
 .method private applyDefaultConfiguration()V
     .registers 8
 
     .prologue
-    .line 180
-    :try_start_0
+    const/4 v6, 0x0
+
+    .line 182
+    :try_start_1
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v2}, Lcom/upsight/android/UpsightContext;->getResources()Landroid/content/res/Resources;
@@ -356,22 +439,35 @@
 
     move-result-object v0
 
-    .line 182
+    .line 184
     .local v0, "config":Ljava/lang/String;
-    invoke-direct {p0, v0}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->applyConfiguration(Ljava/lang/String;)Z
-    :try_end_13
-    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_13} :catch_14
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    const-string v3, "Configurator"
+
+    const-string v4, "Apply default configurations"
+
+    const/4 v5, 0x0
+
+    new-array v5, v5, [Ljava/lang/Object;
+
+    invoke-interface {v2, v3, v4, v5}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
     .line 186
+    invoke-direct {p0, v0}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->applyConfiguration(Ljava/lang/String;)Z
+    :try_end_20
+    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_20} :catch_21
+
+    .line 190
     .end local v0    # "config":Ljava/lang/String;
-    :goto_13
+    :goto_20
     return-void
 
-    .line 183
-    :catch_14
+    .line 187
+    :catch_21
     move-exception v1
 
-    .line 184
+    .line 188
     .local v1, "e":Ljava/io/IOException;
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
@@ -383,13 +479,11 @@
 
     new-array v5, v5, [Ljava/lang/Object;
 
-    const/4 v6, 0x0
-
     aput-object v1, v5, v6
 
     invoke-interface {v2, v3, v4, v5}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    goto :goto_13
+    goto :goto_20
 .end method
 
 .method private fetchCurrentConfig()V
@@ -407,38 +501,48 @@
 
     invoke-interface {v0, v1, v2}, Lcom/upsight/android/persistence/UpsightDataStore;->fetch(Ljava/lang/Class;Lcom/upsight/android/persistence/UpsightDataStoreListener;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 173
+    .line 175
     return-void
 .end method
 
 
 # virtual methods
-.method public launch()V
-    .registers 4
+.method public declared-synchronized launch()V
+    .registers 2
 
     .prologue
-    const/4 v2, 0x0
-
-    const/4 v1, 0x1
-
     .line 124
+    monitor-enter p0
+
+    :try_start_1
     iget-boolean v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mIsLaunched:Z
+    :try_end_3
+    .catchall {:try_start_1 .. :try_end_3} :catchall_1f
 
     if-eqz v0, :cond_7
 
     .line 136
-    :goto_6
+    :goto_5
+    monitor-exit p0
+
     return-void
 
     .line 127
     :cond_7
-    iput-boolean v1, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mIsLaunched:Z
+    const/4 v0, 0x1
+
+    :try_start_8
+    iput-boolean v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mIsLaunched:Z
 
     .line 130
-    iput-boolean v1, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mIsOutOfSync:Z
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mIsOutOfSync:Z
 
     .line 131
-    iput-object v2, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mCurrentConfig:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mCurrentConfig:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
 
     .line 132
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
@@ -450,12 +554,24 @@
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mDataStoreSubscription:Lcom/upsight/android/persistence/UpsightSubscription;
 
     .line 133
-    iput-object v2, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mWorkerSubscription:Lrx/Subscription;
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mWorkerSubscription:Lrx/Subscription;
 
     .line 135
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->fetchCurrentConfig()V
+    :try_end_1e
+    .catchall {:try_start_8 .. :try_end_1e} :catchall_1f
 
-    goto :goto_6
+    goto :goto_5
+
+    .line 124
+    :catchall_1f
+    move-exception v0
+
+    monitor-exit p0
+
+    throw v0
 .end method
 
 .method public onEndpointResponse(Lcom/upsight/android/analytics/dispatcher/EndpointResponse;)V
@@ -465,62 +581,63 @@
     .end annotation
 
     .prologue
-    .line 249
-    const-string v4, "upsight.configuration"
+    const/4 v8, 0x0
+
+    .line 258
+    const-string v3, "upsight.configuration"
 
     invoke-virtual {p1}, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;->getType()Ljava/lang/String;
 
-    move-result-object v5
+    move-result-object v4
 
-    invoke-virtual {v4, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result v4
+    move-result v3
 
-    if-nez v4, :cond_d
+    if-nez v3, :cond_e
 
-    .line 282
-    :cond_c
-    :goto_c
+    .line 293
+    :cond_d
+    :goto_d
     return-void
 
-    .line 254
-    :cond_d
-    :try_start_d
-    iget-object v4, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mResponseParser:Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;
+    .line 263
+    :cond_e
+    :try_start_e
+    iget-object v3, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mResponseParser:Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;
 
     invoke-virtual {p1}, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;->getContent()Ljava/lang/String;
 
-    move-result-object v5
+    move-result-object v4
 
-    invoke-virtual {v4, v5}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;->parse(Ljava/lang/String;)Ljava/util/Collection;
+    invoke-virtual {v3, v4}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;->parse(Ljava/lang/String;)Ljava/util/Collection;
 
     move-result-object v1
 
-    .line 256
+    .line 265
     .local v1, "configs":Ljava/util/Collection;, "Ljava/util/Collection<Lcom/upsight/android/analytics/configuration/UpsightConfiguration;>;"
-    iget-object v4, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
+    iget-object v3, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
-    const-class v5, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
+    const-class v4, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
 
-    new-instance v6, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$3;
+    new-instance v5, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$3;
 
-    invoke-direct {v6, p0}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$3;-><init>(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)V
+    invoke-direct {v5, p0}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$3;-><init>(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)V
 
-    invoke-interface {v4, v5, v6}, Lcom/upsight/android/persistence/UpsightDataStore;->fetch(Ljava/lang/Class;Lcom/upsight/android/persistence/UpsightDataStoreListener;)Lcom/upsight/android/persistence/UpsightSubscription;
+    invoke-interface {v3, v4, v5}, Lcom/upsight/android/persistence/UpsightDataStore;->fetch(Ljava/lang/Class;Lcom/upsight/android/persistence/UpsightDataStoreListener;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 270
+    .line 279
     invoke-interface {v1}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
 
     move-result-object v3
 
-    .local v3, "i$":Ljava/util/Iterator;
-    :cond_27
-    :goto_27
+    :cond_28
+    :goto_28
     invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
-    if-eqz v4, :cond_c
+    if-eqz v4, :cond_d
 
     invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -528,7 +645,7 @@
 
     check-cast v0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
 
-    .line 271
+    .line 280
     .local v0, "config":Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
     invoke-virtual {v0}, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->getScope()Ljava/lang/String;
 
@@ -540,9 +657,22 @@
 
     move-result v4
 
-    if-eqz v4, :cond_60
+    if-eqz v4, :cond_6c
 
-    .line 272
+    .line 281
+    iget-object v4, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    const-string v5, "Configurator"
+
+    const-string v6, "Apply received configurations"
+
+    const/4 v7, 0x0
+
+    new-array v7, v7, [Ljava/lang/Object;
+
+    invoke-interface {v4, v5, v6, v7}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 283
     invoke-virtual {v0}, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->getConfiguration()Ljava/lang/String;
 
     move-result-object v4
@@ -551,102 +681,130 @@
 
     move-result v4
 
-    if-eqz v4, :cond_27
+    if-eqz v4, :cond_28
 
-    .line 273
+    .line 284
     iget-object v4, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
     invoke-interface {v4, v0}, Lcom/upsight/android/persistence/UpsightDataStore;->store(Ljava/lang/Object;)Lcom/upsight/android/persistence/UpsightSubscription;
-    :try_end_4e
-    .catch Ljava/io/IOException; {:try_start_d .. :try_end_4e} :catch_4f
+    :try_end_5b
+    .catch Ljava/io/IOException; {:try_start_e .. :try_end_5b} :catch_5c
 
-    goto :goto_27
+    goto :goto_28
 
-    .line 279
+    .line 290
     .end local v0    # "config":Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
     .end local v1    # "configs":Ljava/util/Collection;, "Ljava/util/Collection<Lcom/upsight/android/analytics/configuration/UpsightConfiguration;>;"
-    .end local v3    # "i$":Ljava/util/Iterator;
-    :catch_4f
+    :catch_5c
     move-exception v2
 
-    .line 280
+    .line 291
     .local v2, "e":Ljava/io/IOException;
-    iget-object v4, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+    iget-object v3, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
-    const-string v5, "Configurator"
+    const-string v4, "Configurator"
 
-    const-string v6, "Could not parse incoming configurations"
+    const-string v5, "Could not parse incoming configurations"
 
-    const/4 v7, 0x1
+    const/4 v6, 0x1
 
-    new-array v7, v7, [Ljava/lang/Object;
+    new-array v6, v6, [Ljava/lang/Object;
 
-    const/4 v8, 0x0
+    aput-object v2, v6, v8
 
-    aput-object v2, v7, v8
+    invoke-interface {v3, v4, v5, v6}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    invoke-interface {v4, v5, v6, v7}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    goto :goto_d
 
-    goto :goto_c
-
-    .line 276
+    .line 287
     .end local v2    # "e":Ljava/io/IOException;
     .restart local v0    # "config":Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
     .restart local v1    # "configs":Ljava/util/Collection;, "Ljava/util/Collection<Lcom/upsight/android/analytics/configuration/UpsightConfiguration;>;"
-    .restart local v3    # "i$":Ljava/util/Iterator;
-    :cond_60
-    :try_start_60
+    :cond_6c
+    :try_start_6c
     iget-object v4, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
     invoke-interface {v4, v0}, Lcom/upsight/android/persistence/UpsightDataStore;->store(Ljava/lang/Object;)Lcom/upsight/android/persistence/UpsightSubscription;
-    :try_end_65
-    .catch Ljava/io/IOException; {:try_start_60 .. :try_end_65} :catch_4f
+    :try_end_71
+    .catch Ljava/io/IOException; {:try_start_6c .. :try_end_71} :catch_5c
 
-    goto :goto_27
+    goto :goto_28
 .end method
 
-.method public terminate()V
-    .registers 3
+.method public declared-synchronized terminate()V
+    .registers 5
 
     .prologue
-    const/4 v1, 0x0
+    .line 299
+    monitor-enter p0
 
-    .line 288
+    :try_start_1
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mDataStoreSubscription:Lcom/upsight/android/persistence/UpsightSubscription;
 
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_d
 
-    .line 289
+    .line 300
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mDataStoreSubscription:Lcom/upsight/android/persistence/UpsightSubscription;
 
     invoke-interface {v0}, Lcom/upsight/android/persistence/UpsightSubscription;->unsubscribe()V
 
-    .line 290
-    iput-object v1, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mDataStoreSubscription:Lcom/upsight/android/persistence/UpsightSubscription;
+    .line 301
+    const/4 v0, 0x0
 
-    .line 292
-    :cond_c
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mDataStoreSubscription:Lcom/upsight/android/persistence/UpsightSubscription;
+
+    .line 303
+    :cond_d
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mWorkerSubscription:Lrx/Subscription;
 
-    if-eqz v0, :cond_17
+    if-eqz v0, :cond_25
 
-    .line 293
+    .line 304
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    const-string v1, "Configurator"
+
+    const-string v2, "Stop config.expired recording scheduler"
+
+    const/4 v3, 0x0
+
+    new-array v3, v3, [Ljava/lang/Object;
+
+    invoke-interface {v0, v1, v2, v3}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 305
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mWorkerSubscription:Lrx/Subscription;
 
     invoke-interface {v0}, Lrx/Subscription;->unsubscribe()V
 
-    .line 294
-    iput-object v1, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mWorkerSubscription:Lrx/Subscription;
+    .line 306
+    const/4 v0, 0x0
 
-    .line 296
-    :cond_17
-    iput-object v1, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mCurrentConfig:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mWorkerSubscription:Lrx/Subscription;
 
-    .line 298
+    .line 308
+    :cond_25
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mCurrentConfig:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
+
+    .line 310
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mIsLaunched:Z
+    :try_end_2b
+    .catchall {:try_start_1 .. :try_end_2b} :catchall_2d
+
+    .line 311
+    monitor-exit p0
+
+    return-void
 
     .line 299
-    return-void
+    :catchall_2d
+    move-exception v0
+
+    monitor-exit p0
+
+    throw v0
 .end method

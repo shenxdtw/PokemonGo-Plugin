@@ -40,7 +40,7 @@
 
     const/4 v2, 0x0
 
-    .line 92
+    .line 168
     new-instance v0, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;
 
     const-string v1, "Portrait"
@@ -49,7 +49,7 @@
 
     sput-object v0, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;->Portrait:Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;
 
-    .line 93
+    .line 169
     new-instance v0, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;
 
     const-string v1, "Landscape"
@@ -58,7 +58,7 @@
 
     sput-object v0, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;->Landscape:Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;
 
-    .line 91
+    .line 167
     const/4 v0, 0x2
 
     new-array v0, v0, [Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;
@@ -85,7 +85,7 @@
     .end annotation
 
     .prologue
-    .line 91
+    .line 167
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -96,7 +96,7 @@
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 91
+    .line 167
     const-class v0, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -112,7 +112,7 @@
     .registers 1
 
     .prologue
-    .line 91
+    .line 167
     sget-object v0, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;->$VALUES:[Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;
 
     invoke-virtual {v0}, [Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;->clone()Ljava/lang/Object;

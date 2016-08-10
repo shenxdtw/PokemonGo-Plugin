@@ -26,21 +26,8 @@
 .end annotation
 
 
-# static fields
-.field static final ATTEMPTS_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater",
-            "<",
-            "Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-
 # instance fields
-.field volatile attempts:I
+.field final attempts:Ljava/util/concurrent/atomic/AtomicInteger;
 
 .field final child:Lrx/Subscriber;
     .annotation system Ldalvik/annotation/Signature;
@@ -52,6 +39,8 @@
 .end field
 
 .field final inner:Lrx/Scheduler$Worker;
+
+.field final pa:Lrx/internal/producers/ProducerArbiter;
 
 .field final predicate:Lrx/functions/Func2;
     .annotation system Ldalvik/annotation/Signature;
@@ -70,28 +59,11 @@
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .registers 2
-
-    .prologue
-    .line 53
-    const-class v0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;
-
-    const-string v1, "attempts"
-
-    invoke-static {v0, v1}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->ATTEMPTS_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    return-void
-.end method
-
-.method public constructor <init>(Lrx/Subscriber;Lrx/functions/Func2;Lrx/Scheduler$Worker;Lrx/subscriptions/SerialSubscription;)V
-    .registers 5
+.method public constructor <init>(Lrx/Subscriber;Lrx/functions/Func2;Lrx/Scheduler$Worker;Lrx/subscriptions/SerialSubscription;Lrx/internal/producers/ProducerArbiter;)V
+    .registers 7
     .param p3, "inner"    # Lrx/Scheduler$Worker;
     .param p4, "serialSubscription"    # Lrx/subscriptions/SerialSubscription;
+    .param p5, "pa"    # Lrx/internal/producers/ProducerArbiter;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -105,30 +77,41 @@
             ">;",
             "Lrx/Scheduler$Worker;",
             "Lrx/subscriptions/SerialSubscription;",
+            "Lrx/internal/producers/ProducerArbiter;",
             ")V"
         }
     .end annotation
 
     .prologue
-    .line 57
+    .line 62
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;, "Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     .local p2, "predicate":Lrx/functions/Func2;, "Lrx/functions/Func2<Ljava/lang/Integer;Ljava/lang/Throwable;Ljava/lang/Boolean;>;"
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
-    .line 58
+    .line 56
+    new-instance v0, Ljava/util/concurrent/atomic/AtomicInteger;
+
+    invoke-direct {v0}, Ljava/util/concurrent/atomic/AtomicInteger;-><init>()V
+
+    iput-object v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->attempts:Ljava/util/concurrent/atomic/AtomicInteger;
+
+    .line 63
     iput-object p1, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->child:Lrx/Subscriber;
 
-    .line 59
+    .line 64
     iput-object p2, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->predicate:Lrx/functions/Func2;
 
-    .line 60
+    .line 65
     iput-object p3, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->inner:Lrx/Scheduler$Worker;
 
-    .line 61
+    .line 66
     iput-object p4, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->serialSubscription:Lrx/subscriptions/SerialSubscription;
 
-    .line 62
+    .line 67
+    iput-object p5, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->pa:Lrx/internal/producers/ProducerArbiter;
+
+    .line 68
     return-void
 .end method
 
@@ -138,7 +121,7 @@
     .registers 1
 
     .prologue
-    .line 68
+    .line 74
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;, "Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber<TT;>;"
     return-void
 .end method
@@ -148,13 +131,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 72
+    .line 78
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;, "Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 73
+    .line 79
     return-void
 .end method
 
@@ -163,7 +146,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 45
+    .line 49
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;, "Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber<TT;>;"
     check-cast p1, Lrx/Observable;
 
@@ -184,7 +167,7 @@
     .end annotation
 
     .prologue
-    .line 77
+    .line 83
     .local p0, "this":Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;, "Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber<TT;>;"
     .local p1, "o":Lrx/Observable;, "Lrx/Observable<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorRetryWithPredicate$SourceSubscriber;->inner:Lrx/Scheduler$Worker;
@@ -195,6 +178,6 @@
 
     invoke-virtual {v0, v1}, Lrx/Scheduler$Worker;->schedule(Lrx/functions/Action0;)Lrx/Subscription;
 
-    .line 123
+    .line 134
     return-void
 .end method

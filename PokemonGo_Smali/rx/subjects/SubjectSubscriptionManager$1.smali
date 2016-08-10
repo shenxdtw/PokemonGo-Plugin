@@ -28,7 +28,7 @@
     .registers 3
 
     .prologue
-    .line 68
+    .line 67
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$1;, "Lrx/subjects/SubjectSubscriptionManager.1;"
     iput-object p1, p0, Lrx/subjects/SubjectSubscriptionManager$1;->this$0:Lrx/subjects/SubjectSubscriptionManager;
 
@@ -45,7 +45,7 @@
     .registers 3
 
     .prologue
-    .line 71
+    .line 70
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$1;, "Lrx/subjects/SubjectSubscriptionManager.1;"
     iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$1;->this$0:Lrx/subjects/SubjectSubscriptionManager;
 
@@ -53,6 +53,6 @@
 
     invoke-virtual {v0, v1}, Lrx/subjects/SubjectSubscriptionManager;->remove(Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;)V
 
-    .line 72
+    .line 71
     return-void
 .end method

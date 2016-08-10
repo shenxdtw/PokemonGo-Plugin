@@ -55,6 +55,8 @@
 
 .field private final onOverflow:Lrx/functions/Action0;
 
+.field private final overflowStrategy:Lrx/BackpressureOverflow$Strategy;
+
 .field private final queue:Ljava/util/concurrent/ConcurrentLinkedQueue;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -70,10 +72,11 @@
 
 
 # direct methods
-.method public constructor <init>(Lrx/Subscriber;Ljava/lang/Long;Lrx/functions/Action0;)V
-    .registers 8
+.method public constructor <init>(Lrx/Subscriber;Ljava/lang/Long;Lrx/functions/Action0;Lrx/BackpressureOverflow$Strategy;)V
+    .registers 9
     .param p2, "capacity"    # Ljava/lang/Long;
     .param p3, "onOverflow"    # Lrx/functions/Action0;
+    .param p4, "overflowStrategy"    # Lrx/BackpressureOverflow$Strategy;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -81,24 +84,25 @@
             "<-TT;>;",
             "Ljava/lang/Long;",
             "Lrx/functions/Action0;",
+            "Lrx/BackpressureOverflow$Strategy;",
             ")V"
         }
     .end annotation
 
     .prologue
-    .line 84
+    .line 123
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
-    .line 75
+    .line 112
     new-instance v0, Ljava/util/concurrent/ConcurrentLinkedQueue;
 
     invoke-direct {v0}, Ljava/util/concurrent/ConcurrentLinkedQueue;-><init>()V
 
     iput-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->queue:Ljava/util/concurrent/ConcurrentLinkedQueue;
 
-    .line 79
+    .line 116
     new-instance v0, Ljava/util/concurrent/atomic/AtomicBoolean;
 
     const/4 v1, 0x0
@@ -107,21 +111,21 @@
 
     iput-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->saturated:Ljava/util/concurrent/atomic/AtomicBoolean;
 
-    .line 81
+    .line 118
     invoke-static {}, Lrx/internal/operators/NotificationLite;->instance()Lrx/internal/operators/NotificationLite;
 
     move-result-object v0
 
     iput-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->on:Lrx/internal/operators/NotificationLite;
 
-    .line 85
+    .line 124
     iput-object p1, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->child:Lrx/Subscriber;
 
-    .line 86
+    .line 125
     iput-object p2, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->baseCapacity:Ljava/lang/Long;
 
-    .line 87
-    if-eqz p2, :cond_33
+    .line 126
+    if-eqz p2, :cond_35
 
     new-instance v0, Ljava/util/concurrent/atomic/AtomicLong;
 
@@ -134,130 +138,175 @@
     :goto_27
     iput-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->capacity:Ljava/util/concurrent/atomic/AtomicLong;
 
-    .line 88
+    .line 127
     iput-object p3, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->onOverflow:Lrx/functions/Action0;
 
-    .line 89
+    .line 128
     new-instance v0, Lrx/internal/util/BackpressureDrainManager;
 
     invoke-direct {v0, p0}, Lrx/internal/util/BackpressureDrainManager;-><init>(Lrx/internal/util/BackpressureDrainManager$BackpressureQueueCallback;)V
 
     iput-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->manager:Lrx/internal/util/BackpressureDrainManager;
 
-    .line 90
+    .line 129
+    iput-object p4, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->overflowStrategy:Lrx/BackpressureOverflow$Strategy;
+
+    .line 130
     return-void
 
-    .line 87
-    :cond_33
+    .line 126
+    :cond_35
     const/4 v0, 0x0
 
     goto :goto_27
 .end method
 
 .method private assertCapacity()Z
-    .registers 9
+    .registers 11
 
     .prologue
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber<TT;>;"
-    const/4 v3, 0x0
+    const/4 v4, 0x1
 
-    const/4 v2, 0x1
+    const/4 v5, 0x0
 
-    .line 145
-    iget-object v4, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->capacity:Ljava/util/concurrent/atomic/AtomicLong;
+    .line 186
+    iget-object v6, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->capacity:Ljava/util/concurrent/atomic/AtomicLong;
 
-    if-nez v4, :cond_7
+    if-nez v6, :cond_7
 
-    .line 166
+    .line 221
     :goto_6
-    return v2
+    return v4
 
-    .line 151
+    .line 192
     :cond_7
-    iget-object v4, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->capacity:Ljava/util/concurrent/atomic/AtomicLong;
+    iget-object v6, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->capacity:Ljava/util/concurrent/atomic/AtomicLong;
 
-    invoke-virtual {v4}, Ljava/util/concurrent/atomic/AtomicLong;->get()J
+    invoke-virtual {v6}, Ljava/util/concurrent/atomic/AtomicLong;->get()J
 
     move-result-wide v0
 
-    .line 152
+    .line 193
     .local v0, "currCapacity":J
-    const-wide/16 v4, 0x0
+    const-wide/16 v6, 0x0
 
-    cmp-long v4, v0, v4
+    cmp-long v6, v0, v6
 
-    if-gtz v4, :cond_48
+    if-gtz v6, :cond_4f
 
-    .line 153
-    iget-object v4, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->saturated:Ljava/util/concurrent/atomic/AtomicBoolean;
+    .line 194
+    const/4 v3, 0x0
 
-    invoke-virtual {v4, v3, v2}, Ljava/util/concurrent/atomic/AtomicBoolean;->compareAndSet(ZZ)Z
+    .line 197
+    .local v3, "hasCapacity":Z
+    :try_start_14
+    iget-object v6, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->overflowStrategy:Lrx/BackpressureOverflow$Strategy;
 
-    move-result v2
+    invoke-interface {v6}, Lrx/BackpressureOverflow$Strategy;->mayAttemptDrop()Z
 
-    if-eqz v2, :cond_46
+    move-result v6
 
-    .line 154
-    invoke-virtual {p0}, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->unsubscribe()V
+    if-eqz v6, :cond_30
 
-    .line 155
-    iget-object v2, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->child:Lrx/Subscriber;
+    invoke-virtual {p0}, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->poll()Ljava/lang/Object;
+    :try_end_1f
+    .catch Lrx/exceptions/MissingBackpressureException; {:try_start_14 .. :try_end_1f} :catch_32
 
-    new-instance v4, Lrx/exceptions/MissingBackpressureException;
+    move-result-object v6
 
-    new-instance v5, Ljava/lang/StringBuilder;
+    if-eqz v6, :cond_30
 
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+    move v3, v4
 
-    const-string v6, "Overflowed buffer of "
+    .line 204
+    :cond_23
+    :goto_23
+    iget-object v6, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->onOverflow:Lrx/functions/Action0;
 
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    if-eqz v6, :cond_2c
 
-    move-result-object v5
+    .line 206
+    :try_start_27
+    iget-object v6, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->onOverflow:Lrx/functions/Action0;
 
-    iget-object v6, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->baseCapacity:Ljava/lang/Long;
+    invoke-interface {v6}, Lrx/functions/Action0;->call()V
+    :try_end_2c
+    .catch Ljava/lang/Throwable; {:try_start_27 .. :try_end_2c} :catch_44
 
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    .line 215
+    :cond_2c
+    if-nez v3, :cond_4f
 
-    move-result-object v5
+    move v4, v5
 
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-direct {v4, v5}, Lrx/exceptions/MissingBackpressureException;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v2, v4}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-
-    .line 158
-    iget-object v2, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->onOverflow:Lrx/functions/Action0;
-
-    if-eqz v2, :cond_46
-
-    .line 159
-    iget-object v2, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->onOverflow:Lrx/functions/Action0;
-
-    invoke-interface {v2}, Lrx/functions/Action0;->call()V
-
-    :cond_46
-    move v2, v3
-
-    .line 162
+    .line 216
     goto :goto_6
 
-    .line 165
-    :cond_48
-    iget-object v4, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->capacity:Ljava/util/concurrent/atomic/AtomicLong;
+    :cond_30
+    move v3, v5
 
-    const-wide/16 v6, 0x1
+    .line 197
+    goto :goto_23
 
-    sub-long v6, v0, v6
+    .line 198
+    :catch_32
+    move-exception v2
 
-    invoke-virtual {v4, v0, v1, v6, v7}, Ljava/util/concurrent/atomic/AtomicLong;->compareAndSet(JJ)Z
+    .line 199
+    .local v2, "e":Lrx/exceptions/MissingBackpressureException;
+    iget-object v6, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->saturated:Ljava/util/concurrent/atomic/AtomicBoolean;
 
-    move-result v4
+    invoke-virtual {v6, v5, v4}, Ljava/util/concurrent/atomic/AtomicBoolean;->compareAndSet(ZZ)Z
 
-    if-eqz v4, :cond_7
+    move-result v6
+
+    if-eqz v6, :cond_23
+
+    .line 200
+    invoke-virtual {p0}, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->unsubscribe()V
+
+    .line 201
+    iget-object v6, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->child:Lrx/Subscriber;
+
+    invoke-virtual {v6, v2}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+
+    goto :goto_23
+
+    .line 207
+    .end local v2    # "e":Lrx/exceptions/MissingBackpressureException;
+    :catch_44
+    move-exception v2
+
+    .line 208
+    .local v2, "e":Ljava/lang/Throwable;
+    invoke-static {v2}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+
+    .line 209
+    iget-object v4, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->manager:Lrx/internal/util/BackpressureDrainManager;
+
+    invoke-virtual {v4, v2}, Lrx/internal/util/BackpressureDrainManager;->terminateAndDrain(Ljava/lang/Throwable;)V
+
+    move v4, v5
+
+    .line 212
+    goto :goto_6
+
+    .line 220
+    .end local v2    # "e":Ljava/lang/Throwable;
+    .end local v3    # "hasCapacity":Z
+    :cond_4f
+    iget-object v6, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->capacity:Ljava/util/concurrent/atomic/AtomicLong;
+
+    const-wide/16 v8, 0x1
+
+    sub-long v8, v0, v8
+
+    invoke-virtual {v6, v0, v1, v8, v9}, Ljava/util/concurrent/atomic/AtomicLong;->compareAndSet(JJ)Z
+
+    move-result v6
+
+    if-eqz v6, :cond_7
 
     goto :goto_6
 .end method
@@ -269,7 +318,7 @@
     .param p1, "value"    # Ljava/lang/Object;
 
     .prologue
-    .line 121
+    .line 162
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->on:Lrx/internal/operators/NotificationLite;
 
@@ -287,20 +336,20 @@
     .param p1, "exception"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 125
+    .line 166
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber<TT;>;"
     if-eqz p1, :cond_8
 
-    .line 126
+    .line 167
     iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 130
+    .line 171
     :goto_7
     return-void
 
-    .line 128
+    .line 169
     :cond_8
     iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->child:Lrx/Subscriber;
 
@@ -313,7 +362,7 @@
     .registers 2
 
     .prologue
-    .line 169
+    .line 224
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->manager:Lrx/internal/util/BackpressureDrainManager;
 
@@ -324,7 +373,7 @@
     .registers 2
 
     .prologue
-    .line 98
+    .line 139
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->saturated:Ljava/util/concurrent/atomic/AtomicBoolean;
 
@@ -334,12 +383,12 @@
 
     if-nez v0, :cond_d
 
-    .line 99
+    .line 140
     iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->manager:Lrx/internal/util/BackpressureDrainManager;
 
     invoke-virtual {v0}, Lrx/internal/util/BackpressureDrainManager;->terminateAndDrain()V
 
-    .line 101
+    .line 142
     :cond_d
     return-void
 .end method
@@ -349,7 +398,7 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 105
+    .line 146
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->saturated:Ljava/util/concurrent/atomic/AtomicBoolean;
 
@@ -359,12 +408,12 @@
 
     if-nez v0, :cond_d
 
-    .line 106
+    .line 147
     iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->manager:Lrx/internal/util/BackpressureDrainManager;
 
     invoke-virtual {v0, p1}, Lrx/internal/util/BackpressureDrainManager;->terminateAndDrain(Ljava/lang/Throwable;)V
 
-    .line 108
+    .line 149
     :cond_d
     return-void
 .end method
@@ -378,7 +427,7 @@
     .end annotation
 
     .prologue
-    .line 112
+    .line 153
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber<TT;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     invoke-direct {p0}, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->assertCapacity()Z
@@ -387,11 +436,11 @@
 
     if-nez v0, :cond_7
 
-    .line 117
+    .line 158
     :goto_6
     return-void
 
-    .line 115
+    .line 156
     :cond_7
     iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->queue:Ljava/util/concurrent/ConcurrentLinkedQueue;
 
@@ -403,7 +452,7 @@
 
     invoke-virtual {v0, v1}, Ljava/util/concurrent/ConcurrentLinkedQueue;->offer(Ljava/lang/Object;)Z
 
-    .line 116
+    .line 157
     iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->manager:Lrx/internal/util/BackpressureDrainManager;
 
     invoke-virtual {v0}, Lrx/internal/util/BackpressureDrainManager;->drain()V
@@ -415,13 +464,13 @@
     .registers 3
 
     .prologue
-    .line 93
+    .line 134
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber<TT;>;"
     const-wide v0, 0x7fffffffffffffffL
 
     invoke-virtual {p0, v0, v1}, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->request(J)V
 
-    .line 94
+    .line 135
     return-void
 .end method
 
@@ -429,7 +478,7 @@
     .registers 2
 
     .prologue
-    .line 133
+    .line 174
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->queue:Ljava/util/concurrent/ConcurrentLinkedQueue;
 
@@ -444,7 +493,7 @@
     .registers 3
 
     .prologue
-    .line 137
+    .line 178
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;, "Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber<TT;>;"
     iget-object v1, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->queue:Ljava/util/concurrent/ConcurrentLinkedQueue;
 
@@ -452,7 +501,7 @@
 
     move-result-object v0
 
-    .line 138
+    .line 179
     .local v0, "value":Ljava/lang/Object;
     iget-object v1, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->capacity:Ljava/util/concurrent/atomic/AtomicLong;
 
@@ -460,12 +509,12 @@
 
     if-eqz v0, :cond_11
 
-    .line 139
+    .line 180
     iget-object v1, p0, Lrx/internal/operators/OperatorOnBackpressureBuffer$BufferSubscriber;->capacity:Ljava/util/concurrent/atomic/AtomicLong;
 
     invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicLong;->incrementAndGet()J
 
-    .line 141
+    .line 182
     :cond_11
     return-object v0
 .end method

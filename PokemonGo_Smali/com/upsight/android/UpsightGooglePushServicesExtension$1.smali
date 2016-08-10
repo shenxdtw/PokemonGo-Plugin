@@ -24,6 +24,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/UpsightGooglePushServicesExtension;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/UpsightGooglePushServicesExtension;
 
     .prologue
     .line 52

@@ -53,7 +53,7 @@
     .registers 1
 
     .prologue
-    .line 10
+    .line 11
     const-class v0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -94,12 +94,12 @@
     .end annotation
 
     .prologue
-    .line 16
+    .line 26
     .local p2, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     .local p3, "contentStoreProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/MarketingContentStore;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 17
+    .line 27
     sget-boolean v0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -112,11 +112,11 @@
 
     throw v0
 
-    .line 18
+    .line 28
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;->module:Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
 
-    .line 19
+    .line 29
     sget-boolean v0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -129,11 +129,11 @@
 
     throw v0
 
-    .line 20
+    .line 30
     :cond_1d
     iput-object p2, p0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;->upsightProvider:Ljavax/inject/Provider;
 
-    .line 21
+    .line 31
     sget-boolean v0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_2b
@@ -146,11 +146,11 @@
 
     throw v0
 
-    .line 22
+    .line 32
     :cond_2b
     iput-object p3, p0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;->contentStoreProvider:Ljavax/inject/Provider;
 
-    .line 23
+    .line 33
     return-void
 .end method
 
@@ -177,7 +177,7 @@
     .end annotation
 
     .prologue
-    .line 35
+    .line 46
     .local p1, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     .local p2, "contentStoreProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/MarketingContentStore;>;"
     new-instance v0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;
@@ -190,47 +190,42 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/marketing/UpsightBillboardManager;
-    .registers 5
+    .registers 4
 
     .prologue
-    .line 27
-    iget-object v3, p0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;->module:Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
+    .line 37
+    iget-object v2, p0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;->module:Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
 
-    iget-object v1, p0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;->upsightProvider:Ljavax/inject/Provider;
+    iget-object v0, p0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;->upsightProvider:Ljavax/inject/Provider;
+
+    .line 38
+    invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/UpsightContext;
+
+    iget-object v1, p0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;->contentStoreProvider:Ljavax/inject/Provider;
 
     invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v1
 
-    check-cast v1, Lcom/upsight/android/UpsightContext;
+    check-cast v1, Lcom/upsight/android/marketing/internal/content/MarketingContentStore;
 
-    iget-object v2, p0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;->contentStoreProvider:Ljavax/inject/Provider;
-
-    invoke-interface {v2}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
-
-    move-result-object v2
-
-    check-cast v2, Lcom/upsight/android/marketing/internal/content/MarketingContentStore;
-
-    invoke-virtual {v3, v1, v2}, Lcom/upsight/android/marketing/internal/billboard/BillboardModule;->provideBillboardManager(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/marketing/internal/content/MarketingContentStore;)Lcom/upsight/android/marketing/UpsightBillboardManager;
+    invoke-virtual {v2, v0, v1}, Lcom/upsight/android/marketing/internal/billboard/BillboardModule;->provideBillboardManager(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/marketing/internal/content/MarketingContentStore;)Lcom/upsight/android/marketing/UpsightBillboardManager;
 
     move-result-object v0
 
-    .line 28
-    .local v0, "provided":Lcom/upsight/android/marketing/UpsightBillboardManager;
-    if-nez v0, :cond_20
+    const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
-    .line 29
-    new-instance v1, Ljava/lang/NullPointerException;
+    .line 37
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
 
-    const-string v2, "Cannot return null from a non-@Nullable @Provides method"
+    move-result-object v0
 
-    invoke-direct {v1, v2}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    check-cast v0, Lcom/upsight/android/marketing/UpsightBillboardManager;
 
-    throw v1
-
-    .line 31
-    :cond_20
     return-object v0
 .end method
 
@@ -238,7 +233,7 @@
     .registers 2
 
     .prologue
-    .line 10
+    .line 11
     invoke-virtual {p0}, Lcom/upsight/android/marketing/internal/billboard/BillboardModule_ProvideBillboardManagerFactory;->get()Lcom/upsight/android/marketing/UpsightBillboardManager;
 
     move-result-object v0

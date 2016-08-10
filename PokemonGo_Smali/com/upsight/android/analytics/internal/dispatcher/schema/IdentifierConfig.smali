@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/analytics/internal/dispatcher/schema/IdentifierConfig$1;,
         Lcom/upsight/android/analytics/internal/dispatcher/schema/IdentifierConfig$Builder;
     }
 .end annotation

@@ -46,10 +46,7 @@
     .line 39
     iget-object v0, p0, Lrx/internal/operators/OperatorTimeInterval$1;->this$0:Lrx/internal/operators/OperatorTimeInterval;
 
-    # getter for: Lrx/internal/operators/OperatorTimeInterval;->scheduler:Lrx/Scheduler;
-    invoke-static {v0}, Lrx/internal/operators/OperatorTimeInterval;->access$000(Lrx/internal/operators/OperatorTimeInterval;)Lrx/Scheduler;
-
-    move-result-object v0
+    iget-object v0, v0, Lrx/internal/operators/OperatorTimeInterval;->scheduler:Lrx/Scheduler;
 
     invoke-virtual {v0}, Lrx/Scheduler;->now()J
 
@@ -105,10 +102,7 @@
     .local p1, "args":Ljava/lang/Object;, "TT;"
     iget-object v2, p0, Lrx/internal/operators/OperatorTimeInterval$1;->this$0:Lrx/internal/operators/OperatorTimeInterval;
 
-    # getter for: Lrx/internal/operators/OperatorTimeInterval;->scheduler:Lrx/Scheduler;
-    invoke-static {v2}, Lrx/internal/operators/OperatorTimeInterval;->access$000(Lrx/internal/operators/OperatorTimeInterval;)Lrx/Scheduler;
-
-    move-result-object v2
+    iget-object v2, v2, Lrx/internal/operators/OperatorTimeInterval;->scheduler:Lrx/Scheduler;
 
     invoke-virtual {v2}, Lrx/Scheduler;->now()J
 

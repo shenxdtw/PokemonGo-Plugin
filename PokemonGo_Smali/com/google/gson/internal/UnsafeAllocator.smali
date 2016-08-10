@@ -86,52 +86,6 @@
 
     .line 60
     :try_start_2a
-    const-class v7, Ljava/io/ObjectInputStream;
-
-    const-string v8, "newInstance"
-
-    const/4 v9, 0x2
-
-    new-array v9, v9, [Ljava/lang/Class;
-
-    const/4 v10, 0x0
-
-    const-class v11, Ljava/lang/Class;
-
-    aput-object v11, v9, v10
-
-    const/4 v10, 0x1
-
-    const-class v11, Ljava/lang/Class;
-
-    aput-object v11, v9, v10
-
-    invoke-virtual {v7, v8, v9}, Ljava/lang/Class;->getDeclaredMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
-
-    move-result-object v4
-
-    .line 62
-    .local v4, "newInstance":Ljava/lang/reflect/Method;
-    const/4 v7, 0x1
-
-    invoke-virtual {v4, v7}, Ljava/lang/reflect/Method;->setAccessible(Z)V
-
-    .line 63
-    new-instance v7, Lcom/google/gson/internal/UnsafeAllocator$2;
-
-    invoke-direct {v7, v4}, Lcom/google/gson/internal/UnsafeAllocator$2;-><init>(Ljava/lang/reflect/Method;)V
-    :try_end_48
-    .catch Ljava/lang/Exception; {:try_start_2a .. :try_end_48} :catch_49
-
-    goto :goto_28
-
-    .line 70
-    .end local v4    # "newInstance":Ljava/lang/reflect/Method;
-    :catch_49
-    move-exception v7
-
-    .line 79
-    :try_start_4a
     const-class v7, Ljava/io/ObjectStreamClass;
 
     const-string v8, "getConstructorId"
@@ -146,17 +100,18 @@
 
     aput-object v11, v9, v10
 
+    .line 61
     invoke-virtual {v7, v8, v9}, Ljava/lang/Class;->getDeclaredMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v3
 
-    .line 81
+    .line 62
     .local v3, "getConstructorId":Ljava/lang/reflect/Method;
     const/4 v7, 0x1
 
     invoke-virtual {v3, v7}, Ljava/lang/reflect/Method;->setAccessible(Z)V
 
-    .line 82
+    .line 63
     const/4 v7, 0x0
 
     const/4 v8, 0x1
@@ -179,7 +134,7 @@
 
     move-result v1
 
-    .line 83
+    .line 64
     .local v1, "constructorId":I
     const-class v7, Ljava/io/ObjectStreamClass;
 
@@ -201,6 +156,56 @@
 
     aput-object v11, v9, v10
 
+    .line 65
+    invoke-virtual {v7, v8, v9}, Ljava/lang/Class;->getDeclaredMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+
+    move-result-object v4
+
+    .line 66
+    .local v4, "newInstance":Ljava/lang/reflect/Method;
+    const/4 v7, 0x1
+
+    invoke-virtual {v4, v7}, Ljava/lang/reflect/Method;->setAccessible(Z)V
+
+    .line 67
+    new-instance v7, Lcom/google/gson/internal/UnsafeAllocator$2;
+
+    invoke-direct {v7, v4, v1}, Lcom/google/gson/internal/UnsafeAllocator$2;-><init>(Ljava/lang/reflect/Method;I)V
+    :try_end_6f
+    .catch Ljava/lang/Exception; {:try_start_2a .. :try_end_6f} :catch_70
+
+    goto :goto_28
+
+    .line 74
+    .end local v1    # "constructorId":I
+    .end local v3    # "getConstructorId":Ljava/lang/reflect/Method;
+    .end local v4    # "newInstance":Ljava/lang/reflect/Method;
+    :catch_70
+    move-exception v7
+
+    .line 83
+    :try_start_71
+    const-class v7, Ljava/io/ObjectInputStream;
+
+    const-string v8, "newInstance"
+
+    const/4 v9, 0x2
+
+    new-array v9, v9, [Ljava/lang/Class;
+
+    const/4 v10, 0x0
+
+    const-class v11, Ljava/lang/Class;
+
+    aput-object v11, v9, v10
+
+    const/4 v10, 0x1
+
+    const-class v11, Ljava/lang/Class;
+
+    aput-object v11, v9, v10
+
+    .line 84
     invoke-virtual {v7, v8, v9}, Ljava/lang/Class;->getDeclaredMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v4
@@ -214,15 +219,13 @@
     .line 86
     new-instance v7, Lcom/google/gson/internal/UnsafeAllocator$3;
 
-    invoke-direct {v7, v4, v1}, Lcom/google/gson/internal/UnsafeAllocator$3;-><init>(Ljava/lang/reflect/Method;I)V
+    invoke-direct {v7, v4}, Lcom/google/gson/internal/UnsafeAllocator$3;-><init>(Ljava/lang/reflect/Method;)V
     :try_end_8f
-    .catch Ljava/lang/Exception; {:try_start_4a .. :try_end_8f} :catch_90
+    .catch Ljava/lang/Exception; {:try_start_71 .. :try_end_8f} :catch_90
 
     goto :goto_28
 
     .line 93
-    .end local v1    # "constructorId":I
-    .end local v3    # "getConstructorId":Ljava/lang/reflect/Method;
     .end local v4    # "newInstance":Ljava/lang/reflect/Method;
     :catch_90
     move-exception v7

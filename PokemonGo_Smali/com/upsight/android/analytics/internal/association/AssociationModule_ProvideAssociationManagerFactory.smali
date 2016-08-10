@@ -53,7 +53,7 @@
     .registers 1
 
     .prologue
-    .line 9
+    .line 10
     const-class v0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -94,12 +94,12 @@
     .end annotation
 
     .prologue
-    .line 15
+    .line 25
     .local p2, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     .local p3, "clockProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/Clock;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 16
+    .line 26
     sget-boolean v0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -112,11 +112,11 @@
 
     throw v0
 
-    .line 17
+    .line 27
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->module:Lcom/upsight/android/analytics/internal/association/AssociationModule;
 
-    .line 18
+    .line 28
     sget-boolean v0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -129,11 +129,11 @@
 
     throw v0
 
-    .line 19
+    .line 29
     :cond_1d
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->upsightProvider:Ljavax/inject/Provider;
 
-    .line 20
+    .line 30
     sget-boolean v0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_2b
@@ -146,11 +146,11 @@
 
     throw v0
 
-    .line 21
+    .line 31
     :cond_2b
     iput-object p3, p0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->clockProvider:Ljavax/inject/Provider;
 
-    .line 22
+    .line 32
     return-void
 .end method
 
@@ -177,7 +177,7 @@
     .end annotation
 
     .prologue
-    .line 34
+    .line 45
     .local p1, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
     .local p2, "clockProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/analytics/internal/session/Clock;>;"
     new-instance v0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;
@@ -190,47 +190,42 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/analytics/internal/association/AssociationManager;
-    .registers 5
+    .registers 4
 
     .prologue
-    .line 26
-    iget-object v3, p0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->module:Lcom/upsight/android/analytics/internal/association/AssociationModule;
+    .line 36
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->module:Lcom/upsight/android/analytics/internal/association/AssociationModule;
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->upsightProvider:Ljavax/inject/Provider;
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->upsightProvider:Ljavax/inject/Provider;
+
+    .line 37
+    invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/UpsightContext;
+
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->clockProvider:Ljavax/inject/Provider;
 
     invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v1
 
-    check-cast v1, Lcom/upsight/android/UpsightContext;
+    check-cast v1, Lcom/upsight/android/analytics/internal/session/Clock;
 
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->clockProvider:Ljavax/inject/Provider;
-
-    invoke-interface {v2}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
-
-    move-result-object v2
-
-    check-cast v2, Lcom/upsight/android/analytics/internal/session/Clock;
-
-    invoke-virtual {v3, v1, v2}, Lcom/upsight/android/analytics/internal/association/AssociationModule;->provideAssociationManager(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/analytics/internal/session/Clock;)Lcom/upsight/android/analytics/internal/association/AssociationManager;
+    invoke-virtual {v2, v0, v1}, Lcom/upsight/android/analytics/internal/association/AssociationModule;->provideAssociationManager(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/analytics/internal/session/Clock;)Lcom/upsight/android/analytics/internal/association/AssociationManager;
 
     move-result-object v0
 
-    .line 27
-    .local v0, "provided":Lcom/upsight/android/analytics/internal/association/AssociationManager;
-    if-nez v0, :cond_20
+    const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
-    .line 28
-    new-instance v1, Ljava/lang/NullPointerException;
+    .line 36
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
 
-    const-string v2, "Cannot return null from a non-@Nullable @Provides method"
+    move-result-object v0
 
-    invoke-direct {v1, v2}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    check-cast v0, Lcom/upsight/android/analytics/internal/association/AssociationManager;
 
-    throw v1
-
-    .line 30
-    :cond_20
     return-object v0
 .end method
 
@@ -238,7 +233,7 @@
     .registers 2
 
     .prologue
-    .line 9
+    .line 10
     invoke-virtual {p0}, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->get()Lcom/upsight/android/analytics/internal/association/AssociationManager;
 
     move-result-object v0

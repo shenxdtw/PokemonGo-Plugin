@@ -8,19 +8,28 @@
 
 # instance fields
 .field product:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "product"
     .end annotation
 .end field
 
 .field quantity:I
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "quantity"
     .end annotation
 .end field
 
-.field signatureData:Lcom/fasterxml/jackson/databind/node/ObjectNode;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+.field signatureData:Lcom/google/gson/JsonObject;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "signature_data"
     .end annotation
 .end field
@@ -31,17 +40,17 @@
     .registers 1
 
     .prologue
-    .line 48
+    .line 58
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 49
+    .line 59
     return-void
 .end method
 
-.method static from(Lcom/fasterxml/jackson/databind/JsonNode;Lcom/fasterxml/jackson/databind/ObjectMapper;)Lcom/upsight/android/marketing/UpsightReward;
-    .registers 4
-    .param p0, "json"    # Lcom/fasterxml/jackson/databind/JsonNode;
-    .param p1, "mapper"    # Lcom/fasterxml/jackson/databind/ObjectMapper;
+.method static from(Lcom/google/gson/JsonElement;Lcom/google/gson/Gson;)Lcom/upsight/android/marketing/UpsightReward;
+    .registers 5
+    .param p0, "json"    # Lcom/google/gson/JsonElement;
+    .param p1, "gson"    # Lcom/google/gson/Gson;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
@@ -49,18 +58,34 @@
     .end annotation
 
     .prologue
-    .line 41
-    const-class v1, Lcom/upsight/android/marketing/internal/content/Reward;
+    .line 48
+    :try_start_0
+    const-class v2, Lcom/upsight/android/marketing/internal/content/Reward;
 
-    invoke-virtual {p1, p0, v1}, Lcom/fasterxml/jackson/databind/ObjectMapper;->treeToValue(Lcom/fasterxml/jackson/core/TreeNode;Ljava/lang/Class;)Ljava/lang/Object;
+    invoke-virtual {p1, p0, v2}, Lcom/google/gson/Gson;->fromJson(Lcom/google/gson/JsonElement;Ljava/lang/Class;)Ljava/lang/Object;
 
-    move-result-object v0
+    move-result-object v1
 
-    check-cast v0, Lcom/upsight/android/marketing/UpsightReward;
+    check-cast v1, Lcom/upsight/android/marketing/UpsightReward;
+    :try_end_8
+    .catch Lcom/google/gson/JsonSyntaxException; {:try_start_0 .. :try_end_8} :catch_9
 
-    .line 42
-    .local v0, "object":Lcom/upsight/android/marketing/UpsightReward;
-    return-object v0
+    .line 52
+    .local v1, "object":Lcom/upsight/android/marketing/UpsightReward;
+    return-object v1
+
+    .line 49
+    .end local v1    # "object":Lcom/upsight/android/marketing/UpsightReward;
+    :catch_9
+    move-exception v0
+
+    .line 50
+    .local v0, "e":Lcom/google/gson/JsonSyntaxException;
+    new-instance v2, Ljava/io/IOException;
+
+    invoke-direct {v2, v0}, Ljava/io/IOException;-><init>(Ljava/lang/Throwable;)V
+
+    throw v2
 .end method
 
 
@@ -69,7 +94,7 @@
     .registers 2
 
     .prologue
-    .line 53
+    .line 63
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/content/Reward;->product:Ljava/lang/String;
 
     return-object v0
@@ -79,7 +104,7 @@
     .registers 2
 
     .prologue
-    .line 58
+    .line 68
     iget v0, p0, Lcom/upsight/android/marketing/internal/content/Reward;->quantity:I
 
     return v0
@@ -89,10 +114,10 @@
     .registers 2
 
     .prologue
-    .line 63
-    iget-object v0, p0, Lcom/upsight/android/marketing/internal/content/Reward;->signatureData:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .line 73
+    iget-object v0, p0, Lcom/upsight/android/marketing/internal/content/Reward;->signatureData:Lcom/google/gson/JsonObject;
 
-    invoke-static {v0}, Lcom/upsight/android/analytics/internal/util/JacksonHelper$JSONObjectSerializer;->fromObjectNode(Lcom/fasterxml/jackson/databind/node/ObjectNode;)Lorg/json/JSONObject;
+    invoke-static {v0}, Lcom/upsight/android/analytics/internal/util/GsonHelper$JSONObjectSerializer;->fromJsonObject(Lcom/google/gson/JsonObject;)Lorg/json/JSONObject;
 
     move-result-object v0
 

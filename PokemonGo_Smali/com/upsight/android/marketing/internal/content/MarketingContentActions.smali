@@ -18,6 +18,9 @@
         Lcom/upsight/android/marketing/internal/content/MarketingContentActions$Destroy;,
         Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentCloseButton;,
         Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentScopelessContent;,
+        Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentDialog;,
+        Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentContent;,
+        Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentScopedDialog;,
         Lcom/upsight/android/marketing/internal/content/MarketingContentActions$PresentScopedContent;,
         Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentAvailable;,
         Lcom/upsight/android/marketing/internal/content/MarketingContentActions$TriggerIfContentBuilt;,
@@ -48,7 +51,7 @@
     .registers 1
 
     .prologue
-    .line 65
+    .line 64
     new-instance v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;
 
     invoke-direct {v0}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;-><init>()V
@@ -62,18 +65,18 @@
     .registers 1
 
     .prologue
-    .line 57
+    .line 56
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 58
+    .line 57
     return-void
 .end method
 
-.method static synthetic access$1300()Ljava/util/Map;
+.method static synthetic access$1600()Ljava/util/Map;
     .registers 1
 
     .prologue
-    .line 55
+    .line 54
     sget-object v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions;->FACTORY_MAP:Ljava/util/Map;
 
     return-object v0

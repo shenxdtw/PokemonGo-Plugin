@@ -7,12 +7,6 @@
 .annotation runtime Ldagger/Module;
 .end annotation
 
-.annotation system Ldalvik/annotation/MemberClasses;
-    value = {
-        Lcom/upsight/android/internal/ContextModule$3;
-    }
-.end annotation
-
 
 # instance fields
 .field private final mApplicationContext:Landroid/content/Context;

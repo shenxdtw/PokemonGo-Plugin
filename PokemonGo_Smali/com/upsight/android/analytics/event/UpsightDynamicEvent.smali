@@ -13,7 +13,6 @@
 
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/analytics/event/UpsightDynamicEvent$1;,
         Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;
     }
 .end annotation
@@ -22,8 +21,8 @@
     value = {
         "Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent",
         "<",
-        "Lcom/fasterxml/jackson/databind/JsonNode;",
-        "Lcom/fasterxml/jackson/databind/JsonNode;",
+        "Lcom/google/gson/JsonElement;",
+        "Lcom/google/gson/JsonElement;",
         ">;",
         "Lcom/upsight/android/analytics/internal/DynamicIdentifiers;"
     }
@@ -39,28 +38,28 @@
     .registers 1
 
     .prologue
-    .line 98
+    .line 105
     invoke-direct {p0}, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;-><init>()V
 
-    .line 100
+    .line 107
     return-void
 .end method
 
-.method constructor <init>(Ljava/lang/String;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;Lcom/fasterxml/jackson/databind/JsonNode;)V
+.method constructor <init>(Ljava/lang/String;Ljava/lang/String;Lcom/google/gson/JsonElement;Lcom/google/gson/JsonElement;)V
     .registers 5
     .param p1, "type"    # Ljava/lang/String;
     .param p2, "identifiers"    # Ljava/lang/String;
-    .param p3, "upsightData"    # Lcom/fasterxml/jackson/databind/JsonNode;
-    .param p4, "publisherData"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p3, "upsightData"    # Lcom/google/gson/JsonElement;
+    .param p4, "publisherData"    # Lcom/google/gson/JsonElement;
 
     .prologue
-    .line 89
+    .line 96
     invoke-direct {p0, p1, p3, p4}, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;-><init>(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
 
-    .line 90
+    .line 97
     iput-object p2, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent;->identifiers:Ljava/lang/String;
 
-    .line 91
+    .line 98
     return-void
 .end method
 
@@ -69,7 +68,7 @@
     .param p0, "type"    # Ljava/lang/String;
 
     .prologue
-    .line 21
+    .line 22
     new-instance v0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;
 
     const/4 v1, 0x0
@@ -85,7 +84,7 @@
     .registers 2
 
     .prologue
-    .line 95
+    .line 102
     iget-object v0, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent;->identifiers:Ljava/lang/String;
 
     return-object v0

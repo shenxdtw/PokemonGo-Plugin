@@ -27,37 +27,25 @@
 
 
 # direct methods
-.method private constructor <init>(Ljava/lang/Appendable;)V
+.method constructor <init>(Ljava/lang/Appendable;)V
     .registers 3
     .param p1, "appendable"    # Ljava/lang/Appendable;
 
     .prologue
-    .line 83
+    .line 88
     invoke-direct {p0}, Ljava/io/Writer;-><init>()V
 
-    .line 81
+    .line 86
     new-instance v0, Lcom/google/gson/internal/Streams$AppendableWriter$CurrentWrite;
 
     invoke-direct {v0}, Lcom/google/gson/internal/Streams$AppendableWriter$CurrentWrite;-><init>()V
 
     iput-object v0, p0, Lcom/google/gson/internal/Streams$AppendableWriter;->currentWrite:Lcom/google/gson/internal/Streams$AppendableWriter$CurrentWrite;
 
-    .line 84
+    .line 89
     iput-object p1, p0, Lcom/google/gson/internal/Streams$AppendableWriter;->appendable:Ljava/lang/Appendable;
 
-    .line 85
-    return-void
-.end method
-
-.method synthetic constructor <init>(Ljava/lang/Appendable;Lcom/google/gson/internal/Streams$1;)V
-    .registers 3
-    .param p1, "x0"    # Ljava/lang/Appendable;
-    .param p2, "x1"    # Lcom/google/gson/internal/Streams$1;
-
-    .prologue
-    .line 79
-    invoke-direct {p0, p1}, Lcom/google/gson/internal/Streams$AppendableWriter;-><init>(Ljava/lang/Appendable;)V
-
+    .line 90
     return-void
 .end method
 
@@ -67,7 +55,7 @@
     .registers 1
 
     .prologue
-    .line 97
+    .line 102
     return-void
 .end method
 
@@ -75,7 +63,7 @@
     .registers 1
 
     .prologue
-    .line 96
+    .line 101
     return-void
 .end method
 
@@ -89,14 +77,14 @@
     .end annotation
 
     .prologue
-    .line 93
+    .line 98
     iget-object v0, p0, Lcom/google/gson/internal/Streams$AppendableWriter;->appendable:Ljava/lang/Appendable;
 
     int-to-char v1, p1
 
     invoke-interface {v0, v1}, Ljava/lang/Appendable;->append(C)Ljava/lang/Appendable;
 
-    .line 94
+    .line 99
     return-void
 .end method
 
@@ -112,12 +100,12 @@
     .end annotation
 
     .prologue
-    .line 88
+    .line 93
     iget-object v0, p0, Lcom/google/gson/internal/Streams$AppendableWriter;->currentWrite:Lcom/google/gson/internal/Streams$AppendableWriter$CurrentWrite;
 
     iput-object p1, v0, Lcom/google/gson/internal/Streams$AppendableWriter$CurrentWrite;->chars:[C
 
-    .line 89
+    .line 94
     iget-object v0, p0, Lcom/google/gson/internal/Streams$AppendableWriter;->appendable:Ljava/lang/Appendable;
 
     iget-object v1, p0, Lcom/google/gson/internal/Streams$AppendableWriter;->currentWrite:Lcom/google/gson/internal/Streams$AppendableWriter$CurrentWrite;
@@ -126,6 +114,6 @@
 
     invoke-interface {v0, v1, p2, v2}, Ljava/lang/Appendable;->append(Ljava/lang/CharSequence;II)Ljava/lang/Appendable;
 
-    .line 90
+    .line 95
     return-void
 .end method

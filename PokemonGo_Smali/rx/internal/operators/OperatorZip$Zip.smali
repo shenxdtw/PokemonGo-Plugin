@@ -1,5 +1,5 @@
 .class final Lrx/internal/operators/OperatorZip$Zip;
-.super Ljava/lang/Object;
+.super Ljava/util/concurrent/atomic/AtomicLong;
 .source "OperatorZip.java"
 
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x1a
+    accessFlags = 0x18
     name = "Zip"
 .end annotation
 
@@ -24,28 +24,19 @@
         "<R:",
         "Ljava/lang/Object;",
         ">",
-        "Ljava/lang/Object;"
+        "Ljava/util/concurrent/atomic/AtomicLong;"
     }
 .end annotation
 
 
 # static fields
-.field static final COUNTER_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/atomic/AtomicLongFieldUpdater",
-            "<",
-            "Lrx/internal/operators/OperatorZip$Zip;",
-            ">;"
-        }
-    .end annotation
-.end field
-
 .field static final THRESHOLD:I
+
+.field private static final serialVersionUID:J = 0x53337eae55d8937dL
 
 
 # instance fields
-.field private final child:Lrx/Observer;
+.field final child:Lrx/Observer;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/Observer",
@@ -56,13 +47,11 @@
 
 .field private final childSubscription:Lrx/subscriptions/CompositeSubscription;
 
-.field volatile counter:J
-
 .field emitted:I
 
-.field private observers:[Ljava/lang/Object;
-
 .field private requested:Ljava/util/concurrent/atomic/AtomicLong;
+
+.field private volatile subscribers:[Ljava/lang/Object;
 
 .field private final zipFunction:Lrx/functions/FuncN;
     .annotation system Ldalvik/annotation/Signature;
@@ -79,18 +68,7 @@
     .registers 4
 
     .prologue
-    .line 187
-    const-class v0, Lrx/internal/operators/OperatorZip$Zip;
-
-    const-string v1, "counter"
-
-    invoke-static {v0, v1}, Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/internal/operators/OperatorZip$Zip;->COUNTER_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    .line 189
+    .line 188
     sget v0, Lrx/internal/util/RxRingBuffer;->SIZE:I
 
     int-to-double v0, v0
@@ -119,127 +97,114 @@
     .end annotation
 
     .prologue
-    .line 196
+    .line 195
     .local p0, "this":Lrx/internal/operators/OperatorZip$Zip;, "Lrx/internal/operators/OperatorZip$Zip<TR;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
     .local p2, "zipFunction":Lrx/functions/FuncN;, "Lrx/functions/FuncN<+TR;>;"
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Ljava/util/concurrent/atomic/AtomicLong;-><init>()V
 
-    .line 182
+    .line 186
     new-instance v0, Lrx/subscriptions/CompositeSubscription;
 
     invoke-direct {v0}, Lrx/subscriptions/CompositeSubscription;-><init>()V
 
     iput-object v0, p0, Lrx/internal/operators/OperatorZip$Zip;->childSubscription:Lrx/subscriptions/CompositeSubscription;
 
-    .line 190
+    .line 189
     const/4 v0, 0x0
 
     iput v0, p0, Lrx/internal/operators/OperatorZip$Zip;->emitted:I
 
-    .line 197
+    .line 196
     iput-object p1, p0, Lrx/internal/operators/OperatorZip$Zip;->child:Lrx/Observer;
 
-    .line 198
+    .line 197
     iput-object p2, p0, Lrx/internal/operators/OperatorZip$Zip;->zipFunction:Lrx/functions/FuncN;
 
-    .line 199
+    .line 198
     iget-object v0, p0, Lrx/internal/operators/OperatorZip$Zip;->childSubscription:Lrx/subscriptions/CompositeSubscription;
 
     invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 200
+    .line 199
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorZip$Zip;)Lrx/Observer;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorZip$Zip;
-
-    .prologue
-    .line 179
-    iget-object v0, p0, Lrx/internal/operators/OperatorZip$Zip;->child:Lrx/Observer;
-
-    return-object v0
 .end method
 
 
 # virtual methods
 .method public start([Lrx/Observable;Ljava/util/concurrent/atomic/AtomicLong;)V
-    .registers 7
+    .registers 8
     .param p1, "os"    # [Lrx/Observable;
     .param p2, "requested"    # Ljava/util/concurrent/atomic/AtomicLong;
 
     .prologue
-    .line 204
+    .line 203
     .local p0, "this":Lrx/internal/operators/OperatorZip$Zip;, "Lrx/internal/operators/OperatorZip$Zip<TR;>;"
-    array-length v2, p1
+    array-length v3, p1
 
-    new-array v2, v2, [Ljava/lang/Object;
+    new-array v2, v3, [Ljava/lang/Object;
 
-    iput-object v2, p0, Lrx/internal/operators/OperatorZip$Zip;->observers:[Ljava/lang/Object;
-
-    .line 205
-    iput-object p2, p0, Lrx/internal/operators/OperatorZip$Zip;->requested:Ljava/util/concurrent/atomic/AtomicLong;
-
-    .line 206
+    .line 204
+    .local v2, "subscribers":[Ljava/lang/Object;
     const/4 v0, 0x0
 
     .local v0, "i":I
-    :goto_8
-    array-length v2, p1
+    :goto_4
+    array-length v3, p1
 
-    if-ge v0, v2, :cond_1c
+    if-ge v0, v3, :cond_16
 
-    .line 207
+    .line 205
     new-instance v1, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;
 
     invoke-direct {v1, p0}, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;-><init>(Lrx/internal/operators/OperatorZip$Zip;)V
 
-    .line 208
+    .line 206
     .local v1, "io":Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;, "Lrx/internal/operators/OperatorZip$Zip<TR;>.InnerSubscriber;"
-    iget-object v2, p0, Lrx/internal/operators/OperatorZip$Zip;->observers:[Ljava/lang/Object;
-
     aput-object v1, v2, v0
 
-    .line 209
-    iget-object v2, p0, Lrx/internal/operators/OperatorZip$Zip;->childSubscription:Lrx/subscriptions/CompositeSubscription;
+    .line 207
+    iget-object v3, p0, Lrx/internal/operators/OperatorZip$Zip;->childSubscription:Lrx/subscriptions/CompositeSubscription;
 
-    invoke-virtual {v2, v1}, Lrx/subscriptions/CompositeSubscription;->add(Lrx/Subscription;)V
+    invoke-virtual {v3, v1}, Lrx/subscriptions/CompositeSubscription;->add(Lrx/Subscription;)V
 
-    .line 206
+    .line 204
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_8
+    goto :goto_4
 
-    .line 212
+    .line 210
     .end local v1    # "io":Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;, "Lrx/internal/operators/OperatorZip$Zip<TR;>.InnerSubscriber;"
-    :cond_1c
-    const/4 v0, 0x0
+    :cond_16
+    iput-object p2, p0, Lrx/internal/operators/OperatorZip$Zip;->requested:Ljava/util/concurrent/atomic/AtomicLong;
 
-    :goto_1d
-    array-length v2, p1
-
-    if-ge v0, v2, :cond_2e
+    .line 211
+    iput-object v2, p0, Lrx/internal/operators/OperatorZip$Zip;->subscribers:[Ljava/lang/Object;
 
     .line 213
-    aget-object v3, p1, v0
+    const/4 v0, 0x0
 
-    iget-object v2, p0, Lrx/internal/operators/OperatorZip$Zip;->observers:[Ljava/lang/Object;
+    :goto_1b
+    array-length v3, p1
 
-    aget-object v2, v2, v0
+    if-ge v0, v3, :cond_2a
 
-    check-cast v2, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;
+    .line 214
+    aget-object v4, p1, v0
 
-    invoke-virtual {v3, v2}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
+    aget-object v3, v2, v0
 
-    .line 212
+    check-cast v3, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;
+
+    invoke-virtual {v4, v3}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
+
+    .line 213
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1d
+    goto :goto_1b
 
-    .line 215
-    :cond_2e
+    .line 216
+    :cond_2a
     return-void
 .end method
 
@@ -247,30 +212,24 @@
     .registers 21
 
     .prologue
-    .line 226
+    .line 227
     .local p0, "this":Lrx/internal/operators/OperatorZip$Zip;, "Lrx/internal/operators/OperatorZip$Zip<TR;>;"
     move-object/from16 v0, p0
 
-    iget-object v13, v0, Lrx/internal/operators/OperatorZip$Zip;->observers:[Ljava/lang/Object;
+    iget-object v14, v0, Lrx/internal/operators/OperatorZip$Zip;->subscribers:[Ljava/lang/Object;
 
-    .line 227
-    .local v13, "observers":[Ljava/lang/Object;
-    if-nez v13, :cond_7
+    .line 228
+    .local v14, "subscribers":[Ljava/lang/Object;
+    if-nez v14, :cond_7
 
-    .line 297
+    .line 298
     :cond_6
     :goto_6
     return-void
 
-    .line 231
+    .line 232
     :cond_7
-    sget-object v16, Lrx/internal/operators/OperatorZip$Zip;->COUNTER_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    move-object/from16 v0, v16
-
-    move-object/from16 v1, p0
-
-    invoke-virtual {v0, v1}, Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;->getAndIncrement(Ljava/lang/Object;)J
+    invoke-virtual/range {p0 .. p0}, Lrx/internal/operators/OperatorZip$Zip;->getAndIncrement()J
 
     move-result-wide v16
 
@@ -280,41 +239,41 @@
 
     if-nez v16, :cond_6
 
-    .line 232
-    array-length v10, v13
-
     .line 233
+    array-length v10, v14
+
+    .line 234
     .local v10, "length":I
     move-object/from16 v0, p0
 
     iget-object v5, v0, Lrx/internal/operators/OperatorZip$Zip;->child:Lrx/Observer;
 
-    .line 234
+    .line 235
     .local v5, "child":Lrx/Observer;, "Lrx/Observer<-TR;>;"
     move-object/from16 v0, p0
 
-    iget-object v14, v0, Lrx/internal/operators/OperatorZip$Zip;->requested:Ljava/util/concurrent/atomic/AtomicLong;
-
-    .line 238
-    .local v14, "requested":Ljava/util/concurrent/atomic/AtomicLong;
-    :cond_20
-    :goto_20
-    new-array v15, v10, [Ljava/lang/Object;
+    iget-object v13, v0, Lrx/internal/operators/OperatorZip$Zip;->requested:Ljava/util/concurrent/atomic/AtomicLong;
 
     .line 239
+    .local v13, "requested":Ljava/util/concurrent/atomic/AtomicLong;
+    :cond_1a
+    :goto_1a
+    new-array v15, v10, [Ljava/lang/Object;
+
+    .line 240
     .local v15, "vs":[Ljava/lang/Object;
     const/4 v2, 0x1
 
-    .line 240
+    .line 241
     .local v2, "allHaveValues":Z
     const/4 v7, 0x0
 
     .local v7, "i":I
-    :goto_24
-    if-ge v7, v10, :cond_52
+    :goto_1e
+    if-ge v7, v10, :cond_4c
 
-    .line 241
-    aget-object v16, v13, v7
+    .line 242
+    aget-object v16, v14, v7
 
     check-cast v16, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;
 
@@ -322,37 +281,37 @@
 
     iget-object v4, v0, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;->items:Lrx/internal/util/RxRingBuffer;
 
-    .line 242
+    .line 243
     .local v4, "buffer":Lrx/internal/util/RxRingBuffer;
     invoke-virtual {v4}, Lrx/internal/util/RxRingBuffer;->peek()Ljava/lang/Object;
 
     move-result-object v11
 
-    .line 244
-    .local v11, "n":Ljava/lang/Object;
-    if-nez v11, :cond_38
-
     .line 245
+    .local v11, "n":Ljava/lang/Object;
+    if-nez v11, :cond_32
+
+    .line 246
     const/4 v2, 0x0
 
-    .line 240
-    :goto_35
+    .line 241
+    :goto_2f
     add-int/lit8 v7, v7, 0x1
 
-    goto :goto_24
+    goto :goto_1e
 
-    .line 249
-    :cond_38
+    .line 250
+    :cond_32
     invoke-virtual {v4, v11}, Lrx/internal/util/RxRingBuffer;->isCompleted(Ljava/lang/Object;)Z
 
     move-result v16
 
-    if-eqz v16, :cond_4b
+    if-eqz v16, :cond_45
 
-    .line 250
+    .line 251
     invoke-interface {v5}, Lrx/Observer;->onCompleted()V
 
-    .line 253
+    .line 254
     move-object/from16 v0, p0
 
     iget-object v0, v0, Lrx/internal/operators/OperatorZip$Zip;->childSubscription:Lrx/subscriptions/CompositeSubscription;
@@ -363,21 +322,21 @@
 
     goto :goto_6
 
-    .line 256
-    :cond_4b
+    .line 257
+    :cond_45
     invoke-virtual {v4, v11}, Lrx/internal/util/RxRingBuffer;->getValue(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v16
 
     aput-object v16, v15, v7
 
-    goto :goto_35
+    goto :goto_2f
 
-    .line 260
+    .line 261
     .end local v4    # "buffer":Lrx/internal/util/RxRingBuffer;
     .end local v11    # "n":Ljava/lang/Object;
-    :cond_52
-    invoke-virtual {v14}, Ljava/util/concurrent/atomic/AtomicLong;->get()J
+    :cond_4c
+    invoke-virtual {v13}, Ljava/util/concurrent/atomic/AtomicLong;->get()J
 
     move-result-wide v16
 
@@ -385,12 +344,12 @@
 
     cmp-long v16, v16, v18
 
-    if-lez v16, :cond_eb
+    if-lez v16, :cond_df
 
-    if-eqz v2, :cond_eb
+    if-eqz v2, :cond_df
 
-    .line 263
-    :try_start_5e
+    .line 264
+    :try_start_58
     move-object/from16 v0, p0
 
     iget-object v0, v0, Lrx/internal/operators/OperatorZip$Zip;->zipFunction:Lrx/functions/FuncN;
@@ -407,10 +366,10 @@
 
     invoke-interface {v5, v0}, Lrx/Observer;->onNext(Ljava/lang/Object;)V
 
-    .line 265
-    invoke-virtual {v14}, Ljava/util/concurrent/atomic/AtomicLong;->decrementAndGet()J
-
     .line 266
+    invoke-virtual {v13}, Ljava/util/concurrent/atomic/AtomicLong;->decrementAndGet()J
+
+    .line 267
     move-object/from16 v0, p0
 
     iget v0, v0, Lrx/internal/operators/OperatorZip$Zip;->emitted:I
@@ -424,11 +383,11 @@
     move-object/from16 v1, p0
 
     iput v0, v1, Lrx/internal/operators/OperatorZip$Zip;->emitted:I
-    :try_end_80
-    .catch Ljava/lang/Throwable; {:try_start_5e .. :try_end_80} :catch_a8
+    :try_end_7a
+    .catch Ljava/lang/Throwable; {:try_start_58 .. :try_end_7a} :catch_a2
 
-    .line 272
-    move-object v3, v13
+    .line 273
+    move-object v3, v14
 
     .local v3, "arr$":[Ljava/lang/Object;
     array-length v9, v3
@@ -437,23 +396,23 @@
     const/4 v8, 0x0
 
     .local v8, "i$":I
-    :goto_83
-    if-ge v8, v9, :cond_b7
+    :goto_7d
+    if-ge v8, v9, :cond_ab
 
     aget-object v12, v3, v8
 
-    .line 273
+    .line 274
     .local v12, "obj":Ljava/lang/Object;
     check-cast v12, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;
 
     .end local v12    # "obj":Ljava/lang/Object;
     iget-object v4, v12, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;->items:Lrx/internal/util/RxRingBuffer;
 
-    .line 274
+    .line 275
     .restart local v4    # "buffer":Lrx/internal/util/RxRingBuffer;
     invoke-virtual {v4}, Lrx/internal/util/RxRingBuffer;->poll()Ljava/lang/Object;
 
-    .line 276
+    .line 277
     invoke-virtual {v4}, Lrx/internal/util/RxRingBuffer;->peek()Ljava/lang/Object;
 
     move-result-object v16
@@ -464,12 +423,12 @@
 
     move-result v16
 
-    if-eqz v16, :cond_b4
+    if-eqz v16, :cond_a8
 
-    .line 278
+    .line 279
     invoke-interface {v5}, Lrx/Observer;->onCompleted()V
 
-    .line 280
+    .line 281
     move-object/from16 v0, p0
 
     iget-object v0, v0, Lrx/internal/operators/OperatorZip$Zip;->childSubscription:Lrx/subscriptions/CompositeSubscription;
@@ -480,40 +439,34 @@
 
     goto/16 :goto_6
 
-    .line 267
+    .line 268
     .end local v3    # "arr$":[Ljava/lang/Object;
     .end local v4    # "buffer":Lrx/internal/util/RxRingBuffer;
     .end local v8    # "i$":I
     .end local v9    # "len$":I
-    :catch_a8
+    :catch_a2
     move-exception v6
 
-    .line 268
+    .line 269
     .local v6, "e":Ljava/lang/Throwable;
-    invoke-static {v6, v15}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
-
-    move-result-object v16
-
-    move-object/from16 v0, v16
-
-    invoke-interface {v5, v0}, Lrx/Observer;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v6, v5, v15}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
     goto/16 :goto_6
 
-    .line 272
+    .line 273
     .end local v6    # "e":Ljava/lang/Throwable;
     .restart local v3    # "arr$":[Ljava/lang/Object;
     .restart local v4    # "buffer":Lrx/internal/util/RxRingBuffer;
     .restart local v8    # "i$":I
     .restart local v9    # "len$":I
-    :cond_b4
+    :cond_a8
     add-int/lit8 v8, v8, 0x1
 
-    goto :goto_83
+    goto :goto_7d
 
-    .line 284
+    .line 285
     .end local v4    # "buffer":Lrx/internal/util/RxRingBuffer;
-    :cond_b7
+    :cond_ab
     move-object/from16 v0, p0
 
     iget v0, v0, Lrx/internal/operators/OperatorZip$Zip;->emitted:I
@@ -526,21 +479,21 @@
 
     move/from16 v1, v17
 
-    if-le v0, v1, :cond_20
+    if-le v0, v1, :cond_1a
 
-    .line 285
-    move-object v3, v13
+    .line 286
+    move-object v3, v14
 
     array-length v9, v3
 
     const/4 v8, 0x0
 
-    :goto_c8
-    if-ge v8, v9, :cond_e1
+    :goto_bc
+    if-ge v8, v9, :cond_d5
 
     aget-object v12, v3, v8
 
-    .line 286
+    .line 287
     .restart local v12    # "obj":Ljava/lang/Object;
     check-cast v12, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;
 
@@ -561,13 +514,13 @@
 
     invoke-virtual {v12, v0, v1}, Lrx/internal/operators/OperatorZip$Zip$InnerSubscriber;->requestMore(J)V
 
-    .line 285
+    .line 286
     add-int/lit8 v8, v8, 0x1
 
-    goto :goto_c8
+    goto :goto_bc
 
-    .line 288
-    :cond_e1
+    .line 289
+    :cond_d5
     const/16 v16, 0x0
 
     move/from16 v0, v16
@@ -576,20 +529,14 @@
 
     iput v0, v1, Lrx/internal/operators/OperatorZip$Zip;->emitted:I
 
-    goto/16 :goto_20
+    goto/16 :goto_1a
 
-    .line 294
+    .line 295
     .end local v3    # "arr$":[Ljava/lang/Object;
     .end local v8    # "i$":I
     .end local v9    # "len$":I
-    :cond_eb
-    sget-object v16, Lrx/internal/operators/OperatorZip$Zip;->COUNTER_UPDATER:Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;
-
-    move-object/from16 v0, v16
-
-    move-object/from16 v1, p0
-
-    invoke-virtual {v0, v1}, Ljava/util/concurrent/atomic/AtomicLongFieldUpdater;->decrementAndGet(Ljava/lang/Object;)J
+    :cond_df
+    invoke-virtual/range {p0 .. p0}, Lrx/internal/operators/OperatorZip$Zip;->decrementAndGet()J
 
     move-result-wide v16
 
@@ -597,7 +544,7 @@
 
     cmp-long v16, v16, v18
 
-    if-gtz v16, :cond_20
+    if-gtz v16, :cond_1a
 
     goto/16 :goto_6
 .end method

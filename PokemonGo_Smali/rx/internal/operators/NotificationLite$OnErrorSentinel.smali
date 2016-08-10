@@ -22,7 +22,7 @@
 
 
 # instance fields
-.field private final e:Ljava/lang/Throwable;
+.field final e:Ljava/lang/Throwable;
 
 
 # direct methods
@@ -39,17 +39,6 @@
 
     .line 78
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/NotificationLite$OnErrorSentinel;)Ljava/lang/Throwable;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/NotificationLite$OnErrorSentinel;
-
-    .prologue
-    .line 72
-    iget-object v0, p0, Lrx/internal/operators/NotificationLite$OnErrorSentinel;->e:Ljava/lang/Throwable;
-
-    return-object v0
 .end method
 
 

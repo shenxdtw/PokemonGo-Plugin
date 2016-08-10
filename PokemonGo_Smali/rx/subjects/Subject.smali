@@ -22,25 +22,7 @@
 .end annotation
 
 
-# static fields
-.field private static final EMPTY_ARRAY:[Ljava/lang/Object;
-
-
 # direct methods
-.method static constructor <clinit>()V
-    .registers 1
-
-    .prologue
-    .line 124
-    const/4 v0, 0x0
-
-    new-array v0, v0, [Ljava/lang/Object;
-
-    sput-object v0, Lrx/subjects/Subject;->EMPTY_ARRAY:[Ljava/lang/Object;
-
-    return-void
-.end method
-
 .method protected constructor <init>(Lrx/Observable$OnSubscribe;)V
     .registers 2
     .annotation system Ldalvik/annotation/Signature;
@@ -52,154 +34,18 @@
     .end annotation
 
     .prologue
-    .line 28
+    .line 25
     .local p0, "this":Lrx/subjects/Subject;, "Lrx/subjects/Subject<TT;TR;>;"
     .local p1, "onSubscribe":Lrx/Observable$OnSubscribe;, "Lrx/Observable$OnSubscribe<TR;>;"
     invoke-direct {p0, p1}, Lrx/Observable;-><init>(Lrx/Observable$OnSubscribe;)V
 
-    .line 29
+    .line 26
     return-void
 .end method
 
 
 # virtual methods
-.method public getThrowable()Ljava/lang/Throwable;
-    .registers 2
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 91
-    .local p0, "this":Lrx/subjects/Subject;, "Lrx/subjects/Subject<TT;TR;>;"
-    new-instance v0, Ljava/lang/UnsupportedOperationException;
-
-    invoke-direct {v0}, Ljava/lang/UnsupportedOperationException;-><init>()V
-
-    throw v0
-.end method
-
-.method public getValue()Ljava/lang/Object;
-    .registers 2
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()TT;"
-        }
-    .end annotation
-
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 121
-    .local p0, "this":Lrx/subjects/Subject;, "Lrx/subjects/Subject<TT;TR;>;"
-    new-instance v0, Ljava/lang/UnsupportedOperationException;
-
-    invoke-direct {v0}, Ljava/lang/UnsupportedOperationException;-><init>()V
-
-    throw v0
-.end method
-
-.method public getValues()[Ljava/lang/Object;
-    .registers 3
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 135
-    .local p0, "this":Lrx/subjects/Subject;, "Lrx/subjects/Subject<TT;TR;>;"
-    sget-object v1, Lrx/subjects/Subject;->EMPTY_ARRAY:[Ljava/lang/Object;
-
-    check-cast v1, [Ljava/lang/Object;
-
-    invoke-virtual {p0, v1}, Lrx/subjects/Subject;->getValues([Ljava/lang/Object;)[Ljava/lang/Object;
-
-    move-result-object v0
-
-    .line 136
-    .local v0, "r":[Ljava/lang/Object;, "[TT;"
-    sget-object v1, Lrx/subjects/Subject;->EMPTY_ARRAY:[Ljava/lang/Object;
-
-    if-ne v0, v1, :cond_f
-
-    .line 137
-    const/4 v1, 0x0
-
-    new-array v0, v1, [Ljava/lang/Object;
-
-    .line 139
-    .end local v0    # "r":[Ljava/lang/Object;, "[TT;"
-    :cond_f
-    return-object v0
-.end method
-
-.method public getValues([Ljava/lang/Object;)[Ljava/lang/Object;
-    .registers 3
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "([TT;)[TT;"
-        }
-    .end annotation
-
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 156
-    .local p0, "this":Lrx/subjects/Subject;, "Lrx/subjects/Subject<TT;TR;>;"
-    .local p1, "a":[Ljava/lang/Object;, "[TT;"
-    new-instance v0, Ljava/lang/UnsupportedOperationException;
-
-    invoke-direct {v0}, Ljava/lang/UnsupportedOperationException;-><init>()V
-
-    throw v0
-.end method
-
-.method public hasCompleted()Z
-    .registers 2
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 79
-    .local p0, "this":Lrx/subjects/Subject;, "Lrx/subjects/Subject<TT;TR;>;"
-    new-instance v0, Ljava/lang/UnsupportedOperationException;
-
-    invoke-direct {v0}, Ljava/lang/UnsupportedOperationException;-><init>()V
-
-    throw v0
-.end method
-
 .method public abstract hasObservers()Z
-.end method
-
-.method public hasThrowable()Z
-    .registers 2
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 68
-    .local p0, "this":Lrx/subjects/Subject;, "Lrx/subjects/Subject<TT;TR;>;"
-    new-instance v0, Ljava/lang/UnsupportedOperationException;
-
-    invoke-direct {v0}, Ljava/lang/UnsupportedOperationException;-><init>()V
-
-    throw v0
-.end method
-
-.method public hasValue()Z
-    .registers 2
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 105
-    .local p0, "this":Lrx/subjects/Subject;, "Lrx/subjects/Subject<TT;TR;>;"
-    new-instance v0, Ljava/lang/UnsupportedOperationException;
-
-    invoke-direct {v0}, Ljava/lang/UnsupportedOperationException;-><init>()V
-
-    throw v0
 .end method
 
 .method public final toSerialized()Lrx/subjects/SerializedSubject;
@@ -213,7 +59,7 @@
     .end annotation
 
     .prologue
-    .line 54
+    .line 53
     .local p0, "this":Lrx/subjects/Subject;, "Lrx/subjects/Subject<TT;TR;>;"
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
@@ -223,10 +69,10 @@
 
     if-ne v0, v1, :cond_b
 
-    .line 55
+    .line 54
     check-cast p0, Lrx/subjects/SerializedSubject;
 
-    .line 57
+    .line 56
     .end local p0    # "this":Lrx/subjects/Subject;, "Lrx/subjects/Subject<TT;TR;>;"
     :goto_a
     return-object p0

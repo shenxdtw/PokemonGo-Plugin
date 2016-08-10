@@ -6,120 +6,98 @@
 # static fields
 .field protected static final TAG:Ljava/lang/String; = "UpsightBillboardHandler"
 
-
-# instance fields
-.field private mCurrentScope:Ljava/lang/String;
-
-.field private mPlugin:Lcom/upsight/android/unity/UpsightPlugin;
+.field private static mCurrentScope:Ljava/lang/String;
+    .annotation build Landroid/support/annotation/Nullable;
+    .end annotation
+.end field
 
 
 # direct methods
-.method public constructor <init>(Landroid/app/Activity;Lcom/upsight/android/unity/UpsightPlugin;)V
-    .registers 3
+.method public constructor <init>(Landroid/app/Activity;)V
+    .registers 2
     .param p1, "activity"    # Landroid/app/Activity;
-    .param p2, "plugin"    # Lcom/upsight/android/unity/UpsightPlugin;
 
     .prologue
-    .line 31
+    .line 30
     invoke-direct {p0, p1}, Lcom/upsight/android/marketing/UpsightBillboardHandlers$DefaultHandler;-><init>(Landroid/app/Activity;)V
 
-    .line 32
-    iput-object p2, p0, Lcom/upsight/android/unity/BillboardHandler;->mPlugin:Lcom/upsight/android/unity/UpsightPlugin;
-
-    .line 33
+    .line 31
     return-void
+.end method
+
+.method public static getCurrentScope()Ljava/lang/String;
+    .registers 1
+    .annotation build Landroid/support/annotation/Nullable;
+    .end annotation
+
+    .prologue
+    .line 105
+    sget-object v0, Lcom/upsight/android/unity/BillboardHandler;->mCurrentScope:Ljava/lang/String;
+
+    return-object v0
 .end method
 
 
 # virtual methods
-.method public onAttach(Ljava/lang/String;Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;Ljava/util/Set;)Landroid/view/ViewGroup;
-    .registers 7
+.method public onAttach(Ljava/lang/String;)Lcom/upsight/android/marketing/UpsightBillboard$AttachParameters;
+    .registers 4
     .param p1, "scope"    # Ljava/lang/String;
-    .param p2, "presentation"    # Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Ljava/lang/String;",
-            "Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;",
-            "Ljava/util/Set",
-            "<",
-            "Lcom/upsight/android/marketing/UpsightBillboard$Dimensions;",
-            ">;)",
-            "Landroid/view/ViewGroup;"
-        }
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
+    .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 
     .prologue
-    .line 37
-    .local p3, "dimensions":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/marketing/UpsightBillboard$Dimensions;>;"
-    iput-object p1, p0, Lcom/upsight/android/unity/BillboardHandler;->mCurrentScope:Ljava/lang/String;
-
-    .line 38
-    invoke-super {p0, p1, p2, p3}, Lcom/upsight/android/marketing/UpsightBillboardHandlers$DefaultHandler;->onAttach(Ljava/lang/String;Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;Ljava/util/Set;)Landroid/view/ViewGroup;
+    .line 36
+    invoke-super {p0, p1}, Lcom/upsight/android/marketing/UpsightBillboardHandlers$DefaultHandler;->onAttach(Ljava/lang/String;)Lcom/upsight/android/marketing/UpsightBillboard$AttachParameters;
 
     move-result-object v0
 
+    .line 38
+    .local v0, "params":Lcom/upsight/android/marketing/UpsightBillboard$AttachParameters;
+    if-eqz v0, :cond_d
+
+    .line 39
+    sput-object p1, Lcom/upsight/android/unity/BillboardHandler;->mCurrentScope:Ljava/lang/String;
+
     .line 40
-    .local v0, "viewGroup":Landroid/view/ViewGroup;
-    if-eqz v0, :cond_15
+    const-string v1, "onBillboardAppear"
 
-    .line 41
-    iget-object v1, p0, Lcom/upsight/android/unity/BillboardHandler;->mPlugin:Lcom/upsight/android/unity/UpsightPlugin;
+    invoke-static {v1, p1}, Lcom/upsight/android/unity/UnityBridge;->UnitySendMessage(Ljava/lang/String;Ljava/lang/String;)V
 
-    const/4 v2, 0x1
-
-    invoke-virtual {v1, v2}, Lcom/upsight/android/unity/UpsightPlugin;->setHasActiveBillboard(Z)V
-
-    .line 42
-    iget-object v1, p0, Lcom/upsight/android/unity/BillboardHandler;->mPlugin:Lcom/upsight/android/unity/UpsightPlugin;
-
-    const-string v2, "onBillboardAppear"
-
-    invoke-virtual {v1, v2, p1}, Lcom/upsight/android/unity/UpsightPlugin;->UnitySendMessage(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 45
-    :cond_15
+    .line 43
+    :cond_d
     return-object v0
 .end method
 
 .method public onDetach()V
-    .registers 4
+    .registers 3
 
     .prologue
-    .line 50
+    .line 48
     invoke-super {p0}, Lcom/upsight/android/marketing/UpsightBillboardHandlers$DefaultHandler;->onDetach()V
 
-    .line 51
+    .line 49
     const-string v0, "UpsightBillboardHandler"
 
     const-string v1, "onDetach"
 
     invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 52
-    iget-object v0, p0, Lcom/upsight/android/unity/BillboardHandler;->mPlugin:Lcom/upsight/android/unity/UpsightPlugin;
+    .line 51
+    const-string v0, "onBillboardDismiss"
 
-    const-string v1, "onBillboardDismiss"
+    sget-object v1, Lcom/upsight/android/unity/BillboardHandler;->mCurrentScope:Ljava/lang/String;
 
-    iget-object v2, p0, Lcom/upsight/android/unity/BillboardHandler;->mCurrentScope:Ljava/lang/String;
+    invoke-static {v0, v1}, Lcom/upsight/android/unity/UnityBridge;->UnitySendMessage(Ljava/lang/String;Ljava/lang/String;)V
 
-    invoke-virtual {v0, v1, v2}, Lcom/upsight/android/unity/UpsightPlugin;->UnitySendMessage(Ljava/lang/String;Ljava/lang/String;)V
+    .line 53
+    const/4 v0, 0x0
 
-    .line 55
-    iget-object v0, p0, Lcom/upsight/android/unity/BillboardHandler;->mPlugin:Lcom/upsight/android/unity/UpsightPlugin;
+    sput-object v0, Lcom/upsight/android/unity/BillboardHandler;->mCurrentScope:Ljava/lang/String;
 
-    iget-object v1, p0, Lcom/upsight/android/unity/BillboardHandler;->mCurrentScope:Ljava/lang/String;
-
-    invoke-virtual {v0, v1}, Lcom/upsight/android/unity/UpsightPlugin;->removeBillboardFromMap(Ljava/lang/String;)V
-
-    .line 56
-    iget-object v0, p0, Lcom/upsight/android/unity/BillboardHandler;->mPlugin:Lcom/upsight/android/unity/UpsightPlugin;
-
-    const/4 v1, 0x0
-
-    invoke-virtual {v0, v1}, Lcom/upsight/android/unity/UpsightPlugin;->setHasActiveBillboard(Z)V
-
-    .line 57
+    .line 54
     return-void
 .end method
 
@@ -127,22 +105,26 @@
     .registers 3
 
     .prologue
-    .line 61
+    .line 58
     invoke-super {p0}, Lcom/upsight/android/marketing/UpsightBillboardHandlers$DefaultHandler;->onNextView()V
 
-    .line 62
+    .line 59
     const-string v0, "UpsightBillboardHandler"
 
     const-string v1, "onNextView"
 
     invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 63
+    .line 60
     return-void
 .end method
 
 .method public onPurchases(Ljava/util/List;)V
     .registers 9
+    .param p1    # Ljava/util/List;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -154,90 +136,87 @@
     .end annotation
 
     .prologue
-    .line 67
+    .line 64
     .local p1, "purchases":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/marketing/UpsightPurchase;>;"
     invoke-super {p0, p1}, Lcom/upsight/android/marketing/UpsightBillboardHandlers$DefaultHandler;->onPurchases(Ljava/util/List;)V
 
-    .line 69
-    const-string v4, "UpsightBillboardHandler"
+    .line 66
+    const-string v3, "UpsightBillboardHandler"
 
-    const-string v5, "onPurchases"
+    const-string v4, "onPurchases"
 
-    invoke-static {v4, v5}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v3, v4}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 71
+    .line 68
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
-
-    move-result-object v1
-
-    .local v1, "i$":Ljava/util/Iterator;
-    :goto_e
-    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v4
-
-    if-eqz v4, :cond_62
-
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v3
 
-    check-cast v3, Lcom/upsight/android/marketing/UpsightPurchase;
+    :goto_e
+    invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
-    .line 73
-    .local v3, "p":Lcom/upsight/android/marketing/UpsightPurchase;
+    move-result v4
+
+    if-eqz v4, :cond_60
+
+    invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Lcom/upsight/android/marketing/UpsightPurchase;
+
+    .line 70
+    .local v2, "p":Lcom/upsight/android/marketing/UpsightPurchase;
     :try_start_1a
-    new-instance v2, Lorg/json/JSONObject;
+    new-instance v1, Lorg/json/JSONObject;
 
-    invoke-direct {v2}, Lorg/json/JSONObject;-><init>()V
+    invoke-direct {v1}, Lorg/json/JSONObject;-><init>()V
 
-    .line 74
-    .local v2, "json":Lorg/json/JSONObject;
+    .line 71
+    .local v1, "json":Lorg/json/JSONObject;
     const-string v4, "productIdentifier"
 
-    invoke-interface {v3}, Lcom/upsight/android/marketing/UpsightPurchase;->getProduct()Ljava/lang/String;
+    invoke-interface {v2}, Lcom/upsight/android/marketing/UpsightPurchase;->getProduct()Ljava/lang/String;
 
     move-result-object v5
 
-    invoke-virtual {v2, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+    invoke-virtual {v1, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    .line 75
+    .line 72
     const-string v4, "quantity"
 
-    invoke-interface {v3}, Lcom/upsight/android/marketing/UpsightPurchase;->getQuantity()I
+    invoke-interface {v2}, Lcom/upsight/android/marketing/UpsightPurchase;->getQuantity()I
 
     move-result v5
 
-    invoke-virtual {v2, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;I)Lorg/json/JSONObject;
+    invoke-virtual {v1, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;I)Lorg/json/JSONObject;
 
-    .line 76
+    .line 73
     const-string v4, "billboardScope"
 
-    iget-object v5, p0, Lcom/upsight/android/unity/BillboardHandler;->mCurrentScope:Ljava/lang/String;
+    sget-object v5, Lcom/upsight/android/unity/BillboardHandler;->mCurrentScope:Ljava/lang/String;
 
-    invoke-virtual {v2, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+    invoke-virtual {v1, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    .line 78
-    iget-object v4, p0, Lcom/upsight/android/unity/BillboardHandler;->mPlugin:Lcom/upsight/android/unity/UpsightPlugin;
+    .line 75
+    const-string v4, "billboardDidReceivePurchase"
 
-    const-string v5, "billboardDidReceivePurchase"
+    invoke-virtual {v1}, Lorg/json/JSONObject;->toString()Ljava/lang/String;
 
-    invoke-virtual {v2}, Lorg/json/JSONObject;->toString()Ljava/lang/String;
+    move-result-object v5
 
-    move-result-object v6
-
-    invoke-virtual {v4, v5, v6}, Lcom/upsight/android/unity/UpsightPlugin;->UnitySendMessage(Ljava/lang/String;Ljava/lang/String;)V
-    :try_end_43
-    .catch Ljava/lang/Exception; {:try_start_1a .. :try_end_43} :catch_44
+    invoke-static {v4, v5}, Lcom/upsight/android/unity/UnityBridge;->UnitySendMessage(Ljava/lang/String;Ljava/lang/String;)V
+    :try_end_41
+    .catch Ljava/lang/Exception; {:try_start_1a .. :try_end_41} :catch_42
 
     goto :goto_e
 
-    .line 79
-    .end local v2    # "json":Lorg/json/JSONObject;
-    :catch_44
+    .line 76
+    .end local v1    # "json":Lorg/json/JSONObject;
+    :catch_42
     move-exception v0
 
-    .line 80
+    .line 77
     .local v0, "e":Ljava/lang/Exception;
     const-string v4, "UpsightBillboardHandler"
 
@@ -267,15 +246,19 @@
 
     goto :goto_e
 
-    .line 83
+    .line 80
     .end local v0    # "e":Ljava/lang/Exception;
-    .end local v3    # "p":Lcom/upsight/android/marketing/UpsightPurchase;
-    :cond_62
+    .end local v2    # "p":Lcom/upsight/android/marketing/UpsightPurchase;
+    :cond_60
     return-void
 .end method
 
 .method public onRewards(Ljava/util/List;)V
     .registers 9
+    .param p1    # Ljava/util/List;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -287,99 +270,96 @@
     .end annotation
 
     .prologue
-    .line 87
+    .line 84
     .local p1, "rewards":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/marketing/UpsightReward;>;"
     invoke-super {p0, p1}, Lcom/upsight/android/marketing/UpsightBillboardHandlers$DefaultHandler;->onRewards(Ljava/util/List;)V
 
-    .line 89
-    const-string v4, "UpsightBillboardHandler"
+    .line 86
+    const-string v3, "UpsightBillboardHandler"
 
-    const-string v5, "onRewards"
+    const-string v4, "onRewards"
 
-    invoke-static {v4, v5}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v3, v4}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 91
+    .line 88
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
-
-    move-result-object v1
-
-    .local v1, "i$":Ljava/util/Iterator;
-    :goto_e
-    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v4
-
-    if-eqz v4, :cond_6b
-
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v3
 
-    check-cast v3, Lcom/upsight/android/marketing/UpsightReward;
+    :goto_e
+    invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
-    .line 93
-    .local v3, "r":Lcom/upsight/android/marketing/UpsightReward;
+    move-result v4
+
+    if-eqz v4, :cond_69
+
+    invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Lcom/upsight/android/marketing/UpsightReward;
+
+    .line 90
+    .local v2, "r":Lcom/upsight/android/marketing/UpsightReward;
     :try_start_1a
-    new-instance v2, Lorg/json/JSONObject;
+    new-instance v1, Lorg/json/JSONObject;
 
-    invoke-direct {v2}, Lorg/json/JSONObject;-><init>()V
+    invoke-direct {v1}, Lorg/json/JSONObject;-><init>()V
 
-    .line 94
-    .local v2, "json":Lorg/json/JSONObject;
+    .line 91
+    .local v1, "json":Lorg/json/JSONObject;
     const-string v4, "productIdentifier"
 
-    invoke-interface {v3}, Lcom/upsight/android/marketing/UpsightReward;->getProduct()Ljava/lang/String;
+    invoke-interface {v2}, Lcom/upsight/android/marketing/UpsightReward;->getProduct()Ljava/lang/String;
 
     move-result-object v5
 
-    invoke-virtual {v2, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+    invoke-virtual {v1, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    .line 95
+    .line 92
     const-string v4, "quantity"
 
-    invoke-interface {v3}, Lcom/upsight/android/marketing/UpsightReward;->getQuantity()I
+    invoke-interface {v2}, Lcom/upsight/android/marketing/UpsightReward;->getQuantity()I
 
     move-result v5
 
-    invoke-virtual {v2, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;I)Lorg/json/JSONObject;
+    invoke-virtual {v1, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;I)Lorg/json/JSONObject;
 
-    .line 96
+    .line 93
     const-string v4, "signatureData"
 
-    invoke-interface {v3}, Lcom/upsight/android/marketing/UpsightReward;->getSignatureData()Lorg/json/JSONObject;
+    invoke-interface {v2}, Lcom/upsight/android/marketing/UpsightReward;->getSignatureData()Lorg/json/JSONObject;
 
     move-result-object v5
 
-    invoke-virtual {v2, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+    invoke-virtual {v1, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    .line 97
+    .line 94
     const-string v4, "billboardScope"
 
-    iget-object v5, p0, Lcom/upsight/android/unity/BillboardHandler;->mCurrentScope:Ljava/lang/String;
+    sget-object v5, Lcom/upsight/android/unity/BillboardHandler;->mCurrentScope:Ljava/lang/String;
 
-    invoke-virtual {v2, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+    invoke-virtual {v1, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    .line 99
-    iget-object v4, p0, Lcom/upsight/android/unity/BillboardHandler;->mPlugin:Lcom/upsight/android/unity/UpsightPlugin;
+    .line 96
+    const-string v4, "billboardDidReceiveReward"
 
-    const-string v5, "billboardDidReceiveReward"
+    invoke-virtual {v1}, Lorg/json/JSONObject;->toString()Ljava/lang/String;
 
-    invoke-virtual {v2}, Lorg/json/JSONObject;->toString()Ljava/lang/String;
+    move-result-object v5
 
-    move-result-object v6
-
-    invoke-virtual {v4, v5, v6}, Lcom/upsight/android/unity/UpsightPlugin;->UnitySendMessage(Ljava/lang/String;Ljava/lang/String;)V
-    :try_end_4c
-    .catch Ljava/lang/Exception; {:try_start_1a .. :try_end_4c} :catch_4d
+    invoke-static {v4, v5}, Lcom/upsight/android/unity/UnityBridge;->UnitySendMessage(Ljava/lang/String;Ljava/lang/String;)V
+    :try_end_4a
+    .catch Ljava/lang/Exception; {:try_start_1a .. :try_end_4a} :catch_4b
 
     goto :goto_e
 
-    .line 100
-    .end local v2    # "json":Lorg/json/JSONObject;
-    :catch_4d
+    .line 97
+    .end local v1    # "json":Lorg/json/JSONObject;
+    :catch_4b
     move-exception v0
 
-    .line 101
+    .line 98
     .local v0, "e":Ljava/lang/Exception;
     const-string v4, "UpsightBillboardHandler"
 
@@ -409,9 +389,9 @@
 
     goto :goto_e
 
-    .line 104
+    .line 101
     .end local v0    # "e":Ljava/lang/Exception;
-    .end local v3    # "r":Lcom/upsight/android/marketing/UpsightReward;
-    :cond_6b
+    .end local v2    # "r":Lcom/upsight/android/marketing/UpsightReward;
+    :cond_69
     return-void
 .end method

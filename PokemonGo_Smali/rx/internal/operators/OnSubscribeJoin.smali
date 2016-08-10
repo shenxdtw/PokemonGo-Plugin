@@ -122,7 +122,7 @@
     .end annotation
 
     .prologue
-    .line 54
+    .line 49
     .local p0, "this":Lrx/internal/operators/OnSubscribeJoin;, "Lrx/internal/operators/OnSubscribeJoin<TTLeft;TTRight;TTLeftDuration;TTRightDuration;TR;>;"
     .local p1, "left":Lrx/Observable;, "Lrx/Observable<TTLeft;>;"
     .local p2, "right":Lrx/Observable;, "Lrx/Observable<TTRight;>;"
@@ -131,22 +131,22 @@
     .local p5, "resultSelector":Lrx/functions/Func2;, "Lrx/functions/Func2<TTLeft;TTRight;TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 55
+    .line 50
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeJoin;->left:Lrx/Observable;
 
-    .line 56
+    .line 51
     iput-object p2, p0, Lrx/internal/operators/OnSubscribeJoin;->right:Lrx/Observable;
 
-    .line 57
+    .line 52
     iput-object p3, p0, Lrx/internal/operators/OnSubscribeJoin;->leftDurationSelector:Lrx/functions/Func1;
 
-    .line 58
+    .line 53
     iput-object p4, p0, Lrx/internal/operators/OnSubscribeJoin;->rightDurationSelector:Lrx/functions/Func1;
 
-    .line 59
+    .line 54
     iput-object p5, p0, Lrx/internal/operators/OnSubscribeJoin;->resultSelector:Lrx/functions/Func2;
 
-    .line 60
+    .line 55
     return-void
 .end method
 
@@ -157,7 +157,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 42
+    .line 37
     .local p0, "this":Lrx/internal/operators/OnSubscribeJoin;, "Lrx/internal/operators/OnSubscribeJoin<TTLeft;TTRight;TTLeftDuration;TTRightDuration;TR;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -178,7 +178,7 @@
     .end annotation
 
     .prologue
-    .line 64
+    .line 59
     .local p0, "this":Lrx/internal/operators/OnSubscribeJoin;, "Lrx/internal/operators/OnSubscribeJoin<TTLeft;TTRight;TTLeftDuration;TTRightDuration;TR;>;"
     .local p1, "t1":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
     new-instance v0, Lrx/internal/operators/OnSubscribeJoin$ResultSink;
@@ -189,10 +189,10 @@
 
     invoke-direct {v0, p0, v1}, Lrx/internal/operators/OnSubscribeJoin$ResultSink;-><init>(Lrx/internal/operators/OnSubscribeJoin;Lrx/Subscriber;)V
 
-    .line 65
+    .line 60
     .local v0, "result":Lrx/internal/operators/OnSubscribeJoin$ResultSink;, "Lrx/internal/operators/OnSubscribeJoin<TTLeft;TTRight;TTLeftDuration;TTRightDuration;TR;>.ResultSink;"
     invoke-virtual {v0}, Lrx/internal/operators/OnSubscribeJoin$ResultSink;->run()V
 
-    .line 66
+    .line 61
     return-void
 .end method

@@ -31,18 +31,6 @@
 # static fields
 .field private static final EMPTY_TOKEN:Ljava/lang/Object;
 
-.field static final VALUE_UPDATER:Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater",
-            "<",
-            "Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;",
-            "Ljava/lang/Object;",
-            ">;"
-        }
-    .end annotation
-.end field
-
 
 # instance fields
 .field private final subscriber:Lrx/Subscriber;
@@ -54,39 +42,35 @@
     .end annotation
 .end field
 
-.field volatile value:Ljava/lang/Object;
+.field final value:Ljava/util/concurrent/atomic/AtomicReference;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/concurrent/atomic/AtomicReference",
+            "<",
+            "Ljava/lang/Object;",
+            ">;"
+        }
+    .end annotation
+.end field
 
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 3
+    .registers 1
 
     .prologue
-    .line 64
+    .line 66
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
     sput-object v0, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->EMPTY_TOKEN:Ljava/lang/Object;
 
-    .line 69
-    const-class v0, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;
-
-    const-class v1, Ljava/lang/Object;
-
-    const-string v2, "value"
-
-    invoke-static {v0, v1, v2}, Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->VALUE_UPDATER:Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
-
     return-void
 .end method
 
 .method public constructor <init>(Lrx/Subscriber;)V
-    .registers 3
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -96,49 +80,51 @@
     .end annotation
 
     .prologue
-    .line 71
+    .line 70
     .local p0, "this":Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;, "Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber<TT;>;"
     .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
-    .line 66
-    sget-object v0, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->EMPTY_TOKEN:Ljava/lang/Object;
+    .line 68
+    new-instance v0, Ljava/util/concurrent/atomic/AtomicReference;
 
-    iput-object v0, p0, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->value:Ljava/lang/Object;
+    sget-object v1, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->EMPTY_TOKEN:Ljava/lang/Object;
 
-    .line 72
+    invoke-direct {v0, v1}, Ljava/util/concurrent/atomic/AtomicReference;-><init>(Ljava/lang/Object;)V
+
+    iput-object v0, p0, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->value:Ljava/util/concurrent/atomic/AtomicReference;
+
+    .line 71
     iput-object p1, p0, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->subscriber:Lrx/Subscriber;
 
-    .line 73
+    .line 72
     return-void
 .end method
 
-
-# virtual methods
-.method public call()V
+.method private emitIfNonEmpty()V
     .registers 6
 
     .prologue
-    .line 99
+    .line 103
     .local p0, "this":Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;, "Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber<TT;>;"
-    sget-object v3, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->VALUE_UPDATER:Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
+    iget-object v3, p0, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->value:Ljava/util/concurrent/atomic/AtomicReference;
 
     sget-object v4, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->EMPTY_TOKEN:Ljava/lang/Object;
 
-    invoke-virtual {v3, p0, v4}, Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;->getAndSet(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-virtual {v3, v4}, Ljava/util/concurrent/atomic/AtomicReference;->getAndSet(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
 
-    .line 100
+    .line 104
     .local v1, "localValue":Ljava/lang/Object;
     sget-object v3, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->EMPTY_TOKEN:Ljava/lang/Object;
 
     if-eq v1, v3, :cond_12
 
-    .line 103
+    .line 107
     move-object v2, v1
 
-    .line 104
+    .line 108
     .local v2, "v":Ljava/lang/Object;, "TT;"
     :try_start_d
     iget-object v3, p0, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->subscriber:Lrx/Subscriber;
@@ -147,30 +133,47 @@
     :try_end_12
     .catch Ljava/lang/Throwable; {:try_start_d .. :try_end_12} :catch_13
 
-    .line 109
+    .line 113
     .end local v2    # "v":Ljava/lang/Object;, "TT;"
     :cond_12
     :goto_12
     return-void
 
-    .line 105
+    .line 109
     .restart local v2    # "v":Ljava/lang/Object;, "TT;"
     :catch_13
     move-exception v0
 
-    .line 106
+    .line 110
     .local v0, "e":Ljava/lang/Throwable;
-    invoke-virtual {p0, v0}, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, p0}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     goto :goto_12
+.end method
+
+
+# virtual methods
+.method public call()V
+    .registers 1
+
+    .prologue
+    .line 99
+    .local p0, "this":Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;, "Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber<TT;>;"
+    invoke-direct {p0}, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->emitIfNonEmpty()V
+
+    .line 100
+    return-void
 .end method
 
 .method public onCompleted()V
     .registers 2
 
     .prologue
-    .line 93
+    .line 92
     .local p0, "this":Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;, "Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber<TT;>;"
+    invoke-direct {p0}, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->emitIfNonEmpty()V
+
+    .line 93
     iget-object v0, p0, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->subscriber:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
@@ -187,21 +190,21 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 87
+    .line 86
     .local p0, "this":Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;, "Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->subscriber:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 88
+    .line 87
     invoke-virtual {p0}, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->unsubscribe()V
 
-    .line 89
+    .line 88
     return-void
 .end method
 
 .method public onNext(Ljava/lang/Object;)V
-    .registers 2
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -209,12 +212,14 @@
     .end annotation
 
     .prologue
-    .line 82
+    .line 81
     .local p0, "this":Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;, "Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber<TT;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
-    iput-object p1, p0, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->value:Ljava/lang/Object;
+    iget-object v0, p0, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->value:Ljava/util/concurrent/atomic/AtomicReference;
 
-    .line 83
+    invoke-virtual {v0, p1}, Ljava/util/concurrent/atomic/AtomicReference;->set(Ljava/lang/Object;)V
+
+    .line 82
     return-void
 .end method
 
@@ -222,12 +227,12 @@
     .registers 3
 
     .prologue
-    .line 77
+    .line 76
     .local p0, "this":Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;, "Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber<TT;>;"
     const-wide v0, 0x7fffffffffffffffL
 
     invoke-virtual {p0, v0, v1}, Lrx/internal/operators/OperatorSampleWithTime$SamplerSubscriber;->request(J)V
 
-    .line 78
+    .line 77
     return-void
 .end method

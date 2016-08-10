@@ -31,7 +31,7 @@
 
 # virtual methods
 .method public create(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken;)Lcom/google/gson/TypeAdapter;
-    .registers 6
+    .registers 5
     .param p1, "gson"    # Lcom/google/gson/Gson;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -47,29 +47,27 @@
     .end annotation
 
     .prologue
-    .local p2, "type":Lcom/google/gson/reflect/TypeToken;, "Lcom/google/gson/reflect/TypeToken<TT;>;"
-    const/4 v1, 0x0
-
     .line 41
+    .local p2, "type":Lcom/google/gson/reflect/TypeToken;, "Lcom/google/gson/reflect/TypeToken<TT;>;"
     invoke-virtual {p2}, Lcom/google/gson/reflect/TypeToken;->getRawType()Ljava/lang/Class;
 
     move-result-object v0
 
-    const-class v2, Ljava/lang/Object;
+    const-class v1, Ljava/lang/Object;
 
-    if-ne v0, v2, :cond_f
+    if-ne v0, v1, :cond_e
 
     .line 42
     new-instance v0, Lcom/google/gson/internal/bind/ObjectTypeAdapter;
 
-    invoke-direct {v0, p1, v1}, Lcom/google/gson/internal/bind/ObjectTypeAdapter;-><init>(Lcom/google/gson/Gson;Lcom/google/gson/internal/bind/ObjectTypeAdapter$1;)V
+    invoke-direct {v0, p1}, Lcom/google/gson/internal/bind/ObjectTypeAdapter;-><init>(Lcom/google/gson/Gson;)V
 
     .line 44
-    :goto_e
+    :goto_d
     return-object v0
 
-    :cond_f
-    move-object v0, v1
+    :cond_e
+    const/4 v0, 0x0
 
-    goto :goto_e
+    goto :goto_d
 .end method

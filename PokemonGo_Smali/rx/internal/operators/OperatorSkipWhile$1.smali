@@ -36,7 +36,7 @@
     .registers 5
 
     .prologue
-    .line 35
+    .line 36
     .local p0, "this":Lrx/internal/operators/OperatorSkipWhile$1;, "Lrx/internal/operators/OperatorSkipWhile.1;"
     .local p2, "x0":Lrx/Subscriber;, "Lrx/Subscriber<*>;"
     iput-object p1, p0, Lrx/internal/operators/OperatorSkipWhile$1;->this$0:Lrx/internal/operators/OperatorSkipWhile;
@@ -45,7 +45,7 @@
 
     invoke-direct {p0, p2}, Lrx/Subscriber;-><init>(Lrx/Subscriber;)V
 
-    .line 36
+    .line 37
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/internal/operators/OperatorSkipWhile$1;->skipping:Z
@@ -59,13 +59,13 @@
     .registers 2
 
     .prologue
-    .line 59
+    .line 67
     .local p0, "this":Lrx/internal/operators/OperatorSkipWhile$1;, "Lrx/internal/operators/OperatorSkipWhile.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorSkipWhile$1;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    .line 60
+    .line 68
     return-void
 .end method
 
@@ -74,18 +74,18 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 54
+    .line 62
     .local p0, "this":Lrx/internal/operators/OperatorSkipWhile$1;, "Lrx/internal/operators/OperatorSkipWhile.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorSkipWhile$1;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 55
+    .line 63
     return-void
 .end method
 
 .method public onNext(Ljava/lang/Object;)V
-    .registers 5
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -93,70 +93,87 @@
     .end annotation
 
     .prologue
-    .line 40
+    .line 41
     .local p0, "this":Lrx/internal/operators/OperatorSkipWhile$1;, "Lrx/internal/operators/OperatorSkipWhile.1;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
-    iget-boolean v0, p0, Lrx/internal/operators/OperatorSkipWhile$1;->skipping:Z
+    iget-boolean v2, p0, Lrx/internal/operators/OperatorSkipWhile$1;->skipping:Z
 
-    if-nez v0, :cond_a
+    if-nez v2, :cond_a
 
-    .line 41
-    iget-object v0, p0, Lrx/internal/operators/OperatorSkipWhile$1;->val$child:Lrx/Subscriber;
+    .line 42
+    iget-object v2, p0, Lrx/internal/operators/OperatorSkipWhile$1;->val$child:Lrx/Subscriber;
 
-    invoke-virtual {v0, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+    invoke-virtual {v2, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    .line 50
+    .line 58
     :goto_9
     return-void
 
-    .line 43
+    .line 46
     :cond_a
-    iget-object v0, p0, Lrx/internal/operators/OperatorSkipWhile$1;->this$0:Lrx/internal/operators/OperatorSkipWhile;
+    :try_start_a
+    iget-object v2, p0, Lrx/internal/operators/OperatorSkipWhile$1;->this$0:Lrx/internal/operators/OperatorSkipWhile;
 
-    # getter for: Lrx/internal/operators/OperatorSkipWhile;->predicate:Lrx/functions/Func2;
-    invoke-static {v0}, Lrx/internal/operators/OperatorSkipWhile;->access$000(Lrx/internal/operators/OperatorSkipWhile;)Lrx/functions/Func2;
+    iget-object v2, v2, Lrx/internal/operators/OperatorSkipWhile;->predicate:Lrx/functions/Func2;
 
-    move-result-object v0
+    iget v3, p0, Lrx/internal/operators/OperatorSkipWhile$1;->index:I
 
-    iget v1, p0, Lrx/internal/operators/OperatorSkipWhile$1;->index:I
+    add-int/lit8 v4, v3, 0x1
 
-    add-int/lit8 v2, v1, 0x1
+    iput v4, p0, Lrx/internal/operators/OperatorSkipWhile$1;->index:I
 
-    iput v2, p0, Lrx/internal/operators/OperatorSkipWhile$1;->index:I
+    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object v3
 
-    move-result-object v1
+    invoke-interface {v2, p1, v3}, Lrx/functions/Func2;->call(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    invoke-interface {v0, p1, v1}, Lrx/functions/Func2;->call(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    move-result-object v2
 
-    move-result-object v0
+    check-cast v2, Ljava/lang/Boolean;
 
-    check-cast v0, Ljava/lang/Boolean;
+    invoke-virtual {v2}, Ljava/lang/Boolean;->booleanValue()Z
+    :try_end_21
+    .catch Ljava/lang/Throwable; {:try_start_a .. :try_end_21} :catch_2d
 
-    invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
+    move-result v1
 
-    move-result v0
+    .line 51
+    .local v1, "skip":Z
+    if-nez v1, :cond_34
 
-    if-nez v0, :cond_2f
+    .line 52
+    const/4 v2, 0x0
 
-    .line 44
-    const/4 v0, 0x0
+    iput-boolean v2, p0, Lrx/internal/operators/OperatorSkipWhile$1;->skipping:Z
 
-    iput-boolean v0, p0, Lrx/internal/operators/OperatorSkipWhile$1;->skipping:Z
+    .line 53
+    iget-object v2, p0, Lrx/internal/operators/OperatorSkipWhile$1;->val$child:Lrx/Subscriber;
 
-    .line 45
-    iget-object v0, p0, Lrx/internal/operators/OperatorSkipWhile$1;->val$child:Lrx/Subscriber;
-
-    invoke-virtual {v0, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+    invoke-virtual {v2, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
     goto :goto_9
 
     .line 47
-    :cond_2f
-    const-wide/16 v0, 0x1
+    .end local v1    # "skip":Z
+    :catch_2d
+    move-exception v0
 
-    invoke-virtual {p0, v0, v1}, Lrx/internal/operators/OperatorSkipWhile$1;->request(J)V
+    .line 48
+    .local v0, "e":Ljava/lang/Throwable;
+    iget-object v2, p0, Lrx/internal/operators/OperatorSkipWhile$1;->val$child:Lrx/Subscriber;
+
+    invoke-static {v0, v2, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
+
+    goto :goto_9
+
+    .line 55
+    .end local v0    # "e":Ljava/lang/Throwable;
+    .restart local v1    # "skip":Z
+    :cond_34
+    const-wide/16 v2, 0x1
+
+    invoke-virtual {p0, v2, v3}, Lrx/internal/operators/OperatorSkipWhile$1;->request(J)V
 
     goto :goto_9
 .end method

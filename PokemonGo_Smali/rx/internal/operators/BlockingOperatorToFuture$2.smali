@@ -77,55 +77,51 @@
 
     .prologue
     .line 121
-    iget-object v0, p0, Lrx/internal/operators/BlockingOperatorToFuture$2;->val$error:Ljava/util/concurrent/atomic/AtomicReference;
+    iget-object v1, p0, Lrx/internal/operators/BlockingOperatorToFuture$2;->val$error:Ljava/util/concurrent/atomic/AtomicReference;
 
-    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
-
-    move-result-object v0
-
-    if-eqz v0, :cond_18
-
-    .line 122
-    new-instance v1, Ljava/util/concurrent/ExecutionException;
-
-    const-string v2, "Observable onError"
-
-    iget-object v0, p0, Lrx/internal/operators/BlockingOperatorToFuture$2;->val$error:Ljava/util/concurrent/atomic/AtomicReference;
-
-    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
+    invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Ljava/lang/Throwable;
 
+    .line 123
+    .local v0, "throwable":Ljava/lang/Throwable;
+    if-eqz v0, :cond_12
+
+    .line 124
+    new-instance v1, Ljava/util/concurrent/ExecutionException;
+
+    const-string v2, "Observable onError"
+
     invoke-direct {v1, v2, v0}, Ljava/util/concurrent/ExecutionException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
 
     throw v1
 
-    .line 123
-    :cond_18
-    iget-boolean v0, p0, Lrx/internal/operators/BlockingOperatorToFuture$2;->cancelled:Z
-
-    if-eqz v0, :cond_24
-
     .line 125
-    new-instance v0, Ljava/util/concurrent/CancellationException;
+    :cond_12
+    iget-boolean v1, p0, Lrx/internal/operators/BlockingOperatorToFuture$2;->cancelled:Z
 
-    const-string v1, "Subscription unsubscribed"
-
-    invoke-direct {v0, v1}, Ljava/util/concurrent/CancellationException;-><init>(Ljava/lang/String;)V
-
-    throw v0
+    if-eqz v1, :cond_1e
 
     .line 127
-    :cond_24
-    iget-object v0, p0, Lrx/internal/operators/BlockingOperatorToFuture$2;->val$value:Ljava/util/concurrent/atomic/AtomicReference;
+    new-instance v1, Ljava/util/concurrent/CancellationException;
 
-    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
+    const-string v2, "Subscription unsubscribed"
 
-    move-result-object v0
+    invoke-direct {v1, v2}, Ljava/util/concurrent/CancellationException;-><init>(Ljava/lang/String;)V
 
-    return-object v0
+    throw v1
+
+    .line 129
+    :cond_1e
+    iget-object v1, p0, Lrx/internal/operators/BlockingOperatorToFuture$2;->val$value:Ljava/util/concurrent/atomic/AtomicReference;
+
+    invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
+
+    move-result-object v1
+
+    return-object v1
 .end method
 
 

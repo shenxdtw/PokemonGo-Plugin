@@ -33,6 +33,10 @@
 .end annotation
 
 
+# static fields
+.field private static final EMPTY_ARRAY:[Ljava/lang/Object;
+
+
 # instance fields
 .field final ssm:Lrx/subjects/SubjectSubscriptionManager;
     .annotation system Ldalvik/annotation/Signature;
@@ -54,6 +58,20 @@
 
 
 # direct methods
+.method static constructor <clinit>()V
+    .registers 1
+
+    .prologue
+    .line 1161
+    const/4 v0, 0x0
+
+    new-array v0, v0, [Ljava/lang/Object;
+
+    sput-object v0, Lrx/subjects/ReplaySubject;->EMPTY_ARRAY:[Ljava/lang/Object;
+
+    return-void
+.end method
+
 .method constructor <init>(Lrx/Observable$OnSubscribe;Lrx/subjects/SubjectSubscriptionManager;Lrx/subjects/ReplaySubject$ReplayState;)V
     .registers 4
     .annotation system Ldalvik/annotation/Signature;
@@ -69,20 +87,20 @@
     .end annotation
 
     .prologue
-    .line 359
+    .line 363
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     .local p1, "onSubscribe":Lrx/Observable$OnSubscribe;, "Lrx/Observable$OnSubscribe<TT;>;"
     .local p2, "ssm":Lrx/subjects/SubjectSubscriptionManager;, "Lrx/subjects/SubjectSubscriptionManager<TT;>;"
     .local p3, "state":Lrx/subjects/ReplaySubject$ReplayState;, "Lrx/subjects/ReplaySubject$ReplayState<TT;*>;"
     invoke-direct {p0, p1}, Lrx/subjects/Subject;-><init>(Lrx/Observable$OnSubscribe;)V
 
-    .line 360
+    .line 364
     iput-object p2, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
-    .line 361
+    .line 365
     iput-object p3, p0, Lrx/subjects/ReplaySubject;->state:Lrx/subjects/ReplaySubject$ReplayState;
 
-    .line 362
+    .line 366
     return-void
 .end method
 
@@ -101,12 +119,12 @@
     .local p1, "o":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<-TT;>;"
     const/4 v0, 0x1
 
-    .line 422
+    .line 426
     iget-boolean v1, p1, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->caughtUp:Z
 
     if-nez v1, :cond_14
 
-    .line 423
+    .line 427
     iget-object v1, p0, Lrx/subjects/ReplaySubject;->state:Lrx/subjects/ReplaySubject$ReplayState;
 
     invoke-interface {v1, p1}, Lrx/subjects/ReplaySubject$ReplayState;->replayObserver(Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;)Z
@@ -115,19 +133,19 @@
 
     if-eqz v1, :cond_13
 
-    .line 424
+    .line 428
     iput-boolean v0, p1, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->caughtUp:Z
 
-    .line 425
+    .line 429
     const/4 v0, 0x0
 
     invoke-virtual {p1, v0}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->index(Ljava/lang/Object;)V
 
-    .line 427
+    .line 431
     :cond_13
     const/4 v0, 0x0
 
-    .line 430
+    .line 434
     :cond_14
     return v0
 .end method
@@ -145,7 +163,7 @@
     .end annotation
 
     .prologue
-    .line 73
+    .line 75
     const/16 v0, 0x10
 
     invoke-static {v0}, Lrx/subjects/ReplaySubject;->create(I)Lrx/subjects/ReplaySubject;
@@ -169,18 +187,18 @@
     .end annotation
 
     .prologue
-    .line 92
+    .line 94
     new-instance v1, Lrx/subjects/ReplaySubject$UnboundedReplayState;
 
     invoke-direct {v1, p0}, Lrx/subjects/ReplaySubject$UnboundedReplayState;-><init>(I)V
 
-    .line 93
+    .line 95
     .local v1, "state":Lrx/subjects/ReplaySubject$UnboundedReplayState;, "Lrx/subjects/ReplaySubject$UnboundedReplayState<TT;>;"
     new-instance v0, Lrx/subjects/SubjectSubscriptionManager;
 
     invoke-direct {v0}, Lrx/subjects/SubjectSubscriptionManager;-><init>()V
 
-    .line 94
+    .line 96
     .local v0, "ssm":Lrx/subjects/SubjectSubscriptionManager;, "Lrx/subjects/SubjectSubscriptionManager<TT;>;"
     new-instance v2, Lrx/subjects/ReplaySubject$1;
 
@@ -188,21 +206,21 @@
 
     iput-object v2, v0, Lrx/subjects/SubjectSubscriptionManager;->onStart:Lrx/functions/Action1;
 
-    .line 104
+    .line 106
     new-instance v2, Lrx/subjects/ReplaySubject$2;
 
     invoke-direct {v2, v1}, Lrx/subjects/ReplaySubject$2;-><init>(Lrx/subjects/ReplaySubject$UnboundedReplayState;)V
 
     iput-object v2, v0, Lrx/subjects/SubjectSubscriptionManager;->onAdded:Lrx/functions/Action1;
 
-    .line 140
+    .line 144
     new-instance v2, Lrx/subjects/ReplaySubject$3;
 
     invoke-direct {v2, v1}, Lrx/subjects/ReplaySubject$3;-><init>(Lrx/subjects/ReplaySubject$UnboundedReplayState;)V
 
     iput-object v2, v0, Lrx/subjects/SubjectSubscriptionManager;->onTerminated:Lrx/functions/Action1;
 
-    .line 152
+    .line 156
     new-instance v2, Lrx/subjects/ReplaySubject;
 
     invoke-direct {v2, v0, v0, v1}, Lrx/subjects/ReplaySubject;-><init>(Lrx/Observable$OnSubscribe;Lrx/subjects/SubjectSubscriptionManager;Lrx/subjects/ReplaySubject$ReplayState;)V
@@ -223,7 +241,7 @@
     .end annotation
 
     .prologue
-    .line 168
+    .line 172
     new-instance v0, Lrx/subjects/ReplaySubject$BoundedState;
 
     new-instance v1, Lrx/subjects/ReplaySubject$EmptyEvictionPolicy;
@@ -240,7 +258,7 @@
 
     invoke-direct {v0, v1, v2, v3}, Lrx/subjects/ReplaySubject$BoundedState;-><init>(Lrx/subjects/ReplaySubject$EvictionPolicy;Lrx/functions/Func1;Lrx/functions/Func1;)V
 
-    .line 173
+    .line 177
     .local v0, "state":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     new-instance v1, Lrx/subjects/ReplaySubject$DefaultOnAdd;
 
@@ -267,7 +285,7 @@
     .end annotation
 
     .prologue
-    .line 196
+    .line 200
     new-instance v0, Lrx/subjects/ReplaySubject$BoundedState;
 
     new-instance v1, Lrx/subjects/ReplaySubject$SizeEvictionPolicy;
@@ -284,7 +302,7 @@
 
     invoke-direct {v0, v1, v2, v3}, Lrx/subjects/ReplaySubject$BoundedState;-><init>(Lrx/subjects/ReplaySubject$EvictionPolicy;Lrx/functions/Func1;Lrx/functions/Func1;)V
 
-    .line 201
+    .line 205
     .local v0, "state":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     new-instance v1, Lrx/subjects/ReplaySubject$DefaultOnAdd;
 
@@ -297,7 +315,7 @@
     return-object v1
 .end method
 
-.method static final createWithState(Lrx/subjects/ReplaySubject$BoundedState;Lrx/functions/Action1;)Lrx/subjects/ReplaySubject;
+.method static createWithState(Lrx/subjects/ReplaySubject$BoundedState;Lrx/functions/Action1;)Lrx/subjects/ReplaySubject;
     .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -316,32 +334,32 @@
     .end annotation
 
     .prologue
-    .line 300
+    .line 304
     .local p0, "state":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     .local p1, "onStart":Lrx/functions/Action1;, "Lrx/functions/Action1<Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;>;"
     new-instance v0, Lrx/subjects/SubjectSubscriptionManager;
 
     invoke-direct {v0}, Lrx/subjects/SubjectSubscriptionManager;-><init>()V
 
-    .line 301
+    .line 305
     .local v0, "ssm":Lrx/subjects/SubjectSubscriptionManager;, "Lrx/subjects/SubjectSubscriptionManager<TT;>;"
     iput-object p1, v0, Lrx/subjects/SubjectSubscriptionManager;->onStart:Lrx/functions/Action1;
 
-    .line 302
+    .line 306
     new-instance v1, Lrx/subjects/ReplaySubject$4;
 
     invoke-direct {v1, p0}, Lrx/subjects/ReplaySubject$4;-><init>(Lrx/subjects/ReplaySubject$BoundedState;)V
 
     iput-object v1, v0, Lrx/subjects/SubjectSubscriptionManager;->onAdded:Lrx/functions/Action1;
 
-    .line 338
+    .line 342
     new-instance v1, Lrx/subjects/ReplaySubject$5;
 
     invoke-direct {v1, p0}, Lrx/subjects/ReplaySubject$5;-><init>(Lrx/subjects/ReplaySubject$BoundedState;)V
 
     iput-object v1, v0, Lrx/subjects/SubjectSubscriptionManager;->onTerminated:Lrx/functions/Action1;
 
-    .line 351
+    .line 355
     new-instance v1, Lrx/subjects/ReplaySubject;
 
     invoke-direct {v1, v0, v0, p0}, Lrx/subjects/ReplaySubject;-><init>(Lrx/Observable$OnSubscribe;Lrx/subjects/SubjectSubscriptionManager;Lrx/subjects/ReplaySubject$ReplayState;)V
@@ -368,7 +386,7 @@
     .end annotation
 
     .prologue
-    .line 236
+    .line 240
     new-instance v0, Lrx/subjects/ReplaySubject$BoundedState;
 
     new-instance v1, Lrx/subjects/ReplaySubject$TimeEvictionPolicy;
@@ -389,7 +407,7 @@
 
     invoke-direct {v0, v1, v2, v3}, Lrx/subjects/ReplaySubject$BoundedState;-><init>(Lrx/subjects/ReplaySubject$EvictionPolicy;Lrx/functions/Func1;Lrx/functions/Func1;)V
 
-    .line 241
+    .line 245
     .local v0, "state":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     new-instance v1, Lrx/subjects/ReplaySubject$TimedOnAdd;
 
@@ -423,7 +441,7 @@
     .end annotation
 
     .prologue
-    .line 278
+    .line 282
     new-instance v0, Lrx/subjects/ReplaySubject$BoundedState;
 
     new-instance v1, Lrx/subjects/ReplaySubject$PairEvictionPolicy;
@@ -452,7 +470,7 @@
 
     invoke-direct {v0, v1, v2, v3}, Lrx/subjects/ReplaySubject$BoundedState;-><init>(Lrx/subjects/ReplaySubject$EvictionPolicy;Lrx/functions/Func1;Lrx/functions/Func1;)V
 
-    .line 286
+    .line 290
     .local v0, "state":Lrx/subjects/ReplaySubject$BoundedState;, "Lrx/subjects/ReplaySubject$BoundedState<TT;>;"
     new-instance v1, Lrx/subjects/ReplaySubject$TimedOnAdd;
 
@@ -469,25 +487,25 @@
 # virtual methods
 .method public getThrowable()Ljava/lang/Throwable;
     .registers 4
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 1127
+    .line 1123
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     iget-object v2, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
     iget-object v0, v2, Lrx/subjects/SubjectSubscriptionManager;->nl:Lrx/internal/operators/NotificationLite;
 
-    .line 1128
+    .line 1124
     .local v0, "nl":Lrx/internal/operators/NotificationLite;, "Lrx/internal/operators/NotificationLite<TT;>;"
     iget-object v2, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v2}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v2}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v1
 
-    .line 1129
+    .line 1125
     .local v1, "o":Ljava/lang/Object;
     invoke-virtual {v0, v1}, Lrx/internal/operators/NotificationLite;->isError(Ljava/lang/Object;)Z
 
@@ -495,12 +513,12 @@
 
     if-eqz v2, :cond_15
 
-    .line 1130
+    .line 1126
     invoke-virtual {v0, v1}, Lrx/internal/operators/NotificationLite;->getError(Ljava/lang/Object;)Ljava/lang/Throwable;
 
     move-result-object v2
 
-    .line 1132
+    .line 1128
     :goto_14
     return-object v2
 
@@ -518,8 +536,11 @@
         }
     .end annotation
 
+    .annotation build Lrx/annotations/Beta;
+    .end annotation
+
     .prologue
-    .line 1167
+    .line 1182
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     iget-object v0, p0, Lrx/subjects/ReplaySubject;->state:Lrx/subjects/ReplaySubject$ReplayState;
 
@@ -527,6 +548,39 @@
 
     move-result-object v0
 
+    return-object v0
+.end method
+
+.method public getValues()[Ljava/lang/Object;
+    .registers 3
+    .annotation build Lrx/annotations/Beta;
+    .end annotation
+
+    .prologue
+    .line 1173
+    .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
+    sget-object v1, Lrx/subjects/ReplaySubject;->EMPTY_ARRAY:[Ljava/lang/Object;
+
+    check-cast v1, [Ljava/lang/Object;
+
+    invoke-virtual {p0, v1}, Lrx/subjects/ReplaySubject;->getValues([Ljava/lang/Object;)[Ljava/lang/Object;
+
+    move-result-object v0
+
+    .line 1174
+    .local v0, "r":[Ljava/lang/Object;, "[TT;"
+    sget-object v1, Lrx/subjects/ReplaySubject;->EMPTY_ARRAY:[Ljava/lang/Object;
+
+    if-ne v0, v1, :cond_f
+
+    .line 1175
+    const/4 v1, 0x0
+
+    new-array v0, v1, [Ljava/lang/Object;
+
+    .line 1177
+    .end local v0    # "r":[Ljava/lang/Object;, "[TT;"
+    :cond_f
     return-object v0
 .end method
 
@@ -538,11 +592,11 @@
         }
     .end annotation
 
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 1163
+    .line 1157
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     .local p1, "a":[Ljava/lang/Object;, "[TT;"
     iget-object v0, p0, Lrx/subjects/ReplaySubject;->state:Lrx/subjects/ReplaySubject$ReplayState;
@@ -556,11 +610,11 @@
 
 .method public hasAnyValue()Z
     .registers 2
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 1147
+    .line 1143
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     iget-object v0, p0, Lrx/subjects/ReplaySubject;->state:Lrx/subjects/ReplaySubject$ReplayState;
 
@@ -583,25 +637,25 @@
 
 .method public hasCompleted()Z
     .registers 4
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 1115
+    .line 1112
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     iget-object v2, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
     iget-object v0, v2, Lrx/subjects/SubjectSubscriptionManager;->nl:Lrx/internal/operators/NotificationLite;
 
-    .line 1116
+    .line 1113
     .local v0, "nl":Lrx/internal/operators/NotificationLite;, "Lrx/internal/operators/NotificationLite<TT;>;"
     iget-object v2, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v2}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v2}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v1
 
-    .line 1117
+    .line 1114
     .local v1, "o":Ljava/lang/Object;
     if-eqz v1, :cond_14
 
@@ -626,7 +680,7 @@
     .registers 2
 
     .prologue
-    .line 418
+    .line 422
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     iget-object v0, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
@@ -651,25 +705,25 @@
 
 .method public hasThrowable()Z
     .registers 4
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 1104
+    .line 1102
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     iget-object v2, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
     iget-object v0, v2, Lrx/subjects/SubjectSubscriptionManager;->nl:Lrx/internal/operators/NotificationLite;
 
-    .line 1105
+    .line 1103
     .local v0, "nl":Lrx/internal/operators/NotificationLite;, "Lrx/internal/operators/NotificationLite<TT;>;"
     iget-object v2, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
-    invoke-virtual {v2}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+    invoke-virtual {v2}, Lrx/subjects/SubjectSubscriptionManager;->getLatest()Ljava/lang/Object;
 
     move-result-object v1
 
-    .line 1106
+    .line 1104
     .local v1, "o":Ljava/lang/Object;
     invoke-virtual {v0, v1}, Lrx/internal/operators/NotificationLite;->isError(Ljava/lang/Object;)Z
 
@@ -680,11 +734,11 @@
 
 .method public hasValue()Z
     .registers 2
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 1152
+    .line 1147
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     invoke-virtual {p0}, Lrx/subjects/ReplaySubject;->hasAnyValue()Z
 
@@ -697,7 +751,7 @@
     .registers 7
 
     .prologue
-    .line 400
+    .line 404
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     iget-object v4, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
@@ -705,12 +759,12 @@
 
     if-eqz v4, :cond_2b
 
-    .line 401
+    .line 405
     iget-object v4, p0, Lrx/subjects/ReplaySubject;->state:Lrx/subjects/ReplaySubject$ReplayState;
 
     invoke-interface {v4}, Lrx/subjects/ReplaySubject$ReplayState;->complete()V
 
-    .line 402
+    .line 406
     iget-object v4, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
     invoke-static {}, Lrx/internal/operators/NotificationLite;->instance()Lrx/internal/operators/NotificationLite;
@@ -737,7 +791,7 @@
 
     aget-object v3, v0, v1
 
-    .line 403
+    .line 407
     .local v3, "o":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<-TT;>;"
     invoke-direct {p0, v3}, Lrx/subjects/ReplaySubject;->caughtUp(Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;)Z
 
@@ -745,16 +799,16 @@
 
     if-eqz v4, :cond_28
 
-    .line 404
+    .line 408
     invoke-virtual {v3}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->onCompleted()V
 
-    .line 402
+    .line 406
     :cond_28
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_1b
 
-    .line 408
+    .line 412
     .end local v0    # "arr$":[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
     .end local v1    # "i$":I
     .end local v2    # "len$":I
@@ -768,7 +822,7 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 378
+    .line 382
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     iget-object v6, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
@@ -776,15 +830,15 @@
 
     if-eqz v6, :cond_3b
 
-    .line 379
+    .line 383
     iget-object v6, p0, Lrx/subjects/ReplaySubject;->state:Lrx/subjects/ReplaySubject$ReplayState;
 
     invoke-interface {v6, p1}, Lrx/subjects/ReplaySubject$ReplayState;->error(Ljava/lang/Throwable;)V
 
-    .line 380
+    .line 384
     const/4 v2, 0x0
 
-    .line 381
+    .line 385
     .local v2, "errors":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Throwable;>;"
     iget-object v6, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
@@ -812,7 +866,7 @@
 
     aget-object v5, v0, v3
 
-    .line 383
+    .line 387
     .local v5, "o":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<-TT;>;"
     :try_start_20
     invoke-direct {p0, v5}, Lrx/subjects/ReplaySubject;->caughtUp(Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;)Z
@@ -821,46 +875,46 @@
 
     if-eqz v6, :cond_29
 
-    .line 384
+    .line 388
     invoke-virtual {v5, p1}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->onError(Ljava/lang/Throwable;)V
     :try_end_29
     .catch Ljava/lang/Throwable; {:try_start_20 .. :try_end_29} :catch_2c
 
-    .line 381
+    .line 385
     :cond_29
     :goto_29
     add-int/lit8 v3, v3, 0x1
 
     goto :goto_1c
 
-    .line 386
+    .line 390
     :catch_2c
     move-exception v1
 
-    .line 387
+    .line 391
     .local v1, "e2":Ljava/lang/Throwable;
     if-nez v2, :cond_34
 
-    .line 388
+    .line 392
     new-instance v2, Ljava/util/ArrayList;
 
     .end local v2    # "errors":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Throwable;>;"
     invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
 
-    .line 390
+    .line 394
     .restart local v2    # "errors":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Throwable;>;"
     :cond_34
     invoke-interface {v2, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     goto :goto_29
 
-    .line 394
+    .line 398
     .end local v1    # "e2":Ljava/lang/Throwable;
     .end local v5    # "o":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<-TT;>;"
     :cond_38
     invoke-static {v2}, Lrx/exceptions/Exceptions;->throwIfAny(Ljava/util/List;)V
 
-    .line 396
+    .line 400
     .end local v0    # "arr$":[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
     .end local v2    # "errors":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Throwable;>;"
     .end local v3    # "i$":I
@@ -878,7 +932,7 @@
     .end annotation
 
     .prologue
-    .line 366
+    .line 370
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     iget-object v4, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
@@ -887,12 +941,12 @@
 
     if-eqz v4, :cond_23
 
-    .line 367
+    .line 371
     iget-object v4, p0, Lrx/subjects/ReplaySubject;->state:Lrx/subjects/ReplaySubject$ReplayState;
 
     invoke-interface {v4, p1}, Lrx/subjects/ReplaySubject$ReplayState;->next(Ljava/lang/Object;)V
 
-    .line 368
+    .line 372
     iget-object v4, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
     invoke-virtual {v4}, Lrx/subjects/SubjectSubscriptionManager;->observers()[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
@@ -911,7 +965,7 @@
 
     aget-object v3, v0, v1
 
-    .line 369
+    .line 373
     .local v3, "o":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<-TT;>;"
     invoke-direct {p0, v3}, Lrx/subjects/ReplaySubject;->caughtUp(Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;)Z
 
@@ -919,16 +973,16 @@
 
     if-eqz v4, :cond_20
 
-    .line 370
+    .line 374
     invoke-virtual {v3, p1}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->onNext(Ljava/lang/Object;)V
 
-    .line 368
+    .line 372
     :cond_20
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_13
 
-    .line 374
+    .line 378
     .end local v0    # "arr$":[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
     .end local v1    # "i$":I
     .end local v2    # "len$":I
@@ -939,11 +993,11 @@
 
 .method public size()I
     .registers 2
-    .annotation build Lrx/annotations/Experimental;
+    .annotation build Lrx/annotations/Beta;
     .end annotation
 
     .prologue
-    .line 1140
+    .line 1136
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     iget-object v0, p0, Lrx/subjects/ReplaySubject;->state:Lrx/subjects/ReplaySubject$ReplayState;
 
@@ -958,11 +1012,15 @@
     .registers 2
 
     .prologue
-    .line 413
+    .line 417
     .local p0, "this":Lrx/subjects/ReplaySubject;, "Lrx/subjects/ReplaySubject<TT;>;"
     iget-object v0, p0, Lrx/subjects/ReplaySubject;->ssm:Lrx/subjects/SubjectSubscriptionManager;
 
-    iget-object v0, v0, Lrx/subjects/SubjectSubscriptionManager;->state:Lrx/subjects/SubjectSubscriptionManager$State;
+    invoke-virtual {v0}, Lrx/subjects/SubjectSubscriptionManager;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lrx/subjects/SubjectSubscriptionManager$State;
 
     iget-object v0, v0, Lrx/subjects/SubjectSubscriptionManager$State;->observers:[Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 

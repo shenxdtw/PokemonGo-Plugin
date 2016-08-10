@@ -72,31 +72,30 @@
     .end annotation
 
     .prologue
-    .line 127
+    .line 129
     .local p0, "this":Lrx/internal/operators/OperatorZip$ZipSubscriber;, "Lrx/internal/operators/OperatorZip<TR;>.ZipSubscriber;"
     .local p2, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
     .local p3, "zipper":Lrx/internal/operators/OperatorZip$Zip;, "Lrx/internal/operators/OperatorZip$Zip<TR;>;"
     .local p4, "producer":Lrx/internal/operators/OperatorZip$ZipProducer;, "Lrx/internal/operators/OperatorZip$ZipProducer<TR;>;"
     iput-object p1, p0, Lrx/internal/operators/OperatorZip$ZipSubscriber;->this$0:Lrx/internal/operators/OperatorZip;
 
-    .line 128
-    invoke-direct {p0, p2}, Lrx/Subscriber;-><init>(Lrx/Subscriber;)V
+    invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
-    .line 134
+    .line 135
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lrx/internal/operators/OperatorZip$ZipSubscriber;->started:Z
 
-    .line 129
+    .line 130
     iput-object p2, p0, Lrx/internal/operators/OperatorZip$ZipSubscriber;->child:Lrx/Subscriber;
 
-    .line 130
+    .line 131
     iput-object p3, p0, Lrx/internal/operators/OperatorZip$ZipSubscriber;->zipper:Lrx/internal/operators/OperatorZip$Zip;
 
-    .line 131
+    .line 132
     iput-object p4, p0, Lrx/internal/operators/OperatorZip$ZipSubscriber;->producer:Lrx/internal/operators/OperatorZip$ZipProducer;
 
-    .line 132
+    .line 133
     return-void
 .end method
 
@@ -106,18 +105,18 @@
     .registers 2
 
     .prologue
-    .line 138
+    .line 139
     .local p0, "this":Lrx/internal/operators/OperatorZip$ZipSubscriber;, "Lrx/internal/operators/OperatorZip<TR;>.ZipSubscriber;"
     iget-boolean v0, p0, Lrx/internal/operators/OperatorZip$ZipSubscriber;->started:Z
 
     if-nez v0, :cond_9
 
-    .line 140
+    .line 141
     iget-object v0, p0, Lrx/internal/operators/OperatorZip$ZipSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    .line 142
+    .line 143
     :cond_9
     return-void
 .end method
@@ -127,13 +126,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 146
+    .line 147
     .local p0, "this":Lrx/internal/operators/OperatorZip$ZipSubscriber;, "Lrx/internal/operators/OperatorZip<TR;>.ZipSubscriber;"
     iget-object v0, p0, Lrx/internal/operators/OperatorZip$ZipSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 147
+    .line 148
     return-void
 .end method
 
@@ -142,7 +141,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 120
+    .line 122
     .local p0, "this":Lrx/internal/operators/OperatorZip$ZipSubscriber;, "Lrx/internal/operators/OperatorZip<TR;>.ZipSubscriber;"
     check-cast p1, [Lrx/Observable;
 
@@ -157,7 +156,7 @@
     .param p1, "observables"    # [Lrx/Observable;
 
     .prologue
-    .line 151
+    .line 152
     .local p0, "this":Lrx/internal/operators/OperatorZip$ZipSubscriber;, "Lrx/internal/operators/OperatorZip<TR;>.ZipSubscriber;"
     if-eqz p1, :cond_5
 
@@ -165,23 +164,23 @@
 
     if-nez v0, :cond_b
 
-    .line 152
+    .line 153
     :cond_5
     iget-object v0, p0, Lrx/internal/operators/OperatorZip$ZipSubscriber;->child:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    .line 157
+    .line 158
     :goto_a
     return-void
 
-    .line 154
+    .line 155
     :cond_b
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/internal/operators/OperatorZip$ZipSubscriber;->started:Z
 
-    .line 155
+    .line 156
     iget-object v0, p0, Lrx/internal/operators/OperatorZip$ZipSubscriber;->zipper:Lrx/internal/operators/OperatorZip$Zip;
 
     iget-object v1, p0, Lrx/internal/operators/OperatorZip$ZipSubscriber;->producer:Lrx/internal/operators/OperatorZip$ZipProducer;

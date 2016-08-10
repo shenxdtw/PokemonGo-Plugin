@@ -22,7 +22,7 @@
     .registers 1
 
     .prologue
-    .line 48
+    .line 49
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -35,6 +35,6 @@
     .param p1, "n"    # J
 
     .prologue
-    .line 52
+    .line 53
     return-void
 .end method

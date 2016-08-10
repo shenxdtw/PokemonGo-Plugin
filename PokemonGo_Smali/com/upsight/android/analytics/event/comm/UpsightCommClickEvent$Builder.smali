@@ -36,13 +36,13 @@
     .param p1, "msgId"    # Ljava/lang/Integer;
 
     .prologue
-    .line 84
+    .line 85
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;-><init>()V
 
-    .line 85
+    .line 86
     iput-object p1, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;->msgId:Ljava/lang/Integer;
 
-    .line 86
+    .line 87
     return-void
 .end method
 
@@ -51,7 +51,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;
 
     .prologue
-    .line 72
+    .line 73
     iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;->msgId:Ljava/lang/Integer;
 
     return-object v0
@@ -62,7 +62,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;
 
     .prologue
-    .line 72
+    .line 73
     iget-object v0, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;->msgCampaignId:Ljava/lang/Integer;
 
     return-object v0
@@ -74,7 +74,7 @@
     .registers 2
 
     .prologue
-    .line 72
+    .line 73
     invoke-virtual {p0}, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;->build()Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent;
 
     move-result-object v0
@@ -86,7 +86,7 @@
     .registers 5
 
     .prologue
-    .line 98
+    .line 99
     new-instance v0, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent;
 
     const-string v1, "upsight.comm.click"
@@ -111,9 +111,9 @@
     .param p1, "msgCampaignId"    # Ljava/lang/Integer;
 
     .prologue
-    .line 92
+    .line 93
     iput-object p1, p0, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;->msgCampaignId:Ljava/lang/Integer;
 
-    .line 93
+    .line 94
     return-object p0
 .end method

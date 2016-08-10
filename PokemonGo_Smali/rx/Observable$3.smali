@@ -3,12 +3,12 @@
 .source "Observable.java"
 
 # interfaces
-.implements Lrx/functions/Func1;
+.implements Lrx/functions/Func2;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Observable;->zip(Lrx/Observable;Lrx/functions/FuncN;)Lrx/Observable;
+    value = Lrx/Observable;->sequenceEqual(Lrx/Observable;Lrx/Observable;)Lrx/Observable;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -19,14 +19,10 @@
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lrx/functions/Func1",
-        "<",
-        "Ljava/util/List",
-        "<+",
-        "Lrx/Observable",
-        "<*>;>;[",
-        "Lrx/Observable",
-        "<*>;>;"
+        "Lrx/functions/Func2",
+        "<TT;TT;",
+        "Ljava/lang/Boolean;",
+        ">;"
     }
 .end annotation
 
@@ -36,7 +32,7 @@
     .registers 1
 
     .prologue
-    .line 2823
+    .line 2824
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -44,50 +40,64 @@
 
 
 # virtual methods
-.method public bridge synthetic call(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
-    .param p1, "x0"    # Ljava/lang/Object;
-
-    .prologue
-    .line 2823
-    check-cast p1, Ljava/util/List;
-
-    .end local p1    # "x0":Ljava/lang/Object;
-    invoke-virtual {p0, p1}, Lrx/Observable$3;->call(Ljava/util/List;)[Lrx/Observable;
-
-    move-result-object v0
-
-    return-object v0
-.end method
-
-.method public call(Ljava/util/List;)[Lrx/Observable;
-    .registers 3
+.method public final call(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Boolean;
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "(",
-            "Ljava/util/List",
-            "<+",
-            "Lrx/Observable",
-            "<*>;>;)[",
-            "Lrx/Observable",
-            "<*>;"
+            "(TT;TT;)",
+            "Ljava/lang/Boolean;"
         }
     .end annotation
 
     .prologue
     .line 2827
-    .local p1, "o":Ljava/util/List;, "Ljava/util/List<+Lrx/Observable<*>;>;"
-    invoke-interface {p1}, Ljava/util/List;->size()I
+    .local p1, "first":Ljava/lang/Object;, "TT;"
+    .local p2, "second":Ljava/lang/Object;, "TT;"
+    if-nez p1, :cond_c
 
-    move-result v0
+    .line 2828
+    if-nez p2, :cond_a
 
-    new-array v0, v0, [Lrx/Observable;
+    const/4 v0, 0x1
 
-    invoke-interface {p1, v0}, Ljava/util/List;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+    :goto_5
+    invoke-static {v0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
     move-result-object v0
 
-    check-cast v0, [Lrx/Observable;
+    .line 2830
+    :goto_9
+    return-object v0
+
+    .line 2828
+    :cond_a
+    const/4 v0, 0x0
+
+    goto :goto_5
+
+    .line 2830
+    :cond_c
+    invoke-virtual {p1, p2}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    invoke-static {v0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v0
+
+    goto :goto_9
+.end method
+
+.method public bridge synthetic call(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    .registers 4
+    .param p1, "x0"    # Ljava/lang/Object;
+    .param p2, "x1"    # Ljava/lang/Object;
+
+    .prologue
+    .line 2824
+    invoke-virtual {p0, p1, p2}, Lrx/Observable$3;->call(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Boolean;
+
+    move-result-object v0
 
     return-object v0
 .end method

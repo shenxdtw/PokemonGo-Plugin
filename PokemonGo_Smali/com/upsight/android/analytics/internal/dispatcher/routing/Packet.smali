@@ -104,71 +104,66 @@
 .end method
 
 .method public getDeliveryHistory()Ljava/lang/String;
-    .registers 9
+    .registers 8
 
     .prologue
     .line 112
-    iget-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/Packet;->mRoute:Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;
+    iget-object v3, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/Packet;->mRoute:Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;
 
-    invoke-virtual {v6}, Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;->getRoutingStack()[Ljava/lang/String;
+    invoke-virtual {v3}, Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;->getRoutingStack()[Ljava/lang/String;
 
-    move-result-object v4
+    move-result-object v1
 
     .line 114
-    .local v4, "stack":[Ljava/lang/String;
-    new-instance v1, Ljava/lang/StringBuilder;
+    .local v1, "stack":[Ljava/lang/String;
+    new-instance v0, Ljava/lang/StringBuilder;
 
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
     .line 115
-    .local v1, "builder":Ljava/lang/StringBuilder;
-    move-object v0, v4
+    .local v0, "builder":Ljava/lang/StringBuilder;
+    array-length v4, v1
 
-    .local v0, "arr$":[Ljava/lang/String;
-    array-length v3, v0
+    const/4 v3, 0x0
 
-    .local v3, "len$":I
-    const/4 v2, 0x0
+    :goto_d
+    if-ge v3, v4, :cond_1d
 
-    .local v2, "i$":I
-    :goto_e
-    if-ge v2, v3, :cond_1e
-
-    aget-object v5, v0, v2
+    aget-object v2, v1, v3
 
     .line 116
-    .local v5, "stackItem":Ljava/lang/String;
-    invoke-virtual {v1, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .local v2, "stackItem":Ljava/lang/String;
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v6
+    move-result-object v5
 
-    const/16 v7, 0xa
+    const/16 v6, 0xa
 
-    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 115
-    add-int/lit8 v2, v2, 0x1
+    add-int/lit8 v3, v3, 0x1
 
-    goto :goto_e
+    goto :goto_d
 
     .line 119
-    .end local v5    # "stackItem":Ljava/lang/String;
-    :cond_1e
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->length()I
+    .end local v2    # "stackItem":Ljava/lang/String;
+    :cond_1d
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->length()I
 
-    move-result v6
+    move-result v3
 
-    add-int/lit8 v6, v6, -0x1
+    add-int/lit8 v3, v3, -0x1
 
-    invoke-virtual {v1, v6}, Ljava/lang/StringBuilder;->deleteCharAt(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->deleteCharAt(I)Ljava/lang/StringBuilder;
 
-    move-result-object v6
+    move-result-object v3
 
-    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v6
+    move-result-object v3
 
-    return-object v6
+    return-object v3
 .end method
 
 .method public getRecord()Lcom/upsight/android/analytics/internal/DataStoreRecord;

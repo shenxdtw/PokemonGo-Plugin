@@ -4,13 +4,13 @@
 
 
 # annotations
-.annotation runtime Lcom/fasterxml/jackson/databind/annotation/JsonSerialize;
-    using = Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest$RequestSerializer;
+.annotation runtime Lcom/google/gson/annotations/JsonAdapter;
+    value = Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest$DefaultTypeAdapter;
 .end annotation
 
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest$RequestSerializer;
+        Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest$DefaultTypeAdapter;
     }
 .end annotation
 
@@ -18,9 +18,7 @@
 # instance fields
 .field private mInstallTs:J
 
-.field private final mLogger:Lcom/upsight/android/logger/UpsightLogger;
-
-.field private final mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+.field private final mJsonParser:Lcom/google/gson/JsonParser;
 
 .field private mOptOut:Z
 
@@ -34,13 +32,12 @@
 
 
 # direct methods
-.method public constructor <init>(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Request;Lcom/fasterxml/jackson/databind/ObjectMapper;Lcom/upsight/android/analytics/internal/session/Clock;Lcom/upsight/android/logger/UpsightLogger;)V
-    .registers 10
+.method public constructor <init>(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Request;Lcom/google/gson/JsonParser;Lcom/upsight/android/analytics/internal/session/Clock;)V
+    .registers 9
     .param p1, "upsight"    # Lcom/upsight/android/UpsightContext;
     .param p2, "request"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Request;
-    .param p3, "objectMapper"    # Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .param p3, "jsonParser"    # Lcom/google/gson/JsonParser;
     .param p4, "clock"    # Lcom/upsight/android/analytics/internal/session/Clock;
-    .param p5, "logger"    # Lcom/upsight/android/logger/UpsightLogger;
 
     .prologue
     .line 72
@@ -50,12 +47,9 @@
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     .line 74
-    iput-object p3, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    iput-object p3, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mJsonParser:Lcom/google/gson/JsonParser;
 
     .line 75
-    iput-object p5, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
-
-    .line 76
     const-string v0, "install_ts"
 
     const-wide/16 v2, 0x0
@@ -66,7 +60,7 @@
 
     iput-wide v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mInstallTs:J
 
-    .line 78
+    .line 76
     iget-object v0, p2, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Request;->batch:Lcom/upsight/android/analytics/internal/dispatcher/delivery/Batch;
 
     invoke-direct {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->getSessions(Lcom/upsight/android/analytics/internal/dispatcher/delivery/Batch;)[Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
@@ -75,7 +69,7 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mSessions:[Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
 
-    .line 79
+    .line 77
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-static {v0}, Lcom/upsight/android/analytics/provider/UpsightOptOutStatus;->get(Lcom/upsight/android/UpsightContext;)Z
@@ -84,19 +78,19 @@
 
     iput-boolean v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mOptOut:Z
 
-    .line 80
+    .line 78
     invoke-interface {p4}, Lcom/upsight/android/analytics/internal/session/Clock;->currentTimeSeconds()J
 
     move-result-wide v0
 
     iput-wide v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mRequestTs:J
 
-    .line 81
+    .line 79
     iget-object v0, p2, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Request;->schema:Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mSchema:Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;
 
-    .line 82
+    .line 80
     return-void
 .end method
 
@@ -105,7 +99,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;
 
     .prologue
-    .line 32
+    .line 33
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mSchema:Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;
 
     return-object v0
@@ -116,7 +110,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;
 
     .prologue
-    .line 32
+    .line 33
     iget-wide v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mRequestTs:J
 
     return-wide v0
@@ -127,7 +121,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;
 
     .prologue
-    .line 32
+    .line 33
     iget-boolean v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mOptOut:Z
 
     return v0
@@ -138,126 +132,123 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;
 
     .prologue
-    .line 32
+    .line 33
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mSessions:[Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
 
     return-object v0
 .end method
 
 .method private getSessions(Lcom/upsight/android/analytics/internal/dispatcher/delivery/Batch;)[Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
-    .registers 11
+    .registers 10
     .param p1, "batch"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/Batch;
 
     .prologue
-    .line 88
-    new-instance v8, Ljava/util/HashMap;
+    .line 86
+    new-instance v3, Ljava/util/HashMap;
 
-    invoke-direct {v8}, Ljava/util/HashMap;-><init>()V
+    invoke-direct {v3}, Ljava/util/HashMap;-><init>()V
 
-    .line 92
-    .local v8, "sessions":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/Long;Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;>;"
+    .line 90
+    .local v3, "sessions":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/Long;Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;>;"
     invoke-virtual {p1}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Batch;->getPackets()Ljava/util/Set;
 
-    move-result-object v2
+    move-result-object v4
 
-    invoke-interface {v2}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+    invoke-interface {v4}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
-    move-result-object v6
+    move-result-object v4
 
-    .local v6, "i$":Ljava/util/Iterator;
     :goto_d
-    invoke-interface {v6}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
 
-    move-result v2
+    move-result v5
 
-    if-eqz v2, :cond_47
+    if-eqz v5, :cond_45
 
-    invoke-interface {v6}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v7
-
-    check-cast v7, Lcom/upsight/android/analytics/internal/dispatcher/routing/Packet;
-
-    .line 93
-    .local v7, "packet":Lcom/upsight/android/analytics/internal/dispatcher/routing/Packet;
-    invoke-virtual {v7}, Lcom/upsight/android/analytics/internal/dispatcher/routing/Packet;->getRecord()Lcom/upsight/android/analytics/internal/DataStoreRecord;
+    invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v1
 
-    .line 94
-    .local v1, "event":Lcom/upsight/android/analytics/internal/DataStoreRecord;
-    invoke-virtual {v1}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->getSessionID()J
+    check-cast v1, Lcom/upsight/android/analytics/internal/dispatcher/routing/Packet;
 
-    move-result-wide v2
-
-    invoke-static {v2, v3}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
-
-    move-result-object v2
-
-    invoke-interface {v8, v2}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+    .line 91
+    .local v1, "packet":Lcom/upsight/android/analytics/internal/dispatcher/routing/Packet;
+    invoke-virtual {v1}, Lcom/upsight/android/analytics/internal/dispatcher/routing/Packet;->getRecord()Lcom/upsight/android/analytics/internal/DataStoreRecord;
 
     move-result-object v0
 
-    check-cast v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+    .line 92
+    .local v0, "event":Lcom/upsight/android/analytics/internal/DataStoreRecord;
+    invoke-virtual {v0}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->getSessionID()J
 
-    .line 96
-    .local v0, "session":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
-    if-nez v0, :cond_43
+    move-result-wide v6
 
-    .line 97
-    new-instance v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+    invoke-static {v6, v7}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
 
-    .end local v0    # "session":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mObjectMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    move-result-object v5
 
-    iget-object v3, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
-
-    iget-wide v4, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mInstallTs:J
-
-    invoke-direct/range {v0 .. v5}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;-><init>(Lcom/upsight/android/analytics/internal/DataStoreRecord;Lcom/fasterxml/jackson/databind/ObjectMapper;Lcom/upsight/android/logger/UpsightLogger;J)V
-
-    .line 98
-    .restart local v0    # "session":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
-    invoke-virtual {v1}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->getSessionID()J
-
-    move-result-wide v2
-
-    invoke-static {v2, v3}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
+    invoke-interface {v3, v5}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v2
 
-    invoke-interface {v8, v2, v0}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    check-cast v2, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
 
-    .line 100
-    :cond_43
-    invoke-virtual {v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->addEvent(Lcom/upsight/android/analytics/internal/DataStoreRecord;)V
+    .line 94
+    .local v2, "session":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+    if-nez v2, :cond_3f
+
+    .line 95
+    new-instance v2, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+
+    .end local v2    # "session":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+    iget-wide v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mInstallTs:J
+
+    invoke-direct {v2, v0, v6, v7}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;-><init>(Lcom/upsight/android/analytics/internal/DataStoreRecord;J)V
+
+    .line 96
+    .restart local v2    # "session":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+    invoke-virtual {v0}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->getSessionID()J
+
+    move-result-wide v6
+
+    invoke-static {v6, v7}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
+
+    move-result-object v5
+
+    invoke-interface {v3, v5, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 98
+    :cond_3f
+    iget-object v5, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightRequest;->mJsonParser:Lcom/google/gson/JsonParser;
+
+    invoke-virtual {v2, v0, v5}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;->addEvent(Lcom/upsight/android/analytics/internal/DataStoreRecord;Lcom/google/gson/JsonParser;)V
 
     goto :goto_d
 
-    .line 103
-    .end local v0    # "session":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
-    .end local v1    # "event":Lcom/upsight/android/analytics/internal/DataStoreRecord;
-    .end local v7    # "packet":Lcom/upsight/android/analytics/internal/dispatcher/routing/Packet;
-    :cond_47
-    invoke-interface {v8}, Ljava/util/Map;->values()Ljava/util/Collection;
+    .line 101
+    .end local v0    # "event":Lcom/upsight/android/analytics/internal/DataStoreRecord;
+    .end local v1    # "packet":Lcom/upsight/android/analytics/internal/dispatcher/routing/Packet;
+    .end local v2    # "session":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+    :cond_45
+    invoke-interface {v3}, Ljava/util/Map;->values()Ljava/util/Collection;
 
-    move-result-object v2
+    move-result-object v4
 
-    invoke-interface {v8}, Ljava/util/Map;->values()Ljava/util/Collection;
+    invoke-interface {v3}, Ljava/util/Map;->values()Ljava/util/Collection;
 
-    move-result-object v3
+    move-result-object v5
 
-    invoke-interface {v3}, Ljava/util/Collection;->size()I
+    invoke-interface {v5}, Ljava/util/Collection;->size()I
 
-    move-result v3
+    move-result v5
 
-    new-array v3, v3, [Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+    new-array v5, v5, [Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
 
-    invoke-interface {v2, v3}, Ljava/util/Collection;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+    invoke-interface {v4, v5}, Ljava/util/Collection;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
 
-    move-result-object v2
+    move-result-object v4
 
-    check-cast v2, [Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
+    check-cast v4, [Lcom/upsight/android/analytics/internal/dispatcher/delivery/Session;
 
-    return-object v2
+    return-object v4
 .end method

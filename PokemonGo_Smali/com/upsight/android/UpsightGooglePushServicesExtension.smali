@@ -87,7 +87,6 @@
 
 .method protected bridge synthetic onResolve(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/UpsightExtension$BaseComponent;
     .registers 3
-    .param p1, "x0"    # Lcom/upsight/android/UpsightContext;
 
     .prologue
     .line 18
@@ -112,10 +111,12 @@
 
     invoke-direct {v1, p1}, Lcom/upsight/android/googlepushservices/internal/PushModule;-><init>(Lcom/upsight/android/UpsightContext;)V
 
+    .line 36
     invoke-virtual {v0, v1}, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;->pushModule(Lcom/upsight/android/googlepushservices/internal/PushModule;)Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;
 
     move-result-object v0
 
+    .line 37
     invoke-virtual {v0}, Lcom/upsight/android/googlepushservices/internal/DaggerGooglePushServicesComponent$Builder;->build()Lcom/upsight/android/googlepushservices/internal/GooglePushServicesComponent;
 
     move-result-object v0

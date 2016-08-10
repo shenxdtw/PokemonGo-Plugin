@@ -36,18 +36,18 @@
     .param p3, "height"    # I
 
     .prologue
-    .line 102
+    .line 178
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 103
+    .line 179
     iput-object p1, p0, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions;->layout:Lcom/upsight/android/marketing/UpsightBillboard$Dimensions$LayoutOrientation;
 
-    .line 104
+    .line 180
     iput p2, p0, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions;->width:I
 
-    .line 105
+    .line 181
     iput p3, p0, Lcom/upsight/android/marketing/UpsightBillboard$Dimensions;->height:I
 
-    .line 106
+    .line 182
     return-void
 .end method

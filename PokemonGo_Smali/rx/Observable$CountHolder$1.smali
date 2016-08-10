@@ -34,7 +34,7 @@
     .registers 1
 
     .prologue
-    .line 3788
+    .line 4179
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -48,7 +48,7 @@
     .param p2, "o"    # Ljava/lang/Object;
 
     .prologue
-    .line 3791
+    .line 4182
     invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
 
     move-result v0
@@ -68,7 +68,7 @@
     .param p2, "x1"    # Ljava/lang/Object;
 
     .prologue
-    .line 3788
+    .line 4179
     check-cast p1, Ljava/lang/Integer;
 
     .end local p1    # "x0":Ljava/lang/Object;

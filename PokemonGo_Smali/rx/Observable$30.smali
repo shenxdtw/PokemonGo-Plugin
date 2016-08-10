@@ -5,7 +5,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Observable;->subscribe(Lrx/functions/Action1;)Lrx/Subscription;
+    value = Lrx/Observable;->subscribe(Lrx/Observer;)Lrx/Subscription;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -24,19 +24,19 @@
 # instance fields
 .field final synthetic this$0:Lrx/Observable;
 
-.field final synthetic val$onNext:Lrx/functions/Action1;
+.field final synthetic val$observer:Lrx/Observer;
 
 
 # direct methods
-.method constructor <init>(Lrx/Observable;Lrx/functions/Action1;)V
+.method constructor <init>(Lrx/Observable;Lrx/Observer;)V
     .registers 3
 
     .prologue
-    .line 7531
+    .line 8698
     .local p0, "this":Lrx/Observable$30;, "Lrx/Observable.30;"
     iput-object p1, p0, Lrx/Observable$30;->this$0:Lrx/Observable;
 
-    iput-object p2, p0, Lrx/Observable$30;->val$onNext:Lrx/functions/Action1;
+    iput-object p2, p0, Lrx/Observable$30;->val$observer:Lrx/Observer;
 
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
@@ -45,30 +45,36 @@
 
 
 # virtual methods
-.method public final onCompleted()V
-    .registers 1
+.method public onCompleted()V
+    .registers 2
 
     .prologue
-    .line 7536
+    .line 8702
     .local p0, "this":Lrx/Observable$30;, "Lrx/Observable.30;"
+    iget-object v0, p0, Lrx/Observable$30;->val$observer:Lrx/Observer;
+
+    invoke-interface {v0}, Lrx/Observer;->onCompleted()V
+
+    .line 8703
     return-void
 .end method
 
-.method public final onError(Ljava/lang/Throwable;)V
+.method public onError(Ljava/lang/Throwable;)V
     .registers 3
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 7540
+    .line 8707
     .local p0, "this":Lrx/Observable$30;, "Lrx/Observable.30;"
-    new-instance v0, Lrx/exceptions/OnErrorNotImplementedException;
+    iget-object v0, p0, Lrx/Observable$30;->val$observer:Lrx/Observer;
 
-    invoke-direct {v0, p1}, Lrx/exceptions/OnErrorNotImplementedException;-><init>(Ljava/lang/Throwable;)V
+    invoke-interface {v0, p1}, Lrx/Observer;->onError(Ljava/lang/Throwable;)V
 
-    throw v0
+    .line 8708
+    return-void
 .end method
 
-.method public final onNext(Ljava/lang/Object;)V
+.method public onNext(Ljava/lang/Object;)V
     .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -77,13 +83,13 @@
     .end annotation
 
     .prologue
-    .line 7545
+    .line 8712
     .local p0, "this":Lrx/Observable$30;, "Lrx/Observable.30;"
-    .local p1, "args":Ljava/lang/Object;, "TT;"
-    iget-object v0, p0, Lrx/Observable$30;->val$onNext:Lrx/functions/Action1;
+    .local p1, "t":Ljava/lang/Object;, "TT;"
+    iget-object v0, p0, Lrx/Observable$30;->val$observer:Lrx/Observer;
 
-    invoke-interface {v0, p1}, Lrx/functions/Action1;->call(Ljava/lang/Object;)V
+    invoke-interface {v0, p1}, Lrx/Observer;->onNext(Ljava/lang/Object;)V
 
-    .line 7546
+    .line 8713
     return-void
 .end method

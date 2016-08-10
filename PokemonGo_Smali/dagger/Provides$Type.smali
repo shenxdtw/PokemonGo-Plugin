@@ -48,7 +48,7 @@
 
     const/4 v2, 0x0
 
-    .line 42
+    .line 55
     new-instance v0, Ldagger/Provides$Type;
 
     const-string v1, "UNIQUE"
@@ -57,7 +57,7 @@
 
     sput-object v0, Ldagger/Provides$Type;->UNIQUE:Ldagger/Provides$Type;
 
-    .line 50
+    .line 64
     new-instance v0, Ldagger/Provides$Type;
 
     const-string v1, "SET"
@@ -66,7 +66,7 @@
 
     sput-object v0, Ldagger/Provides$Type;->SET:Ldagger/Provides$Type;
 
-    .line 57
+    .line 72
     new-instance v0, Ldagger/Provides$Type;
 
     const-string v1, "SET_VALUES"
@@ -75,7 +75,7 @@
 
     sput-object v0, Ldagger/Provides$Type;->SET_VALUES:Ldagger/Provides$Type;
 
-    .line 65
+    .line 81
     new-instance v0, Ldagger/Provides$Type;
 
     const-string v1, "MAP"
@@ -84,7 +84,7 @@
 
     sput-object v0, Ldagger/Provides$Type;->MAP:Ldagger/Provides$Type;
 
-    .line 37
+    .line 50
     const/4 v0, 0x4
 
     new-array v0, v0, [Ldagger/Provides$Type;
@@ -119,7 +119,7 @@
     .end annotation
 
     .prologue
-    .line 37
+    .line 50
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -130,7 +130,7 @@
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 37
+    .line 50
     const-class v0, Ldagger/Provides$Type;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -146,7 +146,7 @@
     .registers 1
 
     .prologue
-    .line 37
+    .line 50
     sget-object v0, Ldagger/Provides$Type;->$VALUES:[Ldagger/Provides$Type;
 
     invoke-virtual {v0}, [Ldagger/Provides$Type;->clone()Ljava/lang/Object;

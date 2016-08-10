@@ -142,7 +142,7 @@
 
     .line 145
     :cond_14
-    if-eqz p2, :cond_2d
+    if-eqz p2, :cond_2b
 
     .line 146
     invoke-virtual {p2}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -151,16 +151,13 @@
 
     const-class v3, Lrx/internal/operators/NotificationLite$OnErrorSentinel;
 
-    if-ne v2, v3, :cond_28
+    if-ne v2, v3, :cond_26
 
     .line 147
     check-cast p2, Lrx/internal/operators/NotificationLite$OnErrorSentinel;
 
     .end local p2    # "n":Ljava/lang/Object;
-    # getter for: Lrx/internal/operators/NotificationLite$OnErrorSentinel;->e:Ljava/lang/Throwable;
-    invoke-static {p2}, Lrx/internal/operators/NotificationLite$OnErrorSentinel;->access$000(Lrx/internal/operators/NotificationLite$OnErrorSentinel;)Ljava/lang/Throwable;
-
-    move-result-object v1
+    iget-object v1, p2, Lrx/internal/operators/NotificationLite$OnErrorSentinel;->e:Ljava/lang/Throwable;
 
     invoke-interface {p1, v1}, Lrx/Observer;->onError(Ljava/lang/Throwable;)V
 
@@ -168,7 +165,7 @@
 
     .line 150
     .restart local p2    # "n":Ljava/lang/Object;
-    :cond_28
+    :cond_26
     invoke-interface {p1, p2}, Lrx/Observer;->onNext(Ljava/lang/Object;)V
 
     move v0, v1
@@ -177,7 +174,7 @@
     goto :goto_9
 
     .line 153
-    :cond_2d
+    :cond_2b
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "The lite notification can not be null"
@@ -222,10 +219,7 @@
     check-cast p1, Lrx/internal/operators/NotificationLite$OnErrorSentinel;
 
     .end local p1    # "n":Ljava/lang/Object;
-    # getter for: Lrx/internal/operators/NotificationLite$OnErrorSentinel;->e:Ljava/lang/Throwable;
-    invoke-static {p1}, Lrx/internal/operators/NotificationLite$OnErrorSentinel;->access$000(Lrx/internal/operators/NotificationLite$OnErrorSentinel;)Ljava/lang/Throwable;
-
-    move-result-object v0
+    iget-object v0, p1, Lrx/internal/operators/NotificationLite$OnErrorSentinel;->e:Ljava/lang/Throwable;
 
     return-object v0
 .end method

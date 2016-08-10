@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x1a
+    accessFlags = 0x18
     name = "PoolWorker"
 .end annotation
 
@@ -20,9 +20,9 @@
     .param p1, "threadFactory"    # Ljava/util/concurrent/ThreadFactory;
 
     .prologue
-    .line 137
+    .line 178
     invoke-direct {p0, p1}, Lrx/internal/schedulers/NewThreadWorker;-><init>(Ljava/util/concurrent/ThreadFactory;)V
 
-    .line 138
+    .line 179
     return-void
 .end method

@@ -34,7 +34,7 @@
 
 
 # instance fields
-.field private predicate:Lrx/functions/Func2;
+.field final predicate:Lrx/functions/Func2;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func2",
@@ -73,17 +73,6 @@
 
     .line 105
     return-void
-.end method
-
-.method static synthetic access$100(Lrx/internal/operators/OnSubscribeRedo$RetryWithPredicate;)Lrx/functions/Func2;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OnSubscribeRedo$RetryWithPredicate;
-
-    .prologue
-    .line 100
-    iget-object v0, p0, Lrx/internal/operators/OnSubscribeRedo$RetryWithPredicate;->predicate:Lrx/functions/Func2;
-
-    return-object v0
 .end method
 
 

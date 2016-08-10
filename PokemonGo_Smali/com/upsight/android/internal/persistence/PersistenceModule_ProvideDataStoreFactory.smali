@@ -97,7 +97,7 @@
     .registers 1
 
     .prologue
-    .line 13
+    .line 14
     const-class v0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -154,7 +154,7 @@
     .end annotation
 
     .prologue
-    .line 23
+    .line 40
     .local p2, "contextProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Landroid/content/Context;>;"
     .local p3, "infoCacheProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;>;"
     .local p4, "idFactoryProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/internal/persistence/storable/StorableIdFactory;>;"
@@ -163,7 +163,7 @@
     .local p7, "busProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/squareup/otto/Bus;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 24
+    .line 41
     sget-boolean v0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -176,11 +176,11 @@
 
     throw v0
 
-    .line 25
+    .line 42
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->module:Lcom/upsight/android/internal/persistence/PersistenceModule;
 
-    .line 26
+    .line 43
     sget-boolean v0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -193,11 +193,11 @@
 
     throw v0
 
-    .line 27
+    .line 44
     :cond_1d
     iput-object p2, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->contextProvider:Ljavax/inject/Provider;
 
-    .line 28
+    .line 45
     sget-boolean v0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_2b
@@ -210,11 +210,11 @@
 
     throw v0
 
-    .line 29
+    .line 46
     :cond_2b
     iput-object p3, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->infoCacheProvider:Ljavax/inject/Provider;
 
-    .line 30
+    .line 47
     sget-boolean v0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_39
@@ -227,11 +227,11 @@
 
     throw v0
 
-    .line 31
+    .line 48
     :cond_39
     iput-object p4, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->idFactoryProvider:Ljavax/inject/Provider;
 
-    .line 32
+    .line 49
     sget-boolean v0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_47
@@ -244,11 +244,11 @@
 
     throw v0
 
-    .line 33
+    .line 50
     :cond_47
     iput-object p5, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->subscribeOnSchedulerProvider:Ljavax/inject/Provider;
 
-    .line 34
+    .line 51
     sget-boolean v0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_55
@@ -261,11 +261,11 @@
 
     throw v0
 
-    .line 35
+    .line 52
     :cond_55
     iput-object p6, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->observeOnSchedulerProvider:Ljavax/inject/Provider;
 
-    .line 36
+    .line 53
     sget-boolean v0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_63
@@ -278,11 +278,11 @@
 
     throw v0
 
-    .line 37
+    .line 54
     :cond_63
     iput-object p7, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->busProvider:Ljavax/inject/Provider;
 
-    .line 38
+    .line 55
     return-void
 .end method
 
@@ -325,7 +325,7 @@
     .end annotation
 
     .prologue
-    .line 50
+    .line 78
     .local p1, "contextProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Landroid/content/Context;>;"
     .local p2, "infoCacheProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;>;"
     .local p3, "idFactoryProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/internal/persistence/storable/StorableIdFactory;>;"
@@ -356,14 +356,15 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/persistence/UpsightDataStore;
-    .registers 9
+    .registers 8
 
     .prologue
-    .line 42
+    .line 59
     iget-object v0, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->module:Lcom/upsight/android/internal/persistence/PersistenceModule;
 
     iget-object v1, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->contextProvider:Ljavax/inject/Provider;
 
+    .line 61
     invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v1
@@ -372,6 +373,7 @@
 
     iget-object v2, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->infoCacheProvider:Ljavax/inject/Provider;
 
+    .line 62
     invoke-interface {v2}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v2
@@ -380,6 +382,7 @@
 
     iget-object v3, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->idFactoryProvider:Ljavax/inject/Provider;
 
+    .line 63
     invoke-interface {v3}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v3
@@ -388,6 +391,7 @@
 
     iget-object v4, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->subscribeOnSchedulerProvider:Ljavax/inject/Provider;
 
+    .line 64
     invoke-interface {v4}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v4
@@ -396,6 +400,7 @@
 
     iget-object v5, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->observeOnSchedulerProvider:Ljavax/inject/Provider;
 
+    .line 65
     invoke-interface {v5}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v5
@@ -404,39 +409,35 @@
 
     iget-object v6, p0, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->busProvider:Ljavax/inject/Provider;
 
+    .line 66
     invoke-interface {v6}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v6
 
     check-cast v6, Lcom/squareup/otto/Bus;
 
+    .line 60
     invoke-virtual/range {v0 .. v6}, Lcom/upsight/android/internal/persistence/PersistenceModule;->provideDataStore(Landroid/content/Context;Lcom/upsight/android/internal/persistence/storable/StorableInfoCache;Lcom/upsight/android/internal/persistence/storable/StorableIdFactory;Lrx/Scheduler;Lrx/Scheduler;Lcom/squareup/otto/Bus;)Lcom/upsight/android/persistence/UpsightDataStore;
 
-    move-result-object v7
-
-    .line 43
-    .local v7, "provided":Lcom/upsight/android/persistence/UpsightDataStore;
-    if-nez v7, :cond_40
-
-    .line 44
-    new-instance v0, Ljava/lang/NullPointerException;
+    move-result-object v0
 
     const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    .line 59
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
 
-    throw v0
+    move-result-object v0
 
-    .line 46
-    :cond_40
-    return-object v7
+    check-cast v0, Lcom/upsight/android/persistence/UpsightDataStore;
+
+    return-object v0
 .end method
 
 .method public bridge synthetic get()Ljava/lang/Object;
     .registers 2
 
     .prologue
-    .line 13
+    .line 14
     invoke-virtual {p0}, Lcom/upsight/android/internal/persistence/PersistenceModule_ProvideDataStoreFactory;->get()Lcom/upsight/android/persistence/UpsightDataStore;
 
     move-result-object v0

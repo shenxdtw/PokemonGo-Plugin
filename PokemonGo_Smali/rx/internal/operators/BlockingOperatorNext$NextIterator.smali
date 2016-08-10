@@ -65,7 +65,7 @@
 
 
 # direct methods
-.method private constructor <init>(Lrx/Observable;Lrx/internal/operators/BlockingOperatorNext$NextObserver;)V
+.method constructor <init>(Lrx/Observable;Lrx/internal/operators/BlockingOperatorNext$NextObserver;)V
     .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -109,20 +109,6 @@
     iput-object p2, p0, Lrx/internal/operators/BlockingOperatorNext$NextIterator;->observer:Lrx/internal/operators/BlockingOperatorNext$NextObserver;
 
     .line 72
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/Observable;Lrx/internal/operators/BlockingOperatorNext$NextObserver;Lrx/internal/operators/BlockingOperatorNext$1;)V
-    .registers 4
-    .param p1, "x0"    # Lrx/Observable;
-    .param p2, "x1"    # Lrx/internal/operators/BlockingOperatorNext$NextObserver;
-    .param p3, "x2"    # Lrx/internal/operators/BlockingOperatorNext$1;
-
-    .prologue
-    .line 59
-    .local p0, "this":Lrx/internal/operators/BlockingOperatorNext$NextIterator;, "Lrx/internal/operators/BlockingOperatorNext$NextIterator<TT;>;"
-    invoke-direct {p0, p1, p2}, Lrx/internal/operators/BlockingOperatorNext$NextIterator;-><init>(Lrx/Observable;Lrx/internal/operators/BlockingOperatorNext$NextObserver;)V
-
     return-void
 .end method
 

@@ -878,7 +878,7 @@
     .end annotation
 
     .prologue
-    .line 625
+    .line 628
     .local p0, "this":Lcom/google/gson/internal/LinkedTreeMap;, "Lcom/google/gson/internal/LinkedTreeMap<TK;TV;>;"
     new-instance v0, Ljava/util/LinkedHashMap;
 
@@ -1034,6 +1034,7 @@
 
     iget-object v7, v6, Lcom/google/gson/internal/LinkedTreeMap$Node;->key:Ljava/lang/Object;
 
+    .line 135
     invoke-interface {v1, v7}, Ljava/lang/Comparable;->compareTo(Ljava/lang/Object;)I
 
     move-result v3
@@ -1056,11 +1057,12 @@
     .line 129
     goto :goto_10
 
-    .line 134
+    .line 135
     .restart local v1    # "comparableKey":Ljava/lang/Comparable;, "Ljava/lang/Comparable<Ljava/lang/Object;>;"
     :cond_1e
     iget-object v7, v6, Lcom/google/gson/internal/LinkedTreeMap$Node;->key:Ljava/lang/Object;
 
+    .line 136
     invoke-interface {v2, p1, v7}, Ljava/util/Comparator;->compare(Ljava/lang/Object;Ljava/lang/Object;)I
 
     move-result v3

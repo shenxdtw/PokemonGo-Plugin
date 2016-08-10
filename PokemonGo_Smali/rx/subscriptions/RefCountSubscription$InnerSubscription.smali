@@ -1,5 +1,5 @@
 .class final Lrx/subscriptions/RefCountSubscription$InnerSubscription;
-.super Ljava/lang/Object;
+.super Ljava/util/concurrent/atomic/AtomicInteger;
 .source "RefCountSubscription.java"
 
 # interfaces
@@ -17,56 +17,23 @@
 .end annotation
 
 
-# static fields
-.field static final INNER_DONE_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater",
-            "<",
-            "Lrx/subscriptions/RefCountSubscription$InnerSubscription;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-
 # instance fields
-.field volatile innerDone:I
-
 .field final parent:Lrx/subscriptions/RefCountSubscription;
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .registers 2
-
-    .prologue
-    .line 130
-    const-class v0, Lrx/subscriptions/RefCountSubscription$InnerSubscription;
-
-    const-string v1, "innerDone"
-
-    invoke-static {v0, v1}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/subscriptions/RefCountSubscription$InnerSubscription;->INNER_DONE_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    return-void
-.end method
-
 .method public constructor <init>(Lrx/subscriptions/RefCountSubscription;)V
     .registers 2
     .param p1, "parent"    # Lrx/subscriptions/RefCountSubscription;
 
     .prologue
-    .line 132
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    .line 130
+    invoke-direct {p0}, Ljava/util/concurrent/atomic/AtomicInteger;-><init>()V
 
-    .line 133
+    .line 131
     iput-object p1, p0, Lrx/subscriptions/RefCountSubscription$InnerSubscription;->parent:Lrx/subscriptions/RefCountSubscription;
 
-    .line 134
+    .line 132
     return-void
 .end method
 
@@ -76,45 +43,45 @@
     .registers 2
 
     .prologue
-    .line 144
-    iget v0, p0, Lrx/subscriptions/RefCountSubscription$InnerSubscription;->innerDone:I
-
-    if-eqz v0, :cond_6
-
-    const/4 v0, 0x1
-
-    :goto_5
-    return v0
-
-    :cond_6
-    const/4 v0, 0x0
-
-    goto :goto_5
-.end method
-
-.method public unsubscribe()V
-    .registers 4
-
-    .prologue
-    .line 137
-    sget-object v0, Lrx/subscriptions/RefCountSubscription$InnerSubscription;->INNER_DONE_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    const/4 v1, 0x0
-
-    const/4 v2, 0x1
-
-    invoke-virtual {v0, p0, v1, v2}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->compareAndSet(Ljava/lang/Object;II)Z
+    .line 142
+    invoke-virtual {p0}, Lrx/subscriptions/RefCountSubscription$InnerSubscription;->get()I
 
     move-result v0
 
-    if-eqz v0, :cond_f
+    if-eqz v0, :cond_8
 
-    .line 138
+    const/4 v0, 0x1
+
+    :goto_7
+    return v0
+
+    :cond_8
+    const/4 v0, 0x0
+
+    goto :goto_7
+.end method
+
+.method public unsubscribe()V
+    .registers 3
+
+    .prologue
+    .line 135
+    const/4 v0, 0x0
+
+    const/4 v1, 0x1
+
+    invoke-virtual {p0, v0, v1}, Lrx/subscriptions/RefCountSubscription$InnerSubscription;->compareAndSet(II)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_d
+
+    .line 136
     iget-object v0, p0, Lrx/subscriptions/RefCountSubscription$InnerSubscription;->parent:Lrx/subscriptions/RefCountSubscription;
 
     invoke-virtual {v0}, Lrx/subscriptions/RefCountSubscription;->unsubscribeAChild()V
 
-    .line 140
-    :cond_f
+    .line 138
+    :cond_d
     return-void
 .end method

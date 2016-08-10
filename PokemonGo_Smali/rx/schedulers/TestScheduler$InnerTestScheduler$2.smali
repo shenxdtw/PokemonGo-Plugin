@@ -28,7 +28,7 @@
     .registers 3
 
     .prologue
-    .line 163
+    .line 169
     iput-object p1, p0, Lrx/schedulers/TestScheduler$InnerTestScheduler$2;->this$1:Lrx/schedulers/TestScheduler$InnerTestScheduler;
 
     iput-object p2, p0, Lrx/schedulers/TestScheduler$InnerTestScheduler$2;->val$timedAction:Lrx/schedulers/TestScheduler$TimedAction;
@@ -44,20 +44,17 @@
     .registers 3
 
     .prologue
-    .line 167
+    .line 173
     iget-object v0, p0, Lrx/schedulers/TestScheduler$InnerTestScheduler$2;->this$1:Lrx/schedulers/TestScheduler$InnerTestScheduler;
 
     iget-object v0, v0, Lrx/schedulers/TestScheduler$InnerTestScheduler;->this$0:Lrx/schedulers/TestScheduler;
 
-    # getter for: Lrx/schedulers/TestScheduler;->queue:Ljava/util/Queue;
-    invoke-static {v0}, Lrx/schedulers/TestScheduler;->access$900(Lrx/schedulers/TestScheduler;)Ljava/util/Queue;
-
-    move-result-object v0
+    iget-object v0, v0, Lrx/schedulers/TestScheduler;->queue:Ljava/util/Queue;
 
     iget-object v1, p0, Lrx/schedulers/TestScheduler$InnerTestScheduler$2;->val$timedAction:Lrx/schedulers/TestScheduler$TimedAction;
 
     invoke-interface {v0, v1}, Ljava/util/Queue;->remove(Ljava/lang/Object;)Z
 
-    .line 168
+    .line 174
     return-void
 .end method

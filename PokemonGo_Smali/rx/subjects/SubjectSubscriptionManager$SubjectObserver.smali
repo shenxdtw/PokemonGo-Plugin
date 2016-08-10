@@ -29,10 +29,10 @@
 
 
 # instance fields
-.field final actual:Lrx/Observer;
+.field final actual:Lrx/Subscriber;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Lrx/Observer",
+            "Lrx/Subscriber",
             "<-TT;>;"
         }
     .end annotation
@@ -61,31 +61,31 @@
 
 
 # direct methods
-.method public constructor <init>(Lrx/Observer;)V
+.method public constructor <init>(Lrx/Subscriber;)V
     .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Lrx/Observer",
+            "Lrx/Subscriber",
             "<-TT;>;)V"
         }
     .end annotation
 
     .prologue
-    .line 219
+    .line 218
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
-    .local p1, "actual":Lrx/Observer;, "Lrx/Observer<-TT;>;"
+    .local p1, "actual":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 209
+    .line 208
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->first:Z
 
-    .line 220
-    iput-object p1, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Observer;
+    .line 219
+    iput-object p1, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Subscriber;
 
-    .line 221
+    .line 220
     return-void
 .end method
 
@@ -104,17 +104,17 @@
     .end annotation
 
     .prologue
-    .line 318
+    .line 317
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
     .local p2, "nl":Lrx/internal/operators/NotificationLite;, "Lrx/internal/operators/NotificationLite<TT;>;"
     if-eqz p1, :cond_7
 
-    .line 319
-    iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Observer;
+    .line 318
+    iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Subscriber;
 
     invoke-virtual {p2, v0, p1}, Lrx/internal/operators/NotificationLite;->accept(Lrx/Observer;Ljava/lang/Object;)Z
 
-    .line 321
+    .line 320
     :cond_7
     return-void
 .end method
@@ -136,10 +136,10 @@
     .local p2, "nl":Lrx/internal/operators/NotificationLite;, "Lrx/internal/operators/NotificationLite<TT;>;"
     const/4 v0, 0x0
 
-    .line 263
+    .line 262
     monitor-enter p0
 
-    .line 264
+    .line 263
     :try_start_2
     iget-boolean v1, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->first:Z
 
@@ -149,22 +149,22 @@
 
     if-eqz v1, :cond_c
 
-    .line 265
+    .line 264
     :cond_a
     monitor-exit p0
 
-    .line 273
+    .line 272
     :cond_b
     :goto_b
     return-void
 
-    .line 267
+    .line 266
     :cond_c
     const/4 v1, 0x0
 
     iput-boolean v1, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->first:Z
 
-    .line 268
+    .line 267
     if-eqz p1, :cond_12
 
     const/4 v0, 0x1
@@ -172,22 +172,22 @@
     :cond_12
     iput-boolean v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->emitting:Z
 
-    .line 269
+    .line 268
     monitor-exit p0
     :try_end_15
     .catchall {:try_start_2 .. :try_end_15} :catchall_1c
 
-    .line 270
+    .line 269
     if-eqz p1, :cond_b
 
-    .line 271
+    .line 270
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0, p1, p2}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->emitLoop(Ljava/util/List;Ljava/lang/Object;Lrx/internal/operators/NotificationLite;)V
 
     goto :goto_b
 
-    .line 269
+    .line 268
     :catchall_1c
     move-exception v0
 
@@ -216,22 +216,22 @@
     .end annotation
 
     .prologue
-    .line 281
+    .line 280
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
     .local p1, "localQueue":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Object;>;"
     .local p3, "nl":Lrx/internal/operators/NotificationLite;, "Lrx/internal/operators/NotificationLite<TT;>;"
     const/4 v2, 0x1
 
-    .line 282
+    .line 281
     .local v2, "once":Z
     const/4 v3, 0x0
 
-    .line 285
+    .line 284
     .local v3, "skipFinal":Z
     :goto_2
     if-eqz p1, :cond_1f
 
-    .line 286
+    .line 285
     :try_start_4
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
@@ -249,7 +249,7 @@
 
     move-result-object v1
 
-    .line 287
+    .line 286
     .local v1, "n":Ljava/lang/Object;
     invoke-virtual {p0, v1, p3}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->accept(Ljava/lang/Object;Lrx/internal/operators/NotificationLite;)V
     :try_end_15
@@ -257,7 +257,7 @@
 
     goto :goto_8
 
-    .line 305
+    .line 304
     .end local v0    # "i$":Ljava/util/Iterator;
     .end local v1    # "n":Ljava/lang/Object;
     :catchall_16
@@ -265,16 +265,16 @@
 
     if-nez v3, :cond_1e
 
-    .line 306
+    .line 305
     monitor-enter p0
 
-    .line 307
+    .line 306
     const/4 v5, 0x0
 
     :try_start_1b
     iput-boolean v5, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->emitting:Z
 
-    .line 308
+    .line 307
     monitor-exit p0
     :try_end_1e
     .catchall {:try_start_1b .. :try_end_1e} :catchall_42
@@ -282,70 +282,70 @@
     :cond_1e
     throw v4
 
-    .line 290
+    .line 289
     :cond_1f
     if-eqz v2, :cond_25
 
-    .line 291
+    .line 290
     const/4 v2, 0x0
 
-    .line 292
+    .line 291
     :try_start_22
     invoke-virtual {p0, p2, p3}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->accept(Ljava/lang/Object;Lrx/internal/operators/NotificationLite;)V
 
-    .line 294
+    .line 293
     :cond_25
     monitor-enter p0
     :try_end_26
     .catchall {:try_start_22 .. :try_end_26} :catchall_16
 
-    .line 295
+    .line 294
     :try_start_26
     iget-object p1, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->queue:Ljava/util/List;
 
-    .line 296
+    .line 295
     const/4 v4, 0x0
 
     iput-object v4, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->queue:Ljava/util/List;
 
-    .line 297
+    .line 296
     if-nez p1, :cond_3a
 
-    .line 298
+    .line 297
     const/4 v4, 0x0
 
     iput-boolean v4, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->emitting:Z
 
-    .line 299
+    .line 298
     const/4 v3, 0x1
 
-    .line 300
+    .line 299
     monitor-exit p0
     :try_end_32
     .catchall {:try_start_26 .. :try_end_32} :catchall_3c
 
-    .line 305
+    .line 304
     if-nez v3, :cond_39
 
-    .line 306
+    .line 305
     monitor-enter p0
 
-    .line 307
+    .line 306
     const/4 v4, 0x0
 
     :try_start_36
     iput-boolean v4, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->emitting:Z
 
-    .line 308
+    .line 307
     monitor-exit p0
     :try_end_39
     .catchall {:try_start_36 .. :try_end_39} :catchall_3f
 
-    .line 311
+    .line 310
     :cond_39
     return-void
 
-    .line 302
+    .line 301
     :cond_3a
     :try_start_3a
     monitor-exit p0
@@ -364,7 +364,7 @@
     :try_end_3f
     .catchall {:try_start_3e .. :try_end_3f} :catchall_16
 
-    .line 308
+    .line 307
     :catchall_3f
     move-exception v4
 
@@ -399,72 +399,72 @@
     .end annotation
 
     .prologue
-    .line 241
+    .line 240
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
     .local p2, "nl":Lrx/internal/operators/NotificationLite;, "Lrx/internal/operators/NotificationLite<TT;>;"
     iget-boolean v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->fastPath:Z
 
     if-nez v0, :cond_22
 
-    .line 242
+    .line 241
     monitor-enter p0
 
-    .line 243
+    .line 242
     const/4 v0, 0x0
 
     :try_start_6
     iput-boolean v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->first:Z
 
-    .line 244
+    .line 243
     iget-boolean v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->emitting:Z
 
     if-eqz v0, :cond_1e
 
-    .line 245
+    .line 244
     iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->queue:Ljava/util/List;
 
     if-nez v0, :cond_17
 
-    .line 246
+    .line 245
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->queue:Ljava/util/List;
 
-    .line 248
+    .line 247
     :cond_17
     iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->queue:Ljava/util/List;
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 249
+    .line 248
     monitor-exit p0
 
-    .line 255
+    .line 254
     :goto_1d
     return-void
 
-    .line 251
+    .line 250
     :cond_1e
     monitor-exit p0
     :try_end_1f
     .catchall {:try_start_6 .. :try_end_1f} :catchall_28
 
-    .line 252
+    .line 251
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->fastPath:Z
 
-    .line 254
+    .line 253
     :cond_22
-    iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Observer;
+    iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Subscriber;
 
     invoke-virtual {p2, v0, p1}, Lrx/internal/operators/NotificationLite;->accept(Lrx/Observer;Ljava/lang/Object;)Z
 
     goto :goto_1d
 
-    .line 251
+    .line 250
     :catchall_28
     move-exception v0
 
@@ -487,9 +487,9 @@
     .end annotation
 
     .prologue
-    .line 325
+    .line 324
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
-    iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Observer;
+    iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Subscriber;
 
     return-object v0
 .end method
@@ -505,7 +505,7 @@
     .end annotation
 
     .prologue
-    .line 333
+    .line 332
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
     iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->index:Ljava/lang/Object;
 
@@ -517,11 +517,11 @@
     .param p1, "newIndex"    # Ljava/lang/Object;
 
     .prologue
-    .line 340
+    .line 339
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
     iput-object p1, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->index:Ljava/lang/Object;
 
-    .line 341
+    .line 340
     return-void
 .end method
 
@@ -529,13 +529,13 @@
     .registers 2
 
     .prologue
-    .line 232
+    .line 231
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
-    iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Observer;
+    iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Subscriber;
 
-    invoke-interface {v0}, Lrx/Observer;->onCompleted()V
+    invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    .line 233
+    .line 232
     return-void
 .end method
 
@@ -544,13 +544,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 228
+    .line 227
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
-    iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Observer;
+    iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Subscriber;
 
-    invoke-interface {v0, p1}, Lrx/Observer;->onError(Ljava/lang/Throwable;)V
+    invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 229
+    .line 228
     return-void
 .end method
 
@@ -563,13 +563,13 @@
     .end annotation
 
     .prologue
-    .line 224
+    .line 223
     .local p0, "this":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
-    iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Observer;
+    iget-object v0, p0, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->actual:Lrx/Subscriber;
 
-    invoke-interface {v0, p1}, Lrx/Observer;->onNext(Ljava/lang/Object;)V
+    invoke-virtual {v0, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    .line 225
+    .line 224
     return-void
 .end method

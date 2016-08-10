@@ -26,6 +26,7 @@
     .line 28
     const-string v2, "com.upsight.extension.marketing"
 
+    .line 29
     invoke-virtual {p0, v2}, Lcom/upsight/android/UpsightContext;->getUpsightExtension(Ljava/lang/String;)Lcom/upsight/android/UpsightExtension;
 
     move-result-object v0

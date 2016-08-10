@@ -34,6 +34,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     .prologue
     .line 369
@@ -94,13 +95,11 @@
 
 .method public bridge synthetic onSuccess(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 369
     check-cast p1, Lcom/upsight/android/analytics/dispatcher/EndpointResponse;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$4;->onSuccess(Lcom/upsight/android/analytics/dispatcher/EndpointResponse;)V
 
     return-void

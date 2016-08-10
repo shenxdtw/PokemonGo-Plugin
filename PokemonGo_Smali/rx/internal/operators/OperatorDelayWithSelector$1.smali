@@ -34,7 +34,7 @@
     .registers 5
 
     .prologue
-    .line 50
+    .line 51
     .local p0, "this":Lrx/internal/operators/OperatorDelayWithSelector$1;, "Lrx/internal/operators/OperatorDelayWithSelector.1;"
     .local p2, "x0":Lrx/Subscriber;, "Lrx/Subscriber<*>;"
     iput-object p1, p0, Lrx/internal/operators/OperatorDelayWithSelector$1;->this$0:Lrx/internal/operators/OperatorDelayWithSelector;
@@ -54,13 +54,13 @@
     .registers 2
 
     .prologue
-    .line 54
+    .line 55
     .local p0, "this":Lrx/internal/operators/OperatorDelayWithSelector$1;, "Lrx/internal/operators/OperatorDelayWithSelector.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorDelayWithSelector$1;->val$delayedEmissions:Lrx/subjects/PublishSubject;
 
     invoke-virtual {v0}, Lrx/subjects/PublishSubject;->onCompleted()V
 
-    .line 55
+    .line 56
     return-void
 .end method
 
@@ -69,13 +69,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 59
+    .line 60
     .local p0, "this":Lrx/internal/operators/OperatorDelayWithSelector$1;, "Lrx/internal/operators/OperatorDelayWithSelector.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorDelayWithSelector$1;->val$child:Lrx/observers/SerializedSubscriber;
 
     invoke-virtual {v0, p1}, Lrx/observers/SerializedSubscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 60
+    .line 61
     return-void
 .end method
 
@@ -88,7 +88,7 @@
     .end annotation
 
     .prologue
-    .line 65
+    .line 66
     .local p0, "this":Lrx/internal/operators/OperatorDelayWithSelector$1;, "Lrx/internal/operators/OperatorDelayWithSelector.1;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     :try_start_0
@@ -128,17 +128,17 @@
     :try_end_22
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_22} :catch_23
 
-    .line 76
+    .line 77
     :goto_22
     return-void
 
-    .line 73
+    .line 74
     :catch_23
     move-exception v0
 
-    .line 74
+    .line 75
     .local v0, "e":Ljava/lang/Throwable;
-    invoke-virtual {p0, v0}, Lrx/internal/operators/OperatorDelayWithSelector$1;->onError(Ljava/lang/Throwable;)V
+    invoke-static {v0, p0}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;)V
 
     goto :goto_22
 .end method

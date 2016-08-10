@@ -27,7 +27,7 @@
     .param p1, "this$0"    # Lcom/nianticlabs/nia/account/AccountsActivity;
 
     .prologue
-    .line 186
+    .line 189
     iput-object p1, p0, Lcom/nianticlabs/nia/account/AccountsActivity$3;->this$0:Lcom/nianticlabs/nia/account/AccountsActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -41,11 +41,11 @@
     .registers 2
 
     .prologue
-    .line 189
+    .line 192
     iget-object v0, p0, Lcom/nianticlabs/nia/account/AccountsActivity$3;->this$0:Lcom/nianticlabs/nia/account/AccountsActivity;
 
     invoke-virtual {v0}, Lcom/nianticlabs/nia/account/AccountsActivity;->finish()V
 
-    .line 190
+    .line 193
     return-void
 .end method

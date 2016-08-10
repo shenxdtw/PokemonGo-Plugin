@@ -19,7 +19,7 @@
     .registers 1
 
     .prologue
-    .line 58
+    .line 76
     invoke-direct {p0}, Lrx/plugins/RxJavaErrorHandler;-><init>()V
 
     return-void

@@ -36,9 +36,10 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     .prologue
-    .line 256
+    .line 265
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$3;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -53,19 +54,17 @@
     .param p1, "exception"    # Lcom/upsight/android/UpsightException;
 
     .prologue
-    .line 267
+    .line 276
     return-void
 .end method
 
 .method public bridge synthetic onSuccess(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 256
+    .line 265
     check-cast p1, Ljava/util/Set;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$3;->onSuccess(Ljava/util/Set;)V
 
     return-void
@@ -84,13 +83,12 @@
     .end annotation
 
     .prologue
-    .line 259
+    .line 268
     .local p1, "result":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/configuration/UpsightConfiguration;>;"
     invoke-interface {p1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v1
 
-    .local v1, "i$":Ljava/util/Iterator;
     :goto_4
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
@@ -104,7 +102,7 @@
 
     check-cast v0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
 
-    .line 260
+    .line 269
     .local v0, "configuration":Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$3;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
@@ -117,7 +115,7 @@
 
     goto :goto_4
 
-    .line 262
+    .line 271
     .end local v0    # "configuration":Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
     :cond_1a
     return-void

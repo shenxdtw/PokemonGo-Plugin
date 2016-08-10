@@ -15,18 +15,18 @@
 
 
 # instance fields
-.field private final action:Lrx/functions/Action0;
+.field final action:Lrx/functions/Action0;
 
 .field private final count:J
 
-.field private final scheduler:Lrx/Scheduler$Worker;
+.field final scheduler:Lrx/Scheduler$Worker;
 
-.field private final time:J
+.field final time:J
 
 
 # direct methods
-.method private constructor <init>(Lrx/Scheduler$Worker;JLrx/functions/Action0;)V
-    .registers 7
+.method constructor <init>(Lrx/Scheduler$Worker;JLrx/functions/Action0;)V
+    .registers 9
     .param p1, "scheduler"    # Lrx/Scheduler$Worker;
     .param p2, "time"    # J
     .param p4, "action"    # Lrx/functions/Action0;
@@ -36,10 +36,13 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 42
-    # operator++ for: Lrx/schedulers/TestScheduler;->counter:J
-    invoke-static {}, Lrx/schedulers/TestScheduler;->access$108()J
+    sget-wide v0, Lrx/schedulers/TestScheduler;->counter:J
 
-    move-result-wide v0
+    const-wide/16 v2, 0x1
+
+    add-long/2addr v2, v0
+
+    sput-wide v2, Lrx/schedulers/TestScheduler;->counter:J
 
     iput-wide v0, p0, Lrx/schedulers/TestScheduler$TimedAction;->count:J
 
@@ -56,32 +59,7 @@
     return-void
 .end method
 
-.method synthetic constructor <init>(Lrx/Scheduler$Worker;JLrx/functions/Action0;Lrx/schedulers/TestScheduler$1;)V
-    .registers 6
-    .param p1, "x0"    # Lrx/Scheduler$Worker;
-    .param p2, "x1"    # J
-    .param p4, "x2"    # Lrx/functions/Action0;
-    .param p5, "x3"    # Lrx/schedulers/TestScheduler$1;
-
-    .prologue
-    .line 37
-    invoke-direct {p0, p1, p2, p3, p4}, Lrx/schedulers/TestScheduler$TimedAction;-><init>(Lrx/Scheduler$Worker;JLrx/functions/Action0;)V
-
-    return-void
-.end method
-
-.method static synthetic access$200(Lrx/schedulers/TestScheduler$TimedAction;)J
-    .registers 3
-    .param p0, "x0"    # Lrx/schedulers/TestScheduler$TimedAction;
-
-    .prologue
-    .line 37
-    iget-wide v0, p0, Lrx/schedulers/TestScheduler$TimedAction;->time:J
-
-    return-wide v0
-.end method
-
-.method static synthetic access$300(Lrx/schedulers/TestScheduler$TimedAction;)J
+.method static synthetic access$000(Lrx/schedulers/TestScheduler$TimedAction;)J
     .registers 3
     .param p0, "x0"    # Lrx/schedulers/TestScheduler$TimedAction;
 
@@ -90,28 +68,6 @@
     iget-wide v0, p0, Lrx/schedulers/TestScheduler$TimedAction;->count:J
 
     return-wide v0
-.end method
-
-.method static synthetic access$400(Lrx/schedulers/TestScheduler$TimedAction;)Lrx/Scheduler$Worker;
-    .registers 2
-    .param p0, "x0"    # Lrx/schedulers/TestScheduler$TimedAction;
-
-    .prologue
-    .line 37
-    iget-object v0, p0, Lrx/schedulers/TestScheduler$TimedAction;->scheduler:Lrx/Scheduler$Worker;
-
-    return-object v0
-.end method
-
-.method static synthetic access$500(Lrx/schedulers/TestScheduler$TimedAction;)Lrx/functions/Action0;
-    .registers 2
-    .param p0, "x0"    # Lrx/schedulers/TestScheduler$TimedAction;
-
-    .prologue
-    .line 37
-    iget-object v0, p0, Lrx/schedulers/TestScheduler$TimedAction;->action:Lrx/functions/Action0;
-
-    return-object v0
 .end method
 
 

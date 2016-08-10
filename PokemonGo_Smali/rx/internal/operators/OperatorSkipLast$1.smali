@@ -123,12 +123,9 @@
     .local p1, "value":Ljava/lang/Object;, "TT;"
     iget-object v0, p0, Lrx/internal/operators/OperatorSkipLast$1;->this$0:Lrx/internal/operators/OperatorSkipLast;
 
-    # getter for: Lrx/internal/operators/OperatorSkipLast;->count:I
-    invoke-static {v0}, Lrx/internal/operators/OperatorSkipLast;->access$000(Lrx/internal/operators/OperatorSkipLast;)I
+    iget v0, v0, Lrx/internal/operators/OperatorSkipLast;->count:I
 
-    move-result v0
-
-    if-nez v0, :cond_e
+    if-nez v0, :cond_c
 
     .line 65
     iget-object v0, p0, Lrx/internal/operators/OperatorSkipLast$1;->val$subscriber:Lrx/Subscriber;
@@ -136,11 +133,11 @@
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
     .line 74
-    :goto_d
+    :goto_b
     return-void
 
     .line 68
-    :cond_e
+    :cond_c
     iget-object v0, p0, Lrx/internal/operators/OperatorSkipLast$1;->deque:Ljava/util/Deque;
 
     invoke-interface {v0}, Ljava/util/Deque;->size()I
@@ -149,12 +146,9 @@
 
     iget-object v1, p0, Lrx/internal/operators/OperatorSkipLast$1;->this$0:Lrx/internal/operators/OperatorSkipLast;
 
-    # getter for: Lrx/internal/operators/OperatorSkipLast;->count:I
-    invoke-static {v1}, Lrx/internal/operators/OperatorSkipLast;->access$000(Lrx/internal/operators/OperatorSkipLast;)I
+    iget v1, v1, Lrx/internal/operators/OperatorSkipLast;->count:I
 
-    move-result v1
-
-    if-ne v0, v1, :cond_39
+    if-ne v0, v1, :cond_35
 
     .line 69
     iget-object v0, p0, Lrx/internal/operators/OperatorSkipLast$1;->val$subscriber:Lrx/Subscriber;
@@ -174,7 +168,7 @@
     invoke-virtual {v0, v1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
     .line 73
-    :goto_2d
+    :goto_29
     iget-object v0, p0, Lrx/internal/operators/OperatorSkipLast$1;->deque:Ljava/util/Deque;
 
     iget-object v1, p0, Lrx/internal/operators/OperatorSkipLast$1;->on:Lrx/internal/operators/NotificationLite;
@@ -185,13 +179,13 @@
 
     invoke-interface {v0, v1}, Ljava/util/Deque;->offerLast(Ljava/lang/Object;)Z
 
-    goto :goto_d
+    goto :goto_b
 
     .line 71
-    :cond_39
+    :cond_35
     const-wide/16 v0, 0x1
 
     invoke-virtual {p0, v0, v1}, Lrx/internal/operators/OperatorSkipLast$1;->request(J)V
 
-    goto :goto_2d
+    goto :goto_29
 .end method

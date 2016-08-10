@@ -14,6 +14,12 @@
     .end subannotation
 .end annotation
 
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Ldagger/Component$Builder;
+    }
+.end annotation
+
 .annotation runtime Ljava/lang/annotation/Documented;
 .end annotation
 

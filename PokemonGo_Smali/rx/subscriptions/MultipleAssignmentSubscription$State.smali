@@ -27,16 +27,16 @@
     .param p2, "s"    # Lrx/Subscription;
 
     .prologue
-    .line 37
+    .line 35
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 38
+    .line 36
     iput-boolean p1, p0, Lrx/subscriptions/MultipleAssignmentSubscription$State;->isUnsubscribed:Z
 
-    .line 39
+    .line 37
     iput-object p2, p0, Lrx/subscriptions/MultipleAssignmentSubscription$State;->subscription:Lrx/Subscription;
 
-    .line 40
+    .line 38
     return-void
 .end method
 
@@ -47,7 +47,7 @@
     .param p1, "s"    # Lrx/Subscription;
 
     .prologue
-    .line 47
+    .line 45
     new-instance v0, Lrx/subscriptions/MultipleAssignmentSubscription$State;
 
     iget-boolean v1, p0, Lrx/subscriptions/MultipleAssignmentSubscription$State;->isUnsubscribed:Z
@@ -61,7 +61,7 @@
     .registers 4
 
     .prologue
-    .line 43
+    .line 41
     new-instance v0, Lrx/subscriptions/MultipleAssignmentSubscription$State;
 
     const/4 v1, 0x1

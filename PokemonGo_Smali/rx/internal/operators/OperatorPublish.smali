@@ -62,20 +62,20 @@
     .end annotation
 
     .prologue
-    .line 139
+    .line 166
     .local p0, "this":Lrx/internal/operators/OperatorPublish;, "Lrx/internal/operators/OperatorPublish<TT;>;"
     .local p1, "onSubscribe":Lrx/Observable$OnSubscribe;, "Lrx/Observable$OnSubscribe<TT;>;"
     .local p2, "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
     .local p3, "current":Ljava/util/concurrent/atomic/AtomicReference;, "Ljava/util/concurrent/atomic/AtomicReference<Lrx/internal/operators/OperatorPublish$PublishSubscriber<TT;>;>;"
     invoke-direct {p0, p1}, Lrx/observables/ConnectableObservable;-><init>(Lrx/Observable$OnSubscribe;)V
 
-    .line 140
+    .line 167
     iput-object p2, p0, Lrx/internal/operators/OperatorPublish;->source:Lrx/Observable;
 
-    .line 141
+    .line 168
     iput-object p3, p0, Lrx/internal/operators/OperatorPublish;->current:Ljava/util/concurrent/atomic/AtomicReference;
 
-    .line 142
+    .line 169
     return-void
 .end method
 
@@ -105,9 +105,45 @@
     .line 120
     .local p0, "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
     .local p1, "selector":Lrx/functions/Func1;, "Lrx/functions/Func1<-Lrx/Observable<TT;>;+Lrx/Observable<TR;>;>;"
+    const/4 v0, 0x0
+
+    invoke-static {p0, p1, v0}, Lrx/internal/operators/OperatorPublish;->create(Lrx/Observable;Lrx/functions/Func1;Z)Lrx/Observable;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public static create(Lrx/Observable;Lrx/functions/Func1;Z)Lrx/Observable;
+    .registers 4
+    .param p2, "delayError"    # Z
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<T:",
+            "Ljava/lang/Object;",
+            "R:",
+            "Ljava/lang/Object;",
+            ">(",
+            "Lrx/Observable",
+            "<+TT;>;",
+            "Lrx/functions/Func1",
+            "<-",
+            "Lrx/Observable",
+            "<TT;>;+",
+            "Lrx/Observable",
+            "<TR;>;>;Z)",
+            "Lrx/Observable",
+            "<TR;>;"
+        }
+    .end annotation
+
+    .prologue
+    .line 125
+    .local p0, "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
+    .local p1, "selector":Lrx/functions/Func1;, "Lrx/functions/Func1<-Lrx/Observable<TT;>;+Lrx/Observable<TR;>;>;"
     new-instance v0, Lrx/internal/operators/OperatorPublish$2;
 
-    invoke-direct {v0, p0, p1}, Lrx/internal/operators/OperatorPublish$2;-><init>(Lrx/Observable;Lrx/functions/Func1;)V
+    invoke-direct {v0, p2, p1, p0}, Lrx/internal/operators/OperatorPublish$2;-><init>(ZLrx/functions/Func1;Lrx/Observable;)V
 
     invoke-static {v0}, Lrx/internal/operators/OperatorPublish;->create(Lrx/Observable$OnSubscribe;)Lrx/Observable;
 
@@ -173,10 +209,10 @@
 
     const/4 v4, 0x0
 
-    .line 146
+    .line 173
     const/4 v0, 0x0
 
-    .line 151
+    .line 178
     .local v0, "doConnect":Z
     :cond_3
     iget-object v5, p0, Lrx/internal/operators/OperatorPublish;->current:Ljava/util/concurrent/atomic/AtomicReference;
@@ -187,7 +223,7 @@
 
     check-cast v1, Lrx/internal/operators/OperatorPublish$PublishSubscriber;
 
-    .line 153
+    .line 180
     .local v1, "ps":Lrx/internal/operators/OperatorPublish$PublishSubscriber;, "Lrx/internal/operators/OperatorPublish$PublishSubscriber<TT;>;"
     if-eqz v1, :cond_13
 
@@ -197,7 +233,7 @@
 
     if-eqz v5, :cond_26
 
-    .line 155
+    .line 182
     :cond_13
     new-instance v2, Lrx/internal/operators/OperatorPublish$PublishSubscriber;
 
@@ -205,11 +241,11 @@
 
     invoke-direct {v2, v5}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;-><init>(Ljava/util/concurrent/atomic/AtomicReference;)V
 
-    .line 157
+    .line 184
     .local v2, "u":Lrx/internal/operators/OperatorPublish$PublishSubscriber;, "Lrx/internal/operators/OperatorPublish$PublishSubscriber<TT;>;"
     invoke-virtual {v2}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->init()V
 
-    .line 159
+    .line 186
     iget-object v5, p0, Lrx/internal/operators/OperatorPublish;->current:Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-virtual {v5, v1, v2}, Ljava/util/concurrent/atomic/AtomicReference;->compareAndSet(Ljava/lang/Object;Ljava/lang/Object;)Z
@@ -218,10 +254,10 @@
 
     if-eqz v5, :cond_3
 
-    .line 164
+    .line 191
     move-object v1, v2
 
-    .line 168
+    .line 195
     .end local v2    # "u":Lrx/internal/operators/OperatorPublish$PublishSubscriber;, "Lrx/internal/operators/OperatorPublish$PublishSubscriber<TT;>;"
     :cond_26
     iget-object v5, v1, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->shouldConnect:Ljava/util/concurrent/atomic/AtomicBoolean;
@@ -242,25 +278,25 @@
 
     move v0, v3
 
-    .line 184
+    .line 211
     :goto_37
     invoke-interface {p1, v1}, Lrx/functions/Action1;->call(Ljava/lang/Object;)V
 
-    .line 185
+    .line 212
     if-eqz v0, :cond_41
 
-    .line 186
+    .line 213
     iget-object v3, p0, Lrx/internal/operators/OperatorPublish;->source:Lrx/Observable;
 
     invoke-virtual {v3, v1}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    .line 188
+    .line 215
     :cond_41
     return-void
 
     :cond_42
     move v0, v4
 
-    .line 168
+    .line 195
     goto :goto_37
 .end method

@@ -7,6 +7,12 @@
 
 
 # annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lrx/internal/operators/OperatorScan$InitialProducer;
+    }
+.end annotation
+
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "<R:",
@@ -26,7 +32,7 @@
 
 
 # instance fields
-.field private final accumulator:Lrx/functions/Func2;
+.field final accumulator:Lrx/functions/Func2;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func2",
@@ -50,7 +56,7 @@
     .registers 1
 
     .prologue
-    .line 46
+    .line 49
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
@@ -71,7 +77,7 @@
     .end annotation
 
     .prologue
-    .line 60
+    .line 63
     .local p0, "this":Lrx/internal/operators/OperatorScan;, "Lrx/internal/operators/OperatorScan<TR;TT;>;"
     .local p1, "initialValue":Ljava/lang/Object;, "TR;"
     .local p2, "accumulator":Lrx/functions/Func2;, "Lrx/functions/Func2<TR;-TT;TR;>;"
@@ -81,7 +87,7 @@
 
     invoke-direct {p0, v0, p2}, Lrx/internal/operators/OperatorScan;-><init>(Lrx/functions/Func0;Lrx/functions/Func2;)V
 
-    .line 68
+    .line 71
     return-void
 .end method
 
@@ -98,19 +104,19 @@
     .end annotation
 
     .prologue
-    .line 70
+    .line 73
     .local p0, "this":Lrx/internal/operators/OperatorScan;, "Lrx/internal/operators/OperatorScan<TR;TT;>;"
     .local p1, "initialValueFactory":Lrx/functions/Func0;, "Lrx/functions/Func0<TR;>;"
     .local p2, "accumulator":Lrx/functions/Func2;, "Lrx/functions/Func2<TR;-TT;TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 71
+    .line 74
     iput-object p1, p0, Lrx/internal/operators/OperatorScan;->initialValueFactory:Lrx/functions/Func0;
 
-    .line 72
+    .line 75
     iput-object p2, p0, Lrx/internal/operators/OperatorScan;->accumulator:Lrx/functions/Func2;
 
-    .line 73
+    .line 76
     return-void
 .end method
 
@@ -125,47 +131,15 @@
     .end annotation
 
     .prologue
-    .line 85
+    .line 88
     .local p0, "this":Lrx/internal/operators/OperatorScan;, "Lrx/internal/operators/OperatorScan<TR;TT;>;"
     .local p1, "accumulator":Lrx/functions/Func2;, "Lrx/functions/Func2<TR;-TT;TR;>;"
     sget-object v0, Lrx/internal/operators/OperatorScan;->NO_INITIAL_VALUE:Ljava/lang/Object;
 
     invoke-direct {p0, v0, p1}, Lrx/internal/operators/OperatorScan;-><init>(Ljava/lang/Object;Lrx/functions/Func2;)V
 
-    .line 86
+    .line 89
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorScan;)Lrx/functions/Func0;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorScan;
-
-    .prologue
-    .line 41
-    iget-object v0, p0, Lrx/internal/operators/OperatorScan;->initialValueFactory:Lrx/functions/Func0;
-
-    return-object v0
-.end method
-
-.method static synthetic access$100()Ljava/lang/Object;
-    .registers 1
-
-    .prologue
-    .line 41
-    sget-object v0, Lrx/internal/operators/OperatorScan;->NO_INITIAL_VALUE:Ljava/lang/Object;
-
-    return-object v0
-.end method
-
-.method static synthetic access$200(Lrx/internal/operators/OperatorScan;)Lrx/functions/Func2;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorScan;
-
-    .prologue
-    .line 41
-    iget-object v0, p0, Lrx/internal/operators/OperatorScan;->accumulator:Lrx/functions/Func2;
-
-    return-object v0
 .end method
 
 
@@ -175,7 +149,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 41
+    .line 44
     .local p0, "this":Lrx/internal/operators/OperatorScan;, "Lrx/internal/operators/OperatorScan<TR;TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -188,7 +162,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)Lrx/Subscriber;
-    .registers 3
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -200,12 +174,48 @@
     .end annotation
 
     .prologue
-    .line 90
+    .line 93
     .local p0, "this":Lrx/internal/operators/OperatorScan;, "Lrx/internal/operators/OperatorScan<TR;TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
-    new-instance v0, Lrx/internal/operators/OperatorScan$2;
+    iget-object v3, p0, Lrx/internal/operators/OperatorScan;->initialValueFactory:Lrx/functions/Func0;
 
-    invoke-direct {v0, p0, p1, p1}, Lrx/internal/operators/OperatorScan$2;-><init>(Lrx/internal/operators/OperatorScan;Lrx/Subscriber;Lrx/Subscriber;)V
+    invoke-interface {v3}, Lrx/functions/Func0;->call()Ljava/lang/Object;
 
-    return-object v0
+    move-result-object v0
+
+    .line 95
+    .local v0, "initialValue":Ljava/lang/Object;, "TR;"
+    sget-object v3, Lrx/internal/operators/OperatorScan;->NO_INITIAL_VALUE:Ljava/lang/Object;
+
+    if-ne v0, v3, :cond_10
+
+    .line 96
+    new-instance v2, Lrx/internal/operators/OperatorScan$2;
+
+    invoke-direct {v2, p0, p1, p1}, Lrx/internal/operators/OperatorScan$2;-><init>(Lrx/internal/operators/OperatorScan;Lrx/Subscriber;Lrx/Subscriber;)V
+
+    .line 165
+    :goto_f
+    return-object v2
+
+    .line 129
+    :cond_10
+    new-instance v1, Lrx/internal/operators/OperatorScan$InitialProducer;
+
+    invoke-direct {v1, v0, p1}, Lrx/internal/operators/OperatorScan$InitialProducer;-><init>(Ljava/lang/Object;Lrx/Subscriber;)V
+
+    .line 131
+    .local v1, "ip":Lrx/internal/operators/OperatorScan$InitialProducer;, "Lrx/internal/operators/OperatorScan$InitialProducer<TR;>;"
+    new-instance v2, Lrx/internal/operators/OperatorScan$3;
+
+    invoke-direct {v2, p0, v0, v1}, Lrx/internal/operators/OperatorScan$3;-><init>(Lrx/internal/operators/OperatorScan;Ljava/lang/Object;Lrx/internal/operators/OperatorScan$InitialProducer;)V
+
+    .line 163
+    .local v2, "parent":Lrx/Subscriber;, "Lrx/Subscriber<TT;>;"
+    invoke-virtual {p1, v2}, Lrx/Subscriber;->add(Lrx/Subscription;)V
+
+    .line 164
+    invoke-virtual {p1, v1}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+
+    goto :goto_f
 .end method

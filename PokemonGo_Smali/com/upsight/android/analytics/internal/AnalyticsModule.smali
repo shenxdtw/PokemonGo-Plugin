@@ -8,7 +8,7 @@
     includes = {
         Lcom/upsight/android/analytics/internal/AnalyticsApiModule;,
         Lcom/upsight/android/analytics/internal/AnalyticsSchedulersModule;,
-        Lcom/upsight/android/analytics/internal/ConfigObjectMapperModule;,
+        Lcom/upsight/android/analytics/internal/ConfigGsonModule;,
         Lcom/upsight/android/analytics/internal/dispatcher/DispatchModule;,
         Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule;,
         Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingModule;,

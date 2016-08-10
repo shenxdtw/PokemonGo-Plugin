@@ -187,7 +187,7 @@
     .registers 3
 
     .prologue
-    .line 141
+    .line 153
     .local p0, "this":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<TT;>;"
     monitor-enter p0
 
@@ -198,7 +198,7 @@
 
     invoke-direct {v0, v1}, Lrx/internal/util/SynchronizedQueue;-><init>(I)V
 
-    .line 142
+    .line 154
     .local v0, "q":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<TT;>;"
     iget-object v1, p0, Lrx/internal/util/SynchronizedQueue;->list:Ljava/util/LinkedList;
 
@@ -206,12 +206,12 @@
     :try_end_d
     .catchall {:try_start_1 .. :try_end_d} :catchall_f
 
-    .line 143
+    .line 155
     monitor-exit p0
 
     return-object v0
 
-    .line 141
+    .line 153
     .end local v0    # "q":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<TT;>;"
     :catchall_f
     move-exception v1
@@ -297,7 +297,7 @@
     .end annotation
 
     .prologue
-    .line 118
+    .line 130
     .local p0, "this":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<TT;>;"
     monitor-enter p0
 
@@ -322,63 +322,103 @@
     throw v0
 .end method
 
-.method public declared-synchronized equals(Ljava/lang/Object;)Z
-    .registers 3
-    .param p1, "o"    # Ljava/lang/Object;
+.method public equals(Ljava/lang/Object;)Z
+    .registers 7
+    .param p1, "obj"    # Ljava/lang/Object;
+
+    .prologue
+    .local p0, "this":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<TT;>;"
+    const/4 v1, 0x1
+
+    const/4 v2, 0x0
+
+    .line 108
+    if-ne p0, p1, :cond_5
+
+    .line 120
+    :cond_4
+    :goto_4
+    return v1
+
+    .line 110
+    :cond_5
+    if-nez p1, :cond_9
+
+    move v1, v2
+
+    .line 111
+    goto :goto_4
+
+    .line 112
+    :cond_9
+    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v3
+
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v4
+
+    if-eq v3, v4, :cond_15
+
+    move v1, v2
+
+    .line 113
+    goto :goto_4
+
+    :cond_15
+    move-object v0, p1
+
+    .line 114
+    check-cast v0, Lrx/internal/util/SynchronizedQueue;
+
+    .line 115
+    .local v0, "other":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<*>;"
+    iget-object v3, p0, Lrx/internal/util/SynchronizedQueue;->list:Ljava/util/LinkedList;
+
+    if-nez v3, :cond_22
+
+    .line 116
+    iget-object v3, v0, Lrx/internal/util/SynchronizedQueue;->list:Ljava/util/LinkedList;
+
+    if-eqz v3, :cond_4
+
+    move v1, v2
+
+    .line 117
+    goto :goto_4
+
+    .line 118
+    :cond_22
+    iget-object v3, p0, Lrx/internal/util/SynchronizedQueue;->list:Ljava/util/LinkedList;
+
+    iget-object v4, v0, Lrx/internal/util/SynchronizedQueue;->list:Ljava/util/LinkedList;
+
+    invoke-virtual {v3, v4}, Ljava/util/LinkedList;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-nez v3, :cond_4
+
+    move v1, v2
+
+    .line 119
+    goto :goto_4
+.end method
+
+.method public hashCode()I
+    .registers 2
 
     .prologue
     .line 103
     .local p0, "this":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<TT;>;"
-    monitor-enter p0
-
-    :try_start_1
-    iget-object v0, p0, Lrx/internal/util/SynchronizedQueue;->list:Ljava/util/LinkedList;
-
-    invoke-virtual {v0, p1}, Ljava/util/LinkedList;->equals(Ljava/lang/Object;)Z
-    :try_end_6
-    .catchall {:try_start_1 .. :try_end_6} :catchall_9
-
-    move-result v0
-
-    monitor-exit p0
-
-    return v0
-
-    :catchall_9
-    move-exception v0
-
-    monitor-exit p0
-
-    throw v0
-.end method
-
-.method public declared-synchronized hashCode()I
-    .registers 2
-
-    .prologue
-    .line 108
-    .local p0, "this":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<TT;>;"
-    monitor-enter p0
-
-    :try_start_1
     iget-object v0, p0, Lrx/internal/util/SynchronizedQueue;->list:Ljava/util/LinkedList;
 
     invoke-virtual {v0}, Ljava/util/LinkedList;->hashCode()I
-    :try_end_6
-    .catchall {:try_start_1 .. :try_end_6} :catchall_9
 
     move-result v0
 
-    monitor-exit p0
-
     return v0
-
-    :catchall_9
-    move-exception v0
-
-    monitor-exit p0
-
-    throw v0
 .end method
 
 .method public declared-synchronized isEmpty()Z
@@ -455,7 +495,7 @@
     .end annotation
 
     .prologue
-    .line 133
+    .line 145
     .local p0, "this":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<TT;>;"
     .local p1, "e":Ljava/lang/Object;, "TT;"
     monitor-enter p0
@@ -481,10 +521,10 @@
 
     if-le v0, v1, :cond_15
 
-    .line 134
+    .line 146
     const/4 v0, 0x0
 
-    .line 136
+    .line 148
     :goto_13
     monitor-exit p0
 
@@ -502,7 +542,7 @@
 
     goto :goto_13
 
-    .line 133
+    .line 145
     :catchall_1c
     move-exception v0
 
@@ -520,7 +560,7 @@
     .end annotation
 
     .prologue
-    .line 113
+    .line 125
     .local p0, "this":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<TT;>;"
     monitor-enter p0
 
@@ -554,7 +594,7 @@
     .end annotation
 
     .prologue
-    .line 123
+    .line 135
     .local p0, "this":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<TT;>;"
     monitor-enter p0
 
@@ -588,7 +628,7 @@
     .end annotation
 
     .prologue
-    .line 128
+    .line 140
     .local p0, "this":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<TT;>;"
     monitor-enter p0
 
@@ -750,7 +790,7 @@
     .registers 2
 
     .prologue
-    .line 148
+    .line 160
     .local p0, "this":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<TT;>;"
     monitor-enter p0
 
@@ -786,7 +826,7 @@
     .end annotation
 
     .prologue
-    .line 153
+    .line 165
     .local p0, "this":Lrx/internal/util/SynchronizedQueue;, "Lrx/internal/util/SynchronizedQueue<TT;>;"
     .local p1, "a":[Ljava/lang/Object;, "[TR;"
     monitor-enter p0

@@ -42,7 +42,7 @@
     .registers 1
 
     .prologue
-    .line 7
+    .line 8
     const-class v0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentStoreFactory;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -79,11 +79,11 @@
     .end annotation
 
     .prologue
-    .line 12
+    .line 19
     .local p2, "implProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 13
+    .line 20
     sget-boolean v0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentStoreFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -96,11 +96,11 @@
 
     throw v0
 
-    .line 14
+    .line 21
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentStoreFactory;->module:Lcom/upsight/android/marketing/internal/content/ContentModule;
 
-    .line 15
+    .line 22
     sget-boolean v0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentStoreFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -113,11 +113,11 @@
 
     throw v0
 
-    .line 16
+    .line 23
     :cond_1d
     iput-object p2, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentStoreFactory;->implProvider:Ljavax/inject/Provider;
 
-    .line 17
+    .line 24
     return-void
 .end method
 
@@ -140,7 +140,7 @@
     .end annotation
 
     .prologue
-    .line 29
+    .line 35
     .local p1, "implProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;>;"
     new-instance v0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentStoreFactory;
 
@@ -152,39 +152,34 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/marketing/internal/content/MarketingContentStore;
-    .registers 4
+    .registers 3
 
     .prologue
-    .line 21
-    iget-object v2, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentStoreFactory;->module:Lcom/upsight/android/marketing/internal/content/ContentModule;
+    .line 28
+    iget-object v1, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentStoreFactory;->module:Lcom/upsight/android/marketing/internal/content/ContentModule;
 
-    iget-object v1, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentStoreFactory;->implProvider:Ljavax/inject/Provider;
+    iget-object v0, p0, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentStoreFactory;->implProvider:Ljavax/inject/Provider;
 
-    invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
-
-    move-result-object v1
-
-    check-cast v1, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;
-
-    invoke-virtual {v2, v1}, Lcom/upsight/android/marketing/internal/content/ContentModule;->provideMarketingContentStore(Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;)Lcom/upsight/android/marketing/internal/content/MarketingContentStore;
+    .line 29
+    invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 22
-    .local v0, "provided":Lcom/upsight/android/marketing/internal/content/MarketingContentStore;
-    if-nez v0, :cond_18
+    check-cast v0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;
 
-    .line 23
-    new-instance v1, Ljava/lang/NullPointerException;
+    invoke-virtual {v1, v0}, Lcom/upsight/android/marketing/internal/content/ContentModule;->provideMarketingContentStore(Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;)Lcom/upsight/android/marketing/internal/content/MarketingContentStore;
 
-    const-string v2, "Cannot return null from a non-@Nullable @Provides method"
+    move-result-object v0
 
-    invoke-direct {v1, v2}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
-    throw v1
+    .line 28
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
 
-    .line 25
-    :cond_18
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/marketing/internal/content/MarketingContentStore;
+
     return-object v0
 .end method
 
@@ -192,7 +187,7 @@
     .registers 2
 
     .prologue
-    .line 7
+    .line 8
     invoke-virtual {p0}, Lcom/upsight/android/marketing/internal/content/ContentModule_ProvideMarketingContentStoreFactory;->get()Lcom/upsight/android/marketing/internal/content/MarketingContentStore;
 
     move-result-object v0

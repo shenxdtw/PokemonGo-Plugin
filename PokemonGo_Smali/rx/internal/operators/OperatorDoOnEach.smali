@@ -20,7 +20,7 @@
 
 
 # instance fields
-.field private final doOnEachObserver:Lrx/Observer;
+.field final doOnEachObserver:Lrx/Observer;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/Observer",
@@ -52,17 +52,6 @@
 
     .line 32
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorDoOnEach;)Lrx/Observer;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorDoOnEach;
-
-    .prologue
-    .line 27
-    iget-object v0, p0, Lrx/internal/operators/OperatorDoOnEach;->doOnEachObserver:Lrx/Observer;
-
-    return-object v0
 .end method
 
 

@@ -29,12 +29,12 @@
 
     sput-object v0, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->TAG:Ljava/lang/String;
 
-    .line 131
-    const-string v0, "pgpplugin"
+    .line 136
+    const-string v0, "libpgpplugin.so"
 
-    invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+    invoke-static {v0}, Ljava/lang/System;->load(Ljava/lang/String;)V
 
-    .line 132
+    .line 137
     return-void
 .end method
 
@@ -117,13 +117,13 @@
 
     invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
-    .line 56
+    .line 53
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "action"
 
     invoke-virtual {v0, v1, p0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 57
+    .line 54
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -146,7 +146,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 58
+    .line 55
     return-object v0
 .end method
 
@@ -161,20 +161,20 @@
     .param p0, "batteryLevel"    # D
 
     .prologue
-    .line 111
+    .line 115
     const-string v1, "batteryLevel"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 112
+    .line 116
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "level"
 
     invoke-virtual {v0, v1, p0, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;D)Landroid/content/Intent;
 
-    .line 113
+    .line 117
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -197,12 +197,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 114
+    .line 118
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 115
+    .line 119
     return-void
 .end method
 
@@ -211,20 +211,20 @@
     .param p0, "state"    # I
 
     .prologue
-    .line 89
+    .line 86
     const-string v1, "centralState"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 90
+    .line 87
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "state"
 
     invoke-virtual {v0, v1, p0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
-    .line 91
+    .line 88
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -247,12 +247,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 92
+    .line 89
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 93
+    .line 90
     return-void
 .end method
 
@@ -261,20 +261,20 @@
     .param p0, "encounterId"    # J
 
     .prologue
-    .line 75
+    .line 72
     const-string v1, "encounterId"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 76
+    .line 73
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "id"
 
     invoke-virtual {v0, v1, p0, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
 
-    .line 77
+    .line 74
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -297,34 +297,90 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 78
+    .line 75
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 79
+    .line 76
     return-void
 .end method
 
-.method public static sendNotification(Ljava/lang/String;)V
+.method public static sendIsScanning(I)V
     .registers 5
-    .param p0, "message"    # Ljava/lang/String;
+    .param p0, "isScanning"    # I
 
     .prologue
-    .line 118
+    .line 101
+    const-string v1, "isScanning"
+
+    invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
+
+    move-result-object v0
+
+    .line 102
+    .local v0, "i":Landroid/content/Intent;
+    const-string v1, "isScanning"
+
+    invoke-virtual {v0, v1, p0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+
+    .line 103
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->TAG:Ljava/lang/String;
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "sendIsScanning: "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 104
+    sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->currentContext:Landroid/content/Context;
+
+    invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
+
+    .line 105
+    return-void
+.end method
+
+.method public static sendNotification(ILjava/lang/String;)V
+    .registers 6
+    .param p0, "message"    # I
+    .param p1, "arg"    # Ljava/lang/String;
+
+    .prologue
+    .line 122
     const-string v1, "sendNotification"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 119
+    .line 123
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "message"
 
-    invoke-virtual {v0, v1, p0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+    invoke-virtual {v0, v1, p0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
-    .line 120
+    .line 124
+    const-string v1, "arg"
+
+    invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 125
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -337,7 +393,7 @@
 
     move-result-object v2
 
-    invoke-virtual {v2, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     move-result-object v2
 
@@ -347,12 +403,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 121
+    .line 126
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 122
+    .line 127
     return-void
 .end method
 
@@ -361,20 +417,20 @@
     .param p0, "state"    # I
 
     .prologue
-    .line 104
+    .line 108
     const-string v1, "pluginState"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 105
+    .line 109
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "state"
 
     invoke-virtual {v0, v1, p0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
-    .line 106
+    .line 110
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -397,12 +453,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 107
+    .line 111
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 108
+    .line 112
     return-void
 .end method
 
@@ -411,20 +467,20 @@
     .param p0, "pokestop"    # Ljava/lang/String;
 
     .prologue
-    .line 82
+    .line 79
     const-string v1, "pokestop"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 83
+    .line 80
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "id"
 
     invoke-virtual {v0, v1, p0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 84
+    .line 81
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -447,12 +503,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 85
+    .line 82
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 86
+    .line 83
     return-void
 .end method
 
@@ -462,25 +518,25 @@
     .param p1, "buttonValue"    # I
 
     .prologue
-    .line 96
+    .line 93
     const-string v1, "scannedSfida"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 97
+    .line 94
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "device"
 
     invoke-virtual {v0, v1, p0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 98
+    .line 95
     const-string v1, "button"
 
     invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
-    .line 99
+    .line 96
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -503,12 +559,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 100
+    .line 97
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 101
+    .line 98
     return-void
 .end method
 
@@ -517,20 +573,20 @@
     .param p0, "state"    # I
 
     .prologue
-    .line 68
+    .line 65
     const-string v1, "sfidaState"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 69
+    .line 66
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "state"
 
     invoke-virtual {v0, v1, p0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
-    .line 70
+    .line 67
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -553,12 +609,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 71
+    .line 68
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 72
+    .line 69
     return-void
 .end method
 
@@ -567,25 +623,25 @@
     .param p0, "timestampMs"    # J
 
     .prologue
-    .line 62
+    .line 59
     const-string v1, "updateTimestamp"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 63
+    .line 60
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "timestamp"
 
     invoke-virtual {v0, v1, p0, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
 
-    .line 64
+    .line 61
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 65
+    .line 62
     return-void
 .end method
 
@@ -593,14 +649,14 @@
     .registers 3
 
     .prologue
-    .line 125
+    .line 130
     const-string v1, "stopNotification"
 
     invoke-static {v1}, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->createIntentWithAction(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 126
+    .line 131
     .local v0, "i":Landroid/content/Intent;
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->TAG:Ljava/lang/String;
 
@@ -608,12 +664,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 127
+    .line 132
     sget-object v1, Lcom/nianticlabs/pokemongoplus/bridge/BackgroundBridge;->currentContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 128
+    .line 133
     return-void
 .end method
 

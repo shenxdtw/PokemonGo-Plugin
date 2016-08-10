@@ -29,19 +29,17 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 4
+    .registers 3
 
     .prologue
-    .line 57
+    .line 59
     new-instance v0, Lrx/internal/operators/OperatorMerge;
 
     const/4 v1, 0x0
 
     const v2, 0x7fffffff
 
-    const/4 v3, 0x0
-
-    invoke-direct {v0, v1, v2, v3}, Lrx/internal/operators/OperatorMerge;-><init>(ZILrx/internal/operators/OperatorMerge$1;)V
+    invoke-direct {v0, v1, v2}, Lrx/internal/operators/OperatorMerge;-><init>(ZI)V
 
     sput-object v0, Lrx/internal/operators/OperatorMerge$HolderNoDelay;->INSTANCE:Lrx/internal/operators/OperatorMerge;
 
@@ -52,7 +50,7 @@
     .registers 1
 
     .prologue
-    .line 55
+    .line 57
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

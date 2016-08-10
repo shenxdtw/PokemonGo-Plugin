@@ -90,12 +90,12 @@
     .end annotation
 
     .prologue
-    .line 14
+    .line 20
     .local p1, "managedVariableManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;>;"
     .local p2, "userExperienceProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/experience/UpsightUserExperience;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 15
+    .line 21
     sget-boolean v0, Lcom/upsight/android/managedvariables/internal/ManagedVariables_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -108,11 +108,11 @@
 
     throw v0
 
-    .line 16
+    .line 22
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/managedvariables/internal/ManagedVariables_Factory;->managedVariableManagerProvider:Ljavax/inject/Provider;
 
-    .line 17
+    .line 23
     sget-boolean v0, Lcom/upsight/android/managedvariables/internal/ManagedVariables_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_1d
@@ -125,11 +125,11 @@
 
     throw v0
 
-    .line 18
+    .line 24
     :cond_1d
     iput-object p2, p0, Lcom/upsight/android/managedvariables/internal/ManagedVariables_Factory;->userExperienceProvider:Ljavax/inject/Provider;
 
-    .line 19
+    .line 25
     return-void
 .end method
 
@@ -154,7 +154,7 @@
     .end annotation
 
     .prologue
-    .line 27
+    .line 35
     .local p0, "managedVariableManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/internal/type/ManagedVariableManager;>;"
     .local p1, "userExperienceProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/managedvariables/experience/UpsightUserExperience;>;"
     new-instance v0, Lcom/upsight/android/managedvariables/internal/ManagedVariables_Factory;
@@ -170,7 +170,7 @@
     .registers 4
 
     .prologue
-    .line 23
+    .line 29
     new-instance v2, Lcom/upsight/android/managedvariables/internal/ManagedVariables;
 
     iget-object v0, p0, Lcom/upsight/android/managedvariables/internal/ManagedVariables_Factory;->managedVariableManagerProvider:Ljavax/inject/Provider;

@@ -93,12 +93,12 @@
     .prologue
     const/4 v1, 0x0
 
-    .line 202
+    .line 229
     new-array v0, v1, [Lrx/internal/operators/OperatorPublish$InnerProducer;
 
     sput-object v0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->EMPTY:[Lrx/internal/operators/OperatorPublish$InnerProducer;
 
-    .line 204
+    .line 231
     new-array v0, v1, [Lrx/internal/operators/OperatorPublish$InnerProducer;
 
     sput-object v0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->TERMINATED:[Lrx/internal/operators/OperatorPublish$InnerProducer;
@@ -119,12 +119,12 @@
     .end annotation
 
     .prologue
-    .line 219
+    .line 246
     .local p0, "this":Lrx/internal/operators/OperatorPublish$PublishSubscriber;, "Lrx/internal/operators/OperatorPublish$PublishSubscriber<TT;>;"
     .local p1, "current":Ljava/util/concurrent/atomic/AtomicReference;, "Ljava/util/concurrent/atomic/AtomicReference<Lrx/internal/operators/OperatorPublish$PublishSubscriber<TT;>;>;"
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
-    .line 220
+    .line 247
     invoke-static {}, Lrx/internal/util/unsafe/UnsafeAccess;->isUnsafeAvailable()Z
 
     move-result v0
@@ -140,14 +140,14 @@
     :goto_10
     iput-object v0, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->queue:Ljava/util/Queue;
 
-    .line 224
+    .line 251
     invoke-static {}, Lrx/internal/operators/NotificationLite;->instance()Lrx/internal/operators/NotificationLite;
 
     move-result-object v0
 
     iput-object v0, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->nl:Lrx/internal/operators/NotificationLite;
 
-    .line 225
+    .line 252
     new-instance v0, Ljava/util/concurrent/atomic/AtomicReference;
 
     sget-object v1, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->EMPTY:[Lrx/internal/operators/OperatorPublish$InnerProducer;
@@ -156,20 +156,20 @@
 
     iput-object v0, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->producers:Ljava/util/concurrent/atomic/AtomicReference;
 
-    .line 226
+    .line 253
     iput-object p1, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->current:Ljava/util/concurrent/atomic/AtomicReference;
 
-    .line 227
+    .line 254
     new-instance v0, Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-direct {v0}, Ljava/util/concurrent/atomic/AtomicBoolean;-><init>()V
 
     iput-object v0, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->shouldConnect:Ljava/util/concurrent/atomic/AtomicBoolean;
 
-    .line 228
+    .line 255
     return-void
 
-    .line 220
+    .line 247
     :cond_2b
     new-instance v0, Lrx/internal/util/SynchronizedQueue;
 
@@ -197,17 +197,17 @@
     .local p1, "producer":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<TT;>;"
     const/4 v3, 0x0
 
-    .line 291
+    .line 318
     if-nez p1, :cond_9
 
-    .line 292
+    .line 319
     new-instance v3, Ljava/lang/NullPointerException;
 
     invoke-direct {v3}, Ljava/lang/NullPointerException;-><init>()V
 
     throw v3
 
-    .line 297
+    .line 324
     :cond_9
     iget-object v4, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->producers:Ljava/util/concurrent/atomic/AtomicReference;
 
@@ -217,34 +217,34 @@
 
     check-cast v0, [Lrx/internal/operators/OperatorPublish$InnerProducer;
 
-    .line 300
+    .line 327
     .local v0, "c":[Lrx/internal/operators/OperatorPublish$InnerProducer;
     sget-object v4, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->TERMINATED:[Lrx/internal/operators/OperatorPublish$InnerProducer;
 
     if-ne v0, v4, :cond_16
 
-    .line 310
+    .line 337
     :goto_15
     return v3
 
-    .line 304
+    .line 331
     :cond_16
     array-length v1, v0
 
-    .line 305
+    .line 332
     .local v1, "len":I
     add-int/lit8 v4, v1, 0x1
 
     new-array v2, v4, [Lrx/internal/operators/OperatorPublish$InnerProducer;
 
-    .line 306
+    .line 333
     .local v2, "u":[Lrx/internal/operators/OperatorPublish$InnerProducer;
     invoke-static {v0, v3, v2, v3, v1}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
 
-    .line 307
+    .line 334
     aput-object p1, v2, v1
 
-    .line 309
+    .line 336
     iget-object v4, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->producers:Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-virtual {v4, v0, v2}, Ljava/util/concurrent/atomic/AtomicReference;->compareAndSet(Ljava/lang/Object;Ljava/lang/Object;)Z
@@ -253,7 +253,7 @@
 
     if-eqz v4, :cond_9
 
-    .line 310
+    .line 337
     const/4 v3, 0x1
 
     goto :goto_15
@@ -270,10 +270,10 @@
 
     const/4 v5, 0x1
 
-    .line 376
+    .line 403
     if-eqz p1, :cond_60
 
-    .line 378
+    .line 405
     iget-object v6, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->nl:Lrx/internal/operators/NotificationLite;
 
     invoke-virtual {v6, p1}, Lrx/internal/operators/NotificationLite;->isCompleted(Ljava/lang/Object;)Z
@@ -282,15 +282,15 @@
 
     if-eqz v6, :cond_34
 
-    .line 380
+    .line 407
     if-eqz p2, :cond_60
 
-    .line 383
+    .line 410
     iget-object v6, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->current:Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-virtual {v6, p0, v7}, Ljava/util/concurrent/atomic/AtomicReference;->compareAndSet(Ljava/lang/Object;Ljava/lang/Object;)Z
 
-    .line 397
+    .line 424
     :try_start_13
     iget-object v6, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->producers:Ljava/util/concurrent/atomic/AtomicReference;
 
@@ -314,7 +314,7 @@
 
     aget-object v2, v0, v1
 
-    .line 398
+    .line 425
     .local v2, "ip":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<*>;"
     iget-object v6, v2, Lrx/internal/operators/OperatorPublish$InnerProducer;->child:Lrx/Subscriber;
 
@@ -322,24 +322,24 @@
     :try_end_28
     .catchall {:try_start_13 .. :try_end_28} :catchall_2f
 
-    .line 397
+    .line 424
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_1f
 
-    .line 403
+    .line 430
     .end local v2    # "ip":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<*>;"
     :cond_2b
     invoke-virtual {p0}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->unsubscribe()V
 
-    .line 430
+    .line 457
     .end local v0    # "arr$":[Lrx/internal/operators/OperatorPublish$InnerProducer;
     .end local v1    # "i$":I
     .end local v3    # "len$":I
     :goto_2e
     return v5
 
-    .line 403
+    .line 430
     :catchall_2f
     move-exception v5
 
@@ -347,7 +347,7 @@
 
     throw v5
 
-    .line 409
+    .line 436
     :cond_34
     iget-object v6, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->nl:Lrx/internal/operators/NotificationLite;
 
@@ -355,13 +355,13 @@
 
     move-result-object v4
 
-    .line 412
+    .line 439
     .local v4, "t":Ljava/lang/Throwable;
     iget-object v6, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->current:Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-virtual {v6, p0, v7}, Ljava/util/concurrent/atomic/AtomicReference;->compareAndSet(Ljava/lang/Object;Ljava/lang/Object;)Z
 
-    .line 417
+    .line 444
     :try_start_3f
     iget-object v6, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->producers:Ljava/util/concurrent/atomic/AtomicReference;
 
@@ -385,7 +385,7 @@
 
     aget-object v2, v0, v1
 
-    .line 418
+    .line 445
     .restart local v2    # "ip":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<*>;"
     iget-object v6, v2, Lrx/internal/operators/OperatorPublish$InnerProducer;->child:Lrx/Subscriber;
 
@@ -393,12 +393,12 @@
     :try_end_54
     .catchall {:try_start_3f .. :try_end_54} :catchall_5b
 
-    .line 417
+    .line 444
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_4b
 
-    .line 423
+    .line 450
     .end local v2    # "ip":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<*>;"
     :cond_57
     invoke-virtual {p0}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->unsubscribe()V
@@ -415,7 +415,7 @@
 
     throw v5
 
-    .line 430
+    .line 457
     .end local v4    # "t":Ljava/lang/Throwable;
     :cond_60
     const/4 v5, 0x0
@@ -427,11 +427,11 @@
     .registers 27
 
     .prologue
-    .line 441
+    .line 468
     .local p0, "this":Lrx/internal/operators/OperatorPublish$PublishSubscriber;, "Lrx/internal/operators/OperatorPublish$PublishSubscriber<TT;>;"
     monitor-enter p0
 
-    .line 442
+    .line 469
     :try_start_1
     move-object/from16 v0, p0
 
@@ -441,7 +441,7 @@
 
     if-eqz v22, :cond_13
 
-    .line 443
+    .line 470
     const/16 v22, 0x1
 
     move/from16 v0, v22
@@ -450,15 +450,15 @@
 
     iput-boolean v0, v1, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->missed:Z
 
-    .line 444
+    .line 471
     monitor-exit p0
 
-    .line 610
+    .line 637
     :cond_12
     :goto_12
     return-void
 
-    .line 447
+    .line 474
     :cond_13
     const/16 v22, 0x1
 
@@ -468,7 +468,7 @@
 
     iput-boolean v0, v1, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->emitting:Z
 
-    .line 448
+    .line 475
     const/16 v22, 0x0
 
     move/from16 v0, v22
@@ -477,15 +477,15 @@
 
     iput-boolean v0, v1, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->missed:Z
 
-    .line 449
+    .line 476
     monitor-exit p0
     :try_end_24
     .catchall {:try_start_1 .. :try_end_24} :catchall_52
 
-    .line 458
+    .line 485
     const/16 v16, 0x0
 
-    .line 469
+    .line 496
     .local v16, "skipFinal":Z
     :cond_26
     :goto_26
@@ -496,7 +496,7 @@
 
     move-object/from16 v18, v0
 
-    .line 476
+    .line 503
     .local v18, "term":Ljava/lang/Object;
     move-object/from16 v0, p0
 
@@ -508,7 +508,7 @@
 
     move-result v6
 
-    .line 480
+    .line 507
     .local v6, "empty":Z
     move-object/from16 v0, p0
 
@@ -522,16 +522,16 @@
 
     if-eqz v22, :cond_55
 
-    .line 481
+    .line 508
     const/16 v16, 0x1
 
-    .line 606
+    .line 633
     if-nez v16, :cond_12
 
-    .line 608
+    .line 635
     monitor-enter p0
 
-    .line 609
+    .line 636
     const/16 v22, 0x0
 
     :try_start_47
@@ -541,7 +541,7 @@
 
     iput-boolean v0, v1, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->emitting:Z
 
-    .line 610
+    .line 637
     monitor-exit p0
 
     goto :goto_12
@@ -555,7 +555,7 @@
 
     throw v22
 
-    .line 449
+    .line 476
     .end local v6    # "empty":Z
     .end local v16    # "skipFinal":Z
     .end local v18    # "term":Ljava/lang/Object;
@@ -569,14 +569,14 @@
 
     throw v22
 
-    .line 488
+    .line 515
     .restart local v6    # "empty":Z
     .restart local v16    # "skipFinal":Z
     .restart local v18    # "term":Ljava/lang/Object;
     :cond_55
     if-nez v6, :cond_12f
 
-    .line 492
+    .line 519
     :try_start_57
     move-object/from16 v0, p0
 
@@ -590,19 +590,19 @@
 
     check-cast v11, [Lrx/internal/operators/OperatorPublish$InnerProducer;
 
-    .line 494
+    .line 521
     .local v11, "ps":[Lrx/internal/operators/OperatorPublish$InnerProducer;, "[Lrx/internal/operators/OperatorPublish$InnerProducer<TT;>;"
     array-length v9, v11
 
-    .line 496
+    .line 523
     .local v9, "len":I
     const-wide v12, 0x7fffffffffffffffL
 
-    .line 498
+    .line 525
     .local v12, "maxRequested":J
     const/16 v19, 0x0
 
-    .line 503
+    .line 530
     .local v19, "unsubscribed":I
     move-object v4, v11
 
@@ -618,13 +618,13 @@
 
     aget-object v8, v4, v7
 
-    .line 504
+    .line 531
     .local v8, "ip":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<TT;>;"
     invoke-virtual {v8}, Lrx/internal/operators/OperatorPublish$InnerProducer;->get()J
 
     move-result-wide v14
 
-    .line 507
+    .line 534
     .local v14, "r":J
     const-wide/16 v22, 0x0
 
@@ -632,19 +632,19 @@
 
     if-ltz v22, :cond_83
 
-    .line 508
+    .line 535
     invoke-static {v12, v13, v14, v15}, Ljava/lang/Math;->min(JJ)J
 
     move-result-wide v12
 
-    .line 503
+    .line 530
     :cond_80
     :goto_80
     add-int/lit8 v7, v7, 0x1
 
     goto :goto_6e
 
-    .line 511
+    .line 538
     :cond_83
     const-wide/high16 v22, -0x8000000000000000L
 
@@ -652,12 +652,12 @@
 
     if-nez v22, :cond_80
 
-    .line 512
+    .line 539
     add-int/lit8 v19, v19, 0x1
 
     goto :goto_80
 
-    .line 519
+    .line 546
     .end local v8    # "ip":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<TT;>;"
     .end local v14    # "r":J
     :cond_8c
@@ -665,14 +665,14 @@
 
     if-ne v9, v0, :cond_df
 
-    .line 520
+    .line 547
     move-object/from16 v0, p0
 
     iget-object v0, v0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->terminalEvent:Ljava/lang/Object;
 
     move-object/from16 v18, v0
 
-    .line 522
+    .line 549
     move-object/from16 v0, p0
 
     iget-object v0, v0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->queue:Ljava/util/Queue;
@@ -683,7 +683,7 @@
 
     move-result-object v20
 
-    .line 524
+    .line 551
     .local v20, "v":Ljava/lang/Object;
     if-nez v20, :cond_c3
 
@@ -704,16 +704,16 @@
 
     if-eqz v22, :cond_c6
 
-    .line 525
+    .line 552
     const/16 v16, 0x1
 
-    .line 606
+    .line 633
     if-nez v16, :cond_12
 
-    .line 608
+    .line 635
     monitor-enter p0
 
-    .line 609
+    .line 636
     const/16 v22, 0x0
 
     :try_start_b7
@@ -723,7 +723,7 @@
 
     iput-boolean v0, v1, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->emitting:Z
 
-    .line 610
+    .line 637
     monitor-exit p0
 
     goto/16 :goto_12
@@ -737,13 +737,13 @@
 
     throw v22
 
-    .line 524
+    .line 551
     :cond_c3
     const/16 v22, 0x0
 
     goto :goto_a4
 
-    .line 529
+    .line 556
     :cond_c6
     const-wide/16 v22, 0x1
 
@@ -758,7 +758,7 @@
 
     goto/16 :goto_26
 
-    .line 606
+    .line 633
     .end local v4    # "arr$":[Lrx/internal/operators/OperatorPublish$InnerProducer;
     .end local v6    # "empty":Z
     .end local v7    # "i$":I
@@ -774,10 +774,10 @@
 
     if-nez v16, :cond_de
 
-    .line 608
+    .line 635
     monitor-enter p0
 
-    .line 609
+    .line 636
     const/16 v23, 0x0
 
     :try_start_d7
@@ -787,15 +787,15 @@
 
     iput-boolean v0, v1, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->emitting:Z
 
-    .line 610
+    .line 637
     monitor-exit p0
     :try_end_de
-    .catchall {:try_start_d7 .. :try_end_de} :catchall_1aa
+    .catchall {:try_start_d7 .. :try_end_de} :catchall_1ac
 
     :cond_de
     throw v22
 
-    .line 536
+    .line 563
     .restart local v4    # "arr$":[Lrx/internal/operators/OperatorPublish$InnerProducer;
     .restart local v6    # "empty":Z
     .restart local v7    # "i$":I
@@ -808,7 +808,7 @@
     :cond_df
     const/4 v5, 0x0
 
-    .line 537
+    .line 564
     .local v5, "d":I
     :goto_e0
     int-to-long v0, v5
@@ -819,7 +819,7 @@
 
     if-gez v22, :cond_11b
 
-    .line 538
+    .line 565
     :try_start_e7
     move-object/from16 v0, p0
 
@@ -827,7 +827,7 @@
 
     move-object/from16 v18, v0
 
-    .line 539
+    .line 566
     move-object/from16 v0, p0
 
     iget-object v0, v0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->queue:Ljava/util/Queue;
@@ -838,13 +838,13 @@
 
     move-result-object v20
 
-    .line 540
+    .line 567
     .restart local v20    # "v":Ljava/lang/Object;
     if-nez v20, :cond_117
 
     const/4 v6, 0x1
 
-    .line 542
+    .line 569
     :goto_fa
     move-object/from16 v0, p0
 
@@ -858,16 +858,16 @@
 
     if-eqz v22, :cond_119
 
-    .line 543
+    .line 570
     const/16 v16, 0x1
 
-    .line 606
+    .line 633
     if-nez v16, :cond_12
 
-    .line 608
+    .line 635
     monitor-enter p0
 
-    .line 609
+    .line 636
     const/16 v22, 0x0
 
     :try_start_10b
@@ -877,7 +877,7 @@
 
     iput-boolean v0, v1, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->emitting:Z
 
-    .line 610
+    .line 637
     monitor-exit p0
 
     goto/16 :goto_12
@@ -891,22 +891,22 @@
 
     throw v22
 
-    .line 540
+    .line 567
     :cond_117
     const/4 v6, 0x0
 
     goto :goto_fa
 
-    .line 547
+    .line 574
     :cond_119
     if-eqz v6, :cond_154
 
-    .line 576
+    .line 603
     .end local v20    # "v":Ljava/lang/Object;
     :cond_11b
     if-lez v5, :cond_127
 
-    .line 577
+    .line 604
     int-to-long v0, v5
 
     move-wide/from16 v22, v0
@@ -918,7 +918,7 @@
 
     invoke-virtual {v0, v1, v2}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->request(J)V
 
-    .line 582
+    .line 609
     :cond_127
     const-wide/16 v22, 0x0
 
@@ -928,7 +928,7 @@
 
     if-eqz v6, :cond_26
 
-    .line 589
+    .line 616
     .end local v4    # "arr$":[Lrx/internal/operators/OperatorPublish$InnerProducer;
     .end local v5    # "d":I
     .end local v7    # "i$":I
@@ -942,7 +942,7 @@
     :try_end_130
     .catchall {:try_start_120 .. :try_end_130} :catchall_d1
 
-    .line 593
+    .line 620
     :try_start_130
     move-object/from16 v0, p0
 
@@ -950,9 +950,9 @@
 
     move/from16 v22, v0
 
-    if-nez v22, :cond_19c
+    if-nez v22, :cond_19e
 
-    .line 595
+    .line 622
     const/16 v22, 0x0
 
     move/from16 v0, v22
@@ -961,21 +961,21 @@
 
     iput-boolean v0, v1, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->emitting:Z
 
-    .line 597
+    .line 624
     const/16 v16, 0x1
 
-    .line 598
+    .line 625
     monitor-exit p0
     :try_end_143
-    .catchall {:try_start_130 .. :try_end_143} :catchall_1a7
+    .catchall {:try_start_130 .. :try_end_143} :catchall_1a9
 
-    .line 606
+    .line 633
     if-nez v16, :cond_12
 
-    .line 608
+    .line 635
     monitor-enter p0
 
-    .line 609
+    .line 636
     const/16 v22, 0x0
 
     :try_start_148
@@ -985,7 +985,7 @@
 
     iput-boolean v0, v1, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->emitting:Z
 
-    .line 610
+    .line 637
     monitor-exit p0
 
     goto/16 :goto_12
@@ -999,7 +999,7 @@
 
     throw v22
 
-    .line 551
+    .line 578
     .restart local v4    # "arr$":[Lrx/internal/operators/OperatorPublish$InnerProducer;
     .restart local v5    # "d":I
     .restart local v7    # "i$":I
@@ -1025,7 +1025,7 @@
 
     move-result-object v21
 
-    .line 553
+    .line 580
     .local v21, "value":Ljava/lang/Object;, "TT;"
     move-object v4, v11
 
@@ -1034,11 +1034,11 @@
     const/4 v7, 0x0
 
     :goto_165
-    if-ge v7, v10, :cond_198
+    if-ge v7, v10, :cond_19a
 
     aget-object v8, v4, v7
 
-    .line 558
+    .line 585
     .restart local v8    # "ip":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<TT;>;"
     invoke-virtual {v8}, Lrx/internal/operators/OperatorPublish$InnerProducer;->get()J
     :try_end_16c
@@ -1052,7 +1052,7 @@
 
     if-lez v22, :cond_185
 
-    .line 560
+    .line 587
     :try_start_173
     iget-object v0, v8, Lrx/internal/operators/OperatorPublish$InnerProducer;->child:Lrx/Subscriber;
 
@@ -1067,7 +1067,7 @@
     .catch Ljava/lang/Throwable; {:try_start_173 .. :try_end_17e} :catch_188
     .catchall {:try_start_173 .. :try_end_17e} :catchall_d1
 
-    .line 568
+    .line 595
     const-wide/16 v22, 0x1
 
     :try_start_180
@@ -1075,46 +1075,48 @@
 
     invoke-virtual {v8, v0, v1}, Lrx/internal/operators/OperatorPublish$InnerProducer;->produced(J)J
 
-    .line 553
+    .line 580
     :cond_185
     :goto_185
     add-int/lit8 v7, v7, 0x1
 
     goto :goto_165
 
-    .line 561
+    .line 588
     :catch_188
     move-exception v17
 
-    .line 563
+    .line 590
     .local v17, "t":Ljava/lang/Throwable;
     invoke-virtual {v8}, Lrx/internal/operators/OperatorPublish$InnerProducer;->unsubscribe()V
 
-    .line 564
+    .line 591
     iget-object v0, v8, Lrx/internal/operators/OperatorPublish$InnerProducer;->child:Lrx/Subscriber;
 
     move-object/from16 v22, v0
 
-    move-object/from16 v0, v22
+    move-object/from16 v0, v17
 
-    move-object/from16 v1, v17
+    move-object/from16 v1, v22
 
-    invoke-virtual {v0, v1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
-    :try_end_197
-    .catchall {:try_start_180 .. :try_end_197} :catchall_d1
+    move-object/from16 v2, v21
+
+    invoke-static {v0, v1, v2}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
+    :try_end_199
+    .catchall {:try_start_180 .. :try_end_199} :catchall_d1
 
     goto :goto_185
 
-    .line 572
+    .line 599
     .end local v8    # "ip":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<TT;>;"
     .end local v17    # "t":Ljava/lang/Throwable;
-    :cond_198
+    :cond_19a
     add-int/lit8 v5, v5, 0x1
 
-    .line 573
+    .line 600
     goto/16 :goto_e0
 
-    .line 601
+    .line 628
     .end local v4    # "arr$":[Lrx/internal/operators/OperatorPublish$InnerProducer;
     .end local v5    # "d":I
     .end local v7    # "i$":I
@@ -1125,43 +1127,43 @@
     .end local v19    # "unsubscribed":I
     .end local v20    # "v":Ljava/lang/Object;
     .end local v21    # "value":Ljava/lang/Object;, "TT;"
-    :cond_19c
+    :cond_19e
     const/16 v22, 0x0
 
-    :try_start_19e
+    :try_start_1a0
     move/from16 v0, v22
 
     move-object/from16 v1, p0
 
     iput-boolean v0, v1, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->missed:Z
 
-    .line 602
+    .line 629
     monitor-exit p0
 
     goto/16 :goto_26
 
-    :catchall_1a7
+    :catchall_1a9
     move-exception v22
 
     monitor-exit p0
-    :try_end_1a9
-    .catchall {:try_start_19e .. :try_end_1a9} :catchall_1a7
-
-    :try_start_1a9
-    throw v22
-    :try_end_1aa
-    .catchall {:try_start_1a9 .. :try_end_1aa} :catchall_d1
-
-    .line 610
-    .end local v6    # "empty":Z
-    .end local v18    # "term":Ljava/lang/Object;
-    :catchall_1aa
-    move-exception v22
+    :try_end_1ab
+    .catchall {:try_start_1a0 .. :try_end_1ab} :catchall_1a9
 
     :try_start_1ab
-    monitor-exit p0
+    throw v22
     :try_end_1ac
-    .catchall {:try_start_1ab .. :try_end_1ac} :catchall_1aa
+    .catchall {:try_start_1ab .. :try_end_1ac} :catchall_d1
+
+    .line 637
+    .end local v6    # "empty":Z
+    .end local v18    # "term":Ljava/lang/Object;
+    :catchall_1ac
+    move-exception v22
+
+    :try_start_1ad
+    monitor-exit p0
+    :try_end_1ae
+    .catchall {:try_start_1ad .. :try_end_1ae} :catchall_1ac
 
     throw v22
 .end method
@@ -1170,7 +1172,7 @@
     .registers 2
 
     .prologue
-    .line 232
+    .line 259
     .local p0, "this":Lrx/internal/operators/OperatorPublish$PublishSubscriber;, "Lrx/internal/operators/OperatorPublish$PublishSubscriber<TT;>;"
     new-instance v0, Lrx/internal/operators/OperatorPublish$PublishSubscriber$1;
 
@@ -1182,7 +1184,7 @@
 
     invoke-virtual {p0, v0}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->add(Lrx/Subscription;)V
 
-    .line 241
+    .line 268
     return-void
 .end method
 
@@ -1190,13 +1192,13 @@
     .registers 2
 
     .prologue
-    .line 276
+    .line 303
     .local p0, "this":Lrx/internal/operators/OperatorPublish$PublishSubscriber;, "Lrx/internal/operators/OperatorPublish$PublishSubscriber<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->terminalEvent:Ljava/lang/Object;
 
     if-nez v0, :cond_f
 
-    .line 277
+    .line 304
     iget-object v0, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->nl:Lrx/internal/operators/NotificationLite;
 
     invoke-virtual {v0}, Lrx/internal/operators/NotificationLite;->completed()Ljava/lang/Object;
@@ -1205,10 +1207,10 @@
 
     iput-object v0, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->terminalEvent:Ljava/lang/Object;
 
-    .line 280
+    .line 307
     invoke-virtual {p0}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->dispatch()V
 
-    .line 282
+    .line 309
     :cond_f
     return-void
 .end method
@@ -1218,13 +1220,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 265
+    .line 292
     .local p0, "this":Lrx/internal/operators/OperatorPublish$PublishSubscriber;, "Lrx/internal/operators/OperatorPublish$PublishSubscriber<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->terminalEvent:Ljava/lang/Object;
 
     if-nez v0, :cond_f
 
-    .line 266
+    .line 293
     iget-object v0, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->nl:Lrx/internal/operators/NotificationLite;
 
     invoke-virtual {v0, p1}, Lrx/internal/operators/NotificationLite;->error(Ljava/lang/Throwable;)Ljava/lang/Object;
@@ -1233,10 +1235,10 @@
 
     iput-object v0, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->terminalEvent:Ljava/lang/Object;
 
-    .line 269
+    .line 296
     invoke-virtual {p0}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->dispatch()V
 
-    .line 271
+    .line 298
     :cond_f
     return-void
 .end method
@@ -1250,7 +1252,7 @@
     .end annotation
 
     .prologue
-    .line 253
+    .line 280
     .local p0, "this":Lrx/internal/operators/OperatorPublish$PublishSubscriber;, "Lrx/internal/operators/OperatorPublish$PublishSubscriber<TT;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     iget-object v0, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->queue:Ljava/util/Queue;
@@ -1267,18 +1269,18 @@
 
     if-nez v0, :cond_17
 
-    .line 254
+    .line 281
     new-instance v0, Lrx/exceptions/MissingBackpressureException;
 
     invoke-direct {v0}, Lrx/exceptions/MissingBackpressureException;-><init>()V
 
     invoke-virtual {p0, v0}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 260
+    .line 287
     :goto_16
     return-void
 
-    .line 258
+    .line 285
     :cond_17
     invoke-virtual {p0}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->dispatch()V
 
@@ -1289,7 +1291,7 @@
     .registers 3
 
     .prologue
-    .line 247
+    .line 274
     .local p0, "this":Lrx/internal/operators/OperatorPublish$PublishSubscriber;, "Lrx/internal/operators/OperatorPublish$PublishSubscriber<TT;>;"
     sget v0, Lrx/internal/util/RxRingBuffer;->SIZE:I
 
@@ -1297,7 +1299,7 @@
 
     invoke-virtual {p0, v0, v1}, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->request(J)V
 
-    .line 248
+    .line 275
     return-void
 .end method
 
@@ -1316,7 +1318,7 @@
     .local p1, "producer":Lrx/internal/operators/OperatorPublish$InnerProducer;, "Lrx/internal/operators/OperatorPublish$InnerProducer<TT;>;"
     const/4 v7, 0x0
 
-    .line 325
+    .line 352
     :cond_1
     iget-object v5, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->producers:Ljava/util/concurrent/atomic/AtomicReference;
 
@@ -1326,7 +1328,7 @@
 
     check-cast v0, [Lrx/internal/operators/OperatorPublish$InnerProducer;
 
-    .line 327
+    .line 354
     .local v0, "c":[Lrx/internal/operators/OperatorPublish$InnerProducer;
     sget-object v5, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->EMPTY:[Lrx/internal/operators/OperatorPublish$InnerProducer;
 
@@ -1336,20 +1338,20 @@
 
     if-ne v0, v5, :cond_12
 
-    .line 360
+    .line 387
     :cond_11
     :goto_11
     return-void
 
-    .line 332
+    .line 359
     :cond_12
     const/4 v2, -0x1
 
-    .line 333
+    .line 360
     .local v2, "j":I
     array-length v3, v0
 
-    .line 334
+    .line 361
     .local v3, "len":I
     const/4 v1, 0x0
 
@@ -1357,7 +1359,7 @@
     :goto_15
     if-ge v1, v3, :cond_20
 
-    .line 335
+    .line 362
     aget-object v5, v0, v1
 
     invoke-virtual {v5, p1}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
@@ -1366,22 +1368,22 @@
 
     if-eqz v5, :cond_30
 
-    .line 336
+    .line 363
     move v2, v1
 
-    .line 341
+    .line 368
     :cond_20
     if-ltz v2, :cond_11
 
-    .line 348
+    .line 375
     const/4 v5, 0x1
 
     if-ne v3, v5, :cond_33
 
-    .line 349
+    .line 376
     sget-object v4, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->EMPTY:[Lrx/internal/operators/OperatorPublish$InnerProducer;
 
-    .line 359
+    .line 386
     .local v4, "u":[Lrx/internal/operators/OperatorPublish$InnerProducer;
     :goto_27
     iget-object v5, p0, Lrx/internal/operators/OperatorPublish$PublishSubscriber;->producers:Ljava/util/concurrent/atomic/AtomicReference;
@@ -1394,24 +1396,24 @@
 
     goto :goto_11
 
-    .line 334
+    .line 361
     .end local v4    # "u":[Lrx/internal/operators/OperatorPublish$InnerProducer;
     :cond_30
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_15
 
-    .line 352
+    .line 379
     :cond_33
     add-int/lit8 v5, v3, -0x1
 
     new-array v4, v5, [Lrx/internal/operators/OperatorPublish$InnerProducer;
 
-    .line 354
+    .line 381
     .restart local v4    # "u":[Lrx/internal/operators/OperatorPublish$InnerProducer;
     invoke-static {v0, v7, v4, v7, v2}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
 
-    .line 356
+    .line 383
     add-int/lit8 v5, v2, 0x1
 
     sub-int v6, v3, v2

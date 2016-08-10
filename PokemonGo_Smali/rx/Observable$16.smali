@@ -21,8 +21,8 @@
         "Ljava/lang/Object;",
         "Lrx/functions/Func0",
         "<",
-        "Lrx/subjects/Subject",
-        "<TT;TT;>;>;"
+        "Lrx/observables/ConnectableObservable",
+        "<TT;>;>;"
     }
 .end annotation
 
@@ -36,7 +36,7 @@
     .registers 2
 
     .prologue
-    .line 6027
+    .line 7075
     .local p0, "this":Lrx/Observable$16;, "Lrx/Observable.16;"
     iput-object p1, p0, Lrx/Observable$16;->this$0:Lrx/Observable;
 
@@ -51,29 +51,31 @@
     .registers 2
 
     .prologue
-    .line 6027
+    .line 7075
     .local p0, "this":Lrx/Observable$16;, "Lrx/Observable.16;"
-    invoke-virtual {p0}, Lrx/Observable$16;->call()Lrx/subjects/Subject;
+    invoke-virtual {p0}, Lrx/Observable$16;->call()Lrx/observables/ConnectableObservable;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public final call()Lrx/subjects/Subject;
+.method public call()Lrx/observables/ConnectableObservable;
     .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
-            "Lrx/subjects/Subject",
-            "<TT;TT;>;"
+            "Lrx/observables/ConnectableObservable",
+            "<TT;>;"
         }
     .end annotation
 
     .prologue
-    .line 6030
+    .line 7078
     .local p0, "this":Lrx/Observable$16;, "Lrx/Observable.16;"
-    invoke-static {}, Lrx/subjects/ReplaySubject;->create()Lrx/subjects/ReplaySubject;
+    iget-object v0, p0, Lrx/Observable$16;->this$0:Lrx/Observable;
+
+    invoke-virtual {v0}, Lrx/Observable;->replay()Lrx/observables/ConnectableObservable;
 
     move-result-object v0
 

@@ -34,6 +34,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/internal/persistence/DataStore;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/internal/persistence/DataStore;
 
     .prologue
     .line 370
@@ -48,7 +49,6 @@
 # virtual methods
 .method public bridge synthetic call(Ljava/lang/Object;)Ljava/lang/Object;
     .registers 3
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 370

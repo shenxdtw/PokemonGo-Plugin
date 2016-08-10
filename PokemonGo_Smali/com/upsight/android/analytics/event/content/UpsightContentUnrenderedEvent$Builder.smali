@@ -27,7 +27,7 @@
 # instance fields
 .field private campaignId:Ljava/lang/Integer;
 
-.field private contentProvider:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+.field private contentProvider:Lcom/google/gson/JsonObject;
 
 .field private id:Ljava/lang/String;
 
@@ -44,27 +44,27 @@
     .param p1, "contentProvider"    # Lorg/json/JSONObject;
 
     .prologue
-    .line 139
+    .line 141
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;-><init>()V
 
-    .line 140
-    invoke-static {p1}, Lcom/upsight/android/analytics/internal/util/JacksonHelper$JSONObjectSerializer;->toObjectNode(Lorg/json/JSONObject;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .line 142
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/util/GsonHelper$JSONObjectSerializer;->toJsonObject(Lorg/json/JSONObject;)Lcom/google/gson/JsonObject;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->contentProvider:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->contentProvider:Lcom/google/gson/JsonObject;
 
-    .line 141
+    .line 143
     return-void
 .end method
 
-.method static synthetic access$000(Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;)Lcom/fasterxml/jackson/databind/node/ObjectNode;
+.method static synthetic access$000(Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;)Lcom/google/gson/JsonObject;
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
 
     .prologue
-    .line 119
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->contentProvider:Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .line 121
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->contentProvider:Lcom/google/gson/JsonObject;
 
     return-object v0
 .end method
@@ -74,7 +74,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
 
     .prologue
-    .line 119
+    .line 121
     iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->campaignId:Ljava/lang/Integer;
 
     return-object v0
@@ -85,7 +85,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
 
     .prologue
-    .line 119
+    .line 121
     iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->streamId:Ljava/lang/String;
 
     return-object v0
@@ -96,7 +96,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
 
     .prologue
-    .line 119
+    .line 121
     iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->streamStartTs:Ljava/lang/String;
 
     return-object v0
@@ -107,7 +107,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
 
     .prologue
-    .line 119
+    .line 121
     iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->scope:Ljava/lang/String;
 
     return-object v0
@@ -118,7 +118,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
 
     .prologue
-    .line 119
+    .line 121
     iget-object v0, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->id:Ljava/lang/String;
 
     return-object v0
@@ -130,7 +130,7 @@
     .registers 2
 
     .prologue
-    .line 119
+    .line 121
     invoke-virtual {p0}, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->build()Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent;
 
     move-result-object v0
@@ -142,7 +142,7 @@
     .registers 5
 
     .prologue
-    .line 185
+    .line 187
     new-instance v0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent;
 
     const-string v1, "upsight.content.unrendered"
@@ -167,10 +167,10 @@
     .param p1, "campaignId"    # Ljava/lang/Integer;
 
     .prologue
-    .line 147
+    .line 149
     iput-object p1, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->campaignId:Ljava/lang/Integer;
 
-    .line 148
+    .line 150
     return-object p0
 .end method
 
@@ -179,10 +179,10 @@
     .param p1, "id"    # Ljava/lang/String;
 
     .prologue
-    .line 179
+    .line 181
     iput-object p1, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->id:Ljava/lang/String;
 
-    .line 180
+    .line 182
     return-object p0
 .end method
 
@@ -191,10 +191,10 @@
     .param p1, "scope"    # Ljava/lang/String;
 
     .prologue
-    .line 171
+    .line 173
     iput-object p1, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->scope:Ljava/lang/String;
 
-    .line 172
+    .line 174
     return-object p0
 .end method
 
@@ -203,10 +203,10 @@
     .param p1, "streamId"    # Ljava/lang/String;
 
     .prologue
-    .line 155
+    .line 157
     iput-object p1, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->streamId:Ljava/lang/String;
 
-    .line 156
+    .line 158
     return-object p0
 .end method
 
@@ -215,9 +215,9 @@
     .param p1, "streamStartTs"    # Ljava/lang/String;
 
     .prologue
-    .line 163
+    .line 165
     iput-object p1, p0, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->streamStartTs:Ljava/lang/String;
 
-    .line 164
+    .line 166
     return-object p0
 .end method

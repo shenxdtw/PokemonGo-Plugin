@@ -16,7 +16,10 @@
 
 # instance fields
 .field scope:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "scope"
     .end annotation
 .end field
@@ -27,10 +30,10 @@
     .registers 1
 
     .prologue
-    .line 45
+    .line 46
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 47
+    .line 48
     return-void
 .end method
 
@@ -39,10 +42,10 @@
     .param p1, "builder"    # Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$Builder;
 
     .prologue
-    .line 41
+    .line 42
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 42
+    .line 43
     # getter for: Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$Builder;->scope:Ljava/lang/String;
     invoke-static {p1}, Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$Builder;->access$000(Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$Builder;)Ljava/lang/String;
 
@@ -50,7 +53,7 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$UpsightData;->scope:Ljava/lang/String;
 
-    .line 43
+    .line 44
     return-void
 .end method
 
@@ -60,7 +63,7 @@
     .registers 2
 
     .prologue
-    .line 53
+    .line 54
     iget-object v0, p0, Lcom/upsight/android/analytics/event/milestone/UpsightMilestoneEvent$UpsightData;->scope:Ljava/lang/String;
 
     return-object v0

@@ -30,7 +30,7 @@
     .registers 7
 
     .prologue
-    .line 82
+    .line 93
     .local p0, "this":Lrx/internal/operators/OperatorTake$1$1;, "Lrx/internal/operators/OperatorTake$1.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorTake$1$1;->this$1:Lrx/internal/operators/OperatorTake$1;
 
@@ -38,7 +38,7 @@
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 85
+    .line 96
     new-instance v0, Ljava/util/concurrent/atomic/AtomicLong;
 
     const-wide/16 v2, 0x0
@@ -60,7 +60,7 @@
     .local p0, "this":Lrx/internal/operators/OperatorTake$1$1;, "Lrx/internal/operators/OperatorTake$1.1;"
     const-wide/16 v8, 0x0
 
-    .line 89
+    .line 100
     cmp-long v4, p1, v8
 
     if-lez v4, :cond_22
@@ -71,7 +71,7 @@
 
     if-nez v4, :cond_22
 
-    .line 93
+    .line 104
     :cond_c
     iget-object v4, p0, Lrx/internal/operators/OperatorTake$1$1;->requested:Ljava/util/concurrent/atomic/AtomicLong;
 
@@ -79,7 +79,7 @@
 
     move-result-wide v2
 
-    .line 94
+    .line 105
     .local v2, "r":J
     iget-object v4, p0, Lrx/internal/operators/OperatorTake$1$1;->this$1:Lrx/internal/operators/OperatorTake$1;
 
@@ -95,20 +95,20 @@
 
     move-result-wide v0
 
-    .line 95
+    .line 106
     .local v0, "c":J
     cmp-long v4, v0, v8
 
     if-nez v4, :cond_23
 
-    .line 103
+    .line 114
     .end local v0    # "c":J
     .end local v2    # "r":J
     :cond_22
     :goto_22
     return-void
 
-    .line 97
+    .line 108
     .restart local v0    # "c":J
     .restart local v2    # "r":J
     :cond_23
@@ -122,7 +122,7 @@
 
     if-eqz v4, :cond_c
 
-    .line 98
+    .line 109
     iget-object v4, p0, Lrx/internal/operators/OperatorTake$1$1;->val$producer:Lrx/Producer;
 
     invoke-interface {v4, v0, v1}, Lrx/Producer;->request(J)V

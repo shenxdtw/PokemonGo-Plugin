@@ -74,13 +74,11 @@
 # virtual methods
 .method public bridge synthetic call(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 13
     check-cast p1, Lrx/Subscriber;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/internal/persistence/OnSubscribeRemove;->call(Lrx/Subscriber;)V
 
     return-void
@@ -107,6 +105,7 @@
 
     iget-object v3, p0, Lcom/upsight/android/internal/persistence/OnSubscribeRemove;->mStorable:Lcom/upsight/android/internal/persistence/Storable;
 
+    .line 34
     invoke-virtual {v3}, Lcom/upsight/android/internal/persistence/Storable;->getType()Ljava/lang/String;
 
     move-result-object v3
@@ -121,6 +120,7 @@
 
     move-result-object v3
 
+    .line 33
     invoke-static {v2, v3}, Landroid/net/Uri;->withAppendedPath(Landroid/net/Uri;Ljava/lang/String;)Landroid/net/Uri;
 
     move-result-object v1

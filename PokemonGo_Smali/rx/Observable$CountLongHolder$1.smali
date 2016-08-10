@@ -34,7 +34,7 @@
     .registers 1
 
     .prologue
-    .line 3819
+    .line 4210
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -48,7 +48,7 @@
     .param p2, "o"    # Ljava/lang/Object;
 
     .prologue
-    .line 3822
+    .line 4213
     invoke-virtual {p1}, Ljava/lang/Long;->longValue()J
 
     move-result-wide v0
@@ -70,7 +70,7 @@
     .param p2, "x1"    # Ljava/lang/Object;
 
     .prologue
-    .line 3819
+    .line 4210
     check-cast p1, Ljava/lang/Long;
 
     .end local p1    # "x0":Ljava/lang/Object;

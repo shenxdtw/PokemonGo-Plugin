@@ -10,7 +10,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/internal/schedulers/ScheduledAction$1;,
         Lrx/internal/schedulers/ScheduledAction$Remover2;,
         Lrx/internal/schedulers/ScheduledAction$Remover;,
         Lrx/internal/schedulers/ScheduledAction$FutureCompleter;
@@ -119,7 +118,7 @@
 
 # virtual methods
 .method public add(Ljava/util/concurrent/Future;)V
-    .registers 5
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -135,9 +134,7 @@
 
     new-instance v1, Lrx/internal/schedulers/ScheduledAction$FutureCompleter;
 
-    const/4 v2, 0x0
-
-    invoke-direct {v1, p0, p1, v2}, Lrx/internal/schedulers/ScheduledAction$FutureCompleter;-><init>(Lrx/internal/schedulers/ScheduledAction;Ljava/util/concurrent/Future;Lrx/internal/schedulers/ScheduledAction$1;)V
+    invoke-direct {v1, p0, p1}, Lrx/internal/schedulers/ScheduledAction$FutureCompleter;-><init>(Lrx/internal/schedulers/ScheduledAction;Ljava/util/concurrent/Future;)V
 
     invoke-virtual {v0, v1}, Lrx/internal/util/SubscriptionList;->add(Lrx/Subscription;)V
 

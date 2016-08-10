@@ -32,7 +32,7 @@
     .registers 3
 
     .prologue
-    .line 87
+    .line 88
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable$2;, "Lrx/internal/operators/OperatorBufferWithSingleObservable.2;"
     iput-object p1, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$2;->this$0:Lrx/internal/operators/OperatorBufferWithSingleObservable;
 
@@ -49,13 +49,13 @@
     .registers 2
 
     .prologue
-    .line 101
+    .line 102
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable$2;, "Lrx/internal/operators/OperatorBufferWithSingleObservable.2;"
     iget-object v0, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$2;->val$bsub:Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;
 
     invoke-virtual {v0}, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->onCompleted()V
 
-    .line 102
+    .line 103
     return-void
 .end method
 
@@ -64,13 +64,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 96
+    .line 97
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable$2;, "Lrx/internal/operators/OperatorBufferWithSingleObservable.2;"
     iget-object v0, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$2;->val$bsub:Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;
 
     invoke-virtual {v0, p1}, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 97
+    .line 98
     return-void
 .end method
 
@@ -83,13 +83,13 @@
     .end annotation
 
     .prologue
-    .line 91
+    .line 92
     .local p0, "this":Lrx/internal/operators/OperatorBufferWithSingleObservable$2;, "Lrx/internal/operators/OperatorBufferWithSingleObservable.2;"
     .local p1, "t":Ljava/lang/Object;, "TTClosing;"
     iget-object v0, p0, Lrx/internal/operators/OperatorBufferWithSingleObservable$2;->val$bsub:Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;
 
     invoke-virtual {v0}, Lrx/internal/operators/OperatorBufferWithSingleObservable$BufferingSubscriber;->emit()V
 
-    .line 92
+    .line 93
     return-void
 .end method

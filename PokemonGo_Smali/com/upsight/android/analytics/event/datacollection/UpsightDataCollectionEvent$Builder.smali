@@ -41,16 +41,16 @@
     .param p2, "streamId"    # Ljava/lang/String;
 
     .prologue
-    .line 113
+    .line 115
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;-><init>()V
 
-    .line 114
+    .line 116
     iput-object p1, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->dataBundle:Ljava/lang/String;
 
-    .line 115
+    .line 117
     iput-object p2, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->streamId:Ljava/lang/String;
 
-    .line 116
+    .line 118
     return-void
 .end method
 
@@ -59,7 +59,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;
 
     .prologue
-    .line 96
+    .line 98
     iget-object v0, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->streamStartTs:Ljava/lang/String;
 
     return-object v0
@@ -70,7 +70,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;
 
     .prologue
-    .line 96
+    .line 98
     iget-object v0, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->streamId:Ljava/lang/String;
 
     return-object v0
@@ -81,7 +81,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;
 
     .prologue
-    .line 96
+    .line 98
     iget-object v0, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->dataBundle:Ljava/lang/String;
 
     return-object v0
@@ -92,7 +92,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;
 
     .prologue
-    .line 96
+    .line 98
     iget-object v0, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->format:Ljava/lang/String;
 
     return-object v0
@@ -104,7 +104,7 @@
     .registers 2
 
     .prologue
-    .line 96
+    .line 98
     invoke-virtual {p0}, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->build()Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent;
 
     move-result-object v0
@@ -116,7 +116,7 @@
     .registers 5
 
     .prologue
-    .line 136
+    .line 138
     new-instance v0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent;
 
     const-string v1, "upsight.data_collection"
@@ -141,10 +141,10 @@
     .param p1, "format"    # Ljava/lang/String;
 
     .prologue
-    .line 130
+    .line 132
     iput-object p1, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->format:Ljava/lang/String;
 
-    .line 131
+    .line 133
     return-object p0
 .end method
 
@@ -153,9 +153,9 @@
     .param p1, "streamStartTs"    # Ljava/lang/String;
 
     .prologue
-    .line 122
+    .line 124
     iput-object p1, p0, Lcom/upsight/android/analytics/event/datacollection/UpsightDataCollectionEvent$Builder;->streamStartTs:Ljava/lang/String;
 
-    .line 123
+    .line 125
     return-object p0
 .end method

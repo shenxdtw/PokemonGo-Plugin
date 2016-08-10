@@ -24,9 +24,10 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;
 
     .prologue
-    .line 116
+    .line 115
     iput-object p1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1$11;->this$0:Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -36,17 +37,17 @@
 
 
 # virtual methods
-.method public create(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/upsight/android/analytics/internal/action/Action;
+.method public create(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;)Lcom/upsight/android/analytics/internal/action/Action;
     .registers 6
     .param p1, "actionContext"    # Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;
     .param p2, "actionType"    # Ljava/lang/String;
-    .param p3, "actionParams"    # Lcom/fasterxml/jackson/databind/JsonNode;
+    .param p3, "actionParams"    # Lcom/google/gson/JsonObject;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
             "Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;",
             "Ljava/lang/String;",
-            "Lcom/fasterxml/jackson/databind/JsonNode;",
+            "Lcom/google/gson/JsonObject;",
             ")",
             "Lcom/upsight/android/analytics/internal/action/Action",
             "<",
@@ -57,12 +58,12 @@
     .end annotation
 
     .prologue
-    .line 118
-    new-instance v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$NotifyRewards;
+    .line 117
+    new-instance v0, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$OpenUrl;
 
     const/4 v1, 0x0
 
-    invoke-direct {v0, p1, p2, p3, v1}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$NotifyRewards;-><init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;)V
+    invoke-direct {v0, p1, p2, p3, v1}, Lcom/upsight/android/marketing/internal/content/MarketingContentActions$OpenUrl;-><init>(Lcom/upsight/android/marketing/internal/content/MarketingContentActions$MarketingContentActionContext;Ljava/lang/String;Lcom/google/gson/JsonObject;Lcom/upsight/android/marketing/internal/content/MarketingContentActions$1;)V
 
     return-object v0
 .end method

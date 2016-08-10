@@ -49,7 +49,7 @@
     .end annotation
 
     .prologue
-    .line 41
+    .line 40
     .local p0, "this":Lrx/subjects/SerializedSubject;, "Lrx/subjects/SerializedSubject<TT;TR;>;"
     .local p1, "actual":Lrx/subjects/Subject;, "Lrx/subjects/Subject<TT;TR;>;"
     new-instance v0, Lrx/subjects/SerializedSubject$1;
@@ -58,125 +58,27 @@
 
     invoke-direct {p0, v0}, Lrx/subjects/Subject;-><init>(Lrx/Observable$OnSubscribe;)V
 
-    .line 49
+    .line 48
     iput-object p1, p0, Lrx/subjects/SerializedSubject;->actual:Lrx/subjects/Subject;
 
-    .line 50
+    .line 49
     new-instance v0, Lrx/observers/SerializedObserver;
 
     invoke-direct {v0, p1}, Lrx/observers/SerializedObserver;-><init>(Lrx/Observer;)V
 
     iput-object v0, p0, Lrx/subjects/SerializedSubject;->observer:Lrx/observers/SerializedObserver;
 
-    .line 51
+    .line 50
     return-void
 .end method
 
 
 # virtual methods
-.method public getThrowable()Ljava/lang/Throwable;
-    .registers 2
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 90
-    .local p0, "this":Lrx/subjects/SerializedSubject;, "Lrx/subjects/SerializedSubject<TT;TR;>;"
-    iget-object v0, p0, Lrx/subjects/SerializedSubject;->actual:Lrx/subjects/Subject;
-
-    invoke-virtual {v0}, Lrx/subjects/Subject;->getThrowable()Ljava/lang/Throwable;
-
-    move-result-object v0
-
-    return-object v0
-.end method
-
-.method public getValue()Ljava/lang/Object;
-    .registers 2
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()TT;"
-        }
-    .end annotation
-
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 95
-    .local p0, "this":Lrx/subjects/SerializedSubject;, "Lrx/subjects/SerializedSubject<TT;TR;>;"
-    iget-object v0, p0, Lrx/subjects/SerializedSubject;->actual:Lrx/subjects/Subject;
-
-    invoke-virtual {v0}, Lrx/subjects/Subject;->getValue()Ljava/lang/Object;
-
-    move-result-object v0
-
-    return-object v0
-.end method
-
-.method public getValues()[Ljava/lang/Object;
-    .registers 2
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 100
-    .local p0, "this":Lrx/subjects/SerializedSubject;, "Lrx/subjects/SerializedSubject<TT;TR;>;"
-    iget-object v0, p0, Lrx/subjects/SerializedSubject;->actual:Lrx/subjects/Subject;
-
-    invoke-virtual {v0}, Lrx/subjects/Subject;->getValues()[Ljava/lang/Object;
-
-    move-result-object v0
-
-    return-object v0
-.end method
-
-.method public getValues([Ljava/lang/Object;)[Ljava/lang/Object;
-    .registers 3
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "([TT;)[TT;"
-        }
-    .end annotation
-
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 105
-    .local p0, "this":Lrx/subjects/SerializedSubject;, "Lrx/subjects/SerializedSubject<TT;TR;>;"
-    .local p1, "a":[Ljava/lang/Object;, "[TT;"
-    iget-object v0, p0, Lrx/subjects/SerializedSubject;->actual:Lrx/subjects/Subject;
-
-    invoke-virtual {v0, p1}, Lrx/subjects/Subject;->getValues([Ljava/lang/Object;)[Ljava/lang/Object;
-
-    move-result-object v0
-
-    return-object v0
-.end method
-
-.method public hasCompleted()Z
-    .registers 2
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 75
-    .local p0, "this":Lrx/subjects/SerializedSubject;, "Lrx/subjects/SerializedSubject<TT;TR;>;"
-    iget-object v0, p0, Lrx/subjects/SerializedSubject;->actual:Lrx/subjects/Subject;
-
-    invoke-virtual {v0}, Lrx/subjects/Subject;->hasCompleted()Z
-
-    move-result v0
-
-    return v0
-.end method
-
 .method public hasObservers()Z
     .registers 2
 
     .prologue
-    .line 70
+    .line 69
     .local p0, "this":Lrx/subjects/SerializedSubject;, "Lrx/subjects/SerializedSubject<TT;TR;>;"
     iget-object v0, p0, Lrx/subjects/SerializedSubject;->actual:Lrx/subjects/Subject;
 
@@ -187,51 +89,17 @@
     return v0
 .end method
 
-.method public hasThrowable()Z
-    .registers 2
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 80
-    .local p0, "this":Lrx/subjects/SerializedSubject;, "Lrx/subjects/SerializedSubject<TT;TR;>;"
-    iget-object v0, p0, Lrx/subjects/SerializedSubject;->actual:Lrx/subjects/Subject;
-
-    invoke-virtual {v0}, Lrx/subjects/Subject;->hasThrowable()Z
-
-    move-result v0
-
-    return v0
-.end method
-
-.method public hasValue()Z
-    .registers 2
-    .annotation build Lrx/annotations/Experimental;
-    .end annotation
-
-    .prologue
-    .line 85
-    .local p0, "this":Lrx/subjects/SerializedSubject;, "Lrx/subjects/SerializedSubject<TT;TR;>;"
-    iget-object v0, p0, Lrx/subjects/SerializedSubject;->actual:Lrx/subjects/Subject;
-
-    invoke-virtual {v0}, Lrx/subjects/Subject;->hasValue()Z
-
-    move-result v0
-
-    return v0
-.end method
-
 .method public onCompleted()V
     .registers 2
 
     .prologue
-    .line 55
+    .line 54
     .local p0, "this":Lrx/subjects/SerializedSubject;, "Lrx/subjects/SerializedSubject<TT;TR;>;"
     iget-object v0, p0, Lrx/subjects/SerializedSubject;->observer:Lrx/observers/SerializedObserver;
 
     invoke-virtual {v0}, Lrx/observers/SerializedObserver;->onCompleted()V
 
-    .line 56
+    .line 55
     return-void
 .end method
 
@@ -240,13 +108,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 60
+    .line 59
     .local p0, "this":Lrx/subjects/SerializedSubject;, "Lrx/subjects/SerializedSubject<TT;TR;>;"
     iget-object v0, p0, Lrx/subjects/SerializedSubject;->observer:Lrx/observers/SerializedObserver;
 
     invoke-virtual {v0, p1}, Lrx/observers/SerializedObserver;->onError(Ljava/lang/Throwable;)V
 
-    .line 61
+    .line 60
     return-void
 .end method
 
@@ -259,13 +127,13 @@
     .end annotation
 
     .prologue
-    .line 65
+    .line 64
     .local p0, "this":Lrx/subjects/SerializedSubject;, "Lrx/subjects/SerializedSubject<TT;TR;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     iget-object v0, p0, Lrx/subjects/SerializedSubject;->observer:Lrx/observers/SerializedObserver;
 
     invoke-virtual {v0, p1}, Lrx/observers/SerializedObserver;->onNext(Ljava/lang/Object;)V
 
-    .line 66
+    .line 65
     return-void
 .end method

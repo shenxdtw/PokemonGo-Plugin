@@ -24,6 +24,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/dispatcher/delivery/Batcher;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/dispatcher/delivery/Batcher;
 
     .prologue
     .line 140

@@ -79,26 +79,15 @@
 
 
 # direct methods
-.method private constructor <init>()V
+.method constructor <init>()V
     .registers 1
 
     .prologue
-    .line 95
+    .line 107
     .local p0, "this":Lrx/internal/util/UtilityFunctions$NullFunction;, "Lrx/internal/util/UtilityFunctions$NullFunction<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/internal/util/UtilityFunctions$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/internal/util/UtilityFunctions$1;
-
-    .prologue
-    .line 95
-    .local p0, "this":Lrx/internal/util/UtilityFunctions$NullFunction;, "Lrx/internal/util/UtilityFunctions$NullFunction<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;TR;>;"
-    invoke-direct {p0}, Lrx/internal/util/UtilityFunctions$NullFunction;-><init>()V
-
+    .line 108
     return-void
 .end method
 
@@ -113,7 +102,7 @@
     .end annotation
 
     .prologue
-    .line 109
+    .line 112
     .local p0, "this":Lrx/internal/util/UtilityFunctions$NullFunction;, "Lrx/internal/util/UtilityFunctions$NullFunction<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;TR;>;"
     const/4 v0, 0x0
 
@@ -129,7 +118,7 @@
     .end annotation
 
     .prologue
-    .line 114
+    .line 117
     .local p0, "this":Lrx/internal/util/UtilityFunctions$NullFunction;, "Lrx/internal/util/UtilityFunctions$NullFunction<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;TR;>;"
     .local p1, "t1":Ljava/lang/Object;, "TT0;"
     const/4 v0, 0x0
@@ -146,7 +135,7 @@
     .end annotation
 
     .prologue
-    .line 119
+    .line 122
     .local p0, "this":Lrx/internal/util/UtilityFunctions$NullFunction;, "Lrx/internal/util/UtilityFunctions$NullFunction<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;TR;>;"
     .local p1, "t1":Ljava/lang/Object;, "TT0;"
     .local p2, "t2":Ljava/lang/Object;, "TT1;"
@@ -164,7 +153,7 @@
     .end annotation
 
     .prologue
-    .line 124
+    .line 127
     .local p0, "this":Lrx/internal/util/UtilityFunctions$NullFunction;, "Lrx/internal/util/UtilityFunctions$NullFunction<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;TR;>;"
     .local p1, "t1":Ljava/lang/Object;, "TT0;"
     .local p2, "t2":Ljava/lang/Object;, "TT1;"
@@ -183,7 +172,7 @@
     .end annotation
 
     .prologue
-    .line 129
+    .line 132
     .local p0, "this":Lrx/internal/util/UtilityFunctions$NullFunction;, "Lrx/internal/util/UtilityFunctions$NullFunction<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;TR;>;"
     .local p1, "t1":Ljava/lang/Object;, "TT0;"
     .local p2, "t2":Ljava/lang/Object;, "TT1;"
@@ -203,7 +192,7 @@
     .end annotation
 
     .prologue
-    .line 134
+    .line 137
     .local p0, "this":Lrx/internal/util/UtilityFunctions$NullFunction;, "Lrx/internal/util/UtilityFunctions$NullFunction<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;TR;>;"
     .local p1, "t1":Ljava/lang/Object;, "TT0;"
     .local p2, "t2":Ljava/lang/Object;, "TT1;"
@@ -224,7 +213,7 @@
     .end annotation
 
     .prologue
-    .line 139
+    .line 142
     .local p0, "this":Lrx/internal/util/UtilityFunctions$NullFunction;, "Lrx/internal/util/UtilityFunctions$NullFunction<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;TR;>;"
     .local p1, "t1":Ljava/lang/Object;, "TT0;"
     .local p2, "t2":Ljava/lang/Object;, "TT1;"
@@ -246,7 +235,7 @@
     .end annotation
 
     .prologue
-    .line 144
+    .line 147
     .local p0, "this":Lrx/internal/util/UtilityFunctions$NullFunction;, "Lrx/internal/util/UtilityFunctions$NullFunction<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;TR;>;"
     .local p1, "t1":Ljava/lang/Object;, "TT0;"
     .local p2, "t2":Ljava/lang/Object;, "TT1;"
@@ -269,7 +258,7 @@
     .end annotation
 
     .prologue
-    .line 149
+    .line 152
     .local p0, "this":Lrx/internal/util/UtilityFunctions$NullFunction;, "Lrx/internal/util/UtilityFunctions$NullFunction<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;TR;>;"
     .local p1, "t1":Ljava/lang/Object;, "TT0;"
     .local p2, "t2":Ljava/lang/Object;, "TT1;"
@@ -293,7 +282,7 @@
     .end annotation
 
     .prologue
-    .line 154
+    .line 157
     .local p0, "this":Lrx/internal/util/UtilityFunctions$NullFunction;, "Lrx/internal/util/UtilityFunctions$NullFunction<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;TR;>;"
     .local p1, "t1":Ljava/lang/Object;, "TT0;"
     .local p2, "t2":Ljava/lang/Object;, "TT1;"
@@ -321,7 +310,7 @@
     .end annotation
 
     .prologue
-    .line 159
+    .line 162
     .local p0, "this":Lrx/internal/util/UtilityFunctions$NullFunction;, "Lrx/internal/util/UtilityFunctions$NullFunction<TT0;TT1;TT2;TT3;TT4;TT5;TT6;TT7;TT8;TT9;TR;>;"
     const/4 v0, 0x0
 

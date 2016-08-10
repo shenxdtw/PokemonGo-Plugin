@@ -20,7 +20,7 @@
 
 
 # instance fields
-.field private final predicate:Lrx/functions/Func2;
+.field final predicate:Lrx/functions/Func2;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func2",
@@ -48,27 +48,16 @@
     .end annotation
 
     .prologue
-    .line 30
+    .line 31
     .local p0, "this":Lrx/internal/operators/OperatorSkipWhile;, "Lrx/internal/operators/OperatorSkipWhile<TT;>;"
     .local p1, "predicate":Lrx/functions/Func2;, "Lrx/functions/Func2<-TT;Ljava/lang/Integer;Ljava/lang/Boolean;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 31
+    .line 32
     iput-object p1, p0, Lrx/internal/operators/OperatorSkipWhile;->predicate:Lrx/functions/Func2;
 
-    .line 32
+    .line 33
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorSkipWhile;)Lrx/functions/Func2;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorSkipWhile;
-
-    .prologue
-    .line 27
-    iget-object v0, p0, Lrx/internal/operators/OperatorSkipWhile;->predicate:Lrx/functions/Func2;
-
-    return-object v0
 .end method
 
 .method public static toPredicate2(Lrx/functions/Func1;)Lrx/functions/Func2;
@@ -91,7 +80,7 @@
     .end annotation
 
     .prologue
-    .line 65
+    .line 73
     .local p0, "predicate":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;Ljava/lang/Boolean;>;"
     new-instance v0, Lrx/internal/operators/OperatorSkipWhile$2;
 
@@ -107,7 +96,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 27
+    .line 28
     .local p0, "this":Lrx/internal/operators/OperatorSkipWhile;, "Lrx/internal/operators/OperatorSkipWhile<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -132,7 +121,7 @@
     .end annotation
 
     .prologue
-    .line 35
+    .line 36
     .local p0, "this":Lrx/internal/operators/OperatorSkipWhile;, "Lrx/internal/operators/OperatorSkipWhile<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     new-instance v0, Lrx/internal/operators/OperatorSkipWhile$1;

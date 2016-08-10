@@ -3,6 +3,14 @@
 .source "BlockingOperatorToIterator.java"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lrx/internal/operators/BlockingOperatorToIterator$SubscriberIterator;
+    }
+.end annotation
+
+
 # direct methods
 .method private constructor <init>()V
     .registers 3
@@ -22,7 +30,7 @@
 .end method
 
 .method public static toIterator(Lrx/Observable;)Ljava/util/Iterator;
-    .registers 5
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
@@ -38,29 +46,18 @@
     .prologue
     .line 50
     .local p0, "source":Lrx/Observable;, "Lrx/Observable<+TT;>;"
-    new-instance v0, Ljava/util/concurrent/LinkedBlockingQueue;
+    new-instance v0, Lrx/internal/operators/BlockingOperatorToIterator$SubscriberIterator;
 
-    invoke-direct {v0}, Ljava/util/concurrent/LinkedBlockingQueue;-><init>()V
+    invoke-direct {v0}, Lrx/internal/operators/BlockingOperatorToIterator$SubscriberIterator;-><init>()V
 
     .line 53
-    .local v0, "notifications":Ljava/util/concurrent/BlockingQueue;, "Ljava/util/concurrent/BlockingQueue<Lrx/Notification<+TT;>;>;"
+    .local v0, "subscriber":Lrx/internal/operators/BlockingOperatorToIterator$SubscriberIterator;, "Lrx/internal/operators/BlockingOperatorToIterator$SubscriberIterator<TT;>;"
     invoke-virtual {p0}, Lrx/Observable;->materialize()Lrx/Observable;
-
-    move-result-object v2
-
-    new-instance v3, Lrx/internal/operators/BlockingOperatorToIterator$1;
-
-    invoke-direct {v3, v0}, Lrx/internal/operators/BlockingOperatorToIterator$1;-><init>(Ljava/util/concurrent/BlockingQueue;)V
-
-    invoke-virtual {v2, v3}, Lrx/Observable;->subscribe(Lrx/Subscriber;)Lrx/Subscription;
 
     move-result-object v1
 
-    .line 70
-    .local v1, "subscription":Lrx/Subscription;
-    new-instance v2, Lrx/internal/operators/BlockingOperatorToIterator$2;
+    invoke-virtual {v1, v0}, Lrx/Observable;->subscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    invoke-direct {v2, v0, v1}, Lrx/internal/operators/BlockingOperatorToIterator$2;-><init>(Ljava/util/concurrent/BlockingQueue;Lrx/Subscription;)V
-
-    return-object v2
+    .line 54
+    return-object v0
 .end method

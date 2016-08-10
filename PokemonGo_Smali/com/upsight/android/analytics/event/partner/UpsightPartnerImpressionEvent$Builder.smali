@@ -25,7 +25,11 @@
 
 
 # instance fields
+.field private ads:Lcom/google/gson/JsonArray;
+
 .field private contentId:Ljava/lang/Integer;
+
+.field private impressionId:Ljava/lang/String;
 
 .field private partnerId:Ljava/lang/Integer;
 
@@ -37,6 +41,8 @@
 
 .field private streamStartTs:Ljava/lang/String;
 
+.field private testDevice:Ljava/lang/Boolean;
+
 
 # direct methods
 .method protected constructor <init>(Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;)V
@@ -47,32 +53,32 @@
     .param p4, "contentId"    # Ljava/lang/Integer;
 
     .prologue
-    .line 143
+    .line 189
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;-><init>()V
 
-    .line 144
+    .line 190
     iput-object p1, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->partnerId:Ljava/lang/Integer;
 
-    .line 145
+    .line 191
     iput-object p2, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->scope:Ljava/lang/String;
 
-    .line 146
+    .line 192
     iput-object p3, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->streamId:Ljava/lang/String;
 
-    .line 147
+    .line 193
     iput-object p4, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->contentId:Ljava/lang/Integer;
 
-    .line 148
+    .line 194
     return-void
 .end method
 
-.method static synthetic access$000(Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;)Ljava/lang/String;
+.method static synthetic access$000(Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;)Lcom/google/gson/JsonArray;
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;
 
     .prologue
-    .line 120
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->partnerName:Ljava/lang/String;
+    .line 160
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->ads:Lcom/google/gson/JsonArray;
 
     return-object v0
 .end method
@@ -82,8 +88,8 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;
 
     .prologue
-    .line 120
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->streamId:Ljava/lang/String;
+    .line 160
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->partnerName:Ljava/lang/String;
 
     return-object v0
 .end method
@@ -93,8 +99,8 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;
 
     .prologue
-    .line 120
-    iget-object v0, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->streamStartTs:Ljava/lang/String;
+    .line 160
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->impressionId:Ljava/lang/String;
 
     return-object v0
 .end method
@@ -104,30 +110,63 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;
 
     .prologue
-    .line 120
+    .line 160
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->streamId:Ljava/lang/String;
+
+    return-object v0
+.end method
+
+.method static synthetic access$400(Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;)Ljava/lang/String;
+    .registers 2
+    .param p0, "x0"    # Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;
+
+    .prologue
+    .line 160
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->streamStartTs:Ljava/lang/String;
+
+    return-object v0
+.end method
+
+.method static synthetic access$500(Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;)Ljava/lang/String;
+    .registers 2
+    .param p0, "x0"    # Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;
+
+    .prologue
+    .line 160
     iget-object v0, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->scope:Ljava/lang/String;
 
     return-object v0
 .end method
 
-.method static synthetic access$400(Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;)Ljava/lang/Integer;
+.method static synthetic access$600(Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;)Ljava/lang/Integer;
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;
 
     .prologue
-    .line 120
+    .line 160
     iget-object v0, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->contentId:Ljava/lang/Integer;
 
     return-object v0
 .end method
 
-.method static synthetic access$500(Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;)Ljava/lang/Integer;
+.method static synthetic access$700(Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;)Ljava/lang/Integer;
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;
 
     .prologue
-    .line 120
+    .line 160
     iget-object v0, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->partnerId:Ljava/lang/Integer;
+
+    return-object v0
+.end method
+
+.method static synthetic access$800(Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;)Ljava/lang/Boolean;
+    .registers 2
+    .param p0, "x0"    # Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;
+
+    .prologue
+    .line 160
+    iget-object v0, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->testDevice:Ljava/lang/Boolean;
 
     return-object v0
 .end method
@@ -138,7 +177,7 @@
     .registers 2
 
     .prologue
-    .line 120
+    .line 160
     invoke-virtual {p0}, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->build()Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent;
 
     move-result-object v0
@@ -150,7 +189,7 @@
     .registers 5
 
     .prologue
-    .line 168
+    .line 238
     new-instance v0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent;
 
     const-string v1, "upsight.partner.impression"
@@ -170,15 +209,43 @@
     return-object v0
 .end method
 
+.method public setAds(Lorg/json/JSONArray;)Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;
+    .registers 3
+    .param p1, "ads"    # Lorg/json/JSONArray;
+
+    .prologue
+    .line 200
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/util/GsonHelper$JSONArraySerializer;->toJsonArray(Lorg/json/JSONArray;)Lcom/google/gson/JsonArray;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->ads:Lcom/google/gson/JsonArray;
+
+    .line 201
+    return-object p0
+.end method
+
+.method public setImpressionId(Ljava/lang/String;)Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;
+    .registers 2
+    .param p1, "impressionId"    # Ljava/lang/String;
+
+    .prologue
+    .line 216
+    iput-object p1, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->impressionId:Ljava/lang/String;
+
+    .line 217
+    return-object p0
+.end method
+
 .method public setPartnerName(Ljava/lang/String;)Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;
     .registers 2
     .param p1, "partnerName"    # Ljava/lang/String;
 
     .prologue
-    .line 154
+    .line 208
     iput-object p1, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->partnerName:Ljava/lang/String;
 
-    .line 155
+    .line 209
     return-object p0
 .end method
 
@@ -187,9 +254,21 @@
     .param p1, "streamStartTs"    # Ljava/lang/String;
 
     .prologue
-    .line 162
+    .line 224
     iput-object p1, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->streamStartTs:Ljava/lang/String;
 
-    .line 163
+    .line 225
+    return-object p0
+.end method
+
+.method public setTestDevice(Ljava/lang/Boolean;)Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;
+    .registers 2
+    .param p1, "testDevice"    # Ljava/lang/Boolean;
+
+    .prologue
+    .line 232
+    iput-object p1, p0, Lcom/upsight/android/analytics/event/partner/UpsightPartnerImpressionEvent$Builder;->testDevice:Ljava/lang/Boolean;
+
+    .line 233
     return-object p0
 .end method

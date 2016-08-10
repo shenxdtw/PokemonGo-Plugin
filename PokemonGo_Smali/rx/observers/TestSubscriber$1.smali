@@ -32,7 +32,7 @@
     .registers 1
 
     .prologue
-    .line 38
+    .line 36
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -44,7 +44,7 @@
     .registers 1
 
     .prologue
-    .line 43
+    .line 41
     return-void
 .end method
 
@@ -53,7 +53,7 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 48
+    .line 46
     return-void
 .end method
 
@@ -62,6 +62,6 @@
     .param p1, "t"    # Ljava/lang/Object;
 
     .prologue
-    .line 53
+    .line 51
     return-void
 .end method

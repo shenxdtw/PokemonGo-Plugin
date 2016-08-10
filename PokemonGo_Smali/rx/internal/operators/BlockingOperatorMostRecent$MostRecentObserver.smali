@@ -38,7 +38,7 @@
 
 
 # direct methods
-.method private constructor <init>(Ljava/lang/Object;)V
+.method constructor <init>(Ljava/lang/Object;)V
     .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -69,19 +69,6 @@
     iput-object v0, p0, Lrx/internal/operators/BlockingOperatorMostRecent$MostRecentObserver;->value:Ljava/lang/Object;
 
     .line 69
-    return-void
-.end method
-
-.method synthetic constructor <init>(Ljava/lang/Object;Lrx/internal/operators/BlockingOperatorMostRecent$1;)V
-    .registers 3
-    .param p1, "x0"    # Ljava/lang/Object;
-    .param p2, "x1"    # Lrx/internal/operators/BlockingOperatorMostRecent$1;
-
-    .prologue
-    .line 63
-    .local p0, "this":Lrx/internal/operators/BlockingOperatorMostRecent$MostRecentObserver;, "Lrx/internal/operators/BlockingOperatorMostRecent$MostRecentObserver<TT;>;"
-    invoke-direct {p0, p1}, Lrx/internal/operators/BlockingOperatorMostRecent$MostRecentObserver;-><init>(Ljava/lang/Object;)V
-
     return-void
 .end method
 

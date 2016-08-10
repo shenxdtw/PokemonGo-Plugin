@@ -34,7 +34,7 @@
     .param p1, "value"    # Ljava/lang/Object;
 
     .prologue
-    .line 147
+    .line 152
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -59,10 +59,10 @@
 
     invoke-direct {p0, v0}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;)V
 
-    .line 148
+    .line 153
     iput-object p1, p0, Lrx/exceptions/OnErrorThrowable$OnNextValue;->value:Ljava/lang/Object;
 
-    .line 149
+    .line 154
     return-void
 .end method
 
@@ -71,19 +71,19 @@
     .param p0, "value"    # Ljava/lang/Object;
 
     .prologue
-    .line 176
+    .line 181
     if-nez p0, :cond_5
 
-    .line 177
+    .line 182
     const-string p0, "null"
 
-    .line 194
+    .line 199
     .end local p0    # "value":Ljava/lang/Object;
     .local v0, "pluggedRendering":Ljava/lang/String;
     :goto_4
     return-object p0
 
-    .line 179
+    .line 184
     .end local v0    # "pluggedRendering":Ljava/lang/String;
     .restart local p0    # "value":Ljava/lang/Object;
     :cond_5
@@ -99,31 +99,31 @@
 
     if-eqz v1, :cond_16
 
-    .line 180
+    .line 185
     invoke-virtual {p0}, Ljava/lang/Object;->toString()Ljava/lang/String;
 
     move-result-object p0
 
     goto :goto_4
 
-    .line 182
+    .line 187
     :cond_16
     instance-of v1, p0, Ljava/lang/String;
 
     if-eqz v1, :cond_1d
 
-    .line 183
+    .line 188
     check-cast p0, Ljava/lang/String;
 
     goto :goto_4
 
-    .line 185
+    .line 190
     :cond_1d
     instance-of v1, p0, Ljava/lang/Enum;
 
     if-eqz v1, :cond_28
 
-    .line 186
+    .line 191
     check-cast p0, Ljava/lang/Enum;
 
     .end local p0    # "value":Ljava/lang/Object;
@@ -133,7 +133,7 @@
 
     goto :goto_4
 
-    .line 189
+    .line 194
     .restart local p0    # "value":Ljava/lang/Object;
     :cond_28
     invoke-static {}, Lrx/plugins/RxJavaPlugins;->getInstance()Lrx/plugins/RxJavaPlugins;
@@ -148,16 +148,16 @@
 
     move-result-object v0
 
-    .line 190
+    .line 195
     .restart local v0    # "pluggedRendering":Ljava/lang/String;
     if-eqz v0, :cond_38
 
     move-object p0, v0
 
-    .line 191
+    .line 196
     goto :goto_4
 
-    .line 194
+    .line 199
     :cond_38
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -194,7 +194,7 @@
     .registers 2
 
     .prologue
-    .line 157
+    .line 162
     iget-object v0, p0, Lrx/exceptions/OnErrorThrowable$OnNextValue;->value:Ljava/lang/Object;
 
     return-object v0

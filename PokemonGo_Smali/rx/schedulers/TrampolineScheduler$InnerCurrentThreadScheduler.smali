@@ -17,25 +17,12 @@
 .end annotation
 
 
-# static fields
-.field private static final COUNTER_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater",
-            "<",
-            "Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-
 # instance fields
-.field volatile counter:I
+.field final counter:Ljava/util/concurrent/atomic/AtomicInteger;
 
 .field private final innerSubscription:Lrx/subscriptions/BooleanSubscription;
 
-.field private final queue:Ljava/util/concurrent/PriorityBlockingQueue;
+.field final queue:Ljava/util/concurrent/PriorityBlockingQueue;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/concurrent/PriorityBlockingQueue",
@@ -50,79 +37,47 @@
 
 
 # direct methods
-.method static constructor <clinit>()V
+.method constructor <init>()V
     .registers 2
 
     .prologue
-    .line 50
-    const-class v0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;
-
-    const-string v1, "counter"
-
-    invoke-static {v0, v1}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;->COUNTER_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    return-void
-.end method
-
-.method private constructor <init>()V
-    .registers 2
-
-    .prologue
-    .line 48
+    .line 54
     invoke-direct {p0}, Lrx/Scheduler$Worker;-><init>()V
 
-    .line 53
+    .line 49
+    new-instance v0, Ljava/util/concurrent/atomic/AtomicInteger;
+
+    invoke-direct {v0}, Ljava/util/concurrent/atomic/AtomicInteger;-><init>()V
+
+    iput-object v0, p0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;->counter:Ljava/util/concurrent/atomic/AtomicInteger;
+
+    .line 50
     new-instance v0, Ljava/util/concurrent/PriorityBlockingQueue;
 
     invoke-direct {v0}, Ljava/util/concurrent/PriorityBlockingQueue;-><init>()V
 
     iput-object v0, p0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;->queue:Ljava/util/concurrent/PriorityBlockingQueue;
 
-    .line 54
+    .line 51
     new-instance v0, Lrx/subscriptions/BooleanSubscription;
 
     invoke-direct {v0}, Lrx/subscriptions/BooleanSubscription;-><init>()V
 
     iput-object v0, p0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;->innerSubscription:Lrx/subscriptions/BooleanSubscription;
 
-    .line 55
+    .line 52
     new-instance v0, Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-direct {v0}, Ljava/util/concurrent/atomic/AtomicInteger;-><init>()V
 
     iput-object v0, p0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;->wip:Ljava/util/concurrent/atomic/AtomicInteger;
 
+    .line 55
     return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/schedulers/TrampolineScheduler$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/schedulers/TrampolineScheduler$1;
-
-    .prologue
-    .line 48
-    invoke-direct {p0}, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;-><init>()V
-
-    return-void
-.end method
-
-.method static synthetic access$200(Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;)Ljava/util/concurrent/PriorityBlockingQueue;
-    .registers 2
-    .param p0, "x0"    # Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;
-
-    .prologue
-    .line 48
-    iget-object v0, p0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;->queue:Ljava/util/concurrent/PriorityBlockingQueue;
-
-    return-object v0
 .end method
 
 .method private enqueue(Lrx/functions/Action0;J)Lrx/Subscription;
-    .registers 10
+    .registers 8
     .param p1, "action"    # Lrx/functions/Action0;
     .param p2, "execTime"    # J
 
@@ -153,15 +108,13 @@
 
     move-result-object v2
 
-    sget-object v3, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;->COUNTER_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
+    iget-object v3, p0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;->counter:Ljava/util/concurrent/atomic/AtomicInteger;
 
-    invoke-virtual {v3, p0}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->incrementAndGet(Ljava/lang/Object;)I
+    invoke-virtual {v3}, Ljava/util/concurrent/atomic/AtomicInteger;->incrementAndGet()I
 
     move-result v3
 
-    const/4 v4, 0x0
-
-    invoke-direct {v1, p1, v2, v3, v4}, Lrx/schedulers/TrampolineScheduler$TimedAction;-><init>(Lrx/functions/Action0;Ljava/lang/Long;ILrx/schedulers/TrampolineScheduler$1;)V
+    invoke-direct {v1, p1, v2, v3}, Lrx/schedulers/TrampolineScheduler$TimedAction;-><init>(Lrx/functions/Action0;Ljava/lang/Long;I)V
 
     .line 74
     .local v1, "timedAction":Lrx/schedulers/TrampolineScheduler$TimedAction;
@@ -176,10 +129,10 @@
 
     move-result v2
 
-    if-nez v2, :cond_46
+    if-nez v2, :cond_45
 
     .line 78
-    :cond_2a
+    :cond_29
     iget-object v2, p0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;->queue:Ljava/util/concurrent/PriorityBlockingQueue;
 
     invoke-virtual {v2}, Ljava/util/concurrent/PriorityBlockingQueue;->poll()Ljava/lang/Object;
@@ -190,7 +143,7 @@
 
     .line 79
     .local v0, "polled":Lrx/schedulers/TrampolineScheduler$TimedAction;
-    if-eqz v0, :cond_39
+    if-eqz v0, :cond_38
 
     .line 80
     iget-object v2, v0, Lrx/schedulers/TrampolineScheduler$TimedAction;->action:Lrx/functions/Action0;
@@ -198,14 +151,14 @@
     invoke-interface {v2}, Lrx/functions/Action0;->call()V
 
     .line 82
-    :cond_39
+    :cond_38
     iget-object v2, p0, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;->wip:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v2}, Ljava/util/concurrent/atomic/AtomicInteger;->decrementAndGet()I
 
     move-result v2
 
-    if-gtz v2, :cond_2a
+    if-gtz v2, :cond_29
 
     .line 83
     invoke-static {}, Lrx/subscriptions/Subscriptions;->unsubscribed()Lrx/Subscription;
@@ -216,7 +169,7 @@
 
     .line 86
     .end local v0    # "polled":Lrx/schedulers/TrampolineScheduler$TimedAction;
-    :cond_46
+    :cond_45
     new-instance v2, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler$1;
 
     invoke-direct {v2, p0, v1}, Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler$1;-><init>(Lrx/schedulers/TrampolineScheduler$InnerCurrentThreadScheduler;Lrx/schedulers/TrampolineScheduler$TimedAction;)V

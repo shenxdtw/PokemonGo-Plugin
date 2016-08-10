@@ -30,7 +30,7 @@
     .param p1, "exception"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 9589
+    .line 10649
     .local p0, "this":Lrx/Observable$ThrowObservable;, "Lrx/Observable$ThrowObservable<TT;>;"
     new-instance v0, Lrx/Observable$ThrowObservable$1;
 
@@ -38,6 +38,6 @@
 
     invoke-direct {p0, v0}, Lrx/Observable;-><init>(Lrx/Observable$OnSubscribe;)V
 
-    .line 9603
+    .line 10663
     return-void
 .end method

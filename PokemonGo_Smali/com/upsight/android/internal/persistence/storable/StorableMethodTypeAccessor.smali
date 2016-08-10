@@ -90,8 +90,8 @@
 
     check-cast v1, Ljava/lang/String;
     :try_end_b
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_b} :catch_c
     .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_0 .. :try_end_b} :catch_13
+    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_b} :catch_c
 
     return-object v1
 

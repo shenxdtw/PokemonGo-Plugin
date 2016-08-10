@@ -28,7 +28,7 @@
     .registers 3
 
     .prologue
-    .line 27
+    .line 28
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastOne$1;, "Lrx/internal/operators/OperatorTakeLastOne.1;"
     iput-object p1, p0, Lrx/internal/operators/OperatorTakeLastOne$1;->this$0:Lrx/internal/operators/OperatorTakeLastOne;
 
@@ -46,12 +46,12 @@
     .param p1, "n"    # J
 
     .prologue
-    .line 31
+    .line 32
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastOne$1;, "Lrx/internal/operators/OperatorTakeLastOne.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorTakeLastOne$1;->val$parent:Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;
 
     invoke-virtual {v0, p1, p2}, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;->requestMore(J)V
 
-    .line 32
+    .line 33
     return-void
 .end method

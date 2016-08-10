@@ -74,7 +74,7 @@
     .param p2, "association"    # Lcom/upsight/android/analytics/internal/association/Association;
 
     .prologue
-    .line 162
+    .line 167
     monitor-enter p0
 
     :try_start_1
@@ -88,14 +88,14 @@
 
     if-nez p2, :cond_b
 
-    .line 172
+    .line 177
     :cond_9
     :goto_9
     monitor-exit p0
 
     return-void
 
-    .line 166
+    .line 171
     :cond_b
     :try_start_b
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/association/AssociationManagerImpl;->mAssociations:Ljava/util/Map;
@@ -106,22 +106,22 @@
 
     check-cast v0, Ljava/util/Set;
 
-    .line 167
+    .line 172
     .local v0, "associations":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/association/Association;>;"
     if-nez v0, :cond_1a
 
-    .line 168
+    .line 173
     new-instance v0, Ljava/util/HashSet;
 
     .end local v0    # "associations":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/association/Association;>;"
     invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
 
-    .line 170
+    .line 175
     .restart local v0    # "associations":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/association/Association;>;"
     :cond_1a
     invoke-interface {v0, p2}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 171
+    .line 176
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/association/AssociationManagerImpl;->mAssociations:Ljava/util/Map;
 
     invoke-interface {v1, p1, v0}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
@@ -130,7 +130,7 @@
 
     goto :goto_9
 
-    .line 162
+    .line 167
     .end local v0    # "associations":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/association/Association;>;"
     :catchall_23
     move-exception v1
@@ -140,17 +140,17 @@
     throw v1
 .end method
 
-.method public declared-synchronized associate(Ljava/lang/String;Lcom/fasterxml/jackson/databind/node/ObjectNode;)V
+.method public declared-synchronized associate(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
     .registers 4
     .param p1, "eventType"    # Ljava/lang/String;
-    .param p2, "eventNode"    # Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .param p2, "eventNode"    # Lcom/google/gson/JsonObject;
 
     .prologue
     .line 85
     monitor-enter p0
 
     :try_start_1
-    invoke-virtual {p0, p1, p2}, Lcom/upsight/android/analytics/internal/association/AssociationManagerImpl;->associateInner(Ljava/lang/String;Lcom/fasterxml/jackson/databind/node/ObjectNode;)V
+    invoke-virtual {p0, p1, p2}, Lcom/upsight/android/analytics/internal/association/AssociationManagerImpl;->associateInner(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
     :try_end_4
     .catchall {:try_start_1 .. :try_end_4} :catchall_6
 
@@ -168,10 +168,10 @@
     throw v0
 .end method
 
-.method declared-synchronized associateInner(Ljava/lang/String;Lcom/fasterxml/jackson/databind/node/ObjectNode;)V
-    .registers 22
+.method declared-synchronized associateInner(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
+    .registers 21
     .param p1, "eventType"    # Ljava/lang/String;
-    .param p2, "eventNode"    # Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    .param p2, "eventNode"    # Lcom/google/gson/JsonObject;
 
     .prologue
     .line 108
@@ -192,7 +192,7 @@
 
     .line 109
     .local v4, "associations":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/association/Association;>;"
-    if-eqz v4, :cond_dc
+    if-eqz v4, :cond_f0
 
     .line 110
     const/4 v11, 0x0
@@ -211,7 +211,7 @@
 
     move-result v14
 
-    if-eqz v14, :cond_dc
+    if-eqz v14, :cond_f0
 
     .line 115
     invoke-interface {v12}, Ljava/util/Iterator;->next()Ljava/lang/Object;
@@ -240,12 +240,25 @@
 
     cmp-long v14, v14, v16
 
-    if-lez v14, :cond_59
+    if-lez v14, :cond_5f
 
     .line 120
     invoke-interface {v12}, Ljava/util/Iterator;->remove()V
 
     .line 121
+    invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/association/Association;->getId()Ljava/lang/String;
+
+    move-result-object v10
+
+    .line 122
+    .local v10, "id":Ljava/lang/String;
+    invoke-static {v10}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v14
+
+    if-nez v14, :cond_14
+
+    .line 123
     move-object/from16 v0, p0
 
     iget-object v14, v0, Lcom/upsight/android/analytics/internal/association/AssociationManagerImpl;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
@@ -262,145 +275,146 @@
 
     const/16 v17, 0x0
 
-    invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/association/Association;->getId()Ljava/lang/String;
-
-    move-result-object v18
-
-    aput-object v18, v16, v17
+    aput-object v10, v16, v17
 
     invoke-interface/range {v14 .. v16}, Lcom/upsight/android/persistence/UpsightDataStore;->removeObservable(Ljava/lang/Class;[Ljava/lang/String;)Lrx/Observable;
 
     move-result-object v14
 
     invoke-virtual {v14}, Lrx/Observable;->subscribe()Lrx/Subscription;
-    :try_end_55
-    .catchall {:try_start_1 .. :try_end_55} :catchall_56
+    :try_end_5b
+    .catchall {:try_start_1 .. :try_end_5b} :catchall_5c
 
     goto :goto_14
 
     .line 108
     .end local v2    # "association":Lcom/upsight/android/analytics/internal/association/Association;
     .end local v4    # "associations":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/association/Association;>;"
+    .end local v10    # "id":Ljava/lang/String;
     .end local v11    # "isMatched":Z
     .end local v12    # "itr":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/upsight/android/analytics/internal/association/Association;>;"
-    :catchall_56
+    :catchall_5c
     move-exception v14
 
     monitor-exit p0
 
     throw v14
 
-    .line 122
+    .line 125
     .restart local v2    # "association":Lcom/upsight/android/analytics/internal/association/Association;
     .restart local v4    # "associations":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/association/Association;>;"
     .restart local v11    # "isMatched":Z
     .restart local v12    # "itr":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/upsight/android/analytics/internal/association/Association;>;"
-    :cond_59
+    :cond_5f
     if-nez v11, :cond_14
 
-    .line 124
-    :try_start_5b
+    .line 127
+    :try_start_61
     invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/association/Association;->getUpsightDataFilter()Lcom/upsight/android/analytics/internal/association/Association$UpsightDataFilter;
 
     move-result-object v9
 
-    .line 125
+    .line 128
     .local v9, "filter":Lcom/upsight/android/analytics/internal/association/Association$UpsightDataFilter;
     const-string v14, "upsight_data"
 
     move-object/from16 v0, p2
 
-    invoke-virtual {v0, v14}, Lcom/fasterxml/jackson/databind/node/ObjectNode;->path(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {v0, v14}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
 
     move-result-object v3
 
-    .line 126
-    .local v3, "associationNode":Lcom/fasterxml/jackson/databind/JsonNode;
-    invoke-virtual {v3}, Lcom/fasterxml/jackson/databind/JsonNode;->isObject()Z
-
-    move-result v14
-
-    if-eqz v14, :cond_14
-
-    .line 127
-    move-object v0, v3
-
-    check-cast v0, Lcom/fasterxml/jackson/databind/node/ObjectNode;
-
-    move-object v6, v0
-
-    .line 128
-    .local v6, "eventUpsightData":Lcom/fasterxml/jackson/databind/node/ObjectNode;
-    iget-object v14, v9, Lcom/upsight/android/analytics/internal/association/Association$UpsightDataFilter;->matchKey:Ljava/lang/String;
-
-    invoke-virtual {v6, v14}, Lcom/fasterxml/jackson/databind/node/ObjectNode;->path(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
-
-    move-result-object v5
-
     .line 129
-    .local v5, "eventMatchValue":Lcom/fasterxml/jackson/databind/JsonNode;
-    invoke-virtual {v5}, Lcom/fasterxml/jackson/databind/JsonNode;->isValueNode()Z
+    .local v3, "associationNode":Lcom/google/gson/JsonElement;
+    if-eqz v3, :cond_14
+
+    invoke-virtual {v3}, Lcom/google/gson/JsonElement;->isJsonObject()Z
 
     move-result v14
 
     if-eqz v14, :cond_14
 
     .line 130
-    iget-object v14, v9, Lcom/upsight/android/analytics/internal/association/Association$UpsightDataFilter;->matchValues:Lcom/fasterxml/jackson/databind/node/ArrayNode;
+    invoke-virtual {v3}, Lcom/google/gson/JsonElement;->getAsJsonObject()Lcom/google/gson/JsonObject;
 
-    invoke-virtual {v14}, Lcom/fasterxml/jackson/databind/node/ArrayNode;->iterator()Ljava/util/Iterator;
+    move-result-object v6
 
-    move-result-object v10
+    .line 131
+    .local v6, "eventUpsightData":Lcom/google/gson/JsonObject;
+    iget-object v14, v9, Lcom/upsight/android/analytics/internal/association/Association$UpsightDataFilter;->matchKey:Ljava/lang/String;
 
-    .local v10, "i$":Ljava/util/Iterator;
-    :cond_83
-    invoke-interface {v10}, Ljava/util/Iterator;->hasNext()Z
+    invoke-virtual {v6, v14}, Lcom/google/gson/JsonObject;->get(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+
+    move-result-object v5
+
+    .line 132
+    .local v5, "eventMatchValue":Lcom/google/gson/JsonElement;
+    if-eqz v5, :cond_14
+
+    invoke-virtual {v5}, Lcom/google/gson/JsonElement;->isJsonPrimitive()Z
 
     move-result v14
 
     if-eqz v14, :cond_14
 
-    invoke-interface {v10}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v13
-
-    check-cast v13, Lcom/fasterxml/jackson/databind/JsonNode;
-
-    .line 131
-    .local v13, "matchValue":Lcom/fasterxml/jackson/databind/JsonNode;
-    invoke-virtual {v5, v13}, Lcom/fasterxml/jackson/databind/JsonNode;->equals(Ljava/lang/Object;)Z
-
-    move-result v14
-
-    if-eqz v14, :cond_83
-
     .line 133
-    invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/association/Association;->getUpsightData()Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    iget-object v14, v9, Lcom/upsight/android/analytics/internal/association/Association$UpsightDataFilter;->matchValues:Lcom/google/gson/JsonArray;
+
+    invoke-virtual {v14}, Lcom/google/gson/JsonArray;->iterator()Ljava/util/Iterator;
 
     move-result-object v14
 
-    invoke-virtual {v14}, Lcom/fasterxml/jackson/databind/node/ObjectNode;->fields()Ljava/util/Iterator;
+    :cond_8d
+    invoke-interface {v14}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v15
+
+    if-eqz v15, :cond_14
+
+    invoke-interface {v14}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v13
+
+    check-cast v13, Lcom/google/gson/JsonElement;
+
+    .line 134
+    .local v13, "matchValue":Lcom/google/gson/JsonElement;
+    invoke-virtual {v5, v13}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+
+    move-result v15
+
+    if-eqz v15, :cond_8d
+
+    .line 136
+    invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/association/Association;->getUpsightData()Lcom/google/gson/JsonObject;
+
+    move-result-object v14
+
+    invoke-virtual {v14}, Lcom/google/gson/JsonObject;->entrySet()Ljava/util/Set;
 
     move-result-object v8
 
-    .line 134
-    .local v8, "fields":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/util/Map$Entry<Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;>;>;"
-    :goto_9d
-    invoke-interface {v8}, Ljava/util/Iterator;->hasNext()Z
+    .line 137
+    .local v8, "fields":Ljava/util/Set;, "Ljava/util/Set<Ljava/util/Map$Entry<Ljava/lang/String;Lcom/google/gson/JsonElement;>;>;"
+    invoke-interface {v8}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    move-result-object v16
+
+    :goto_ab
+    invoke-interface/range {v16 .. v16}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v14
 
-    if-eqz v14, :cond_b9
+    if-eqz v14, :cond_c7
 
-    .line 135
-    invoke-interface {v8}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface/range {v16 .. v16}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v7
 
     check-cast v7, Ljava/util/Map$Entry;
 
-    .line 136
-    .local v7, "field":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;>;"
+    .line 138
+    .local v7, "field":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Lcom/google/gson/JsonElement;>;"
     invoke-interface {v7}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
 
     move-result-object v14
@@ -411,18 +425,31 @@
 
     move-result-object v15
 
-    check-cast v15, Lcom/fasterxml/jackson/databind/JsonNode;
+    check-cast v15, Lcom/google/gson/JsonElement;
 
-    invoke-virtual {v6, v14, v15}, Lcom/fasterxml/jackson/databind/node/ObjectNode;->put(Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;)Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {v6, v14, v15}, Lcom/google/gson/JsonObject;->add(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
 
-    goto :goto_9d
+    goto :goto_ab
 
-    .line 140
-    .end local v7    # "field":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;>;"
-    :cond_b9
+    .line 142
+    .end local v7    # "field":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Lcom/google/gson/JsonElement;>;"
+    :cond_c7
     invoke-interface {v12}, Ljava/util/Iterator;->remove()V
 
-    .line 141
+    .line 143
+    invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/association/Association;->getId()Ljava/lang/String;
+
+    move-result-object v10
+
+    .line 144
+    .restart local v10    # "id":Ljava/lang/String;
+    invoke-static {v10}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v14
+
+    if-nez v14, :cond_ed
+
+    .line 145
     move-object/from16 v0, p0
 
     iget-object v14, v0, Lcom/upsight/android/analytics/internal/association/AssociationManagerImpl;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
@@ -439,38 +466,35 @@
 
     const/16 v17, 0x0
 
-    invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/association/Association;->getId()Ljava/lang/String;
-
-    move-result-object v18
-
-    aput-object v18, v16, v17
+    aput-object v10, v16, v17
 
     invoke-interface/range {v14 .. v16}, Lcom/upsight/android/persistence/UpsightDataStore;->removeObservable(Ljava/lang/Class;[Ljava/lang/String;)Lrx/Observable;
 
     move-result-object v14
 
     invoke-virtual {v14}, Lrx/Observable;->subscribe()Lrx/Subscription;
-    :try_end_d9
-    .catchall {:try_start_5b .. :try_end_d9} :catchall_56
+    :try_end_ed
+    .catchall {:try_start_61 .. :try_end_ed} :catchall_5c
 
-    .line 143
+    .line 148
+    :cond_ed
     const/4 v11, 0x1
 
-    .line 144
+    .line 149
     goto/16 :goto_14
 
-    .line 152
+    .line 157
     .end local v2    # "association":Lcom/upsight/android/analytics/internal/association/Association;
-    .end local v3    # "associationNode":Lcom/fasterxml/jackson/databind/JsonNode;
-    .end local v5    # "eventMatchValue":Lcom/fasterxml/jackson/databind/JsonNode;
-    .end local v6    # "eventUpsightData":Lcom/fasterxml/jackson/databind/node/ObjectNode;
-    .end local v8    # "fields":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/util/Map$Entry<Ljava/lang/String;Lcom/fasterxml/jackson/databind/JsonNode;>;>;"
+    .end local v3    # "associationNode":Lcom/google/gson/JsonElement;
+    .end local v5    # "eventMatchValue":Lcom/google/gson/JsonElement;
+    .end local v6    # "eventUpsightData":Lcom/google/gson/JsonObject;
+    .end local v8    # "fields":Ljava/util/Set;, "Ljava/util/Set<Ljava/util/Map$Entry<Ljava/lang/String;Lcom/google/gson/JsonElement;>;>;"
     .end local v9    # "filter":Lcom/upsight/android/analytics/internal/association/Association$UpsightDataFilter;
-    .end local v10    # "i$":Ljava/util/Iterator;
+    .end local v10    # "id":Ljava/lang/String;
     .end local v11    # "isMatched":Z
     .end local v12    # "itr":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/upsight/android/analytics/internal/association/Association;>;"
-    .end local v13    # "matchValue":Lcom/fasterxml/jackson/databind/JsonNode;
-    :cond_dc
+    .end local v13    # "matchValue":Lcom/google/gson/JsonElement;
+    :cond_f0
     monitor-exit p0
 
     return-void

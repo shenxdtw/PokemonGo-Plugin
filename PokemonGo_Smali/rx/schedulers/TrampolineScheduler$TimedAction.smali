@@ -36,7 +36,7 @@
 
 
 # direct methods
-.method private constructor <init>(Lrx/functions/Action0;Ljava/lang/Long;I)V
+.method constructor <init>(Lrx/functions/Action0;Ljava/lang/Long;I)V
     .registers 4
     .param p1, "action"    # Lrx/functions/Action0;
     .param p2, "execTime"    # Ljava/lang/Long;
@@ -56,20 +56,6 @@
     iput p3, p0, Lrx/schedulers/TrampolineScheduler$TimedAction;->count:I
 
     .line 118
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/functions/Action0;Ljava/lang/Long;ILrx/schedulers/TrampolineScheduler$1;)V
-    .registers 5
-    .param p1, "x0"    # Lrx/functions/Action0;
-    .param p2, "x1"    # Ljava/lang/Long;
-    .param p3, "x2"    # I
-    .param p4, "x3"    # Lrx/schedulers/TrampolineScheduler$1;
-
-    .prologue
-    .line 109
-    invoke-direct {p0, p1, p2, p3}, Lrx/schedulers/TrampolineScheduler$TimedAction;-><init>(Lrx/functions/Action0;Ljava/lang/Long;I)V
-
     return-void
 .end method
 
@@ -114,8 +100,7 @@
 
     iget v2, p1, Lrx/schedulers/TrampolineScheduler$TimedAction;->count:I
 
-    # invokes: Lrx/schedulers/TrampolineScheduler;->compare(II)I
-    invoke-static {v1, v2}, Lrx/schedulers/TrampolineScheduler;->access$300(II)I
+    invoke-static {v1, v2}, Lrx/schedulers/TrampolineScheduler;->compare(II)I
 
     move-result v0
 

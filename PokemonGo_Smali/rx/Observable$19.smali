@@ -21,8 +21,8 @@
         "Ljava/lang/Object;",
         "Lrx/functions/Func0",
         "<",
-        "Lrx/subjects/Subject",
-        "<TT;TT;>;>;"
+        "Lrx/observables/ConnectableObservable",
+        "<TT;>;>;"
     }
 .end annotation
 
@@ -32,21 +32,17 @@
 
 .field final synthetic val$bufferSize:I
 
-.field final synthetic val$scheduler:Lrx/Scheduler;
-
 
 # direct methods
-.method constructor <init>(Lrx/Observable;ILrx/Scheduler;)V
-    .registers 4
+.method constructor <init>(Lrx/Observable;I)V
+    .registers 3
 
     .prologue
-    .line 6185
+    .line 7233
     .local p0, "this":Lrx/Observable$19;, "Lrx/Observable.19;"
     iput-object p1, p0, Lrx/Observable$19;->this$0:Lrx/Observable;
 
     iput p2, p0, Lrx/Observable$19;->val$bufferSize:I
-
-    iput-object p3, p0, Lrx/Observable$19;->val$scheduler:Lrx/Scheduler;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -59,37 +55,33 @@
     .registers 2
 
     .prologue
-    .line 6185
+    .line 7233
     .local p0, "this":Lrx/Observable$19;, "Lrx/Observable.19;"
-    invoke-virtual {p0}, Lrx/Observable$19;->call()Lrx/subjects/Subject;
+    invoke-virtual {p0}, Lrx/Observable$19;->call()Lrx/observables/ConnectableObservable;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public final call()Lrx/subjects/Subject;
+.method public call()Lrx/observables/ConnectableObservable;
     .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
-            "Lrx/subjects/Subject",
-            "<TT;TT;>;"
+            "Lrx/observables/ConnectableObservable",
+            "<TT;>;"
         }
     .end annotation
 
     .prologue
-    .line 6188
+    .line 7236
     .local p0, "this":Lrx/Observable$19;, "Lrx/Observable.19;"
-    iget v0, p0, Lrx/Observable$19;->val$bufferSize:I
+    iget-object v0, p0, Lrx/Observable$19;->this$0:Lrx/Observable;
 
-    invoke-static {v0}, Lrx/subjects/ReplaySubject;->createWithSize(I)Lrx/subjects/ReplaySubject;
+    iget v1, p0, Lrx/Observable$19;->val$bufferSize:I
 
-    move-result-object v0
-
-    iget-object v1, p0, Lrx/Observable$19;->val$scheduler:Lrx/Scheduler;
-
-    invoke-static {v0, v1}, Lrx/internal/operators/OperatorReplay;->createScheduledSubject(Lrx/subjects/Subject;Lrx/Scheduler;)Lrx/subjects/Subject;
+    invoke-virtual {v0, v1}, Lrx/Observable;->replay(I)Lrx/observables/ConnectableObservable;
 
     move-result-object v0
 

@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/UpsightContextCompat$1;,
         Lcom/upsight/android/UpsightContextCompat$NoOpLogger;,
         Lcom/upsight/android/UpsightContextCompat$NoOpDataStore;
     }

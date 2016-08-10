@@ -13,7 +13,17 @@
     .end subannotation
 .end annotation
 
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Ldagger/Subcomponent$Builder;
+    }
+.end annotation
+
 .annotation runtime Ljava/lang/annotation/Documented;
+.end annotation
+
+.annotation runtime Ljava/lang/annotation/Retention;
+    value = .enum Ljava/lang/annotation/RetentionPolicy;->RUNTIME:Ljava/lang/annotation/RetentionPolicy;
 .end annotation
 
 .annotation runtime Ljava/lang/annotation/Target;

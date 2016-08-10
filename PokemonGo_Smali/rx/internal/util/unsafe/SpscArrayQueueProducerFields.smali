@@ -27,43 +27,21 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 4
+    .registers 2
 
     .prologue
-    .line 42
-    :try_start_0
-    sget-object v1, Lrx/internal/util/unsafe/UnsafeAccess;->UNSAFE:Lsun/misc/Unsafe;
+    .line 39
+    const-class v0, Lrx/internal/util/unsafe/SpscArrayQueueProducerFields;
 
-    const-class v2, Lrx/internal/util/unsafe/SpscArrayQueueProducerFields;
+    const-string v1, "producerIndex"
 
-    const-string v3, "producerIndex"
+    invoke-static {v0, v1}, Lrx/internal/util/unsafe/UnsafeAccess;->addressOf(Ljava/lang/Class;Ljava/lang/String;)J
 
-    invoke-virtual {v2, v3}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+    move-result-wide v0
 
-    move-result-object v2
+    sput-wide v0, Lrx/internal/util/unsafe/SpscArrayQueueProducerFields;->P_INDEX_OFFSET:J
 
-    invoke-virtual {v1, v2}, Lsun/misc/Unsafe;->objectFieldOffset(Ljava/lang/reflect/Field;)J
-
-    move-result-wide v2
-
-    sput-wide v2, Lrx/internal/util/unsafe/SpscArrayQueueProducerFields;->P_INDEX_OFFSET:J
-    :try_end_10
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_10} :catch_11
-
-    .line 47
     return-void
-
-    .line 44
-    :catch_11
-    move-exception v0
-
-    .line 45
-    .local v0, "e":Ljava/lang/NoSuchFieldException;
-    new-instance v1, Ljava/lang/RuntimeException;
-
-    invoke-direct {v1, v0}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/Throwable;)V
-
-    throw v1
 .end method
 
 .method public constructor <init>(I)V
@@ -71,10 +49,10 @@
     .param p1, "capacity"    # I
 
     .prologue
-    .line 52
+    .line 44
     .local p0, "this":Lrx/internal/util/unsafe/SpscArrayQueueProducerFields;, "Lrx/internal/util/unsafe/SpscArrayQueueProducerFields<TE;>;"
     invoke-direct {p0, p1}, Lrx/internal/util/unsafe/SpscArrayQueueL1Pad;-><init>(I)V
 
-    .line 53
+    .line 45
     return-void
 .end method

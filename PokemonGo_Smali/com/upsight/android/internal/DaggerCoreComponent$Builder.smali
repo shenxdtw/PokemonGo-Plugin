@@ -17,11 +17,9 @@
 # instance fields
 .field private contextModule:Lcom/upsight/android/internal/ContextModule;
 
-.field private coreModule:Lcom/upsight/android/internal/CoreModule;
+.field private jsonModule:Lcom/upsight/android/internal/JsonModule;
 
 .field private loggerModule:Lcom/upsight/android/internal/logger/LoggerModule;
-
-.field private objectMapperModule:Lcom/upsight/android/internal/ObjectMapperModule;
 
 .field private persistenceModule:Lcom/upsight/android/internal/persistence/PersistenceModule;
 
@@ -39,10 +37,9 @@
     .registers 1
 
     .prologue
-    .line 115
+    .line 224
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 116
     return-void
 .end method
 
@@ -51,7 +48,7 @@
     .param p1, "x0"    # Lcom/upsight/android/internal/DaggerCoreComponent$1;
 
     .prologue
-    .line 104
+    .line 207
     invoke-direct {p0}, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;-><init>()V
 
     return-void
@@ -62,19 +59,19 @@
     .param p0, "x0"    # Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
 
     .prologue
-    .line 104
+    .line 207
     iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->contextModule:Lcom/upsight/android/internal/ContextModule;
 
     return-object v0
 .end method
 
-.method static synthetic access$200(Lcom/upsight/android/internal/DaggerCoreComponent$Builder;)Lcom/upsight/android/internal/ObjectMapperModule;
+.method static synthetic access$200(Lcom/upsight/android/internal/DaggerCoreComponent$Builder;)Lcom/upsight/android/internal/JsonModule;
     .registers 2
     .param p0, "x0"    # Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
 
     .prologue
-    .line 104
-    iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->objectMapperModule:Lcom/upsight/android/internal/ObjectMapperModule;
+    .line 207
+    iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->jsonModule:Lcom/upsight/android/internal/JsonModule;
 
     return-object v0
 .end method
@@ -84,7 +81,7 @@
     .param p0, "x0"    # Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
 
     .prologue
-    .line 104
+    .line 207
     iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->storableModule:Lcom/upsight/android/internal/persistence/storable/StorableModule;
 
     return-object v0
@@ -95,7 +92,7 @@
     .param p0, "x0"    # Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
 
     .prologue
-    .line 104
+    .line 207
     iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->schedulersModule:Lcom/upsight/android/internal/SchedulersModule;
 
     return-object v0
@@ -106,7 +103,7 @@
     .param p0, "x0"    # Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
 
     .prologue
-    .line 104
+    .line 207
     iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->persistenceModule:Lcom/upsight/android/internal/persistence/PersistenceModule;
 
     return-object v0
@@ -117,7 +114,7 @@
     .param p0, "x0"    # Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
 
     .prologue
-    .line 104
+    .line 207
     iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->loggerModule:Lcom/upsight/android/internal/logger/LoggerModule;
 
     return-object v0
@@ -128,7 +125,7 @@
     .param p0, "x0"    # Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
 
     .prologue
-    .line 104
+    .line 207
     iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->propertiesModule:Lcom/upsight/android/internal/PropertiesModule;
 
     return-object v0
@@ -139,7 +136,7 @@
     .param p0, "x0"    # Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
 
     .prologue
-    .line 104
+    .line 207
     iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->upsightContextModule:Lcom/upsight/android/internal/UpsightContextModule;
 
     return-object v0
@@ -148,129 +145,138 @@
 
 # virtual methods
 .method public build()Lcom/upsight/android/internal/CoreComponent;
-    .registers 3
+    .registers 4
 
     .prologue
-    .line 119
-    iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->coreModule:Lcom/upsight/android/internal/CoreModule;
-
-    if-nez v0, :cond_b
-
-    .line 120
-    new-instance v0, Lcom/upsight/android/internal/CoreModule;
-
-    invoke-direct {v0}, Lcom/upsight/android/internal/CoreModule;-><init>()V
-
-    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->coreModule:Lcom/upsight/android/internal/CoreModule;
-
-    .line 122
-    :cond_b
-    iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->upsightContextModule:Lcom/upsight/android/internal/UpsightContextModule;
-
-    if-nez v0, :cond_16
-
-    .line 123
-    new-instance v0, Lcom/upsight/android/internal/UpsightContextModule;
-
-    invoke-direct {v0}, Lcom/upsight/android/internal/UpsightContextModule;-><init>()V
-
-    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->upsightContextModule:Lcom/upsight/android/internal/UpsightContextModule;
-
-    .line 125
-    :cond_16
+    .line 227
     iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->contextModule:Lcom/upsight/android/internal/ContextModule;
 
-    if-nez v0, :cond_22
+    if-nez v0, :cond_23
 
-    .line 126
+    .line 228
     new-instance v0, Ljava/lang/IllegalStateException;
 
-    const-string v1, "contextModule must be set"
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-class v2, Lcom/upsight/android/internal/ContextModule;
+
+    invoke-virtual {v2}, Ljava/lang/Class;->getCanonicalName()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, " must be set"
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
 
     invoke-direct {v0, v1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
 
     throw v0
 
-    .line 128
-    :cond_22
-    iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->propertiesModule:Lcom/upsight/android/internal/PropertiesModule;
+    .line 230
+    :cond_23
+    iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->jsonModule:Lcom/upsight/android/internal/JsonModule;
 
-    if-nez v0, :cond_2d
+    if-nez v0, :cond_2e
 
-    .line 129
-    new-instance v0, Lcom/upsight/android/internal/PropertiesModule;
+    .line 231
+    new-instance v0, Lcom/upsight/android/internal/JsonModule;
 
-    invoke-direct {v0}, Lcom/upsight/android/internal/PropertiesModule;-><init>()V
+    invoke-direct {v0}, Lcom/upsight/android/internal/JsonModule;-><init>()V
 
-    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->propertiesModule:Lcom/upsight/android/internal/PropertiesModule;
+    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->jsonModule:Lcom/upsight/android/internal/JsonModule;
 
-    .line 131
-    :cond_2d
-    iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->objectMapperModule:Lcom/upsight/android/internal/ObjectMapperModule;
-
-    if-nez v0, :cond_38
-
-    .line 132
-    new-instance v0, Lcom/upsight/android/internal/ObjectMapperModule;
-
-    invoke-direct {v0}, Lcom/upsight/android/internal/ObjectMapperModule;-><init>()V
-
-    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->objectMapperModule:Lcom/upsight/android/internal/ObjectMapperModule;
-
-    .line 134
-    :cond_38
-    iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->schedulersModule:Lcom/upsight/android/internal/SchedulersModule;
-
-    if-nez v0, :cond_43
-
-    .line 135
-    new-instance v0, Lcom/upsight/android/internal/SchedulersModule;
-
-    invoke-direct {v0}, Lcom/upsight/android/internal/SchedulersModule;-><init>()V
-
-    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->schedulersModule:Lcom/upsight/android/internal/SchedulersModule;
-
-    .line 137
-    :cond_43
+    .line 233
+    :cond_2e
     iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->storableModule:Lcom/upsight/android/internal/persistence/storable/StorableModule;
 
-    if-nez v0, :cond_4e
+    if-nez v0, :cond_39
 
-    .line 138
+    .line 234
     new-instance v0, Lcom/upsight/android/internal/persistence/storable/StorableModule;
 
     invoke-direct {v0}, Lcom/upsight/android/internal/persistence/storable/StorableModule;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->storableModule:Lcom/upsight/android/internal/persistence/storable/StorableModule;
 
-    .line 140
-    :cond_4e
+    .line 236
+    :cond_39
+    iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->schedulersModule:Lcom/upsight/android/internal/SchedulersModule;
+
+    if-nez v0, :cond_44
+
+    .line 237
+    new-instance v0, Lcom/upsight/android/internal/SchedulersModule;
+
+    invoke-direct {v0}, Lcom/upsight/android/internal/SchedulersModule;-><init>()V
+
+    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->schedulersModule:Lcom/upsight/android/internal/SchedulersModule;
+
+    .line 239
+    :cond_44
     iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->persistenceModule:Lcom/upsight/android/internal/persistence/PersistenceModule;
 
-    if-nez v0, :cond_59
+    if-nez v0, :cond_4f
 
-    .line 141
+    .line 240
     new-instance v0, Lcom/upsight/android/internal/persistence/PersistenceModule;
 
     invoke-direct {v0}, Lcom/upsight/android/internal/persistence/PersistenceModule;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->persistenceModule:Lcom/upsight/android/internal/persistence/PersistenceModule;
 
-    .line 143
-    :cond_59
+    .line 242
+    :cond_4f
     iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->loggerModule:Lcom/upsight/android/internal/logger/LoggerModule;
 
-    if-nez v0, :cond_64
+    if-nez v0, :cond_5a
 
-    .line 144
+    .line 243
     new-instance v0, Lcom/upsight/android/internal/logger/LoggerModule;
 
     invoke-direct {v0}, Lcom/upsight/android/internal/logger/LoggerModule;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->loggerModule:Lcom/upsight/android/internal/logger/LoggerModule;
 
-    .line 146
-    :cond_64
+    .line 245
+    :cond_5a
+    iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->propertiesModule:Lcom/upsight/android/internal/PropertiesModule;
+
+    if-nez v0, :cond_65
+
+    .line 246
+    new-instance v0, Lcom/upsight/android/internal/PropertiesModule;
+
+    invoke-direct {v0}, Lcom/upsight/android/internal/PropertiesModule;-><init>()V
+
+    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->propertiesModule:Lcom/upsight/android/internal/PropertiesModule;
+
+    .line 248
+    :cond_65
+    iget-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->upsightContextModule:Lcom/upsight/android/internal/UpsightContextModule;
+
+    if-nez v0, :cond_70
+
+    .line 249
+    new-instance v0, Lcom/upsight/android/internal/UpsightContextModule;
+
+    invoke-direct {v0}, Lcom/upsight/android/internal/UpsightContextModule;-><init>()V
+
+    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->upsightContextModule:Lcom/upsight/android/internal/UpsightContextModule;
+
+    .line 251
+    :cond_70
     new-instance v0, Lcom/upsight/android/internal/DaggerCoreComponent;
 
     const/4 v1, 0x0
@@ -281,226 +287,159 @@
 .end method
 
 .method public contextModule(Lcom/upsight/android/internal/ContextModule;)Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
-    .registers 4
+    .registers 3
     .param p1, "contextModule"    # Lcom/upsight/android/internal/ContextModule;
 
     .prologue
-    .line 166
-    if-nez p1, :cond_a
+    .line 269
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 167
-    new-instance v0, Ljava/lang/NullPointerException;
+    move-result-object v0
 
-    const-string v1, "contextModule"
+    check-cast v0, Lcom/upsight/android/internal/ContextModule;
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->contextModule:Lcom/upsight/android/internal/ContextModule;
 
-    throw v0
-
-    .line 169
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->contextModule:Lcom/upsight/android/internal/ContextModule;
-
-    .line 170
+    .line 270
     return-object p0
 .end method
 
 .method public coreModule(Lcom/upsight/android/internal/CoreModule;)Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
-    .registers 4
+    .registers 2
     .param p1, "coreModule"    # Lcom/upsight/android/internal/CoreModule;
+    .annotation runtime Ljava/lang/Deprecated;
+    .end annotation
 
     .prologue
-    .line 150
-    if-nez p1, :cond_a
+    .line 259
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 151
-    new-instance v0, Ljava/lang/NullPointerException;
+    .line 260
+    return-object p0
+.end method
 
-    const-string v1, "coreModule"
+.method public jsonModule(Lcom/upsight/android/internal/JsonModule;)Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
+    .registers 3
+    .param p1, "jsonModule"    # Lcom/upsight/android/internal/JsonModule;
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    .prologue
+    .line 279
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    throw v0
+    move-result-object v0
 
-    .line 153
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->coreModule:Lcom/upsight/android/internal/CoreModule;
+    check-cast v0, Lcom/upsight/android/internal/JsonModule;
 
-    .line 154
+    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->jsonModule:Lcom/upsight/android/internal/JsonModule;
+
+    .line 280
     return-object p0
 .end method
 
 .method public loggerModule(Lcom/upsight/android/internal/logger/LoggerModule;)Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
-    .registers 4
+    .registers 3
     .param p1, "loggerModule"    # Lcom/upsight/android/internal/logger/LoggerModule;
 
     .prologue
-    .line 214
-    if-nez p1, :cond_a
+    .line 299
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 215
-    new-instance v0, Ljava/lang/NullPointerException;
+    move-result-object v0
 
-    const-string v1, "loggerModule"
+    check-cast v0, Lcom/upsight/android/internal/logger/LoggerModule;
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->loggerModule:Lcom/upsight/android/internal/logger/LoggerModule;
 
-    throw v0
-
-    .line 217
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->loggerModule:Lcom/upsight/android/internal/logger/LoggerModule;
-
-    .line 218
-    return-object p0
-.end method
-
-.method public objectMapperModule(Lcom/upsight/android/internal/ObjectMapperModule;)Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
-    .registers 4
-    .param p1, "objectMapperModule"    # Lcom/upsight/android/internal/ObjectMapperModule;
-
-    .prologue
-    .line 182
-    if-nez p1, :cond_a
-
-    .line 183
-    new-instance v0, Ljava/lang/NullPointerException;
-
-    const-string v1, "objectMapperModule"
-
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
-
-    throw v0
-
-    .line 185
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->objectMapperModule:Lcom/upsight/android/internal/ObjectMapperModule;
-
-    .line 186
+    .line 300
     return-object p0
 .end method
 
 .method public persistenceModule(Lcom/upsight/android/internal/persistence/PersistenceModule;)Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
-    .registers 4
+    .registers 3
     .param p1, "persistenceModule"    # Lcom/upsight/android/internal/persistence/PersistenceModule;
 
     .prologue
-    .line 206
-    if-nez p1, :cond_a
+    .line 294
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 207
-    new-instance v0, Ljava/lang/NullPointerException;
+    move-result-object v0
 
-    const-string v1, "persistenceModule"
+    check-cast v0, Lcom/upsight/android/internal/persistence/PersistenceModule;
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->persistenceModule:Lcom/upsight/android/internal/persistence/PersistenceModule;
 
-    throw v0
-
-    .line 209
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->persistenceModule:Lcom/upsight/android/internal/persistence/PersistenceModule;
-
-    .line 210
+    .line 295
     return-object p0
 .end method
 
 .method public propertiesModule(Lcom/upsight/android/internal/PropertiesModule;)Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
-    .registers 4
+    .registers 3
     .param p1, "propertiesModule"    # Lcom/upsight/android/internal/PropertiesModule;
 
     .prologue
-    .line 174
-    if-nez p1, :cond_a
+    .line 274
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 175
-    new-instance v0, Ljava/lang/NullPointerException;
+    move-result-object v0
 
-    const-string v1, "propertiesModule"
+    check-cast v0, Lcom/upsight/android/internal/PropertiesModule;
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->propertiesModule:Lcom/upsight/android/internal/PropertiesModule;
 
-    throw v0
-
-    .line 177
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->propertiesModule:Lcom/upsight/android/internal/PropertiesModule;
-
-    .line 178
+    .line 275
     return-object p0
 .end method
 
 .method public schedulersModule(Lcom/upsight/android/internal/SchedulersModule;)Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
-    .registers 4
+    .registers 3
     .param p1, "schedulersModule"    # Lcom/upsight/android/internal/SchedulersModule;
 
     .prologue
-    .line 190
-    if-nez p1, :cond_a
+    .line 284
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 191
-    new-instance v0, Ljava/lang/NullPointerException;
+    move-result-object v0
 
-    const-string v1, "schedulersModule"
+    check-cast v0, Lcom/upsight/android/internal/SchedulersModule;
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->schedulersModule:Lcom/upsight/android/internal/SchedulersModule;
 
-    throw v0
-
-    .line 193
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->schedulersModule:Lcom/upsight/android/internal/SchedulersModule;
-
-    .line 194
+    .line 285
     return-object p0
 .end method
 
 .method public storableModule(Lcom/upsight/android/internal/persistence/storable/StorableModule;)Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
-    .registers 4
+    .registers 3
     .param p1, "storableModule"    # Lcom/upsight/android/internal/persistence/storable/StorableModule;
 
     .prologue
-    .line 198
-    if-nez p1, :cond_a
+    .line 289
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 199
-    new-instance v0, Ljava/lang/NullPointerException;
+    move-result-object v0
 
-    const-string v1, "storableModule"
+    check-cast v0, Lcom/upsight/android/internal/persistence/storable/StorableModule;
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->storableModule:Lcom/upsight/android/internal/persistence/storable/StorableModule;
 
-    throw v0
-
-    .line 201
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->storableModule:Lcom/upsight/android/internal/persistence/storable/StorableModule;
-
-    .line 202
+    .line 290
     return-object p0
 .end method
 
 .method public upsightContextModule(Lcom/upsight/android/internal/UpsightContextModule;)Lcom/upsight/android/internal/DaggerCoreComponent$Builder;
-    .registers 4
+    .registers 3
     .param p1, "upsightContextModule"    # Lcom/upsight/android/internal/UpsightContextModule;
 
     .prologue
-    .line 158
-    if-nez p1, :cond_a
+    .line 264
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 159
-    new-instance v0, Ljava/lang/NullPointerException;
+    move-result-object v0
 
-    const-string v1, "upsightContextModule"
+    check-cast v0, Lcom/upsight/android/internal/UpsightContextModule;
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    iput-object v0, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->upsightContextModule:Lcom/upsight/android/internal/UpsightContextModule;
 
-    throw v0
-
-    .line 161
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/internal/DaggerCoreComponent$Builder;->upsightContextModule:Lcom/upsight/android/internal/UpsightContextModule;
-
-    .line 162
+    .line 265
     return-object p0
 .end method

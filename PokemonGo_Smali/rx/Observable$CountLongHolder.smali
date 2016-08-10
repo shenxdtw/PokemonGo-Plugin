@@ -34,7 +34,7 @@
     .registers 1
 
     .prologue
-    .line 3819
+    .line 4210
     new-instance v0, Lrx/Observable$CountLongHolder$1;
 
     invoke-direct {v0}, Lrx/Observable$CountLongHolder$1;-><init>()V
@@ -48,7 +48,7 @@
     .registers 1
 
     .prologue
-    .line 3818
+    .line 4209
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

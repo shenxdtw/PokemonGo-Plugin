@@ -71,39 +71,45 @@
     .param p1, "e"    # Lcom/google/android/gms/auth/UserRecoverableAuthException;
 
     .prologue
-    .line 177
+    .line 180
     new-instance v0, Lcom/nianticlabs/nia/account/AccountsActivity$2;
 
     invoke-direct {v0, p0, p1}, Lcom/nianticlabs/nia/account/AccountsActivity$2;-><init>(Lcom/nianticlabs/nia/account/AccountsActivity;Lcom/google/android/gms/auth/UserRecoverableAuthException;)V
 
     invoke-virtual {p0, v0}, Lcom/nianticlabs/nia/account/AccountsActivity;->runOnUiThread(Ljava/lang/Runnable;)V
 
-    .line 183
+    .line 186
     return-void
 .end method
 
 .method private failAuth(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;)V
-    .registers 5
+    .registers 6
     .param p1, "status"    # Lcom/nianticlabs/nia/account/NianticAccountManager$Status;
     .param p2, "error"    # Ljava/lang/String;
 
     .prologue
-    .line 171
+    .line 174
     sget-object v0, Lcom/nianticlabs/nia/account/AccountsActivity;->TAG:Ljava/lang/String;
 
     invoke-static {v0, p2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 172
+    .line 175
     iget-object v0, p0, Lcom/nianticlabs/nia/account/AccountsActivity;->accountManager:Lcom/nianticlabs/nia/account/NianticAccountManager;
 
     const-string v1, ""
 
-    invoke-virtual {v0, p1, v1}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;)V
+    iget-object v2, p0, Lcom/nianticlabs/nia/account/AccountsActivity;->accountManager:Lcom/nianticlabs/nia/account/NianticAccountManager;
 
-    .line 173
+    invoke-virtual {v2}, Lcom/nianticlabs/nia/account/NianticAccountManager;->getAccountName()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v0, p1, v1, v2}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 176
     invoke-virtual {p0}, Lcom/nianticlabs/nia/account/AccountsActivity;->finish()V
 
-    .line 174
+    .line 177
     return-void
 .end method
 
@@ -112,7 +118,7 @@
     .param p1, "accountName"    # Ljava/lang/String;
 
     .prologue
-    .line 133
+    .line 134
     new-instance v0, Lcom/nianticlabs/nia/account/AccountsActivity$1;
 
     invoke-direct {v0, p0, p1}, Lcom/nianticlabs/nia/account/AccountsActivity$1;-><init>(Lcom/nianticlabs/nia/account/AccountsActivity;Ljava/lang/String;)V
@@ -121,10 +127,10 @@
 
     new-array v1, v1, [Ljava/lang/Void;
 
-    .line 138
+    .line 139
     invoke-virtual {v0, v1}, Lcom/nianticlabs/nia/account/AccountsActivity$1;->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
 
-    .line 139
+    .line 140
     return-void
 .end method
 
@@ -138,26 +144,32 @@
 
     const/4 v0, 0x0
 
-    .line 121
+    .line 122
     iget-object v1, p0, Lcom/nianticlabs/nia/account/AccountsActivity;->accountManager:Lcom/nianticlabs/nia/account/NianticAccountManager;
 
     invoke-virtual {v1}, Lcom/nianticlabs/nia/account/NianticAccountManager;->getAccountName()Ljava/lang/String;
 
     move-result-object v8
 
-    .line 122
-    .local v8, "accountName":Ljava/lang/String;
-    if-eqz v8, :cond_f
-
     .line 123
+    .local v8, "accountName":Ljava/lang/String;
+    if-eqz v8, :cond_15
+
+    invoke-virtual {v8}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v1
+
+    if-nez v1, :cond_15
+
+    .line 124
     invoke-direct {p0, v8}, Lcom/nianticlabs/nia/account/AccountsActivity;->getAuth(Ljava/lang/String;)V
 
-    .line 130
-    :goto_e
+    .line 131
+    :goto_14
     return-void
 
-    .line 125
-    :cond_f
+    .line 126
+    :cond_15
     new-array v2, v10, [Ljava/lang/String;
 
     const-string v1, "com.google"
@@ -178,11 +190,11 @@
 
     move-result-object v9
 
-    .line 128
+    .line 129
     .local v9, "googlePicker":Landroid/content/Intent;
     invoke-virtual {p0, v9, v10}, Lcom/nianticlabs/nia/account/AccountsActivity;->startActivityForResult(Landroid/content/Intent;I)V
 
-    goto :goto_e
+    goto :goto_14
 .end method
 
 .method private static getAuthTokenBlocking(Lcom/nianticlabs/nia/account/AccountsActivity;Ljava/lang/String;)V
@@ -191,7 +203,7 @@
     .param p1, "accountName"    # Ljava/lang/String;
 
     .prologue
-    .line 146
+    .line 147
     :try_start_0
     sget-object v6, Lcom/nianticlabs/nia/account/AccountsActivity;->TAG:Ljava/lang/String;
 
@@ -215,7 +227,7 @@
 
     invoke-static {v6, v7}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 149
+    .line 150
     invoke-virtual {p0}, Lcom/nianticlabs/nia/account/AccountsActivity;->getIntent()Landroid/content/Intent;
 
     move-result-object v6
@@ -226,7 +238,7 @@
 
     move-result-object v1
 
-    .line 150
+    .line 151
     .local v1, "clientId":Ljava/lang/String;
     sget-object v6, Lcom/nianticlabs/nia/account/AccountsActivity;->TAG:Ljava/lang/String;
 
@@ -250,7 +262,7 @@
 
     invoke-static {v6, v7}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 151
+    .line 152
     new-instance v6, Ljava/lang/StringBuilder;
 
     invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
@@ -269,7 +281,7 @@
 
     move-result-object v2
 
-    .line 152
+    .line 153
     .local v2, "scope":Ljava/lang/String;
     sget-object v6, Lcom/nianticlabs/nia/account/AccountsActivity;->TAG:Ljava/lang/String;
 
@@ -293,49 +305,49 @@
 
     invoke-static {v6, v7}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 153
+    .line 154
     invoke-static {p0, p1, v2}, Lcom/google/android/gms/auth/GoogleAuthUtil;->getToken(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
-    .line 154
+    .line 155
     .local v3, "token":Ljava/lang/String;
     iget-object v6, p0, Lcom/nianticlabs/nia/account/AccountsActivity;->accountManager:Lcom/nianticlabs/nia/account/NianticAccountManager;
 
     sget-object v7, Lcom/nianticlabs/nia/account/NianticAccountManager$Status;->OK:Lcom/nianticlabs/nia/account/NianticAccountManager$Status;
 
-    invoke-virtual {v6, v7, v3}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;)V
+    invoke-virtual {v6, v7, v3, p1}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 155
+    .line 156
     invoke-direct {p0}, Lcom/nianticlabs/nia/account/AccountsActivity;->postFinish()V
     :try_end_73
     .catch Lcom/google/android/gms/auth/UserRecoverableAuthException; {:try_start_0 .. :try_end_73} :catch_74
     .catch Ljava/io/IOException; {:try_start_0 .. :try_end_73} :catch_79
     .catch Lcom/google/android/gms/auth/GoogleAuthException; {:try_start_0 .. :try_end_73} :catch_8e
 
-    .line 168
+    .line 171
     .end local v1    # "clientId":Ljava/lang/String;
     .end local v2    # "scope":Ljava/lang/String;
     .end local v3    # "token":Ljava/lang/String;
     :goto_73
     return-void
 
-    .line 156
+    .line 157
     :catch_74
     move-exception v5
 
-    .line 157
+    .line 158
     .local v5, "userAuthEx":Lcom/google/android/gms/auth/UserRecoverableAuthException;
     invoke-direct {p0, v5}, Lcom/nianticlabs/nia/account/AccountsActivity;->askUserToRecover(Lcom/google/android/gms/auth/UserRecoverableAuthException;)V
 
     goto :goto_73
 
-    .line 158
+    .line 159
     .end local v5    # "userAuthEx":Lcom/google/android/gms/auth/UserRecoverableAuthException;
     :catch_79
     move-exception v4
 
-    .line 159
+    .line 160
     .local v4, "transientEx":Ljava/io/IOException;
     sget-object v6, Lcom/nianticlabs/nia/account/AccountsActivity;->TAG:Ljava/lang/String;
 
@@ -343,26 +355,26 @@
 
     invoke-static {v6, v7, v4}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 161
+    .line 162
     iget-object v6, p0, Lcom/nianticlabs/nia/account/AccountsActivity;->accountManager:Lcom/nianticlabs/nia/account/NianticAccountManager;
 
     sget-object v7, Lcom/nianticlabs/nia/account/NianticAccountManager$Status;->NON_RECOVERABLE_ERROR:Lcom/nianticlabs/nia/account/NianticAccountManager$Status;
 
     const-string v8, ""
 
-    invoke-virtual {v6, v7, v8}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;)V
+    invoke-virtual {v6, v7, v8, p1}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 162
+    .line 164
     invoke-direct {p0}, Lcom/nianticlabs/nia/account/AccountsActivity;->postFinish()V
 
     goto :goto_73
 
-    .line 163
+    .line 165
     .end local v4    # "transientEx":Ljava/io/IOException;
     :catch_8e
     move-exception v0
 
-    .line 164
+    .line 166
     .local v0, "authEx":Lcom/google/android/gms/auth/GoogleAuthException;
     sget-object v6, Lcom/nianticlabs/nia/account/AccountsActivity;->TAG:Ljava/lang/String;
 
@@ -370,16 +382,16 @@
 
     invoke-static {v6, v7, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 165
+    .line 167
     iget-object v6, p0, Lcom/nianticlabs/nia/account/AccountsActivity;->accountManager:Lcom/nianticlabs/nia/account/NianticAccountManager;
 
     sget-object v7, Lcom/nianticlabs/nia/account/NianticAccountManager$Status;->NON_RECOVERABLE_ERROR:Lcom/nianticlabs/nia/account/NianticAccountManager$Status;
 
     const-string v8, ""
 
-    invoke-virtual {v6, v7, v8}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;)V
+    invoke-virtual {v6, v7, v8, p1}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 166
+    .line 169
     invoke-direct {p0}, Lcom/nianticlabs/nia/account/AccountsActivity;->postFinish()V
 
     goto :goto_73
@@ -389,14 +401,14 @@
     .registers 2
 
     .prologue
-    .line 186
+    .line 189
     new-instance v0, Lcom/nianticlabs/nia/account/AccountsActivity$3;
 
     invoke-direct {v0, p0}, Lcom/nianticlabs/nia/account/AccountsActivity$3;-><init>(Lcom/nianticlabs/nia/account/AccountsActivity;)V
 
     invoke-virtual {p0, v0}, Lcom/nianticlabs/nia/account/AccountsActivity;->runOnUiThread(Ljava/lang/Runnable;)V
 
-    .line 192
+    .line 195
     return-void
 .end method
 
@@ -409,7 +421,7 @@
     .param p3, "data"    # Landroid/content/Intent;
 
     .prologue
-    .line 85
+    .line 86
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -428,24 +440,24 @@
 
     move-result-object v1
 
-    .line 87
+    .line 88
     .local v1, "error":Ljava/lang/String;
-    packed-switch p1, :pswitch_data_78
+    packed-switch p1, :pswitch_data_76
 
-    .line 117
+    .line 118
     sget-object v2, Lcom/nianticlabs/nia/account/AccountsActivity;->TAG:Ljava/lang/String;
 
     invoke-static {v2, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 118
+    .line 119
     :goto_1b
     return-void
 
-    .line 89
+    .line 90
     :pswitch_1c
     if-nez p2, :cond_26
 
-    .line 90
+    .line 91
     sget-object v2, Lcom/nianticlabs/nia/account/NianticAccountManager$Status;->USER_CANCELED_LOGIN:Lcom/nianticlabs/nia/account/NianticAccountManager$Status;
 
     const-string v3, "User decided to cancel account selection."
@@ -454,11 +466,11 @@
 
     goto :goto_1b
 
-    .line 95
+    .line 96
     :cond_26
     if-nez p3, :cond_41
 
-    .line 96
+    .line 97
     sget-object v2, Lcom/nianticlabs/nia/account/NianticAccountManager$Status;->NON_RECOVERABLE_ERROR:Lcom/nianticlabs/nia/account/NianticAccountManager$Status;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -483,7 +495,7 @@
 
     goto :goto_1b
 
-    .line 100
+    .line 101
     :cond_41
     const-string v2, "authAccount"
 
@@ -491,20 +503,18 @@
 
     move-result-object v0
 
-    .line 101
+    .line 102
     .local v0, "accountName":Ljava/lang/String;
-    if-eqz v0, :cond_51
+    if-eqz v0, :cond_4f
 
-    const-string v2, ""
-
-    invoke-virtual {v2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
 
     move-result v2
 
-    if-eqz v2, :cond_6a
+    if-eqz v2, :cond_68
 
-    .line 102
-    :cond_51
+    .line 103
+    :cond_4f
     sget-object v2, Lcom/nianticlabs/nia/account/NianticAccountManager$Status;->NON_RECOVERABLE_ERROR:Lcom/nianticlabs/nia/account/NianticAccountManager$Status;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -529,31 +539,31 @@
 
     goto :goto_1b
 
-    .line 106
-    :cond_6a
+    .line 107
+    :cond_68
     iget-object v2, p0, Lcom/nianticlabs/nia/account/AccountsActivity;->accountManager:Lcom/nianticlabs/nia/account/NianticAccountManager;
 
     invoke-virtual {v2, v0}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAccountName(Ljava/lang/String;)V
 
-    .line 107
+    .line 108
     invoke-direct {p0, v0}, Lcom/nianticlabs/nia/account/AccountsActivity;->getAuth(Ljava/lang/String;)V
 
     goto :goto_1b
 
-    .line 111
+    .line 112
     .end local v0    # "accountName":Ljava/lang/String;
-    :pswitch_73
+    :pswitch_71
     invoke-direct {p0}, Lcom/nianticlabs/nia/account/AccountsActivity;->getAuthOrAccount()V
 
     goto :goto_1b
 
-    .line 87
+    .line 88
     nop
 
-    :pswitch_data_78
+    :pswitch_data_76
     .packed-switch 0x1
         :pswitch_1c
-        :pswitch_73
+        :pswitch_71
     .end packed-switch
 .end method
 
@@ -630,7 +640,7 @@
 .end method
 
 .method protected onResume()V
-    .registers 5
+    .registers 6
 
     .prologue
     .line 63
@@ -643,7 +653,7 @@
 
     .line 66
     .local v0, "resultCode":I
-    if-eqz v0, :cond_2e
+    if-eqz v0, :cond_34
 
     .line 70
     sget-object v1, Lcom/nianticlabs/nia/account/AccountsActivity;->TAG:Ljava/lang/String;
@@ -675,29 +685,37 @@
 
     const-string v3, ""
 
-    invoke-virtual {v1, v2, v3}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;)V
+    iget-object v4, p0, Lcom/nianticlabs/nia/account/AccountsActivity;->accountManager:Lcom/nianticlabs/nia/account/NianticAccountManager;
 
     .line 73
+    invoke-virtual {v4}, Lcom/nianticlabs/nia/account/NianticAccountManager;->getAccountName()Ljava/lang/String;
+
+    move-result-object v4
+
+    .line 72
+    invoke-virtual {v1, v2, v3, v4}, Lcom/nianticlabs/nia/account/NianticAccountManager;->setAuthToken(Lcom/nianticlabs/nia/account/NianticAccountManager$Status;Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 74
     invoke-virtual {p0}, Lcom/nianticlabs/nia/account/AccountsActivity;->finish()V
 
-    .line 81
-    :cond_2d
-    :goto_2d
+    .line 82
+    :cond_33
+    :goto_33
     return-void
 
-    .line 77
-    :cond_2e
+    .line 78
+    :cond_34
     iget-boolean v1, p0, Lcom/nianticlabs/nia/account/AccountsActivity;->authInProgress:Z
 
-    if-nez v1, :cond_2d
+    if-nez v1, :cond_33
 
-    .line 78
+    .line 79
     const/4 v1, 0x1
 
     iput-boolean v1, p0, Lcom/nianticlabs/nia/account/AccountsActivity;->authInProgress:Z
 
-    .line 79
+    .line 80
     invoke-direct {p0}, Lcom/nianticlabs/nia/account/AccountsActivity;->getAuthOrAccount()V
 
-    goto :goto_2d
+    goto :goto_33
 .end method

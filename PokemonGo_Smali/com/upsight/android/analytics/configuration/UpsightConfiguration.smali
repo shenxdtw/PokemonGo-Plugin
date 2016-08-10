@@ -11,7 +11,10 @@
 
 # instance fields
 .field id:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "id"
     .end annotation
 
@@ -20,19 +23,28 @@
 .end field
 
 .field private mScope:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "scope"
     .end annotation
 .end field
 
 .field private mSessionNumCreated:I
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "session_num_created"
     .end annotation
 .end field
 
 .field private mValue:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "value"
     .end annotation
 .end field
@@ -43,10 +55,10 @@
     .registers 1
 
     .prologue
-    .line 43
+    .line 48
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 44
+    .line 49
     return-void
 .end method
 
@@ -57,19 +69,19 @@
     .param p3, "sessionNumCreated"    # I
 
     .prologue
-    .line 36
+    .line 41
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 37
+    .line 42
     iput-object p1, p0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->mScope:Ljava/lang/String;
 
-    .line 38
+    .line 43
     iput-object p2, p0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->mValue:Ljava/lang/String;
 
-    .line 39
+    .line 44
     iput p3, p0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->mSessionNumCreated:I
 
-    .line 40
+    .line 45
     return-void
 .end method
 
@@ -80,7 +92,7 @@
     .param p2, "currentSessionNum"    # I
 
     .prologue
-    .line 20
+    .line 21
     new-instance v0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
 
     invoke-direct {v0, p0, p1, p2}, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
@@ -99,15 +111,15 @@
 
     const/4 v2, 0x0
 
-    .line 69
+    .line 74
     if-ne p0, p1, :cond_5
 
-    .line 79
+    .line 84
     :cond_4
     :goto_4
     return v1
 
-    .line 73
+    .line 78
     :cond_5
     if-eqz p1, :cond_11
 
@@ -124,16 +136,16 @@
     :cond_11
     move v1, v2
 
-    .line 74
+    .line 79
     goto :goto_4
 
     :cond_13
     move-object v0, p1
 
-    .line 77
+    .line 82
     check-cast v0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
 
-    .line 79
+    .line 84
     .local v0, "that":Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
     iget-object v3, p0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->id:Ljava/lang/String;
 
@@ -163,7 +175,7 @@
     .registers 2
 
     .prologue
-    .line 55
+    .line 60
     iget-object v0, p0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->mValue:Ljava/lang/String;
 
     return-object v0
@@ -173,7 +185,7 @@
     .registers 2
 
     .prologue
-    .line 47
+    .line 52
     iget-object v0, p0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->id:Ljava/lang/String;
 
     return-object v0
@@ -183,7 +195,7 @@
     .registers 2
 
     .prologue
-    .line 51
+    .line 56
     iget-object v0, p0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->mScope:Ljava/lang/String;
 
     return-object v0
@@ -193,7 +205,7 @@
     .registers 2
 
     .prologue
-    .line 59
+    .line 64
     iget v0, p0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->mSessionNumCreated:I
 
     return v0
@@ -203,7 +215,7 @@
     .registers 2
 
     .prologue
-    .line 64
+    .line 69
     iget-object v0, p0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->id:Ljava/lang/String;
 
     if-eqz v0, :cond_b

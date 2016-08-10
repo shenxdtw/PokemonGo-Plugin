@@ -65,7 +65,51 @@
     return-void
 .end method
 
-.method private _onCompleted()V
+.method public static create(Lrx/schedulers/TestScheduler;)Lrx/subjects/TestSubject;
+    .registers 3
+    .param p0, "scheduler"    # Lrx/schedulers/TestScheduler;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<T:",
+            "Ljava/lang/Object;",
+            ">(",
+            "Lrx/schedulers/TestScheduler;",
+            ")",
+            "Lrx/subjects/TestSubject",
+            "<TT;>;"
+        }
+    .end annotation
+
+    .prologue
+    .line 46
+    new-instance v0, Lrx/subjects/SubjectSubscriptionManager;
+
+    invoke-direct {v0}, Lrx/subjects/SubjectSubscriptionManager;-><init>()V
+
+    .line 48
+    .local v0, "state":Lrx/subjects/SubjectSubscriptionManager;, "Lrx/subjects/SubjectSubscriptionManager<TT;>;"
+    new-instance v1, Lrx/subjects/TestSubject$1;
+
+    invoke-direct {v1, v0}, Lrx/subjects/TestSubject$1;-><init>(Lrx/subjects/SubjectSubscriptionManager;)V
+
+    iput-object v1, v0, Lrx/subjects/SubjectSubscriptionManager;->onAdded:Lrx/functions/Action1;
+
+    .line 56
+    iget-object v1, v0, Lrx/subjects/SubjectSubscriptionManager;->onAdded:Lrx/functions/Action1;
+
+    iput-object v1, v0, Lrx/subjects/SubjectSubscriptionManager;->onTerminated:Lrx/functions/Action1;
+
+    .line 58
+    new-instance v1, Lrx/subjects/TestSubject;
+
+    invoke-direct {v1, v0, v0, p0}, Lrx/subjects/TestSubject;-><init>(Lrx/Observable$OnSubscribe;Lrx/subjects/SubjectSubscriptionManager;Lrx/schedulers/TestScheduler;)V
+
+    return-object v1
+.end method
+
+
+# virtual methods
+.method _onCompleted()V
     .registers 7
 
     .prologue
@@ -122,7 +166,7 @@
     return-void
 .end method
 
-.method private _onError(Ljava/lang/Throwable;)V
+.method _onError(Ljava/lang/Throwable;)V
     .registers 8
     .param p1, "e"    # Ljava/lang/Throwable;
 
@@ -180,7 +224,7 @@
     return-void
 .end method
 
-.method private _onNext(Ljava/lang/Object;)V
+.method _onNext(Ljava/lang/Object;)V
     .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -225,85 +269,6 @@
     return-void
 .end method
 
-.method static synthetic access$000(Lrx/subjects/TestSubject;)V
-    .registers 1
-    .param p0, "x0"    # Lrx/subjects/TestSubject;
-
-    .prologue
-    .line 36
-    invoke-direct {p0}, Lrx/subjects/TestSubject;->_onCompleted()V
-
-    return-void
-.end method
-
-.method static synthetic access$100(Lrx/subjects/TestSubject;Ljava/lang/Throwable;)V
-    .registers 2
-    .param p0, "x0"    # Lrx/subjects/TestSubject;
-    .param p1, "x1"    # Ljava/lang/Throwable;
-
-    .prologue
-    .line 36
-    invoke-direct {p0, p1}, Lrx/subjects/TestSubject;->_onError(Ljava/lang/Throwable;)V
-
-    return-void
-.end method
-
-.method static synthetic access$200(Lrx/subjects/TestSubject;Ljava/lang/Object;)V
-    .registers 2
-    .param p0, "x0"    # Lrx/subjects/TestSubject;
-    .param p1, "x1"    # Ljava/lang/Object;
-
-    .prologue
-    .line 36
-    invoke-direct {p0, p1}, Lrx/subjects/TestSubject;->_onNext(Ljava/lang/Object;)V
-
-    return-void
-.end method
-
-.method public static create(Lrx/schedulers/TestScheduler;)Lrx/subjects/TestSubject;
-    .registers 3
-    .param p0, "scheduler"    # Lrx/schedulers/TestScheduler;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "<T:",
-            "Ljava/lang/Object;",
-            ">(",
-            "Lrx/schedulers/TestScheduler;",
-            ")",
-            "Lrx/subjects/TestSubject",
-            "<TT;>;"
-        }
-    .end annotation
-
-    .prologue
-    .line 46
-    new-instance v0, Lrx/subjects/SubjectSubscriptionManager;
-
-    invoke-direct {v0}, Lrx/subjects/SubjectSubscriptionManager;-><init>()V
-
-    .line 48
-    .local v0, "state":Lrx/subjects/SubjectSubscriptionManager;, "Lrx/subjects/SubjectSubscriptionManager<TT;>;"
-    new-instance v1, Lrx/subjects/TestSubject$1;
-
-    invoke-direct {v1, v0}, Lrx/subjects/TestSubject$1;-><init>(Lrx/subjects/SubjectSubscriptionManager;)V
-
-    iput-object v1, v0, Lrx/subjects/SubjectSubscriptionManager;->onAdded:Lrx/functions/Action1;
-
-    .line 56
-    iget-object v1, v0, Lrx/subjects/SubjectSubscriptionManager;->onAdded:Lrx/functions/Action1;
-
-    iput-object v1, v0, Lrx/subjects/SubjectSubscriptionManager;->onTerminated:Lrx/functions/Action1;
-
-    .line 58
-    new-instance v1, Lrx/subjects/TestSubject;
-
-    invoke-direct {v1, v0, v0, p0}, Lrx/subjects/TestSubject;-><init>(Lrx/Observable$OnSubscribe;Lrx/subjects/SubjectSubscriptionManager;Lrx/schedulers/TestScheduler;)V
-
-    return-object v1
-.end method
-
-
-# virtual methods
 .method public hasObservers()Z
     .registers 2
 
@@ -384,7 +349,7 @@
 .method public onError(Ljava/lang/Throwable;J)V
     .registers 8
     .param p1, "e"    # Ljava/lang/Throwable;
-    .param p2, "dalayTime"    # J
+    .param p2, "delayTime"    # J
 
     .prologue
     .line 128

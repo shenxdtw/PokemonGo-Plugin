@@ -56,17 +56,13 @@
 
 .method public bridge synthetic compare(Ljava/lang/Object;Ljava/lang/Object;)I
     .registers 4
-    .param p1, "x0"    # Ljava/lang/Object;
-    .param p2, "x1"    # Ljava/lang/Object;
 
     .prologue
     .line 40
     check-cast p1, Ljava/lang/Comparable;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     check-cast p2, Ljava/lang/Comparable;
 
-    .end local p2    # "x1":Ljava/lang/Object;
     invoke-virtual {p0, p1, p2}, Lcom/google/gson/internal/LinkedTreeMap$1;->compare(Ljava/lang/Comparable;Ljava/lang/Comparable;)I
 
     move-result v0

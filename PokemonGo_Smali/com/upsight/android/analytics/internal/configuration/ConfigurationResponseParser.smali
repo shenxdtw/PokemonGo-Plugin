@@ -16,17 +16,17 @@
 
 
 # instance fields
-.field private mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+.field private mGson:Lcom/google/gson/Gson;
 
 .field private mSessionManager:Lcom/upsight/android/analytics/internal/session/SessionManager;
 
 
 # direct methods
-.method constructor <init>(Lcom/fasterxml/jackson/databind/ObjectMapper;Lcom/upsight/android/analytics/internal/session/SessionManager;)V
+.method constructor <init>(Lcom/google/gson/Gson;Lcom/upsight/android/analytics/internal/session/SessionManager;)V
     .registers 3
-    .param p1, "mapper"    # Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .param p1, "gson"    # Lcom/google/gson/Gson;
         .annotation runtime Ljavax/inject/Named;
-            value = "config-mapper"
+            value = "config-gson"
         .end annotation
     .end param
     .param p2, "sessionManager"    # Lcom/upsight/android/analytics/internal/session/SessionManager;
@@ -34,23 +34,23 @@
     .end annotation
 
     .prologue
-    .line 36
+    .line 38
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 37
-    iput-object p1, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .line 39
+    iput-object p1, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;->mGson:Lcom/google/gson/Gson;
 
-    .line 38
+    .line 40
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;->mSessionManager:Lcom/upsight/android/analytics/internal/session/SessionManager;
 
-    .line 39
+    .line 41
     return-void
 .end method
 
 
 # virtual methods
 .method public parse(Ljava/lang/String;)Ljava/util/Collection;
-    .registers 11
+    .registers 12
     .param p1, "resposneJson"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -71,74 +71,91 @@
     .end annotation
 
     .prologue
-    .line 49
-    iget-object v6, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
-
-    const-class v7, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigResponseJson;
-
-    invoke-virtual {v6, p1, v7}, Lcom/fasterxml/jackson/databind/ObjectMapper;->readValue(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
-
-    move-result-object v5
-
-    check-cast v5, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigResponseJson;
-
-    .line 51
-    .local v5, "rsp":Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigResponseJson;
-    new-instance v4, Ljava/util/LinkedList;
-
-    invoke-direct {v4}, Ljava/util/LinkedList;-><init>()V
-
-    .line 52
-    .local v4, "res":Ljava/util/Collection;, "Ljava/util/Collection<Lcom/upsight/android/analytics/configuration/UpsightConfiguration;>;"
-    iget-object v0, v5, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigResponseJson;->configs:[Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigJson;
-
-    .local v0, "arr$":[Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigJson;
-    array-length v3, v0
-
-    .local v3, "len$":I
-    const/4 v2, 0x0
-
-    .local v2, "i$":I
-    :goto_13
-    if-ge v2, v3, :cond_35
-
-    aget-object v1, v0, v2
-
     .line 53
-    .local v1, "cj":Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigJson;
-    iget-object v6, v1, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigJson;->type:Ljava/lang/String;
+    :try_start_0
+    iget-object v4, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;->mGson:Lcom/google/gson/Gson;
 
-    iget-object v7, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    const-class v5, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigResponseJson;
 
-    iget-object v8, v1, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigJson;->configuration:Lcom/fasterxml/jackson/databind/JsonNode;
+    invoke-virtual {v4, p1, v5}, Lcom/google/gson/Gson;->fromJson(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
 
-    invoke-virtual {v7, v8}, Lcom/fasterxml/jackson/databind/ObjectMapper;->writeValueAsString(Ljava/lang/Object;)Ljava/lang/String;
+    move-result-object v3
 
-    move-result-object v7
+    check-cast v3, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigResponseJson;
+    :try_end_a
+    .catch Lcom/google/gson/JsonSyntaxException; {:try_start_0 .. :try_end_a} :catch_33
 
-    iget-object v8, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;->mSessionManager:Lcom/upsight/android/analytics/internal/session/SessionManager;
+    .line 58
+    .local v3, "rsp":Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigResponseJson;
+    new-instance v2, Ljava/util/LinkedList;
 
-    invoke-interface {v8}, Lcom/upsight/android/analytics/internal/session/SessionManager;->getCurrentSession()Lcom/upsight/android/analytics/internal/session/Session;
+    invoke-direct {v2}, Ljava/util/LinkedList;-><init>()V
+
+    .line 59
+    .local v2, "res":Ljava/util/Collection;, "Ljava/util/Collection<Lcom/upsight/android/analytics/configuration/UpsightConfiguration;>;"
+    iget-object v5, v3, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigResponseJson;->configs:[Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigJson;
+
+    array-length v6, v5
+
+    const/4 v4, 0x0
+
+    :goto_13
+    if-ge v4, v6, :cond_3a
+
+    aget-object v0, v5, v4
+
+    .line 60
+    .local v0, "cj":Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigJson;
+    iget-object v7, v0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigJson;->type:Ljava/lang/String;
+
+    iget-object v8, v0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigJson;->configuration:Lcom/google/gson/JsonElement;
+
+    invoke-virtual {v8}, Lcom/google/gson/JsonElement;->toString()Ljava/lang/String;
 
     move-result-object v8
 
-    invoke-interface {v8}, Lcom/upsight/android/analytics/internal/session/Session;->getSessionNumber()I
+    iget-object v9, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;->mSessionManager:Lcom/upsight/android/analytics/internal/session/SessionManager;
 
-    move-result v8
+    .line 61
+    invoke-interface {v9}, Lcom/upsight/android/analytics/internal/session/SessionManager;->getCurrentSession()Lcom/upsight/android/analytics/internal/session/Session;
 
-    invoke-static {v6, v7, v8}, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->create(Ljava/lang/String;Ljava/lang/String;I)Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
+    move-result-object v9
 
-    move-result-object v6
+    invoke-interface {v9}, Lcom/upsight/android/analytics/internal/session/Session;->getSessionNumber()I
 
-    invoke-interface {v4, v6}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
+    move-result v9
 
-    .line 52
-    add-int/lit8 v2, v2, 0x1
+    .line 60
+    invoke-static {v7, v8, v9}, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->create(Ljava/lang/String;Ljava/lang/String;I)Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
+
+    move-result-object v7
+
+    invoke-interface {v2, v7}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
+
+    .line 59
+    add-int/lit8 v4, v4, 0x1
 
     goto :goto_13
 
-    .line 57
-    .end local v1    # "cj":Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigJson;
-    :cond_35
-    return-object v4
+    .line 54
+    .end local v0    # "cj":Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigJson;
+    .end local v2    # "res":Ljava/util/Collection;, "Ljava/util/Collection<Lcom/upsight/android/analytics/configuration/UpsightConfiguration;>;"
+    .end local v3    # "rsp":Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigResponseJson;
+    :catch_33
+    move-exception v1
+
+    .line 55
+    .local v1, "e":Lcom/google/gson/JsonSyntaxException;
+    new-instance v4, Ljava/io/IOException;
+
+    invoke-direct {v4, v1}, Ljava/io/IOException;-><init>(Ljava/lang/Throwable;)V
+
+    throw v4
+
+    .line 64
+    .end local v1    # "e":Lcom/google/gson/JsonSyntaxException;
+    .restart local v2    # "res":Ljava/util/Collection;, "Ljava/util/Collection<Lcom/upsight/android/analytics/configuration/UpsightConfiguration;>;"
+    .restart local v3    # "rsp":Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser$ConfigResponseJson;
+    :cond_3a
+    return-object v2
 .end method

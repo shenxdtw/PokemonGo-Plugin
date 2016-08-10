@@ -20,7 +20,7 @@
 
 
 # instance fields
-.field private final predicate:Lrx/functions/Func1;
+.field final predicate:Lrx/functions/Func1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func1",
@@ -56,17 +56,6 @@
 
     .line 34
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorFilter;)Lrx/functions/Func1;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorFilter;
-
-    .prologue
-    .line 28
-    iget-object v0, p0, Lrx/internal/operators/OperatorFilter;->predicate:Lrx/functions/Func1;
-
-    return-object v0
 .end method
 
 

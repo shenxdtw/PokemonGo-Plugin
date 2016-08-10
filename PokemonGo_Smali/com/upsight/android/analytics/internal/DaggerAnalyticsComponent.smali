@@ -9,7 +9,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$1;,
         Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;
     }
 .end annotation
@@ -53,13 +52,9 @@
     .end annotation
 .end field
 
-.field private final com_upsight_android_analytics_internal_dispatcher_Proxy:Lcom/upsight/android/analytics/internal/dispatcher/DaggerAnalyticsComponent_PackageProxy;
+.field private configParserProvider:Ljavax/inject/Provider;
 
-.field private final com_upsight_android_analytics_internal_dispatcher_delivery_Proxy:Lcom/upsight/android/analytics/internal/dispatcher/delivery/DaggerAnalyticsComponent_PackageProxy;
-
-.field private final com_upsight_android_analytics_internal_provider_Proxy:Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;
-
-.field private final com_upsight_android_analytics_internal_session_Proxy:Lcom/upsight/android/analytics/internal/session/DaggerAnalyticsComponent_PackageProxy;
+.field private configParserProvider2:Ljavax/inject/Provider;
 
 .field private configurationResponseParserProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
@@ -83,6 +78,8 @@
     .end annotation
 .end field
 
+.field private locationTrackerProvider:Ljavax/inject/Provider;
+
 .field private managerConfigParserProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -93,6 +90,10 @@
         }
     .end annotation
 .end field
+
+.field private manualTrackerProvider:Ljavax/inject/Provider;
+
+.field private optOutStatusProvider:Ljavax/inject/Provider;
 
 .field private provideAssociationManagerProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
@@ -116,12 +117,12 @@
     .end annotation
 .end field
 
-.field private provideConfigMapperProvider:Ljavax/inject/Provider;
+.field private provideConfigGsonProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljavax/inject/Provider",
             "<",
-            "Lcom/fasterxml/jackson/databind/ObjectMapper;",
+            "Lcom/google/gson/Gson;",
             ">;"
         }
     .end annotation
@@ -155,6 +156,17 @@
             "Ljavax/inject/Provider",
             "<",
             "Lcom/upsight/android/analytics/UpsightGooglePlayHelper;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private provideManualTrackerProvider:Ljavax/inject/Provider;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/analytics/UpsightLifeCycleTracker;",
             ">;"
         }
     .end annotation
@@ -327,6 +339,8 @@
     .end annotation
 .end field
 
+.field private responseParserProvider:Ljavax/inject/Provider;
+
 .field private upsightAnalyticsExtensionMembersInjector:Ldagger/MembersInjector;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -338,13 +352,15 @@
     .end annotation
 .end field
 
+.field private userAttributesProvider:Ljavax/inject/Provider;
+
 
 # direct methods
 .method static constructor <clinit>()V
     .registers 1
 
     .prologue
-    .line 67
+    .line 68
     const-class v0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -371,43 +387,15 @@
     .param p1, "builder"    # Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;
 
     .prologue
-    .line 102
+    .line 152
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 72
-    new-instance v0, Lcom/upsight/android/analytics/internal/session/DaggerAnalyticsComponent_PackageProxy;
-
-    invoke-direct {v0}, Lcom/upsight/android/analytics/internal/session/DaggerAnalyticsComponent_PackageProxy;-><init>()V
-
-    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_session_Proxy:Lcom/upsight/android/analytics/internal/session/DaggerAnalyticsComponent_PackageProxy;
-
-    .line 78
-    new-instance v0, Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;
-
-    invoke-direct {v0}, Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;-><init>()V
-
-    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_provider_Proxy:Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;
-
-    .line 92
-    new-instance v0, Lcom/upsight/android/analytics/internal/dispatcher/DaggerAnalyticsComponent_PackageProxy;
-
-    invoke-direct {v0}, Lcom/upsight/android/analytics/internal/dispatcher/DaggerAnalyticsComponent_PackageProxy;-><init>()V
-
-    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_dispatcher_Proxy:Lcom/upsight/android/analytics/internal/dispatcher/DaggerAnalyticsComponent_PackageProxy;
-
-    .line 96
-    new-instance v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DaggerAnalyticsComponent_PackageProxy;
-
-    invoke-direct {v0}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DaggerAnalyticsComponent_PackageProxy;-><init>()V
-
-    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_dispatcher_delivery_Proxy:Lcom/upsight/android/analytics/internal/dispatcher/delivery/DaggerAnalyticsComponent_PackageProxy;
-
-    .line 103
+    .line 153
     sget-boolean v0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->$assertionsDisabled:Z
 
-    if-nez v0, :cond_2b
+    if-nez v0, :cond_f
 
-    if-nez p1, :cond_2b
+    if-nez p1, :cond_f
 
     new-instance v0, Ljava/lang/AssertionError;
 
@@ -415,11 +403,11 @@
 
     throw v0
 
-    .line 104
-    :cond_2b
+    .line 154
+    :cond_f
     invoke-direct {p0, p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->initialize(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)V
 
-    .line 105
+    .line 155
     return-void
 .end method
 
@@ -429,7 +417,7 @@
     .param p2, "x1"    # Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$1;
 
     .prologue
-    .line 68
+    .line 72
     invoke-direct {p0, p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;-><init>(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)V
 
     return-void
@@ -439,7 +427,7 @@
     .registers 2
 
     .prologue
-    .line 108
+    .line 158
     new-instance v0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;
 
     const/4 v1, 0x0
@@ -450,27 +438,30 @@
 .end method
 
 .method private initialize(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)V
-    .registers 10
+    .registers 11
     .param p1, "builder"    # Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;
 
     .prologue
-    .line 112
+    .line 164
+    .line 167
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->baseAnalyticsModule:Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
     invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$100(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
 
     move-result-object v0
 
+    .line 166
     invoke-static {v0}, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideUncaughtExceptionHandlerFactory;->create(Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 165
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUncaughtExceptionHandlerProvider:Ljavax/inject/Provider;
 
-    .line 113
+    .line 171
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->baseAnalyticsModule:Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
     invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$100(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
 
@@ -480,42 +471,43 @@
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 170
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
-    .line 114
-    # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->configObjectMapperModule:Lcom/upsight/android/analytics/internal/ConfigObjectMapperModule;
-    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$200(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/ConfigObjectMapperModule;
+    .line 176
+    # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->configGsonModule:Lcom/upsight/android/analytics/internal/ConfigGsonModule;
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$200(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/ConfigGsonModule;
 
     move-result-object v0
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
-    invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/ConfigObjectMapperModule_ProvideConfigMapperFactory;->create(Lcom/upsight/android/analytics/internal/ConfigObjectMapperModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+    .line 175
+    invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/ConfigGsonModule_ProvideConfigGsonFactory;->create(Lcom/upsight/android/analytics/internal/ConfigGsonModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 174
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigMapperProvider:Ljavax/inject/Provider;
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigGsonProvider:Ljavax/inject/Provider;
 
-    .line 115
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_session_Proxy:Lcom/upsight/android/analytics/internal/session/DaggerAnalyticsComponent_PackageProxy;
+    .line 178
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigGsonProvider:Ljavax/inject/Provider;
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigMapperProvider:Ljavax/inject/Provider;
+    invoke-static {v0}, Lcom/upsight/android/analytics/internal/session/ConfigParser_Factory;->create(Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
-    invoke-static {v1}, Lcom/upsight/android/analytics/internal/session/ConfigParser_Factory;->create(Ljavax/inject/Provider;)Ldagger/internal/Factory;
+    move-result-object v0
 
-    move-result-object v1
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->configParserProvider:Ljavax/inject/Provider;
 
-    iput-object v1, v0, Lcom/upsight/android/analytics/internal/session/DaggerAnalyticsComponent_PackageProxy;->configParserProvider:Ljavax/inject/Provider;
-
-    .line 116
+    .line 182
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->baseAnalyticsModule:Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
     invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$100(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
 
@@ -525,13 +517,14 @@
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 181
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideClockProvider:Ljavax/inject/Provider;
 
-    .line 117
+    .line 187
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->sessionModule:Lcom/upsight/android/analytics/internal/session/SessionModule;
     invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$300(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/session/SessionModule;
 
@@ -539,23 +532,23 @@
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_session_Proxy:Lcom/upsight/android/analytics/internal/session/DaggerAnalyticsComponent_PackageProxy;
-
-    iget-object v2, v2, Lcom/upsight/android/analytics/internal/session/DaggerAnalyticsComponent_PackageProxy;->configParserProvider:Ljavax/inject/Provider;
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->configParserProvider:Ljavax/inject/Provider;
 
     iget-object v3, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideClockProvider:Ljavax/inject/Provider;
 
+    .line 186
     invoke-static {v0, v1, v2, v3}, Lcom/upsight/android/analytics/internal/session/SessionModule_ProvidesSessionManagerImplFactory;->create(Lcom/upsight/android/analytics/internal/session/SessionModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 185
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesSessionManagerImplProvider:Ljavax/inject/Provider;
 
-    .line 118
+    .line 195
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->sessionModule:Lcom/upsight/android/analytics/internal/session/SessionModule;
     invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$300(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/session/SessionModule;
 
@@ -563,37 +556,82 @@
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesSessionManagerImplProvider:Ljavax/inject/Provider;
 
+    .line 194
     invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/session/SessionModule_ProvidesSessionManagerFactory;->create(Lcom/upsight/android/analytics/internal/session/SessionModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 193
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesSessionManagerProvider:Ljavax/inject/Provider;
 
-    .line 119
+    .line 200
+    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesSessionManagerProvider:Ljavax/inject/Provider;
+
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
+
+    .line 199
+    invoke-static {v0, v1, v2}, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    .line 198
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->manualTrackerProvider:Ljavax/inject/Provider;
+
+    .line 207
+    # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->lifecycleTrackerModule:Lcom/upsight/android/analytics/internal/session/LifecycleTrackerModule;
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$400(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/session/LifecycleTrackerModule;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->manualTrackerProvider:Ljavax/inject/Provider;
+
+    .line 206
+    invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/session/LifecycleTrackerModule_ProvideManualTrackerFactory;->create(Lcom/upsight/android/analytics/internal/session/LifecycleTrackerModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    .line 205
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideManualTrackerProvider:Ljavax/inject/Provider;
+
+    .line 212
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->schemaModule:Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaModule;
-    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$400(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaModule;
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$500(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaModule;
 
     move-result-object v0
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
+    .line 211
     invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaModule_ProvideSchemaSelectorBuilderFactory;->create(Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 210
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideSchemaSelectorBuilderProvider:Ljavax/inject/Provider;
 
-    .line 120
+    .line 217
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->associationModule:Lcom/upsight/android/analytics/internal/association/AssociationModule;
-    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$500(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/association/AssociationModule;
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$600(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/association/AssociationModule;
 
     move-result-object v0
 
@@ -601,134 +639,136 @@
 
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideClockProvider:Ljavax/inject/Provider;
 
+    .line 216
     invoke-static {v0, v1, v2}, Lcom/upsight/android/analytics/internal/association/AssociationModule_ProvideAssociationManagerFactory;->create(Lcom/upsight/android/analytics/internal/association/AssociationModule;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 215
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideAssociationManagerProvider:Ljavax/inject/Provider;
 
-    .line 121
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_provider_Proxy:Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;
-
+    .line 222
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
-
-    move-result-object v1
-
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
-
-    invoke-static {v1, v2}, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-
-    move-result-object v1
-
-    invoke-static {v1}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
-
-    move-result-object v1
-
-    iput-object v1, v0, Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;->optOutStatusProvider:Ljavax/inject/Provider;
-
-    .line 122
-    # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->providerModule:Lcom/upsight/android/analytics/internal/provider/ProviderModule;
-    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$600(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/provider/ProviderModule;
 
     move-result-object v0
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_provider_Proxy:Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
-    iget-object v1, v1, Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;->optOutStatusProvider:Ljavax/inject/Provider;
+    .line 221
+    invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/provider/OptOutStatus_Factory;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
+    move-result-object v0
+
+    .line 220
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->optOutStatusProvider:Ljavax/inject/Provider;
+
+    .line 227
+    # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->providerModule:Lcom/upsight/android/analytics/internal/provider/ProviderModule;
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$700(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/provider/ProviderModule;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->optOutStatusProvider:Ljavax/inject/Provider;
+
+    .line 226
     invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesOptOutStatusFactory;->create(Lcom/upsight/android/analytics/internal/provider/ProviderModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 225
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesOptOutStatusProvider:Ljavax/inject/Provider;
 
-    .line 123
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_provider_Proxy:Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;
-
+    .line 232
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
-
-    move-result-object v1
-
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
-
-    invoke-static {v1, v2}, Lcom/upsight/android/analytics/internal/provider/LocationTracker_Factory;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-
-    move-result-object v1
-
-    invoke-static {v1}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
-
-    move-result-object v1
-
-    iput-object v1, v0, Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;->locationTrackerProvider:Ljavax/inject/Provider;
-
-    .line 124
-    # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->providerModule:Lcom/upsight/android/analytics/internal/provider/ProviderModule;
-    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$600(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/provider/ProviderModule;
 
     move-result-object v0
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_provider_Proxy:Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
-    iget-object v1, v1, Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;->locationTrackerProvider:Ljavax/inject/Provider;
+    .line 231
+    invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/provider/LocationTracker_Factory;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
+    move-result-object v0
+
+    .line 230
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->locationTrackerProvider:Ljavax/inject/Provider;
+
+    .line 237
+    # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->providerModule:Lcom/upsight/android/analytics/internal/provider/ProviderModule;
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$700(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/provider/ProviderModule;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->locationTrackerProvider:Ljavax/inject/Provider;
+
+    .line 236
     invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesUpsightLocationTrackerFactory;->create(Lcom/upsight/android/analytics/internal/provider/ProviderModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 235
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesUpsightLocationTrackerProvider:Ljavax/inject/Provider;
 
-    .line 125
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_provider_Proxy:Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;
-
+    .line 242
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
-
-    move-result-object v1
-
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
-
-    invoke-static {v1, v2}, Lcom/upsight/android/analytics/internal/provider/UserAttributes_Factory;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-
-    move-result-object v1
-
-    invoke-static {v1}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
-
-    move-result-object v1
-
-    iput-object v1, v0, Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;->userAttributesProvider:Ljavax/inject/Provider;
-
-    .line 126
-    # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->providerModule:Lcom/upsight/android/analytics/internal/provider/ProviderModule;
-    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$600(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/provider/ProviderModule;
 
     move-result-object v0
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_provider_Proxy:Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
-    iget-object v1, v1, Lcom/upsight/android/analytics/internal/provider/DaggerAnalyticsComponent_PackageProxy;->userAttributesProvider:Ljavax/inject/Provider;
+    .line 241
+    invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/provider/UserAttributes_Factory;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
+    move-result-object v0
+
+    .line 240
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->userAttributesProvider:Ljavax/inject/Provider;
+
+    .line 247
+    # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->providerModule:Lcom/upsight/android/analytics/internal/provider/ProviderModule;
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$700(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/provider/ProviderModule;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->userAttributesProvider:Ljavax/inject/Provider;
+
+    .line 246
     invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/provider/ProviderModule_ProvidesUpsightUserAttributesFactory;->create(Lcom/upsight/android/analytics/internal/provider/ProviderModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 245
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesUpsightUserAttributesProvider:Ljavax/inject/Provider;
 
-    .line 127
+    .line 252
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->baseAnalyticsModule:Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
     invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$100(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
 
@@ -736,157 +776,149 @@
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
+    .line 251
     invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideGooglePlayHelperFactory;->create(Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 250
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideGooglePlayHelperProvider:Ljavax/inject/Provider;
 
-    .line 128
+    .line 254
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesSessionManagerProvider:Ljavax/inject/Provider;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideManualTrackerProvider:Ljavax/inject/Provider;
 
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideSchemaSelectorBuilderProvider:Ljavax/inject/Provider;
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesSessionManagerProvider:Ljavax/inject/Provider;
 
-    iget-object v3, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideAssociationManagerProvider:Ljavax/inject/Provider;
+    iget-object v3, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideSchemaSelectorBuilderProvider:Ljavax/inject/Provider;
 
-    iget-object v4, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesOptOutStatusProvider:Ljavax/inject/Provider;
+    iget-object v4, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideAssociationManagerProvider:Ljavax/inject/Provider;
 
-    iget-object v5, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesUpsightLocationTrackerProvider:Ljavax/inject/Provider;
+    iget-object v5, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesOptOutStatusProvider:Ljavax/inject/Provider;
 
-    iget-object v6, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesUpsightUserAttributesProvider:Ljavax/inject/Provider;
+    iget-object v6, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesUpsightLocationTrackerProvider:Ljavax/inject/Provider;
 
-    iget-object v7, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideGooglePlayHelperProvider:Ljavax/inject/Provider;
+    iget-object v7, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesUpsightUserAttributesProvider:Ljavax/inject/Provider;
 
-    invoke-static/range {v0 .. v7}, Lcom/upsight/android/analytics/internal/Analytics_Factory;->create(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+    iget-object v8, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideGooglePlayHelperProvider:Ljavax/inject/Provider;
+
+    .line 256
+    invoke-static/range {v0 .. v8}, Lcom/upsight/android/analytics/internal/Analytics_Factory;->create(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 255
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->analyticsProvider:Ljavax/inject/Provider;
 
-    .line 129
+    .line 270
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->analyticsApiModule:Lcom/upsight/android/analytics/internal/AnalyticsApiModule;
-    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$700(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/AnalyticsApiModule;
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$800(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/AnalyticsApiModule;
 
     move-result-object v0
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->analyticsProvider:Ljavax/inject/Provider;
 
+    .line 269
     invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/AnalyticsApiModule_ProvideUpsightAnalyticsApiFactory;->create(Lcom/upsight/android/analytics/internal/AnalyticsApiModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 268
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightAnalyticsApiProvider:Ljavax/inject/Provider;
 
-    .line 130
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_session_Proxy:Lcom/upsight/android/analytics/internal/session/DaggerAnalyticsComponent_PackageProxy;
+    .line 272
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->manualTrackerProvider:Ljavax/inject/Provider;
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesSessionManagerProvider:Ljavax/inject/Provider;
-
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
-
-    invoke-static {v1, v2}, Lcom/upsight/android/analytics/internal/session/ManualTracker_Factory;->create(Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-
-    move-result-object v1
-
-    invoke-static {v1}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
-
-    move-result-object v1
-
-    iput-object v1, v0, Lcom/upsight/android/analytics/internal/session/DaggerAnalyticsComponent_PackageProxy;->manualTrackerProvider:Ljavax/inject/Provider;
-
-    .line 131
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_session_Proxy:Lcom/upsight/android/analytics/internal/session/DaggerAnalyticsComponent_PackageProxy;
-
-    iget-object v0, v0, Lcom/upsight/android/analytics/internal/session/DaggerAnalyticsComponent_PackageProxy;->manualTrackerProvider:Ljavax/inject/Provider;
-
+    .line 273
     invoke-static {v0}, Lcom/upsight/android/analytics/internal/session/ActivityLifecycleTracker_Factory;->create(Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->activityLifecycleTrackerProvider:Ljavax/inject/Provider;
 
-    .line 132
+    .line 278
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->lifecycleTrackerModule:Lcom/upsight/android/analytics/internal/session/LifecycleTrackerModule;
-    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$800(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/session/LifecycleTrackerModule;
+    invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$400(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/session/LifecycleTrackerModule;
 
     move-result-object v0
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->activityLifecycleTrackerProvider:Ljavax/inject/Provider;
 
+    .line 277
     invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/session/LifecycleTrackerModule_ProvideUpsightLifeCycleCallbacksFactory;->create(Lcom/upsight/android/analytics/internal/session/LifecycleTrackerModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 276
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightLifeCycleCallbacksProvider:Ljavax/inject/Provider;
 
-    .line 133
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
+    .line 280
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUncaughtExceptionHandlerProvider:Ljavax/inject/Provider;
 
-    move-result-object v0
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightAnalyticsApiProvider:Ljavax/inject/Provider;
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUncaughtExceptionHandlerProvider:Ljavax/inject/Provider;
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideClockProvider:Ljavax/inject/Provider;
 
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightAnalyticsApiProvider:Ljavax/inject/Provider;
+    iget-object v3, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightLifeCycleCallbacksProvider:Ljavax/inject/Provider;
 
-    iget-object v3, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideClockProvider:Ljavax/inject/Provider;
+    iget-object v4, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideAssociationManagerProvider:Ljavax/inject/Provider;
 
-    iget-object v4, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightLifeCycleCallbacksProvider:Ljavax/inject/Provider;
-
-    iget-object v5, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideAssociationManagerProvider:Ljavax/inject/Provider;
-
-    invoke-static/range {v0 .. v5}, Lcom/upsight/android/UpsightAnalyticsExtension_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    .line 281
+    invoke-static {v0, v1, v2, v3, v4}, Lcom/upsight/android/UpsightAnalyticsExtension_MembersInjector;->create(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->upsightAnalyticsExtensionMembersInjector:Ldagger/MembersInjector;
 
-    .line 134
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigMapperProvider:Ljavax/inject/Provider;
+    .line 288
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigGsonProvider:Ljavax/inject/Provider;
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesSessionManagerProvider:Ljavax/inject/Provider;
 
+    .line 290
     invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser_Factory;->create(Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 289
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->configurationResponseParserProvider:Ljavax/inject/Provider;
 
-    .line 135
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigMapperProvider:Ljavax/inject/Provider;
+    .line 293
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigGsonProvider:Ljavax/inject/Provider;
 
+    .line 294
     invoke-static {v0}, Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser_Factory;->create(Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->managerConfigParserProvider:Ljavax/inject/Provider;
 
-    .line 136
+    .line 299
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->configurationModule:Lcom/upsight/android/analytics/internal/configuration/ConfigurationModule;
     invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$900(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/configuration/ConfigurationModule;
 
@@ -898,79 +930,86 @@
 
     iget-object v3, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->managerConfigParserProvider:Ljavax/inject/Provider;
 
+    .line 298
     invoke-static {v0, v1, v2, v3}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationModule_ProvideConfigurationManagerFactory;->create(Lcom/upsight/android/analytics/internal/configuration/ConfigurationModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 297
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigurationManagerProvider:Ljavax/inject/Provider;
 
-    .line 137
+    .line 306
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
 
     move-result-object v0
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
+    .line 305
     invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/AnalyticsContext_Factory;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->analyticsContextProvider:Ljavax/inject/Provider;
 
-    .line 138
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_dispatcher_Proxy:Lcom/upsight/android/analytics/internal/dispatcher/DaggerAnalyticsComponent_PackageProxy;
+    .line 308
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigGsonProvider:Ljavax/inject/Provider;
 
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigMapperProvider:Ljavax/inject/Provider;
+    .line 310
+    invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/ConfigParser_Factory;->create(Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
-    invoke-static {v1, v2}, Lcom/upsight/android/analytics/internal/dispatcher/ConfigParser_Factory;->create(Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+    move-result-object v0
 
-    move-result-object v1
+    .line 309
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
-    invoke-static {v1}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    move-result-object v0
 
-    move-result-object v1
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->configParserProvider2:Ljavax/inject/Provider;
 
-    iput-object v1, v0, Lcom/upsight/android/analytics/internal/dispatcher/DaggerAnalyticsComponent_PackageProxy;->configParserProvider:Ljavax/inject/Provider;
-
-    .line 139
+    .line 316
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->analyticsSchedulersModule:Lcom/upsight/android/analytics/internal/AnalyticsSchedulersModule;
     invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$1000(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/AnalyticsSchedulersModule;
 
     move-result-object v0
 
+    .line 315
     invoke-static {v0}, Lcom/upsight/android/analytics/internal/AnalyticsSchedulersModule_ProvideSendingExecutorFactory;->create(Lcom/upsight/android/analytics/internal/AnalyticsSchedulersModule;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 314
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideSendingExecutorProvider:Ljavax/inject/Provider;
 
-    .line 140
+    .line 321
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->analyticsSchedulersModule:Lcom/upsight/android/analytics/internal/AnalyticsSchedulersModule;
     invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$1000(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/AnalyticsSchedulersModule;
 
     move-result-object v0
 
+    .line 320
     invoke-static {v0}, Lcom/upsight/android/analytics/internal/AnalyticsSchedulersModule_ProvideSchedulingExecutorFactory;->create(Lcom/upsight/android/analytics/internal/AnalyticsSchedulersModule;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 319
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideSchedulingExecutorProvider:Ljavax/inject/Provider;
 
-    .line 141
+    .line 326
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->deliveryModule:Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule;
     invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$1100(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule;
 
@@ -978,28 +1017,28 @@
 
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideUpsightContextProvider:Ljavax/inject/Provider;
 
+    .line 325
     invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideResponseVerifierFactory;->create(Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 324
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideResponseVerifierProvider:Ljavax/inject/Provider;
 
-    .line 142
-    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_dispatcher_delivery_Proxy:Lcom/upsight/android/analytics/internal/dispatcher/delivery/DaggerAnalyticsComponent_PackageProxy;
+    .line 328
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigGsonProvider:Ljavax/inject/Provider;
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigMapperProvider:Ljavax/inject/Provider;
+    invoke-static {v0}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/ResponseParser_Factory;->create(Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
-    invoke-static {v1}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/ResponseParser_Factory;->create(Ljavax/inject/Provider;)Ldagger/internal/Factory;
+    move-result-object v0
 
-    move-result-object v1
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->responseParserProvider:Ljavax/inject/Provider;
 
-    iput-object v1, v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DaggerAnalyticsComponent_PackageProxy;->responseParserProvider:Ljavax/inject/Provider;
-
-    .line 143
+    .line 333
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->deliveryModule:Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule;
     invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$1100(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule;
 
@@ -1015,21 +1054,21 @@
 
     iget-object v5, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideResponseVerifierProvider:Ljavax/inject/Provider;
 
-    iget-object v6, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_dispatcher_delivery_Proxy:Lcom/upsight/android/analytics/internal/dispatcher/delivery/DaggerAnalyticsComponent_PackageProxy;
+    iget-object v6, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->responseParserProvider:Ljavax/inject/Provider;
 
-    iget-object v6, v6, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DaggerAnalyticsComponent_PackageProxy;->responseParserProvider:Ljavax/inject/Provider;
-
+    .line 332
     invoke-static/range {v0 .. v6}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule_ProvideQueueBuilderFactory;->create(Lcom/upsight/android/analytics/internal/dispatcher/delivery/DeliveryModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 331
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideQueueBuilderProvider:Ljavax/inject/Provider;
 
-    .line 144
+    .line 344
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->routingModule:Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingModule;
     invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$1200(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingModule;
 
@@ -1039,17 +1078,19 @@
 
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideQueueBuilderProvider:Ljavax/inject/Provider;
 
+    .line 343
     invoke-static {v0, v1, v2}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingModule_ProvideRouterBuilderFactory;->create(Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingModule;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 342
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideRouterBuilderProvider:Ljavax/inject/Provider;
 
-    .line 145
+    .line 349
     # getter for: Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->dispatchModule:Lcom/upsight/android/analytics/internal/dispatcher/DispatchModule;
     invoke-static {p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;->access$1300(Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent$Builder;)Lcom/upsight/android/analytics/internal/dispatcher/DispatchModule;
 
@@ -1061,40 +1102,37 @@
 
     iget-object v3, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->analyticsContextProvider:Ljavax/inject/Provider;
 
-    iget-object v4, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->com_upsight_android_analytics_internal_dispatcher_Proxy:Lcom/upsight/android/analytics/internal/dispatcher/DaggerAnalyticsComponent_PackageProxy;
-
-    iget-object v4, v4, Lcom/upsight/android/analytics/internal/dispatcher/DaggerAnalyticsComponent_PackageProxy;->configParserProvider:Ljavax/inject/Provider;
+    iget-object v4, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->configParserProvider2:Ljavax/inject/Provider;
 
     iget-object v5, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideRouterBuilderProvider:Ljavax/inject/Provider;
 
     iget-object v6, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideSchemaSelectorBuilderProvider:Ljavax/inject/Provider;
 
+    .line 348
     invoke-static/range {v0 .. v6}, Lcom/upsight/android/analytics/internal/dispatcher/DispatchModule_ProvideDispatcherFactory;->create(Lcom/upsight/android/analytics/internal/dispatcher/DispatchModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+    .line 347
+    invoke-static {v0}, Ldagger/internal/DoubleCheck;->provider(Ljavax/inject/Provider;)Ljavax/inject/Provider;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideDispatcherProvider:Ljavax/inject/Provider;
 
-    .line 146
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
+    .line 357
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigurationManagerProvider:Ljavax/inject/Provider;
 
-    move-result-object v0
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideDispatcherProvider:Ljavax/inject/Provider;
 
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideConfigurationManagerProvider:Ljavax/inject/Provider;
-
-    iget-object v2, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideDispatcherProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1, v2}, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    .line 358
+    invoke-static {v0, v1}, Lcom/upsight/android/analytics/internal/DispatcherService_MembersInjector;->create(Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->dispatcherServiceMembersInjector:Ldagger/MembersInjector;
 
-    .line 147
+    .line 360
     return-void
 .end method
 
@@ -1104,7 +1142,7 @@
     .registers 2
 
     .prologue
-    .line 156
+    .line 369
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->provideClockProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -1121,24 +1159,22 @@
     .param p1, "arg0"    # Lcom/upsight/android/UpsightAnalyticsExtension;
 
     .prologue
-    .line 151
+    .line 364
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->upsightAnalyticsExtensionMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 152
+    .line 365
     return-void
 .end method
 
 .method public bridge synthetic inject(Lcom/upsight/android/UpsightExtension;)V
     .registers 2
-    .param p1, "x0"    # Lcom/upsight/android/UpsightExtension;
 
     .prologue
-    .line 67
+    .line 68
     check-cast p1, Lcom/upsight/android/UpsightAnalyticsExtension;
 
-    .end local p1    # "x0":Lcom/upsight/android/UpsightExtension;
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->inject(Lcom/upsight/android/UpsightAnalyticsExtension;)V
 
     return-void
@@ -1149,12 +1185,12 @@
     .param p1, "dispatcherService"    # Lcom/upsight/android/analytics/internal/DispatcherService;
 
     .prologue
-    .line 166
+    .line 379
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->dispatcherServiceMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 167
+    .line 380
     return-void
 .end method
 
@@ -1162,7 +1198,7 @@
     .registers 2
 
     .prologue
-    .line 161
+    .line 374
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DaggerAnalyticsComponent;->providesSessionManagerProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;

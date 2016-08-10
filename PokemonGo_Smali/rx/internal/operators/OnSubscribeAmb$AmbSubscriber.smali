@@ -47,7 +47,7 @@
 
 
 # direct methods
-.method private constructor <init>(JLrx/Subscriber;Lrx/internal/operators/OnSubscribeAmb$Selection;)V
+.method constructor <init>(JLrx/Subscriber;Lrx/internal/operators/OnSubscribeAmb$Selection;)V
     .registers 6
     .param p1, "requested"    # J
     .annotation system Ldalvik/annotation/Signature;
@@ -80,22 +80,7 @@
     return-void
 .end method
 
-.method synthetic constructor <init>(JLrx/Subscriber;Lrx/internal/operators/OnSubscribeAmb$Selection;Lrx/internal/operators/OnSubscribeAmb$1;)V
-    .registers 7
-    .param p1, "x0"    # J
-    .param p3, "x1"    # Lrx/Subscriber;
-    .param p4, "x2"    # Lrx/internal/operators/OnSubscribeAmb$Selection;
-    .param p5, "x3"    # Lrx/internal/operators/OnSubscribeAmb$1;
-
-    .prologue
-    .line 268
-    .local p0, "this":Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;, "Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber<TT;>;"
-    invoke-direct {p0, p1, p2, p3, p4}, Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;-><init>(JLrx/Subscriber;Lrx/internal/operators/OnSubscribeAmb$Selection;)V
-
-    return-void
-.end method
-
-.method static synthetic access$300(Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;J)V
+.method static synthetic access$100(Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;J)V
     .registers 4
     .param p0, "x0"    # Lrx/internal/operators/OnSubscribeAmb$AmbSubscriber;
     .param p1, "x1"    # J
@@ -176,7 +161,7 @@
     goto :goto_5
 .end method
 
-.method private final requestMore(J)V
+.method private requestMore(J)V
     .registers 4
     .param p1, "n"    # J
 

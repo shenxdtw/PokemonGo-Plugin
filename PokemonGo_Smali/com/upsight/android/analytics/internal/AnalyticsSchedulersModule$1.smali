@@ -26,6 +26,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/AnalyticsSchedulersModule;)V
     .registers 3
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/AnalyticsSchedulersModule;
 
     .prologue
     .line 47

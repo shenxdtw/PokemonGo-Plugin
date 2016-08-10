@@ -19,7 +19,7 @@
     .registers 4
 
     .prologue
-    .line 89
+    .line 90
     const/4 v0, 0x0
 
     invoke-direct {p0, p1, p2, v0}, Lcom/google/gson/FieldNamingPolicy;-><init>(Ljava/lang/String;ILcom/google/gson/FieldNamingPolicy$1;)V
@@ -34,19 +34,20 @@
     .param p1, "f"    # Ljava/lang/reflect/Field;
 
     .prologue
-    .line 91
+    .line 92
     invoke-virtual {p1}, Ljava/lang/reflect/Field;->getName()Ljava/lang/String;
 
     move-result-object v0
 
     const-string v1, "_"
 
-    # invokes: Lcom/google/gson/FieldNamingPolicy;->separateCamelCase(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-    invoke-static {v0, v1}, Lcom/google/gson/FieldNamingPolicy;->access$200(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0, v1}, Lcom/google/gson/FieldNamingPolicy$4;->separateCamelCase(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+    sget-object v1, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
 
     move-result-object v0
 

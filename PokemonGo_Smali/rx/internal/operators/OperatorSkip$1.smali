@@ -34,7 +34,7 @@
     .registers 5
 
     .prologue
-    .line 43
+    .line 42
     .local p0, "this":Lrx/internal/operators/OperatorSkip$1;, "Lrx/internal/operators/OperatorSkip.1;"
     .local p2, "x0":Lrx/Subscriber;, "Lrx/Subscriber<*>;"
     iput-object p1, p0, Lrx/internal/operators/OperatorSkip$1;->this$0:Lrx/internal/operators/OperatorSkip;
@@ -43,7 +43,7 @@
 
     invoke-direct {p0, p2}, Lrx/Subscriber;-><init>(Lrx/Subscriber;)V
 
-    .line 45
+    .line 44
     const/4 v0, 0x0
 
     iput v0, p0, Lrx/internal/operators/OperatorSkip$1;->skipped:I
@@ -57,13 +57,13 @@
     .registers 2
 
     .prologue
-    .line 49
+    .line 48
     .local p0, "this":Lrx/internal/operators/OperatorSkip$1;, "Lrx/internal/operators/OperatorSkip.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorSkip$1;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    .line 50
+    .line 49
     return-void
 .end method
 
@@ -72,13 +72,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 54
+    .line 53
     .local p0, "this":Lrx/internal/operators/OperatorSkip$1;, "Lrx/internal/operators/OperatorSkip.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorSkip$1;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 55
+    .line 54
     return-void
 .end method
 
@@ -91,7 +91,7 @@
     .end annotation
 
     .prologue
-    .line 59
+    .line 58
     .local p0, "this":Lrx/internal/operators/OperatorSkip$1;, "Lrx/internal/operators/OperatorSkip.1;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     iget v0, p0, Lrx/internal/operators/OperatorSkip$1;->skipped:I
@@ -102,16 +102,16 @@
 
     if-lt v0, v1, :cond_e
 
-    .line 60
+    .line 59
     iget-object v0, p0, Lrx/internal/operators/OperatorSkip$1;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    .line 64
+    .line 63
     :goto_d
     return-void
 
-    .line 62
+    .line 61
     :cond_e
     iget v0, p0, Lrx/internal/operators/OperatorSkip$1;->skipped:I
 
@@ -127,13 +127,13 @@
     .param p1, "producer"    # Lrx/Producer;
 
     .prologue
-    .line 68
+    .line 67
     .local p0, "this":Lrx/internal/operators/OperatorSkip$1;, "Lrx/internal/operators/OperatorSkip.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorSkip$1;->val$child:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
 
-    .line 69
+    .line 68
     iget-object v0, p0, Lrx/internal/operators/OperatorSkip$1;->this$0:Lrx/internal/operators/OperatorSkip;
 
     iget v0, v0, Lrx/internal/operators/OperatorSkip;->toSkip:I
@@ -142,6 +142,6 @@
 
     invoke-interface {p1, v0, v1}, Lrx/Producer;->request(J)V
 
-    .line 70
+    .line 69
     return-void
 .end method

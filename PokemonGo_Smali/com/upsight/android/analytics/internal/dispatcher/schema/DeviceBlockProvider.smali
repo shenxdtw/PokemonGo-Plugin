@@ -33,16 +33,36 @@
 .field public static final TYPE_KEY:Ljava/lang/String; = "device.type"
 
 
+# instance fields
+.field private final mBus:Lcom/squareup/otto/Bus;
+
+
 # direct methods
-.method constructor <init>(Landroid/content/Context;)V
+.method constructor <init>(Lcom/upsight/android/UpsightContext;)V
     .registers 5
-    .param p1, "context"    # Landroid/content/Context;
+    .param p1, "upsight"    # Lcom/upsight/android/UpsightContext;
 
     .prologue
-    .line 86
+    .line 91
     invoke-direct {p0}, Lcom/upsight/android/analytics/provider/UpsightDataProvider;-><init>()V
 
-    .line 87
+    .line 92
+    invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getCoreComponent()Lcom/upsight/android/UpsightCoreComponent;
+
+    move-result-object v0
+
+    invoke-interface {v0}, Lcom/upsight/android/UpsightCoreComponent;->bus()Lcom/squareup/otto/Bus;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->mBus:Lcom/squareup/otto/Bus;
+
+    .line 93
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->mBus:Lcom/squareup/otto/Bus;
+
+    invoke-virtual {v0, p0}, Lcom/squareup/otto/Bus;->register(Ljava/lang/Object;)V
+
+    .line 95
     const-string v0, "device.carrier"
 
     invoke-static {p1}, Lcom/upsight/android/internal/util/NetworkHelper;->getNetworkOperatorName(Landroid/content/Context;)Ljava/lang/String;
@@ -51,7 +71,7 @@
 
     invoke-virtual {p0, v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->put(Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 88
+    .line 96
     const-string v0, "device.connection"
 
     invoke-static {p1}, Lcom/upsight/android/internal/util/NetworkHelper;->getActiveNetworkType(Landroid/content/Context;)Ljava/lang/String;
@@ -60,14 +80,14 @@
 
     invoke-virtual {p0, v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->put(Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 89
+    .line 97
     const-string v0, "device.hardware"
 
     sget-object v1, Landroid/os/Build;->MODEL:Ljava/lang/String;
 
     invoke-virtual {p0, v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->put(Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 90
+    .line 98
     const-string v0, "device.jailbroken"
 
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->isRooted()Z
@@ -80,21 +100,21 @@
 
     invoke-virtual {p0, v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->put(Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 91
+    .line 99
     const-string v0, "device.manufacturer"
 
     sget-object v1, Landroid/os/Build;->MANUFACTURER:Ljava/lang/String;
 
     invoke-virtual {p0, v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->put(Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 92
+    .line 100
     const-string v0, "device.os"
 
     const-string v1, "android"
 
     invoke-virtual {p0, v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->put(Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 93
+    .line 101
     const-string v0, "device.os_version"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -125,7 +145,7 @@
 
     invoke-virtual {p0, v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->put(Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 94
+    .line 102
     const-string v0, "device.type"
 
     invoke-direct {p0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->getDeviceType(Landroid/content/Context;)Ljava/lang/String;
@@ -134,7 +154,7 @@
 
     invoke-virtual {p0, v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->put(Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 95
+    .line 103
     return-void
 .end method
 
@@ -143,10 +163,10 @@
     .param p1, "context"    # Landroid/content/Context;
 
     .prologue
-    .line 116
+    .line 130
     const-string v0, "phone"
 
-    .line 117
+    .line 131
     .local v0, "type":Ljava/lang/String;
     invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
@@ -164,10 +184,10 @@
 
     if-lt v1, v2, :cond_13
 
-    .line 119
+    .line 133
     const-string v0, "tablet"
 
-    .line 121
+    .line 135
     :cond_13
     return-object v0
 .end method
@@ -176,10 +196,10 @@
     .registers 3
 
     .prologue
-    .line 105
+    .line 119
     sget-object v0, Landroid/os/Build;->TAGS:Ljava/lang/String;
 
-    .line 106
+    .line 120
     .local v0, "buildTags":Ljava/lang/String;
     if-eqz v0, :cond_e
 
@@ -217,7 +237,7 @@
     .end annotation
 
     .prologue
-    .line 126
+    .line 140
     new-instance v0, Ljava/util/HashSet;
 
     const/16 v1, 0x8
@@ -279,4 +299,29 @@
     invoke-direct {v0, v1}, Ljava/util/HashSet;-><init>(Ljava/util/Collection;)V
 
     return-object v0
+.end method
+
+.method public onNetworkChangeEvent(Lcom/upsight/android/analytics/internal/dispatcher/schema/NetworkChangeEvent;)V
+    .registers 4
+    .param p1, "event"    # Lcom/upsight/android/analytics/internal/dispatcher/schema/NetworkChangeEvent;
+    .annotation runtime Lcom/squareup/otto/Subscribe;
+    .end annotation
+
+    .prologue
+    .line 107
+    const-string v0, "device.carrier"
+
+    iget-object v1, p1, Lcom/upsight/android/analytics/internal/dispatcher/schema/NetworkChangeEvent;->networkOperatorName:Ljava/lang/String;
+
+    invoke-virtual {p0, v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->put(Ljava/lang/String;Ljava/lang/Object;)V
+
+    .line 108
+    const-string v0, "device.connection"
+
+    iget-object v1, p1, Lcom/upsight/android/analytics/internal/dispatcher/schema/NetworkChangeEvent;->activeNetworkType:Ljava/lang/String;
+
+    invoke-virtual {p0, v0, v1}, Lcom/upsight/android/analytics/internal/dispatcher/schema/DeviceBlockProvider;->put(Ljava/lang/String;Ljava/lang/Object;)V
+
+    .line 109
+    return-void
 .end method

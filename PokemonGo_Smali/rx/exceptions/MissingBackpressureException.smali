@@ -12,10 +12,10 @@
     .registers 1
 
     .prologue
-    .line 51
+    .line 54
     invoke-direct {p0}, Ljava/lang/Exception;-><init>()V
 
-    .line 52
+    .line 56
     return-void
 .end method
 
@@ -24,9 +24,9 @@
     .param p1, "message"    # Ljava/lang/String;
 
     .prologue
-    .line 55
+    .line 63
     invoke-direct {p0, p1}, Ljava/lang/Exception;-><init>(Ljava/lang/String;)V
 
-    .line 56
+    .line 64
     return-void
 .end method

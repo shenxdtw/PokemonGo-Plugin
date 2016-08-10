@@ -7,6 +7,12 @@
 
 
 # annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lrx/internal/operators/OperatorTakeLastTimed$TakeLastTimedSubscriber;
+    }
+.end annotation
+
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "<T:",
@@ -20,11 +26,11 @@
 
 
 # instance fields
-.field private final ageMillis:J
+.field final ageMillis:J
 
-.field private final count:I
+.field final count:I
 
-.field private final scheduler:Lrx/Scheduler;
+.field final scheduler:Lrx/Scheduler;
 
 
 # direct methods
@@ -36,14 +42,14 @@
     .param p5, "scheduler"    # Lrx/Scheduler;
 
     .prologue
-    .line 43
+    .line 45
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastTimed;, "Lrx/internal/operators/OperatorTakeLastTimed<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 44
+    .line 46
     if-gez p1, :cond_d
 
-    .line 45
+    .line 47
     new-instance v0, Ljava/lang/IndexOutOfBoundsException;
 
     const-string v1, "count could not be negative"
@@ -52,7 +58,7 @@
 
     throw v0
 
-    .line 47
+    .line 49
     :cond_d
     invoke-virtual {p4, p2, p3}, Ljava/util/concurrent/TimeUnit;->toMillis(J)J
 
@@ -60,13 +66,13 @@
 
     iput-wide v0, p0, Lrx/internal/operators/OperatorTakeLastTimed;->ageMillis:J
 
-    .line 48
+    .line 50
     iput-object p5, p0, Lrx/internal/operators/OperatorTakeLastTimed;->scheduler:Lrx/Scheduler;
 
-    .line 49
+    .line 51
     iput p1, p0, Lrx/internal/operators/OperatorTakeLastTimed;->count:I
 
-    .line 50
+    .line 52
     return-void
 .end method
 
@@ -77,60 +83,27 @@
     .param p4, "scheduler"    # Lrx/Scheduler;
 
     .prologue
-    .line 37
+    .line 39
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastTimed;, "Lrx/internal/operators/OperatorTakeLastTimed<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 38
+    .line 40
     invoke-virtual {p3, p1, p2}, Ljava/util/concurrent/TimeUnit;->toMillis(J)J
 
     move-result-wide v0
 
     iput-wide v0, p0, Lrx/internal/operators/OperatorTakeLastTimed;->ageMillis:J
 
-    .line 39
+    .line 41
     iput-object p4, p0, Lrx/internal/operators/OperatorTakeLastTimed;->scheduler:Lrx/Scheduler;
 
-    .line 40
+    .line 42
     const/4 v0, -0x1
 
     iput v0, p0, Lrx/internal/operators/OperatorTakeLastTimed;->count:I
 
-    .line 41
+    .line 43
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorTakeLastTimed;)I
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorTakeLastTimed;
-
-    .prologue
-    .line 31
-    iget v0, p0, Lrx/internal/operators/OperatorTakeLastTimed;->count:I
-
-    return v0
-.end method
-
-.method static synthetic access$100(Lrx/internal/operators/OperatorTakeLastTimed;)J
-    .registers 3
-    .param p0, "x0"    # Lrx/internal/operators/OperatorTakeLastTimed;
-
-    .prologue
-    .line 31
-    iget-wide v0, p0, Lrx/internal/operators/OperatorTakeLastTimed;->ageMillis:J
-
-    return-wide v0
-.end method
-
-.method static synthetic access$200(Lrx/internal/operators/OperatorTakeLastTimed;)Lrx/Scheduler;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorTakeLastTimed;
-
-    .prologue
-    .line 31
-    iget-object v0, p0, Lrx/internal/operators/OperatorTakeLastTimed;->scheduler:Lrx/Scheduler;
-
-    return-object v0
 .end method
 
 
@@ -140,7 +113,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 31
+    .line 33
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastTimed;, "Lrx/internal/operators/OperatorTakeLastTimed<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -153,7 +126,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)Lrx/Subscriber;
-    .registers 10
+    .registers 9
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -165,45 +138,32 @@
     .end annotation
 
     .prologue
-    .line 54
+    .line 56
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastTimed;, "Lrx/internal/operators/OperatorTakeLastTimed<TT;>;"
     .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    new-instance v3, Ljava/util/ArrayDeque;
+    new-instance v1, Lrx/internal/operators/OperatorTakeLastTimed$TakeLastTimedSubscriber;
 
-    invoke-direct {v3}, Ljava/util/ArrayDeque;-><init>()V
+    iget v3, p0, Lrx/internal/operators/OperatorTakeLastTimed;->count:I
 
-    .line 55
-    .local v3, "buffer":Ljava/util/Deque;, "Ljava/util/Deque<Ljava/lang/Object;>;"
-    new-instance v4, Ljava/util/ArrayDeque;
+    iget-wide v4, p0, Lrx/internal/operators/OperatorTakeLastTimed;->ageMillis:J
 
-    invoke-direct {v4}, Ljava/util/ArrayDeque;-><init>()V
+    iget-object v6, p0, Lrx/internal/operators/OperatorTakeLastTimed;->scheduler:Lrx/Scheduler;
 
-    .line 56
-    .local v4, "timestampBuffer":Ljava/util/Deque;, "Ljava/util/Deque<Ljava/lang/Long;>;"
-    invoke-static {}, Lrx/internal/operators/NotificationLite;->instance()Lrx/internal/operators/NotificationLite;
+    move-object v2, p1
 
-    move-result-object v5
-
-    .line 57
-    .local v5, "notification":Lrx/internal/operators/NotificationLite;, "Lrx/internal/operators/NotificationLite<TT;>;"
-    new-instance v7, Lrx/internal/operators/TakeLastQueueProducer;
-
-    invoke-direct {v7, v5, v3, p1}, Lrx/internal/operators/TakeLastQueueProducer;-><init>(Lrx/internal/operators/NotificationLite;Ljava/util/Deque;Lrx/Subscriber;)V
+    invoke-direct/range {v1 .. v6}, Lrx/internal/operators/OperatorTakeLastTimed$TakeLastTimedSubscriber;-><init>(Lrx/Subscriber;IJLrx/Scheduler;)V
 
     .line 58
-    .local v7, "producer":Lrx/internal/operators/TakeLastQueueProducer;, "Lrx/internal/operators/TakeLastQueueProducer<TT;>;"
-    invoke-virtual {p1, v7}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+    .local v1, "parent":Lrx/internal/operators/OperatorTakeLastTimed$TakeLastTimedSubscriber;, "Lrx/internal/operators/OperatorTakeLastTimed$TakeLastTimedSubscriber<TT;>;"
+    invoke-virtual {p1, v1}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
     .line 59
     new-instance v0, Lrx/internal/operators/OperatorTakeLastTimed$1;
 
-    move-object v1, p0
+    invoke-direct {v0, p0, v1}, Lrx/internal/operators/OperatorTakeLastTimed$1;-><init>(Lrx/internal/operators/OperatorTakeLastTimed;Lrx/internal/operators/OperatorTakeLastTimed$TakeLastTimedSubscriber;)V
 
-    move-object v2, p1
+    invoke-virtual {p1, v0}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
 
-    move-object v6, p1
-
-    invoke-direct/range {v0 .. v7}, Lrx/internal/operators/OperatorTakeLastTimed$1;-><init>(Lrx/internal/operators/OperatorTakeLastTimed;Lrx/Subscriber;Ljava/util/Deque;Ljava/util/Deque;Lrx/internal/operators/NotificationLite;Lrx/Subscriber;Lrx/internal/operators/TakeLastQueueProducer;)V
-
-    return-object v0
+    .line 66
+    return-object v1
 .end method

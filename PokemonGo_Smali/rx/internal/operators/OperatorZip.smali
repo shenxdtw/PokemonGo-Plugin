@@ -46,18 +46,18 @@
     .param p1, "f"    # Lrx/functions/Func2;
 
     .prologue
-    .line 71
+    .line 70
     .local p0, "this":Lrx/internal/operators/OperatorZip;, "Lrx/internal/operators/OperatorZip<TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 72
+    .line 71
     invoke-static {p1}, Lrx/functions/Functions;->fromFunc(Lrx/functions/Func2;)Lrx/functions/FuncN;
 
     move-result-object v0
 
     iput-object v0, p0, Lrx/internal/operators/OperatorZip;->zipFunction:Lrx/functions/FuncN;
 
-    .line 73
+    .line 72
     return-void
 .end method
 
@@ -66,18 +66,18 @@
     .param p1, "f"    # Lrx/functions/Func3;
 
     .prologue
-    .line 76
+    .line 75
     .local p0, "this":Lrx/internal/operators/OperatorZip;, "Lrx/internal/operators/OperatorZip<TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 77
+    .line 76
     invoke-static {p1}, Lrx/functions/Functions;->fromFunc(Lrx/functions/Func3;)Lrx/functions/FuncN;
 
     move-result-object v0
 
     iput-object v0, p0, Lrx/internal/operators/OperatorZip;->zipFunction:Lrx/functions/FuncN;
 
-    .line 78
+    .line 77
     return-void
 .end method
 
@@ -86,18 +86,18 @@
     .param p1, "f"    # Lrx/functions/Func4;
 
     .prologue
-    .line 81
+    .line 80
     .local p0, "this":Lrx/internal/operators/OperatorZip;, "Lrx/internal/operators/OperatorZip<TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 82
+    .line 81
     invoke-static {p1}, Lrx/functions/Functions;->fromFunc(Lrx/functions/Func4;)Lrx/functions/FuncN;
 
     move-result-object v0
 
     iput-object v0, p0, Lrx/internal/operators/OperatorZip;->zipFunction:Lrx/functions/FuncN;
 
-    .line 83
+    .line 82
     return-void
 .end method
 
@@ -106,18 +106,18 @@
     .param p1, "f"    # Lrx/functions/Func5;
 
     .prologue
-    .line 86
+    .line 85
     .local p0, "this":Lrx/internal/operators/OperatorZip;, "Lrx/internal/operators/OperatorZip<TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 87
+    .line 86
     invoke-static {p1}, Lrx/functions/Functions;->fromFunc(Lrx/functions/Func5;)Lrx/functions/FuncN;
 
     move-result-object v0
 
     iput-object v0, p0, Lrx/internal/operators/OperatorZip;->zipFunction:Lrx/functions/FuncN;
 
-    .line 88
+    .line 87
     return-void
 .end method
 
@@ -126,18 +126,18 @@
     .param p1, "f"    # Lrx/functions/Func6;
 
     .prologue
-    .line 91
+    .line 90
     .local p0, "this":Lrx/internal/operators/OperatorZip;, "Lrx/internal/operators/OperatorZip<TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 92
+    .line 91
     invoke-static {p1}, Lrx/functions/Functions;->fromFunc(Lrx/functions/Func6;)Lrx/functions/FuncN;
 
     move-result-object v0
 
     iput-object v0, p0, Lrx/internal/operators/OperatorZip;->zipFunction:Lrx/functions/FuncN;
 
-    .line 93
+    .line 92
     return-void
 .end method
 
@@ -146,18 +146,18 @@
     .param p1, "f"    # Lrx/functions/Func7;
 
     .prologue
-    .line 96
+    .line 95
     .local p0, "this":Lrx/internal/operators/OperatorZip;, "Lrx/internal/operators/OperatorZip<TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 97
+    .line 96
     invoke-static {p1}, Lrx/functions/Functions;->fromFunc(Lrx/functions/Func7;)Lrx/functions/FuncN;
 
     move-result-object v0
 
     iput-object v0, p0, Lrx/internal/operators/OperatorZip;->zipFunction:Lrx/functions/FuncN;
 
-    .line 98
+    .line 97
     return-void
 .end method
 
@@ -166,18 +166,18 @@
     .param p1, "f"    # Lrx/functions/Func8;
 
     .prologue
-    .line 101
+    .line 100
     .local p0, "this":Lrx/internal/operators/OperatorZip;, "Lrx/internal/operators/OperatorZip<TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 102
+    .line 101
     invoke-static {p1}, Lrx/functions/Functions;->fromFunc(Lrx/functions/Func8;)Lrx/functions/FuncN;
 
     move-result-object v0
 
     iput-object v0, p0, Lrx/internal/operators/OperatorZip;->zipFunction:Lrx/functions/FuncN;
 
-    .line 103
+    .line 102
     return-void
 .end method
 
@@ -186,18 +186,18 @@
     .param p1, "f"    # Lrx/functions/Func9;
 
     .prologue
-    .line 106
+    .line 105
     .local p0, "this":Lrx/internal/operators/OperatorZip;, "Lrx/internal/operators/OperatorZip<TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 107
+    .line 106
     invoke-static {p1}, Lrx/functions/Functions;->fromFunc(Lrx/functions/Func9;)Lrx/functions/FuncN;
 
     move-result-object v0
 
     iput-object v0, p0, Lrx/internal/operators/OperatorZip;->zipFunction:Lrx/functions/FuncN;
 
-    .line 108
+    .line 107
     return-void
 .end method
 
@@ -212,15 +212,15 @@
     .end annotation
 
     .prologue
-    .line 66
+    .line 65
     .local p0, "this":Lrx/internal/operators/OperatorZip;, "Lrx/internal/operators/OperatorZip<TR;>;"
     .local p1, "f":Lrx/functions/FuncN;, "Lrx/functions/FuncN<+TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 67
+    .line 66
     iput-object p1, p0, Lrx/internal/operators/OperatorZip;->zipFunction:Lrx/functions/FuncN;
 
-    .line 68
+    .line 67
     return-void
 .end method
 
@@ -231,7 +231,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 58
+    .line 57
     .local p0, "this":Lrx/internal/operators/OperatorZip;, "Lrx/internal/operators/OperatorZip<TR;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -258,7 +258,7 @@
     .end annotation
 
     .prologue
-    .line 113
+    .line 112
     .local p0, "this":Lrx/internal/operators/OperatorZip;, "Lrx/internal/operators/OperatorZip<TR;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
     new-instance v2, Lrx/internal/operators/OperatorZip$Zip;
@@ -267,22 +267,25 @@
 
     invoke-direct {v2, p1, v3}, Lrx/internal/operators/OperatorZip$Zip;-><init>(Lrx/Subscriber;Lrx/functions/FuncN;)V
 
-    .line 114
+    .line 113
     .local v2, "zipper":Lrx/internal/operators/OperatorZip$Zip;, "Lrx/internal/operators/OperatorZip$Zip<TR;>;"
     new-instance v0, Lrx/internal/operators/OperatorZip$ZipProducer;
 
     invoke-direct {v0, v2}, Lrx/internal/operators/OperatorZip$ZipProducer;-><init>(Lrx/internal/operators/OperatorZip$Zip;)V
 
-    .line 115
+    .line 114
     .local v0, "producer":Lrx/internal/operators/OperatorZip$ZipProducer;, "Lrx/internal/operators/OperatorZip$ZipProducer<TR;>;"
-    invoke-virtual {p1, v0}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
-
-    .line 116
     new-instance v1, Lrx/internal/operators/OperatorZip$ZipSubscriber;
 
     invoke-direct {v1, p0, p1, v2, v0}, Lrx/internal/operators/OperatorZip$ZipSubscriber;-><init>(Lrx/internal/operators/OperatorZip;Lrx/Subscriber;Lrx/internal/operators/OperatorZip$Zip;Lrx/internal/operators/OperatorZip$ZipProducer;)V
 
-    .line 117
+    .line 116
     .local v1, "subscriber":Lrx/internal/operators/OperatorZip$ZipSubscriber;, "Lrx/internal/operators/OperatorZip<TR;>.ZipSubscriber;"
+    invoke-virtual {p1, v1}, Lrx/Subscriber;->add(Lrx/Subscription;)V
+
+    .line 117
+    invoke-virtual {p1, v0}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+
+    .line 119
     return-object v1
 .end method

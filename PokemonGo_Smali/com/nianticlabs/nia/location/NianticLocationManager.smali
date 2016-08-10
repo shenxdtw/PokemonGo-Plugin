@@ -473,79 +473,44 @@
     .prologue
     :try_start_0
     invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
-
     move-result-object v4
-
     invoke-virtual {v4}, Ljava/io/File;->getPath()Ljava/lang/String;
-
     move-result-object v2
-
     .local v2, "path":Ljava/lang/String;
     new-instance v0, Ljava/io/File;
-
     new-instance v4, Ljava/lang/StringBuilder;
-
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
-
     invoke-virtual {v4, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
     move-result-object v4
-
     const-string v5, "/pokemon.location"
-
     invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
     move-result-object v4
-
     invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
     move-result-object v4
-
     invoke-direct {v0, v4}, Ljava/io/File;-><init>(Ljava/lang/String;)V
-
     .local v0, "file":Ljava/io/File;
     new-instance v1, Ljava/io/FileInputStream;
-
     invoke-direct {v1, v0}, Ljava/io/FileInputStream;-><init>(Ljava/io/File;)V
-
     .local v1, "fin":Ljava/io/FileInputStream;
     new-instance v3, Ljava/io/BufferedReader;
-
     new-instance v4, Ljava/io/InputStreamReader;
-
     invoke-direct {v4, v1}, Ljava/io/InputStreamReader;-><init>(Ljava/io/InputStream;)V
-
     invoke-direct {v3, v4}, Ljava/io/BufferedReader;-><init>(Ljava/io/Reader;)V
-
     .local v3, "reader":Ljava/io/BufferedReader;
     invoke-virtual {v3}, Ljava/io/BufferedReader;->readLine()Ljava/lang/String;
-
     move-result-object v4
-
     invoke-static {v4}, Ljava/lang/Double;->valueOf(Ljava/lang/String;)Ljava/lang/Double;
-
     move-result-object v4
-
     invoke-virtual {v4}, Ljava/lang/Double;->doubleValue()D
-
     move-result-wide v4
-
     invoke-virtual {p1, v4, v5}, Landroid/location/Location;->setLatitude(D)V
-
     invoke-virtual {v3}, Ljava/io/BufferedReader;->readLine()Ljava/lang/String;
-
     move-result-object v4
-
     invoke-static {v4}, Ljava/lang/Double;->valueOf(Ljava/lang/String;)Ljava/lang/Double;
-
     move-result-object v4
-
     invoke-virtual {v4}, Ljava/lang/Double;->doubleValue()D
-
     move-result-wide v4
-
     invoke-virtual {p1, v4, v5}, Landroid/location/Location;->setLongitude(D)V
-
     invoke-virtual {v1}, Ljava/io/FileInputStream;->close()V
     :try_end_50
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_50} :catch_5d

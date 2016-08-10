@@ -79,7 +79,7 @@
     .registers 1
 
     .prologue
-    .line 158
+    .line 162
     new-instance v0, Lrx/observers/TestObserver$1;
 
     invoke-direct {v0}, Lrx/observers/TestObserver$1;-><init>()V
@@ -174,7 +174,7 @@
 
 # virtual methods
 .method public assertReceivedOnNext(Ljava/util/List;)V
-    .registers 6
+    .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -187,198 +187,208 @@
     .line 115
     .local p0, "this":Lrx/observers/TestObserver;, "Lrx/observers/TestObserver<TT;>;"
     .local p1, "items":Ljava/util/List;, "Ljava/util/List<TT;>;"
-    iget-object v1, p0, Lrx/observers/TestObserver;->onNextEvents:Ljava/util/ArrayList;
-
-    invoke-virtual {v1}, Ljava/util/ArrayList;->size()I
-
-    move-result v1
-
-    invoke-interface {p1}, Ljava/util/List;->size()I
-
-    move-result v2
-
-    if-eq v1, v2, :cond_39
-
-    .line 116
-    new-instance v1, Ljava/lang/AssertionError;
-
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "Number of items does not match. Provided: "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-interface {p1}, Ljava/util/List;->size()I
-
-    move-result v3
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    const-string v3, "  Actual: "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
     iget-object v3, p0, Lrx/observers/TestObserver;->onNextEvents:Ljava/util/ArrayList;
 
     invoke-virtual {v3}, Ljava/util/ArrayList;->size()I
 
     move-result v3
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-interface {p1}, Ljava/util/List;->size()I
 
-    move-result-object v2
+    move-result v4
 
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    if-eq v3, v4, :cond_39
 
-    move-result-object v2
+    .line 116
+    new-instance v3, Ljava/lang/AssertionError;
 
-    invoke-direct {v1, v2}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
+    new-instance v4, Ljava/lang/StringBuilder;
 
-    throw v1
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "Number of items does not match. Provided: "
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-interface {p1}, Ljava/util/List;->size()I
+
+    move-result v5
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    const-string v5, "  Actual: "
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    iget-object v5, p0, Lrx/observers/TestObserver;->onNextEvents:Ljava/util/ArrayList;
+
+    invoke-virtual {v5}, Ljava/util/ArrayList;->size()I
+
+    move-result v5
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-direct {v3, v4}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
+
+    throw v3
 
     .line 119
     :cond_39
-    const/4 v0, 0x0
+    const/4 v2, 0x0
 
-    .local v0, "i":I
+    .local v2, "i":I
     :goto_3a
     invoke-interface {p1}, Ljava/util/List;->size()I
 
-    move-result v1
+    move-result v3
 
-    if-ge v0, v1, :cond_fc
+    if-ge v2, v3, :cond_dd
 
     .line 120
-    invoke-interface {p1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
+    invoke-interface {p1, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
     move-result-object v1
 
-    if-nez v1, :cond_7d
+    .line 121
+    .local v1, "expected":Ljava/lang/Object;, "TT;"
+    iget-object v3, p0, Lrx/observers/TestObserver;->onNextEvents:Ljava/util/ArrayList;
+
+    invoke-virtual {v3, v2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    move-result-object v0
 
     .line 122
-    iget-object v1, p0, Lrx/observers/TestObserver;->onNextEvents:Ljava/util/ArrayList;
+    .local v0, "actual":Ljava/lang/Object;, "TT;"
+    if-nez v1, :cond_77
 
-    invoke-virtual {v1, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
-
-    move-result-object v1
-
-    if-eqz v1, :cond_f8
-
-    .line 123
-    new-instance v1, Ljava/lang/AssertionError;
-
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "Value at index: "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    const-string v3, " expected to be [null] but was: ["
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    iget-object v3, p0, Lrx/observers/TestObserver;->onNextEvents:Ljava/util/ArrayList;
-
-    invoke-virtual {v3, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
-
-    move-result-object v3
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    const-string v3, "]"
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-direct {v1, v2}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
-
-    throw v1
+    .line 124
+    if-eqz v0, :cond_d9
 
     .line 125
-    :cond_7d
-    invoke-interface {p1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
+    new-instance v3, Ljava/lang/AssertionError;
 
-    move-result-object v1
+    new-instance v4, Ljava/lang/StringBuilder;
 
-    iget-object v2, p0, Lrx/observers/TestObserver;->onNextEvents:Ljava/util/ArrayList;
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
 
-    invoke-virtual {v2, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+    const-string v5, "Value at index: "
 
-    move-result-object v2
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v1, v2}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+    move-result-object v4
 
-    move-result v1
+    invoke-virtual {v4, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    if-nez v1, :cond_f8
+    move-result-object v4
 
-    .line 126
-    new-instance v1, Ljava/lang/AssertionError;
+    const-string v5, " expected to be [null] but was: ["
 
-    new-instance v2, Ljava/lang/StringBuilder;
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+    move-result-object v4
 
-    const-string v3, "Value at index: "
+    invoke-virtual {v4, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result-object v4
 
-    move-result-object v2
+    const-string v5, "]"
 
-    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v2
+    move-result-object v4
 
-    const-string v3, " expected to be ["
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result-object v4
 
-    move-result-object v2
+    invoke-direct {v3, v4}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
 
-    invoke-interface {p1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
+    throw v3
+
+    .line 127
+    :cond_77
+    invoke-virtual {v1, v0}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-nez v3, :cond_d9
+
+    .line 128
+    new-instance v4, Ljava/lang/AssertionError;
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "Value at index: "
+
+    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v3
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    const-string v3, "] ("
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-interface {p1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
+    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     move-result-object v3
 
-    invoke-virtual {v3}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+    const-string v5, " expected to be ["
+
+    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    const-string v5, "] ("
+
+    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    const-string v5, ") but was: ["
+
+    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    const-string v5, "] ("
+
+    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v5
+
+    if-eqz v0, :cond_d6
+
+    invoke-virtual {v0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v3
 
@@ -386,72 +396,40 @@
 
     move-result-object v3
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    const-string v3, ") but was: ["
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    iget-object v3, p0, Lrx/observers/TestObserver;->onNextEvents:Ljava/util/ArrayList;
-
-    invoke-virtual {v3, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+    :goto_c4
+    invoke-virtual {v5, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v3
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    const-string v5, ")"
 
-    move-result-object v2
-
-    const-string v3, "] ("
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    iget-object v3, p0, Lrx/observers/TestObserver;->onNextEvents:Ljava/util/ArrayList;
-
-    invoke-virtual {v3, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v3
 
-    invoke-virtual {v3}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v3
 
-    invoke-virtual {v3}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
+    invoke-direct {v4, v3}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
 
-    move-result-object v3
+    throw v4
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    :cond_d6
+    const-string v3, "null"
 
-    move-result-object v2
-
-    const-string v3, ")"
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-direct {v1, v2}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
-
-    throw v1
+    goto :goto_c4
 
     .line 119
-    :cond_f8
-    add-int/lit8 v0, v0, 0x1
+    :cond_d9
+    add-int/lit8 v2, v2, 0x1
 
     goto/16 :goto_3a
 
-    .line 131
-    :cond_fc
+    .line 135
+    .end local v0    # "actual":Ljava/lang/Object;, "TT;"
+    .end local v1    # "expected":Ljava/lang/Object;, "TT;"
+    :cond_dd
     return-void
 .end method
 
@@ -462,7 +440,7 @@
     .local p0, "this":Lrx/observers/TestObserver;, "Lrx/observers/TestObserver<TT;>;"
     const/4 v1, 0x1
 
-    .line 140
+    .line 144
     iget-object v0, p0, Lrx/observers/TestObserver;->onErrorEvents:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -471,7 +449,7 @@
 
     if-le v0, v1, :cond_28
 
-    .line 141
+    .line 145
     new-instance v0, Ljava/lang/AssertionError;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -502,7 +480,7 @@
 
     throw v0
 
-    .line 144
+    .line 148
     :cond_28
     iget-object v0, p0, Lrx/observers/TestObserver;->onCompletedEvents:Ljava/util/ArrayList;
 
@@ -512,7 +490,7 @@
 
     if-le v0, v1, :cond_4f
 
-    .line 145
+    .line 149
     new-instance v0, Ljava/lang/AssertionError;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -543,7 +521,7 @@
 
     throw v0
 
-    .line 148
+    .line 152
     :cond_4f
     iget-object v0, p0, Lrx/observers/TestObserver;->onCompletedEvents:Ljava/util/ArrayList;
 
@@ -561,7 +539,7 @@
 
     if-ne v0, v1, :cond_67
 
-    .line 149
+    .line 153
     new-instance v0, Ljava/lang/AssertionError;
 
     const-string v1, "Received both an onError and onCompleted. Should be one or the other."
@@ -570,7 +548,7 @@
 
     throw v0
 
-    .line 152
+    .line 156
     :cond_67
     iget-object v0, p0, Lrx/observers/TestObserver;->onCompletedEvents:Ljava/util/ArrayList;
 
@@ -588,7 +566,7 @@
 
     if-nez v0, :cond_7f
 
-    .line 153
+    .line 157
     new-instance v0, Ljava/lang/AssertionError;
 
     const-string v1, "No terminal events received."
@@ -597,7 +575,7 @@
 
     throw v0
 
-    .line 155
+    .line 159
     :cond_7f
     return-void
 .end method

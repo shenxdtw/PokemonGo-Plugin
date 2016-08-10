@@ -9,6 +9,8 @@
 # static fields
 .field public static final DEFAULT_TIME_TO_LIVE_MS:J = 0x927c0L
 
+.field private static final LOG_TAG:Ljava/lang/String;
+
 
 # instance fields
 .field private mBus:Lcom/squareup/otto/Bus;
@@ -26,6 +28,8 @@
         }
     .end annotation
 .end field
+
+.field private mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
 .field private final mParentEligibilityMap:Ljava/util/Map;
     .annotation system Ldalvik/annotation/Signature;
@@ -67,50 +71,70 @@
 
 
 # direct methods
-.method public constructor <init>(Lcom/squareup/otto/Bus;Lcom/upsight/android/analytics/internal/session/Clock;)V
-    .registers 4
-    .param p1, "bus"    # Lcom/squareup/otto/Bus;
-    .param p2, "clock"    # Lcom/upsight/android/analytics/internal/session/Clock;
+.method static constructor <clinit>()V
+    .registers 1
 
     .prologue
-    .line 69
+    .line 27
+    const-class v0, Lcom/upsight/android/marketing/internal/content/MarketingContentStore;
+
+    invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->LOG_TAG:Ljava/lang/String;
+
+    return-void
+.end method
+
+.method public constructor <init>(Lcom/squareup/otto/Bus;Lcom/upsight/android/analytics/internal/session/Clock;Lcom/upsight/android/logger/UpsightLogger;)V
+    .registers 5
+    .param p1, "bus"    # Lcom/squareup/otto/Bus;
+    .param p2, "clock"    # Lcom/upsight/android/analytics/internal/session/Clock;
+    .param p3, "logger"    # Lcom/upsight/android/logger/UpsightLogger;
+
+    .prologue
+    .line 77
     invoke-direct {p0}, Lcom/upsight/android/marketing/UpsightMarketingContentStore;-><init>()V
 
-    .line 36
+    .line 39
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mTimestamps:Ljava/util/Map;
 
-    .line 43
+    .line 46
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mContentMap:Ljava/util/Map;
 
-    .line 49
+    .line 52
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mScopeEligibilityMap:Ljava/util/Map;
 
-    .line 54
+    .line 57
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mParentEligibilityMap:Ljava/util/Map;
 
-    .line 70
+    .line 78
     iput-object p1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mBus:Lcom/squareup/otto/Bus;
 
-    .line 71
+    .line 79
     iput-object p2, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mClock:Lcom/upsight/android/analytics/internal/session/Clock;
 
-    .line 72
+    .line 80
+    iput-object p3, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    .line 81
     return-void
 .end method
 
@@ -118,10 +142,9 @@
 # virtual methods
 .method public bridge synthetic get(Ljava/lang/String;)Lcom/upsight/android/analytics/internal/action/Actionable;
     .registers 3
-    .param p1, "x0"    # Ljava/lang/String;
 
     .prologue
-    .line 24
+    .line 25
     invoke-virtual {p0, p1}, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->get(Ljava/lang/String;)Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
     move-result-object v0
@@ -134,7 +157,7 @@
     .param p1, "id"    # Ljava/lang/String;
 
     .prologue
-    .line 87
+    .line 99
     monitor-enter p0
 
     :try_start_1
@@ -146,9 +169,9 @@
 
     check-cast v0, Ljava/lang/Long;
 
-    .line 88
+    .line 100
     .local v0, "timestamp":Ljava/lang/Long;
-    if-eqz v0, :cond_27
+    if-eqz v0, :cond_44
 
     iget-object v1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mClock:Lcom/upsight/android/analytics/internal/session/Clock;
 
@@ -166,9 +189,38 @@
 
     cmp-long v1, v2, v4
 
-    if-gtz v1, :cond_27
+    if-gtz v1, :cond_44
 
-    .line 89
+    .line 102
+    iget-object v1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    sget-object v2, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->LOG_TAG:Ljava/lang/String;
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "get id="
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    const/4 v4, 0x0
+
+    new-array v4, v4, [Ljava/lang/Object;
+
+    invoke-interface {v1, v2, v3, v4}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 104
     iget-object v1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mContentMap:Ljava/util/Map;
 
     invoke-interface {v1, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -176,30 +228,30 @@
     move-result-object v1
 
     check-cast v1, Lcom/upsight/android/marketing/internal/content/MarketingContent;
-    :try_end_25
-    .catchall {:try_start_1 .. :try_end_25} :catchall_2c
+    :try_end_42
+    .catchall {:try_start_1 .. :try_end_42} :catchall_49
 
-    .line 92
-    :goto_25
+    .line 107
+    :goto_42
     monitor-exit p0
 
     return-object v1
 
-    .line 91
-    :cond_27
-    :try_start_27
+    .line 106
+    :cond_44
+    :try_start_44
     invoke-virtual {p0, p1}, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->remove(Ljava/lang/String;)Z
-    :try_end_2a
-    .catchall {:try_start_27 .. :try_end_2a} :catchall_2c
+    :try_end_47
+    .catchall {:try_start_44 .. :try_end_47} :catchall_49
 
-    .line 92
+    .line 107
     const/4 v1, 0x0
 
-    goto :goto_25
+    goto :goto_42
 
-    .line 87
+    .line 99
     .end local v0    # "timestamp":Ljava/lang/Long;
-    :catchall_2c
+    :catchall_49
     move-exception v1
 
     monitor-exit p0
@@ -208,7 +260,7 @@
 .end method
 
 .method public declared-synchronized getIdsForScope(Ljava/lang/String;)Ljava/util/Set;
-    .registers 4
+    .registers 10
     .param p1, "scope"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -223,45 +275,148 @@
     .end annotation
 
     .prologue
-    .line 128
+    .line 146
     monitor-enter p0
 
     :try_start_1
-    iget-object v1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mScopeEligibilityMap:Ljava/util/Map;
+    iget-object v4, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mScopeEligibilityMap:Ljava/util/Map;
 
-    invoke-interface {v1, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-interface {v4, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Ljava/util/Set;
+
+    .line 147
+    .local v1, "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    if-nez v1, :cond_32
+
+    .line 148
+    new-instance v1, Ljava/util/HashSet;
+
+    .end local v1    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    invoke-direct {v1}, Ljava/util/HashSet;-><init>()V
+
+    .line 154
+    .restart local v1    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    :goto_10
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    .line 155
+    .local v3, "sb":Ljava/lang/StringBuilder;
+    invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    move-result-object v4
+
+    :goto_19
+    invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_39
+
+    invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
-    check-cast v0, Ljava/util/Set;
+    check-cast v0, Ljava/lang/String;
 
-    .line 129
-    .local v0, "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
-    if-nez v0, :cond_10
+    .line 156
+    .local v0, "id":Ljava/lang/String;
+    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 130
-    new-instance v0, Ljava/util/HashSet;
+    move-result-object v5
 
-    .end local v0    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
-    invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
-    :try_end_10
-    .catchall {:try_start_1 .. :try_end_10} :catchall_12
+    const-string v6, " "
 
-    .line 132
-    .restart local v0    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
-    :cond_10
-    monitor-exit p0
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    :try_end_2e
+    .catchall {:try_start_1 .. :try_end_2e} :catchall_2f
 
-    return-object v0
+    goto :goto_19
 
-    .line 128
-    .end local v0    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
-    :catchall_12
-    move-exception v1
+    .line 146
+    .end local v0    # "id":Ljava/lang/String;
+    .end local v1    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    .end local v3    # "sb":Ljava/lang/StringBuilder;
+    :catchall_2f
+    move-exception v4
 
     monitor-exit p0
 
-    throw v1
+    throw v4
+
+    .line 150
+    .restart local v1    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    :cond_32
+    :try_start_32
+    new-instance v2, Ljava/util/HashSet;
+
+    invoke-direct {v2, v1}, Ljava/util/HashSet;-><init>(Ljava/util/Collection;)V
+
+    .end local v1    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    .local v2, "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    move-object v1, v2
+
+    .end local v2    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    .restart local v1    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    goto :goto_10
+
+    .line 158
+    .restart local v3    # "sb":Ljava/lang/StringBuilder;
+    :cond_39
+    iget-object v4, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    sget-object v5, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->LOG_TAG:Ljava/lang/String;
+
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v7, "getIdsForScope scope="
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    const-string v7, " ids=[ "
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    const-string v7, " ]"
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v6
+
+    const/4 v7, 0x0
+
+    new-array v7, v7, [Ljava/lang/Object;
+
+    invoke-interface {v4, v5, v6, v7}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    :try_end_66
+    .catchall {:try_start_32 .. :try_end_66} :catchall_2f
+
+    .line 160
+    monitor-exit p0
+
+    return-object v1
 .end method
 
 .method public declared-synchronized isContentReady(Ljava/lang/String;)Z
@@ -269,7 +424,7 @@
     .param p1, "scope"    # Ljava/lang/String;
 
     .prologue
-    .line 174
+    .line 206
     monitor-enter p0
 
     :try_start_1
@@ -311,202 +466,248 @@
     .param p2, "scopes"    # [Ljava/lang/String;
 
     .prologue
-    .line 137
+    const/4 v4, 0x0
+
+    .line 165
     monitor-enter p0
 
-    :try_start_1
-    iget-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mContentMap:Ljava/util/Map;
+    :try_start_2
+    iget-object v5, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mContentMap:Ljava/util/Map;
 
-    invoke-interface {v7, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v1
-
-    check-cast v1, Lcom/upsight/android/marketing/internal/content/MarketingContent;
-
-    .line 138
-    .local v1, "content":Lcom/upsight/android/marketing/internal/content/MarketingContent;
-    if-eqz v1, :cond_45
-
-    if-eqz p2, :cond_45
-
-    array-length v7, p2
-
-    if-lez v7, :cond_45
-
-    .line 139
-    move-object v0, p2
-
-    .local v0, "arr$":[Ljava/lang/String;
-    array-length v5, v0
-
-    .local v5, "len$":I
-    const/4 v3, 0x0
-
-    .local v3, "i$":I
-    :goto_13
-    if-ge v3, v5, :cond_38
-
-    aget-object v6, v0, v3
-
-    .line 140
-    .local v6, "scope":Ljava/lang/String;
-    iget-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mScopeEligibilityMap:Ljava/util/Map;
-
-    invoke-interface {v7, v6}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v4
-
-    check-cast v4, Ljava/util/Set;
-
-    .line 141
-    .local v4, "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
-    if-eqz v4, :cond_27
-
-    .line 142
-    invoke-interface {v4, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
-
-    .line 139
-    :goto_24
-    add-int/lit8 v3, v3, 0x1
-
-    goto :goto_13
-
-    .line 144
-    :cond_27
-    new-instance v4, Ljava/util/HashSet;
-
-    .end local v4    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
-    invoke-direct {v4}, Ljava/util/HashSet;-><init>()V
-
-    .line 145
-    .restart local v4    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
-    invoke-interface {v4, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
-
-    .line 146
-    iget-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mScopeEligibilityMap:Ljava/util/Map;
-
-    invoke-interface {v7, v6, v4}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_34
-    .catchall {:try_start_1 .. :try_end_34} :catchall_35
-
-    goto :goto_24
-
-    .line 137
-    .end local v0    # "arr$":[Ljava/lang/String;
-    .end local v1    # "content":Lcom/upsight/android/marketing/internal/content/MarketingContent;
-    .end local v3    # "i$":I
-    .end local v4    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
-    .end local v5    # "len$":I
-    .end local v6    # "scope":Ljava/lang/String;
-    :catchall_35
-    move-exception v7
-
-    monitor-exit p0
-
-    throw v7
-
-    .line 150
-    .restart local v0    # "arr$":[Ljava/lang/String;
-    .restart local v1    # "content":Lcom/upsight/android/marketing/internal/content/MarketingContent;
-    .restart local v3    # "i$":I
-    .restart local v5    # "len$":I
-    :cond_38
-    :try_start_38
-    new-instance v2, Lcom/upsight/android/marketing/internal/content/MarketingContent$ScopedAvailabilityEvent;
-
-    invoke-direct {v2, p1, p2}, Lcom/upsight/android/marketing/internal/content/MarketingContent$ScopedAvailabilityEvent;-><init>(Ljava/lang/String;[Ljava/lang/String;)V
-
-    .line 151
-    .local v2, "event":Lcom/upsight/android/marketing/internal/content/MarketingContent$AvailabilityEvent;
-    iget-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mBus:Lcom/squareup/otto/Bus;
-
-    invoke-virtual {v1, v2, v7}, Lcom/upsight/android/marketing/internal/content/MarketingContent;->markPresentable(Lcom/upsight/android/marketing/internal/content/MarketingContent$AvailabilityEvent;Lcom/squareup/otto/Bus;)V
-    :try_end_42
-    .catchall {:try_start_38 .. :try_end_42} :catchall_35
-
-    .line 153
-    const/4 v7, 0x1
-
-    .line 155
-    .end local v0    # "arr$":[Ljava/lang/String;
-    .end local v2    # "event":Lcom/upsight/android/marketing/internal/content/MarketingContent$AvailabilityEvent;
-    .end local v3    # "i$":I
-    .end local v5    # "len$":I
-    :goto_43
-    monitor-exit p0
-
-    return v7
-
-    :cond_45
-    const/4 v7, 0x0
-
-    goto :goto_43
-.end method
-
-.method public declared-synchronized presentScopelessContent(Ljava/lang/String;Ljava/lang/String;)Z
-    .registers 6
-    .param p1, "id"    # Ljava/lang/String;
-    .param p2, "parentId"    # Ljava/lang/String;
-
-    .prologue
-    .line 160
-    monitor-enter p0
-
-    :try_start_1
-    iget-object v2, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mContentMap:Ljava/util/Map;
-
-    invoke-interface {v2, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-interface {v5, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
-    .line 161
+    .line 166
     .local v0, "content":Lcom/upsight/android/marketing/internal/content/MarketingContent;
-    if-eqz v0, :cond_23
+    if-eqz v0, :cond_5f
+
+    if-eqz p2, :cond_5f
+
+    array-length v5, p2
+
+    if-lez v5, :cond_5f
+
+    .line 167
+    array-length v5, p2
+
+    :goto_12
+    if-ge v4, v5, :cond_37
+
+    aget-object v3, p2, v4
+
+    .line 168
+    .local v3, "scope":Ljava/lang/String;
+    iget-object v6, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mScopeEligibilityMap:Ljava/util/Map;
+
+    invoke-interface {v6, v3}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Ljava/util/Set;
+
+    .line 169
+    .local v2, "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    if-eqz v2, :cond_26
+
+    .line 170
+    invoke-interface {v2, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+
+    .line 167
+    :goto_23
+    add-int/lit8 v4, v4, 0x1
+
+    goto :goto_12
+
+    .line 172
+    :cond_26
+    new-instance v2, Ljava/util/HashSet;
+
+    .end local v2    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    invoke-direct {v2}, Ljava/util/HashSet;-><init>()V
+
+    .line 173
+    .restart local v2    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    invoke-interface {v2, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+
+    .line 174
+    iget-object v6, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mScopeEligibilityMap:Ljava/util/Map;
+
+    invoke-interface {v6, v3, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    :try_end_33
+    .catchall {:try_start_2 .. :try_end_33} :catchall_34
+
+    goto :goto_23
+
+    .line 165
+    .end local v0    # "content":Lcom/upsight/android/marketing/internal/content/MarketingContent;
+    .end local v2    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    .end local v3    # "scope":Ljava/lang/String;
+    :catchall_34
+    move-exception v4
+
+    monitor-exit p0
+
+    throw v4
+
+    .line 178
+    .restart local v0    # "content":Lcom/upsight/android/marketing/internal/content/MarketingContent;
+    :cond_37
+    :try_start_37
+    new-instance v1, Lcom/upsight/android/marketing/internal/content/MarketingContent$ScopedAvailabilityEvent;
+
+    invoke-direct {v1, p1, p2}, Lcom/upsight/android/marketing/internal/content/MarketingContent$ScopedAvailabilityEvent;-><init>(Ljava/lang/String;[Ljava/lang/String;)V
+
+    .line 179
+    .local v1, "event":Lcom/upsight/android/marketing/internal/content/MarketingContent$AvailabilityEvent;
+    iget-object v4, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mBus:Lcom/squareup/otto/Bus;
+
+    invoke-virtual {v0, v1, v4}, Lcom/upsight/android/marketing/internal/content/MarketingContent;->markPresentable(Lcom/upsight/android/marketing/internal/content/MarketingContent$AvailabilityEvent;Lcom/squareup/otto/Bus;)V
+
+    .line 181
+    iget-object v4, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    sget-object v5, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->LOG_TAG:Ljava/lang/String;
+
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v7, "presentScopedContent id="
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v6
+
+    const/4 v7, 0x0
+
+    new-array v7, v7, [Ljava/lang/Object;
+
+    invoke-interface {v4, v5, v6, v7}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    :try_end_5e
+    .catchall {:try_start_37 .. :try_end_5e} :catchall_34
+
+    .line 183
+    const/4 v4, 0x1
+
+    .line 185
+    .end local v1    # "event":Lcom/upsight/android/marketing/internal/content/MarketingContent$AvailabilityEvent;
+    :cond_5f
+    monitor-exit p0
+
+    return v4
+.end method
+
+.method public declared-synchronized presentScopelessContent(Ljava/lang/String;Ljava/lang/String;)Z
+    .registers 9
+    .param p1, "id"    # Ljava/lang/String;
+    .param p2, "parentId"    # Ljava/lang/String;
+
+    .prologue
+    const/4 v2, 0x0
+
+    .line 190
+    monitor-enter p0
+
+    :try_start_2
+    iget-object v3, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mContentMap:Ljava/util/Map;
+
+    invoke-interface {v3, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/marketing/internal/content/MarketingContent;
+
+    .line 191
+    .local v0, "content":Lcom/upsight/android/marketing/internal/content/MarketingContent;
+    if-eqz v0, :cond_49
 
     invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
-    move-result v2
+    move-result v3
 
-    if-nez v2, :cond_23
+    if-nez v3, :cond_49
 
-    .line 162
+    .line 192
     iget-object v2, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mParentEligibilityMap:Ljava/util/Map;
 
     invoke-interface {v2, p2, p1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 164
+    .line 194
     new-instance v1, Lcom/upsight/android/marketing/internal/content/MarketingContent$ScopelessAvailabilityEvent;
 
     invoke-direct {v1, p1, p2}, Lcom/upsight/android/marketing/internal/content/MarketingContent$ScopelessAvailabilityEvent;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 165
+    .line 195
     .local v1, "event":Lcom/upsight/android/marketing/internal/content/MarketingContent$AvailabilityEvent;
     iget-object v2, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mBus:Lcom/squareup/otto/Bus;
 
     invoke-virtual {v0, v1, v2}, Lcom/upsight/android/marketing/internal/content/MarketingContent;->markPresentable(Lcom/upsight/android/marketing/internal/content/MarketingContent$AvailabilityEvent;Lcom/squareup/otto/Bus;)V
-    :try_end_20
-    .catchall {:try_start_1 .. :try_end_20} :catchall_25
 
-    .line 167
+    .line 197
+    iget-object v2, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    sget-object v3, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->LOG_TAG:Ljava/lang/String;
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "presentScopelessContent id="
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    const-string v5, " parentId="
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    const/4 v5, 0x0
+
+    new-array v5, v5, [Ljava/lang/Object;
+
+    invoke-interface {v2, v3, v4, v5}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    :try_end_48
+    .catchall {:try_start_2 .. :try_end_48} :catchall_4b
+
+    .line 199
     const/4 v2, 0x1
 
-    .line 169
+    .line 201
     .end local v1    # "event":Lcom/upsight/android/marketing/internal/content/MarketingContent$AvailabilityEvent;
-    :goto_21
+    :cond_49
     monitor-exit p0
 
     return v2
 
-    :cond_23
-    const/4 v2, 0x0
-
-    goto :goto_21
-
-    .line 160
+    .line 190
     .end local v0    # "content":Lcom/upsight/android/marketing/internal/content/MarketingContent;
-    :catchall_25
+    :catchall_4b
     move-exception v2
 
     monitor-exit p0
@@ -516,14 +717,11 @@
 
 .method public bridge synthetic put(Ljava/lang/String;Lcom/upsight/android/analytics/internal/action/Actionable;)Z
     .registers 4
-    .param p1, "x0"    # Ljava/lang/String;
-    .param p2, "x1"    # Lcom/upsight/android/analytics/internal/action/Actionable;
 
     .prologue
-    .line 24
+    .line 25
     check-cast p2, Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
-    .end local p2    # "x1":Lcom/upsight/android/analytics/internal/action/Actionable;
     invoke-virtual {p0, p1, p2}, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->put(Ljava/lang/String;Lcom/upsight/android/marketing/internal/content/MarketingContent;)Z
 
     move-result v0
@@ -532,17 +730,17 @@
 .end method
 
 .method public declared-synchronized put(Ljava/lang/String;Lcom/upsight/android/marketing/internal/content/MarketingContent;)Z
-    .registers 7
+    .registers 8
     .param p1, "id"    # Ljava/lang/String;
     .param p2, "content"    # Lcom/upsight/android/marketing/internal/content/MarketingContent;
 
     .prologue
-    .line 76
+    .line 85
     monitor-enter p0
 
     const/4 v0, 0x0
 
-    .line 77
+    .line 86
     .local v0, "isAdded":Z
     :try_start_2
     invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
@@ -553,12 +751,12 @@
 
     if-eqz p2, :cond_1f
 
-    .line 78
+    .line 87
     iget-object v1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mContentMap:Ljava/util/Map;
 
     invoke-interface {v1, p1, p2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 79
+    .line 88
     iget-object v1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mTimestamps:Ljava/util/Map;
 
     iget-object v2, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mClock:Lcom/upsight/android/analytics/internal/session/Clock;
@@ -572,20 +770,59 @@
     move-result-object v2
 
     invoke-interface {v1, p1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_1e
-    .catchall {:try_start_2 .. :try_end_1e} :catchall_21
 
-    .line 80
+    .line 89
     const/4 v0, 0x1
 
-    .line 82
+    .line 92
     :cond_1f
+    iget-object v1, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    sget-object v2, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->LOG_TAG:Ljava/lang/String;
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "put id="
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    const-string v4, " isAdded="
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    const/4 v4, 0x0
+
+    new-array v4, v4, [Ljava/lang/Object;
+
+    invoke-interface {v1, v2, v3, v4}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    :try_end_46
+    .catchall {:try_start_2 .. :try_end_46} :catchall_48
+
+    .line 94
     monitor-exit p0
 
     return v0
 
-    .line 76
-    :catchall_21
+    .line 85
+    :catchall_48
     move-exception v1
 
     monitor-exit p0
@@ -594,40 +831,42 @@
 .end method
 
 .method public declared-synchronized remove(Ljava/lang/String;)Z
-    .registers 10
+    .registers 13
     .param p1, "id"    # Ljava/lang/String;
 
     .prologue
-    .line 98
+    const/4 v7, 0x0
+
+    .line 113
     monitor-enter p0
 
     const/4 v4, 0x0
 
-    .line 99
+    .line 114
     .local v4, "isRemoved":Z
-    :try_start_2
+    :try_start_3
     invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
-    move-result v7
+    move-result v8
 
-    if-nez v7, :cond_75
+    if-nez v8, :cond_76
 
-    .line 100
-    iget-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mContentMap:Ljava/util/Map;
+    .line 115
+    iget-object v8, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mContentMap:Ljava/util/Map;
 
-    invoke-interface {v7, p1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-interface {v8, p1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    move-result-object v7
+    move-result-object v8
 
-    if-eqz v7, :cond_40
+    if-eqz v8, :cond_41
 
     const/4 v4, 0x1
 
-    .line 101
-    :goto_11
-    if-eqz v4, :cond_75
+    .line 116
+    :goto_12
+    if-eqz v4, :cond_76
 
-    .line 102
+    .line 117
     iget-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mScopeEligibilityMap:Ljava/util/Map;
 
     invoke-interface {v7}, Ljava/util/Map;->keySet()Ljava/util/Set;
@@ -638,24 +877,24 @@
 
     move-result-object v2
 
-    .line 103
+    .line 118
     .local v2, "eligibleIdsItr":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/lang/String;>;"
-    :cond_1d
-    :goto_1d
+    :cond_1e
+    :goto_1e
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v7
 
-    if-eqz v7, :cond_42
+    if-eqz v7, :cond_43
 
-    .line 104
+    .line 119
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v6
 
     check-cast v6, Ljava/lang/String;
 
-    .line 105
+    .line 120
     .local v6, "scope":Ljava/lang/String;
     iget-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mScopeEligibilityMap:Ljava/util/Map;
 
@@ -665,44 +904,44 @@
 
     check-cast v3, Ljava/util/Set;
 
-    .line 106
+    .line 121
     .local v3, "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
-    if-eqz v3, :cond_1d
+    if-eqz v3, :cond_1e
 
     invoke-interface {v3, p1}, Ljava/util/Set;->contains(Ljava/lang/Object;)Z
 
     move-result v7
 
-    if-eqz v7, :cond_1d
+    if-eqz v7, :cond_1e
 
-    .line 107
-    invoke-interface {v2}, Ljava/util/Iterator;->remove()V
-    :try_end_3c
-    .catchall {:try_start_2 .. :try_end_3c} :catchall_3d
+    .line 122
+    invoke-interface {v3, p1}, Ljava/util/Set;->remove(Ljava/lang/Object;)Z
+    :try_end_3d
+    .catchall {:try_start_3 .. :try_end_3d} :catchall_3e
 
-    goto :goto_1d
+    goto :goto_1e
 
-    .line 98
+    .line 113
     .end local v2    # "eligibleIdsItr":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/lang/String;>;"
     .end local v3    # "ids":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
     .end local v6    # "scope":Ljava/lang/String;
-    :catchall_3d
+    :catchall_3e
     move-exception v7
 
     monitor-exit p0
 
     throw v7
 
-    .line 100
-    :cond_40
-    const/4 v4, 0x0
+    :cond_41
+    move v4, v7
 
-    goto :goto_11
+    .line 115
+    goto :goto_12
 
-    .line 111
+    .line 126
     .restart local v2    # "eligibleIdsItr":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/lang/String;>;"
-    :cond_42
-    :try_start_42
+    :cond_43
+    :try_start_43
     iget-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mParentEligibilityMap:Ljava/util/Map;
 
     invoke-interface {v7}, Ljava/util/Map;->keySet()Ljava/util/Set;
@@ -713,24 +952,24 @@
 
     move-result-object v1
 
-    .line 112
+    .line 127
     .local v1, "childIdMapItr":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/lang/String;>;"
-    :cond_4c
-    :goto_4c
+    :cond_4d
+    :goto_4d
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v7
 
-    if-eqz v7, :cond_70
+    if-eqz v7, :cond_71
 
-    .line 113
+    .line 128
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v5
 
     check-cast v5, Ljava/lang/String;
 
-    .line 114
+    .line 129
     .local v5, "parentId":Ljava/lang/String;
     iget-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mParentEligibilityMap:Ljava/util/Map;
 
@@ -740,40 +979,79 @@
 
     check-cast v0, Ljava/lang/String;
 
-    .line 115
+    .line 130
     .local v0, "childId":Ljava/lang/String;
     invoke-virtual {p1, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v7
 
-    if-nez v7, :cond_6c
+    if-nez v7, :cond_6d
 
     invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v7
 
-    if-eqz v7, :cond_4c
+    if-eqz v7, :cond_4d
 
-    .line 116
-    :cond_6c
+    .line 131
+    :cond_6d
     invoke-interface {v1}, Ljava/util/Iterator;->remove()V
 
-    goto :goto_4c
+    goto :goto_4d
 
-    .line 120
+    .line 135
     .end local v0    # "childId":Ljava/lang/String;
     .end local v5    # "parentId":Ljava/lang/String;
-    :cond_70
+    :cond_71
     iget-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mTimestamps:Ljava/util/Map;
 
     invoke-interface {v7, p1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_75
-    .catchall {:try_start_42 .. :try_end_75} :catchall_3d
 
-    .line 123
+    .line 139
     .end local v1    # "childIdMapItr":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/lang/String;>;"
     .end local v2    # "eligibleIdsItr":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/lang/String;>;"
-    :cond_75
+    :cond_76
+    iget-object v7, p0, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    sget-object v8, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;->LOG_TAG:Ljava/lang/String;
+
+    new-instance v9, Ljava/lang/StringBuilder;
+
+    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v10, "remove id="
+
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v9
+
+    invoke-virtual {v9, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v9
+
+    const-string v10, " isRemoved="
+
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v9
+
+    invoke-virtual {v9, v4}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v9
+
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v9
+
+    const/4 v10, 0x0
+
+    new-array v10, v10, [Ljava/lang/Object;
+
+    invoke-interface {v7, v8, v9, v10}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    :try_end_9d
+    .catchall {:try_start_43 .. :try_end_9d} :catchall_3e
+
+    .line 141
     monitor-exit p0
 
     return v4

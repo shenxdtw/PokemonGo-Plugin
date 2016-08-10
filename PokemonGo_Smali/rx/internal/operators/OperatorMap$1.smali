@@ -32,7 +32,7 @@
     .registers 4
 
     .prologue
-    .line 40
+    .line 39
     .local p0, "this":Lrx/internal/operators/OperatorMap$1;, "Lrx/internal/operators/OperatorMap.1;"
     .local p2, "x0":Lrx/Subscriber;, "Lrx/Subscriber<*>;"
     iput-object p1, p0, Lrx/internal/operators/OperatorMap$1;->this$0:Lrx/internal/operators/OperatorMap;
@@ -50,13 +50,13 @@
     .registers 2
 
     .prologue
-    .line 44
+    .line 43
     .local p0, "this":Lrx/internal/operators/OperatorMap$1;, "Lrx/internal/operators/OperatorMap.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorMap$1;->val$o:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    .line 45
+    .line 44
     return-void
 .end method
 
@@ -65,13 +65,13 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 49
+    .line 48
     .local p0, "this":Lrx/internal/operators/OperatorMap$1;, "Lrx/internal/operators/OperatorMap.1;"
     iget-object v0, p0, Lrx/internal/operators/OperatorMap$1;->val$o:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 50
+    .line 49
     return-void
 .end method
 
@@ -84,7 +84,7 @@
     .end annotation
 
     .prologue
-    .line 55
+    .line 54
     .local p0, "this":Lrx/internal/operators/OperatorMap$1;, "Lrx/internal/operators/OperatorMap.1;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     :try_start_0
@@ -92,37 +92,27 @@
 
     iget-object v2, p0, Lrx/internal/operators/OperatorMap$1;->this$0:Lrx/internal/operators/OperatorMap;
 
-    # getter for: Lrx/internal/operators/OperatorMap;->transformer:Lrx/functions/Func1;
-    invoke-static {v2}, Lrx/internal/operators/OperatorMap;->access$000(Lrx/internal/operators/OperatorMap;)Lrx/functions/Func1;
-
-    move-result-object v2
+    iget-object v2, v2, Lrx/internal/operators/OperatorMap;->transformer:Lrx/functions/Func1;
 
     invoke-interface {v2, p1}, Lrx/functions/Func1;->call(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v2
 
     invoke-virtual {v1, v2}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
-    :try_end_f
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_f} :catch_10
-
-    .line 60
-    :goto_f
-    return-void
-
-    .line 56
-    :catch_10
-    move-exception v0
-
-    .line 57
-    .local v0, "e":Ljava/lang/Throwable;
-    invoke-static {v0}, Lrx/exceptions/Exceptions;->throwIfFatal(Ljava/lang/Throwable;)V
+    :try_end_d
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_d} :catch_e
 
     .line 58
-    invoke-static {v0, p1}, Lrx/exceptions/OnErrorThrowable;->addValueAsLastCause(Ljava/lang/Throwable;Ljava/lang/Object;)Ljava/lang/Throwable;
+    :goto_d
+    return-void
 
-    move-result-object v1
+    .line 55
+    :catch_e
+    move-exception v0
 
-    invoke-virtual {p0, v1}, Lrx/internal/operators/OperatorMap$1;->onError(Ljava/lang/Throwable;)V
+    .line 56
+    .local v0, "e":Ljava/lang/Throwable;
+    invoke-static {v0, p0, p1}, Lrx/exceptions/Exceptions;->throwOrReport(Ljava/lang/Throwable;Lrx/Observer;Ljava/lang/Object;)V
 
-    goto :goto_f
+    goto :goto_d
 .end method

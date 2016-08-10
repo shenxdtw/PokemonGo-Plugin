@@ -34,7 +34,7 @@
     .registers 2
 
     .prologue
-    .line 41
+    .line 40
     .local p0, "this":Lrx/subjects/SerializedSubject$1;, "Lrx/subjects/SerializedSubject.1;"
     iput-object p1, p0, Lrx/subjects/SerializedSubject$1;->val$actual:Lrx/subjects/Subject;
 
@@ -50,7 +50,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 41
+    .line 40
     .local p0, "this":Lrx/subjects/SerializedSubject$1;, "Lrx/subjects/SerializedSubject.1;"
     check-cast p1, Lrx/Subscriber;
 
@@ -71,13 +71,13 @@
     .end annotation
 
     .prologue
-    .line 45
+    .line 44
     .local p0, "this":Lrx/subjects/SerializedSubject$1;, "Lrx/subjects/SerializedSubject.1;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
     iget-object v0, p0, Lrx/subjects/SerializedSubject$1;->val$actual:Lrx/subjects/Subject;
 
     invoke-virtual {v0, p1}, Lrx/subjects/Subject;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
 
-    .line 46
+    .line 45
     return-void
 .end method

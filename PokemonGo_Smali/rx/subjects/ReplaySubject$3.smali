@@ -36,7 +36,7 @@
     .registers 2
 
     .prologue
-    .line 140
+    .line 144
     iput-object p1, p0, Lrx/subjects/ReplaySubject$3;->val$state:Lrx/subjects/ReplaySubject$UnboundedReplayState;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -51,7 +51,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 140
+    .line 144
     check-cast p1, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;
 
     .end local p1    # "x0":Ljava/lang/Object;
@@ -71,7 +71,7 @@
     .end annotation
 
     .prologue
-    .line 143
+    .line 147
     .local p1, "o":Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;, "Lrx/subjects/SubjectSubscriptionManager$SubjectObserver<TT;>;"
     invoke-virtual {p1}, Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;->index()Ljava/lang/Object;
 
@@ -79,23 +79,23 @@
 
     check-cast v0, Ljava/lang/Integer;
 
-    .line 144
+    .line 148
     .local v0, "idx":Ljava/lang/Integer;
     if-nez v0, :cond_d
 
-    .line 145
+    .line 149
     const/4 v1, 0x0
 
     invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v0
 
-    .line 148
+    .line 152
     :cond_d
     iget-object v1, p0, Lrx/subjects/ReplaySubject$3;->val$state:Lrx/subjects/ReplaySubject$UnboundedReplayState;
 
     invoke-virtual {v1, v0, p1}, Lrx/subjects/ReplaySubject$UnboundedReplayState;->replayObserverFromIndex(Ljava/lang/Integer;Lrx/subjects/SubjectSubscriptionManager$SubjectObserver;)Ljava/lang/Integer;
 
-    .line 149
+    .line 153
     return-void
 .end method

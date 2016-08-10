@@ -90,10 +90,7 @@
     .line 278
     iget-object v1, p0, Lrx/internal/operators/OnSubscribeRedo$2;->this$0:Lrx/internal/operators/OnSubscribeRedo;
 
-    # getter for: Lrx/internal/operators/OnSubscribeRedo;->source:Lrx/Observable;
-    invoke-static {v1}, Lrx/internal/operators/OnSubscribeRedo;->access$200(Lrx/internal/operators/OnSubscribeRedo;)Lrx/Observable;
-
-    move-result-object v1
+    iget-object v1, v1, Lrx/internal/operators/OnSubscribeRedo;->source:Lrx/Observable;
 
     invoke-virtual {v1, v0}, Lrx/Observable;->unsafeSubscribe(Lrx/Subscriber;)Lrx/Subscription;
 

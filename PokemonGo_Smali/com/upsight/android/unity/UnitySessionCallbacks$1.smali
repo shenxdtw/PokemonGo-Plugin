@@ -24,9 +24,10 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/unity/UnitySessionCallbacks;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/unity/UnitySessionCallbacks;
 
     .prologue
-    .line 27
+    .line 33
     iput-object p1, p0, Lcom/upsight/android/unity/UnitySessionCallbacks$1;->this$0:Lcom/upsight/android/unity/UnitySessionCallbacks;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -40,12 +41,9 @@
     .registers 2
 
     .prologue
-    .line 31
-    invoke-static {}, Lcom/upsight/android/unity/UpsightPlugin;->instance()Lcom/upsight/android/unity/UpsightPlugin;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Lcom/upsight/android/unity/UpsightPlugin;->getShouldSynchronizeManagedVariables()Z
+    .line 37
+    # getter for: Lcom/upsight/android/unity/UnitySessionCallbacks;->mShouldSynchronizeManagedVariables:Z
+    invoke-static {}, Lcom/upsight/android/unity/UnitySessionCallbacks;->access$000()Z
 
     move-result v0
 
@@ -53,7 +51,7 @@
 .end method
 
 .method public onSynchronize(Ljava/util/List;)V
-    .registers 8
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -65,60 +63,55 @@
     .end annotation
 
     .prologue
-    .line 36
+    .line 42
     .local p1, "tags":Ljava/util/List;, "Ljava/util/List<Ljava/lang/String;>;"
-    const-string v3, "UnitySessionCallbacks"
+    const-string v2, "UnitySessionCallbacks"
 
-    const-string v4, "onSynchronize"
+    const-string v3, "onSynchronize"
 
-    invoke-static {v3, v4}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v2, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 38
-    new-instance v1, Lorg/json/JSONArray;
+    .line 44
+    new-instance v0, Lorg/json/JSONArray;
 
-    invoke-direct {v1}, Lorg/json/JSONArray;-><init>()V
+    invoke-direct {v0}, Lorg/json/JSONArray;-><init>()V
 
-    .line 39
-    .local v1, "json":Lorg/json/JSONArray;
+    .line 45
+    .local v0, "json":Lorg/json/JSONArray;
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
-    move-result-object v0
+    move-result-object v2
 
-    .local v0, "i$":Ljava/util/Iterator;
     :goto_10
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
     if-eqz v3, :cond_20
 
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v2
+    move-result-object v1
 
-    check-cast v2, Ljava/lang/String;
+    check-cast v1, Ljava/lang/String;
 
-    .line 40
-    .local v2, "t":Ljava/lang/String;
-    invoke-virtual {v1, v2}, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+    .line 46
+    .local v1, "t":Ljava/lang/String;
+    invoke-virtual {v0, v1}, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
 
     goto :goto_10
 
-    .line 42
-    .end local v2    # "t":Ljava/lang/String;
+    .line 48
+    .end local v1    # "t":Ljava/lang/String;
     :cond_20
-    invoke-static {}, Lcom/upsight/android/unity/UpsightPlugin;->instance()Lcom/upsight/android/unity/UpsightPlugin;
+    const-string v2, "managedVariablesDidSynchronize"
+
+    invoke-virtual {v0}, Lorg/json/JSONArray;->toString()Ljava/lang/String;
 
     move-result-object v3
 
-    const-string v4, "managedVariablesDidSynchronize"
+    invoke-static {v2, v3}, Lcom/upsight/android/unity/UnityBridge;->UnitySendMessage(Ljava/lang/String;Ljava/lang/String;)V
 
-    invoke-virtual {v1}, Lorg/json/JSONArray;->toString()Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-virtual {v3, v4, v5}, Lcom/upsight/android/unity/UpsightPlugin;->UnitySendMessage(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 43
+    .line 49
     return-void
 .end method

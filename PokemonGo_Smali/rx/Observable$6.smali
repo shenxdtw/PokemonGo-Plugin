@@ -3,12 +3,12 @@
 .source "Observable.java"
 
 # interfaces
-.implements Lrx/Observable$OnSubscribe;
+.implements Lrx/functions/Func1;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Observable;->defaultIfEmpty(Ljava/lang/Object;)Lrx/Observable;
+    value = Lrx/Observable;->contains(Ljava/lang/Object;)Lrx/Observable;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -19,8 +19,10 @@
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lrx/Observable$OnSubscribe",
-        "<TT;>;"
+        "Lrx/functions/Func1",
+        "<TT;",
+        "Ljava/lang/Boolean;",
+        ">;"
     }
 .end annotation
 
@@ -28,7 +30,7 @@
 # instance fields
 .field final synthetic this$0:Lrx/Observable;
 
-.field final synthetic val$defaultValue:Ljava/lang/Object;
+.field final synthetic val$element:Ljava/lang/Object;
 
 
 # direct methods
@@ -36,11 +38,11 @@
     .registers 3
 
     .prologue
-    .line 3952
+    .line 4150
     .local p0, "this":Lrx/Observable$6;, "Lrx/Observable.6;"
     iput-object p1, p0, Lrx/Observable$6;->this$0:Lrx/Observable;
 
-    iput-object p2, p0, Lrx/Observable$6;->val$defaultValue:Ljava/lang/Object;
+    iput-object p2, p0, Lrx/Observable$6;->val$element:Ljava/lang/Object;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -49,43 +51,59 @@
 
 
 # virtual methods
-.method public bridge synthetic call(Ljava/lang/Object;)V
-    .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
-
-    .prologue
-    .line 3952
-    .local p0, "this":Lrx/Observable$6;, "Lrx/Observable.6;"
-    check-cast p1, Lrx/Subscriber;
-
-    .end local p1    # "x0":Ljava/lang/Object;
-    invoke-virtual {p0, p1}, Lrx/Observable$6;->call(Lrx/Subscriber;)V
-
-    return-void
-.end method
-
-.method public call(Lrx/Subscriber;)V
-    .registers 4
+.method public final call(Ljava/lang/Object;)Ljava/lang/Boolean;
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "(",
-            "Lrx/Subscriber",
-            "<-TT;>;)V"
+            "(TT;)",
+            "Ljava/lang/Boolean;"
         }
     .end annotation
 
     .prologue
-    .line 3956
+    .line 4153
     .local p0, "this":Lrx/Observable$6;, "Lrx/Observable.6;"
-    .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
-    new-instance v0, Lrx/internal/producers/SingleProducer;
+    .local p1, "t1":Ljava/lang/Object;, "TT;"
+    iget-object v0, p0, Lrx/Observable$6;->val$element:Ljava/lang/Object;
 
-    iget-object v1, p0, Lrx/Observable$6;->val$defaultValue:Ljava/lang/Object;
+    if-nez v0, :cond_e
 
-    invoke-direct {v0, p1, v1}, Lrx/internal/producers/SingleProducer;-><init>(Lrx/Subscriber;Ljava/lang/Object;)V
+    if-nez p1, :cond_c
 
-    invoke-virtual {p1, v0}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
+    const/4 v0, 0x1
 
-    .line 3957
-    return-void
+    :goto_7
+    invoke-static {v0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v0
+
+    return-object v0
+
+    :cond_c
+    const/4 v0, 0x0
+
+    goto :goto_7
+
+    :cond_e
+    iget-object v0, p0, Lrx/Observable$6;->val$element:Ljava/lang/Object;
+
+    invoke-virtual {v0, p1}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    goto :goto_7
+.end method
+
+.method public bridge synthetic call(Ljava/lang/Object;)Ljava/lang/Object;
+    .registers 3
+    .param p1, "x0"    # Ljava/lang/Object;
+
+    .prologue
+    .line 4150
+    .local p0, "this":Lrx/Observable$6;, "Lrx/Observable.6;"
+    invoke-virtual {p0, p1}, Lrx/Observable$6;->call(Ljava/lang/Object;)Ljava/lang/Boolean;
+
+    move-result-object v0
+
+    return-object v0
 .end method

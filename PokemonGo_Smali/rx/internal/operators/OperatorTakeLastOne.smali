@@ -27,27 +27,15 @@
 
 
 # direct methods
-.method private constructor <init>()V
+.method constructor <init>()V
     .registers 1
 
     .prologue
-    .line 20
+    .line 21
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastOne;, "Lrx/internal/operators/OperatorTakeLastOne<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 22
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/internal/operators/OperatorTakeLastOne$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/internal/operators/OperatorTakeLastOne$1;
-
-    .prologue
-    .line 9
-    .local p0, "this":Lrx/internal/operators/OperatorTakeLastOne;, "Lrx/internal/operators/OperatorTakeLastOne<TT;>;"
-    invoke-direct {p0}, Lrx/internal/operators/OperatorTakeLastOne;-><init>()V
-
+    .line 23
     return-void
 .end method
 
@@ -64,7 +52,7 @@
     .end annotation
 
     .prologue
-    .line 17
+    .line 18
     sget-object v0, Lrx/internal/operators/OperatorTakeLastOne$Holder;->INSTANCE:Lrx/internal/operators/OperatorTakeLastOne;
 
     return-object v0
@@ -77,7 +65,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 9
+    .line 10
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastOne;, "Lrx/internal/operators/OperatorTakeLastOne<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -102,14 +90,14 @@
     .end annotation
 
     .prologue
-    .line 26
+    .line 27
     .local p0, "this":Lrx/internal/operators/OperatorTakeLastOne;, "Lrx/internal/operators/OperatorTakeLastOne<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     new-instance v0, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;
 
     invoke-direct {v0, p1}, Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;-><init>(Lrx/Subscriber;)V
 
-    .line 27
+    .line 28
     .local v0, "parent":Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber;, "Lrx/internal/operators/OperatorTakeLastOne$ParentSubscriber<TT;>;"
     new-instance v1, Lrx/internal/operators/OperatorTakeLastOne$1;
 
@@ -117,9 +105,9 @@
 
     invoke-virtual {p1, v1}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
 
-    .line 34
+    .line 35
     invoke-virtual {p1, v0}, Lrx/Subscriber;->add(Lrx/Subscription;)V
 
-    .line 35
+    .line 36
     return-object v0
 .end method

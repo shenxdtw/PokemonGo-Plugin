@@ -63,12 +63,14 @@
 
     check-cast v0, Lcom/upsight/android/UpsightAnalyticsExtension;
 
+    .line 36
     invoke-virtual {v0}, Lcom/upsight/android/UpsightAnalyticsExtension;->getComponent()Lcom/upsight/android/UpsightExtension$BaseComponent;
 
     move-result-object v0
 
     check-cast v0, Lcom/upsight/android/analytics/UpsightAnalyticsComponent;
 
+    .line 37
     invoke-interface {v0}, Lcom/upsight/android/analytics/UpsightAnalyticsComponent;->sessionManager()Lcom/upsight/android/analytics/internal/session/SessionManager;
 
     move-result-object v0

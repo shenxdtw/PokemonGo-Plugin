@@ -30,24 +30,24 @@
     .param p1, "poolWorker"    # Lrx/internal/schedulers/EventLoopsScheduler$PoolWorker;
 
     .prologue
-    .line 100
+    .line 143
     invoke-direct {p0}, Lrx/Scheduler$Worker;-><init>()V
 
-    .line 95
+    .line 138
     new-instance v0, Lrx/internal/util/SubscriptionList;
 
     invoke-direct {v0}, Lrx/internal/util/SubscriptionList;-><init>()V
 
     iput-object v0, p0, Lrx/internal/schedulers/EventLoopsScheduler$EventLoopWorker;->serial:Lrx/internal/util/SubscriptionList;
 
-    .line 96
+    .line 139
     new-instance v0, Lrx/subscriptions/CompositeSubscription;
 
     invoke-direct {v0}, Lrx/subscriptions/CompositeSubscription;-><init>()V
 
     iput-object v0, p0, Lrx/internal/schedulers/EventLoopsScheduler$EventLoopWorker;->timed:Lrx/subscriptions/CompositeSubscription;
 
-    .line 97
+    .line 140
     new-instance v0, Lrx/internal/util/SubscriptionList;
 
     const/4 v1, 0x2
@@ -70,10 +70,10 @@
 
     iput-object v0, p0, Lrx/internal/schedulers/EventLoopsScheduler$EventLoopWorker;->both:Lrx/internal/util/SubscriptionList;
 
-    .line 101
+    .line 144
     iput-object p1, p0, Lrx/internal/schedulers/EventLoopsScheduler$EventLoopWorker;->poolWorker:Lrx/internal/schedulers/EventLoopsScheduler$PoolWorker;
 
-    .line 103
+    .line 146
     return-void
 .end method
 
@@ -83,7 +83,7 @@
     .registers 2
 
     .prologue
-    .line 112
+    .line 155
     iget-object v0, p0, Lrx/internal/schedulers/EventLoopsScheduler$EventLoopWorker;->both:Lrx/internal/util/SubscriptionList;
 
     invoke-virtual {v0}, Lrx/internal/util/SubscriptionList;->isUnsubscribed()Z
@@ -94,27 +94,26 @@
 .end method
 
 .method public schedule(Lrx/functions/Action0;)Lrx/Subscription;
-    .registers 9
+    .registers 8
     .param p1, "action"    # Lrx/functions/Action0;
 
     .prologue
-    .line 117
+    .line 160
     invoke-virtual {p0}, Lrx/internal/schedulers/EventLoopsScheduler$EventLoopWorker;->isUnsubscribed()Z
 
     move-result v0
 
     if-eqz v0, :cond_b
 
-    .line 118
+    .line 161
     invoke-static {}, Lrx/subscriptions/Subscriptions;->unsubscribed()Lrx/Subscription;
 
-    move-result-object v6
+    move-result-object v0
 
-    .line 122
+    .line 164
     :goto_a
-    return-object v6
+    return-object v0
 
-    .line 120
     :cond_b
     iget-object v0, p0, Lrx/internal/schedulers/EventLoopsScheduler$EventLoopWorker;->poolWorker:Lrx/internal/schedulers/EventLoopsScheduler$PoolWorker;
 
@@ -128,37 +127,34 @@
 
     invoke-virtual/range {v0 .. v5}, Lrx/internal/schedulers/EventLoopsScheduler$PoolWorker;->scheduleActual(Lrx/functions/Action0;JLjava/util/concurrent/TimeUnit;Lrx/internal/util/SubscriptionList;)Lrx/internal/schedulers/ScheduledAction;
 
-    move-result-object v6
+    move-result-object v0
 
-    .line 122
-    .local v6, "s":Lrx/internal/schedulers/ScheduledAction;
     goto :goto_a
 .end method
 
 .method public schedule(Lrx/functions/Action0;JLjava/util/concurrent/TimeUnit;)Lrx/Subscription;
-    .registers 13
+    .registers 11
     .param p1, "action"    # Lrx/functions/Action0;
     .param p2, "delayTime"    # J
     .param p4, "unit"    # Ljava/util/concurrent/TimeUnit;
 
     .prologue
-    .line 126
+    .line 168
     invoke-virtual {p0}, Lrx/internal/schedulers/EventLoopsScheduler$EventLoopWorker;->isUnsubscribed()Z
 
     move-result v0
 
     if-eqz v0, :cond_b
 
-    .line 127
+    .line 169
     invoke-static {}, Lrx/subscriptions/Subscriptions;->unsubscribed()Lrx/Subscription;
 
-    move-result-object v6
+    move-result-object v0
 
-    .line 131
+    .line 172
     :goto_a
-    return-object v6
+    return-object v0
 
-    .line 129
     :cond_b
     iget-object v0, p0, Lrx/internal/schedulers/EventLoopsScheduler$EventLoopWorker;->poolWorker:Lrx/internal/schedulers/EventLoopsScheduler$PoolWorker;
 
@@ -172,10 +168,8 @@
 
     invoke-virtual/range {v0 .. v5}, Lrx/internal/schedulers/EventLoopsScheduler$PoolWorker;->scheduleActual(Lrx/functions/Action0;JLjava/util/concurrent/TimeUnit;Lrx/subscriptions/CompositeSubscription;)Lrx/internal/schedulers/ScheduledAction;
 
-    move-result-object v6
+    move-result-object v0
 
-    .line 131
-    .local v6, "s":Lrx/internal/schedulers/ScheduledAction;
     goto :goto_a
 .end method
 
@@ -183,11 +177,11 @@
     .registers 2
 
     .prologue
-    .line 107
+    .line 150
     iget-object v0, p0, Lrx/internal/schedulers/EventLoopsScheduler$EventLoopWorker;->both:Lrx/internal/util/SubscriptionList;
 
     invoke-virtual {v0}, Lrx/internal/util/SubscriptionList;->unsubscribe()V
 
-    .line 108
+    .line 151
     return-void
 .end method

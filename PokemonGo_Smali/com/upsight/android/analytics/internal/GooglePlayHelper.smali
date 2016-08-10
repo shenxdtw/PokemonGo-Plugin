@@ -17,28 +17,28 @@
 
 
 # instance fields
-.field private mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+.field private mGson:Lcom/google/gson/Gson;
 
 .field private mUpsight:Lcom/upsight/android/UpsightContext;
 
 
 # direct methods
-.method constructor <init>(Lcom/upsight/android/UpsightContext;Lcom/fasterxml/jackson/databind/ObjectMapper;)V
+.method constructor <init>(Lcom/upsight/android/UpsightContext;Lcom/google/gson/Gson;)V
     .registers 3
     .param p1, "upsight"    # Lcom/upsight/android/UpsightContext;
-    .param p2, "mapper"    # Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .param p2, "gson"    # Lcom/google/gson/Gson;
 
     .prologue
-    .line 91
+    .line 96
     invoke-direct {p0}, Lcom/upsight/android/analytics/UpsightGooglePlayHelper;-><init>()V
 
-    .line 92
+    .line 97
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    .line 93
-    iput-object p2, p0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    .line 98
+    iput-object p2, p0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mGson:Lcom/google/gson/Gson;
 
-    .line 94
+    .line 99
     return-void
 .end method
 
@@ -63,18 +63,21 @@
     .local v0, "iapBundle":Lorg/json/JSONObject;
     const-string v1, "RESPONSE_CODE"
 
+    .line 199
     invoke-virtual {v0, v1, p1}, Lorg/json/JSONObject;->put(Ljava/lang/String;I)Lorg/json/JSONObject;
 
     move-result-object v1
 
     const-string v2, "INAPP_PURCHASE_DATA"
 
+    .line 200
     invoke-virtual {v1, v2, p2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
     move-result-object v1
 
     const-string v2, "INAPP_DATA_SIGNATURE"
 
+    .line 201
     invoke-virtual {v1, v2, p3}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
     move-result-object v1
@@ -85,7 +88,7 @@
 
 # virtual methods
 .method public trackPurchase(ILjava/lang/String;DDLjava/lang/String;Landroid/content/Intent;Lcom/upsight/android/analytics/event/UpsightPublisherData;)V
-    .registers 27
+    .registers 25
     .param p1, "quantity"    # I
     .param p2, "currency"    # Ljava/lang/String;
     .param p3, "price"    # D
@@ -100,7 +103,7 @@
     .end annotation
 
     .prologue
-    .line 100
+    .line 105
     const-string v1, "RESPONSE_CODE"
 
     const/high16 v3, -0x80000000
@@ -109,13 +112,13 @@
 
     invoke-virtual {v0, v1, v3}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
 
-    move-result v15
+    move-result v14
 
-    .line 101
-    .local v15, "responseCode":I
-    packed-switch v15, :pswitch_data_19a
+    .line 106
+    .local v14, "responseCode":I
+    packed-switch v14, :pswitch_data_160
 
-    .line 115
+    .line 120
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -126,7 +129,7 @@
 
     move-result-object v1
 
-    invoke-virtual {v1, v15}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v1, v14}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     move-result-object v1
 
@@ -134,11 +137,9 @@
 
     move-result-object v10
 
-    .line 116
+    .line 121
     .local v10, "msg":Ljava/lang/String;
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 
@@ -152,7 +153,7 @@
 
     invoke-interface {v1, v3, v10, v4}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 117
+    .line 122
     new-instance v1, Lcom/upsight/android/UpsightException;
 
     const/4 v3, 0x0
@@ -163,13 +164,14 @@
 
     throw v1
 
-    .line 106
+    .line 111
     .end local v10    # "msg":Ljava/lang/String;
-    :pswitch_39
+    :pswitch_37
     const-string v1, "google_play"
 
     const/4 v2, 0x0
 
+    .line 112
     invoke-static/range {p5 .. p6}, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
 
     move-result-object v3
@@ -192,6 +194,7 @@
 
     sget-object v3, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->cancel:Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
 
+    .line 113
     invoke-virtual {v3}, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->toString()Ljava/lang/String;
 
     move-result-object v3
@@ -200,34 +203,34 @@
 
     move-result-object v1
 
+    .line 114
     move-object/from16 v0, p9
 
     invoke-virtual {v1, v0}, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->put(Lcom/upsight/android/analytics/event/UpsightPublisherData;)Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;
 
     move-result-object v1
 
-    move-object/from16 v0, p0
+    iget-object v3, p0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    iget-object v3, v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
-
+    .line 115
     invoke-virtual {v1, v3}, Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;->record(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
 
     .line 185
-    :goto_67
+    :goto_63
     return-void
 
-    .line 121
-    :pswitch_68
+    .line 126
+    :pswitch_64
     const-string v1, "INAPP_PURCHASE_DATA"
 
     move-object/from16 v0, p8
 
     invoke-virtual {v0, v1}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
 
-    move-result-object v13
+    move-result-object v12
 
-    .line 122
-    .local v13, "purchaseData":Ljava/lang/String;
+    .line 127
+    .local v12, "purchaseData":Ljava/lang/String;
     const-string v1, "INAPP_DATA_SIGNATURE"
 
     move-object/from16 v0, p8
@@ -236,22 +239,20 @@
 
     move-result-object v8
 
-    .line 123
+    .line 128
     .local v8, "dataSignature":Ljava/lang/String;
-    invoke-static {v13}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+    invoke-static {v12}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_99
+    if-eqz v1, :cond_93
 
-    .line 124
+    .line 129
     const-string v10, "Failed to track Google Play purchase due to null or empty purchase data."
 
-    .line 125
+    .line 130
     .restart local v10    # "msg":Ljava/lang/String;
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 
@@ -265,7 +266,7 @@
 
     invoke-interface {v1, v3, v10, v4}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 126
+    .line 131
     new-instance v1, Lcom/upsight/android/UpsightException;
 
     const/4 v3, 0x0
@@ -276,23 +277,21 @@
 
     throw v1
 
-    .line 127
+    .line 132
     .end local v10    # "msg":Ljava/lang/String;
-    :cond_99
+    :cond_93
     invoke-static {v8}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_ba
+    if-eqz v1, :cond_b2
 
-    .line 128
+    .line 133
     const-string v10, "Failed to track Google Play purchase due to null or empty data signature."
 
-    .line 129
+    .line 134
     .restart local v10    # "msg":Ljava/lang/String;
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 
@@ -306,7 +305,7 @@
 
     invoke-interface {v1, v3, v10, v4}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 130
+    .line 135
     new-instance v1, Lcom/upsight/android/UpsightException;
 
     const/4 v3, 0x0
@@ -317,52 +316,37 @@
 
     throw v1
 
-    .line 136
+    .line 141
     .end local v10    # "msg":Ljava/lang/String;
-    :cond_ba
-    :try_start_ba
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
-
-    invoke-virtual {v1, v13}, Lcom/fasterxml/jackson/databind/ObjectMapper;->readTree(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonNode;
-
-    move-result-object v11
-
-    .line 137
-    .local v11, "node":Lcom/fasterxml/jackson/databind/JsonNode;
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mMapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    :cond_b2
+    :try_start_b2
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mGson:Lcom/google/gson/Gson;
 
     const-class v3, Lcom/upsight/android/analytics/internal/GooglePlayHelper$PurchaseData;
 
-    invoke-virtual {v1, v11, v3}, Lcom/fasterxml/jackson/databind/ObjectMapper;->treeToValue(Lcom/fasterxml/jackson/core/TreeNode;Ljava/lang/Class;)Ljava/lang/Object;
+    invoke-virtual {v1, v12, v3}, Lcom/google/gson/Gson;->fromJson(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
 
-    move-result-object v12
+    move-result-object v11
 
-    check-cast v12, Lcom/upsight/android/analytics/internal/GooglePlayHelper$PurchaseData;
-    :try_end_ce
-    .catch Lcom/fasterxml/jackson/core/JsonParseException; {:try_start_ba .. :try_end_ce} :catch_f0
-    .catch Ljava/io/IOException; {:try_start_ba .. :try_end_ce} :catch_10c
+    check-cast v11, Lcom/upsight/android/analytics/internal/GooglePlayHelper$PurchaseData;
+    :try_end_bc
+    .catch Lcom/google/gson/JsonSyntaxException; {:try_start_b2 .. :try_end_bc} :catch_dc
 
     .line 149
-    .local v12, "purchase":Lcom/upsight/android/analytics/internal/GooglePlayHelper$PurchaseData;
-    if-eqz v12, :cond_17f
+    .local v11, "purchase":Lcom/upsight/android/analytics/internal/GooglePlayHelper$PurchaseData;
+    if-eqz v11, :cond_147
 
     .line 152
-    iget v1, v12, Lcom/upsight/android/analytics/internal/GooglePlayHelper$PurchaseData;->purchaseState:I
+    iget v1, v11, Lcom/upsight/android/analytics/internal/GooglePlayHelper$PurchaseData;->purchaseState:I
 
-    packed-switch v1, :pswitch_data_1a2
+    packed-switch v1, :pswitch_data_168
 
     .line 163
     const-string v10, "Failed to track Google Play purchase. Invalid purchase state."
 
     .line 164
     .restart local v10    # "msg":Ljava/lang/String;
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 
@@ -387,61 +371,19 @@
 
     throw v1
 
-    .line 138
-    .end local v10    # "msg":Ljava/lang/String;
-    .end local v11    # "node":Lcom/fasterxml/jackson/databind/JsonNode;
-    .end local v12    # "purchase":Lcom/upsight/android/analytics/internal/GooglePlayHelper$PurchaseData;
-    :catch_f0
-    move-exception v9
-
-    .line 139
-    .local v9, "e":Lcom/fasterxml/jackson/core/JsonParseException;
-    const-string v10, "Failed to track Google Play purchase due to purchase data schema mismatch."
-
-    .line 140
-    .restart local v10    # "msg":Ljava/lang/String;
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
-
-    invoke-virtual {v1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
-
-    move-result-object v1
-
-    const-string v3, "Upsight"
-
-    const/4 v4, 0x0
-
-    new-array v4, v4, [Ljava/lang/Object;
-
-    invoke-interface {v1, v3, v9, v10, v4}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
-
-    .line 141
-    new-instance v1, Lcom/upsight/android/UpsightException;
-
-    const/4 v3, 0x0
-
-    new-array v3, v3, [Ljava/lang/Object;
-
-    invoke-direct {v1, v9, v10, v3}, Lcom/upsight/android/UpsightException;-><init>(Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
-
-    throw v1
-
     .line 142
-    .end local v9    # "e":Lcom/fasterxml/jackson/core/JsonParseException;
     .end local v10    # "msg":Ljava/lang/String;
-    :catch_10c
+    .end local v11    # "purchase":Lcom/upsight/android/analytics/internal/GooglePlayHelper$PurchaseData;
+    :catch_dc
     move-exception v9
 
     .line 143
-    .local v9, "e":Ljava/io/IOException;
+    .local v9, "e":Lcom/google/gson/JsonSyntaxException;
     const-string v10, "Failed to track Google Play purchase due to malformed purchase data JSON."
 
     .line 144
     .restart local v10    # "msg":Ljava/lang/String;
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 
@@ -467,20 +409,17 @@
     throw v1
 
     .line 154
-    .end local v9    # "e":Ljava/io/IOException;
+    .end local v9    # "e":Lcom/google/gson/JsonSyntaxException;
     .end local v10    # "msg":Ljava/lang/String;
-    .restart local v11    # "node":Lcom/fasterxml/jackson/databind/JsonNode;
-    .restart local v12    # "purchase":Lcom/upsight/android/analytics/internal/GooglePlayHelper$PurchaseData;
-    :pswitch_128
-    sget-object v14, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->buy:Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
+    .restart local v11    # "purchase":Lcom/upsight/android/analytics/internal/GooglePlayHelper$PurchaseData;
+    :pswitch_f6
+    sget-object v13, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->buy:Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
 
     .line 169
-    .local v14, "resolution":Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
-    :goto_12a
-    :try_start_12a
-    move-object/from16 v0, p0
-
-    invoke-direct {v0, v15, v13, v8}, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->createIapBundle(ILjava/lang/String;Ljava/lang/String;)Lorg/json/JSONObject;
+    .local v13, "resolution":Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
+    :goto_f8
+    :try_start_f8
+    invoke-direct {p0, v14, v12, v8}, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->createIapBundle(ILjava/lang/String;Ljava/lang/String;)Lorg/json/JSONObject;
 
     move-result-object v2
 
@@ -488,6 +427,7 @@
     .local v2, "iapBundle":Lorg/json/JSONObject;
     const-string v1, "google_play"
 
+    .line 171
     invoke-static/range {p5 .. p6}, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
 
     move-result-object v3
@@ -508,7 +448,8 @@
 
     move-result-object v1
 
-    invoke-virtual {v14}, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->toString()Ljava/lang/String;
+    .line 172
+    invoke-virtual {v13}, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->toString()Ljava/lang/String;
 
     move-result-object v3
 
@@ -516,25 +457,25 @@
 
     move-result-object v1
 
+    .line 173
     move-object/from16 v0, p9
 
     invoke-virtual {v1, v0}, Lcom/upsight/android/analytics/event/monetization/UpsightMonetizationIapEvent$Builder;->put(Lcom/upsight/android/analytics/event/UpsightPublisherData;)Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;
 
     move-result-object v1
 
-    move-object/from16 v0, p0
+    iget-object v3, p0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
 
-    iget-object v3, v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
-
+    .line 174
     invoke-virtual {v1, v3}, Lcom/upsight/android/analytics/internal/AnalyticsEvent$Builder;->record(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
-    :try_end_15b
-    .catch Lorg/json/JSONException; {:try_start_12a .. :try_end_15b} :catch_15d
+    :try_end_125
+    .catch Lorg/json/JSONException; {:try_start_f8 .. :try_end_125} :catch_127
 
-    goto/16 :goto_67
+    goto/16 :goto_63
 
     .line 175
     .end local v2    # "iapBundle":Lorg/json/JSONObject;
-    :catch_15d
+    :catch_127
     move-exception v9
 
     .line 176
@@ -543,9 +484,7 @@
 
     .line 177
     .restart local v10    # "msg":Ljava/lang/String;
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 
@@ -573,33 +512,31 @@
     .line 157
     .end local v9    # "e":Lorg/json/JSONException;
     .end local v10    # "msg":Ljava/lang/String;
-    .end local v14    # "resolution":Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
-    :pswitch_179
-    sget-object v14, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->cancel:Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
+    .end local v13    # "resolution":Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
+    :pswitch_141
+    sget-object v13, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->cancel:Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
 
     .line 158
-    .restart local v14    # "resolution":Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
-    goto :goto_12a
+    .restart local v13    # "resolution":Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
+    goto :goto_f8
 
     .line 160
-    .end local v14    # "resolution":Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
-    :pswitch_17c
-    sget-object v14, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->refund:Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
+    .end local v13    # "resolution":Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
+    :pswitch_144
+    sget-object v13, Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;->refund:Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
 
     .line 161
-    .restart local v14    # "resolution":Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
-    goto :goto_12a
+    .restart local v13    # "resolution":Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
+    goto :goto_f8
 
     .line 181
-    .end local v14    # "resolution":Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
-    :cond_17f
+    .end local v13    # "resolution":Lcom/upsight/android/analytics/internal/GooglePlayHelper$Resolution;
+    :cond_147
     const-string v10, "Failed to track Google Play purchase due to missing fields in purchase data."
 
     .line 182
     .restart local v10    # "msg":Ljava/lang/String;
-    move-object/from16 v0, p0
-
-    iget-object v1, v0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
+    iget-object v1, p0, Lcom/upsight/android/analytics/internal/GooglePlayHelper;->mUpsight:Lcom/upsight/android/UpsightContext;
 
     invoke-virtual {v1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 
@@ -624,18 +561,18 @@
 
     throw v1
 
-    .line 101
-    :pswitch_data_19a
+    .line 106
+    :pswitch_data_160
     .packed-switch 0x0
-        :pswitch_68
-        :pswitch_39
+        :pswitch_64
+        :pswitch_37
     .end packed-switch
 
     .line 152
-    :pswitch_data_1a2
+    :pswitch_data_168
     .packed-switch 0x0
-        :pswitch_128
-        :pswitch_179
-        :pswitch_17c
+        :pswitch_f6
+        :pswitch_141
+        :pswitch_144
     .end packed-switch
 .end method

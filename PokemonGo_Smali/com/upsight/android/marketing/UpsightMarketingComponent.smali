@@ -16,3 +16,11 @@
         ">;"
     }
 .end annotation
+
+
+# virtual methods
+.method public abstract inject(Lcom/upsight/android/marketing/internal/billboard/BillboardDialogFragment;)V
+.end method
+
+.method public abstract inject(Lcom/upsight/android/marketing/internal/billboard/BillboardManagementActivity;)V
+.end method

@@ -30,7 +30,7 @@
     .registers 3
 
     .prologue
-    .line 220
+    .line 215
     .local p1, "x0":Lrx/Subscriber;, "Lrx/Subscriber<*>;"
     iput-object p2, p0, Lrx/observers/Subscribers$5;->val$subscriber:Lrx/Subscriber;
 
@@ -45,12 +45,12 @@
     .registers 2
 
     .prologue
-    .line 224
+    .line 219
     iget-object v0, p0, Lrx/observers/Subscribers$5;->val$subscriber:Lrx/Subscriber;
 
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
-    .line 225
+    .line 220
     return-void
 .end method
 
@@ -59,12 +59,12 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 229
+    .line 224
     iget-object v0, p0, Lrx/observers/Subscribers$5;->val$subscriber:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    .line 230
+    .line 225
     return-void
 .end method
 
@@ -77,12 +77,12 @@
     .end annotation
 
     .prologue
-    .line 234
+    .line 229
     .local p1, "t":Ljava/lang/Object;, "TT;"
     iget-object v0, p0, Lrx/observers/Subscribers$5;->val$subscriber:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    .line 235
+    .line 230
     return-void
 .end method

@@ -22,7 +22,7 @@
 
 
 # instance fields
-.field private final transformer:Lrx/functions/Func1;
+.field final transformer:Lrx/functions/Func1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Func1",
@@ -44,27 +44,16 @@
     .end annotation
 
     .prologue
-    .line 34
+    .line 33
     .local p0, "this":Lrx/internal/operators/OperatorMap;, "Lrx/internal/operators/OperatorMap<TT;TR;>;"
     .local p1, "transformer":Lrx/functions/Func1;, "Lrx/functions/Func1<-TT;+TR;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 35
+    .line 34
     iput-object p1, p0, Lrx/internal/operators/OperatorMap;->transformer:Lrx/functions/Func1;
 
-    .line 36
+    .line 35
     return-void
-.end method
-
-.method static synthetic access$000(Lrx/internal/operators/OperatorMap;)Lrx/functions/Func1;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorMap;
-
-    .prologue
-    .line 30
-    iget-object v0, p0, Lrx/internal/operators/OperatorMap;->transformer:Lrx/functions/Func1;
-
-    return-object v0
 .end method
 
 
@@ -74,7 +63,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 30
+    .line 29
     .local p0, "this":Lrx/internal/operators/OperatorMap;, "Lrx/internal/operators/OperatorMap<TT;TR;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -99,7 +88,7 @@
     .end annotation
 
     .prologue
-    .line 40
+    .line 39
     .local p0, "this":Lrx/internal/operators/OperatorMap;, "Lrx/internal/operators/OperatorMap<TT;TR;>;"
     .local p1, "o":Lrx/Subscriber;, "Lrx/Subscriber<-TR;>;"
     new-instance v0, Lrx/internal/operators/OperatorMap$1;

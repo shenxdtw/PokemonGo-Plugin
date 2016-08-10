@@ -88,26 +88,23 @@
     .local p1, "terminalNotification":Lrx/Notification;, "Lrx/Notification<*>;"
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeRedo$RedoFinite$1;->this$0:Lrx/internal/operators/OnSubscribeRedo$RedoFinite;
 
-    # getter for: Lrx/internal/operators/OnSubscribeRedo$RedoFinite;->count:J
-    invoke-static {v0}, Lrx/internal/operators/OnSubscribeRedo$RedoFinite;->access$000(Lrx/internal/operators/OnSubscribeRedo$RedoFinite;)J
-
-    move-result-wide v0
+    iget-wide v0, v0, Lrx/internal/operators/OnSubscribeRedo$RedoFinite;->count:J
 
     const-wide/16 v2, 0x0
 
     cmp-long v0, v0, v2
 
-    if-nez v0, :cond_d
+    if-nez v0, :cond_b
 
     .line 92
     .end local p1    # "terminalNotification":Lrx/Notification;, "Lrx/Notification<*>;"
-    :cond_c
-    :goto_c
+    :cond_a
+    :goto_a
     return-object p1
 
     .line 88
     .restart local p1    # "terminalNotification":Lrx/Notification;, "Lrx/Notification<*>;"
-    :cond_d
+    :cond_b
     iget v0, p0, Lrx/internal/operators/OnSubscribeRedo$RedoFinite$1;->num:I
 
     add-int/lit8 v0, v0, 0x1
@@ -121,14 +118,11 @@
 
     iget-object v2, p0, Lrx/internal/operators/OnSubscribeRedo$RedoFinite$1;->this$0:Lrx/internal/operators/OnSubscribeRedo$RedoFinite;
 
-    # getter for: Lrx/internal/operators/OnSubscribeRedo$RedoFinite;->count:J
-    invoke-static {v2}, Lrx/internal/operators/OnSubscribeRedo$RedoFinite;->access$000(Lrx/internal/operators/OnSubscribeRedo$RedoFinite;)J
-
-    move-result-wide v2
+    iget-wide v2, v2, Lrx/internal/operators/OnSubscribeRedo$RedoFinite;->count:J
 
     cmp-long v0, v0, v2
 
-    if-gtz v0, :cond_c
+    if-gtz v0, :cond_a
 
     .line 90
     iget v0, p0, Lrx/internal/operators/OnSubscribeRedo$RedoFinite$1;->num:I
@@ -141,5 +135,5 @@
 
     move-result-object p1
 
-    goto :goto_c
+    goto :goto_a
 .end method

@@ -1,47 +1,42 @@
-.class Lrx/Observable$4;
+.class final Lrx/Observable$4;
 .super Ljava/lang/Object;
 .source "Observable.java"
 
 # interfaces
-.implements Lrx/functions/Func2;
+.implements Lrx/functions/Func1;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lrx/Observable;->collect(Lrx/functions/Func0;Lrx/functions/Action2;)Lrx/Observable;
+    value = Lrx/Observable;->zip(Lrx/Observable;Lrx/functions/FuncN;)Lrx/Observable;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x8
     name = null
 .end annotation
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lrx/functions/Func2",
-        "<TR;TT;TR;>;"
+        "Lrx/functions/Func1",
+        "<",
+        "Ljava/util/List",
+        "<+",
+        "Lrx/Observable",
+        "<*>;>;[",
+        "Lrx/Observable",
+        "<*>;>;"
     }
 .end annotation
 
 
-# instance fields
-.field final synthetic this$0:Lrx/Observable;
-
-.field final synthetic val$collector:Lrx/functions/Action2;
-
-
 # direct methods
-.method constructor <init>(Lrx/Observable;Lrx/functions/Action2;)V
-    .registers 3
+.method constructor <init>()V
+    .registers 1
 
     .prologue
-    .line 3681
-    .local p0, "this":Lrx/Observable$4;, "Lrx/Observable.4;"
-    iput-object p1, p0, Lrx/Observable$4;->this$0:Lrx/Observable;
-
-    iput-object p2, p0, Lrx/Observable$4;->val$collector:Lrx/functions/Action2;
-
+    .line 3149
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -49,23 +44,50 @@
 
 
 # virtual methods
-.method public final call(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 4
+.method public bridge synthetic call(Ljava/lang/Object;)Ljava/lang/Object;
+    .registers 3
+    .param p1, "x0"    # Ljava/lang/Object;
+
+    .prologue
+    .line 3149
+    check-cast p1, Ljava/util/List;
+
+    .end local p1    # "x0":Ljava/lang/Object;
+    invoke-virtual {p0, p1}, Lrx/Observable$4;->call(Ljava/util/List;)[Lrx/Observable;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public call(Ljava/util/List;)[Lrx/Observable;
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "(TR;TT;)TR;"
+            "(",
+            "Ljava/util/List",
+            "<+",
+            "Lrx/Observable",
+            "<*>;>;)[",
+            "Lrx/Observable",
+            "<*>;"
         }
     .end annotation
 
     .prologue
-    .line 3685
-    .local p0, "this":Lrx/Observable$4;, "Lrx/Observable.4;"
-    .local p1, "state":Ljava/lang/Object;, "TR;"
-    .local p2, "value":Ljava/lang/Object;, "TT;"
-    iget-object v0, p0, Lrx/Observable$4;->val$collector:Lrx/functions/Action2;
+    .line 3153
+    .local p1, "o":Ljava/util/List;, "Ljava/util/List<+Lrx/Observable<*>;>;"
+    invoke-interface {p1}, Ljava/util/List;->size()I
 
-    invoke-interface {v0, p1, p2}, Lrx/functions/Action2;->call(Ljava/lang/Object;Ljava/lang/Object;)V
+    move-result v0
 
-    .line 3686
-    return-object p1
+    new-array v0, v0, [Lrx/Observable;
+
+    invoke-interface {p1, v0}, Ljava/util/List;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, [Lrx/Observable;
+
+    return-object v0
 .end method

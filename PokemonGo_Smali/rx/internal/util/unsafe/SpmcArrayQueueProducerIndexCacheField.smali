@@ -25,11 +25,11 @@
     .param p1, "capacity"    # I
 
     .prologue
-    .line 104
+    .line 88
     .local p0, "this":Lrx/internal/util/unsafe/SpmcArrayQueueProducerIndexCacheField;, "Lrx/internal/util/unsafe/SpmcArrayQueueProducerIndexCacheField<TE;>;"
     invoke-direct {p0, p1}, Lrx/internal/util/unsafe/SpmcArrayQueueMidPad;-><init>(I)V
 
-    .line 105
+    .line 89
     return-void
 .end method
 
@@ -39,7 +39,7 @@
     .registers 3
 
     .prologue
-    .line 108
+    .line 92
     .local p0, "this":Lrx/internal/util/unsafe/SpmcArrayQueueProducerIndexCacheField;, "Lrx/internal/util/unsafe/SpmcArrayQueueProducerIndexCacheField<TE;>;"
     iget-wide v0, p0, Lrx/internal/util/unsafe/SpmcArrayQueueProducerIndexCacheField;->producerIndexCache:J
 
@@ -51,10 +51,10 @@
     .param p1, "v"    # J
 
     .prologue
-    .line 112
+    .line 96
     .local p0, "this":Lrx/internal/util/unsafe/SpmcArrayQueueProducerIndexCacheField;, "Lrx/internal/util/unsafe/SpmcArrayQueueProducerIndexCacheField<TE;>;"
     iput-wide p1, p0, Lrx/internal/util/unsafe/SpmcArrayQueueProducerIndexCacheField;->producerIndexCache:J
 
-    .line 113
+    .line 97
     return-void
 .end method

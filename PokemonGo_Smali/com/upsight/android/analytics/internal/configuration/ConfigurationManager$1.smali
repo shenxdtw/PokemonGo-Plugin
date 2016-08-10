@@ -36,6 +36,7 @@
 # direct methods
 .method constructor <init>(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)V
     .registers 2
+    .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     .prologue
     .line 143
@@ -53,11 +54,11 @@
     .param p1, "exception"    # Lcom/upsight/android/UpsightException;
 
     .prologue
-    .line 166
+    .line 168
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     # getter for: Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
-    invoke-static {v0}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->access$300(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)Lcom/upsight/android/logger/UpsightLogger;
+    invoke-static {v0}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->access$100(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)Lcom/upsight/android/logger/UpsightLogger;
 
     move-result-object v0
 
@@ -75,7 +76,7 @@
 
     invoke-interface {v0, v1, v2, v3}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 168
+    .line 170
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     # getter for: Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mCurrentConfig:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
@@ -85,33 +86,31 @@
 
     if-nez v0, :cond_20
 
-    .line 169
+    .line 171
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     # invokes: Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->applyDefaultConfiguration()V
-    invoke-static {v0}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->access$200(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)V
+    invoke-static {v0}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->access$300(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)V
 
-    .line 171
+    .line 173
     :cond_20
     return-void
 .end method
 
 .method public bridge synthetic onSuccess(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 143
     check-cast p1, Ljava/util/Set;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->onSuccess(Ljava/util/Set;)V
 
     return-void
 .end method
 
 .method public onSuccess(Ljava/util/Set;)V
-    .registers 7
+    .registers 9
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -125,16 +124,16 @@
     .prologue
     .line 146
     .local p1, "result":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/configuration/UpsightConfiguration;>;"
-    iget-object v3, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     # getter for: Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mCurrentConfig:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
-    invoke-static {v3}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->access$000(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
+    invoke-static {v2}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->access$000(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
 
-    move-result-object v3
+    move-result-object v2
 
-    if-eqz v3, :cond_9
+    if-eqz v2, :cond_9
 
-    .line 162
+    .line 164
     :cond_8
     :goto_8
     return-void
@@ -147,23 +146,22 @@
     .local v1, "hasApplied":Z
     invoke-interface {p1}, Ljava/util/Set;->size()I
 
-    move-result v3
+    move-result v2
 
-    if-lez v3, :cond_37
+    if-lez v2, :cond_47
 
     .line 152
     invoke-interface {p1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
 
-    .local v2, "i$":Ljava/util/Iterator;
     :cond_14
     :goto_14
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_37
+    if-eqz v3, :cond_47
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -188,28 +186,45 @@
     .line 154
     iget-object v3, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
+    # getter for: Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+    invoke-static {v3}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->access$100(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)Lcom/upsight/android/logger/UpsightLogger;
+
+    move-result-object v3
+
+    const-string v4, "Configurator"
+
+    const-string v5, "Apply local configurations"
+
+    const/4 v6, 0x0
+
+    new-array v6, v6, [Ljava/lang/Object;
+
+    invoke-interface {v3, v4, v5, v6}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 156
+    iget-object v3, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
+
     invoke-virtual {v0}, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->getConfiguration()Ljava/lang/String;
 
     move-result-object v4
 
     # invokes: Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->applyConfiguration(Ljava/lang/String;)Z
-    invoke-static {v3, v4}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->access$100(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;Ljava/lang/String;)Z
+    invoke-static {v3, v4}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->access$200(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;Ljava/lang/String;)Z
 
     move-result v1
 
     goto :goto_14
 
-    .line 159
+    .line 161
     .end local v0    # "config":Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
-    .end local v2    # "i$":Ljava/util/Iterator;
-    :cond_37
+    :cond_47
     if-nez v1, :cond_8
 
-    .line 160
-    iget-object v3, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
+    .line 162
+    iget-object v2, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     # invokes: Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->applyDefaultConfiguration()V
-    invoke-static {v3}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->access$200(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)V
+    invoke-static {v2}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->access$300(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)V
 
     goto :goto_8
 .end method

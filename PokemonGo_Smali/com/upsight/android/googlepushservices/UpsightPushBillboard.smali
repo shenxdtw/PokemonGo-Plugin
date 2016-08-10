@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/googlepushservices/UpsightPushBillboard$1;,
         Lcom/upsight/android/googlepushservices/UpsightPushBillboard$NoOpBillboard;
     }
 .end annotation
@@ -20,7 +19,6 @@
     .line 15
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 44
     return-void
 .end method
 
@@ -47,7 +45,7 @@
 
     .line 33
     .local v0, "extension":Lcom/upsight/android/UpsightGooglePushServicesExtension;
-    if-eqz v0, :cond_18
+    if-eqz v0, :cond_13
 
     .line 34
     invoke-virtual {v0}, Lcom/upsight/android/UpsightGooglePushServicesExtension;->getApi()Lcom/upsight/android/googlepushservices/UpsightGooglePushServicesApi;
@@ -56,18 +54,14 @@
 
     invoke-interface {v1, p0, p1}, Lcom/upsight/android/googlepushservices/UpsightGooglePushServicesApi;->createPushBillboard(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/marketing/UpsightBillboard$Handler;)Lcom/upsight/android/marketing/UpsightBillboard;
 
+    move-result-object v1
+
     .line 38
-    :goto_11
-    new-instance v1, Lcom/upsight/android/googlepushservices/UpsightPushBillboard$NoOpBillboard;
-
-    const/4 v2, 0x0
-
-    invoke-direct {v1, v2}, Lcom/upsight/android/googlepushservices/UpsightPushBillboard$NoOpBillboard;-><init>(Lcom/upsight/android/googlepushservices/UpsightPushBillboard$1;)V
-
+    :goto_12
     return-object v1
 
     .line 36
-    :cond_18
+    :cond_13
     invoke-virtual {p0}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 
     move-result-object v1
@@ -82,5 +76,12 @@
 
     invoke-interface {v1, v2, v3, v4}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    goto :goto_11
+    .line 38
+    new-instance v1, Lcom/upsight/android/googlepushservices/UpsightPushBillboard$NoOpBillboard;
+
+    const/4 v2, 0x0
+
+    invoke-direct {v1, v2}, Lcom/upsight/android/googlepushservices/UpsightPushBillboard$NoOpBillboard;-><init>(Lcom/upsight/android/googlepushservices/UpsightPushBillboard$1;)V
+
+    goto :goto_12
 .end method

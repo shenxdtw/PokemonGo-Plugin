@@ -49,7 +49,7 @@
 .end method
 
 .method protected createObject()Lrx/internal/util/IndexedRingBuffer;
-    .registers 3
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -62,9 +62,7 @@
     .line 55
     new-instance v0, Lrx/internal/util/IndexedRingBuffer;
 
-    const/4 v1, 0x0
-
-    invoke-direct {v0, v1}, Lrx/internal/util/IndexedRingBuffer;-><init>(Lrx/internal/util/IndexedRingBuffer$1;)V
+    invoke-direct {v0}, Lrx/internal/util/IndexedRingBuffer;-><init>()V
 
     return-object v0
 .end method

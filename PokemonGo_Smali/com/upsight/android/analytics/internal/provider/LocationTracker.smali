@@ -101,7 +101,7 @@
     .registers 4
 
     .prologue
-    .line 67
+    .line 66
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/provider/LocationTracker;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
     const-class v1, Lcom/upsight/android/analytics/provider/UpsightLocationTracker$Data;
@@ -112,7 +112,7 @@
 
     invoke-interface {v0, v1, v2}, Lcom/upsight/android/persistence/UpsightDataStore;->fetch(Ljava/lang/Class;Lcom/upsight/android/persistence/UpsightDataStoreListener;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 80
+    .line 79
     return-void
 .end method
 
@@ -132,6 +132,6 @@
 
     invoke-interface {v0, v1, v2}, Lcom/upsight/android/persistence/UpsightDataStore;->fetch(Ljava/lang/Class;Lcom/upsight/android/persistence/UpsightDataStoreListener;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 63
+    .line 62
     return-void
 .end method

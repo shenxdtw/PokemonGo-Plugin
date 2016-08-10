@@ -4,6 +4,8 @@
 
 
 # static fields
+.field private static final DISABLED_BY_USER:Z
+
 .field public static final UNSAFE:Lsun/misc/Unsafe;
 
 
@@ -12,12 +14,26 @@
     .registers 5
 
     .prologue
-    .line 33
+    const/4 v3, 0x1
+
+    .line 36
+    const-string v4, "rx.unsafe-disable"
+
+    invoke-static {v4}, Ljava/lang/System;->getProperty(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v4
+
+    if-eqz v4, :cond_24
+
+    :goto_9
+    sput-boolean v3, Lrx/internal/util/unsafe/UnsafeAccess;->DISABLED_BY_USER:Z
+
+    .line 39
     const/4 v2, 0x0
 
-    .line 41
+    .line 47
     .local v2, "u":Lsun/misc/Unsafe;
-    :try_start_1
+    :try_start_c
     const-class v3, Lsun/misc/Unsafe;
 
     const-string v4, "theUnsafe"
@@ -26,13 +42,13 @@
 
     move-result-object v1
 
-    .line 42
+    .line 48
     .local v1, "field":Ljava/lang/reflect/Field;
     const/4 v3, 0x1
 
     invoke-virtual {v1, v3}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
-    .line 43
+    .line 49
     const/4 v3, 0x0
 
     invoke-virtual {v1, v3}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -44,32 +60,40 @@
     check-cast v0, Lsun/misc/Unsafe;
 
     move-object v2, v0
-    :try_end_16
-    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_16} :catch_19
+    :try_end_21
+    .catch Ljava/lang/Throwable; {:try_start_c .. :try_end_21} :catch_26
 
-    .line 47
+    .line 53
     .end local v1    # "field":Ljava/lang/reflect/Field;
-    :goto_16
+    :goto_21
     sput-object v2, Lrx/internal/util/unsafe/UnsafeAccess;->UNSAFE:Lsun/misc/Unsafe;
 
-    .line 48
+    .line 54
     return-void
 
-    .line 44
-    :catch_19
+    .line 36
+    .end local v2    # "u":Lsun/misc/Unsafe;
+    :cond_24
+    const/4 v3, 0x0
+
+    goto :goto_9
+
+    .line 50
+    .restart local v2    # "u":Lsun/misc/Unsafe;
+    :catch_26
     move-exception v3
 
-    goto :goto_16
+    goto :goto_21
 .end method
 
 .method private constructor <init>()V
     .registers 3
 
     .prologue
-    .line 27
+    .line 30
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 28
+    .line 31
     new-instance v0, Ljava/lang/IllegalStateException;
 
     const-string v1, "No instances!"
@@ -93,14 +117,14 @@
     .end annotation
 
     .prologue
-    .line 100
+    .line 106
     .local p0, "clazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
     :try_start_0
     invoke-virtual {p0, p1}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v1
 
-    .line 101
+    .line 107
     .local v1, "f":Ljava/lang/reflect/Field;
     sget-object v3, Lrx/internal/util/unsafe/UnsafeAccess;->UNSAFE:Lsun/misc/Unsafe;
 
@@ -112,22 +136,22 @@
 
     return-wide v4
 
-    .line 102
+    .line 108
     .end local v1    # "f":Ljava/lang/reflect/Field;
     :catch_b
     move-exception v0
 
-    .line 103
+    .line 109
     .local v0, "ex":Ljava/lang/NoSuchFieldException;
     new-instance v2, Ljava/lang/InternalError;
 
     invoke-direct {v2}, Ljava/lang/InternalError;-><init>()V
 
-    .line 104
+    .line 110
     .local v2, "ie":Ljava/lang/InternalError;
     invoke-virtual {v2, v0}, Ljava/lang/InternalError;->initCause(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
-    .line 105
+    .line 111
     throw v2
 .end method
 
@@ -139,7 +163,7 @@
     .param p4, "newValue"    # I
 
     .prologue
-    .line 85
+    .line 91
     sget-object v0, Lrx/internal/util/unsafe/UnsafeAccess;->UNSAFE:Lsun/misc/Unsafe;
 
     move-object v1, p0
@@ -164,7 +188,7 @@
     .param p3, "n"    # I
 
     .prologue
-    .line 69
+    .line 75
     :cond_0
     sget-object v0, Lrx/internal/util/unsafe/UnsafeAccess;->UNSAFE:Lsun/misc/Unsafe;
 
@@ -172,11 +196,11 @@
 
     move-result v4
 
-    .line 70
+    .line 76
     .local v4, "current":I
     add-int v5, v4, p3
 
-    .line 71
+    .line 77
     .local v5, "next":I
     sget-object v0, Lrx/internal/util/unsafe/UnsafeAccess;->UNSAFE:Lsun/misc/Unsafe;
 
@@ -190,7 +214,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 72
+    .line 78
     return v4
 .end method
 
@@ -200,7 +224,7 @@
     .param p1, "offset"    # J
 
     .prologue
-    .line 60
+    .line 66
     :cond_0
     sget-object v0, Lrx/internal/util/unsafe/UnsafeAccess;->UNSAFE:Lsun/misc/Unsafe;
 
@@ -208,11 +232,11 @@
 
     move-result v4
 
-    .line 61
+    .line 67
     .local v4, "current":I
     add-int/lit8 v5, v4, 0x1
 
-    .line 62
+    .line 68
     .local v5, "next":I
     sget-object v0, Lrx/internal/util/unsafe/UnsafeAccess;->UNSAFE:Lsun/misc/Unsafe;
 
@@ -226,7 +250,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 63
+    .line 69
     return v4
 .end method
 
@@ -237,7 +261,7 @@
     .param p3, "newValue"    # I
 
     .prologue
-    .line 78
+    .line 84
     :cond_0
     sget-object v0, Lrx/internal/util/unsafe/UnsafeAccess;->UNSAFE:Lsun/misc/Unsafe;
 
@@ -245,7 +269,7 @@
 
     move-result v4
 
-    .line 79
+    .line 85
     .local v4, "current":I
     sget-object v0, Lrx/internal/util/unsafe/UnsafeAccess;->UNSAFE:Lsun/misc/Unsafe;
 
@@ -261,26 +285,30 @@
 
     if-eqz v0, :cond_0
 
-    .line 80
+    .line 86
     return v4
 .end method
 
-.method public static final isUnsafeAvailable()Z
+.method public static isUnsafeAvailable()Z
     .registers 1
 
     .prologue
-    .line 51
+    .line 57
     sget-object v0, Lrx/internal/util/unsafe/UnsafeAccess;->UNSAFE:Lsun/misc/Unsafe;
 
-    if-eqz v0, :cond_6
+    if-eqz v0, :cond_a
+
+    sget-boolean v0, Lrx/internal/util/unsafe/UnsafeAccess;->DISABLED_BY_USER:Z
+
+    if-nez v0, :cond_a
 
     const/4 v0, 0x1
 
-    :goto_5
+    :goto_9
     return v0
 
-    :cond_6
+    :cond_a
     const/4 v0, 0x0
 
-    goto :goto_5
+    goto :goto_9
 .end method

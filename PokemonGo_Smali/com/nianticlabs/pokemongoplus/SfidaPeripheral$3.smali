@@ -27,7 +27,7 @@
     .param p1, "this$0"    # Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;
 
     .prologue
-    .line 214
+    .line 219
     iput-object p1, p0, Lcom/nianticlabs/pokemongoplus/SfidaPeripheral$3;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -43,7 +43,7 @@
     .param p2, "error"    # Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;
 
     .prologue
-    .line 218
+    .line 223
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaPeripheral$3;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;
 
     invoke-virtual {p2}, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$BluetoothError;->getInt()I
@@ -53,6 +53,6 @@
     # invokes: Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;->nativeConnectCallback(ZI)V
     invoke-static {v0, p1, v1}, Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;->access$300(Lcom/nianticlabs/pokemongoplus/SfidaPeripheral;ZI)V
 
-    .line 219
+    .line 224
     return-void
 .end method

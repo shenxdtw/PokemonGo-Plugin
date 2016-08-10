@@ -9,7 +9,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lrx/internal/operators/OperatorAsObservable$1;,
         Lrx/internal/operators/OperatorAsObservable$Holder;
     }
 .end annotation
@@ -27,25 +26,13 @@
 
 
 # direct methods
-.method private constructor <init>()V
+.method constructor <init>()V
     .registers 1
 
     .prologue
     .line 40
     .local p0, "this":Lrx/internal/operators/OperatorAsObservable;, "Lrx/internal/operators/OperatorAsObservable<TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/internal/operators/OperatorAsObservable$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/internal/operators/OperatorAsObservable$1;
-
-    .prologue
-    .line 27
-    .local p0, "this":Lrx/internal/operators/OperatorAsObservable;, "Lrx/internal/operators/OperatorAsObservable<TT;>;"
-    invoke-direct {p0}, Lrx/internal/operators/OperatorAsObservable;-><init>()V
 
     return-void
 .end method

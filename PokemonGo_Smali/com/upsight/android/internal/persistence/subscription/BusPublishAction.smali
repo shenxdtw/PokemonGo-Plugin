@@ -56,13 +56,11 @@
 
 .method public bridge synthetic call(Ljava/lang/Object;)V
     .registers 2
-    .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
     .line 15
     check-cast p1, Lcom/upsight/android/internal/persistence/subscription/DataStoreEvent;
 
-    .end local p1    # "x0":Ljava/lang/Object;
     invoke-virtual {p0, p1}, Lcom/upsight/android/internal/persistence/subscription/BusPublishAction;->call(Lcom/upsight/android/internal/persistence/subscription/DataStoreEvent;)V
 
     return-void

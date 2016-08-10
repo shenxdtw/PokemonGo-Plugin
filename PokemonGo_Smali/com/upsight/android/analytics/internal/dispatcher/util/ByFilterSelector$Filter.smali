@@ -101,6 +101,7 @@
 
     const-string v1, "."
 
+    .line 123
     invoke-virtual {v0, v1}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
 
     move-result v0
@@ -122,6 +123,7 @@
     :cond_26
     if-eqz p2, :cond_38
 
+    .line 124
     invoke-virtual {p2}, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector$Filter;->getMatcher()Ljava/lang/String;
 
     move-result-object v0

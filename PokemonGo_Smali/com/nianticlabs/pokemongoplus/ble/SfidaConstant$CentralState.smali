@@ -58,7 +58,7 @@
 
     const/4 v4, 0x0
 
-    .line 95
+    .line 100
     new-instance v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
     const-string v1, "Unknown"
@@ -67,7 +67,7 @@
 
     sput-object v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;->Unknown:Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
-    .line 96
+    .line 101
     new-instance v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
     const-string v1, "Resetting"
@@ -76,7 +76,7 @@
 
     sput-object v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;->Resetting:Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
-    .line 97
+    .line 102
     new-instance v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
     const-string v1, "Unsupported"
@@ -85,7 +85,7 @@
 
     sput-object v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;->Unsupported:Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
-    .line 98
+    .line 103
     new-instance v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
     const-string v1, "Unauthorized"
@@ -94,7 +94,7 @@
 
     sput-object v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;->Unauthorized:Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
-    .line 99
+    .line 104
     new-instance v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
     const-string v1, "PoweredOff"
@@ -103,7 +103,7 @@
 
     sput-object v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;->PoweredOff:Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
-    .line 100
+    .line 105
     new-instance v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
     const-string v1, "PoweredOn"
@@ -116,7 +116,7 @@
 
     sput-object v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;->PoweredOn:Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
-    .line 94
+    .line 99
     const/4 v0, 0x6
 
     new-array v0, v0, [Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
@@ -162,13 +162,13 @@
     .end annotation
 
     .prologue
-    .line 104
+    .line 109
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
-    .line 105
+    .line 110
     iput p3, p0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;->id:I
 
-    .line 106
+    .line 111
     return-void
 .end method
 
@@ -177,7 +177,7 @@
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 94
+    .line 99
     const-class v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -193,7 +193,7 @@
     .registers 1
 
     .prologue
-    .line 94
+    .line 99
     sget-object v0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;->$VALUES:[Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;
 
     invoke-virtual {v0}, [Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;->clone()Ljava/lang/Object;
@@ -211,7 +211,7 @@
     .registers 2
 
     .prologue
-    .line 109
+    .line 114
     iget v0, p0, Lcom/nianticlabs/pokemongoplus/ble/SfidaConstant$CentralState;->id:I
 
     return v0

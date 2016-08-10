@@ -32,7 +32,7 @@
     .registers 1
 
     .prologue
-    .line 88
+    .line 91
     .local p0, "this":Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent$Builder;, "Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent$Builder<TT;TU;TP;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -61,13 +61,13 @@
     .end annotation
 
     .prologue
-    .line 93
+    .line 96
     .local p0, "this":Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent$Builder;, "Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent$Builder<TT;TU;TP;>;"
     invoke-virtual {p0}, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent$Builder;->build()Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
 
     move-result-object v1
 
-    .line 94
+    .line 97
     .local v1, "result":Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;, "TT;"
     const-string v2, "com.upsight.extension.analytics"
 
@@ -77,22 +77,22 @@
 
     check-cast v0, Lcom/upsight/android/UpsightAnalyticsExtension;
 
-    .line 95
+    .line 98
     .local v0, "extension":Lcom/upsight/android/UpsightAnalyticsExtension;
     if-eqz v0, :cond_16
 
-    .line 96
+    .line 99
     invoke-virtual {v0}, Lcom/upsight/android/UpsightAnalyticsExtension;->getApi()Lcom/upsight/android/analytics/UpsightAnalyticsApi;
 
     move-result-object v2
 
     invoke-interface {v2, v1}, Lcom/upsight/android/analytics/UpsightAnalyticsApi;->record(Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;)V
 
-    .line 100
+    .line 103
     :goto_15
     return-object v1
 
-    .line 98
+    .line 101
     :cond_16
     invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
 

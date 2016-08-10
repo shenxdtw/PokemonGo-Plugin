@@ -27,16 +27,16 @@
     .param p2, "body"    # Ljava/lang/String;
 
     .prologue
-    .line 107
+    .line 108
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 108
+    .line 109
     iput p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint$Response;->statusCode:I
 
-    .line 109
+    .line 110
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint$Response;->body:Ljava/lang/String;
 
-    .line 110
+    .line 111
     return-void
 .end method
 
@@ -46,7 +46,7 @@
     .registers 3
 
     .prologue
-    .line 116
+    .line 117
     iget v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/UpsightEndpoint$Response;->statusCode:I
 
     const/16 v1, 0xc8

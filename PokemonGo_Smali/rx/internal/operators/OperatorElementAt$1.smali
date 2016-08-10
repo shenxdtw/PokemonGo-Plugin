@@ -62,32 +62,23 @@
 
     iget-object v1, p0, Lrx/internal/operators/OperatorElementAt$1;->this$0:Lrx/internal/operators/OperatorElementAt;
 
-    # getter for: Lrx/internal/operators/OperatorElementAt;->index:I
-    invoke-static {v1}, Lrx/internal/operators/OperatorElementAt;->access$000(Lrx/internal/operators/OperatorElementAt;)I
+    iget v1, v1, Lrx/internal/operators/OperatorElementAt;->index:I
 
-    move-result v1
-
-    if-gt v0, v1, :cond_22
+    if-gt v0, v1, :cond_1c
 
     .line 74
     iget-object v0, p0, Lrx/internal/operators/OperatorElementAt$1;->this$0:Lrx/internal/operators/OperatorElementAt;
 
-    # getter for: Lrx/internal/operators/OperatorElementAt;->hasDefault:Z
-    invoke-static {v0}, Lrx/internal/operators/OperatorElementAt;->access$100(Lrx/internal/operators/OperatorElementAt;)Z
+    iget-boolean v0, v0, Lrx/internal/operators/OperatorElementAt;->hasDefault:Z
 
-    move-result v0
-
-    if-eqz v0, :cond_23
+    if-eqz v0, :cond_1d
 
     .line 75
     iget-object v0, p0, Lrx/internal/operators/OperatorElementAt$1;->val$child:Lrx/Subscriber;
 
     iget-object v1, p0, Lrx/internal/operators/OperatorElementAt$1;->this$0:Lrx/internal/operators/OperatorElementAt;
 
-    # getter for: Lrx/internal/operators/OperatorElementAt;->defaultValue:Ljava/lang/Object;
-    invoke-static {v1}, Lrx/internal/operators/OperatorElementAt;->access$200(Lrx/internal/operators/OperatorElementAt;)Ljava/lang/Object;
-
-    move-result-object v1
+    iget-object v1, v1, Lrx/internal/operators/OperatorElementAt;->defaultValue:Ljava/lang/Object;
 
     invoke-virtual {v0, v1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
@@ -97,12 +88,12 @@
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
     .line 81
-    :cond_22
-    :goto_22
+    :cond_1c
+    :goto_1c
     return-void
 
     .line 78
-    :cond_23
+    :cond_1d
     iget-object v0, p0, Lrx/internal/operators/OperatorElementAt$1;->val$child:Lrx/Subscriber;
 
     new-instance v1, Ljava/lang/IndexOutOfBoundsException;
@@ -113,10 +104,7 @@
 
     iget-object v3, p0, Lrx/internal/operators/OperatorElementAt$1;->this$0:Lrx/internal/operators/OperatorElementAt;
 
-    # getter for: Lrx/internal/operators/OperatorElementAt;->index:I
-    invoke-static {v3}, Lrx/internal/operators/OperatorElementAt;->access$000(Lrx/internal/operators/OperatorElementAt;)I
-
-    move-result v3
+    iget v3, v3, Lrx/internal/operators/OperatorElementAt;->index:I
 
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
@@ -136,7 +124,7 @@
 
     invoke-virtual {v0, v1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    goto :goto_22
+    goto :goto_1c
 .end method
 
 .method public onError(Ljava/lang/Throwable;)V
@@ -174,12 +162,9 @@
 
     iget-object v1, p0, Lrx/internal/operators/OperatorElementAt$1;->this$0:Lrx/internal/operators/OperatorElementAt;
 
-    # getter for: Lrx/internal/operators/OperatorElementAt;->index:I
-    invoke-static {v1}, Lrx/internal/operators/OperatorElementAt;->access$000(Lrx/internal/operators/OperatorElementAt;)I
+    iget v1, v1, Lrx/internal/operators/OperatorElementAt;->index:I
 
-    move-result v1
-
-    if-ne v0, v1, :cond_1b
+    if-ne v0, v1, :cond_19
 
     .line 59
     iget-object v0, p0, Lrx/internal/operators/OperatorElementAt$1;->val$child:Lrx/Subscriber;
@@ -195,7 +180,7 @@
     invoke-virtual {p0}, Lrx/internal/operators/OperatorElementAt$1;->unsubscribe()V
 
     .line 63
-    :cond_1b
+    :cond_19
     return-void
 .end method
 

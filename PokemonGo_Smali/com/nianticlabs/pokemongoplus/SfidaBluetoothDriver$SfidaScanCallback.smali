@@ -29,15 +29,15 @@
     .param p2, "peripheralName"    # Ljava/lang/String;
 
     .prologue
-    .line 171
+    .line 192
     iput-object p1, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$SfidaScanCallback;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 172
+    .line 193
     iput-object p2, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$SfidaScanCallback;->peripheralName:Ljava/lang/String;
 
-    .line 173
+    .line 194
     return-void
 .end method
 
@@ -46,7 +46,7 @@
     .param p0, "x0"    # Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$SfidaScanCallback;
 
     .prologue
-    .line 167
+    .line 188
     iget-object v0, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$SfidaScanCallback;->peripheralName:Ljava/lang/String;
 
     return-object v0
@@ -61,12 +61,12 @@
     .param p3, "scanRecord"    # [B
 
     .prologue
-    .line 177
+    .line 198
     invoke-virtual {p1}, Landroid/bluetooth/BluetoothDevice;->getAddress()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 178
+    .line 199
     .local v0, "address":Ljava/lang/String;
     iget-object v1, p0, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$SfidaScanCallback;->this$0:Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver;
 
@@ -81,6 +81,6 @@
 
     invoke-virtual {v1, v2}, Lcom/nianticlabs/pokemongoplus/SfidaBluetoothDriver$HandlerExecutor;->execute(Ljava/lang/Runnable;)V
 
-    .line 205
+    .line 226
     return-void
 .end method

@@ -17,19 +17,29 @@
 
 # instance fields
 .field action:Lcom/upsight/android/analytics/internal/DataStoreRecord$Action;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "action"
     .end annotation
 .end field
 
 .field campaignID:Ljava/lang/Integer;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "campaign_id"
     .end annotation
 .end field
 
 .field id:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
+        value = "id"
     .end annotation
 
     .annotation runtime Lcom/upsight/android/persistence/annotation/UpsightStorableIdentifier;
@@ -37,43 +47,64 @@
 .end field
 
 .field identifiers:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "identifiers"
     .end annotation
 .end field
 
 .field messageID:Ljava/lang/Integer;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "message_id"
     .end annotation
 .end field
 
 .field pastSessionTime:J
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "past_session_time"
     .end annotation
 .end field
 
 .field sessionID:J
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "session_id"
     .end annotation
 .end field
 
 .field sessionNumber:I
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "session_num"
     .end annotation
 .end field
 
 .field source:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "source"
     .end annotation
 .end field
 
 .field sourceType:Ljava/lang/String;
-    .annotation runtime Lcom/fasterxml/jackson/annotation/JsonProperty;
+    .annotation runtime Lcom/google/gson/annotations/Expose;
+    .end annotation
+
+    .annotation runtime Lcom/google/gson/annotations/SerializedName;
         value = "source_type"
     .end annotation
 .end field
@@ -84,10 +115,10 @@
     .registers 1
 
     .prologue
-    .line 79
+    .line 90
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 81
+    .line 92
     return-void
 .end method
 
@@ -103,34 +134,34 @@
     .param p10, "sourceType"    # Ljava/lang/String;
 
     .prologue
-    .line 90
+    .line 101
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 91
+    .line 102
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->action:Lcom/upsight/android/analytics/internal/DataStoreRecord$Action;
 
-    .line 92
+    .line 103
     iput-wide p2, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->sessionID:J
 
-    .line 93
+    .line 104
     iput-object p4, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->messageID:Ljava/lang/Integer;
 
-    .line 94
+    .line 105
     iput-object p5, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->campaignID:Ljava/lang/Integer;
 
-    .line 95
+    .line 106
     iput-object p9, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->source:Ljava/lang/String;
 
-    .line 96
+    .line 107
     iput-object p10, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->sourceType:Ljava/lang/String;
 
-    .line 97
+    .line 108
     iput p6, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->sessionNumber:I
 
-    .line 98
+    .line 109
     iput-wide p7, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->pastSessionTime:J
 
-    .line 99
+    .line 110
     return-void
 .end method
 
@@ -144,7 +175,7 @@
     .param p7, "sourceType"    # Ljava/lang/String;
 
     .prologue
-    .line 36
+    .line 37
     const/4 v3, 0x0
 
     const/4 v4, 0x0
@@ -180,7 +211,7 @@
     .param p9, "sourceType"    # Ljava/lang/String;
 
     .prologue
-    .line 27
+    .line 28
     new-instance v0, Lcom/upsight/android/analytics/internal/DataStoreRecord;
 
     move-object v1, p0
@@ -215,15 +246,15 @@
 
     const/4 v2, 0x0
 
-    .line 103
+    .line 114
     if-ne p0, p1, :cond_5
 
-    .line 110
+    .line 121
     :cond_4
     :goto_4
     return v1
 
-    .line 104
+    .line 115
     :cond_5
     if-eqz p1, :cond_11
 
@@ -245,10 +276,10 @@
     :cond_13
     move-object v0, p1
 
-    .line 106
+    .line 117
     check-cast v0, Lcom/upsight/android/analytics/internal/DataStoreRecord;
 
-    .line 108
+    .line 119
     .local v0, "that":Lcom/upsight/android/analytics/internal/DataStoreRecord;
     iget-object v3, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->id:Ljava/lang/String;
 
@@ -281,7 +312,7 @@
     .registers 2
 
     .prologue
-    .line 143
+    .line 154
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->action:Lcom/upsight/android/analytics/internal/DataStoreRecord$Action;
 
     return-object v0
@@ -291,7 +322,7 @@
     .registers 2
 
     .prologue
-    .line 131
+    .line 142
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->campaignID:Ljava/lang/Integer;
 
     return-object v0
@@ -301,7 +332,7 @@
     .registers 2
 
     .prologue
-    .line 119
+    .line 130
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->id:Ljava/lang/String;
 
     return-object v0
@@ -311,7 +342,7 @@
     .registers 2
 
     .prologue
-    .line 159
+    .line 170
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->identifiers:Ljava/lang/String;
 
     return-object v0
@@ -321,7 +352,7 @@
     .registers 2
 
     .prologue
-    .line 127
+    .line 138
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->messageID:Ljava/lang/Integer;
 
     return-object v0
@@ -331,7 +362,7 @@
     .registers 3
 
     .prologue
-    .line 139
+    .line 150
     iget-wide v0, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->pastSessionTime:J
 
     return-wide v0
@@ -341,7 +372,7 @@
     .registers 3
 
     .prologue
-    .line 123
+    .line 134
     iget-wide v0, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->sessionID:J
 
     return-wide v0
@@ -351,7 +382,7 @@
     .registers 2
 
     .prologue
-    .line 135
+    .line 146
     iget v0, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->sessionNumber:I
 
     return v0
@@ -361,7 +392,7 @@
     .registers 2
 
     .prologue
-    .line 147
+    .line 158
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->source:Ljava/lang/String;
 
     return-object v0
@@ -371,7 +402,7 @@
     .registers 2
 
     .prologue
-    .line 151
+    .line 162
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->sourceType:Ljava/lang/String;
 
     return-object v0
@@ -381,7 +412,7 @@
     .registers 2
 
     .prologue
-    .line 115
+    .line 126
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->id:Ljava/lang/String;
 
     if-eqz v0, :cond_b
@@ -406,9 +437,9 @@
     .param p1, "identifiers"    # Ljava/lang/String;
 
     .prologue
-    .line 155
+    .line 166
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/DataStoreRecord;->identifiers:Ljava/lang/String;
 
-    .line 156
+    .line 167
     return-void
 .end method

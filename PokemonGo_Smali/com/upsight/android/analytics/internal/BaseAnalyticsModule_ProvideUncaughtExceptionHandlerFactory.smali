@@ -60,10 +60,10 @@
     .param p1, "module"    # Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
 
     .prologue
-    .line 12
+    .line 16
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 13
+    .line 17
     sget-boolean v0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideUncaughtExceptionHandlerFactory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -76,11 +76,11 @@
 
     throw v0
 
-    .line 14
+    .line 18
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideUncaughtExceptionHandlerFactory;->module:Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
 
-    .line 15
+    .line 19
     return-void
 .end method
 
@@ -102,7 +102,7 @@
     .end annotation
 
     .prologue
-    .line 27
+    .line 29
     new-instance v0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideUncaughtExceptionHandlerFactory;
 
     invoke-direct {v0, p0}, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideUncaughtExceptionHandlerFactory;-><init>(Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;)V
@@ -113,7 +113,7 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/internal/util/Opt;
-    .registers 4
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -125,28 +125,23 @@
     .end annotation
 
     .prologue
-    .line 19
-    iget-object v1, p0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideUncaughtExceptionHandlerFactory;->module:Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
+    .line 23
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule_ProvideUncaughtExceptionHandlerFactory;->module:Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;
 
-    invoke-virtual {v1}, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;->provideUncaughtExceptionHandler()Lcom/upsight/android/internal/util/Opt;
+    .line 24
+    invoke-virtual {v0}, Lcom/upsight/android/analytics/internal/BaseAnalyticsModule;->provideUncaughtExceptionHandler()Lcom/upsight/android/internal/util/Opt;
 
     move-result-object v0
 
-    .line 20
-    .local v0, "provided":Lcom/upsight/android/internal/util/Opt;, "Lcom/upsight/android/internal/util/Opt<Ljava/lang/Thread$UncaughtExceptionHandler;>;"
-    if-nez v0, :cond_10
-
-    .line 21
-    new-instance v1, Ljava/lang/NullPointerException;
-
-    const-string v2, "Cannot return null from a non-@Nullable @Provides method"
-
-    invoke-direct {v1, v2}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
-
-    throw v1
+    const-string v1, "Cannot return null from a non-@Nullable @Provides method"
 
     .line 23
-    :cond_10
+    invoke-static {v0, v1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/upsight/android/internal/util/Opt;
+
     return-object v0
 .end method
 

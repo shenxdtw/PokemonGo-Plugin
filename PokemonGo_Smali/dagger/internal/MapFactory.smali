@@ -132,37 +132,36 @@
     .prologue
     .line 54
     .local p0, "this":Ldagger/internal/MapFactory;, "Ldagger/internal/MapFactory<TK;TV;>;"
-    iget-object v3, p0, Ldagger/internal/MapFactory;->contributingMap:Ljava/util/Map;
+    iget-object v2, p0, Ldagger/internal/MapFactory;->contributingMap:Ljava/util/Map;
 
-    invoke-interface {v3}, Ljava/util/Map;->size()I
+    invoke-interface {v2}, Ljava/util/Map;->size()I
 
-    move-result v3
+    move-result v2
 
-    invoke-static {v3}, Ldagger/internal/Collections;->newLinkedHashMapWithExpectedSize(I)Ljava/util/LinkedHashMap;
-
-    move-result-object v2
-
-    .line 55
-    .local v2, "result":Ljava/util/Map;, "Ljava/util/Map<TK;TV;>;"
-    iget-object v3, p0, Ldagger/internal/MapFactory;->contributingMap:Ljava/util/Map;
-
-    invoke-interface {v3}, Ljava/util/Map;->entrySet()Ljava/util/Set;
-
-    move-result-object v3
-
-    invoke-interface {v3}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+    invoke-static {v2}, Ldagger/internal/Collections;->newLinkedHashMapWithExpectedSize(I)Ljava/util/LinkedHashMap;
 
     move-result-object v1
 
-    .local v1, "i$":Ljava/util/Iterator;
+    .line 55
+    .local v1, "result":Ljava/util/Map;, "Ljava/util/Map<TK;TV;>;"
+    iget-object v2, p0, Ldagger/internal/MapFactory;->contributingMap:Ljava/util/Map;
+
+    invoke-interface {v2}, Ljava/util/Map;->entrySet()Ljava/util/Set;
+
+    move-result-object v2
+
+    invoke-interface {v2}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    move-result-object v3
+
     :goto_14
-    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
-    move-result v3
+    move-result v2
 
-    if-eqz v3, :cond_32
+    if-eqz v2, :cond_32
 
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
@@ -176,24 +175,24 @@
 
     invoke-interface {v0}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
 
-    move-result-object v3
+    move-result-object v2
 
-    check-cast v3, Ljavax/inject/Provider;
+    check-cast v2, Ljavax/inject/Provider;
 
-    invoke-interface {v3}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+    invoke-interface {v2}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
-    move-result-object v3
+    move-result-object v2
 
-    invoke-interface {v2, v4, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-interface {v1, v4, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     goto :goto_14
 
     .line 58
     .end local v0    # "entry":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<TK;Ljavax/inject/Provider<TV;>;>;"
     :cond_32
-    invoke-static {v2}, Ljava/util/Collections;->unmodifiableMap(Ljava/util/Map;)Ljava/util/Map;
+    invoke-static {v1}, Ljava/util/Collections;->unmodifiableMap(Ljava/util/Map;)Ljava/util/Map;
 
-    move-result-object v3
+    move-result-object v2
 
-    return-object v3
+    return-object v2
 .end method

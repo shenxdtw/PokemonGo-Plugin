@@ -53,7 +53,7 @@
 
 
 # direct methods
-.method private constructor <init>(Lrx/functions/Action1;Ljava/lang/Object;)V
+.method constructor <init>(Lrx/functions/Action1;Ljava/lang/Object;)V
     .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -64,38 +64,24 @@
     .end annotation
 
     .prologue
-    .line 106
+    .line 108
     .local p0, "this":Lrx/internal/operators/OnSubscribeUsing$DisposeAction;, "Lrx/internal/operators/OnSubscribeUsing$DisposeAction<TResource;>;"
     .local p1, "dispose":Lrx/functions/Action1;, "Lrx/functions/Action1<-TResource;>;"
     .local p2, "resource":Ljava/lang/Object;, "TResource;"
     invoke-direct {p0}, Ljava/util/concurrent/atomic/AtomicBoolean;-><init>()V
 
-    .line 107
+    .line 109
     iput-object p1, p0, Lrx/internal/operators/OnSubscribeUsing$DisposeAction;->dispose:Lrx/functions/Action1;
 
-    .line 108
+    .line 110
     iput-object p2, p0, Lrx/internal/operators/OnSubscribeUsing$DisposeAction;->resource:Ljava/lang/Object;
 
-    .line 109
+    .line 111
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Lrx/internal/operators/OnSubscribeUsing$DisposeAction;->lazySet(Z)V
 
-    .line 110
-    return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/functions/Action1;Ljava/lang/Object;Lrx/internal/operators/OnSubscribeUsing$1;)V
-    .registers 4
-    .param p1, "x0"    # Lrx/functions/Action1;
-    .param p2, "x1"    # Ljava/lang/Object;
-    .param p3, "x2"    # Lrx/internal/operators/OnSubscribeUsing$1;
-
-    .prologue
-    .line 99
-    .local p0, "this":Lrx/internal/operators/OnSubscribeUsing$DisposeAction;, "Lrx/internal/operators/OnSubscribeUsing$DisposeAction<TResource;>;"
-    invoke-direct {p0, p1, p2}, Lrx/internal/operators/OnSubscribeUsing$DisposeAction;-><init>(Lrx/functions/Action1;Ljava/lang/Object;)V
-
+    .line 112
     return-void
 .end method
 
@@ -108,7 +94,7 @@
     .local p0, "this":Lrx/internal/operators/OnSubscribeUsing$DisposeAction;, "Lrx/internal/operators/OnSubscribeUsing$DisposeAction<TResource;>;"
     const/4 v2, 0x0
 
-    .line 114
+    .line 116
     const/4 v0, 0x0
 
     const/4 v1, 0x1
@@ -119,7 +105,7 @@
 
     if-eqz v0, :cond_14
 
-    .line 116
+    .line 118
     :try_start_9
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeUsing$DisposeAction;->dispose:Lrx/functions/Action1;
 
@@ -129,23 +115,23 @@
     :try_end_10
     .catchall {:try_start_9 .. :try_end_10} :catchall_15
 
-    .line 118
+    .line 120
     iput-object v2, p0, Lrx/internal/operators/OnSubscribeUsing$DisposeAction;->resource:Ljava/lang/Object;
 
-    .line 119
+    .line 121
     iput-object v2, p0, Lrx/internal/operators/OnSubscribeUsing$DisposeAction;->dispose:Lrx/functions/Action1;
 
-    .line 122
+    .line 124
     :cond_14
     return-void
 
-    .line 118
+    .line 120
     :catchall_15
     move-exception v0
 
     iput-object v2, p0, Lrx/internal/operators/OnSubscribeUsing$DisposeAction;->resource:Ljava/lang/Object;
 
-    .line 119
+    .line 121
     iput-object v2, p0, Lrx/internal/operators/OnSubscribeUsing$DisposeAction;->dispose:Lrx/functions/Action1;
 
     throw v0
@@ -155,7 +141,7 @@
     .registers 2
 
     .prologue
-    .line 126
+    .line 128
     .local p0, "this":Lrx/internal/operators/OnSubscribeUsing$DisposeAction;, "Lrx/internal/operators/OnSubscribeUsing$DisposeAction<TResource;>;"
     invoke-virtual {p0}, Lrx/internal/operators/OnSubscribeUsing$DisposeAction;->get()Z
 
@@ -168,10 +154,10 @@
     .registers 1
 
     .prologue
-    .line 131
+    .line 133
     .local p0, "this":Lrx/internal/operators/OnSubscribeUsing$DisposeAction;, "Lrx/internal/operators/OnSubscribeUsing$DisposeAction<TResource;>;"
     invoke-virtual {p0}, Lrx/internal/operators/OnSubscribeUsing$DisposeAction;->call()V
 
-    .line 132
+    .line 134
     return-void
 .end method

@@ -26,7 +26,7 @@
 
 
 # instance fields
-.field private final onDrop:Lrx/functions/Action1;
+.field final onDrop:Lrx/functions/Action1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lrx/functions/Action1",
@@ -37,17 +37,17 @@
 
 
 # direct methods
-.method private constructor <init>()V
+.method constructor <init>()V
     .registers 2
 
     .prologue
-    .line 44
+    .line 45
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureDrop;, "Lrx/internal/operators/OperatorOnBackpressureDrop<TT;>;"
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lrx/internal/operators/OperatorOnBackpressureDrop;-><init>(Lrx/functions/Action1;)V
 
-    .line 45
+    .line 46
     return-void
 .end method
 
@@ -62,39 +62,16 @@
     .end annotation
 
     .prologue
-    .line 47
+    .line 48
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureDrop;, "Lrx/internal/operators/OperatorOnBackpressureDrop<TT;>;"
     .local p1, "onDrop":Lrx/functions/Action1;, "Lrx/functions/Action1<-TT;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 48
+    .line 49
     iput-object p1, p0, Lrx/internal/operators/OperatorOnBackpressureDrop;->onDrop:Lrx/functions/Action1;
 
-    .line 49
+    .line 50
     return-void
-.end method
-
-.method synthetic constructor <init>(Lrx/internal/operators/OperatorOnBackpressureDrop$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/internal/operators/OperatorOnBackpressureDrop$1;
-
-    .prologue
-    .line 25
-    .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureDrop;, "Lrx/internal/operators/OperatorOnBackpressureDrop<TT;>;"
-    invoke-direct {p0}, Lrx/internal/operators/OperatorOnBackpressureDrop;-><init>()V
-
-    return-void
-.end method
-
-.method static synthetic access$100(Lrx/internal/operators/OperatorOnBackpressureDrop;)Lrx/functions/Action1;
-    .registers 2
-    .param p0, "x0"    # Lrx/internal/operators/OperatorOnBackpressureDrop;
-
-    .prologue
-    .line 25
-    iget-object v0, p0, Lrx/internal/operators/OperatorOnBackpressureDrop;->onDrop:Lrx/functions/Action1;
-
-    return-object v0
 .end method
 
 .method public static instance()Lrx/internal/operators/OperatorOnBackpressureDrop;
@@ -110,7 +87,7 @@
     .end annotation
 
     .prologue
-    .line 38
+    .line 39
     sget-object v0, Lrx/internal/operators/OperatorOnBackpressureDrop$Holder;->INSTANCE:Lrx/internal/operators/OperatorOnBackpressureDrop;
 
     return-object v0
@@ -123,7 +100,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 25
+    .line 26
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureDrop;, "Lrx/internal/operators/OperatorOnBackpressureDrop<TT;>;"
     check-cast p1, Lrx/Subscriber;
 
@@ -148,14 +125,14 @@
     .end annotation
 
     .prologue
-    .line 53
+    .line 54
     .local p0, "this":Lrx/internal/operators/OperatorOnBackpressureDrop;, "Lrx/internal/operators/OperatorOnBackpressureDrop<TT;>;"
     .local p1, "child":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     new-instance v0, Ljava/util/concurrent/atomic/AtomicLong;
 
     invoke-direct {v0}, Ljava/util/concurrent/atomic/AtomicLong;-><init>()V
 
-    .line 55
+    .line 56
     .local v0, "requested":Ljava/util/concurrent/atomic/AtomicLong;
     new-instance v1, Lrx/internal/operators/OperatorOnBackpressureDrop$1;
 
@@ -163,7 +140,7 @@
 
     invoke-virtual {p1, v1}, Lrx/Subscriber;->setProducer(Lrx/Producer;)V
 
-    .line 63
+    .line 64
     new-instance v1, Lrx/internal/operators/OperatorOnBackpressureDrop$2;
 
     invoke-direct {v1, p0, p1, p1, v0}, Lrx/internal/operators/OperatorOnBackpressureDrop$2;-><init>(Lrx/internal/operators/OperatorOnBackpressureDrop;Lrx/Subscriber;Lrx/Subscriber;Ljava/util/concurrent/atomic/AtomicLong;)V

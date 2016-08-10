@@ -56,83 +56,82 @@
     .line 73
     .local p2, "schemaSelectorByName":Lcom/upsight/android/analytics/internal/dispatcher/util/Selector;, "Lcom/upsight/android/analytics/internal/dispatcher/util/Selector<Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;>;"
     .local p3, "schemaSelectorByType":Lcom/upsight/android/analytics/internal/dispatcher/util/Selector;, "Lcom/upsight/android/analytics/internal/dispatcher/util/Selector<Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;>;"
-    new-instance v2, Ljava/util/HashMap;
+    new-instance v1, Ljava/util/HashMap;
 
-    invoke-direct {v2}, Ljava/util/HashMap;-><init>()V
+    invoke-direct {v1}, Ljava/util/HashMap;-><init>()V
 
     .line 76
-    .local v2, "queues":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;>;"
-    new-instance v3, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue$Trash;
+    .local v1, "queues":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;>;"
+    new-instance v2, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue$Trash;
 
-    invoke-direct {v3}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue$Trash;-><init>()V
+    invoke-direct {v2}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue$Trash;-><init>()V
 
     .line 77
-    .local v3, "trash":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
-    invoke-virtual {v3}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;->getName()Ljava/lang/String;
+    .local v2, "trash":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
+    invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;->getName()Ljava/lang/String;
 
-    move-result-object v4
+    move-result-object v3
 
-    invoke-interface {v2, v4, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-interface {v1, v3, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 79
     invoke-virtual {p1}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;->getQueueConfigs()Ljava/util/Map;
 
-    move-result-object v4
+    move-result-object v3
 
-    invoke-interface {v4}, Ljava/util/Map;->entrySet()Ljava/util/Set;
+    invoke-interface {v3}, Ljava/util/Map;->entrySet()Ljava/util/Set;
 
-    move-result-object v4
+    move-result-object v3
 
-    invoke-interface {v4}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+    invoke-interface {v3}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    move-result-object v5
+
+    :goto_1d
+    invoke-interface {v5}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_43
+
+    invoke-interface {v5}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
-    .local v0, "i$":Ljava/util/Iterator;
-    :goto_1d
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v4
-
-    if-eqz v4, :cond_43
-
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v1
-
-    check-cast v1, Ljava/util/Map$Entry;
+    check-cast v0, Ljava/util/Map$Entry;
 
     .line 80
-    .local v1, "queue":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueConfig;>;"
-    invoke-interface {v1}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
+    .local v0, "queue":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueConfig;>;"
+    invoke-interface {v0}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
 
     move-result-object v6
 
     iget-object v7, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;->mQueueBuilder:Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueBuilder;
 
-    invoke-interface {v1}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
+    invoke-interface {v0}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Ljava/lang/String;
+
+    invoke-interface {v0}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
 
     move-result-object v4
 
-    check-cast v4, Ljava/lang/String;
+    check-cast v4, Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueConfig;
 
-    invoke-interface {v1}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
+    invoke-virtual {v7, v3, v4, p2, p3}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueBuilder;->build(Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueConfig;Lcom/upsight/android/analytics/internal/dispatcher/util/Selector;Lcom/upsight/android/analytics/internal/dispatcher/util/Selector;)Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
 
-    move-result-object v5
+    move-result-object v3
 
-    check-cast v5, Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueConfig;
-
-    invoke-virtual {v7, v4, v5, p2, p3}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueBuilder;->build(Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueConfig;Lcom/upsight/android/analytics/internal/dispatcher/util/Selector;Lcom/upsight/android/analytics/internal/dispatcher/util/Selector;)Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
-
-    move-result-object v4
-
-    invoke-interface {v2, v6, v4}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-interface {v1, v6, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     goto :goto_1d
 
     .line 83
-    .end local v1    # "queue":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueConfig;>;"
+    .end local v0    # "queue":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueConfig;>;"
     :cond_43
-    return-object v2
+    return-object v1
 .end method
 
 .method private buildRoutes(Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;Ljava/util/Map;)Ljava/util/Map;
@@ -158,112 +157,110 @@
     .prologue
     .line 94
     .local p2, "queues":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;>;"
-    new-instance v5, Ljava/util/HashMap;
+    new-instance v3, Ljava/util/HashMap;
 
-    invoke-direct {v5}, Ljava/util/HashMap;-><init>()V
+    invoke-direct {v3}, Ljava/util/HashMap;-><init>()V
 
     .line 97
-    .local v5, "routes":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;>;"
+    .local v3, "routes":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;>;"
     invoke-virtual {p1}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;->getRouters()Ljava/util/Map;
-
-    move-result-object v6
-
-    invoke-interface {v6}, Ljava/util/Map;->entrySet()Ljava/util/Set;
-
-    move-result-object v6
-
-    invoke-interface {v6}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
-
-    move-result-object v0
-
-    :goto_11
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v6
-
-    if-eqz v6, :cond_54
-
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v4
 
-    check-cast v4, Ljava/util/Map$Entry;
+    invoke-interface {v4}, Ljava/util/Map;->entrySet()Ljava/util/Set;
 
-    .line 98
-    .local v4, "routeConf":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Ljava/util/List<Ljava/lang/String;>;>;"
-    new-instance v3, Ljava/util/LinkedList;
+    move-result-object v4
 
-    invoke-direct {v3}, Ljava/util/LinkedList;-><init>()V
+    invoke-interface {v4}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
-    .line 99
-    .local v3, "route":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;>;"
-    invoke-interface {v4}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
+    move-result-object v5
 
-    move-result-object v6
+    :goto_11
+    invoke-interface {v5}, Ljava/util/Iterator;->hasNext()Z
 
-    check-cast v6, Ljava/util/List;
+    move-result v4
 
-    invoke-interface {v6}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+    if-eqz v4, :cond_54
 
-    move-result-object v1
-
-    .local v1, "i$":Ljava/util/Iterator;
-    :goto_2c
-    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v6
-
-    if-eqz v6, :cond_47
-
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v5}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v2
 
-    check-cast v2, Ljava/lang/String;
+    check-cast v2, Ljava/util/Map$Entry;
 
-    .line 100
-    .local v2, "queue":Ljava/lang/String;
-    new-instance v7, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
+    .line 98
+    .local v2, "routeConf":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Ljava/util/List<Ljava/lang/String;>;>;"
+    new-instance v1, Ljava/util/LinkedList;
 
-    invoke-interface {p2, v2}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-direct {v1}, Ljava/util/LinkedList;-><init>()V
+
+    .line 99
+    .local v1, "route":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;>;"
+    invoke-interface {v2}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
+
+    move-result-object v4
+
+    check-cast v4, Ljava/util/List;
+
+    invoke-interface {v4}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v6
 
-    check-cast v6, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
+    :goto_2c
+    invoke-interface {v6}, Ljava/util/Iterator;->hasNext()Z
 
-    invoke-direct {v7, v6}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;-><init>(Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;)V
+    move-result v4
 
-    invoke-interface {v3, v7}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+    if-eqz v4, :cond_47
+
+    invoke-interface {v6}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Ljava/lang/String;
+
+    .line 100
+    .local v0, "queue":Ljava/lang/String;
+    new-instance v7, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;
+
+    invoke-interface {p2, v0}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v4
+
+    check-cast v4, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
+
+    invoke-direct {v7, v4}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;-><init>(Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;)V
+
+    invoke-interface {v1, v7}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     goto :goto_2c
 
     .line 103
-    .end local v2    # "queue":Ljava/lang/String;
+    .end local v0    # "queue":Ljava/lang/String;
     :cond_47
-    invoke-interface {v4}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
+    invoke-interface {v2}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
 
-    move-result-object v6
+    move-result-object v4
 
-    new-instance v7, Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;
+    new-instance v6, Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;
 
-    invoke-direct {v7, v3}, Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;-><init>(Ljava/util/List;)V
+    invoke-direct {v6, v1}, Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;-><init>(Ljava/util/List;)V
 
-    invoke-interface {v5, v6, v7}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-interface {v3, v4, v6}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     goto :goto_11
 
     .line 106
-    .end local v1    # "i$":Ljava/util/Iterator;
-    .end local v3    # "route":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;>;"
-    .end local v4    # "routeConf":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Ljava/util/List<Ljava/lang/String;>;>;"
+    .end local v1    # "route":Ljava/util/List;, "Ljava/util/List<Lcom/upsight/android/analytics/internal/dispatcher/routing/RouteStep;>;"
+    .end local v2    # "routeConf":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Ljava/util/List<Ljava/lang/String;>;>;"
     :cond_54
-    return-object v5
+    return-object v3
 .end method
 
 
 # virtual methods
 .method public build(Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;Lcom/upsight/android/analytics/internal/dispatcher/util/Selector;Lcom/upsight/android/analytics/internal/dispatcher/util/Selector;Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingListener;)Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
-    .registers 12
+    .registers 11
     .param p1, "config"    # Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;
     .param p4, "listener"    # Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingListener;
     .annotation system Ldalvik/annotation/Signature;
@@ -290,61 +287,60 @@
     .local p3, "schemaSelectorByType":Lcom/upsight/android/analytics/internal/dispatcher/util/Selector;, "Lcom/upsight/android/analytics/internal/dispatcher/util/Selector<Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;>;"
     invoke-direct {p0, p1, p2, p3}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;->buildQueues(Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;Lcom/upsight/android/analytics/internal/dispatcher/util/Selector;Lcom/upsight/android/analytics/internal/dispatcher/util/Selector;)Ljava/util/Map;
 
-    move-result-object v2
+    move-result-object v1
 
     .line 49
-    .local v2, "queues":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;>;"
-    invoke-direct {p0, p1, v2}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;->buildRoutes(Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;Ljava/util/Map;)Ljava/util/Map;
+    .local v1, "queues":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;>;"
+    invoke-direct {p0, p1, v1}, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;->buildRoutes(Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingConfig;Ljava/util/Map;)Ljava/util/Map;
+
+    move-result-object v3
+
+    .line 51
+    .local v3, "routes":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;>;"
+    new-instance v2, Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
+
+    iget-object v4, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;->mScheduler:Lrx/Scheduler;
+
+    new-instance v5, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;
+
+    invoke-direct {v5, v3}, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;-><init>(Ljava/util/Map;)V
+
+    invoke-direct {v2, v4, v5, p4}, Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;-><init>(Lrx/Scheduler;Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingListener;)V
+
+    .line 53
+    .local v2, "router":Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
+    invoke-interface {v1}, Ljava/util/Map;->values()Ljava/util/Collection;
 
     move-result-object v4
 
-    .line 51
-    .local v4, "routes":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/analytics/internal/dispatcher/routing/Route;>;"
-    new-instance v3, Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
+    invoke-interface {v4}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
 
-    iget-object v5, p0, Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;->mScheduler:Lrx/Scheduler;
+    move-result-object v4
 
-    new-instance v6, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;
-
-    invoke-direct {v6, v4}, Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;-><init>(Ljava/util/Map;)V
-
-    invoke-direct {v3, v5, v6, p4}, Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;-><init>(Lrx/Scheduler;Lcom/upsight/android/analytics/internal/dispatcher/util/ByFilterSelector;Lcom/upsight/android/analytics/internal/dispatcher/routing/RoutingListener;)V
-
-    .line 53
-    .local v3, "router":Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
-    invoke-interface {v2}, Ljava/util/Map;->values()Ljava/util/Collection;
-
-    move-result-object v5
-
-    invoke-interface {v5}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
-
-    move-result-object v0
-
-    .local v0, "i$":Ljava/util/Iterator;
     :goto_1c
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v5
 
     if-eqz v5, :cond_2f
 
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v1
+    move-result-object v0
 
-    check-cast v1, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
+    check-cast v0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
 
     .line 54
-    .local v1, "queue":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
-    invoke-virtual {v1, v3}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;->setOnDeliveryListener(Lcom/upsight/android/analytics/internal/dispatcher/delivery/OnDeliveryListener;)V
+    .local v0, "queue":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
+    invoke-virtual {v0, v2}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;->setOnDeliveryListener(Lcom/upsight/android/analytics/internal/dispatcher/delivery/OnDeliveryListener;)V
 
     .line 55
-    invoke-virtual {v1, v3}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;->setOnResponseListener(Lcom/upsight/android/analytics/internal/dispatcher/delivery/OnResponseListener;)V
+    invoke-virtual {v0, v2}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;->setOnResponseListener(Lcom/upsight/android/analytics/internal/dispatcher/delivery/OnResponseListener;)V
 
     goto :goto_1c
 
     .line 58
-    .end local v1    # "queue":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
+    .end local v0    # "queue":Lcom/upsight/android/analytics/internal/dispatcher/delivery/Queue;
     :cond_2f
-    return-object v3
+    return-object v2
 .end method

@@ -565,3 +565,57 @@
 
     throw v2
 .end method
+
+.method public onDestroy()V
+    .registers 5
+
+    .prologue
+    .line 128
+    iget-object v2, p0, Lcom/nianticlabs/pokemongoplus/SfidaService;->characteristicRef:Ljava/util/ArrayList;
+
+    invoke-virtual {v2}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
+
+    move-result-object v2
+
+    :cond_6
+    :goto_6
+    invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_1d
+
+    invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/nianticlabs/pokemongoplus/ble/Characteristic;
+
+    .line 129
+    .local v0, "characteristic":Lcom/nianticlabs/pokemongoplus/ble/Characteristic;
+    instance-of v3, v0, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
+
+    if-eqz v3, :cond_6
+
+    move-object v1, v0
+
+    .line 130
+    check-cast v1, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
+
+    .line 131
+    .local v1, "sfidaCharacteristic":Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
+    invoke-virtual {v1}, Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;->onDestroy()V
+
+    goto :goto_6
+
+    .line 134
+    .end local v0    # "characteristic":Lcom/nianticlabs/pokemongoplus/ble/Characteristic;
+    .end local v1    # "sfidaCharacteristic":Lcom/nianticlabs/pokemongoplus/SfidaCharacteristic;
+    :cond_1d
+    iget-object v2, p0, Lcom/nianticlabs/pokemongoplus/SfidaService;->characteristicRef:Ljava/util/ArrayList;
+
+    invoke-virtual {v2}, Ljava/util/ArrayList;->clear()V
+
+    .line 135
+    return-void
+.end method

@@ -14,28 +14,34 @@
 # instance fields
 .field private mBillboardManager:Lcom/upsight/android/marketing/UpsightBillboardManager;
 
+.field private mContentMediationManager:Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;
+
 .field private mMarketingContentStore:Lcom/upsight/android/marketing/UpsightMarketingContentStore;
 
 
 # direct methods
-.method public constructor <init>(Lcom/upsight/android/marketing/UpsightBillboardManager;Lcom/upsight/android/marketing/UpsightMarketingContentStore;)V
-    .registers 3
+.method public constructor <init>(Lcom/upsight/android/marketing/UpsightBillboardManager;Lcom/upsight/android/marketing/UpsightMarketingContentStore;Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;)V
+    .registers 4
     .param p1, "billboardManager"    # Lcom/upsight/android/marketing/UpsightBillboardManager;
     .param p2, "marketingContentStore"    # Lcom/upsight/android/marketing/UpsightMarketingContentStore;
+    .param p3, "contentMediatorManager"    # Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;
     .annotation runtime Ljavax/inject/Inject;
     .end annotation
 
     .prologue
-    .line 24
+    .line 29
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 25
+    .line 30
     iput-object p1, p0, Lcom/upsight/android/marketing/internal/Marketing;->mBillboardManager:Lcom/upsight/android/marketing/UpsightBillboardManager;
 
-    .line 26
+    .line 31
     iput-object p2, p0, Lcom/upsight/android/marketing/internal/Marketing;->mMarketingContentStore:Lcom/upsight/android/marketing/UpsightMarketingContentStore;
 
-    .line 27
+    .line 32
+    iput-object p3, p0, Lcom/upsight/android/marketing/internal/Marketing;->mContentMediationManager:Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;
+
+    .line 33
     return-void
 .end method
 
@@ -46,7 +52,7 @@
     .param p1, "scope"    # Ljava/lang/String;
 
     .prologue
-    .line 46
+    .line 52
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/Marketing;->mMarketingContentStore:Lcom/upsight/android/marketing/UpsightMarketingContentStore;
 
     invoke-virtual {v0, p1}, Lcom/upsight/android/marketing/UpsightMarketingContentStore;->isContentReady(Ljava/lang/String;)Z
@@ -61,7 +67,7 @@
     .param p1, "billboard"    # Lcom/upsight/android/marketing/internal/billboard/Billboard;
 
     .prologue
-    .line 31
+    .line 37
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/Marketing;->mBillboardManager:Lcom/upsight/android/marketing/UpsightBillboardManager;
 
     invoke-interface {v0, p1}, Lcom/upsight/android/marketing/UpsightBillboardManager;->registerBillboard(Lcom/upsight/android/marketing/internal/billboard/Billboard;)Z
@@ -71,19 +77,18 @@
     return v0
 .end method
 
-.method public registerContentMediator(Lcom/upsight/android/marketing/UpsightContentMediator;)Z
+.method public registerContentMediator(Lcom/upsight/android/marketing/UpsightContentMediator;)V
     .registers 3
-    .param p1, "mediator"    # Lcom/upsight/android/marketing/UpsightContentMediator;
+    .param p1, "contentMediator"    # Lcom/upsight/android/marketing/UpsightContentMediator;
 
     .prologue
-    .line 41
-    iget-object v0, p0, Lcom/upsight/android/marketing/internal/Marketing;->mBillboardManager:Lcom/upsight/android/marketing/UpsightBillboardManager;
+    .line 47
+    iget-object v0, p0, Lcom/upsight/android/marketing/internal/Marketing;->mContentMediationManager:Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;
 
-    invoke-interface {v0, p1}, Lcom/upsight/android/marketing/UpsightBillboardManager;->registerContentMediator(Lcom/upsight/android/marketing/UpsightContentMediator;)Z
+    invoke-virtual {v0, p1}, Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;->register(Lcom/upsight/android/marketing/UpsightContentMediator;)V
 
-    move-result v0
-
-    return v0
+    .line 48
+    return-void
 .end method
 
 .method public unregisterBillboard(Lcom/upsight/android/marketing/internal/billboard/Billboard;)Z
@@ -91,7 +96,7 @@
     .param p1, "billboard"    # Lcom/upsight/android/marketing/internal/billboard/Billboard;
 
     .prologue
-    .line 36
+    .line 42
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/Marketing;->mBillboardManager:Lcom/upsight/android/marketing/UpsightBillboardManager;
 
     invoke-interface {v0, p1}, Lcom/upsight/android/marketing/UpsightBillboardManager;->unregisterBillboard(Lcom/upsight/android/marketing/internal/billboard/Billboard;)Z

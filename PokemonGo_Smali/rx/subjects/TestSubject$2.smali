@@ -45,8 +45,7 @@
     .local p0, "this":Lrx/subjects/TestSubject$2;, "Lrx/subjects/TestSubject.2;"
     iget-object v0, p0, Lrx/subjects/TestSubject$2;->this$0:Lrx/subjects/TestSubject;
 
-    # invokes: Lrx/subjects/TestSubject;->_onCompleted()V
-    invoke-static {v0}, Lrx/subjects/TestSubject;->access$000(Lrx/subjects/TestSubject;)V
+    invoke-virtual {v0}, Lrx/subjects/TestSubject;->_onCompleted()V
 
     .line 98
     return-void

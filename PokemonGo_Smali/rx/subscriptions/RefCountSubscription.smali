@@ -18,12 +18,15 @@
 # static fields
 .field static final EMPTY_STATE:Lrx/subscriptions/RefCountSubscription$State;
 
-.field static final STATE_UPDATER:Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
+
+# instance fields
+.field private final actual:Lrx/Subscription;
+
+.field final state:Ljava/util/concurrent/atomic/AtomicReference;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater",
+            "Ljava/util/concurrent/atomic/AtomicReference",
             "<",
-            "Lrx/subscriptions/RefCountSubscription;",
             "Lrx/subscriptions/RefCountSubscription$State;",
             ">;"
         }
@@ -31,15 +34,9 @@
 .end field
 
 
-# instance fields
-.field private final actual:Lrx/Subscription;
-
-.field volatile state:Lrx/subscriptions/RefCountSubscription$State;
-
-
 # direct methods
 .method static constructor <clinit>()V
-    .registers 3
+    .registers 2
 
     .prologue
     const/4 v1, 0x0
@@ -51,19 +48,6 @@
 
     sput-object v0, Lrx/subscriptions/RefCountSubscription;->EMPTY_STATE:Lrx/subscriptions/RefCountSubscription$State;
 
-    .line 31
-    const-class v0, Lrx/subscriptions/RefCountSubscription;
-
-    const-class v1, Lrx/subscriptions/RefCountSubscription$State;
-
-    const-string v2, "state"
-
-    invoke-static {v0, v1, v2}, Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/subscriptions/RefCountSubscription;->STATE_UPDATER:Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
-
     return-void
 .end method
 
@@ -72,18 +56,22 @@
     .param p1, "s"    # Lrx/Subscription;
 
     .prologue
-    .line 65
+    .line 63
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 30
-    sget-object v0, Lrx/subscriptions/RefCountSubscription;->EMPTY_STATE:Lrx/subscriptions/RefCountSubscription$State;
+    new-instance v0, Ljava/util/concurrent/atomic/AtomicReference;
 
-    iput-object v0, p0, Lrx/subscriptions/RefCountSubscription;->state:Lrx/subscriptions/RefCountSubscription$State;
+    sget-object v1, Lrx/subscriptions/RefCountSubscription;->EMPTY_STATE:Lrx/subscriptions/RefCountSubscription$State;
 
-    .line 66
-    if-nez p1, :cond_11
+    invoke-direct {v0, v1}, Ljava/util/concurrent/atomic/AtomicReference;-><init>(Ljava/lang/Object;)V
 
-    .line 67
+    iput-object v0, p0, Lrx/subscriptions/RefCountSubscription;->state:Ljava/util/concurrent/atomic/AtomicReference;
+
+    .line 64
+    if-nez p1, :cond_16
+
+    .line 65
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "s"
@@ -92,11 +80,11 @@
 
     throw v0
 
-    .line 69
-    :cond_11
+    .line 67
+    :cond_16
     iput-object p1, p0, Lrx/subscriptions/RefCountSubscription;->actual:Lrx/Subscription;
 
-    .line 70
+    .line 68
     return-void
 .end method
 
@@ -127,58 +115,70 @@
 
 # virtual methods
 .method public get()Lrx/Subscription;
-    .registers 4
+    .registers 5
 
     .prologue
-    .line 81
-    :cond_0
-    iget-object v1, p0, Lrx/subscriptions/RefCountSubscription;->state:Lrx/subscriptions/RefCountSubscription$State;
+    .line 78
+    iget-object v0, p0, Lrx/subscriptions/RefCountSubscription;->state:Ljava/util/concurrent/atomic/AtomicReference;
 
-    .line 82
-    .local v1, "oldState":Lrx/subscriptions/RefCountSubscription$State;
-    iget-boolean v2, v1, Lrx/subscriptions/RefCountSubscription$State;->isUnsubscribed:Z
-
-    if-eqz v2, :cond_b
-
-    .line 83
-    invoke-static {}, Lrx/subscriptions/Subscriptions;->unsubscribed()Lrx/Subscription;
+    .line 80
+    .local v0, "localState":Ljava/util/concurrent/atomic/AtomicReference;, "Ljava/util/concurrent/atomic/AtomicReference<Lrx/subscriptions/RefCountSubscription$State;>;"
+    :cond_2
+    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
 
     move-result-object v2
 
-    .line 89
-    :goto_a
-    return-object v2
+    check-cast v2, Lrx/subscriptions/RefCountSubscription$State;
 
-    .line 85
-    :cond_b
-    invoke-virtual {v1}, Lrx/subscriptions/RefCountSubscription$State;->addChild()Lrx/subscriptions/RefCountSubscription$State;
+    .line 81
+    .local v2, "oldState":Lrx/subscriptions/RefCountSubscription$State;
+    iget-boolean v3, v2, Lrx/subscriptions/RefCountSubscription$State;->isUnsubscribed:Z
 
-    move-result-object v0
+    if-eqz v3, :cond_11
 
-    .line 87
-    .local v0, "newState":Lrx/subscriptions/RefCountSubscription$State;
-    sget-object v2, Lrx/subscriptions/RefCountSubscription;->STATE_UPDATER:Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
+    .line 82
+    invoke-static {}, Lrx/subscriptions/Subscriptions;->unsubscribed()Lrx/Subscription;
 
-    invoke-virtual {v2, p0, v1, v0}, Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;->compareAndSet(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Z
+    move-result-object v3
 
-    move-result v2
+    .line 88
+    :goto_10
+    return-object v3
 
-    if-eqz v2, :cond_0
+    .line 84
+    :cond_11
+    invoke-virtual {v2}, Lrx/subscriptions/RefCountSubscription$State;->addChild()Lrx/subscriptions/RefCountSubscription$State;
 
-    .line 89
-    new-instance v2, Lrx/subscriptions/RefCountSubscription$InnerSubscription;
+    move-result-object v1
 
-    invoke-direct {v2, p0}, Lrx/subscriptions/RefCountSubscription$InnerSubscription;-><init>(Lrx/subscriptions/RefCountSubscription;)V
+    .line 86
+    .local v1, "newState":Lrx/subscriptions/RefCountSubscription$State;
+    invoke-virtual {v0, v2, v1}, Ljava/util/concurrent/atomic/AtomicReference;->compareAndSet(Ljava/lang/Object;Ljava/lang/Object;)Z
 
-    goto :goto_a
+    move-result v3
+
+    if-eqz v3, :cond_2
+
+    .line 88
+    new-instance v3, Lrx/subscriptions/RefCountSubscription$InnerSubscription;
+
+    invoke-direct {v3, p0}, Lrx/subscriptions/RefCountSubscription$InnerSubscription;-><init>(Lrx/subscriptions/RefCountSubscription;)V
+
+    goto :goto_10
 .end method
 
 .method public isUnsubscribed()Z
     .registers 2
 
     .prologue
-    .line 94
-    iget-object v0, p0, Lrx/subscriptions/RefCountSubscription;->state:Lrx/subscriptions/RefCountSubscription$State;
+    .line 93
+    iget-object v0, p0, Lrx/subscriptions/RefCountSubscription;->state:Ljava/util/concurrent/atomic/AtomicReference;
+
+    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lrx/subscriptions/RefCountSubscription$State;
 
     iget-boolean v0, v0, Lrx/subscriptions/RefCountSubscription$State;->isUnsubscribed:Z
 
@@ -186,72 +186,84 @@
 .end method
 
 .method public unsubscribe()V
-    .registers 4
+    .registers 5
 
     .prologue
+    .line 100
+    iget-object v0, p0, Lrx/subscriptions/RefCountSubscription;->state:Ljava/util/concurrent/atomic/AtomicReference;
+
     .line 102
-    :cond_0
-    iget-object v1, p0, Lrx/subscriptions/RefCountSubscription;->state:Lrx/subscriptions/RefCountSubscription$State;
+    .local v0, "localState":Ljava/util/concurrent/atomic/AtomicReference;, "Ljava/util/concurrent/atomic/AtomicReference<Lrx/subscriptions/RefCountSubscription$State;>;"
+    :cond_2
+    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Lrx/subscriptions/RefCountSubscription$State;
 
     .line 103
-    .local v1, "oldState":Lrx/subscriptions/RefCountSubscription$State;
-    iget-boolean v2, v1, Lrx/subscriptions/RefCountSubscription$State;->isUnsubscribed:Z
+    .local v2, "oldState":Lrx/subscriptions/RefCountSubscription$State;
+    iget-boolean v3, v2, Lrx/subscriptions/RefCountSubscription$State;->isUnsubscribed:Z
 
-    if-eqz v2, :cond_7
+    if-eqz v3, :cond_d
 
     .line 109
-    :goto_6
+    :goto_c
     return-void
 
     .line 106
-    :cond_7
-    invoke-virtual {v1}, Lrx/subscriptions/RefCountSubscription$State;->unsubscribe()Lrx/subscriptions/RefCountSubscription$State;
+    :cond_d
+    invoke-virtual {v2}, Lrx/subscriptions/RefCountSubscription$State;->unsubscribe()Lrx/subscriptions/RefCountSubscription$State;
 
-    move-result-object v0
+    move-result-object v1
 
     .line 107
-    .local v0, "newState":Lrx/subscriptions/RefCountSubscription$State;
-    sget-object v2, Lrx/subscriptions/RefCountSubscription;->STATE_UPDATER:Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
+    .local v1, "newState":Lrx/subscriptions/RefCountSubscription$State;
+    invoke-virtual {v0, v2, v1}, Ljava/util/concurrent/atomic/AtomicReference;->compareAndSet(Ljava/lang/Object;Ljava/lang/Object;)Z
 
-    invoke-virtual {v2, p0, v1, v0}, Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;->compareAndSet(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Z
+    move-result v3
 
-    move-result v2
-
-    if-eqz v2, :cond_0
+    if-eqz v3, :cond_2
 
     .line 108
-    invoke-direct {p0, v0}, Lrx/subscriptions/RefCountSubscription;->unsubscribeActualIfApplicable(Lrx/subscriptions/RefCountSubscription$State;)V
+    invoke-direct {p0, v1}, Lrx/subscriptions/RefCountSubscription;->unsubscribeActualIfApplicable(Lrx/subscriptions/RefCountSubscription$State;)V
 
-    goto :goto_6
+    goto :goto_c
 .end method
 
 .method unsubscribeAChild()V
-    .registers 4
+    .registers 5
 
     .prologue
-    .line 120
-    :cond_0
-    iget-object v1, p0, Lrx/subscriptions/RefCountSubscription;->state:Lrx/subscriptions/RefCountSubscription$State;
+    .line 119
+    iget-object v0, p0, Lrx/subscriptions/RefCountSubscription;->state:Ljava/util/concurrent/atomic/AtomicReference;
 
     .line 121
-    .local v1, "oldState":Lrx/subscriptions/RefCountSubscription$State;
-    invoke-virtual {v1}, Lrx/subscriptions/RefCountSubscription$State;->removeChild()Lrx/subscriptions/RefCountSubscription$State;
+    .local v0, "localState":Ljava/util/concurrent/atomic/AtomicReference;, "Ljava/util/concurrent/atomic/AtomicReference<Lrx/subscriptions/RefCountSubscription$State;>;"
+    :cond_2
+    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicReference;->get()Ljava/lang/Object;
 
-    move-result-object v0
+    move-result-object v2
+
+    check-cast v2, Lrx/subscriptions/RefCountSubscription$State;
 
     .line 122
-    .local v0, "newState":Lrx/subscriptions/RefCountSubscription$State;
-    sget-object v2, Lrx/subscriptions/RefCountSubscription;->STATE_UPDATER:Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;
+    .local v2, "oldState":Lrx/subscriptions/RefCountSubscription$State;
+    invoke-virtual {v2}, Lrx/subscriptions/RefCountSubscription$State;->removeChild()Lrx/subscriptions/RefCountSubscription$State;
 
-    invoke-virtual {v2, p0, v1, v0}, Ljava/util/concurrent/atomic/AtomicReferenceFieldUpdater;->compareAndSet(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_0
+    move-result-object v1
 
     .line 123
-    invoke-direct {p0, v0}, Lrx/subscriptions/RefCountSubscription;->unsubscribeActualIfApplicable(Lrx/subscriptions/RefCountSubscription$State;)V
+    .local v1, "newState":Lrx/subscriptions/RefCountSubscription$State;
+    invoke-virtual {v0, v2, v1}, Ljava/util/concurrent/atomic/AtomicReference;->compareAndSet(Ljava/lang/Object;Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_2
 
     .line 124
+    invoke-direct {p0, v1}, Lrx/subscriptions/RefCountSubscription;->unsubscribeActualIfApplicable(Lrx/subscriptions/RefCountSubscription$State;)V
+
+    .line 125
     return-void
 .end method

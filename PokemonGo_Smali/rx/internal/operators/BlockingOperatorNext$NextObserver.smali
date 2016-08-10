@@ -26,19 +26,6 @@
 .end annotation
 
 
-# static fields
-.field static final WAITING_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater",
-            "<",
-            "Lrx/internal/operators/BlockingOperatorNext$NextObserver;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-
 # instance fields
 .field private final buf:Ljava/util/concurrent/BlockingQueue;
     .annotation system Ldalvik/annotation/Signature;
@@ -51,33 +38,15 @@
     .end annotation
 .end field
 
-.field volatile waiting:I
+.field final waiting:Ljava/util/concurrent/atomic/AtomicInteger;
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .registers 2
-
-    .prologue
-    .line 153
-    const-class v0, Lrx/internal/operators/BlockingOperatorNext$NextObserver;
-
-    const-string v1, "waiting"
-
-    invoke-static {v0, v1}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->newUpdater(Ljava/lang/Class;Ljava/lang/String;)Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    move-result-object v0
-
-    sput-object v0, Lrx/internal/operators/BlockingOperatorNext$NextObserver;->WAITING_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
-
-    return-void
-.end method
-
-.method private constructor <init>()V
+.method constructor <init>()V
     .registers 3
 
     .prologue
-    .line 148
+    .line 152
     .local p0, "this":Lrx/internal/operators/BlockingOperatorNext$NextObserver;, "Lrx/internal/operators/BlockingOperatorNext$NextObserver<TT;>;"
     invoke-direct {p0}, Lrx/Subscriber;-><init>()V
 
@@ -90,18 +59,14 @@
 
     iput-object v0, p0, Lrx/internal/operators/BlockingOperatorNext$NextObserver;->buf:Ljava/util/concurrent/BlockingQueue;
 
-    return-void
-.end method
+    .line 150
+    new-instance v0, Ljava/util/concurrent/atomic/AtomicInteger;
 
-.method synthetic constructor <init>(Lrx/internal/operators/BlockingOperatorNext$1;)V
-    .registers 2
-    .param p1, "x0"    # Lrx/internal/operators/BlockingOperatorNext$1;
+    invoke-direct {v0}, Ljava/util/concurrent/atomic/AtomicInteger;-><init>()V
 
-    .prologue
-    .line 148
-    .local p0, "this":Lrx/internal/operators/BlockingOperatorNext$NextObserver;, "Lrx/internal/operators/BlockingOperatorNext$NextObserver<TT;>;"
-    invoke-direct {p0}, Lrx/internal/operators/BlockingOperatorNext$NextObserver;-><init>()V
+    iput-object v0, p0, Lrx/internal/operators/BlockingOperatorNext$NextObserver;->waiting:Ljava/util/concurrent/atomic/AtomicInteger;
 
+    .line 153
     return-void
 .end method
 
@@ -111,7 +76,7 @@
     .registers 1
 
     .prologue
-    .line 159
+    .line 158
     .local p0, "this":Lrx/internal/operators/BlockingOperatorNext$NextObserver;, "Lrx/internal/operators/BlockingOperatorNext$NextObserver<TT;>;"
     return-void
 .end method
@@ -121,7 +86,7 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 164
+    .line 163
     .local p0, "this":Lrx/internal/operators/BlockingOperatorNext$NextObserver;, "Lrx/internal/operators/BlockingOperatorNext$NextObserver<TT;>;"
     return-void
 .end method
@@ -152,14 +117,14 @@
     .end annotation
 
     .prologue
-    .line 169
+    .line 168
     .local p0, "this":Lrx/internal/operators/BlockingOperatorNext$NextObserver;, "Lrx/internal/operators/BlockingOperatorNext$NextObserver<TT;>;"
     .local p1, "args":Lrx/Notification;, "Lrx/Notification<+TT;>;"
-    sget-object v2, Lrx/internal/operators/BlockingOperatorNext$NextObserver;->WAITING_UPDATER:Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;
+    iget-object v2, p0, Lrx/internal/operators/BlockingOperatorNext$NextObserver;->waiting:Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v3, 0x0
 
-    invoke-virtual {v2, p0, v3}, Ljava/util/concurrent/atomic/AtomicIntegerFieldUpdater;->getAndSet(Ljava/lang/Object;I)I
+    invoke-virtual {v2, v3}, Ljava/util/concurrent/atomic/AtomicInteger;->getAndSet(I)I
 
     move-result v2
 
@@ -173,11 +138,11 @@
 
     if-nez v2, :cond_2b
 
-    .line 170
+    .line 169
     :cond_10
     move-object v1, p1
 
-    .line 171
+    .line 170
     .local v1, "toOffer":Lrx/Notification;, "Lrx/Notification<+TT;>;"
     :cond_11
     :goto_11
@@ -189,7 +154,7 @@
 
     if-nez v2, :cond_2b
 
-    .line 172
+    .line 171
     iget-object v2, p0, Lrx/internal/operators/BlockingOperatorNext$NextObserver;->buf:Ljava/util/concurrent/BlockingQueue;
 
     invoke-interface {v2}, Ljava/util/concurrent/BlockingQueue;->poll()Ljava/lang/Object;
@@ -198,7 +163,7 @@
 
     check-cast v0, Lrx/Notification;
 
-    .line 175
+    .line 174
     .local v0, "concurrentItem":Lrx/Notification;, "Lrx/Notification<+TT;>;"
     if-eqz v0, :cond_11
 
@@ -208,12 +173,12 @@
 
     if-nez v2, :cond_11
 
-    .line 176
+    .line 175
     move-object v1, v0
 
     goto :goto_11
 
-    .line 181
+    .line 180
     .end local v0    # "concurrentItem":Lrx/Notification;, "Lrx/Notification<+TT;>;"
     .end local v1    # "toOffer":Lrx/Notification;, "Lrx/Notification<+TT;>;"
     :cond_2b
@@ -221,15 +186,17 @@
 .end method
 
 .method setWaiting(I)V
-    .registers 2
+    .registers 3
     .param p1, "value"    # I
 
     .prologue
-    .line 188
+    .line 187
     .local p0, "this":Lrx/internal/operators/BlockingOperatorNext$NextObserver;, "Lrx/internal/operators/BlockingOperatorNext$NextObserver<TT;>;"
-    iput p1, p0, Lrx/internal/operators/BlockingOperatorNext$NextObserver;->waiting:I
+    iget-object v0, p0, Lrx/internal/operators/BlockingOperatorNext$NextObserver;->waiting:Ljava/util/concurrent/atomic/AtomicInteger;
 
-    .line 189
+    invoke-virtual {v0, p1}, Ljava/util/concurrent/atomic/AtomicInteger;->set(I)V
+
+    .line 188
     return-void
 .end method
 
@@ -250,13 +217,13 @@
     .end annotation
 
     .prologue
-    .line 184
+    .line 183
     .local p0, "this":Lrx/internal/operators/BlockingOperatorNext$NextObserver;, "Lrx/internal/operators/BlockingOperatorNext$NextObserver<TT;>;"
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Lrx/internal/operators/BlockingOperatorNext$NextObserver;->setWaiting(I)V
 
-    .line 185
+    .line 184
     iget-object v0, p0, Lrx/internal/operators/BlockingOperatorNext$NextObserver;->buf:Ljava/util/concurrent/BlockingQueue;
 
     invoke-interface {v0}, Ljava/util/concurrent/BlockingQueue;->take()Ljava/lang/Object;

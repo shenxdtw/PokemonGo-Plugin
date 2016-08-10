@@ -21,8 +21,6 @@
 
 .field private contentModule:Lcom/upsight/android/marketing/internal/content/ContentModule;
 
-.field private marketingModule:Lcom/upsight/android/marketing/internal/MarketingModule;
-
 .field private webViewModule:Lcom/upsight/android/marketing/internal/content/WebViewModule;
 
 
@@ -31,10 +29,9 @@
     .registers 1
 
     .prologue
-    .line 80
+    .line 184
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 81
     return-void
 .end method
 
@@ -43,7 +40,7 @@
     .param p1, "x0"    # Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$1;
 
     .prologue
-    .line 73
+    .line 175
     invoke-direct {p0}, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;-><init>()V
 
     return-void
@@ -54,7 +51,7 @@
     .param p0, "x0"    # Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;
 
     .prologue
-    .line 73
+    .line 175
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->baseMarketingModule:Lcom/upsight/android/marketing/internal/BaseMarketingModule;
 
     return-object v0
@@ -65,7 +62,7 @@
     .param p0, "x0"    # Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;
 
     .prologue
-    .line 73
+    .line 175
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->contentModule:Lcom/upsight/android/marketing/internal/content/ContentModule;
 
     return-object v0
@@ -76,7 +73,7 @@
     .param p0, "x0"    # Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;
 
     .prologue
-    .line 73
+    .line 175
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->billboardModule:Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
 
     return-object v0
@@ -87,7 +84,7 @@
     .param p0, "x0"    # Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;
 
     .prologue
-    .line 73
+    .line 175
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->webViewModule:Lcom/upsight/android/marketing/internal/content/WebViewModule;
 
     return-object v0
@@ -96,127 +93,123 @@
 
 # virtual methods
 .method public baseMarketingModule(Lcom/upsight/android/marketing/internal/BaseMarketingModule;)Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;
-    .registers 4
+    .registers 3
     .param p1, "baseMarketingModule"    # Lcom/upsight/android/marketing/internal/BaseMarketingModule;
 
     .prologue
-    .line 135
-    if-nez p1, :cond_a
+    .line 228
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 136
-    new-instance v0, Ljava/lang/NullPointerException;
+    move-result-object v0
 
-    const-string v1, "baseMarketingModule"
+    check-cast v0, Lcom/upsight/android/marketing/internal/BaseMarketingModule;
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    iput-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->baseMarketingModule:Lcom/upsight/android/marketing/internal/BaseMarketingModule;
 
-    throw v0
-
-    .line 138
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->baseMarketingModule:Lcom/upsight/android/marketing/internal/BaseMarketingModule;
-
-    .line 139
+    .line 229
     return-object p0
 .end method
 
 .method public billboardModule(Lcom/upsight/android/marketing/internal/billboard/BillboardModule;)Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;
-    .registers 4
+    .registers 3
     .param p1, "billboardModule"    # Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
 
     .prologue
-    .line 111
-    if-nez p1, :cond_a
+    .line 213
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 112
-    new-instance v0, Ljava/lang/NullPointerException;
+    move-result-object v0
 
-    const-string v1, "billboardModule"
+    check-cast v0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    iput-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->billboardModule:Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
 
-    throw v0
-
-    .line 114
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->billboardModule:Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
-
-    .line 115
+    .line 214
     return-object p0
 .end method
 
 .method public build()Lcom/upsight/android/marketing/internal/MarketingComponent;
-    .registers 3
+    .registers 4
 
     .prologue
-    .line 84
-    iget-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->marketingModule:Lcom/upsight/android/marketing/internal/MarketingModule;
+    .line 187
+    iget-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->baseMarketingModule:Lcom/upsight/android/marketing/internal/BaseMarketingModule;
 
-    if-nez v0, :cond_b
+    if-nez v0, :cond_23
 
-    .line 85
-    new-instance v0, Lcom/upsight/android/marketing/internal/MarketingModule;
+    .line 188
+    new-instance v0, Ljava/lang/IllegalStateException;
 
-    invoke-direct {v0}, Lcom/upsight/android/marketing/internal/MarketingModule;-><init>()V
+    new-instance v1, Ljava/lang/StringBuilder;
 
-    iput-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->marketingModule:Lcom/upsight/android/marketing/internal/MarketingModule;
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 87
-    :cond_b
-    iget-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->billboardModule:Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
+    const-class v2, Lcom/upsight/android/marketing/internal/BaseMarketingModule;
 
-    if-nez v0, :cond_16
+    .line 189
+    invoke-virtual {v2}, Ljava/lang/Class;->getCanonicalName()Ljava/lang/String;
 
-    .line 88
-    new-instance v0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
+    move-result-object v2
 
-    invoke-direct {v0}, Lcom/upsight/android/marketing/internal/billboard/BillboardModule;-><init>()V
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iput-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->billboardModule:Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
+    move-result-object v1
 
-    .line 90
-    :cond_16
+    const-string v2, " must be set"
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-direct {v0, v1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+
+    .line 191
+    :cond_23
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->contentModule:Lcom/upsight/android/marketing/internal/content/ContentModule;
 
-    if-nez v0, :cond_21
+    if-nez v0, :cond_2e
 
-    .line 91
+    .line 192
     new-instance v0, Lcom/upsight/android/marketing/internal/content/ContentModule;
 
     invoke-direct {v0}, Lcom/upsight/android/marketing/internal/content/ContentModule;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->contentModule:Lcom/upsight/android/marketing/internal/content/ContentModule;
 
-    .line 93
-    :cond_21
+    .line 194
+    :cond_2e
+    iget-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->billboardModule:Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
+
+    if-nez v0, :cond_39
+
+    .line 195
+    new-instance v0, Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
+
+    invoke-direct {v0}, Lcom/upsight/android/marketing/internal/billboard/BillboardModule;-><init>()V
+
+    iput-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->billboardModule:Lcom/upsight/android/marketing/internal/billboard/BillboardModule;
+
+    .line 197
+    :cond_39
     iget-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->webViewModule:Lcom/upsight/android/marketing/internal/content/WebViewModule;
 
-    if-nez v0, :cond_2c
+    if-nez v0, :cond_44
 
-    .line 94
+    .line 198
     new-instance v0, Lcom/upsight/android/marketing/internal/content/WebViewModule;
 
     invoke-direct {v0}, Lcom/upsight/android/marketing/internal/content/WebViewModule;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->webViewModule:Lcom/upsight/android/marketing/internal/content/WebViewModule;
 
-    .line 96
-    :cond_2c
-    iget-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->baseMarketingModule:Lcom/upsight/android/marketing/internal/BaseMarketingModule;
-
-    if-nez v0, :cond_38
-
-    .line 97
-    new-instance v0, Ljava/lang/IllegalStateException;
-
-    const-string v1, "baseMarketingModule must be set"
-
-    invoke-direct {v0, v1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
-
-    throw v0
-
-    .line 99
-    :cond_38
+    .line 200
+    :cond_44
     new-instance v0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent;
 
     const/4 v1, 0x0
@@ -227,76 +220,51 @@
 .end method
 
 .method public contentModule(Lcom/upsight/android/marketing/internal/content/ContentModule;)Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;
-    .registers 4
+    .registers 3
     .param p1, "contentModule"    # Lcom/upsight/android/marketing/internal/content/ContentModule;
 
     .prologue
-    .line 119
-    if-nez p1, :cond_a
+    .line 218
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 120
-    new-instance v0, Ljava/lang/NullPointerException;
+    move-result-object v0
 
-    const-string v1, "contentModule"
+    check-cast v0, Lcom/upsight/android/marketing/internal/content/ContentModule;
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    iput-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->contentModule:Lcom/upsight/android/marketing/internal/content/ContentModule;
 
-    throw v0
-
-    .line 122
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->contentModule:Lcom/upsight/android/marketing/internal/content/ContentModule;
-
-    .line 123
+    .line 219
     return-object p0
 .end method
 
 .method public marketingModule(Lcom/upsight/android/marketing/internal/MarketingModule;)Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;
-    .registers 4
+    .registers 2
     .param p1, "marketingModule"    # Lcom/upsight/android/marketing/internal/MarketingModule;
+    .annotation runtime Ljava/lang/Deprecated;
+    .end annotation
 
     .prologue
-    .line 103
-    if-nez p1, :cond_a
+    .line 208
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 104
-    new-instance v0, Ljava/lang/NullPointerException;
-
-    const-string v1, "marketingModule"
-
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
-
-    throw v0
-
-    .line 106
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->marketingModule:Lcom/upsight/android/marketing/internal/MarketingModule;
-
-    .line 107
+    .line 209
     return-object p0
 .end method
 
 .method public webViewModule(Lcom/upsight/android/marketing/internal/content/WebViewModule;)Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;
-    .registers 4
+    .registers 3
     .param p1, "webViewModule"    # Lcom/upsight/android/marketing/internal/content/WebViewModule;
 
     .prologue
-    .line 127
-    if-nez p1, :cond_a
+    .line 223
+    invoke-static {p1}, Ldagger/internal/Preconditions;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 128
-    new-instance v0, Ljava/lang/NullPointerException;
+    move-result-object v0
 
-    const-string v1, "webViewModule"
+    check-cast v0, Lcom/upsight/android/marketing/internal/content/WebViewModule;
 
-    invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+    iput-object v0, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->webViewModule:Lcom/upsight/android/marketing/internal/content/WebViewModule;
 
-    throw v0
-
-    .line 130
-    :cond_a
-    iput-object p1, p0, Lcom/upsight/android/marketing/internal/DaggerMarketingComponent$Builder;->webViewModule:Lcom/upsight/android/marketing/internal/content/WebViewModule;
-
-    .line 131
+    .line 224
     return-object p0
 .end method

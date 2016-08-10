@@ -110,18 +110,15 @@
 
     move-result v0
 
-    if-eqz v0, :cond_16
+    if-eqz v0, :cond_14
 
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeRedo$3$1;->this$1:Lrx/internal/operators/OnSubscribeRedo$3;
 
     iget-object v0, v0, Lrx/internal/operators/OnSubscribeRedo$3;->this$0:Lrx/internal/operators/OnSubscribeRedo;
 
-    # getter for: Lrx/internal/operators/OnSubscribeRedo;->stopOnComplete:Z
-    invoke-static {v0}, Lrx/internal/operators/OnSubscribeRedo;->access$300(Lrx/internal/operators/OnSubscribeRedo;)Z
+    iget-boolean v0, v0, Lrx/internal/operators/OnSubscribeRedo;->stopOnComplete:Z
 
-    move-result v0
-
-    if-eqz v0, :cond_16
+    if-eqz v0, :cond_14
 
     .line 303
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeRedo$3$1;->val$filteredTerminals:Lrx/Subscriber;
@@ -129,27 +126,24 @@
     invoke-virtual {v0}, Lrx/Subscriber;->onCompleted()V
 
     .line 309
-    :goto_15
+    :goto_13
     return-void
 
     .line 304
-    :cond_16
+    :cond_14
     invoke-virtual {p1}, Lrx/Notification;->isOnError()Z
 
     move-result v0
 
-    if-eqz v0, :cond_30
+    if-eqz v0, :cond_2c
 
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeRedo$3$1;->this$1:Lrx/internal/operators/OnSubscribeRedo$3;
 
     iget-object v0, v0, Lrx/internal/operators/OnSubscribeRedo$3;->this$0:Lrx/internal/operators/OnSubscribeRedo;
 
-    # getter for: Lrx/internal/operators/OnSubscribeRedo;->stopOnError:Z
-    invoke-static {v0}, Lrx/internal/operators/OnSubscribeRedo;->access$400(Lrx/internal/operators/OnSubscribeRedo;)Z
+    iget-boolean v0, v0, Lrx/internal/operators/OnSubscribeRedo;->stopOnError:Z
 
-    move-result v0
-
-    if-eqz v0, :cond_30
+    if-eqz v0, :cond_2c
 
     .line 305
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeRedo$3$1;->val$filteredTerminals:Lrx/Subscriber;
@@ -160,15 +154,15 @@
 
     invoke-virtual {v0, v1}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    goto :goto_15
+    goto :goto_13
 
     .line 307
-    :cond_30
+    :cond_2c
     iget-object v0, p0, Lrx/internal/operators/OnSubscribeRedo$3$1;->val$filteredTerminals:Lrx/Subscriber;
 
     invoke-virtual {v0, p1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
 
-    goto :goto_15
+    goto :goto_13
 .end method
 
 .method public setProducer(Lrx/Producer;)V

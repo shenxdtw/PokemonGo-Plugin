@@ -23,7 +23,7 @@
 
 
 # static fields
-.field private static final EMPTY_OBSERVER:Lrx/Observer;
+.field static final EMPTY_OBSERVER:Lrx/Observer;
 
 
 # instance fields
@@ -44,7 +44,7 @@
     .registers 1
 
     .prologue
-    .line 196
+    .line 190
     new-instance v0, Lrx/internal/operators/BufferUntilSubscriber$1;
 
     invoke-direct {v0}, Lrx/internal/operators/BufferUntilSubscriber$1;-><init>()V
@@ -65,7 +65,7 @@
     .end annotation
 
     .prologue
-    .line 134
+    .line 128
     .local p0, "this":Lrx/internal/operators/BufferUntilSubscriber;, "Lrx/internal/operators/BufferUntilSubscriber<TT;>;"
     .local p1, "state":Lrx/internal/operators/BufferUntilSubscriber$State;, "Lrx/internal/operators/BufferUntilSubscriber$State<TT;>;"
     new-instance v0, Lrx/internal/operators/BufferUntilSubscriber$OnSubscribeAction;
@@ -74,26 +74,16 @@
 
     invoke-direct {p0, v0}, Lrx/subjects/Subject;-><init>(Lrx/Observable$OnSubscribe;)V
 
-    .line 131
+    .line 125
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lrx/internal/operators/BufferUntilSubscriber;->forward:Z
 
-    .line 135
+    .line 129
     iput-object p1, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
-    .line 136
+    .line 130
     return-void
-.end method
-
-.method static synthetic access$000()Lrx/Observer;
-    .registers 1
-
-    .prologue
-    .line 50
-    sget-object v0, Lrx/internal/operators/BufferUntilSubscriber;->EMPTY_OBSERVER:Lrx/Observer;
-
-    return-object v0
 .end method
 
 .method public static create()Lrx/internal/operators/BufferUntilSubscriber;
@@ -128,7 +118,7 @@
     .param p1, "v"    # Ljava/lang/Object;
 
     .prologue
-    .line 139
+    .line 133
     .local p0, "this":Lrx/internal/operators/BufferUntilSubscriber;, "Lrx/internal/operators/BufferUntilSubscriber<TT;>;"
     iget-object v1, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
@@ -136,7 +126,7 @@
 
     monitor-enter v2
 
-    .line 140
+    .line 134
     :try_start_5
     iget-object v1, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
@@ -144,44 +134,46 @@
 
     invoke-virtual {v1, p1}, Ljava/util/concurrent/ConcurrentLinkedQueue;->add(Ljava/lang/Object;)Z
 
-    .line 141
+    .line 135
     iget-object v1, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
-    iget-object v1, v1, Lrx/internal/operators/BufferUntilSubscriber$State;->observerRef:Lrx/Observer;
+    invoke-virtual {v1}, Lrx/internal/operators/BufferUntilSubscriber$State;->get()Ljava/lang/Object;
 
-    if-eqz v1, :cond_20
+    move-result-object v1
+
+    if-eqz v1, :cond_22
 
     iget-object v1, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
     iget-boolean v1, v1, Lrx/internal/operators/BufferUntilSubscriber$State;->emitting:Z
 
-    if-nez v1, :cond_20
+    if-nez v1, :cond_22
 
-    .line 144
+    .line 138
     const/4 v1, 0x1
 
     iput-boolean v1, p0, Lrx/internal/operators/BufferUntilSubscriber;->forward:Z
 
-    .line 145
+    .line 139
     iget-object v1, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
     const/4 v3, 0x1
 
     iput-boolean v3, v1, Lrx/internal/operators/BufferUntilSubscriber$State;->emitting:Z
 
-    .line 147
-    :cond_20
+    .line 141
+    :cond_22
     monitor-exit v2
-    :try_end_21
-    .catchall {:try_start_5 .. :try_end_21} :catchall_3b
+    :try_end_23
+    .catchall {:try_start_5 .. :try_end_23} :catchall_41
 
-    .line 148
+    .line 142
     iget-boolean v1, p0, Lrx/internal/operators/BufferUntilSubscriber;->forward:Z
 
-    if-eqz v1, :cond_3e
+    if-eqz v1, :cond_44
 
-    .line 150
-    :goto_25
+    .line 144
+    :goto_27
     iget-object v1, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
     iget-object v1, v1, Lrx/internal/operators/BufferUntilSubscriber$State;->buffer:Ljava/util/concurrent/ConcurrentLinkedQueue;
@@ -191,35 +183,39 @@
     move-result-object v0
 
     .local v0, "o":Ljava/lang/Object;
-    if-eqz v0, :cond_3e
+    if-eqz v0, :cond_44
 
-    .line 151
+    .line 145
     iget-object v1, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
-    iget-object v1, v1, Lrx/internal/operators/BufferUntilSubscriber$State;->nl:Lrx/internal/operators/NotificationLite;
+    iget-object v2, v1, Lrx/internal/operators/BufferUntilSubscriber$State;->nl:Lrx/internal/operators/NotificationLite;
 
-    iget-object v2, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
+    iget-object v1, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
-    iget-object v2, v2, Lrx/internal/operators/BufferUntilSubscriber$State;->observerRef:Lrx/Observer;
+    invoke-virtual {v1}, Lrx/internal/operators/BufferUntilSubscriber$State;->get()Ljava/lang/Object;
 
-    invoke-virtual {v1, v2, v0}, Lrx/internal/operators/NotificationLite;->accept(Lrx/Observer;Ljava/lang/Object;)Z
+    move-result-object v1
 
-    goto :goto_25
+    check-cast v1, Lrx/Observer;
 
-    .line 147
+    invoke-virtual {v2, v1, v0}, Lrx/internal/operators/NotificationLite;->accept(Lrx/Observer;Ljava/lang/Object;)Z
+
+    goto :goto_27
+
+    .line 141
     .end local v0    # "o":Ljava/lang/Object;
-    :catchall_3b
+    :catchall_41
     move-exception v1
 
-    :try_start_3c
+    :try_start_42
     monitor-exit v2
-    :try_end_3d
-    .catchall {:try_start_3c .. :try_end_3d} :catchall_3b
+    :try_end_43
+    .catchall {:try_start_42 .. :try_end_43} :catchall_41
 
     throw v1
 
-    .line 156
-    :cond_3e
+    .line 150
+    :cond_44
     return-void
 .end method
 
@@ -229,7 +225,7 @@
     .registers 3
 
     .prologue
-    .line 190
+    .line 184
     .local p0, "this":Lrx/internal/operators/BufferUntilSubscriber;, "Lrx/internal/operators/BufferUntilSubscriber<TT;>;"
     iget-object v0, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
@@ -237,33 +233,35 @@
 
     monitor-enter v1
 
-    .line 191
+    .line 185
     :try_start_5
     iget-object v0, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
-    iget-object v0, v0, Lrx/internal/operators/BufferUntilSubscriber$State;->observerRef:Lrx/Observer;
+    invoke-virtual {v0}, Lrx/internal/operators/BufferUntilSubscriber$State;->get()Ljava/lang/Object;
 
-    if-eqz v0, :cond_e
+    move-result-object v0
+
+    if-eqz v0, :cond_10
 
     const/4 v0, 0x1
 
-    :goto_c
+    :goto_e
     monitor-exit v1
 
     return v0
 
-    :cond_e
+    :cond_10
     const/4 v0, 0x0
 
-    goto :goto_c
+    goto :goto_e
 
-    .line 192
-    :catchall_10
+    .line 186
+    :catchall_12
     move-exception v0
 
     monitor-exit v1
-    :try_end_12
-    .catchall {:try_start_5 .. :try_end_12} :catchall_10
+    :try_end_14
+    .catchall {:try_start_5 .. :try_end_14} :catchall_12
 
     throw v0
 .end method
@@ -272,25 +270,29 @@
     .registers 2
 
     .prologue
-    .line 160
+    .line 154
     .local p0, "this":Lrx/internal/operators/BufferUntilSubscriber;, "Lrx/internal/operators/BufferUntilSubscriber<TT;>;"
     iget-boolean v0, p0, Lrx/internal/operators/BufferUntilSubscriber;->forward:Z
 
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_10
 
-    .line 161
+    .line 155
     iget-object v0, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
-    iget-object v0, v0, Lrx/internal/operators/BufferUntilSubscriber$State;->observerRef:Lrx/Observer;
+    invoke-virtual {v0}, Lrx/internal/operators/BufferUntilSubscriber$State;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lrx/Observer;
 
     invoke-interface {v0}, Lrx/Observer;->onCompleted()V
 
-    .line 166
-    :goto_b
+    .line 160
+    :goto_f
     return-void
 
-    .line 164
-    :cond_c
+    .line 158
+    :cond_10
     iget-object v0, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
     iget-object v0, v0, Lrx/internal/operators/BufferUntilSubscriber$State;->nl:Lrx/internal/operators/NotificationLite;
@@ -301,7 +303,7 @@
 
     invoke-direct {p0, v0}, Lrx/internal/operators/BufferUntilSubscriber;->emit(Ljava/lang/Object;)V
 
-    goto :goto_b
+    goto :goto_f
 .end method
 
 .method public onError(Ljava/lang/Throwable;)V
@@ -309,25 +311,29 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 170
+    .line 164
     .local p0, "this":Lrx/internal/operators/BufferUntilSubscriber;, "Lrx/internal/operators/BufferUntilSubscriber<TT;>;"
     iget-boolean v0, p0, Lrx/internal/operators/BufferUntilSubscriber;->forward:Z
 
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_10
 
-    .line 171
+    .line 165
     iget-object v0, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
-    iget-object v0, v0, Lrx/internal/operators/BufferUntilSubscriber$State;->observerRef:Lrx/Observer;
+    invoke-virtual {v0}, Lrx/internal/operators/BufferUntilSubscriber$State;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lrx/Observer;
 
     invoke-interface {v0, p1}, Lrx/Observer;->onError(Ljava/lang/Throwable;)V
 
-    .line 176
-    :goto_b
+    .line 170
+    :goto_f
     return-void
 
-    .line 174
-    :cond_c
+    .line 168
+    :cond_10
     iget-object v0, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
     iget-object v0, v0, Lrx/internal/operators/BufferUntilSubscriber$State;->nl:Lrx/internal/operators/NotificationLite;
@@ -338,7 +344,7 @@
 
     invoke-direct {p0, v0}, Lrx/internal/operators/BufferUntilSubscriber;->emit(Ljava/lang/Object;)V
 
-    goto :goto_b
+    goto :goto_f
 .end method
 
 .method public onNext(Ljava/lang/Object;)V
@@ -350,26 +356,30 @@
     .end annotation
 
     .prologue
-    .line 180
+    .line 174
     .local p0, "this":Lrx/internal/operators/BufferUntilSubscriber;, "Lrx/internal/operators/BufferUntilSubscriber<TT;>;"
     .local p1, "t":Ljava/lang/Object;, "TT;"
     iget-boolean v0, p0, Lrx/internal/operators/BufferUntilSubscriber;->forward:Z
 
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_10
 
-    .line 181
+    .line 175
     iget-object v0, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
-    iget-object v0, v0, Lrx/internal/operators/BufferUntilSubscriber$State;->observerRef:Lrx/Observer;
+    invoke-virtual {v0}, Lrx/internal/operators/BufferUntilSubscriber$State;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lrx/Observer;
 
     invoke-interface {v0, p1}, Lrx/Observer;->onNext(Ljava/lang/Object;)V
 
-    .line 186
-    :goto_b
+    .line 180
+    :goto_f
     return-void
 
-    .line 184
-    :cond_c
+    .line 178
+    :cond_10
     iget-object v0, p0, Lrx/internal/operators/BufferUntilSubscriber;->state:Lrx/internal/operators/BufferUntilSubscriber$State;
 
     iget-object v0, v0, Lrx/internal/operators/BufferUntilSubscriber$State;->nl:Lrx/internal/operators/NotificationLite;
@@ -380,5 +390,5 @@
 
     invoke-direct {p0, v0}, Lrx/internal/operators/BufferUntilSubscriber;->emit(Ljava/lang/Object;)V
 
-    goto :goto_b
+    goto :goto_f
 .end method

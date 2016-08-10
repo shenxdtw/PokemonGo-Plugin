@@ -32,7 +32,7 @@
     .registers 1
 
     .prologue
-    .line 119
+    .line 124
     invoke-static {}, Lrx/exceptions/OnErrorThrowable$OnNextValue$Primitives;->create()Ljava/util/Set;
 
     move-result-object v0
@@ -46,7 +46,7 @@
     .registers 1
 
     .prologue
-    .line 117
+    .line 122
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -65,52 +65,52 @@
     .end annotation
 
     .prologue
-    .line 122
+    .line 127
     new-instance v0, Ljava/util/HashSet;
 
     invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
 
-    .line 123
+    .line 128
     .local v0, "set":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/Class<*>;>;"
     const-class v1, Ljava/lang/Boolean;
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 124
+    .line 129
     const-class v1, Ljava/lang/Character;
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 125
+    .line 130
     const-class v1, Ljava/lang/Byte;
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 126
+    .line 131
     const-class v1, Ljava/lang/Short;
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 127
+    .line 132
     const-class v1, Ljava/lang/Integer;
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 128
+    .line 133
     const-class v1, Ljava/lang/Long;
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 129
+    .line 134
     const-class v1, Ljava/lang/Float;
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 130
+    .line 135
     const-class v1, Ljava/lang/Double;
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 133
+    .line 138
     return-object v0
 .end method

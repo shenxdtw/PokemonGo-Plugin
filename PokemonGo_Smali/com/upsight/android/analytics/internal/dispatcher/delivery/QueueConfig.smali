@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueConfig$1;,
         Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueConfig$Builder;
     }
 .end annotation
@@ -332,6 +331,7 @@
 
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/delivery/QueueConfig;->mBatchSenderConfig:Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Config;
 
+    .line 103
     invoke-virtual {v2}, Lcom/upsight/android/analytics/internal/dispatcher/delivery/BatchSender$Config;->isValid()Z
     :try_end_1d
     .catch Ljava/net/MalformedURLException; {:try_start_1 .. :try_end_1d} :catch_22

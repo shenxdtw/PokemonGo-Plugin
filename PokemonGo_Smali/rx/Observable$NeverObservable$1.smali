@@ -30,7 +30,7 @@
     .registers 1
 
     .prologue
-    .line 9569
+    .line 10629
     .local p0, "this":Lrx/Observable$NeverObservable$1;, "Lrx/Observable$NeverObservable.1;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -44,7 +44,7 @@
     .param p1, "x0"    # Ljava/lang/Object;
 
     .prologue
-    .line 9569
+    .line 10629
     .local p0, "this":Lrx/Observable$NeverObservable$1;, "Lrx/Observable$NeverObservable.1;"
     check-cast p1, Lrx/Subscriber;
 
@@ -65,7 +65,7 @@
     .end annotation
 
     .prologue
-    .line 9574
+    .line 10634
     .local p0, "this":Lrx/Observable$NeverObservable$1;, "Lrx/Observable$NeverObservable.1;"
     .local p1, "observer":Lrx/Subscriber;, "Lrx/Subscriber<-TT;>;"
     return-void
