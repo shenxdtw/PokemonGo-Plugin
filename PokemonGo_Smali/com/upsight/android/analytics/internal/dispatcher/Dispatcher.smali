@@ -15,6 +15,8 @@
 
 
 # instance fields
+.field private mBus:Lcom/squareup/otto/Bus;
+
 .field private mConfigParser:Lcom/upsight/android/analytics/internal/dispatcher/ConfigParser;
 
 .field private mContext:Lcom/upsight/android/analytics/internal/AnalyticsContext;
@@ -72,47 +74,51 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/upsight/android/analytics/internal/AnalyticsContext;Lcom/upsight/android/analytics/internal/session/SessionManager;Lcom/upsight/android/persistence/UpsightDataStore;Lcom/upsight/android/analytics/internal/dispatcher/ConfigParser;Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;Lcom/upsight/android/logger/UpsightLogger;)V
-    .registers 9
+.method constructor <init>(Lcom/upsight/android/analytics/internal/AnalyticsContext;Lcom/upsight/android/analytics/internal/session/SessionManager;Lcom/upsight/android/persistence/UpsightDataStore;Lcom/upsight/android/analytics/internal/dispatcher/ConfigParser;Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;Lcom/squareup/otto/Bus;Lcom/upsight/android/logger/UpsightLogger;)V
+    .registers 10
     .param p1, "context"    # Lcom/upsight/android/analytics/internal/AnalyticsContext;
     .param p2, "sessionManager"    # Lcom/upsight/android/analytics/internal/session/SessionManager;
     .param p3, "dataStore"    # Lcom/upsight/android/persistence/UpsightDataStore;
     .param p4, "configParser"    # Lcom/upsight/android/analytics/internal/dispatcher/ConfigParser;
     .param p5, "routerBuilder"    # Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;
     .param p6, "schemaSelectorBuilder"    # Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;
-    .param p7, "logger"    # Lcom/upsight/android/logger/UpsightLogger;
+    .param p7, "bus"    # Lcom/squareup/otto/Bus;
+    .param p8, "logger"    # Lcom/upsight/android/logger/UpsightLogger;
 
     .prologue
-    .line 113
+    .line 118
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 57
+    .line 60
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mIsLaunched:Z
 
-    .line 114
+    .line 119
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mContext:Lcom/upsight/android/analytics/internal/AnalyticsContext;
 
-    .line 115
+    .line 120
     iput-object p2, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mSessionManager:Lcom/upsight/android/analytics/internal/session/SessionManager;
 
-    .line 116
+    .line 121
     iput-object p3, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUpsightDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
-    .line 117
+    .line 122
     iput-object p4, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mConfigParser:Lcom/upsight/android/analytics/internal/dispatcher/ConfigParser;
 
-    .line 118
+    .line 123
     iput-object p5, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mRouterBuilder:Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;
 
-    .line 119
+    .line 124
     iput-object p6, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mSchemaSelectorBuilder:Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;
 
-    .line 120
-    iput-object p7, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+    .line 125
+    iput-object p7, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mBus:Lcom/squareup/otto/Bus;
 
-    .line 121
+    .line 126
+    iput-object p8, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
+
+    .line 127
     return-void
 .end method
 
@@ -122,7 +128,7 @@
     .param p1, "x1"    # Lcom/upsight/android/analytics/internal/DataStoreRecord;
 
     .prologue
-    .line 39
+    .line 42
     invoke-direct {p0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->routeRecords(Lcom/upsight/android/analytics/internal/DataStoreRecord;)V
 
     return-void
@@ -133,7 +139,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     .prologue
-    .line 39
+    .line 42
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
     return-object v0
@@ -144,7 +150,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     .prologue
-    .line 39
+    .line 42
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentConfig:Lcom/upsight/android/analytics/internal/dispatcher/Config;
 
     return-object v0
@@ -156,7 +162,7 @@
     .param p1, "x1"    # Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
 
     .prologue
-    .line 39
+    .line 42
     invoke-direct {p0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->isUpsightConfigurationValid(Lcom/upsight/android/analytics/configuration/UpsightConfiguration;)Z
 
     move-result v0
@@ -170,7 +176,7 @@
     .param p1, "x1"    # Ljava/lang/String;
 
     .prologue
-    .line 39
+    .line 42
     invoke-direct {p0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->applyConfiguration(Ljava/lang/String;)Z
 
     move-result v0
@@ -183,7 +189,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     .prologue
-    .line 39
+    .line 42
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->applyDefaultConfiguration()V
 
     return-void
@@ -194,7 +200,7 @@
     .param p0, "x0"    # Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     .prologue
-    .line 39
+    .line 42
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUpsightDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
     return-object v0
@@ -209,20 +215,20 @@
 
     const/4 v6, 0x0
 
-    .line 273
+    .line 259
     invoke-direct {p0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->parseConfiguration(Ljava/lang/String;)Lcom/upsight/android/analytics/internal/dispatcher/Config;
 
     move-result-object v0
 
-    .line 274
+    .line 260
     .local v0, "config":Lcom/upsight/android/analytics/internal/dispatcher/Config;
     if-nez v0, :cond_9
 
-    .line 309
+    .line 295
     :goto_8
     return v6
 
-    .line 278
+    .line 264
     :cond_9
     invoke-virtual {v0}, Lcom/upsight/android/analytics/internal/dispatcher/Config;->isValid()Z
 
@@ -230,7 +236,7 @@
 
     if-nez v8, :cond_1b
 
-    .line 279
+    .line 265
     iget-object v7, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
     const-string v8, "Dispatcher"
@@ -243,7 +249,7 @@
 
     goto :goto_8
 
-    .line 283
+    .line 269
     :cond_1b
     iget-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentConfig:Lcom/upsight/android/analytics/internal/dispatcher/Config;
 
@@ -255,33 +261,33 @@
 
     move v6, v7
 
-    .line 284
+    .line 270
     goto :goto_8
 
-    .line 286
+    .line 272
     :cond_25
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentConfig:Lcom/upsight/android/analytics/internal/dispatcher/Config;
 
-    .line 288
+    .line 274
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mExpiredRouters:Ljava/util/Collection;
 
-    .line 289
+    .line 275
     .local v2, "expiredRouters":Ljava/util/Collection;, "Ljava/util/Collection<Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;>;"
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentRouter:Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
 
-    .line 290
+    .line 276
     .local v1, "currentRouter":Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
     if-eqz v2, :cond_35
 
     if-eqz v1, :cond_35
 
-    .line 291
+    .line 277
     invoke-interface {v2, v1}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
 
-    .line 292
+    .line 278
     invoke-virtual {v1}, Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;->finishRouting()V
 
-    .line 295
+    .line 281
     :cond_35
     iget-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mSchemaSelectorBuilder:Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;
 
@@ -293,7 +299,7 @@
 
     move-result-object v3
 
-    .line 296
+    .line 282
     .local v3, "selectorByName":Lcom/upsight/android/analytics/internal/dispatcher/util/Selector;, "Lcom/upsight/android/analytics/internal/dispatcher/util/Selector<Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;>;"
     iget-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mSchemaSelectorBuilder:Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;
 
@@ -305,7 +311,7 @@
 
     move-result-object v4
 
-    .line 297
+    .line 283
     .local v4, "selectorByType":Lcom/upsight/android/analytics/internal/dispatcher/util/Selector;, "Lcom/upsight/android/analytics/internal/dispatcher/util/Selector<Lcom/upsight/android/analytics/internal/dispatcher/schema/Schema;>;"
     iget-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mRouterBuilder:Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;
 
@@ -319,10 +325,10 @@
 
     iput-object v6, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentRouter:Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
 
-    .line 299
+    .line 285
     iget-object v5, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUnroutedRecords:Ljava/util/Queue;
 
-    .line 300
+    .line 286
     .local v5, "unroutedRecords":Ljava/util/Queue;, "Ljava/util/Queue<Lcom/upsight/android/analytics/internal/DataStoreRecord;>;"
     if-eqz v5, :cond_6d
 
@@ -330,7 +336,7 @@
 
     if-eqz v6, :cond_6d
 
-    .line 301
+    .line 287
     :goto_5d
     invoke-interface {v5}, Ljava/util/Queue;->isEmpty()Z
 
@@ -338,7 +344,7 @@
 
     if-nez v6, :cond_6d
 
-    .line 302
+    .line 288
     invoke-interface {v5}, Ljava/util/Queue;->poll()Ljava/lang/Object;
 
     move-result-object v6
@@ -349,13 +355,13 @@
 
     goto :goto_5d
 
-    .line 307
+    .line 293
     :cond_6d
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->fetchCreatedRecords()V
 
     move v6, v7
 
-    .line 309
+    .line 295
     goto :goto_8
 .end method
 
@@ -363,7 +369,7 @@
     .registers 2
 
     .prologue
-    .line 262
+    .line 248
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mContext:Lcom/upsight/android/analytics/internal/AnalyticsContext;
 
     invoke-virtual {v0}, Lcom/upsight/android/analytics/internal/AnalyticsContext;->getDefaultDispatcherConfiguration()Ljava/lang/String;
@@ -372,7 +378,7 @@
 
     invoke-direct {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->applyConfiguration(Ljava/lang/String;)Z
 
-    .line 263
+    .line 249
     return-void
 .end method
 
@@ -380,7 +386,7 @@
     .registers 4
 
     .prologue
-    .line 147
+    .line 133
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUpsightDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
     const-class v1, Lcom/upsight/android/analytics/internal/DataStoreRecord;
@@ -391,7 +397,7 @@
 
     invoke-interface {v0, v1, v2}, Lcom/upsight/android/persistence/UpsightDataStore;->fetch(Ljava/lang/Class;Lcom/upsight/android/persistence/UpsightDataStoreListener;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 161
+    .line 147
     return-void
 .end method
 
@@ -399,7 +405,7 @@
     .registers 4
 
     .prologue
-    .line 205
+    .line 191
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUpsightDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
     const-class v1, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
@@ -410,7 +416,7 @@
 
     invoke-interface {v0, v1, v2}, Lcom/upsight/android/persistence/UpsightDataStore;->fetch(Ljava/lang/Class;Lcom/upsight/android/persistence/UpsightDataStoreListener;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 235
+    .line 221
     return-void
 .end method
 
@@ -419,7 +425,7 @@
     .param p1, "configuration"    # Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
 
     .prologue
-    .line 254
+    .line 240
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mSessionManager:Lcom/upsight/android/analytics/internal/session/SessionManager;
 
     invoke-interface {v0}, Lcom/upsight/android/analytics/internal/session/SessionManager;->getCurrentSession()Lcom/upsight/android/analytics/internal/session/Session;
@@ -456,10 +462,10 @@
     .param p1, "jsonConfig"    # Ljava/lang/String;
 
     .prologue
-    .line 319
+    .line 305
     const/4 v0, 0x0
 
-    .line 321
+    .line 307
     .local v0, "config":Lcom/upsight/android/analytics/internal/dispatcher/Config;
     :try_start_1
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mConfigParser:Lcom/upsight/android/analytics/internal/dispatcher/ConfigParser;
@@ -470,15 +476,15 @@
 
     move-result-object v0
 
-    .line 325
+    .line 311
     :goto_7
     return-object v0
 
-    .line 322
+    .line 308
     :catch_8
     move-exception v1
 
-    .line 323
+    .line 309
     .local v1, "e":Ljava/io/IOException;
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
@@ -504,7 +510,7 @@
     .param p1, "storedRecord"    # Lcom/upsight/android/analytics/internal/DataStoreRecord;
 
     .prologue
-    .line 180
+    .line 166
     sget-object v3, Lcom/upsight/android/analytics/internal/DataStoreRecord$Action;->Created:Lcom/upsight/android/analytics/internal/DataStoreRecord$Action;
 
     invoke-virtual {p1}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->getAction()Lcom/upsight/android/analytics/internal/DataStoreRecord$Action;
@@ -517,32 +523,32 @@
 
     if-nez v3, :cond_12
 
-    .line 181
+    .line 167
     iget-object v3, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUpsightDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
     invoke-interface {v3, p1}, Lcom/upsight/android/persistence/UpsightDataStore;->remove(Ljava/lang/Object;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 198
+    .line 184
     :cond_11
     :goto_11
     return-void
 
-    .line 186
+    .line 172
     :cond_12
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentRouter:Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
 
-    .line 187
+    .line 173
     .local v0, "currentRouter":Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mPendingRecords:Ljava/util/Set;
 
-    .line 188
+    .line 174
     .local v1, "pendingRecords":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/DataStoreRecord;>;"
     if-nez v0, :cond_24
 
-    .line 189
+    .line 175
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUnroutedRecords:Ljava/util/Queue;
 
-    .line 190
+    .line 176
     .local v2, "unroutedRecords":Ljava/util/Queue;, "Ljava/util/Queue<Lcom/upsight/android/analytics/internal/DataStoreRecord;>;"
     invoke-interface {v2, p1}, Ljava/util/Queue;->contains(Ljava/lang/Object;)Z
 
@@ -550,12 +556,12 @@
 
     if-nez v3, :cond_11
 
-    .line 191
+    .line 177
     invoke-interface {v2, p1}, Ljava/util/Queue;->add(Ljava/lang/Object;)Z
 
     goto :goto_11
 
-    .line 193
+    .line 179
     .end local v2    # "unroutedRecords":Ljava/util/Queue;, "Ljava/util/Queue<Lcom/upsight/android/analytics/internal/DataStoreRecord;>;"
     :cond_24
     if-eqz v1, :cond_11
@@ -566,14 +572,14 @@
 
     if-nez v3, :cond_11
 
-    .line 194
+    .line 180
     invoke-virtual {v0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;->routeEvent(Lcom/upsight/android/analytics/internal/DataStoreRecord;)Z
 
     move-result v3
 
     if-eqz v3, :cond_11
 
-    .line 195
+    .line 181
     invoke-interface {v1, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
     goto :goto_11
@@ -581,14 +587,28 @@
 
 
 # virtual methods
+.method public handle(Lcom/upsight/android/analytics/internal/DispatcherService$DestroyEvent;)V
+    .registers 2
+    .param p1, "event"    # Lcom/upsight/android/analytics/internal/DispatcherService$DestroyEvent;
+    .annotation runtime Lcom/squareup/otto/Subscribe;
+    .end annotation
+
+    .prologue
+    .line 384
+    invoke-virtual {p0}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->terminate()V
+
+    .line 385
+    return-void
+.end method
+
 .method public hasPendingRecords()Z
     .registers 3
 
     .prologue
-    .line 392
+    .line 378
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mPendingRecords:Ljava/util/Set;
 
-    .line 393
+    .line 379
     .local v0, "pendingRecords":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/DataStoreRecord;>;"
     if-eqz v0, :cond_a
 
@@ -616,39 +636,39 @@
     .prologue
     const/4 v1, 0x0
 
-    .line 127
+    .line 391
     iget-boolean v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mIsLaunched:Z
 
     if-eqz v0, :cond_6
 
-    .line 141
+    .line 406
     :goto_5
     return-void
 
-    .line 130
+    .line 394
     :cond_6
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mIsLaunched:Z
 
-    .line 133
+    .line 397
     iput-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentRouter:Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
 
-    .line 134
+    .line 398
     new-instance v0, Ljava/util/HashSet;
 
     invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mExpiredRouters:Ljava/util/Collection;
 
-    .line 135
+    .line 399
     new-instance v0, Ljava/util/concurrent/ConcurrentLinkedQueue;
 
     invoke-direct {v0}, Ljava/util/concurrent/ConcurrentLinkedQueue;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUnroutedRecords:Ljava/util/Queue;
 
-    .line 136
+    .line 400
     new-instance v0, Ljava/util/HashSet;
 
     invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
@@ -659,10 +679,10 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mPendingRecords:Ljava/util/Set;
 
-    .line 137
+    .line 401
     iput-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentConfig:Lcom/upsight/android/analytics/internal/dispatcher/Config;
 
-    .line 138
+    .line 402
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUpsightDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
     invoke-interface {v0, p0}, Lcom/upsight/android/persistence/UpsightDataStore;->subscribe(Ljava/lang/Object;)Lcom/upsight/android/persistence/UpsightSubscription;
@@ -671,7 +691,12 @@
 
     iput-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mDataStoreSubscription:Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 140
+    .line 403
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mBus:Lcom/squareup/otto/Bus;
+
+    invoke-virtual {v0, p0}, Lcom/squareup/otto/Bus;->register(Ljava/lang/Object;)V
+
+    .line 405
     invoke-direct {p0}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->fetchCurrentConfig()V
 
     goto :goto_5
@@ -684,7 +709,7 @@
     .end annotation
 
     .prologue
-    .line 239
+    .line 225
     const-string v0, "upsight.configuration.dispatcher"
 
     invoke-virtual {p1}, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->getScope()Ljava/lang/String;
@@ -697,21 +722,21 @@
 
     if-eqz v0, :cond_19
 
-    .line 240
+    .line 226
     invoke-direct {p0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->isUpsightConfigurationValid(Lcom/upsight/android/analytics/configuration/UpsightConfiguration;)Z
 
     move-result v0
 
     if-eqz v0, :cond_19
 
-    .line 241
+    .line 227
     invoke-virtual {p1}, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->getConfiguration()Ljava/lang/String;
 
     move-result-object v0
 
     invoke-direct {p0, v0}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->applyConfiguration(Ljava/lang/String;)Z
 
-    .line 243
+    .line 229
     :cond_19
     return-void
 .end method
@@ -723,10 +748,10 @@
     .end annotation
 
     .prologue
-    .line 171
+    .line 157
     invoke-direct {p0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->routeRecords(Lcom/upsight/android/analytics/internal/DataStoreRecord;)V
 
-    .line 172
+    .line 158
     return-void
 .end method
 
@@ -738,10 +763,10 @@
     .param p4, "reason"    # Ljava/lang/String;
 
     .prologue
-    .line 339
+    .line 325
     if-eqz p2, :cond_25
 
-    .line 340
+    .line 326
     invoke-virtual {p1}, Lcom/upsight/android/analytics/internal/DataStoreRecord;->getID()Ljava/lang/String;
 
     move-result-object v2
@@ -750,7 +775,7 @@
 
     move-result-object v1
 
-    .line 345
+    .line 331
     .local v1, "status":Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;
     :goto_a
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUpsightDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
@@ -761,33 +786,33 @@
 
     invoke-interface {v2, v1, v3}, Lcom/upsight/android/persistence/UpsightDataStore;->store(Ljava/lang/Object;Lcom/upsight/android/persistence/UpsightDataStoreListener;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 357
+    .line 343
     if-nez p2, :cond_18
 
     if-eqz p3, :cond_1d
 
-    .line 358
+    .line 344
     :cond_18
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUpsightDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
     invoke-interface {v2, p1}, Lcom/upsight/android/persistence/UpsightDataStore;->remove(Ljava/lang/Object;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 361
+    .line 347
     :cond_1d
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mPendingRecords:Ljava/util/Set;
 
-    .line 362
+    .line 348
     .local v0, "pendingRecords":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/DataStoreRecord;>;"
     if-eqz v0, :cond_24
 
-    .line 363
+    .line 349
     invoke-interface {v0, p1}, Ljava/util/Set;->remove(Ljava/lang/Object;)Z
 
-    .line 365
+    .line 351
     :cond_24
     return-void
 
-    .line 342
+    .line 328
     .end local v0    # "pendingRecords":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/DataStoreRecord;>;"
     .end local v1    # "status":Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;
     :cond_25
@@ -808,7 +833,7 @@
     .param p1, "response"    # Lcom/upsight/android/analytics/dispatcher/EndpointResponse;
 
     .prologue
-    .line 369
+    .line 355
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUpsightDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
     new-instance v1, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$4;
@@ -817,7 +842,7 @@
 
     invoke-interface {v0, p1, v1}, Lcom/upsight/android/persistence/UpsightDataStore;->store(Ljava/lang/Object;Lcom/upsight/android/persistence/UpsightDataStoreListener;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 380
+    .line 366
     return-void
 .end method
 
@@ -826,17 +851,17 @@
     .param p1, "rm"    # Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
 
     .prologue
-    .line 330
+    .line 316
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mExpiredRouters:Ljava/util/Collection;
 
-    .line 331
+    .line 317
     .local v0, "expiredRouters":Ljava/util/Collection;, "Ljava/util/Collection<Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;>;"
     if-eqz v0, :cond_7
 
-    .line 332
+    .line 318
     invoke-interface {v0, p1}, Ljava/util/Collection;->remove(Ljava/lang/Object;)Z
 
-    .line 334
+    .line 320
     :cond_7
     return-void
 .end method
@@ -847,54 +872,59 @@
     .prologue
     const/4 v1, 0x0
 
-    .line 400
+    .line 412
+    iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mBus:Lcom/squareup/otto/Bus;
+
+    invoke-virtual {v0, p0}, Lcom/squareup/otto/Bus;->unregister(Ljava/lang/Object;)V
+
+    .line 414
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentRouter:Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
 
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_11
 
-    .line 401
+    .line 415
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentRouter:Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
 
     invoke-virtual {v0}, Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;->finishRouting()V
 
-    .line 402
+    .line 416
     iput-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentRouter:Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
 
-    .line 404
-    :cond_c
+    .line 418
+    :cond_11
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mDataStoreSubscription:Lcom/upsight/android/persistence/UpsightSubscription;
 
-    if-eqz v0, :cond_17
+    if-eqz v0, :cond_1c
 
-    .line 405
+    .line 419
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mDataStoreSubscription:Lcom/upsight/android/persistence/UpsightSubscription;
 
     invoke-interface {v0}, Lcom/upsight/android/persistence/UpsightSubscription;->unsubscribe()V
 
-    .line 406
+    .line 420
     iput-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mDataStoreSubscription:Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 408
-    :cond_17
+    .line 422
+    :cond_1c
     iput-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentConfig:Lcom/upsight/android/analytics/internal/dispatcher/Config;
 
-    .line 409
+    .line 423
     iput-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mPendingRecords:Ljava/util/Set;
 
-    .line 410
+    .line 424
     iput-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUnroutedRecords:Ljava/util/Queue;
 
-    .line 411
+    .line 425
     iput-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mExpiredRouters:Ljava/util/Collection;
 
-    .line 412
+    .line 426
     iput-object v1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mCurrentRouter:Lcom/upsight/android/analytics/internal/dispatcher/routing/Router;
 
-    .line 414
+    .line 428
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mIsLaunched:Z
 
-    .line 415
+    .line 429
     return-void
 .end method

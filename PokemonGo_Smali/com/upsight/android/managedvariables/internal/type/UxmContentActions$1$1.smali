@@ -27,7 +27,7 @@
     .param p1, "this$0"    # Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$1;
 
     .prologue
-    .line 58
+    .line 57
     iput-object p1, p0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$1$1;->this$0:Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$1;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -58,7 +58,7 @@
     .end annotation
 
     .prologue
-    .line 60
+    .line 59
     new-instance v0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmEnumerate;
 
     const/4 v1, 0x0

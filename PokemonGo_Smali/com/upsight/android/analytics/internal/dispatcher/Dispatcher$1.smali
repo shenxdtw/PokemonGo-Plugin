@@ -39,7 +39,7 @@
     .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     .prologue
-    .line 148
+    .line 134
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$1;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -54,7 +54,7 @@
     .param p1, "exception"    # Lcom/upsight/android/UpsightException;
 
     .prologue
-    .line 158
+    .line 144
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$1;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     # getter for: Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
@@ -76,7 +76,7 @@
 
     invoke-interface {v0, v1, v2, v3}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 159
+    .line 145
     return-void
 .end method
 
@@ -84,7 +84,7 @@
     .registers 2
 
     .prologue
-    .line 148
+    .line 134
     check-cast p1, Ljava/util/Set;
 
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$1;->onSuccess(Ljava/util/Set;)V
@@ -105,7 +105,7 @@
     .end annotation
 
     .prologue
-    .line 151
+    .line 137
     .local p1, "result":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/DataStoreRecord;>;"
     invoke-interface {p1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
@@ -124,7 +124,7 @@
 
     check-cast v0, Lcom/upsight/android/analytics/internal/DataStoreRecord;
 
-    .line 152
+    .line 138
     .local v0, "record":Lcom/upsight/android/analytics/internal/DataStoreRecord;
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$1;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
@@ -133,7 +133,7 @@
 
     goto :goto_4
 
-    .line 154
+    .line 140
     .end local v0    # "record":Lcom/upsight/android/analytics/internal/DataStoreRecord;
     :cond_16
     return-void

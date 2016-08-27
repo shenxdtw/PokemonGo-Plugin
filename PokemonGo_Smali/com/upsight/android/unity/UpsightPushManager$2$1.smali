@@ -79,7 +79,7 @@
 
     const-string v1, "registration succeeded"
 
-    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 77
     return-void

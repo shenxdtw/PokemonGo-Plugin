@@ -23,6 +23,17 @@
 
 
 # instance fields
+.field private final pushConfigManagerProvider:Ljavax/inject/Provider;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/googlepushservices/internal/PushConfigManager;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 .field private final upsightProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -62,24 +73,29 @@
     goto :goto_9
 .end method
 
-.method public constructor <init>(Ljavax/inject/Provider;)V
-    .registers 3
+.method public constructor <init>(Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/upsight/android/UpsightContext;",
+            ">;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/googlepushservices/internal/PushConfigManager;",
             ">;)V"
         }
     .end annotation
 
     .prologue
-    .line 15
+    .line 19
     .local p1, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
+    .local p2, "pushConfigManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/googlepushservices/internal/PushConfigManager;>;"
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 16
+    .line 20
     sget-boolean v0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -92,22 +108,43 @@
 
     throw v0
 
-    .line 17
+    .line 21
     :cond_f
     iput-object p1, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;->upsightProvider:Ljavax/inject/Provider;
 
-    .line 18
+    .line 22
+    sget-boolean v0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;->$assertionsDisabled:Z
+
+    if-nez v0, :cond_1d
+
+    if-nez p2, :cond_1d
+
+    new-instance v0, Ljava/lang/AssertionError;
+
+    invoke-direct {v0}, Ljava/lang/AssertionError;-><init>()V
+
+    throw v0
+
+    .line 23
+    :cond_1d
+    iput-object p2, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;->pushConfigManagerProvider:Ljavax/inject/Provider;
+
+    .line 24
     return-void
 .end method
 
-.method public static create(Ljavax/inject/Provider;)Ldagger/internal/Factory;
-    .registers 2
+.method public static create(Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
             "Ljavax/inject/Provider",
             "<",
             "Lcom/upsight/android/UpsightContext;",
+            ">;",
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/upsight/android/googlepushservices/internal/PushConfigManager;",
             ">;)",
             "Ldagger/internal/Factory",
             "<",
@@ -117,11 +154,12 @@
     .end annotation
 
     .prologue
-    .line 26
+    .line 34
     .local p0, "upsightProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/UpsightContext;>;"
+    .local p1, "pushConfigManagerProvider":Ljavax/inject/Provider;, "Ljavax/inject/Provider<Lcom/upsight/android/googlepushservices/internal/PushConfigManager;>;"
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;
 
-    invoke-direct {v0, p0}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;-><init>(Ljavax/inject/Provider;)V
+    invoke-direct {v0, p0, p1}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;-><init>(Ljavax/inject/Provider;Ljavax/inject/Provider;)V
 
     return-object v0
 .end method
@@ -129,11 +167,11 @@
 
 # virtual methods
 .method public get()Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
-    .registers 3
+    .registers 4
 
     .prologue
-    .line 22
-    new-instance v1, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
+    .line 28
+    new-instance v2, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
     iget-object v0, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;->upsightProvider:Ljavax/inject/Provider;
 
@@ -143,9 +181,17 @@
 
     check-cast v0, Lcom/upsight/android/UpsightContext;
 
-    invoke-direct {v1, v0}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;-><init>(Lcom/upsight/android/UpsightContext;)V
+    iget-object v1, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices_Factory;->pushConfigManagerProvider:Ljavax/inject/Provider;
 
-    return-object v1
+    invoke-interface {v1}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/upsight/android/googlepushservices/internal/PushConfigManager;
+
+    invoke-direct {v2, v0, v1}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;-><init>(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/googlepushservices/internal/PushConfigManager;)V
+
+    return-object v2
 .end method
 
 .method public bridge synthetic get()Ljava/lang/Object;

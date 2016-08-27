@@ -177,331 +177,346 @@
 
 # virtual methods
 .method protected onHandleIntent(Landroid/content/Intent;)V
-    .registers 16
+    .registers 18
     .param p1, "intent"    # Landroid/content/Intent;
 
     .prologue
     .line 60
-    invoke-static {p0}, Lcom/upsight/android/Upsight;->createContext(Landroid/content/Context;)Lcom/upsight/android/UpsightContext;
+    invoke-static/range {p0 .. p0}, Lcom/upsight/android/Upsight;->createContext(Landroid/content/Context;)Lcom/upsight/android/UpsightContext;
 
-    move-result-object v9
+    move-result-object v11
 
-    .line 62
-    .local v9, "upsight":Lcom/upsight/android/UpsightContext;
-    const-string v10, "com.upsight.extension.googlepushservices"
+    .line 61
+    .local v11, "upsight":Lcom/upsight/android/UpsightContext;
+    const-string v12, "com.upsight.extension.googlepushservices"
 
-    invoke-virtual {v9, v10}, Lcom/upsight/android/UpsightContext;->getUpsightExtension(Ljava/lang/String;)Lcom/upsight/android/UpsightExtension;
-
-    move-result-object v10
-
-    check-cast v10, Lcom/upsight/android/UpsightGooglePushServicesExtension;
-
-    check-cast v10, Lcom/upsight/android/UpsightGooglePushServicesExtension;
-
-    .line 63
-    invoke-virtual {v10}, Lcom/upsight/android/UpsightGooglePushServicesExtension;->getComponent()Lcom/upsight/android/UpsightExtension$BaseComponent;
-
-    move-result-object v10
-
-    check-cast v10, Lcom/upsight/android/googlepushservices/UpsightGooglePushServicesComponent;
-
-    .line 64
-    invoke-interface {v10, p0}, Lcom/upsight/android/googlepushservices/UpsightGooglePushServicesComponent;->inject(Lcom/upsight/android/googlepushservices/internal/PushClickIntentService;)V
-
-    .line 66
-    const-string v10, "messageIntent"
-
-    invoke-virtual {p1, v10}, Landroid/content/Intent;->getParcelableExtra(Ljava/lang/String;)Landroid/os/Parcelable;
+    invoke-virtual {v11, v12}, Lcom/upsight/android/UpsightContext;->getUpsightExtension(Ljava/lang/String;)Lcom/upsight/android/UpsightExtension;
 
     move-result-object v4
 
-    check-cast v4, Landroid/content/Intent;
+    check-cast v4, Lcom/upsight/android/UpsightGooglePushServicesExtension;
 
-    .line 67
-    .local v4, "messageIntent":Landroid/content/Intent;
-    const-string v10, "session_extra"
+    .line 62
+    .local v4, "extension":Lcom/upsight/android/UpsightGooglePushServicesExtension;
+    if-eqz v4, :cond_105
 
-    invoke-virtual {v4, v10}, Landroid/content/Intent;->getBundleExtra(Ljava/lang/String;)Landroid/os/Bundle;
+    .line 63
+    invoke-virtual {v4}, Lcom/upsight/android/UpsightGooglePushServicesExtension;->getComponent()Lcom/upsight/android/UpsightExtension$BaseComponent;
 
-    move-result-object v3
+    move-result-object v12
+
+    check-cast v12, Lcom/upsight/android/googlepushservices/UpsightGooglePushServicesComponent;
+
+    move-object/from16 v0, p0
+
+    invoke-interface {v12, v0}, Lcom/upsight/android/googlepushservices/UpsightGooglePushServicesComponent;->inject(Lcom/upsight/android/googlepushservices/internal/PushClickIntentService;)V
+
+    .line 65
+    const-string v12, "messageIntent"
+
+    move-object/from16 v0, p1
+
+    invoke-virtual {v0, v12}, Landroid/content/Intent;->getParcelableExtra(Ljava/lang/String;)Landroid/os/Parcelable;
+
+    move-result-object v6
+
+    check-cast v6, Landroid/content/Intent;
+
+    .line 66
+    .local v6, "messageIntent":Landroid/content/Intent;
+    const-string v12, "session_extra"
+
+    invoke-virtual {v6, v12}, Landroid/content/Intent;->getBundleExtra(Ljava/lang/String;)Landroid/os/Bundle;
+
+    move-result-object v5
+
+    .line 69
+    .local v5, "extras":Landroid/os/Bundle;
+    move-object/from16 v0, p0
+
+    iget-object v8, v0, Lcom/upsight/android/googlepushservices/internal/PushClickIntentService;->mSessionManager:Lcom/upsight/android/analytics/internal/session/SessionManager;
 
     .line 70
-    .local v3, "extras":Landroid/os/Bundle;
-    iget-object v6, p0, Lcom/upsight/android/googlepushservices/internal/PushClickIntentService;->mSessionManager:Lcom/upsight/android/analytics/internal/session/SessionManager;
+    .local v8, "sessionManager":Lcom/upsight/android/analytics/internal/session/SessionManager;
+    sget-object v12, Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;->BACKGROUND:Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;
+
+    invoke-virtual {v12}, Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;->name()Ljava/lang/String;
+
+    move-result-object v13
+
+    invoke-virtual {v11}, Lcom/upsight/android/UpsightContext;->getDataStore()Lcom/upsight/android/persistence/UpsightDataStore;
+
+    move-result-object v12
+
+    const-class v14, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
+
+    invoke-interface {v12, v14}, Lcom/upsight/android/persistence/UpsightDataStore;->fetchObservable(Ljava/lang/Class;)Lrx/Observable;
+
+    move-result-object v12
 
     .line 71
-    .local v6, "sessionManager":Lcom/upsight/android/analytics/internal/session/SessionManager;
-    sget-object v10, Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;->BACKGROUND:Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;
+    invoke-virtual {v12}, Lrx/Observable;->toBlocking()Lrx/observables/BlockingObservable;
 
-    invoke-virtual {v10}, Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;->name()Ljava/lang/String;
+    move-result-object v12
 
-    move-result-object v11
+    invoke-virtual {v12}, Lrx/observables/BlockingObservable;->first()Ljava/lang/Object;
 
-    invoke-virtual {v9}, Lcom/upsight/android/UpsightContext;->getDataStore()Lcom/upsight/android/persistence/UpsightDataStore;
+    move-result-object v12
 
-    move-result-object v10
+    check-cast v12, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
 
-    const-class v12, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
+    invoke-virtual {v12}, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;->getState()Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;
 
-    invoke-interface {v10, v12}, Lcom/upsight/android/persistence/UpsightDataStore;->fetchObservable(Ljava/lang/Class;)Lrx/Observable;
+    move-result-object v12
 
-    move-result-object v10
+    invoke-virtual {v12}, Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;->name()Ljava/lang/String;
+
+    move-result-object v12
+
+    .line 70
+    invoke-virtual {v13, v12}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v12
+
+    if-eqz v12, :cond_5c
 
     .line 72
-    invoke-virtual {v10}, Lrx/Observable;->toBlocking()Lrx/observables/BlockingObservable;
+    invoke-static {v5}, Lcom/upsight/android/analytics/internal/session/SessionInitializerImpl;->fromPush(Landroid/os/Bundle;)Lcom/upsight/android/analytics/internal/session/SessionInitializer;
 
-    move-result-object v10
+    move-result-object v12
 
-    invoke-virtual {v10}, Lrx/observables/BlockingObservable;->first()Ljava/lang/Object;
+    invoke-interface {v8, v12}, Lcom/upsight/android/analytics/internal/session/SessionManager;->startSession(Lcom/upsight/android/analytics/internal/session/SessionInitializer;)Lcom/upsight/android/analytics/internal/session/Session;
 
-    move-result-object v10
+    .line 76
+    :cond_5c
+    const-string v12, "message_id"
 
-    check-cast v10, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
+    invoke-virtual {v5, v12}, Landroid/os/Bundle;->containsKey(Ljava/lang/String;)Z
 
-    invoke-virtual {v10}, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;->getState()Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;
+    move-result v12
 
-    move-result-object v10
-
-    invoke-virtual {v10}, Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;->name()Ljava/lang/String;
-
-    move-result-object v10
-
-    .line 71
-    invoke-virtual {v11, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v10
-
-    if-eqz v10, :cond_56
-
-    .line 73
-    invoke-static {v3}, Lcom/upsight/android/analytics/internal/session/SessionInitializerImpl;->fromPush(Landroid/os/Bundle;)Lcom/upsight/android/analytics/internal/session/SessionInitializer;
-
-    move-result-object v10
-
-    invoke-interface {v6, v10}, Lcom/upsight/android/analytics/internal/session/SessionManager;->startSession(Lcom/upsight/android/analytics/internal/session/SessionInitializer;)Lcom/upsight/android/analytics/internal/session/Session;
+    if-eqz v12, :cond_8a
 
     .line 77
-    :cond_56
-    const-string v10, "message_id"
+    const-string v12, "message_id"
 
-    invoke-virtual {v3, v10}, Landroid/os/Bundle;->containsKey(Ljava/lang/String;)Z
+    invoke-virtual {v5, v12}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
 
-    move-result v10
+    move-result v12
 
-    if-eqz v10, :cond_84
+    invoke-static {v12}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    .line 78
-    const-string v10, "message_id"
+    move-result-object v12
 
-    invoke-virtual {v3, v10}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
+    invoke-static {v12}, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent;->createBuilder(Ljava/lang/Integer;)Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;
 
-    move-result v10
+    move-result-object v1
 
-    invoke-static {v10}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    .line 80
+    .local v1, "clickEvent":Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;
+    const-string v12, "campaign_id"
 
-    move-result-object v10
+    invoke-virtual {v5, v12}, Landroid/os/Bundle;->containsKey(Ljava/lang/String;)Z
 
-    invoke-static {v10}, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent;->createBuilder(Ljava/lang/Integer;)Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;
+    move-result v12
 
-    move-result-object v0
+    if-eqz v12, :cond_87
 
     .line 81
-    .local v0, "clickEvent":Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;
-    const-string v10, "campaign_id"
+    const-string v12, "campaign_id"
 
-    invoke-virtual {v3, v10}, Landroid/os/Bundle;->containsKey(Ljava/lang/String;)Z
+    invoke-virtual {v5, v12}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
 
-    move-result v10
+    move-result v12
 
-    if-eqz v10, :cond_81
+    invoke-static {v12}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    .line 82
-    const-string v10, "campaign_id"
+    move-result-object v12
 
-    invoke-virtual {v3, v10}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
+    invoke-virtual {v1, v12}, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;->setMsgCampaignId(Ljava/lang/Integer;)Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;
 
-    move-result v10
+    .line 84
+    :cond_87
+    invoke-virtual {v1, v11}, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;->record(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
 
-    invoke-static {v10}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    .line 88
+    .end local v1    # "clickEvent":Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;
+    :cond_8a
+    const-string v12, "contentId"
 
-    move-result-object v10
+    invoke-virtual {v5, v12}, Landroid/os/Bundle;->containsKey(Ljava/lang/String;)Z
 
-    invoke-virtual {v0, v10}, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;->setMsgCampaignId(Ljava/lang/Integer;)Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;
+    move-result v12
 
-    .line 85
-    :cond_81
-    invoke-virtual {v0, v9}, Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;->record(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
+    if-eqz v12, :cond_d5
 
     .line 89
-    .end local v0    # "clickEvent":Lcom/upsight/android/analytics/event/comm/UpsightCommClickEvent$Builder;
-    :cond_84
-    const-string v10, "contentId"
+    new-instance v2, Lorg/json/JSONObject;
 
-    invoke-virtual {v3, v10}, Landroid/os/Bundle;->containsKey(Ljava/lang/String;)Z
+    invoke-direct {v2}, Lorg/json/JSONObject;-><init>()V
 
-    move-result v10
+    .line 91
+    .local v2, "contentProviderBundle":Lorg/json/JSONObject;
+    :try_start_97
+    const-string v12, "name"
 
-    if-eqz v10, :cond_cf
+    const-string v13, "upsight"
 
-    .line 90
-    new-instance v1, Lorg/json/JSONObject;
+    invoke-virtual {v2, v12, v13}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    invoke-direct {v1}, Lorg/json/JSONObject;-><init>()V
+    .line 93
+    new-instance v7, Lorg/json/JSONObject;
 
-    .line 92
-    .local v1, "contentProviderBundle":Lorg/json/JSONObject;
-    :try_start_91
-    const-string v10, "name"
-
-    const-string v11, "upsight"
-
-    invoke-virtual {v1, v10, v11}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+    invoke-direct {v7}, Lorg/json/JSONObject;-><init>()V
 
     .line 94
-    new-instance v5, Lorg/json/JSONObject;
+    .local v7, "parameters":Lorg/json/JSONObject;
+    const-string v12, "content_id"
 
-    invoke-direct {v5}, Lorg/json/JSONObject;-><init>()V
+    const-string v13, "contentId"
+
+    invoke-virtual {v5, v13}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
+
+    move-result v13
+
+    invoke-virtual {v7, v12, v13}, Lorg/json/JSONObject;->put(Ljava/lang/String;I)Lorg/json/JSONObject;
 
     .line 95
-    .local v5, "parameters":Lorg/json/JSONObject;
-    const-string v10, "content_id"
+    const-string v12, "parameters"
 
-    const-string v11, "contentId"
+    invoke-virtual {v2, v12, v7}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    invoke-virtual {v3, v11}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
+    .line 97
+    invoke-static {v2}, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent;->createBuilder(Lorg/json/JSONObject;)Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
 
-    move-result v11
+    move-result-object v12
 
-    invoke-virtual {v5, v10, v11}, Lorg/json/JSONObject;->put(Ljava/lang/String;I)Lorg/json/JSONObject;
-
-    .line 96
-    const-string v10, "parameters"
-
-    invoke-virtual {v1, v10, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+    const-string v13, "com_upsight_push_scope"
 
     .line 98
-    invoke-static {v1}, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent;->createBuilder(Lorg/json/JSONObject;)Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
+    invoke-virtual {v12, v13}, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->setScope(Ljava/lang/String;)Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
 
     move-result-object v10
 
-    const-string v11, "com_upsight_push_scope"
+    .line 101
+    .local v10, "unrenderedEvent":Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
+    const-string v12, "campaign_id"
 
-    .line 99
-    invoke-virtual {v10, v11}, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->setScope(Ljava/lang/String;)Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
+    invoke-virtual {v5, v12}, Landroid/os/Bundle;->containsKey(Ljava/lang/String;)Z
 
-    move-result-object v8
+    move-result v12
+
+    if-eqz v12, :cond_d2
 
     .line 102
-    .local v8, "unrenderedEvent":Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
-    const-string v10, "campaign_id"
+    const-string v12, "campaign_id"
 
-    invoke-virtual {v3, v10}, Landroid/os/Bundle;->containsKey(Ljava/lang/String;)Z
+    invoke-virtual {v5, v12}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
 
-    move-result v10
+    move-result v12
 
-    if-eqz v10, :cond_cc
+    invoke-static {v12}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    .line 103
-    const-string v10, "campaign_id"
+    move-result-object v12
 
-    invoke-virtual {v3, v10}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
+    invoke-virtual {v10, v12}, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->setCampaignId(Ljava/lang/Integer;)Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
 
-    move-result v10
+    .line 105
+    :cond_d2
+    invoke-virtual {v10, v11}, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->record(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
+    :try_end_d5
+    .catch Lorg/json/JSONException; {:try_start_97 .. :try_end_d5} :catch_106
 
-    invoke-static {v10}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v10
-
-    invoke-virtual {v8, v10}, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->setCampaignId(Ljava/lang/Integer;)Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
-
-    .line 106
-    :cond_cc
-    invoke-virtual {v8, v9}, Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;->record(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
-    :try_end_cf
-    .catch Lorg/json/JSONException; {:try_start_91 .. :try_end_cf} :catch_fe
-
-    .line 115
-    .end local v1    # "contentProviderBundle":Lorg/json/JSONObject;
-    .end local v5    # "parameters":Lorg/json/JSONObject;
-    .end local v8    # "unrenderedEvent":Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
-    :cond_cf
-    :goto_cf
-    const-string v10, "isDispatchFromForeground"
-
-    const/4 v11, 0x0
-
-    invoke-virtual {v3, v10, v11}, Landroid/os/Bundle;->getBoolean(Ljava/lang/String;Z)Z
-
-    move-result v10
-
-    if-nez v10, :cond_fa
-
-    .line 116
-    invoke-virtual {v9}, Lcom/upsight/android/UpsightContext;->getDataStore()Lcom/upsight/android/persistence/UpsightDataStore;
-
-    move-result-object v10
-
-    const-class v11, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
-
-    invoke-interface {v10, v11}, Lcom/upsight/android/persistence/UpsightDataStore;->fetchObservable(Ljava/lang/Class;)Lrx/Observable;
-
-    move-result-object v10
-
-    invoke-virtual {v10}, Lrx/Observable;->toBlocking()Lrx/observables/BlockingObservable;
-
-    move-result-object v10
-
-    invoke-virtual {v10}, Lrx/observables/BlockingObservable;->first()Ljava/lang/Object;
-
-    move-result-object v7
-
-    check-cast v7, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
-
-    .local v7, "status":Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
-    if-eqz v7, :cond_fa
-
-    sget-object v10, Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;->BACKGROUND:Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;
-
-    .line 117
-    invoke-virtual {v7}, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;->getState()Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;
-
-    move-result-object v11
-
-    invoke-virtual {v10, v11}, Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;->equals(Ljava/lang/Object;)Z
-
-    move-result v10
-
-    if-eqz v10, :cond_fd
-
-    .line 119
-    .end local v7    # "status":Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
-    :cond_fa
-    invoke-virtual {p0, v4}, Lcom/upsight/android/googlepushservices/internal/PushClickIntentService;->startActivity(Landroid/content/Intent;)V
-
-    .line 121
-    :cond_fd
-    return-void
-
-    .line 108
-    .restart local v1    # "contentProviderBundle":Lorg/json/JSONObject;
-    :catch_fe
-    move-exception v2
-
-    .line 109
-    .local v2, "e":Lorg/json/JSONException;
-    invoke-virtual {v9}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
-
-    move-result-object v10
-
-    sget-object v11, Lcom/upsight/android/googlepushservices/internal/PushClickIntentService;->LOG_TAG:Ljava/lang/String;
-
-    const-string v12, "Could not construct \"content_provider\" bundle in \"upsight.content.unrendered\""
+    .line 114
+    .end local v2    # "contentProviderBundle":Lorg/json/JSONObject;
+    .end local v7    # "parameters":Lorg/json/JSONObject;
+    .end local v10    # "unrenderedEvent":Lcom/upsight/android/analytics/event/content/UpsightContentUnrenderedEvent$Builder;
+    :cond_d5
+    :goto_d5
+    const-string v12, "isDispatchFromForeground"
 
     const/4 v13, 0x0
 
-    new-array v13, v13, [Ljava/lang/Object;
+    invoke-virtual {v5, v12, v13}, Landroid/os/Bundle;->getBoolean(Ljava/lang/String;Z)Z
 
-    invoke-interface {v10, v11, v2, v12, v13}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
+    move-result v12
 
-    goto :goto_cf
+    if-nez v12, :cond_100
+
+    .line 115
+    invoke-virtual {v11}, Lcom/upsight/android/UpsightContext;->getDataStore()Lcom/upsight/android/persistence/UpsightDataStore;
+
+    move-result-object v12
+
+    const-class v13, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
+
+    invoke-interface {v12, v13}, Lcom/upsight/android/persistence/UpsightDataStore;->fetchObservable(Ljava/lang/Class;)Lrx/Observable;
+
+    move-result-object v12
+
+    invoke-virtual {v12}, Lrx/Observable;->toBlocking()Lrx/observables/BlockingObservable;
+
+    move-result-object v12
+
+    invoke-virtual {v12}, Lrx/observables/BlockingObservable;->first()Ljava/lang/Object;
+
+    move-result-object v9
+
+    check-cast v9, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
+
+    .local v9, "status":Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
+    if-eqz v9, :cond_100
+
+    sget-object v12, Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;->BACKGROUND:Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;
+
+    .line 116
+    invoke-virtual {v9}, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;->getState()Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;
+
+    move-result-object v13
+
+    invoke-virtual {v12, v13}, Lcom/upsight/android/analytics/internal/session/ApplicationStatus$State;->equals(Ljava/lang/Object;)Z
+
+    move-result v12
+
+    if-eqz v12, :cond_105
+
+    .line 118
+    .end local v9    # "status":Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
+    :cond_100
+    move-object/from16 v0, p0
+
+    invoke-virtual {v0, v6}, Lcom/upsight/android/googlepushservices/internal/PushClickIntentService;->startActivity(Landroid/content/Intent;)V
+
+    .line 121
+    .end local v5    # "extras":Landroid/os/Bundle;
+    .end local v6    # "messageIntent":Landroid/content/Intent;
+    .end local v8    # "sessionManager":Lcom/upsight/android/analytics/internal/session/SessionManager;
+    :cond_105
+    return-void
+
+    .line 107
+    .restart local v2    # "contentProviderBundle":Lorg/json/JSONObject;
+    .restart local v5    # "extras":Landroid/os/Bundle;
+    .restart local v6    # "messageIntent":Landroid/content/Intent;
+    .restart local v8    # "sessionManager":Lcom/upsight/android/analytics/internal/session/SessionManager;
+    :catch_106
+    move-exception v3
+
+    .line 108
+    .local v3, "e":Lorg/json/JSONException;
+    invoke-virtual {v11}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
+
+    move-result-object v12
+
+    sget-object v13, Lcom/upsight/android/googlepushservices/internal/PushClickIntentService;->LOG_TAG:Ljava/lang/String;
+
+    const-string v14, "Could not construct \"content_provider\" bundle in \"upsight.content.unrendered\""
+
+    const/4 v15, 0x0
+
+    new-array v15, v15, [Ljava/lang/Object;
+
+    invoke-interface {v12, v13, v3, v14, v15}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    goto :goto_d5
 .end method

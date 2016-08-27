@@ -19,7 +19,9 @@
 
 .field public static final dispatcher_config:I = 0x7f060001
 
-.field public static final uxm_schema:I = 0x7f060002
+.field public static final push_config:I = 0x7f060002
+
+.field public static final uxm_schema:I = 0x7f060003
 
 
 # direct methods
@@ -27,7 +29,7 @@
     .registers 1
 
     .prologue
-    .line 243
+    .line 240
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

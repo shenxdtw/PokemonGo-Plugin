@@ -23,7 +23,7 @@
     .registers 3
 
     .prologue
-    .line 345
+    .line 347
     invoke-static {}, Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;->values()[Lcom/upsight/android/marketing/UpsightBillboard$PresentationStyle;
 
     move-result-object v0

@@ -38,10 +38,10 @@
     .registers 1
 
     .prologue
-    .line 105
+    .line 107
     invoke-direct {p0}, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;-><init>()V
 
-    .line 107
+    .line 109
     return-void
 .end method
 
@@ -53,13 +53,13 @@
     .param p4, "publisherData"    # Lcom/google/gson/JsonElement;
 
     .prologue
-    .line 96
+    .line 98
     invoke-direct {p0, p1, p3, p4}, Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;-><init>(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
 
-    .line 97
+    .line 99
     iput-object p2, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent;->identifiers:Ljava/lang/String;
 
-    .line 98
+    .line 100
     return-void
 .end method
 
@@ -84,7 +84,7 @@
     .registers 2
 
     .prologue
-    .line 102
+    .line 104
     iget-object v0, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent;->identifiers:Ljava/lang/String;
 
     return-object v0

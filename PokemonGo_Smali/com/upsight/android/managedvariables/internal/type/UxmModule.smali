@@ -82,7 +82,7 @@
 .end method
 
 .method provideUxmContentFactory(Lcom/upsight/android/UpsightContext;Lrx/Scheduler;Lcom/upsight/android/managedvariables/experience/UpsightUserExperience;)Lcom/upsight/android/managedvariables/internal/type/UxmContentFactory;
-    .registers 12
+    .registers 13
     .param p1, "upsight"    # Lcom/upsight/android/UpsightContext;
     .param p2, "scheduler"    # Lrx/Scheduler;
         .annotation runtime Ljavax/inject/Named;
@@ -100,55 +100,68 @@
     .line 125
     invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getCoreComponent()Lcom/upsight/android/UpsightCoreComponent;
 
-    move-result-object v7
+    move-result-object v8
 
     .line 126
-    .local v7, "coreComponent":Lcom/upsight/android/UpsightCoreComponent;
-    invoke-interface {v7}, Lcom/upsight/android/UpsightCoreComponent;->bus()Lcom/squareup/otto/Bus;
-
-    move-result-object v2
-
-    .line 127
-    .local v2, "bus":Lcom/squareup/otto/Bus;
-    invoke-interface {v7}, Lcom/upsight/android/UpsightCoreComponent;->gson()Lcom/google/gson/Gson;
-
-    move-result-object v3
-
-    .line 128
-    .local v3, "gson":Lcom/google/gson/Gson;
-    invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
-
-    move-result-object v6
-
-    .line 129
-    .local v6, "logger":Lcom/upsight/android/logger/UpsightLogger;
+    .local v8, "coreComponent":Lcom/upsight/android/UpsightCoreComponent;
     const-string v1, "com.upsight.extension.analytics"
 
     invoke-virtual {p1, v1}, Lcom/upsight/android/UpsightContext;->getUpsightExtension(Ljava/lang/String;)Lcom/upsight/android/UpsightExtension;
 
-    move-result-object v1
+    move-result-object v7
 
-    check-cast v1, Lcom/upsight/android/UpsightAnalyticsExtension;
+    check-cast v7, Lcom/upsight/android/UpsightAnalyticsExtension;
 
-    check-cast v1, Lcom/upsight/android/UpsightAnalyticsExtension;
+    .line 127
+    .local v7, "analyticsExtension":Lcom/upsight/android/UpsightAnalyticsExtension;
+    invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
+
+    move-result-object v6
+
+    .line 128
+    .local v6, "logger":Lcom/upsight/android/logger/UpsightLogger;
+    const/4 v2, 0x0
+
+    .line 129
+    .local v2, "bus":Lcom/squareup/otto/Bus;
+    const/4 v3, 0x0
 
     .line 130
-    invoke-virtual {v1}, Lcom/upsight/android/UpsightAnalyticsExtension;->getComponent()Lcom/upsight/android/UpsightExtension$BaseComponent;
+    .local v3, "gson":Lcom/google/gson/Gson;
+    const/4 v4, 0x0
+
+    .line 131
+    .local v4, "clock":Lcom/upsight/android/analytics/internal/session/Clock;
+    if-eqz v8, :cond_29
+
+    if-eqz v7, :cond_29
+
+    .line 132
+    invoke-interface {v8}, Lcom/upsight/android/UpsightCoreComponent;->bus()Lcom/squareup/otto/Bus;
+
+    move-result-object v2
+
+    .line 133
+    invoke-interface {v8}, Lcom/upsight/android/UpsightCoreComponent;->gson()Lcom/google/gson/Gson;
+
+    move-result-object v3
+
+    .line 134
+    invoke-virtual {v7}, Lcom/upsight/android/UpsightAnalyticsExtension;->getComponent()Lcom/upsight/android/UpsightExtension$BaseComponent;
 
     move-result-object v1
 
     check-cast v1, Lcom/upsight/android/analytics/UpsightAnalyticsComponent;
 
-    .line 131
     invoke-interface {v1}, Lcom/upsight/android/analytics/UpsightAnalyticsComponent;->clock()Lcom/upsight/android/analytics/internal/session/Clock;
 
     move-result-object v4
 
-    .line 133
-    .local v4, "clock":Lcom/upsight/android/analytics/internal/session/Clock;
+    .line 137
+    :cond_29
     new-instance v0, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;
 
-    .line 138
+    .line 142
     invoke-virtual {p2}, Lrx/Scheduler;->createWorker()Lrx/Scheduler$Worker;
 
     move-result-object v5
@@ -157,7 +170,7 @@
 
     invoke-direct/range {v0 .. v6}, Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;-><init>(Lcom/upsight/android/UpsightContext;Lcom/squareup/otto/Bus;Lcom/google/gson/Gson;Lcom/upsight/android/analytics/internal/session/Clock;Lrx/Scheduler$Worker;Lcom/upsight/android/logger/UpsightLogger;)V
 
-    .line 140
+    .line 144
     .local v0, "actionContext":Lcom/upsight/android/managedvariables/internal/type/UxmContentActions$UxmContentActionContext;
     new-instance v1, Lcom/upsight/android/managedvariables/internal/type/UxmContentFactory;
 

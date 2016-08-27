@@ -27,7 +27,7 @@
     .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/DispatcherService;
 
     .prologue
-    .line 54
+    .line 57
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/DispatcherService$1;->this$0:Lcom/upsight/android/analytics/internal/DispatcherService;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -45,7 +45,7 @@
 
     const/4 v5, 0x0
 
-    .line 57
+    .line 60
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DispatcherService$1;->this$0:Lcom/upsight/android/analytics/internal/DispatcherService;
 
     iget-object v1, v1, Lcom/upsight/android/analytics/internal/DispatcherService;->mDispatcher:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
@@ -54,7 +54,7 @@
 
     move-result v0
 
-    .line 58
+    .line 61
     .local v0, "hasPendingRecords":Z
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DispatcherService$1;->this$0:Lcom/upsight/android/analytics/internal/DispatcherService;
 
@@ -107,16 +107,16 @@
 
     invoke-interface {v1, v2, v3, v4}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 59
+    .line 62
     if-eqz v0, :cond_54
 
-    .line 60
+    .line 63
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DispatcherService$1;->this$0:Lcom/upsight/android/analytics/internal/DispatcherService;
 
     # setter for: Lcom/upsight/android/analytics/internal/DispatcherService;->mDeadIntervalsInARow:I
     invoke-static {v1, v5}, Lcom/upsight/android/analytics/internal/DispatcherService;->access$102(Lcom/upsight/android/analytics/internal/DispatcherService;I)I
 
-    .line 61
+    .line 64
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DispatcherService$1;->this$0:Lcom/upsight/android/analytics/internal/DispatcherService;
 
     # getter for: Lcom/upsight/android/analytics/internal/DispatcherService;->mHandler:Landroid/os/Handler;
@@ -133,11 +133,11 @@
 
     invoke-virtual {v1, v2, v6, v7}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 71
+    .line 74
     :goto_53
     return-void
 
-    .line 63
+    .line 66
     :cond_54
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DispatcherService$1;->this$0:Lcom/upsight/android/analytics/internal/DispatcherService;
 
@@ -150,7 +150,7 @@
 
     if-ne v1, v2, :cond_74
 
-    .line 64
+    .line 67
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DispatcherService$1;->this$0:Lcom/upsight/android/analytics/internal/DispatcherService;
 
     # getter for: Lcom/upsight/android/analytics/internal/DispatcherService;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
@@ -169,21 +169,21 @@
 
     invoke-interface {v1, v2, v3, v4}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 65
+    .line 68
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DispatcherService$1;->this$0:Lcom/upsight/android/analytics/internal/DispatcherService;
 
     invoke-virtual {v1}, Lcom/upsight/android/analytics/internal/DispatcherService;->stopSelf()V
 
     goto :goto_53
 
-    .line 67
+    .line 70
     :cond_74
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DispatcherService$1;->this$0:Lcom/upsight/android/analytics/internal/DispatcherService;
 
     # operator++ for: Lcom/upsight/android/analytics/internal/DispatcherService;->mDeadIntervalsInARow:I
     invoke-static {v1}, Lcom/upsight/android/analytics/internal/DispatcherService;->access$108(Lcom/upsight/android/analytics/internal/DispatcherService;)I
 
-    .line 68
+    .line 71
     iget-object v1, p0, Lcom/upsight/android/analytics/internal/DispatcherService$1;->this$0:Lcom/upsight/android/analytics/internal/DispatcherService;
 
     # getter for: Lcom/upsight/android/analytics/internal/DispatcherService;->mHandler:Landroid/os/Handler;

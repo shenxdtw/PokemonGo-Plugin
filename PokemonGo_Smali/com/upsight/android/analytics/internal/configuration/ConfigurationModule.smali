@@ -13,7 +13,7 @@
     .registers 1
 
     .prologue
-    .line 18
+    .line 19
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -22,7 +22,7 @@
 
 # virtual methods
 .method public provideConfigurationManager(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser;)Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
-    .registers 11
+    .registers 12
     .param p1, "upsight"    # Lcom/upsight/android/UpsightContext;
     .param p2, "responseParser"    # Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;
     .param p3, "managerConfigParser"    # Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser;
@@ -33,12 +33,12 @@
     .end annotation
 
     .prologue
-    .line 25
+    .line 26
     invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getDataStore()Lcom/upsight/android/persistence/UpsightDataStore;
 
     move-result-object v2
 
-    .line 26
+    .line 27
     .local v2, "dataStore":Lcom/upsight/android/persistence/UpsightDataStore;
     invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getCoreComponent()Lcom/upsight/android/UpsightCoreComponent;
 
@@ -48,14 +48,24 @@
 
     move-result-object v5
 
-    .line 27
+    .line 28
     .local v5, "scheduler":Lrx/Scheduler;
-    invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
+    invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getCoreComponent()Lcom/upsight/android/UpsightCoreComponent;
+
+    move-result-object v0
+
+    invoke-interface {v0}, Lcom/upsight/android/UpsightCoreComponent;->bus()Lcom/squareup/otto/Bus;
 
     move-result-object v6
 
     .line 29
-    .local v6, "logger":Lcom/upsight/android/logger/UpsightLogger;
+    .local v6, "bus":Lcom/squareup/otto/Bus;
+    invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
+
+    move-result-object v7
+
+    .line 31
+    .local v7, "logger":Lcom/upsight/android/logger/UpsightLogger;
     new-instance v0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     move-object v1, p1
@@ -64,7 +74,7 @@
 
     move-object v4, p3
 
-    invoke-direct/range {v0 .. v6}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;-><init>(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/persistence/UpsightDataStore;Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser;Lrx/Scheduler;Lcom/upsight/android/logger/UpsightLogger;)V
+    invoke-direct/range {v0 .. v7}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;-><init>(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/persistence/UpsightDataStore;Lcom/upsight/android/analytics/internal/configuration/ConfigurationResponseParser;Lcom/upsight/android/analytics/internal/configuration/ManagerConfigParser;Lrx/Scheduler;Lcom/squareup/otto/Bus;Lcom/upsight/android/logger/UpsightLogger;)V
 
     return-object v0
 .end method

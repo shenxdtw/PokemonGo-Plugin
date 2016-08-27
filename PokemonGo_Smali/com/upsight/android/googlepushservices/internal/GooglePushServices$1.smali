@@ -39,7 +39,7 @@
     .param p1, "this$0"    # Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
     .prologue
-    .line 164
+    .line 168
     iput-object p1, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$1;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
     iput-object p2, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$1;->val$projectId:Ljava/lang/String;
@@ -55,7 +55,7 @@
     .registers 2
 
     .prologue
-    .line 164
+    .line 168
     check-cast p1, Lrx/Subscriber;
 
     invoke-virtual {p0, p1}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$1;->call(Lrx/Subscriber;)V
@@ -64,7 +64,7 @@
 .end method
 
 .method public call(Lrx/Subscriber;)V
-    .registers 7
+    .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -76,52 +76,76 @@
     .end annotation
 
     .prologue
-    .line 168
+    .line 172
     .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/lang/String;>;"
     :try_start_0
-    iget-object v1, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$1;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
+    iget-object v2, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$1;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
     # getter for: Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->mUpsight:Lcom/upsight/android/UpsightContext;
-    invoke-static {v1}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->access$000(Lcom/upsight/android/googlepushservices/internal/GooglePushServices;)Lcom/upsight/android/UpsightContext;
+    invoke-static {v2}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->access$000(Lcom/upsight/android/googlepushservices/internal/GooglePushServices;)Lcom/upsight/android/UpsightContext;
+
+    move-result-object v2
+
+    invoke-static {v2}, Lcom/google/android/gms/gcm/GoogleCloudMessaging;->getInstance(Landroid/content/Context;)Lcom/google/android/gms/gcm/GoogleCloudMessaging;
+
+    move-result-object v2
+
+    const/4 v3, 0x1
+
+    new-array v3, v3, [Ljava/lang/String;
+
+    const/4 v4, 0x0
+
+    iget-object v5, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$1;->val$projectId:Ljava/lang/String;
+
+    aput-object v5, v3, v4
+
+    invoke-virtual {v2, v3}, Lcom/google/android/gms/gcm/GoogleCloudMessaging;->register([Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
-
-    invoke-static {v1}, Lcom/google/android/gms/gcm/GoogleCloudMessaging;->getInstance(Landroid/content/Context;)Lcom/google/android/gms/gcm/GoogleCloudMessaging;
-
-    move-result-object v1
-
-    const/4 v2, 0x1
-
-    new-array v2, v2, [Ljava/lang/String;
-
-    const/4 v3, 0x0
-
-    iget-object v4, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$1;->val$projectId:Ljava/lang/String;
-
-    aput-object v4, v2, v3
-
-    invoke-virtual {v1, v2}, Lcom/google/android/gms/gcm/GoogleCloudMessaging;->register([Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-virtual {p1, v1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
-
-    .line 169
-    invoke-virtual {p1}, Lrx/Subscriber;->onCompleted()V
-    :try_end_1c
-    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_1c} :catch_1d
 
     .line 173
-    :goto_1c
+    .local v1, "registrationId":Ljava/lang/String;
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_23
+
+    .line 174
+    invoke-virtual {p1, v1}, Lrx/Subscriber;->onNext(Ljava/lang/Object;)V
+
+    .line 175
+    invoke-virtual {p1}, Lrx/Subscriber;->onCompleted()V
+
+    .line 182
+    .end local v1    # "registrationId":Ljava/lang/String;
+    :goto_22
     return-void
 
-    .line 170
-    :catch_1d
+    .line 177
+    .restart local v1    # "registrationId":Ljava/lang/String;
+    :cond_23
+    new-instance v2, Ljava/io/IOException;
+
+    const-string v3, "Invalid push token returned from GoogleCloudMessaging"
+
+    invoke-direct {v2, v3}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {p1, v2}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
+    :try_end_2d
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_2d} :catch_2e
+
+    goto :goto_22
+
+    .line 179
+    .end local v1    # "registrationId":Ljava/lang/String;
+    :catch_2e
     move-exception v0
 
-    .line 171
+    .line 180
     .local v0, "e":Ljava/io/IOException;
     invoke-virtual {p1, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 
-    goto :goto_1c
+    goto :goto_22
 .end method

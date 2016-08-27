@@ -27,7 +27,7 @@
     .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     .prologue
-    .line 239
+    .line 227
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$2;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -41,7 +41,7 @@
     .registers 5
 
     .prologue
-    .line 242
+    .line 230
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$2;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     # getter for: Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
@@ -59,7 +59,7 @@
 
     invoke-interface {v0, v1, v2, v3}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 243
+    .line 231
     invoke-static {}, Lcom/upsight/android/analytics/event/config/UpsightConfigExpiredEvent;->createBuilder()Lcom/upsight/android/analytics/event/config/UpsightConfigExpiredEvent$Builder;
 
     move-result-object v0
@@ -73,6 +73,6 @@
 
     invoke-virtual {v0, v1}, Lcom/upsight/android/analytics/event/config/UpsightConfigExpiredEvent$Builder;->record(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
 
-    .line 244
+    .line 232
     return-void
 .end method

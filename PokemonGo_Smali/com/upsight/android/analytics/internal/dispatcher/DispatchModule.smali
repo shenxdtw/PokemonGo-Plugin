@@ -13,7 +13,7 @@
     .registers 1
 
     .prologue
-    .line 21
+    .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -22,7 +22,7 @@
 
 # virtual methods
 .method public provideDispatcher(Lcom/upsight/android/UpsightContext;Lcom/upsight/android/analytics/internal/session/SessionManager;Lcom/upsight/android/analytics/internal/AnalyticsContext;Lcom/upsight/android/analytics/internal/dispatcher/ConfigParser;Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;)Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
-    .registers 15
+    .registers 16
     .param p1, "upsight"    # Lcom/upsight/android/UpsightContext;
     .param p2, "sessionManager"    # Lcom/upsight/android/analytics/internal/session/SessionManager;
     .param p3, "context"    # Lcom/upsight/android/analytics/internal/AnalyticsContext;
@@ -36,7 +36,7 @@
     .end annotation
 
     .prologue
-    .line 31
+    .line 32
     invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getCoreComponent()Lcom/upsight/android/UpsightCoreComponent;
 
     move-result-object v0
@@ -45,14 +45,24 @@
 
     move-result-object v3
 
-    .line 32
+    .line 33
     .local v3, "dataStore":Lcom/upsight/android/persistence/UpsightDataStore;
-    invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
+    invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getCoreComponent()Lcom/upsight/android/UpsightCoreComponent;
+
+    move-result-object v0
+
+    invoke-interface {v0}, Lcom/upsight/android/UpsightCoreComponent;->bus()Lcom/squareup/otto/Bus;
 
     move-result-object v7
 
     .line 34
-    .local v7, "logger":Lcom/upsight/android/logger/UpsightLogger;
+    .local v7, "bus":Lcom/squareup/otto/Bus;
+    invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
+
+    move-result-object v8
+
+    .line 36
+    .local v8, "logger":Lcom/upsight/android/logger/UpsightLogger;
     new-instance v0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     move-object v1, p3
@@ -65,7 +75,7 @@
 
     move-object v6, p6
 
-    invoke-direct/range {v0 .. v7}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;-><init>(Lcom/upsight/android/analytics/internal/AnalyticsContext;Lcom/upsight/android/analytics/internal/session/SessionManager;Lcom/upsight/android/persistence/UpsightDataStore;Lcom/upsight/android/analytics/internal/dispatcher/ConfigParser;Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;Lcom/upsight/android/logger/UpsightLogger;)V
+    invoke-direct/range {v0 .. v8}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;-><init>(Lcom/upsight/android/analytics/internal/AnalyticsContext;Lcom/upsight/android/analytics/internal/session/SessionManager;Lcom/upsight/android/persistence/UpsightDataStore;Lcom/upsight/android/analytics/internal/dispatcher/ConfigParser;Lcom/upsight/android/analytics/internal/dispatcher/routing/RouterBuilder;Lcom/upsight/android/analytics/internal/dispatcher/schema/SchemaSelectorBuilder;Lcom/squareup/otto/Bus;Lcom/upsight/android/logger/UpsightLogger;)V
 
     return-object v0
 .end method

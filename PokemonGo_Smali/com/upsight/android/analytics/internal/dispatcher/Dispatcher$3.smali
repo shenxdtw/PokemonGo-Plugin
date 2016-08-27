@@ -37,7 +37,7 @@
     .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     .prologue
-    .line 345
+    .line 331
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$3;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -52,7 +52,7 @@
     .param p1, "exception"    # Lcom/upsight/android/UpsightException;
 
     .prologue
-    .line 353
+    .line 339
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$3;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     # getter for: Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
@@ -70,7 +70,7 @@
 
     invoke-interface {v0, v1, p1, v2, v3}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 354
+    .line 340
     return-void
 .end method
 
@@ -79,7 +79,7 @@
     .param p1, "result"    # Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;
 
     .prologue
-    .line 348
+    .line 334
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$3;->this$0:Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;
 
     # getter for: Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher;->mUpsightDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
@@ -89,7 +89,7 @@
 
     invoke-interface {v0, p1}, Lcom/upsight/android/persistence/UpsightDataStore;->remove(Ljava/lang/Object;)Lcom/upsight/android/persistence/UpsightSubscription;
 
-    .line 349
+    .line 335
     return-void
 .end method
 
@@ -97,7 +97,7 @@
     .registers 2
 
     .prologue
-    .line 345
+    .line 331
     check-cast p1, Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;
 
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/dispatcher/Dispatcher$3;->onSuccess(Lcom/upsight/android/analytics/dispatcher/AnalyticsEventDeliveryStatus;)V

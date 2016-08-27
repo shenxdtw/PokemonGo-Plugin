@@ -471,6 +471,7 @@
     .param p2, "status"    # [I
 
     .prologue
+
     :try_start_0
     invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
     move-result-object v4

@@ -56,7 +56,7 @@
 
     const/4 v3, 0x0
 
-    .line 322
+    .line 324
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
     const-string v1, "message_id"
@@ -65,7 +65,7 @@
 
     sput-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;->message_id:Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
-    .line 323
+    .line 325
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
     const-string v1, "msg_campaign_id"
@@ -74,7 +74,7 @@
 
     sput-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;->msg_campaign_id:Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
-    .line 324
+    .line 326
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
     const-string v1, "content_id"
@@ -83,7 +83,7 @@
 
     sput-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;->content_id:Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
-    .line 325
+    .line 327
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
     const-string v1, "title"
@@ -92,7 +92,7 @@
 
     sput-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;->title:Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
-    .line 326
+    .line 328
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
     const-string v1, "text"
@@ -101,7 +101,7 @@
 
     sput-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;->text:Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
-    .line 327
+    .line 329
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
     const-string v1, "uri"
@@ -112,7 +112,7 @@
 
     sput-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;->uri:Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
-    .line 328
+    .line 330
     new-instance v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
     const-string v1, "image_url"
@@ -123,7 +123,7 @@
 
     sput-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;->image_url:Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
-    .line 321
+    .line 323
     const/4 v0, 0x7
 
     new-array v0, v0, [Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
@@ -174,7 +174,7 @@
     .end annotation
 
     .prologue
-    .line 321
+    .line 323
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -185,7 +185,7 @@
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 321
+    .line 323
     const-class v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -201,7 +201,7 @@
     .registers 1
 
     .prologue
-    .line 321
+    .line 323
     sget-object v0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;->$VALUES:[Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;
 
     invoke-virtual {v0}, [Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushParams;->clone()Ljava/lang/Object;

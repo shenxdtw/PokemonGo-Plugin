@@ -39,7 +39,7 @@
     .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     .prologue
-    .line 265
+    .line 253
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$3;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -54,7 +54,7 @@
     .param p1, "exception"    # Lcom/upsight/android/UpsightException;
 
     .prologue
-    .line 276
+    .line 264
     return-void
 .end method
 
@@ -62,7 +62,7 @@
     .registers 2
 
     .prologue
-    .line 265
+    .line 253
     check-cast p1, Ljava/util/Set;
 
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$3;->onSuccess(Ljava/util/Set;)V
@@ -83,7 +83,7 @@
     .end annotation
 
     .prologue
-    .line 268
+    .line 256
     .local p1, "result":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/configuration/UpsightConfiguration;>;"
     invoke-interface {p1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
@@ -102,7 +102,7 @@
 
     check-cast v0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
 
-    .line 269
+    .line 257
     .local v0, "configuration":Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$3;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
@@ -115,7 +115,7 @@
 
     goto :goto_4
 
-    .line 271
+    .line 259
     .end local v0    # "configuration":Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
     :cond_1a
     return-void

@@ -39,7 +39,7 @@
     .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/DispatcherService;
 
     .prologue
-    .line 92
+    .line 96
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/DispatcherService$2;->this$0:Lcom/upsight/android/analytics/internal/DispatcherService;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -54,7 +54,7 @@
     .param p1, "exception"    # Lcom/upsight/android/UpsightException;
 
     .prologue
-    .line 103
+    .line 107
     return-void
 .end method
 
@@ -62,7 +62,7 @@
     .registers 2
 
     .prologue
-    .line 92
+    .line 96
     check-cast p1, Ljava/util/Set;
 
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/DispatcherService$2;->onSuccess(Ljava/util/Set;)V
@@ -83,7 +83,7 @@
     .end annotation
 
     .prologue
-    .line 95
+    .line 99
     .local p1, "result":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/internal/session/ApplicationStatus;>;"
     invoke-interface {p1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
@@ -102,7 +102,7 @@
 
     check-cast v0, Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
 
-    .line 96
+    .line 100
     .local v0, "appStatus":Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/DispatcherService$2;->this$0:Lcom/upsight/android/analytics/internal/DispatcherService;
 
@@ -111,7 +111,7 @@
 
     goto :goto_4
 
-    .line 98
+    .line 102
     .end local v0    # "appStatus":Lcom/upsight/android/analytics/internal/session/ApplicationStatus;
     :cond_16
     return-void

@@ -39,7 +39,7 @@
     .param p1, "this$0"    # Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     .prologue
-    .line 143
+    .line 131
     iput-object p1, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -54,7 +54,7 @@
     .param p1, "exception"    # Lcom/upsight/android/UpsightException;
 
     .prologue
-    .line 168
+    .line 156
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     # getter for: Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
@@ -76,7 +76,7 @@
 
     invoke-interface {v0, v1, v2, v3}, Lcom/upsight/android/logger/UpsightLogger;->e(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 170
+    .line 158
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     # getter for: Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mCurrentConfig:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
@@ -86,13 +86,13 @@
 
     if-nez v0, :cond_20
 
-    .line 171
+    .line 159
     iget-object v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     # invokes: Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->applyDefaultConfiguration()V
     invoke-static {v0}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->access$300(Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;)V
 
-    .line 173
+    .line 161
     :cond_20
     return-void
 .end method
@@ -101,7 +101,7 @@
     .registers 2
 
     .prologue
-    .line 143
+    .line 131
     check-cast p1, Ljava/util/Set;
 
     invoke-virtual {p0, p1}, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->onSuccess(Ljava/util/Set;)V
@@ -122,7 +122,7 @@
     .end annotation
 
     .prologue
-    .line 146
+    .line 134
     .local p1, "result":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/analytics/configuration/UpsightConfiguration;>;"
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
@@ -133,16 +133,16 @@
 
     if-eqz v2, :cond_9
 
-    .line 164
+    .line 152
     :cond_8
     :goto_8
     return-void
 
-    .line 150
+    .line 138
     :cond_9
     const/4 v1, 0x0
 
-    .line 151
+    .line 139
     .local v1, "hasApplied":Z
     invoke-interface {p1}, Ljava/util/Set;->size()I
 
@@ -150,7 +150,7 @@
 
     if-lez v2, :cond_47
 
-    .line 152
+    .line 140
     invoke-interface {p1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
@@ -169,7 +169,7 @@
 
     check-cast v0, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
 
-    .line 153
+    .line 141
     .local v0, "config":Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
     invoke-virtual {v0}, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->getScope()Ljava/lang/String;
 
@@ -183,7 +183,7 @@
 
     if-eqz v3, :cond_14
 
-    .line 154
+    .line 142
     iget-object v3, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     # getter for: Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
@@ -201,7 +201,7 @@
 
     invoke-interface {v3, v4, v5, v6}, Lcom/upsight/android/logger/UpsightLogger;->d(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 156
+    .line 144
     iget-object v3, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     invoke-virtual {v0}, Lcom/upsight/android/analytics/configuration/UpsightConfiguration;->getConfiguration()Ljava/lang/String;
@@ -215,12 +215,12 @@
 
     goto :goto_14
 
-    .line 161
+    .line 149
     .end local v0    # "config":Lcom/upsight/android/analytics/configuration/UpsightConfiguration;
     :cond_47
     if-nez v1, :cond_8
 
-    .line 162
+    .line 150
     iget-object v2, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$1;->this$0:Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;
 
     # invokes: Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager;->applyDefaultConfiguration()V

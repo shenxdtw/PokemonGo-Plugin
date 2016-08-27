@@ -24,13 +24,13 @@
     .param p1, "requestInterval"    # J
 
     .prologue
-    .line 46
+    .line 49
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 47
+    .line 50
     iput-wide p1, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;->requestInterval:J
 
-    .line 48
+    .line 51
     return-void
 .end method
 
@@ -45,15 +45,15 @@
 
     const/4 v2, 0x0
 
-    .line 63
+    .line 66
     if-ne p0, p1, :cond_5
 
-    .line 73
+    .line 76
     :cond_4
     :goto_4
     return v1
 
-    .line 67
+    .line 70
     :cond_5
     if-eqz p1, :cond_11
 
@@ -70,16 +70,16 @@
     :cond_11
     move v1, v2
 
-    .line 68
+    .line 71
     goto :goto_4
 
     :cond_13
     move-object v0, p1
 
-    .line 71
+    .line 74
     check-cast v0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
 
-    .line 73
+    .line 76
     .local v0, "that":Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;
     iget-wide v4, v0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;->requestInterval:J
 
@@ -98,7 +98,7 @@
     .registers 5
 
     .prologue
-    .line 54
+    .line 57
     iget-wide v0, p0, Lcom/upsight/android/analytics/internal/configuration/ConfigurationManager$Config;->requestInterval:J
 
     const-wide/16 v2, 0x0

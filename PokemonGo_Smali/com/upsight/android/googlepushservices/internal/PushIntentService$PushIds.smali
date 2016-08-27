@@ -33,21 +33,21 @@
     .param p4, "contentId"    # Ljava/lang/Integer;
 
     .prologue
-    .line 340
+    .line 342
     iput-object p1, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushIds;->this$0:Lcom/upsight/android/googlepushservices/internal/PushIntentService;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 341
+    .line 343
     iput-object p2, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushIds;->messageId:Ljava/lang/Integer;
 
-    .line 342
+    .line 344
     iput-object p3, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushIds;->campaignId:Ljava/lang/Integer;
 
-    .line 343
+    .line 345
     iput-object p4, p0, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushIds;->contentId:Ljava/lang/Integer;
 
-    .line 344
+    .line 346
     return-void
 .end method
 
@@ -60,7 +60,7 @@
     .param p5, "x4"    # Lcom/upsight/android/googlepushservices/internal/PushIntentService$1;
 
     .prologue
-    .line 335
+    .line 337
     invoke-direct {p0, p1, p2, p3, p4}, Lcom/upsight/android/googlepushservices/internal/PushIntentService$PushIds;-><init>(Lcom/upsight/android/googlepushservices/internal/PushIntentService;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)V
 
     return-void

@@ -37,7 +37,7 @@
     .param p1, "this$0"    # Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
     .prologue
-    .line 251
+    .line 258
     iput-object p1, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$3;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -51,7 +51,7 @@
     .registers 2
 
     .prologue
-    .line 251
+    .line 258
     check-cast p1, Lrx/Subscriber;
 
     invoke-virtual {p0, p1}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$3;->call(Lrx/Subscriber;)V
@@ -72,7 +72,7 @@
     .end annotation
 
     .prologue
-    .line 255
+    .line 262
     .local p1, "subscriber":Lrx/Subscriber;, "Lrx/Subscriber<-Ljava/lang/String;>;"
     :try_start_0
     iget-object v1, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$3;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
@@ -88,20 +88,20 @@
 
     invoke-virtual {v1}, Lcom/google/android/gms/gcm/GoogleCloudMessaging;->unregister()V
 
-    .line 256
+    .line 263
     invoke-virtual {p1}, Lrx/Subscriber;->onCompleted()V
     :try_end_10
     .catch Ljava/io/IOException; {:try_start_0 .. :try_end_10} :catch_11
 
-    .line 260
+    .line 267
     :goto_10
     return-void
 
-    .line 257
+    .line 264
     :catch_11
     move-exception v0
 
-    .line 258
+    .line 265
     .local v0, "e":Ljava/io/IOException;
     invoke-virtual {p1, v0}, Lrx/Subscriber;->onError(Ljava/lang/Throwable;)V
 

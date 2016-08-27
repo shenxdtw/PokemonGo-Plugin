@@ -30,7 +30,7 @@
     .end annotation
 
     .prologue
-    .line 91
+    .line 93
     new-instance v0, Lcom/upsight/android/marketing/internal/content/DefaultContentMediator;
 
     invoke-direct {v0}, Lcom/upsight/android/marketing/internal/content/DefaultContentMediator;-><init>()V
@@ -141,7 +141,7 @@
     .end annotation
 
     .prologue
-    .line 85
+    .line 87
     new-instance v0, Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;
 
     invoke-direct {v0, p1}, Lcom/upsight/android/marketing/internal/content/MarketingContentMediatorManager;-><init>(Lcom/upsight/android/marketing/internal/content/DefaultContentMediator;)V
@@ -159,12 +159,12 @@
     .end annotation
 
     .prologue
-    .line 73
+    .line 75
     return-object p1
 .end method
 
 .method provideMarketingContentStoreImpl(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;
-    .registers 7
+    .registers 8
     .param p1, "upsight"    # Lcom/upsight/android/UpsightContext;
     .annotation runtime Ldagger/Provides;
     .end annotation
@@ -176,49 +176,59 @@
     .line 61
     invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getCoreComponent()Lcom/upsight/android/UpsightCoreComponent;
 
-    move-result-object v2
+    move-result-object v3
 
     .line 62
-    .local v2, "coreComponent":Lcom/upsight/android/UpsightCoreComponent;
-    invoke-interface {v2}, Lcom/upsight/android/UpsightCoreComponent;->bus()Lcom/squareup/otto/Bus;
+    .local v3, "coreComponent":Lcom/upsight/android/UpsightCoreComponent;
+    const-string v4, "com.upsight.extension.analytics"
+
+    invoke-virtual {p1, v4}, Lcom/upsight/android/UpsightContext;->getUpsightExtension(Ljava/lang/String;)Lcom/upsight/android/UpsightExtension;
 
     move-result-object v0
 
+    check-cast v0, Lcom/upsight/android/UpsightAnalyticsExtension;
+
     .line 63
-    .local v0, "bus":Lcom/squareup/otto/Bus;
-    const-string v3, "com.upsight.extension.analytics"
-
-    invoke-virtual {p1, v3}, Lcom/upsight/android/UpsightContext;->getUpsightExtension(Ljava/lang/String;)Lcom/upsight/android/UpsightExtension;
-
-    move-result-object v3
-
-    check-cast v3, Lcom/upsight/android/UpsightAnalyticsExtension;
-
-    check-cast v3, Lcom/upsight/android/UpsightAnalyticsExtension;
+    .local v0, "analyticsExtension":Lcom/upsight/android/UpsightAnalyticsExtension;
+    const/4 v1, 0x0
 
     .line 64
-    invoke-virtual {v3}, Lcom/upsight/android/UpsightAnalyticsExtension;->getComponent()Lcom/upsight/android/UpsightExtension$BaseComponent;
-
-    move-result-object v3
-
-    check-cast v3, Lcom/upsight/android/analytics/UpsightAnalyticsComponent;
+    .local v1, "bus":Lcom/squareup/otto/Bus;
+    const/4 v2, 0x0
 
     .line 65
-    invoke-interface {v3}, Lcom/upsight/android/analytics/UpsightAnalyticsComponent;->clock()Lcom/upsight/android/analytics/internal/session/Clock;
+    .local v2, "clock":Lcom/upsight/android/analytics/internal/session/Clock;
+    if-eqz v3, :cond_20
+
+    if-eqz v0, :cond_20
+
+    .line 66
+    invoke-interface {v3}, Lcom/upsight/android/UpsightCoreComponent;->bus()Lcom/squareup/otto/Bus;
 
     move-result-object v1
 
     .line 67
-    .local v1, "clock":Lcom/upsight/android/analytics/internal/session/Clock;
-    new-instance v3, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;
-
-    invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
+    invoke-virtual {v0}, Lcom/upsight/android/UpsightAnalyticsExtension;->getComponent()Lcom/upsight/android/UpsightExtension$BaseComponent;
 
     move-result-object v4
 
-    invoke-direct {v3, v0, v1, v4}, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;-><init>(Lcom/squareup/otto/Bus;Lcom/upsight/android/analytics/internal/session/Clock;Lcom/upsight/android/logger/UpsightLogger;)V
+    check-cast v4, Lcom/upsight/android/analytics/UpsightAnalyticsComponent;
 
-    return-object v3
+    invoke-interface {v4}, Lcom/upsight/android/analytics/UpsightAnalyticsComponent;->clock()Lcom/upsight/android/analytics/internal/session/Clock;
+
+    move-result-object v2
+
+    .line 69
+    :cond_20
+    new-instance v4, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;
+
+    invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;
+
+    move-result-object v5
+
+    invoke-direct {v4, v1, v2, v5}, Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;-><init>(Lcom/squareup/otto/Bus;Lcom/upsight/android/analytics/internal/session/Clock;Lcom/upsight/android/logger/UpsightLogger;)V
+
+    return-object v4
 .end method
 
 .method provideUpsightMarketingContentStore(Lcom/upsight/android/marketing/internal/content/MarketingContentStoreImpl;)Lcom/upsight/android/marketing/UpsightMarketingContentStore;
@@ -231,7 +241,7 @@
     .end annotation
 
     .prologue
-    .line 79
+    .line 81
     return-object p1
 .end method
 
@@ -245,7 +255,7 @@
     .end annotation
 
     .prologue
-    .line 97
+    .line 99
     new-instance v0, Lcom/upsight/android/marketing/internal/vast/VastContentMediator;
 
     invoke-virtual {p1}, Lcom/upsight/android/UpsightContext;->getLogger()Lcom/upsight/android/logger/UpsightLogger;

@@ -55,35 +55,35 @@
     .param p7, "logger"    # Lcom/upsight/android/logger/UpsightLogger;
 
     .prologue
-    .line 62
+    .line 63
     invoke-direct {p0, p1}, Landroid/content/ContextWrapper;-><init>(Landroid/content/Context;)V
 
-    .line 63
+    .line 64
     new-instance v0, Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-direct {v0}, Ljava/util/concurrent/ConcurrentHashMap;-><init>()V
 
     iput-object v0, p0, Lcom/upsight/android/UpsightContext;->mExtensionsMap:Ljava/util/Map;
 
-    .line 64
+    .line 65
     iput-object p2, p0, Lcom/upsight/android/UpsightContext;->mSdkPlugin:Ljava/lang/String;
 
-    .line 65
+    .line 66
     iput-object p3, p0, Lcom/upsight/android/UpsightContext;->mAppToken:Ljava/lang/String;
 
-    .line 66
+    .line 67
     iput-object p4, p0, Lcom/upsight/android/UpsightContext;->mPublicKey:Ljava/lang/String;
 
-    .line 67
+    .line 68
     iput-object p5, p0, Lcom/upsight/android/UpsightContext;->mSid:Ljava/lang/String;
 
-    .line 68
+    .line 69
     iput-object p6, p0, Lcom/upsight/android/UpsightContext;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
-    .line 69
+    .line 70
     iput-object p7, p0, Lcom/upsight/android/UpsightContext;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
-    .line 70
+    .line 71
     return-void
 .end method
 
@@ -93,7 +93,7 @@
     .registers 2
 
     .prologue
-    .line 154
+    .line 155
     iget-object v0, p0, Lcom/upsight/android/UpsightContext;->mAppToken:Ljava/lang/String;
 
     return-object v0
@@ -101,9 +101,11 @@
 
 .method public getCoreComponent()Lcom/upsight/android/UpsightCoreComponent;
     .registers 2
+    .annotation runtime Ljavax/annotation/Nullable;
+    .end annotation
 
     .prologue
-    .line 200
+    .line 202
     iget-object v0, p0, Lcom/upsight/android/UpsightContext;->mCoreComponent:Lcom/upsight/android/UpsightCoreComponent;
 
     return-object v0
@@ -113,7 +115,7 @@
     .registers 2
 
     .prologue
-    .line 181
+    .line 182
     iget-object v0, p0, Lcom/upsight/android/UpsightContext;->mDataStore:Lcom/upsight/android/persistence/UpsightDataStore;
 
     return-object v0
@@ -123,7 +125,7 @@
     .registers 2
 
     .prologue
-    .line 190
+    .line 191
     iget-object v0, p0, Lcom/upsight/android/UpsightContext;->mLogger:Lcom/upsight/android/logger/UpsightLogger;
 
     return-object v0
@@ -133,7 +135,7 @@
     .registers 2
 
     .prologue
-    .line 163
+    .line 164
     iget-object v0, p0, Lcom/upsight/android/UpsightContext;->mPublicKey:Ljava/lang/String;
 
     return-object v0
@@ -143,7 +145,7 @@
     .registers 2
 
     .prologue
-    .line 136
+    .line 137
     sget v0, Lcom/upsight/android/R$string;->upsight_sdk_build:I
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/UpsightContext;->getString(I)Ljava/lang/String;
@@ -157,7 +159,7 @@
     .registers 2
 
     .prologue
-    .line 145
+    .line 146
     iget-object v0, p0, Lcom/upsight/android/UpsightContext;->mSdkPlugin:Ljava/lang/String;
 
     return-object v0
@@ -167,7 +169,7 @@
     .registers 2
 
     .prologue
-    .line 127
+    .line 128
     sget v0, Lcom/upsight/android/R$string;->upsight_sdk_version:I
 
     invoke-virtual {p0, v0}, Lcom/upsight/android/UpsightContext;->getString(I)Ljava/lang/String;
@@ -181,7 +183,7 @@
     .registers 2
 
     .prologue
-    .line 172
+    .line 173
     iget-object v0, p0, Lcom/upsight/android/UpsightContext;->mSid:Ljava/lang/String;
 
     return-object v0
@@ -200,8 +202,11 @@
         }
     .end annotation
 
+    .annotation runtime Ljavax/annotation/Nullable;
+    .end annotation
+
     .prologue
-    .line 210
+    .line 213
     iget-object v0, p0, Lcom/upsight/android/UpsightContext;->mExtensionsMap:Ljava/util/Map;
 
     invoke-interface {v0, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -229,11 +234,11 @@
     .end annotation
 
     .prologue
-    .line 80
+    .line 81
     .local p2, "extensions":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Lcom/upsight/android/UpsightExtension;>;"
     iput-object p1, p0, Lcom/upsight/android/UpsightContext;->mCoreComponent:Lcom/upsight/android/UpsightCoreComponent;
 
-    .line 83
+    .line 84
     invoke-virtual {p0}, Lcom/upsight/android/UpsightContext;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v4
@@ -246,11 +251,11 @@
 
     move-result-object v0
 
-    .line 84
+    .line 85
     .local v0, "client":Landroid/content/ContentProviderClient;
     if-nez v0, :cond_3f
 
-    .line 85
+    .line 86
     new-instance v4, Ljava/lang/IllegalStateException;
 
     new-instance v5, Ljava/lang/StringBuilder;
@@ -263,7 +268,7 @@
 
     move-result-object v5
 
-    .line 88
+    .line 89
     invoke-virtual {p0}, Lcom/upsight/android/UpsightContext;->getPackageName()Ljava/lang/String;
 
     move-result-object v6
@@ -298,11 +303,11 @@
 
     throw v4
 
-    .line 92
+    .line 93
     :cond_3f
     invoke-virtual {v0}, Landroid/content/ContentProviderClient;->release()Z
 
-    .line 95
+    .line 96
     invoke-interface {p2}, Ljava/util/Map;->entrySet()Ljava/util/Set;
 
     move-result-object v4
@@ -324,7 +329,7 @@
 
     check-cast v1, Ljava/util/Map$Entry;
 
-    .line 97
+    .line 98
     .local v1, "entry":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Lcom/upsight/android/UpsightExtension;>;"
     invoke-interface {v1}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
 
@@ -332,7 +337,7 @@
 
     check-cast v2, Lcom/upsight/android/UpsightExtension;
 
-    .line 98
+    .line 99
     .local v2, "extension":Lcom/upsight/android/UpsightExtension;
     invoke-interface {p1}, Lcom/upsight/android/UpsightCoreComponent;->upsightContext()Lcom/upsight/android/UpsightContext;
 
@@ -342,11 +347,11 @@
 
     move-result-object v3
 
-    .line 99
+    .line 100
     .local v3, "extensionComponent":Lcom/upsight/android/UpsightExtension$BaseComponent;
     invoke-virtual {v2, v3}, Lcom/upsight/android/UpsightExtension;->setComponent(Lcom/upsight/android/UpsightExtension$BaseComponent;)V
 
-    .line 102
+    .line 103
     iget-object v5, p0, Lcom/upsight/android/UpsightContext;->mExtensionsMap:Ljava/util/Map;
 
     invoke-interface {v1}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
@@ -357,7 +362,7 @@
 
     goto :goto_4a
 
-    .line 106
+    .line 107
     .end local v1    # "entry":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Lcom/upsight/android/UpsightExtension;>;"
     .end local v2    # "extension":Lcom/upsight/android/UpsightExtension;
     .end local v3    # "extensionComponent":Lcom/upsight/android/UpsightExtension$BaseComponent;
@@ -383,7 +388,7 @@
 
     check-cast v2, Lcom/upsight/android/UpsightExtension;
 
-    .line 107
+    .line 108
     .restart local v2    # "extension":Lcom/upsight/android/UpsightExtension;
     invoke-virtual {v2}, Lcom/upsight/android/UpsightExtension;->getComponent()Lcom/upsight/android/UpsightExtension$BaseComponent;
 
@@ -393,7 +398,7 @@
 
     goto :goto_79
 
-    .line 111
+    .line 112
     .end local v2    # "extension":Lcom/upsight/android/UpsightExtension;
     :cond_8d
     invoke-interface {p2}, Ljava/util/Map;->values()Ljava/util/Collection;
@@ -417,13 +422,13 @@
 
     check-cast v2, Lcom/upsight/android/UpsightExtension;
 
-    .line 112
+    .line 113
     .restart local v2    # "extension":Lcom/upsight/android/UpsightExtension;
     invoke-virtual {v2, p0}, Lcom/upsight/android/UpsightExtension;->onCreate(Lcom/upsight/android/UpsightContext;)V
 
     goto :goto_95
 
-    .line 116
+    .line 117
     .end local v2    # "extension":Lcom/upsight/android/UpsightExtension;
     :cond_a5
     invoke-interface {p2}, Ljava/util/Map;->values()Ljava/util/Collection;
@@ -447,13 +452,13 @@
 
     check-cast v2, Lcom/upsight/android/UpsightExtension;
 
-    .line 117
+    .line 118
     .restart local v2    # "extension":Lcom/upsight/android/UpsightExtension;
     invoke-virtual {v2, p0}, Lcom/upsight/android/UpsightExtension;->onPostCreate(Lcom/upsight/android/UpsightContext;)V
 
     goto :goto_ad
 
-    .line 119
+    .line 120
     .end local v2    # "extension":Lcom/upsight/android/UpsightExtension;
     :cond_bd
     return-void

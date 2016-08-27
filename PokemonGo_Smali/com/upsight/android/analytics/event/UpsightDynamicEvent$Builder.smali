@@ -88,7 +88,7 @@
     .registers 6
 
     .prologue
-    .line 80
+    .line 82
     new-instance v0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent;
 
     iget-object v1, p0, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->type:Ljava/lang/String;
@@ -109,12 +109,12 @@
     .param p1, "source"    # Lcom/google/gson/JsonObject;
 
     .prologue
-    .line 84
+    .line 86
     invoke-virtual {p1}, Lcom/google/gson/JsonObject;->toString()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 85
+    .line 87
     .local v0, "jsonString":Ljava/lang/String;
     sget-object v1, Lcom/upsight/android/analytics/event/UpsightDynamicEvent$Builder;->JSON_PARSER:Lcom/google/gson/JsonParser;
 
@@ -186,13 +186,17 @@
 
     .line 75
     .local v0, "extension":Lcom/upsight/android/UpsightAnalyticsExtension;
+    if-eqz v0, :cond_15
+
+    .line 76
     invoke-virtual {v0}, Lcom/upsight/android/UpsightAnalyticsExtension;->getApi()Lcom/upsight/android/analytics/UpsightAnalyticsApi;
 
     move-result-object v2
 
     invoke-interface {v2, v1}, Lcom/upsight/android/analytics/UpsightAnalyticsApi;->record(Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;)V
 
-    .line 76
+    .line 78
+    :cond_15
     return-object v1
 .end method
 

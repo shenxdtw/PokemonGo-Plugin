@@ -37,7 +37,7 @@
     .param p1, "this$0"    # Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
     .prologue
-    .line 178
+    .line 187
     iput-object p1, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$2;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -51,7 +51,7 @@
     .registers 1
 
     .prologue
-    .line 182
+    .line 191
     return-void
 .end method
 
@@ -60,12 +60,12 @@
     .param p1, "e"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 188
+    .line 197
     iget-object v3, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$2;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
     monitor-enter v3
 
-    .line 189
+    .line 198
     :try_start_3
     new-instance v1, Ljava/util/HashSet;
 
@@ -78,7 +78,7 @@
 
     invoke-direct {v1, v2}, Ljava/util/HashSet;-><init>(Ljava/util/Collection;)V
 
-    .line 190
+    .line 199
     .local v1, "pendingListeners":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;>;"
     iget-object v2, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$2;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
@@ -89,7 +89,7 @@
 
     invoke-interface {v2}, Ljava/util/Set;->clear()V
 
-    .line 192
+    .line 201
     iget-object v2, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$2;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
     const/4 v4, 0x0
@@ -97,12 +97,12 @@
     # setter for: Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->mRegistrationIsInProgress:Z
     invoke-static {v2, v4}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->access$202(Lcom/upsight/android/googlepushservices/internal/GooglePushServices;Z)Z
 
-    .line 193
+    .line 202
     monitor-exit v3
     :try_end_1e
     .catchall {:try_start_3 .. :try_end_1e} :catchall_37
 
-    .line 195
+    .line 204
     invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
@@ -120,7 +120,7 @@
 
     check-cast v0, Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;
 
-    .line 196
+    .line 205
     .local v0, "lst":Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;
     new-instance v3, Lcom/upsight/android/UpsightException;
 
@@ -130,7 +130,7 @@
 
     goto :goto_22
 
-    .line 193
+    .line 202
     .end local v0    # "lst":Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;
     .end local v1    # "pendingListeners":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;>;"
     :catchall_37
@@ -143,7 +143,7 @@
 
     throw v2
 
-    .line 198
+    .line 207
     .restart local v1    # "pendingListeners":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;>;"
     :cond_3a
     return-void
@@ -153,7 +153,7 @@
     .registers 2
 
     .prologue
-    .line 178
+    .line 187
     check-cast p1, Ljava/lang/String;
 
     invoke-virtual {p0, p1}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$2;->onNext(Ljava/lang/String;)V
@@ -166,37 +166,19 @@
     .param p1, "registrationId"    # Ljava/lang/String;
 
     .prologue
-    .line 204
+    .line 213
     iget-object v3, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$2;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
     monitor-enter v3
 
-    .line 205
+    .line 214
     :try_start_3
     iget-object v2, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$2;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
-    # invokes: Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->storeRegistrationId(Ljava/lang/String;)V
+    # invokes: Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->registerPushToken(Ljava/lang/String;)V
     invoke-static {v2, p1}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->access$300(Lcom/upsight/android/googlepushservices/internal/GooglePushServices;Ljava/lang/String;)V
 
-    .line 207
-    invoke-static {}, Lcom/upsight/android/analytics/event/comm/UpsightCommRegisterEvent;->createBuilder()Lcom/upsight/android/analytics/event/comm/UpsightCommRegisterEvent$Builder;
-
-    move-result-object v2
-
-    invoke-virtual {v2, p1}, Lcom/upsight/android/analytics/event/comm/UpsightCommRegisterEvent$Builder;->setToken(Ljava/lang/String;)Lcom/upsight/android/analytics/event/comm/UpsightCommRegisterEvent$Builder;
-
-    move-result-object v2
-
-    iget-object v4, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$2;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
-
-    # getter for: Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->mUpsight:Lcom/upsight/android/UpsightContext;
-    invoke-static {v4}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->access$000(Lcom/upsight/android/googlepushservices/internal/GooglePushServices;)Lcom/upsight/android/UpsightContext;
-
-    move-result-object v4
-
-    invoke-virtual {v2, v4}, Lcom/upsight/android/analytics/event/comm/UpsightCommRegisterEvent$Builder;->record(Lcom/upsight/android/UpsightContext;)Lcom/upsight/android/analytics/event/UpsightAnalyticsEvent;
-
-    .line 209
+    .line 216
     new-instance v1, Ljava/util/HashSet;
 
     iget-object v2, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$2;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
@@ -208,7 +190,7 @@
 
     invoke-direct {v1, v2}, Ljava/util/HashSet;-><init>(Ljava/util/Collection;)V
 
-    .line 210
+    .line 217
     .local v1, "pendingListeners":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;>;"
     iget-object v2, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$2;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
@@ -219,7 +201,7 @@
 
     invoke-interface {v2}, Ljava/util/Set;->clear()V
 
-    .line 212
+    .line 219
     iget-object v2, p0, Lcom/upsight/android/googlepushservices/internal/GooglePushServices$2;->this$0:Lcom/upsight/android/googlepushservices/internal/GooglePushServices;
 
     const/4 v4, 0x0
@@ -227,22 +209,22 @@
     # setter for: Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->mRegistrationIsInProgress:Z
     invoke-static {v2, v4}, Lcom/upsight/android/googlepushservices/internal/GooglePushServices;->access$202(Lcom/upsight/android/googlepushservices/internal/GooglePushServices;Z)Z
 
-    .line 213
+    .line 220
     monitor-exit v3
-    :try_end_34
-    .catchall {:try_start_3 .. :try_end_34} :catchall_48
+    :try_end_23
+    .catchall {:try_start_3 .. :try_end_23} :catchall_37
 
-    .line 215
+    .line 222
     invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
 
-    :goto_38
+    :goto_27
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_4b
+    if-eqz v3, :cond_3a
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -250,27 +232,27 @@
 
     check-cast v0, Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;
 
-    .line 216
+    .line 223
     .local v0, "lst":Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;
     invoke-interface {v0, p1}, Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;->onSuccess(Ljava/lang/String;)V
 
-    goto :goto_38
+    goto :goto_27
 
-    .line 213
+    .line 220
     .end local v0    # "lst":Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;
     .end local v1    # "pendingListeners":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;>;"
-    :catchall_48
+    :catchall_37
     move-exception v2
 
-    :try_start_49
+    :try_start_38
     monitor-exit v3
-    :try_end_4a
-    .catchall {:try_start_49 .. :try_end_4a} :catchall_48
+    :try_end_39
+    .catchall {:try_start_38 .. :try_end_39} :catchall_37
 
     throw v2
 
-    .line 218
+    .line 225
     .restart local v1    # "pendingListeners":Ljava/util/Set;, "Ljava/util/Set<Lcom/upsight/android/googlepushservices/UpsightGooglePushServices$OnRegisterListener;>;"
-    :cond_4b
+    :cond_3a
     return-void
 .end method
